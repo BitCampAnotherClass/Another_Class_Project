@@ -3,7 +3,25 @@
 <html>
 <head>
 	<meta charset="utf-8"/>
-	<title>Kakao 지도 시작하기</title>
+	<title>Kakao 맵, 우편번호 서비스</title>
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<script>
+				new daum.Postcode({
+			        oncomplete: function(data) {
+			            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+			            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+			            
+			    // ---------------------------------------------- 따로 작성한부분입니다.
+			            // https://postcode.map.daum.net/guide
+			        	var roadAddr = data.roadAddress; // 도로명 주소
+							document.getElementById('post').innerHTML =roadAddr;
+							
+						var zoneCode = data.zonecode; // 우편번호
+						    document.getElementById('post2').innerHTML =zoneCode;
+				// ---------------------------------------------- 따로 작성한부분입니다.
+			        }
+			    }).open();
+	</script>
 </head>
 <body>
 	<div id="map" style="width:500px;height:400px;"></div>
@@ -24,5 +42,9 @@
 		var zoomControl = new kakao.maps.ZoomControl();
 		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 	</script>
+	<div>
+		<label id ="post"></label><br/>
+		<label id ="post2"></label>
+	</div>
 </body>
 </html>
