@@ -5,7 +5,7 @@
 <html>
 <head>
 	<meta charset="utf-8"/>
-	<title>웹 프로젝트 기능테스트</title>
+	<title>웹 프로젝트 기능테스트12341234</title>
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> <!-- 우편번호 -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> <!-- JQuery -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9551f210d2bfdcde36af42fb1ccab895"></script> <!-- KAKAOMAP API 키 주소기본설정 : localhost:9090-->
