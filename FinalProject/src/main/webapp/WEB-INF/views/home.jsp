@@ -5,10 +5,9 @@
 	<title>Home</title>
 </head>
 <body>
-<h1>
-	Hello world!  
+<h1>adadad
+	Hello world!  ddddddd
 </h1>
-
-<P> hi i'm jisu </P>
+<P>  The time on the server is ${serverTime}. </P>
 </body>
 </html>
