@@ -2,7 +2,6 @@
 *.class
 pom.properties
 Thumbs.db
-.settings
 .classpath
 /bin
 *.java.hsp
