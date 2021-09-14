@@ -2,6 +2,10 @@
 *.class
 pom.properties
 Thumbs.db
+<<<<<<< HEAD
+.settings
+=======
+>>>>>>> 5d08943f38cdd6859ff0c3af7c2030bb2dd11015
 .classpath
 /bin
 *.java.hsp
