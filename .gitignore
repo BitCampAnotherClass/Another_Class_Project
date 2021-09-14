@@ -1,1 +1,13 @@
-/.metadata/
+/target
+*.class
+pom.properties
+Thumbs.db
+.classpath
+/bin
+*.java.hsp
+*.sonarj
+*.sw*
+.springBeans
+.externalToolBuilders
+.project
+
