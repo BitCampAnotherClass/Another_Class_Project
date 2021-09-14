@@ -8,6 +8,6 @@
 <h1>adadad
 	Hello world!  ddddddd
 </h1>
-<P>  The time on the server is ${serverTime}. </P>
+<P>  hahahahaha </P>
 </body>
 </html>
