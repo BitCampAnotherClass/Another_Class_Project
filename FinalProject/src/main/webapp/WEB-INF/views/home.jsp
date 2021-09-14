@@ -1,20 +1,5 @@
-<<<<<<< HEAD
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page session="false" %>
-<html>
-<head>
-	<title>Home</title>
-</head>
-<body> 
-
-<h1>
-	Hello world!  hihi dfdfsds
-</h1>
-
-<P>  The time on the server is ${serverTime}. </P>
-</body>
-</html>
-=======
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <html>
@@ -23,9 +8,10 @@
 </head>
 <body>
 <h1>
-	Hello world !!!d
+	Hello world!  
 </h1>
-<P>  hahahahaha </P>
+
+<P>  The time on the server is ${serverTime}. leecdng 210914 16:11</P>
+<p>git test2233445555</p>
 </body>
 </html>
->>>>>>> 5d08943f38cdd6859ff0c3af7c2030bb2dd11015
