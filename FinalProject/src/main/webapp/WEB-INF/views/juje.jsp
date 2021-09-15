@@ -8,7 +8,7 @@
 </head>
 <body>
 <<<<<<< HEAD
-<h1>ㄳㄷㄳㄷㄳㄱㄷㅅㅓㅓㅓ깃</h1>
+<h1>ㄳㄷㄳㄷㄳㄱㄷㅅㅓㅓㅓ깃aasdfsdafasddsa</h1>
 =======
 <h1>깃</h1>
 >>>>>>> parent of ce36dfc (Update juje.jsp)
