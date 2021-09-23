@@ -1,0 +1,51 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="css/basic.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div id="wrap">
+	<header id="header">
+		<div class="inner">
+			<div id="header-top">
+				<ul class="tnb">
+					<li><a href="#">로그인</a></li>
+					<li><a href="#">회원가입</a></li>
+					<li><a href="#">♥</a></li>
+					<li><a href="#">장</a></li>
+				</ul>
+			</div>
+			<div id="header-bottom">
+				<h1 class="logo"><a href="#">어나더클래스</a></h1>
+				<nav id="nav">
+					<div class="search">
+						<form>
+							<input class="search-bar" type="text" placeholder="검색어를 입력하세요." />
+						</form>
+					</div>
+					<ul class="gnb">
+						<li><a href="#">클래스 목록</a>
+							<ul class="category">
+								<li><a href="#">핸드메이드 공예</a></li>
+								<li><a href="#">쿠킹 베이킹</a></li>
+								<li><a href="#">아웃도어스포츠피트니스</a></li>
+								<li><a href="#">드로잉가드닝</a></li>
+								<li><a href="#">반려동물</a></li>
+							</ul>
+						</li>
+						<li><a href="#">내 주변 클래스</a></li>
+						<li><a href="#">커뮤니티</a></li>
+						<li><a href="#">고객지원</a></li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</header>
+	<main id="main">
+		<article id="container" class="inner">
+		
+		

@@ -1,0 +1,132 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
+
+
+html, body, div, ul, li, header, footer, main, article, section, aside, form, input, select, a, p, h1, h2, h3, h4, h5, h6{
+	margin:0;
+	padding:0;
+	box-sizing:border-box;
+	font-family: 'Nanum Gothic', sans-serif;
+}
+
+ul, li{
+	list-style:none;
+}
+
+a{
+	text-decoration:none;
+	color:#333;
+}
+
+
+
+/* header */
+
+.inner{
+	width:1200px;
+	margin:0 auto;
+}
+
+#header{
+	height:180px;
+	border-bottom:1px solid #ccc;
+}
+
+#header-top{
+	height:40px;
+	display:flex;
+	justify-content: flex-end;
+	padding-top:10px;
+}
+
+.tnb{
+	width:200px;
+	display:flex;
+	justify-content: space-between;
+	margin-right:30px;
+}
+
+
+#header-bottom{
+	display: flex;
+	justify-content: space-between;
+	align-items:flex-end;
+	padding:0 30px;
+}
+
+#header-bottom > .logo{
+	width:220px;
+	height:110px;
+	background: pink;
+	text-align: center;
+	line-height:110px;
+}
+
+
+#nav{
+	display: flex;
+	justify-content: space-between;
+}
+
+.search-bar{
+	width:230px;
+	height:36px;
+	outline: none;
+}
+
+
+#nav .gnb{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+#nav .gnb > li > a{
+	margin-left:50px;
+	font-size:1.2em;
+	font-weight: 700;
+}
+
+.category{
+	display: none;
+}
+
+
+
+/* main - container */
+
+#container{
+	height:900px; /* 임의 값 */
+	border:1px solid #ddd;
+}
+
+
+
+
+
+
+
+/* footer */
+
+#footer{
+	height:250px;
+	background-color:#333;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

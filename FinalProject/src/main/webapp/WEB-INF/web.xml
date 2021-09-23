@@ -49,4 +49,12 @@
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 	<!-- UTF-8 encoding -->
+	<!-- include -->
+	<jsp-config>
+		<jsp-property-group>
+			<url-pattern>*.jsp</url-pattern>
+			<include-prelude>/inc/user_header.jspf</include-prelude>
+			<include-coda>/inc/user_footer.jspf</include-coda>
+		</jsp-property-group>
+	</jsp-config>
 </web-app>
