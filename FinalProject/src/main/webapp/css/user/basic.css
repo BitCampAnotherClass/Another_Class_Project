@@ -22,7 +22,7 @@ a{
 
 /* header */
 
-.inner{
+.inner-lg{
 	width:1200px;
 	margin:0 auto;
 }
@@ -44,6 +44,10 @@ a{
 	display:flex;
 	justify-content: space-between;
 	margin-right:30px;
+}
+
+.tnb.logout-menu{
+	display:none;
 }
 
 
@@ -95,9 +99,8 @@ a{
 
 /* main - container */
 
-#container{
+#main{
 	height:900px; /* 임의 값 */
-	border:1px solid #ddd;
 }
 
 

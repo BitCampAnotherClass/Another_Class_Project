@@ -1,0 +1,123 @@
+@charset "UTF-8";
+
+
+
+
+#visual{
+	height:520px;
+}
+
+
+
+#visual .slider{
+	height:100%;
+	background-color:#ddd;
+	position:relative;
+}
+
+
+/* 모바일 버전 숨기기 ?????????*/
+
+#visual .v-img a img{
+	/*display:none;*/
+}
+
+
+
+#visual .slider .slide-img li{
+	width:100%;
+	height:100%;
+	position:absolute;
+	top:0;
+	left:0;
+}
+
+#visual .slider .slide-img li a{
+	display:block;
+	width:1200px;
+	height:100%;
+	margin:0 auto;
+}
+
+#visual .slider .slide-img li#v01{
+	background-color:#3174b6;
+}
+
+#visual .slider .slide-img li#v01 a{
+	/*background:url(../web/upload/img/visual/v01.jpg) no-repeat 0 0;*/
+}
+
+#visual .slider .slide-img li#v02{
+	display:none;
+	background-color:#396;
+}
+
+#visual .slider .slide-img li#v02 a{
+	/*background:url(../web/upload/img/visual/v02.jpg) no-repeat 0 0;*/
+}
+
+#visual .slider .slide-img li#v03{
+	display:none;
+	background-color:#0d0d26;
+}
+
+#visual .slider .slide-img li#v03 a{
+	/*background:url(../web/upload/img/visual/v03.jpg) no-repeat 0 0;*/
+}
+
+#visual .slider .slide-img li#v04{
+	display:none;
+	background-color:#e1681f;
+}
+
+#visual .slider .slide-img li#v04 a{
+	/*background:url(../web/upload/img/visual/v04.jpg) no-repeat 0 0;*/
+}
+
+
+
+
+
+.v-prev{
+	width:50px;
+	height:100px;
+	position:absolute;
+	top:225px;
+	left:15px;
+	/*background:url(../web/upload/img/etc/prev.png) no-repeat 0 0;*/
+	opacity:0.5;
+	cursor:pointer;
+}
+
+.v-next{
+	width:50px;
+	height:100px;
+	position:absolute;
+	top:225px;
+	right:15px;
+	/*background:url(../web/upload/img/etc/next.png) no-repeat 0 0;*/
+	opacity:0.5;
+	cursor:pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.contents{
+	height:500px;
+}
+
+
+
+
+

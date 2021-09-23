@@ -5,16 +5,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="css/basic.css" rel="stylesheet" type="text/css"/>
+<link href="css/user/basic.css" rel="stylesheet" type="text/css"/>
+<link href="css/user/main.css" rel="stylesheet" type="text/css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
 </head>
 <body>
 <div id="wrap">
 	<header id="header">
-		<div class="inner">
+		<div class="inner-lg">
 			<div id="header-top">
-				<ul class="tnb">
+				<ul class="tnb login-menu">
 					<li><a href="#">로그인</a></li>
 					<li><a href="#">회원가입</a></li>
+					<li><a href="#">♥</a></li>
+					<li><a href="#">장</a></li>
+				</ul>
+				<ul class="tnb logout-menu">
+					<li><a href="#">로그아웃</a></li>
+					<li><a href="#">마이페이지</a></li>
 					<li><a href="#">♥</a></li>
 					<li><a href="#">장</a></li>
 				</ul>
@@ -46,6 +54,5 @@
 		</div>
 	</header>
 	<main id="main">
-		<article id="container" class="inner">
 		
 		
