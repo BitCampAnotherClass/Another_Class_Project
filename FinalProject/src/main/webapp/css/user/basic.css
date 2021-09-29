@@ -1,31 +1,15 @@
 @charset "UTF-8";
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700;800&display=swap');
-
-
-html, body, div, ul, li, header, footer, main, article, section, aside, form, input, select, a, p, h1, h2, h3, h4, h5, h6{
-	margin:0;
-	padding:0;
-	box-sizing:border-box;
-	font-family: 'Nanum Gothic', sans-serif;
-}
-
-ul, li{
-	list-style:none;
-}
-
-a{
-	text-decoration:none;
-	color:#333;
-}
 
 
 
 /* header */
 
+/*
 .inner-lg{
 	width:1200px;
 	margin:0 auto;
 }
+*/
 
 #header{
 	height:180px;
@@ -72,10 +56,16 @@ a{
 	justify-content: space-between;
 }
 
+
+
 .search-bar{
-	width:230px;
-	height:36px;
+	width:270px;
+	height:40px;
 	outline: none;
+	border:1px solid #999;
+	border-radius:40px;
+	padding:0 15px;
+	font-size:1.05em;
 }
 
 

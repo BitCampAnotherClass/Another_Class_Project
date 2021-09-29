@@ -6,165 +6,142 @@
 	}
 </style>
 
+<!-- Demo styles -->
+    <style>
+
+      body {
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color: #000;
+        margin: 0;
+        padding: 0;
+      }
+
+      .swiper {
+        width: 100%;
+        height: 500px;
+      }
+
+      .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #eee;
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+      }
+
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .swiper {
+        margin-left: auto;
+        margin-right: auto;
+      }
+</style>
 
 
 <article id="container">
-	<section id="visual">
-		<div class="slider">
-			<ul class="slide-img">
-				<li id="v01" class="v-img">
-					<a href="#"><img src="#" alt="" /></a>
-				</li>
-				<li id="v02" class="v-img">
-					<a href="#"><img src="#" alt="" /></a>
-				</li>
-				<li id="v03" class="v-img">
-					<a href="#"><img src="#" alt="" /></a>
-				</li>
-				<li id="v04" class="v-img">
-					<a href="#"><img src="#" alt="" /></a>
-				</li>
-			</ul>
-
-			<!-- prev / next 버튼 -->
-			<div class="v-prev">◀</div>
-			<div class="v-next">▶</div>
-
-		</div>
-		<!-- slider 
-
-		<div class="ban">
-			<ul>
-				<li class="ban01 on">
-					<p class="r_font">11111</p>
-					<p class="b_font">1111111</p>
-				</li>
-				<li class="ban02">
-					<p class="r_font">22222</p>
-					<p class="b_font">2222222</p>
-				</li>
-				<li class="ban03">
-					<p class="r_font">33333</p>
-					<p class="b_font">3333333</p>
-				</li>
-				<li class="ban04">
-					<p class="r_font">44444</p>
-					<p class="b_font">4444444</p>
-				</li>
-			</ul>
-		</div>
-		 // ban -->
-	</section>
-	<section class="contents">
-		<div class="inner-lg">
-		
+	<section class="main-slide">
+		<!-- Swiper -->
+		<div class="swiper mainSwiper">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">Slide 1</div>
+				<div class="swiper-slide">Slide 2</div>
+				<div class="swiper-slide">Slide 3</div>
+				<div class="swiper-slide">Slide 4</div>
+				<div class="swiper-slide">Slide 5</div>
+				<div class="swiper-slide">Slide 6</div>
+				<div class="swiper-slide">Slide 7</div>
+				<div class="swiper-slide">Slide 8</div>
+				<div class="swiper-slide">Slide 9</div>
+			</div>
+			<div id="main-slide-prev" class="swiper-button-prev"></div>
+			<div id="main-slide-next" class="swiper-button-next"></div>
+			<div class="swiper-pagination"></div>
 		</div>
 	</section>
+	
+	<div class="contents">
+		<section class="class-list-best">
+			<!-- Swiper --><!-- 
+			<div class="swiper classSwiper1">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">Slide 1</div>
+					<div class="swiper-slide">Slide 2</div>
+					<div class="swiper-slide">Slide 3</div>
+					<div class="swiper-slide">Slide 4</div>
+					<div class="swiper-slide">Slide 5</div>
+					<div class="swiper-slide">Slide 6</div>
+					<div class="swiper-slide">Slide 7</div>
+					<div class="swiper-slide">Slide 8</div>
+				</div>
+				<div id="main-slide-prev" class="swiper-button-prev"></div>
+				<div id="main-slide-next" class="swiper-button-next"></div>
+				<div class="swiper-pagination"></div>
+			</div>-->
+		</section>
+	</div>
 </article>
 
 
 
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
-	$(function(){
-		var slide = $('.slide-img li');
-	
-		fadeTime = 300;
-
-	
-		// *** next 버튼 누르면 다음 이미지 보여주기
-	
-	
-		v_size = $('.slide-img li').size();
-		vn = 0;    // 현재 표시 이미지
-		vnn = 1;   // vnn = vn 오른쪽 옆 이미지
-	
-		$('.v-next').click(function(){
-		    
-		   $('.v-img').stop().fadeOut(fadeTime);  //  페이드인아웃으로 이미지 전환하기
-		   $('.slide-img li:eq(' + vnn + ')').stop().fadeIn(fadeTime);
-	
-		   vn++
-		   vnn++
-	
-		   if(vnn == v_size){
-		      vnn = 0;
-		   } else if(vn == v_size){
-		      vn = 0; 
-		   }
-		      //console.log('n'+vn);
-		  });
-	
-	
-		// *** prev 버튼 누르면 다음 이미지 보여주기
-	
-		$('.v-prev').click(function(){
-		    
-		   vn--
-		   vnn--
-	
-		   if(vn < 0){
-		      vn = (v_size-1);
-		   } else if(vnn < 0){
-		      vnn = (v_size-1); 
-		   }
-		   $('.v-img').stop().fadeOut(fadeTime);  //  페이드인아웃으로 이미지 전환하기
-		   $('.slide-img li:eq(' + vn + ')').stop().fadeIn(fadeTime);
-
-		});
-	
-	
-		// *** 슬라이드 배너 마우스오버 하면 해당 이미지 보여주기
-
-	/*
-		banner.mouseover(function(){
-	
-		   vn = $(this).index();     // vn이 현재 마우스오버한 순서 번호로 바뀜
-		   vnn = vn+1;
-		   if(vnn == v_size){
-		      vnn = 0;
-		   }
-	
-		   $('.v-img').stop().fadeOut(fadeTime);   // 슬라이드 이미지 중에 해당 배너만 fadeIn
-		   $('.slide-img li:eq(' + vn + ')').stop().fadeIn(fadeTime);
-	
-		   //banner.removeClass('on');   // 배너 중에 현재 배너에만 on
-		   $(this).addClass('on');
-	
-		   //console.log(vn);
-	
-		});
-	*/
-	
-	
-	
-		// *** 자동실행 (오토플레이)
-	
-		var autoPlay;
-		playTime = 8000;
-	
-	
-		autoPlay = setInterval(function(){
-		   $('.v-next').trigger('click');
-		},playTime);
-	
-	
-		$('.slider, .ban ul').on({
-		   // 마우스오버일 때 setInterval(오토) 삭제
-		   mouseenter:function(e){
-		      clearInterval(autoPlay); // setInterval 삭제
-		      autoPlay;
-		   },
-		   // 마우스아웃일 때 setInterval 다시 실행
-		   mouseleave:function(e){
-		      autoPlay = setInterval(function(){ 
-		      $('.v-next').trigger('click');
-		      },playTime);
-		   }
-	
-		});
-
-
-
-	});
-
+      var swiper = new Swiper(".mainSwiper", {
+        slidesPerView: 1,
+        spaceBetween: 0,
+        loop: true,
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true,
+        },
+        autoplay: {
+            delay: 2500,
+            disableOnInteraction: false,
+        },
+        navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+        },
+        effect: 'fade',
+        fadeEffect: {
+          crossFade: true
+        }
+      });
+      
+      
+      
+      var swiper = new Swiper(".classSwiper1", {
+    	  slidesPerView: 4,
+          spaceBetween: 30,
+          slidesPerGroup: 4,
+          loop: true,
+          loopFillGroupWithBlank: true,
+          pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+          },
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          }
+        });
 </script>
+

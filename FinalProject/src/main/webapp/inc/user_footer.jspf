@@ -4,7 +4,9 @@
 
 	</main>
 	<footer id="footer">
-		<div class="inner-lg"></div>
+		<div class="inner-lg">
+			
+		</div>
 	</footer>
 </div>
 </body>
