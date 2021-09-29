@@ -1,4 +1,4 @@
-package com.bitcamp.teamproject;
+package com.anotherclass.bitcamp;
 
 import java.text.DateFormat;
 import java.util.Date;
