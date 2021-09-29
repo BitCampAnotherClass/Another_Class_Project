@@ -1,4 +1,4 @@
-package com.anotherclass.bitcamp;
+package com.bitcamp.teamproject;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -32,7 +32,13 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
-		return "home";
+		System.out.println("16:31test");
+		return "user/home";
+	}
+	// 화면 보려고 임시 맵핑 ---------------------------
+	@RequestMapping(value = "/login")
+	public String login() {
+		return "/login";
 	}
 	
 }
