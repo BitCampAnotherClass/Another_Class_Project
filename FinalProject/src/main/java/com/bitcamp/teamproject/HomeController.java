@@ -33,12 +33,8 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		System.out.println("16:31test");
-		return "home";
+		return "user/home";
 	}
-	
-	
-	
-	
 	// 화면 보려고 임시 맵핑 ---------------------------
 	@RequestMapping(value = "/login")
 	public String login() {
