@@ -36,4 +36,13 @@ public class HomeController {
 		return "home";
 	}
 	
+	
+	
+	
+	// 화면 보려고 임시 맵핑 ---------------------------
+	@RequestMapping(value = "/login")
+	public String login() {
+		return "/login";
+	}
+	
 }
