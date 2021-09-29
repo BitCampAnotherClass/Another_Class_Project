@@ -1,4 +1,4 @@
-package com.bitcamp.teamproject;
+package com.anotherclass.bitcamp;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
