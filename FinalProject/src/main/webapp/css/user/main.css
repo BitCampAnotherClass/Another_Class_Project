@@ -12,30 +12,91 @@ textarea:-ms-input-placeholder {color:#aaa;}
 
 
 
-
-
-#main-slide-prev{
+#main-slide-prev, #main-slide-next{
 	width:30px;
 	height:60px;
+}
+
+#main-slide-prev{
 	background:url(../../img/etc/prev.png) no-repeat;
 	background-size:contain;
 }
 
+
 #main-slide-next{
-	width:30px;
-	height:60px;
 	background:url(../../img/etc/next.png) no-repeat;
 	background-size:contain;
 }
 
+#main-slide-prev::after, #main-slide-next::after{
+	content:none;
+}
 
+.swiper-pagination-bullet-active{
+	background-color:#FF385C;
+}
 
 
 
 .contents{
 	width:1200px;
+	padding-top:60px;
+}
+
+.main-h3{
+	margin-bottom:36px;
+	text-align:center;
 }
 
 .class-list-best{
 	width:100%;
+	padding: 0 20px;
 }
+
+.class-list-best .classSwiper1{
+	height:270px;
+}
+
+.classSwiper1 > .swiper-button-prev{
+	background:url(../../img/etc/prev.png) no-repeat;
+	background-size:contain;
+/*
+	width:50px;
+	height:50px;
+	background:#000;
+	opacity:0.5;
+	border-radius:50px;
+	left:-10px;
+	white-space: nowrap;*/
+}
+
+
+.classSwiper1 > .swiper-button-next{
+	background:url(../../img/etc/next.png) no-repeat;
+	background-size:contain;
+}
+
+.classSwiper1 > .swiper-button-prev::after, .classSwiper1 > .swiper-button-next::after{
+	content:none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
