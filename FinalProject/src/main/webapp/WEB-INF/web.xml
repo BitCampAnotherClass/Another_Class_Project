@@ -52,7 +52,7 @@
 	<!-- include -->
 	<jsp-config>
 		<jsp-property-group>
-			<url-pattern>*.jsp</url-pattern>
+			<url-pattern>/views/user/*</url-pattern>
 			<include-prelude>/inc/user_header.jspf</include-prelude>
 			<include-coda>/inc/user_footer.jspf</include-coda>
 		</jsp-property-group>
