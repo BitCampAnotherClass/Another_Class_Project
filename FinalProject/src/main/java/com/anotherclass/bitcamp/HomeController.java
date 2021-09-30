@@ -32,7 +32,6 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		
 		model.addAttribute("serverTime", formattedDate );
-		System.out.println("16:31test");
 		return "user/home";
 	}
 	// 화면 보려고 임시 맵핑 ---------------------------
