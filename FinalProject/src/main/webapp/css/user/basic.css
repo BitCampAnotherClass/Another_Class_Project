@@ -1,6 +1,8 @@
 @charset "UTF-8";
 
 
+/* 사용자 기본 레이아웃 (헤더, 푸터 등) 스타일 */
+
 
 /* header */
 
@@ -12,7 +14,7 @@
 */
 
 #header{
-	height:180px;
+	height:130px;
 	border-bottom:1px solid #ccc;
 }
 
@@ -38,16 +40,23 @@
 #header-bottom{
 	display: flex;
 	justify-content: space-between;
-	align-items:flex-end;
+	align-items:center;
+	margin-top:20px;
 	padding:0 30px;
 }
 
-#header-bottom > .logo{
-	width:220px;
-	height:110px;
-	background: pink;
+#header-bottom > h1.logo{
+	width:268px;
+	height:30px;
 	text-align: center;
 	line-height:110px;
+}
+
+h1.logo > a {
+	display:block;
+	
+	background: url(../../img/etc/logo_w268.png) no-repeat;
+	background-size:contain;
 }
 
 
@@ -65,7 +74,7 @@
 	border:1px solid #999;
 	border-radius:40px;
 	padding:0 15px;
-	font-size:1.05em;
+	font-size:15px;
 }
 
 
@@ -76,9 +85,14 @@
 }
 
 #nav .gnb > li > a{
-	margin-left:50px;
-	font-size:1.2em;
-	font-weight: 700;
+	margin-left:40px;
+	font-size:17px;
+	font-weight: 500;
+	/* font-family: 'GmarketSansMedium', sans-serif; */
+}
+
+#nav .gnb > li > a:hover{
+	color:#FF385C;
 }
 
 .category{
@@ -87,10 +101,10 @@
 
 
 
-/* main - container */
+/* contents-wrap */
 
-#main{
-	height:900px; /* 임의 값 */
+#contents-wrap{
+	height:auto; /* 임의 값 */
 }
 
 
