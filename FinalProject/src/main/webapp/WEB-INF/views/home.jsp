@@ -7,44 +7,52 @@
 </style>
 
 <!-- Demo styles -->
-<style>
-	
-	.swiper {
-		width: 100%;
-		height: 500px;
-	}
-	
-	.swiper-slide {
-		text-align: center;
-		font-size: 18px;
-		background: #eee;
-		/* Center slide text vertically */
-		display: -webkit-box;
-		display: -ms-flexbox;
-		display: -webkit-flex;
-		display: flex;
-		-webkit-box-pack: center;
-		-ms-flex-pack: center;
-		-webkit-justify-content: center;
-		justify-content: center;
-		-webkit-box-align: center;
-		-ms-flex-align: center;
-		-webkit-align-items: center;
-		align-items: center;
-	}
-	
-	.swiper-slide img {
-		display: block;
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-	}
-	
-	.swiper {
-		margin-left: auto;
-		margin-right: auto;
-	}
+    <style>
 
+      body {
+        font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        color: #000;
+        margin: 0;
+        padding: 0;
+      }
+
+      .swiper {
+        width: 100%;
+        height: 500px;
+      }
+
+      .swiper-slide {
+        text-align: center;
+        font-size: 18px;
+        background: #eee;
+
+        /* Center slide text vertically */
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        -webkit-justify-content: center;
+        justify-content: center;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+      }
+
+      .swiper-slide img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .swiper {
+        margin-left: auto;
+        margin-right: auto;
+      }
 </style>
 
 
@@ -58,33 +66,36 @@
 				<div class="swiper-slide">Slide 3</div>
 				<div class="swiper-slide">Slide 4</div>
 				<div class="swiper-slide">Slide 5</div>
+				<div class="swiper-slide">Slide 6</div>
+				<div class="swiper-slide">Slide 7</div>
+				<div class="swiper-slide">Slide 8</div>
+				<div class="swiper-slide">Slide 9</div>
 			</div>
 			<div id="main-slide-prev" class="swiper-button-prev"></div>
 			<div id="main-slide-next" class="swiper-button-next"></div>
 			<div class="swiper-pagination"></div>
 		</div>
 	</section>
-
-	<div class="contents inner-lg">
+	
+	<div class="contents">
 		<section class="class-list-best">
-			<h3 class="main-h3 text-h3">추천 클래스</h3>
-			<!-- Swiper -->
+			<!-- Swiper --><!-- 
 			<div class="swiper classSwiper1">
 				<div class="swiper-wrapper">
-					<div class="swiper-slide"></div>
-					<div class="swiper-slide"></div>
-					<div class="swiper-slide"></div>
-					<div class="swiper-slide"></div>
-					<div class="swiper-slide"></div>
-					<div class="swiper-slide"></div>
-					<div class="swiper-slide"></div>
-					<div class="swiper-slide"></div>
+					<div class="swiper-slide">Slide 1</div>
+					<div class="swiper-slide">Slide 2</div>
+					<div class="swiper-slide">Slide 3</div>
+					<div class="swiper-slide">Slide 4</div>
+					<div class="swiper-slide">Slide 5</div>
+					<div class="swiper-slide">Slide 6</div>
+					<div class="swiper-slide">Slide 7</div>
+					<div class="swiper-slide">Slide 8</div>
 				</div>
-				<div id="class1-slide-prev" class="swiper-button-prev"></div>
-				<div id="class1-slide-prev" class="swiper-button-next"></div>
+				<div id="main-slide-prev" class="swiper-button-prev"></div>
+				<div id="main-slide-next" class="swiper-button-next"></div>
 				<div class="swiper-pagination"></div>
-			</div>
-	</section>
+			</div>-->
+		</section>
 	</div>
 </article>
 
