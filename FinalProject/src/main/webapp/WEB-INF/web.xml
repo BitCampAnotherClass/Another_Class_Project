@@ -56,5 +56,10 @@
 			<include-prelude>/inc/user_header.jspf</include-prelude>
 			<include-coda>/inc/user_footer.jspf</include-coda>
 		</jsp-property-group>
+		<jsp-property-group>
+			<url-pattern>/register/*</url-pattern>
+			<include-prelude>/inc/user_header.jspf</include-prelude>
+			<include-coda>/inc/user_footer.jspf</include-coda>
+		</jsp-property-group>
 	</jsp-config>
 </web-app>
