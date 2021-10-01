@@ -45,9 +45,4 @@ public class HomeController {
 		return "/user/mypage/myPage_order";
 	}
 	
-	@RequestMapping("/register")
-	public String Register() {
-		return "register/hyo";
-	}
-	
 }
