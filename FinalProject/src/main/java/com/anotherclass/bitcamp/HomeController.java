@@ -39,8 +39,15 @@ public class HomeController {
 	public String login() {
 		return "/login";
 	}
+	
 	@RequestMapping(value = "/mypage")
 	public String mypage() {
 		return "/user/mypage/myPage_order";
 	}
+	
+	@RequestMapping("/register")
+	public String Register() {
+		return "register/hyo";
+	}
+	
 }
