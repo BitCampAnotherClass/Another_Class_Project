@@ -40,4 +40,9 @@ public class HomeController {
 		return "/login";
 	}
 	
+	@RequestMapping("/register")
+	public String Register() {
+		return "register/hyo";
+	}
+	
 }
