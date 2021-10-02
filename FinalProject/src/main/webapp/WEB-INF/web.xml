@@ -29,6 +29,7 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
 	<!-- UTF-8 encoding -->
 	<filter>
 		<description></description>
@@ -57,8 +58,14 @@
 			<include-coda>/inc/user_footer.jspf</include-coda>
 		</jsp-property-group>
 	</jsp-config>
+	
 	<session-config>
 		<session-timeout>1000</session-timeout>
 	</session-config>
 	
+    <error-page>
+    	<error-code>404</error-code>
+    	<location>/error404</location>
+    </error-page>
+    
 </web-app>
