@@ -1,0 +1,70 @@
+@charset "UTF-8";
+
+
+
+html, body {
+	height:100%;
+}
+
+#wrap{
+	height:100%;
+}
+
+#contents-wrap{
+	height:100%;
+}
+
+#container{
+	height:100%;
+}
+
+
+.class-map-wrap {
+	height:100%;
+}
+
+#class-map-view {
+	position:relative;
+	top:0; left:0;
+	height:100%;
+	background-color:#eee;
+}
+
+.class-map-list {
+	position:absolute;
+	top:0; left:0;
+	z-index:100;
+	width:370px;
+	height:100%;
+	background-color:#fff;
+	overflow:auto;
+}
+
+
+.class-list1-top{
+	/*position:absolute;
+	top:0; left:0;*/
+	width:100%;
+	height:100px;
+}
+
+
+.class-list1 > ul{
+	width:320px;
+	margin:0 auto;
+}
+
+.class-list1 > ul > li{
+	padding:20px 0;
+}
+
+.class-list-thumb{
+	height:160px;
+	background-color:#eee;
+	border-radius:16px;
+}
+
+.class-list-info{
+	height:140px;
+	padding-top:20px;
+}
