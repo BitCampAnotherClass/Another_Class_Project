@@ -57,6 +57,14 @@
 			<include-prelude>/inc/user_header.jspf</include-prelude>
 			<include-coda>/inc/user_footer.jspf</include-coda>
 		</jsp-property-group>
+		<jsp-property-group>
+			<url-pattern>/WEB-INF/views/creator/*</url-pattern>
+			<include-prelude>/inc/creator_header.jspf</include-prelude>
+		</jsp-property-group>
+		<jsp-property-group>
+			<url-pattern>/WEB-INF/views/admin/*</url-pattern>
+			<include-prelude>/inc/admin_header.jspf</include-prelude>
+		</jsp-property-group>
 	</jsp-config>
 	
 	<session-config>
