@@ -29,6 +29,7 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
 	<!-- UTF-8 encoding -->
 	<filter>
 		<description></description>
@@ -52,9 +53,27 @@
 	<!-- include -->
 	<jsp-config>
 		<jsp-property-group>
-			<url-pattern>*.jsp</url-pattern>
+			<url-pattern>/WEB-INF/views/user/*</url-pattern>
 			<include-prelude>/inc/user_header.jspf</include-prelude>
 			<include-coda>/inc/user_footer.jspf</include-coda>
 		</jsp-property-group>
+		<jsp-property-group>
+			<url-pattern>/WEB-INF/views/creator/*</url-pattern>
+			<include-prelude>/inc/creator_header.jspf</include-prelude>
+		</jsp-property-group>
+		<jsp-property-group>
+			<url-pattern>/WEB-INF/views/admin/*</url-pattern>
+			<include-prelude>/inc/admin_header.jspf</include-prelude>
+		</jsp-property-group>
 	</jsp-config>
+	
+	<session-config>
+		<session-timeout>1000</session-timeout>
+	</session-config>
+	
+    <error-page>
+    	<error-code>404</error-code>
+    	<location>/error404</location>
+    </error-page>
+    
 </web-app>

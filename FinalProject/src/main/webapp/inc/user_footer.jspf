@@ -10,4 +10,45 @@
 	</footer>
 </div>
 </body>
+
+<script>
+	
+	$(window).scroll(function(event){
+		fixMenu();
+	});
+	
+	
+	function fixMenu(){
+		var scrollTop = window.pageYOffset;
+		var headerTop = document.getElementById('header-top').offsetHeight;
+		var headerBottom = document.getElementById('header-bottom').style;
+		
+		if(scrollTop <= headerTop){
+			headerBottom.position = 'absolute';
+			headerBottom.top = headerTop + 'px';
+		} else {
+			headerBottom.position = 'fixed';
+			headerBottom.top = 0;
+		}
+	}
+	
+	
+	$(function(){
+		// 메뉴 마우스 오버
+		$('.gnb > li').mouseenter(function(){
+			$(this).children('.sub-menu1').css('display', 'flex');
+		}).mouseleave(function(){
+			$(this).children('.sub-menu1').css('display', 'none');
+		});
+		
+		$('.sub-menu1 > li').mouseenter(function(){
+			$(this).children('.sub-menu2').css('display', 'flex');
+		}).mouseleave(function(){
+			$(this).children('.sub-menu2').css('display', 'none');
+		});
+	});
+	
+</script>
+
+
 </html>
