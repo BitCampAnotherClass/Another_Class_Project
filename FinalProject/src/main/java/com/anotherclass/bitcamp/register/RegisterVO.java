@@ -18,8 +18,9 @@ public class RegisterVO {
 	public String getMember_pw() {
 		return member_pw;
 	}
-	public void setMember_pw(String member_pw) {
-		this.member_pw = member_pw;
+	public void setMember_pw(String member_pw) throws Exception {
+		HashingSeting ha = new HashingSeting();
+		this.member_pw = ha.setEncryption(member_pw);
 	}
 	public String getMember_name() {
 		return member_name;
