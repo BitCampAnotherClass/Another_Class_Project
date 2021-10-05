@@ -33,8 +33,7 @@
     		margin-inline-end: 0px;font-weight: bold;}
     		
 </style>
-</head>
-<body>
+
 <div id="mContainer">
 	<!-- 왼쪽 -->
 	<div id="mleftdiv">
