@@ -118,7 +118,9 @@
 				<!-- Swiper -->
 				<div class="swiper classSwiper1">
 					<div class="swiper-wrapper">
-						<div class="swiper-slide"></div>
+						<div class="swiper-slide">
+							
+						</div>
 						<div class="swiper-slide"></div>
 						<div class="swiper-slide"></div>
 						<div class="swiper-slide"></div>
@@ -180,28 +182,36 @@
 				<div class="swiper classSwiper4">
 					<div class="swiper-wrapper">
 						<div class="swiper-slide">
-							<div class="creator-list-img"></div>
+							<div class="creator-list-img"><img src="img/test/creator_01.PNG"/></div>
+							<div class="creator-nick">스트릿우먼파이터</div>
 						</div>
 						<div class="swiper-slide">
-							<div class="creator-list-img"></div>
+							<div class="creator-list-img"><img src="img/test/creator_01.PNG"/></div>
+							<div class="creator-nick">스트릿</div>
 						</div>
 						<div class="swiper-slide">
-							<div class="creator-list-img"></div>
+							<div class="creator-list-img"><img src="img/test/creator_01.PNG"/></div>
+							<div class="creator-nick">우먼파이터</div>
 						</div>
 						<div class="swiper-slide">
-							<div class="creator-list-img"></div>
+							<div class="creator-list-img"><img src="img/test/creator_01.PNG"/></div>
+							<div class="creator-nick">스우파스우파</div>
 						</div>
 						<div class="swiper-slide">
-							<div class="creator-list-img"></div>
+							<div class="creator-list-img"><img src="img/test/creator_01.PNG"/></div>
+							<div class="creator-nick">윤스테이</div>
 						</div>
 						<div class="swiper-slide">
-							<div class="creator-list-img"></div>
+							<div class="creator-list-img"><img src="img/test/creator_01.PNG"/></div>
+							<div class="creator-nick">이은정</div>
 						</div>
 						<div class="swiper-slide">
-							<div class="creator-list-img"></div>
+							<div class="creator-list-img"><img src="img/test/creator_01.PNG"/></div>
+							<div class="creator-nick">어나더클래스</div>
 						</div>
 						<div class="swiper-slide">
-							<div class="creator-list-img"></div>
+							<div class="creator-list-img"><img src="img/test/creator_01.PNG"/></div>
+							<div class="creator-nick">어나더</div>
 						</div>
 					</div>
 					<div id="class1-slide-prev" class="swiper-button-prev"></div>
