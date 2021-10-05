@@ -6,17 +6,45 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
 <title>Another Class</title>
+<!-- Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<!--<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumBarunGothic@latest/nanumbarungothicsubset.css">-->
+
+<!-- CSS -->
 <link href="css/common.css" rel="stylesheet" type="text/css"/>
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumBarunGothic@latest/nanumbarungothicsubset.css">
-<link href="css/user/swiper.min.css" rel="stylesheet" type="text/css"/>
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
 <link href="css/user/basic.css" rel="stylesheet" type="text/css"/>
-<link href="css/user/main.css" rel="stylesheet" type="text/css"/>
 
-<!--<link href="css/login.css" rel="stylesheet" type="text/css"/>  임시로 넣은 것 빼야 함 -->
-
+<!-- Script -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
-<script src="js/user/swiper.min.js"></script>
+
+
+<script>
+	$(function(){
+		// 메뉴 마우스 오버
+		$('.gnb > li').mouseenter(function(){
+			console.log('마우스오버');
+			$(this).children('.sub-menu1').css('display', 'flex');
+		}).mouseleave(function(){
+			console.log('마우스아웃');
+			$(this).children('.sub-menu1').css('display', 'none');
+		});
+		
+		$('.sub-menu1 > li').mouseenter(function(){
+			console.log('마우스오버2');
+			$(this).children('.sub-menu2').css('display', 'flex');
+		}).mouseleave(function(){
+			console.log('마우스아웃2');
+			$(this).children('.sub-menu2').css('display', 'none');
+		});
+		
+		
+	});
+
+</script>
+
 </head>
 <body>
 <div id="wrap">
@@ -45,18 +73,49 @@
 						</form>
 					</div>
 					<ul class="gnb">
-						<li><a href="#">클래스 목록</a>
-							<ul class="category">
-								<li><a href="#">핸드메이드 공예</a></li>
-								<li><a href="#">쿠킹 베이킹</a></li>
-								<li><a href="#">아웃도어스포츠피트니스</a></li>
-								<li><a href="#">드로잉가드닝</a></li>
-								<li><a href="#">반려동물</a></li>
+						<li class="category"><a href="#">클래스 목록</a>
+							<ul class="sub-menu1">
+								<li><a href="#">핸드메이드·공예</a>
+									<ul class="sub-menu2">
+										<li><a href="#">핸드메이드</a></li>
+										<li><a href="#">공예</a></li>
+									</ul>
+								</li>
+								<li><a href="#">쿠킹·베이킹</a>
+									<ul class="sub-menu2">
+										<li><a href="#">쿠킹</a></li>
+										<li><a href="#">베이킹</a></li>
+									</ul>
+								</li>
+								<li><a href="#">스포츠·피트니스</a>
+									<ul class="sub-menu2">
+										<li><a href="#">스포츠</a></li>
+										<li><a href="#">피트니스</a></li>
+										<li><a href="#">아웃도어</a></li>
+									</ul>
+								</li>
+								<li><a href="#">드로잉·가드닝</a>
+									<ul class="sub-menu2">
+										<li><a href="#">드로잉</a></li>
+										<li><a href="#">가드닝</a></li>
+									</ul>
+								</li>
+								<li><a href="#">반려동물</a>
+									<ul class="sub-menu2">
+										<li><a href="#">반려동물</a></li>
+									</ul>
+								</li>
 							</ul>
 						</li>
 						<li><a href="#">내 주변 클래스</a></li>
 						<li><a href="#">커뮤니티</a></li>
-						<li><a href="#">고객지원</a></li>
+						<li class="c-center"><a href="#">고객지원</a>
+							<ul class="sub-menu1">
+								<li><a href="#">공지사항</a></li>
+								<li><a href="#">자주 묻는 질문</a></li>
+								<li><a href="#">1:1문의</a></li>
+							</ul>
+						</li>
 					</ul>
 				</nav>
 			</div>

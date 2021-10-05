@@ -34,10 +34,23 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		return "user/home";
 	}
-	// 화면 보려고 임시 맵핑 ---------------------------
+	
+	// 화면 보려고 임시 맵핑 --------------------------
+	// 은정
 	@RequestMapping(value = "/login")
 	public String login() {
-		return "/login";
+		return "register/login";
+	}
+	
+	@RequestMapping(value = "/classMap")
+	public String classMap() {
+		return "user/class/classMap";
+	}
+	
+	// 지수
+	@RequestMapping(value = "/mypage")
+	public String mypage() {
+		return "/user/mypage/myPage_order";
 	}
 	
 }
