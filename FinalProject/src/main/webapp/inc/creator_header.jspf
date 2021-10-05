@@ -109,7 +109,12 @@
 		               <li><a href="#" id="small-menu">나의문의내역</a></li>
 		            </ul>
 		         </li>
-		         <li class="menu_title"><a href="creatorChannel">나의채널관리</a></li>
+		         <li class="menu_title"><a href="creatorChannel">나의채널관리</a>
+		         	<ul>
+		         		<li><a href="#">크리에이터프로필</a></li>
+		         		<li><a href="#">클래스 결과물</a></li>
+		    	     </ul>
+		         </li>
 		         <li class="menu_title"><a href="makeClass">클래스개설</a></li>
 		         <li class="menu_title"><a href="#">클래스관리</a>
 		            <ul>
