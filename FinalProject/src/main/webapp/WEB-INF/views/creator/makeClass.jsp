@@ -11,6 +11,7 @@ console.log(d.getDate());
 	#contents{background-color:pink; height:1500px; width:950px; margin:0 auto;}
     #contents>form>div:nth-child(1)>h1{color:gray; margin-left:50px;}
     #contents>form>div:nth-child(1)>ul>li{margin-left:50px;}
+    #insertTitle{width:745px; height:55px;}
 	#picInsertDiv{float:left; width:950px;}
    	#picInsertDiv>div{float:left}
    	#picInsertDiv>div:nth-child(2){background-color:red; width:650px; height:200px; }
@@ -69,7 +70,7 @@ console.log(d.getDate());
 <div id="contents">
 	<form>
 		<div>
-			<h1 class="notInclude">클래스 개설</h1>
+			<h1>클래스 개설</h1>
 			<hr/>
 			<ul>
 				<li>클래스 타이틀 : <input type="text" placeholder="(필수)클래스 타이틀을 입력하세요" id="insertTitle"></li>
@@ -179,4 +180,4 @@ console.log(d.getDate());
 		<hr/>
 		<input id="createClassSubmitButton" type="submit" value="개설 신청">
 	</form>
-</div>	<hr/>
+</div>	
