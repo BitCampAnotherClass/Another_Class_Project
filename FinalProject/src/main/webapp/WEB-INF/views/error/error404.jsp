@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>에러메세지</title>
+<title>페이지를 찾을수 없습니다.</title>
 </head>
 <body>
-	<h1>404 에러페이지 입니다.</h1>
+	<h1>페이지를 찾을수 없습니다.</h1>
+	<a href="">돌아가기</a>
 </body>
 </html>

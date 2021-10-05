@@ -59,6 +59,8 @@
 		</jsp-property-group>
 		<jsp-property-group>
 			<url-pattern>/WEB-INF/views/creator/*</url-pattern>
+			<url-pattern>/WEB-INF/views/creator/classSeting/*</url-pattern>
+			<url-pattern>/WEB-INF/views/creator/creatorChannel/*</url-pattern>
 			<include-prelude>/inc/creator_header.jspf</include-prelude>
 		</jsp-property-group>
 		<jsp-property-group>

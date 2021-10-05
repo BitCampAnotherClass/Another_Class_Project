@@ -109,13 +109,13 @@
 		               <li><a href="#" id="small-menu">나의문의내역</a></li>
 		            </ul>
 		         </li>
-		         <li class="menu_title"><a href="#">나의채널관리</a></li>
-		         <li class="menu_title"><a href="#">클래스개설</a></li>
+		         <li class="menu_title"><a href="creatorChannel">나의채널관리</a></li>
+		         <li class="menu_title"><a href="makeClass">클래스개설</a></li>
 		         <li class="menu_title"><a href="#">클래스관리</a>
 		            <ul>
 		               <li><a href="#" id="small-menu">클래스리스트</a></li>
 		               <li><a href="#" id="small-menu">클래스 취소</a></li>
-		               <li><a href="#" id="small-menu">클래스 수정</a></li>               
+		               <li><a href="modifyClass" id="small-menu">클래스 수정</a></li>               
 		            </ul>
 		         </li>
 		         <li class="menu_title"><a href="#">클래스 문의/후기</a>
@@ -136,4 +136,3 @@
 	<div class="logout_menu">
 		<a href="#" class="logout_a">로그아웃</a>
 	</div>
-</div>
