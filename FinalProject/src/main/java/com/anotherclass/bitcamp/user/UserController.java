@@ -57,6 +57,17 @@ public class UserController {
 		return "creator/creator";
 	}
 	
+	@RequestMapping(value = "/mypageReview")
+	public String mypageReview() {
+		return "/user/mypage/myPage_review";
+	}
+	
+	@RequestMapping(value = "/classReview")
+	public String classReview() {
+		return "/user/classDetailPage/test";
+	}
+	
+	
 	// 지수
 	@RequestMapping(value = "/mypage")
 	public String mypage() {
