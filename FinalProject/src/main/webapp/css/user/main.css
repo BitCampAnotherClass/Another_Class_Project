@@ -19,6 +19,7 @@ textarea:-ms-input-placeholder {color:#aaa;}
 	height: 640px;
 }
 
+
 .main-slide video{
 /*	position:absolute;
 	left:0;*/
@@ -27,8 +28,12 @@ textarea:-ms-input-placeholder {color:#aaa;}
 	min-width:1580px;
 }
 
-.main-slide .v01 video{
-	padding-top:100px;
+.main-slide div.v01 video{
+	padding-top:20px;
+}
+
+.main-slide mainSwiper .v01 video{
+	padding-top:20px;
 }
 
 /*

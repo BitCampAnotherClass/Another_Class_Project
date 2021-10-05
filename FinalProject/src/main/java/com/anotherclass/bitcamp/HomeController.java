@@ -44,7 +44,17 @@ public class HomeController {
 	
 	@RequestMapping(value = "/classMap")
 	public String classMap() {
-		return "user/class/classMap";
+		return "user/class/class_map";
+	}
+	
+	@RequestMapping(value = "/incomeChart")
+	public String incomeChart() {
+		return "creator/income/income_chart";
+	}
+	
+	@RequestMapping(value = "/creatorHome")
+	public String creatorHome() {
+		return "creator/creator";
 	}
 	
 	// 지수

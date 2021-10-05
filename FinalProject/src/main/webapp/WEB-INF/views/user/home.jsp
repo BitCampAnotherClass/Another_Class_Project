@@ -2,19 +2,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 
-<link href="css/user/swiper.min.css" rel="stylesheet" type="text/css"/>
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
-<link href="css/user/main.css" rel="stylesheet" type="text/css"/>
-
-<script src="js/user/swiper.min.js"></script>
-
-
-
-<style>
-	#container{
-		/*display:none;*/
-	}
-</style>
 
 <!-- Demo styles -->
 <style>
@@ -230,6 +217,7 @@
 
 
 <!-- Swiper JS -->
+<script src="js/swiper.min.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>
       var swiper = new Swiper(".mainSwiper", {

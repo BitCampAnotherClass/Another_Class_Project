@@ -16,41 +16,21 @@
 <!-- CSS -->
 <link href="css/common.css" rel="stylesheet" type="text/css"/>
 <link href="css/user/basic.css" rel="stylesheet" type="text/css"/>
+<!-- main CSS -->
+<link href="css/user/swiper.min.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+<link href="css/user/main.css" rel="stylesheet" type="text/css"/>
 
 <!-- Script -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
 
 
-<script>
-	$(function(){
-		// 메뉴 마우스 오버
-		$('.gnb > li').mouseenter(function(){
-			console.log('마우스오버');
-			$(this).children('.sub-menu1').css('display', 'flex');
-		}).mouseleave(function(){
-			console.log('마우스아웃');
-			$(this).children('.sub-menu1').css('display', 'none');
-		});
-		
-		$('.sub-menu1 > li').mouseenter(function(){
-			console.log('마우스오버2');
-			$(this).children('.sub-menu2').css('display', 'flex');
-		}).mouseleave(function(){
-			console.log('마우스아웃2');
-			$(this).children('.sub-menu2').css('display', 'none');
-		});
-		
-		
-	});
-
-</script>
-
 </head>
 <body>
 <div id="wrap">
 	<header id="header">
-		<div class="inner-lg">
-			<div id="header-top">
+		<div id="header-top">
+			<div class="inner-lg">
 				<ul class="tnb login-menu">
 					<li><a href="#">로그인</a></li>
 					<li><a href="#">회원가입</a></li>
@@ -64,7 +44,9 @@
 					<li><a href="#">장</a></li>
 				</ul>
 			</div>
-			<div id="header-bottom">
+		</div>
+		<div id="header-bottom">
+			<div class="inner-lg">
 				<h1 class="logo ir-text"><a href="#">어나더클래스</a></h1>
 				<nav id="nav">
 					<div class="search">
@@ -122,5 +104,5 @@
 		</div>
 	</header>
 	<div id="contents-wrap">
-		
+	
 		
