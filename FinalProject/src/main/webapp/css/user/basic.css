@@ -13,20 +13,30 @@
 }
 */
 
+body{
+	overflow:scroll;
+	-webkit-overflow-scrolling:touch;
+}
+
 #header{
 	position:absolute;
 	top:0; left:0;
 	width:100%;
-	height:120px;
-	border-bottom:1px solid #ccc;
-	background-color:#fff;
+	height:118px; /* #nav .gnb > li > a 의 height, #contents-wrap padding-top 같이 조절할 것*/
 }
 
 #header-top{
+	position:absolute;
+	top:0; left:0;
+	width:100%;
 	height:40px;
+	padding-top:10px;
+	background-color:#fff;
+}
+
+#header-top > .inner-lg{
 	display:flex;
 	justify-content: flex-end;
-	padding-top:10px;
 }
 
 .tnb{
@@ -42,14 +52,26 @@
 
 
 #header-bottom{
+	position:absolute;
+	top:40px; left:0;
+	width:100%;
+	padding:20px 30px 0;
+	background-color:#fff;
+/*	border-bottom:1px solid #ccc;*/
+	-webkit-box-shadow: 0 4px 4px -3px rgba(0,0,0,.15);
+	-moz-box-shadow: 0 4px 4px -3px rgba(0,0,0,.15);
+	box-shadow: 0 4px 4px -3px rgba(0,0,0,.15);
+	opacity:1;
+	z-index:700;
+}
+
+#header-bottom > .inner-lg{
 	display: flex;
 	justify-content: space-between;
 	align-items:flex-start;
-	margin-top:20px;
-	padding:0 30px;
 }
 
-#header-bottom > h1.logo{
+#header-bottom h1.logo{
 	width:268px;
 	height:30px;
 	text-align: center;
@@ -109,7 +131,7 @@ textarea:-ms-input-placeholder {color:#aaa;}
 
 #nav .gnb > li > a{
 	display:block;
-	height:60px;
+	height:58px; /* header bottom 길이 조절할 때 같이 조절*/
 	font-size:17px;
 	font-weight: 400;
 	/* font-family: 'GmarketSansMedium', sans-serif; */
@@ -123,7 +145,7 @@ textarea:-ms-input-placeholder {color:#aaa;}
 .sub-menu1{
 	display: none;
 	position:absolute;
-	top:60px; left:0px;
+	top:58px; left:0px;
 	width:150px;
 	padding:0 0 20px 20px;
 	justify-content: flex-start;
@@ -166,7 +188,7 @@ li.c-center .sub-menu1{
 /* contents-wrap */
 
 #contents-wrap{
-	padding-top:120px;
+	padding-top:118px; /* header 높이 조절 시 같이 조절*/
 }
 
 
