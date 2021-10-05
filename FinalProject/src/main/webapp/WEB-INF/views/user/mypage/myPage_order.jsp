@@ -1,14 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
 <style>
 
-	
+	  
 	/*타이틀+리스트*/
 	.orderDiv{width:100%;height:auto;margin-top:80px;}/*border:1px solid red;*/
 	
@@ -39,8 +35,7 @@
 	#reserveListTitle,#finishListTitle,#cancleRefund{margin-block-start: 0;}
 	
 </style>
-</head>
-<body>
+
 <%@ include file="myPageTop.jspf" %>
 	
 	<div id="orderPageTitle" class="bigTitle"><span class="h1style">주문조회</span></div>
