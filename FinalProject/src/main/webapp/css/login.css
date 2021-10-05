@@ -11,11 +11,45 @@ textarea::-webkit-input-placeholder {color:#aaa;}
 textarea:-ms-input-placeholder {color:#aaa;}
 
 
+body{
+	background-color:#f1f1f1;
+}
+
+#wrap{
+	width:530px;
+	margin:100px auto 0;
+	padding:40px 40px;
+	background-color:#fff;
+	border-radius:16px;
+	-webkit-box-shadow: 0px 8px 28px rgba(0,0,0,.28);
+	-moz-box-shadow: 0px 8px 28px rgba(0,0,0,.28);
+	box-shadow: 0px 8px 28px rgba(0,0,0,.28);
+}
+
 
 /* header */
 
+
+#header{
+	padding:30px 0 25px;
+}
+
+.inner-header{
+	
+}
+
+
 h1.logo{
+	width:268px;
+	margin:0 auto;
 	text-align:center;
+}
+
+h1.logo > a{
+	display:block;
+	height:100%;
+	background: url(../img/etc/logo_w268.png) no-repeat;
+	background-size:contain;
 }
 
 
@@ -26,7 +60,7 @@ h1.logo{
 
 
 .inner-header, .contents{
-	width:552px;
+	width:100%;
 	margin:0 auto;
 }
 
@@ -40,17 +74,10 @@ h1.logo{
 .tab-login > li {
 	width:50%;
 	height:60px;
-	border-radius:6px 6px 0 0;
-	border-top:1px solid #ddd;
 }
 
 .tab-login > li.on {
 	width:50%;
-	border-radius:6px 6px 0 0;
-	border-top:1px solid #bbb;
-	border-left:1px solid #bbb;
-	border-right:1px solid #bbb;
-	background-color:#fff;
 }
 
 
@@ -61,8 +88,6 @@ h1.logo{
 	height:69px;
 	padding:15px;
 	text-align:center;
-	border-radius:6px 6px 0 0;
-	background-color:#eeeeee;
 	color:#666;
 }
 
@@ -70,16 +95,15 @@ h1.logo{
 	z-index:5;
 	background-color:#fff;
 	color:#333;
+	border-bottom:5px solid #FF385C;
 }
 
 .tab-login-user {
-	border-radius:6px 0 0 0;
-	border-left:1px solid #ddd;
+	
 }
 
 .tab-login-creator {
-	border-radius:0 6px  0 0;
-	border-right:1px solid #ddd;
+	
 }
 
 
@@ -87,9 +111,7 @@ h1.logo{
 	position:relative;
 	top:-9px;
 	z-index:1;
-	padding:25px;
-	border:1px solid #bbb;
-	border-radius:6px;
+	padding:25px 0;
 	background-color:#fff;
 }
 
@@ -127,27 +149,48 @@ h1.logo{
 	outline:none;
 	border:none;
 	border-radius:6px;
+	margin-top:10px;
+	cursor:pointer;
 }
 
 .btn-login > span{
-	font-size:18px;
-	font-weight:bold;
+	font-size:17px;
+	font-weight:500;
 }
 
 
 #basicLogin{
 	background-color:#333;
+}
+
+#basicLogin > span{
 	color:#fff;
 }
 
 #kakagLogin{
 	background-color:#ffdd00;
+}
+
+#kakagLogin > span{
 	color:#333;
 }
 
+#naverLogin{
+	background-color:#03C75A;
+}
 
+#naverLogin > span{
+	color:#fff;
+}
 
+#basicSignup{
+	background-color:#fff;
+	border:1px solid #333;
+}
 
+#basicSignup > span{
+	color:#333;
+}
 
 
 
