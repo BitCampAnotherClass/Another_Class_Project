@@ -161,7 +161,7 @@ textarea:-ms-input-placeholder {color:#aaa;}
 }
 
 .main-h3{
-	margin:60px 0 36px;
+	margin:60px 0 40px;
 	text-align:center;
 }
 
@@ -218,11 +218,11 @@ textarea:-ms-input-placeholder {color:#aaa;}
 
 
 .main-creator-list .classSwiper4{
-	height:270px;
+	height:310px;
 }
 
 .main-creator-list .classSwiper4 .swiper-slide{
-	align-items:flex-start;
+	display:block;
 	background:none;
 }
 
@@ -235,8 +235,12 @@ textarea:-ms-input-placeholder {color:#aaa;}
 	height:216px;
 	background:#eee;
 	border-radius:200px;
+	overflow:hidden;
 }
 
+.creator-nick{
+	margin-top:10px;
+}
 
 
 
