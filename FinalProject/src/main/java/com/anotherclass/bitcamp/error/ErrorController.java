@@ -10,6 +10,4 @@ public class ErrorController {
 	public String error404() {
 		return "error/error404";
 	}
-	
-	
 }
