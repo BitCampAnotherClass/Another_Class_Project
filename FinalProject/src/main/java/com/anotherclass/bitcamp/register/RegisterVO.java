@@ -20,7 +20,7 @@ public class RegisterVO {
 	}
 	public void setMember_pw(String member_pw) throws Exception {
 		HashingSeting ha = new HashingSeting();
-		this.member_pw = ha.setEncryption(member_pw);
+		this.member_pw = ha.setEncryption(member_pw,member_id);
 	}
 	public String getMember_name() {
 		return member_name;

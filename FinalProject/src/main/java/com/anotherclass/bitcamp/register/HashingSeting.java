@@ -1,26 +1,25 @@
 package com.anotherclass.bitcamp.register;
 
 import java.security.MessageDigest;
-import java.security.SecureRandom;
 
 public class HashingSeting {
 	
-	//Salt 값 생성
-	String getSalt() throws Exception {
-		SecureRandom scu = new SecureRandom(); // 랜덤를 대체하는 클래스 
-		byte[] temp = new byte[16]; // byte 배열 크기 설정
-		scu.nextBytes(temp); // 랜덤값 넣기
-		return byteChange(temp);
-	}
-	
-	//16진수(Hex) 출력용
-	String byteChange(byte[] temp) {
-		StringBuffer result = new StringBuffer(); 
-		for(byte a : temp ) { // 16진수(Hex)로 출력하기
-			result.append(String.format("%02x", a));
-		}
-		return result.toString(); 
-	}
+//	//Salt 값 생성
+//	String getSalt() throws Exception {
+//		SecureRandom scu = new SecureRandom(); // 랜덤를 대체하는 클래스 
+//		byte[] temp = new byte[16]; // byte 배열 크기 설정
+//		scu.nextBytes(temp); // 랜덤값 넣기
+//		return byteChange(temp);
+//	}
+//	
+//	//16진수(Hex) 출력용
+//	String byteChange(byte[] temp) {
+//		StringBuffer result = new StringBuffer(); 
+//		for(byte a : temp ) { // 16진수(Hex)로 출력하기
+//			result.append(String.format("%02x", a));
+//		}
+//		return result.toString(); 
+//	}
 	
 	//비밀번호와 Salt를 암호화 
 	static String getHashing(String password,String salt) {
@@ -39,9 +38,9 @@ public class HashingSeting {
 		return result.toString();
 	}
 	
-	String setEncryption(String pass) throws Exception {
+	String setEncryption(String pass, String id) throws Exception {
 		HashingSeting hs = new HashingSeting();
-		String out = HashingSeting.getHashing(pass, hs.getSalt());
+		String out = HashingSeting.getHashing(pass,id);
 		return out;
 	}
 }
