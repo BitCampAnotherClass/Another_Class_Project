@@ -1,22 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <style>
 	/*제일겉에있는 Div*/
 	#adminQnAViewContainter{width:1000px;height:auto;margin:0 auto;}	
 	
-	ul,li{margin:0;padding:0;list-style-type:none;}
-	ul{width:100%;height:auto;margin:0 auto;overflow:auto;} /*border:1px solid black;*/
-	li{width:100%;height:auto;float:left;display:flex;font-size:20px;margin:10px 0 10px 0;padding:8px 0px 15px 0px;;border-bottom:1px solid #ddd;}
-	li>div:nth-child(1){width:15%;}
-	li>div:nth-child(2){width:85%;}
-	ul>li:nth-child(1){border-top:3px solid #333;padding-top:8px;}
-	label{background-color:rgb(125,125,125);color:white;padding:5px 8px 5px 8px;}
+	
+	#adminQnAViewul{width:100%;height:auto;margin:0 auto;overflow:auto;} /*border:1px solid black;*/
+	#adminQnAViewul>li{width:100%;height:auto;float:left;display:flex;font-size:20px;margin:10px 0 10px 0;padding:8px 0px 15px 0px;;border-bottom:1px solid #ddd;}
+	#adminQnAViewul>li>div:nth-child(1){width:15%;}
+	#adminQnAViewul>li>div:nth-child(2){width:85%;}
+	#adminQnAViewul>li:nth-child(1){border-top:3px solid #333;padding-top:8px;}
+	#adminQnAViewul>li>div label{background-color:rgb(125,125,125);color:white;padding:5px 8px 5px 8px;}
 
 	
 	#adminQnAViewSubject{width:90%;background-color:#ddd;border:none;height:35px;font-size:1.2rem;}/*제목텍스트박스*/
@@ -31,10 +25,9 @@
 	#adminQnAViewBtn>a:hover{color:#ff385c;}	
 	
 </style>
-</head>
-<body>
+
 <div id="adminQnAViewContainter">		
-			<ul>
+			<ul id="adminQnAViewul">
 				<li>
 					<div>작성자</div>
 					<div>신*솜[asd*******]</div>	
@@ -83,5 +76,3 @@
 		
 
 </div>
-</body>
-</html>

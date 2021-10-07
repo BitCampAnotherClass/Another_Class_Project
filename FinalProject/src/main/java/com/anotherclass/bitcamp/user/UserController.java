@@ -73,7 +73,7 @@ public class UserController {
 	}
 	@RequestMapping(value = "/homeQnA")
 	public String homeQnA() {
-		return "/user/HomeQnA/userHelper_HomeQnA_view";
+		return "/user/HomeQnA/userHelper_HomeQnA_write";
 	}
 	@RequestMapping(value = "/AhomeQnA")
 	public String AhomeQnA() {

@@ -1,16 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 <style>
 	
 	#adminQnAContainter{width:1000px;height:auto;margin:0 auto;}/*모든걸 감싸고 있는 제일큰div*/
 	
 	/*리스트*/
-	ul,li{margin:0;padding:0;list-style-type:none;}
+	
 	#adminQnAListUl a:link, a:visited{text-decoration:none;color:#333;}
 	#adminQnAListUl a:hover{color:#ff385c;}	
 	#adminQnAList{width:100%;height:auto;margin:0 auto;overflow:auto;}
@@ -24,8 +19,7 @@
 
 	.replySubject{text-align:left;}/*답글 제목*/
 </style>
-</head>
-<body>
+
 <div id="adminQnAContainter">
 	
 	
@@ -60,5 +54,3 @@
 
 
 </div>
-</body>
-</html>

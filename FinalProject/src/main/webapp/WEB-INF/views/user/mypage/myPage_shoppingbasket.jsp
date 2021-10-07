@@ -12,7 +12,7 @@
 	.shoppingBagList>ul{width:100%;height:auto;}
 	
 	/*쇼핑백리스트 제목*/
-	#shoppingBagListTitle>li{width:10%;float:left;border-top:3px solid #333;border-bottom:1px solid #666;padding:10px 0 10px 0;text-align:center;font-size:1.1rem;font-weight:bold;margin-bottom:30px;}	
+	#shoppingBagListTitle>li{width:10%;height:30px;float:left;border-top:3px solid #333;border-bottom:1px solid #666;padding:10px 0 10px 0;text-align:center;font-size:1.1rem;font-weight:bold;margin-bottom:30px;}	
 	#shoppingBagListTitle>li:nth-child(1){width:5%;}
 	#shoppingBagListTitle>li:nth-child(2){width:60%;}
 	#shoppingBagListTitle>li:nth-child(5){width:15%;}
@@ -42,8 +42,8 @@
 	#shoppingbasketBtn{width:100%;height:auto;margin:0 auto;text-align:center;margin-top:50px;}
 	#shoppingbasketBtn>a{text-align:center;font-size:16px;border:1px solid #333;margin:0 20px 0 20px;padding:5px 10px 5px 10px;}
 </style>
-</head>
-<body>
+
+
 
 
 	<%@ include file="myPageTop.jspf" %>
