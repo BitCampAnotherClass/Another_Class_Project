@@ -60,6 +60,7 @@
 		<jsp-property-group>
 			<url-pattern>/WEB-INF/views/creator/*</url-pattern>
 			<include-prelude>/inc/creator_header.jspf</include-prelude>
+			<include-coda>/inc/creator_footer.jspf</include-coda>
 		</jsp-property-group>
 		<jsp-property-group>
 			<url-pattern>/WEB-INF/views/admin/*</url-pattern>
@@ -75,5 +76,8 @@
     	<error-code>404</error-code>
     	<location>/error404</location>
     </error-page>
-    
+     <error-page>
+    	<error-code>500</error-code>
+    	<location>/error404</location>
+    </error-page>
 </web-app>

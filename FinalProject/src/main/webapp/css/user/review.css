@@ -1,0 +1,366 @@
+@charset "UTF-8";
+
+
+
+/******* 공통 후기 CSS *******/
+
+
+.review-chart{
+	height:150px;
+	border-radius:8px;
+	background-color:#f2f2f2;
+}
+
+.review-wrap{
+	margin-top:30px;
+	
+}
+
+.review-top{
+	height:50px;
+	line-height:50px;
+	border-top:1px solid #ddd;
+	border-bottom:1px solid #ddd;
+}
+
+
+.review-list > ul > li{ /* .review-content // .my-review-content */
+	padding:28px 10px;
+	border-bottom:1px solid #ddd;
+}
+
+.review-list > ul > li .user-review{
+	display:flex;
+	justify-content: flex-start;
+	align-content: flex-start;
+	flex-wrap: wrap;
+}
+
+
+.review-info{
+	display:flex;
+	justify-content: flex-start;
+	align-content: flex-start;
+	flex-wrap: wrap;
+}
+
+.user-img{
+	width:34px;
+	height:34px;
+	margin-right:10px;
+	border-radius:20px;
+	overflow:hidden;
+	text-align:center;
+}
+
+.user-img > img{
+	width: 100%;
+}
+
+.user-review-info{
+	font-size:13px;	
+}
+
+.user-review-info > p:first-child{
+	white-space: nowrap;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
+
+
+.review-content{
+	display:flex;
+	justify-content:flex-end;
+	align-items:flex-start;
+}
+
+.review-img{
+	width:120px;
+	min-width:120px;
+	height:120px;
+	overflow:hidden;
+	border-radius: 5px;
+	margin-left:30px;
+}
+
+.review-img > img{
+	width:100%;
+	border-radius: 5px;
+}
+
+.review-text{
+	width:auto;
+	max-height:125px;
+	margin-left:10px;
+	font-size:14px;
+	color:#666;
+	line-height:1.5;
+	white-space: normal;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	
+	word-break: break-all;
+	word-wrap: break-word;
+	display: -webkit-box; 
+	-webkit-line-clamp: 6; 
+	-webkit-box-orient: vertical;
+}
+
+.more-btn{
+	margin-left:150px;
+}
+
+/******* // 공통 후기 CSS ---- End *******/
+
+
+
+
+/********* 클래스 상세페이지 - 후기 **********/
+
+
+.class-review-content .review-info{
+	width:140px;
+}
+
+
+.class-review-content .user-review-info{
+	width:90px;
+}
+
+
+.class-review-content .review-info .star{
+	margin-top:10px;
+	font-size:22px;
+}
+
+.class-review-content .review-content{
+	width:640px;
+}
+
+.class-review-content .review-text{
+	min-width:480px;
+}
+
+
+
+
+
+/********** 나의 후기 ***********/
+
+
+.my-review-content .review-info{
+	width:140px;
+}
+
+
+.my-review-content .user-review-info{
+	width:90px;
+}
+
+
+.my-review-content .review-info .star{
+	margin-top:10px;
+	font-size:22px;
+}
+
+.my-review-content .review-content{
+	width:840px;
+}
+
+.my-review-content .review-text{
+	min-width:680px;
+}
+
+
+/******** 후기 작성 모달 *********/
+
+/* 후기 타이틀 */
+.review-modal{
+	position:fixed;
+	top:0; left:0;
+	width:100%;
+	height:100%;
+	background-color:rgba(0,0,0,.5);
+	z-index:700;
+}
+
+.scroll-wrap{
+	width:100%;
+	max-height:100%;
+	overflow:auto;
+}
+
+.review-modal-wrap{
+	position:relative;
+	width:700px;
+	margin:50px auto;
+	background-color:#fff;
+	border-radius: 15px;
+	-webkit-box-shadow: 0px 8px 28px rgba(0,0,0,.28);
+	-moz-box-shadow: 0px 8px 28px rgba(0,0,0,.28);
+	box-shadow: 0px 8px 28px rgba(0,0,0,.28);
+	overflow:hidden;
+}
+
+.review-modal-inner{
+	padding:35px 38px 38px;
+}
+
+.modal-title > h3{
+	text-align:center;
+	margin-bottom:26px;
+}
+
+.modal-close{
+	position:absolute;
+	top:10px; right:10px;
+	border:none;
+	width:20px;
+	height:20px;
+	background-color:#fff;
+}
+
+
+
+
+/* 후기 작성 폼*/
+
+#reviewWrite h4{
+	margin-top:26px;
+	padding-bottom:18px;
+	font-size:18px;
+	font-weight:500;
+}
+
+.review-class{
+	display:flex;
+	justify-content: space-around;
+}
+
+.review-class-img{
+	width:110px;
+	height:110px;
+	background-color:#eee;
+}
+
+.review-class-img > img{
+	width:100%;
+}
+
+.review-class-info{
+	width:500px;
+}
+
+.star-point{
+	font-size:52px;
+	text-align:center;
+	color:#FF385C;
+}
+
+
+.review-write-text > textarea{
+	width:100%;
+	height:150px;
+	box-sizing:border-box;
+	outline: none;
+	border:1px solid #ddd;
+	padding:10px 10px;
+}
+
+
+.file-wrap{
+	width:100px;
+	height:100px;
+	border:1px solid #ccc;
+}
+
+#review-file{
+	width:100%;
+	height:100%;
+	opacity: 0;
+}
+
+
+.review-btn-wrap{
+	display:flex;
+	justify-content: space-between;
+	margin-top:32px;
+}
+
+.review-btn{
+	width:49.5%;
+	line-height:50px;
+	border:1px solid #FF385C;
+	border-radius:6px;
+	font-size:16px;
+	cursor:pointer;
+}
+
+#review-cancel-btn{
+	background-color:#fff;
+	color:#FF385C;
+}
+
+#review-ok-btn{
+	background-color:#FF385C;
+	color:#fff;	
+}
+
+
+.modal-explain{
+	background-color:#f5f5f5;
+	border-top:1px solid #ececec;
+	font-size:13px;
+	padding:25px 35px 40px;
+}
+
+
+/* 페이징 */
+
+.review-paging{
+	margin-top:30px;
+}
+
+.review-paging > ul{
+	display:flex;
+	justify-content: center;
+}
+
+.review-paging > ul > li{
+	margin-left:10px;
+}
+
+.review-paging > ul > li:first-child{
+	margin-left:0px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

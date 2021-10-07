@@ -41,52 +41,67 @@
 		border: none;
 		padding: 10px;
 		font-size: 16px;
-		width: 70%;
+		width: 90%;
 	}
 </style>
+<script>
+	$(()=>{
+		$(".hyo_register_form").submit(function(){
+			var check = $("#member_id").val();
+			console.log(check);
+			if(check==""){
+				return false;
+			}
+		});
+	});
+</script>
 	<div class="hyo_register_user">
 		<div class="hyo_register_title-box">
 			<h1 class="hyo_register_title">회원가입</h1>
 		</div>
-		<form class="hyo_register_form" method="post">
+		<form class="hyo_register_form" method="post" action="another/registerJoin">
 			<div class="hyo_register_id" id="hyo_register_input-group">
 				<span class="hyo_register_input-outline">
 					<span class="hyo_register_input-box">
-						<input type="text" id="member_id" class="hyo_register_input" placeholder="아이디" autocomplete=”off” maxlength="15"/>				
+						<input type="text" id="member_id" name="member_id" class="hyo_register_input" placeholder="아이디" autocomplete=”off” maxlength="15"/>				
 					</span>
 				</span>
 			</div>
 			<div class="hyo_register_pwd" id="hyo_register_input-group">
 				<span class="hyo_register_input-outline">
 					<span class="hyo_register_input-box">
-						<input type="password" id="member_pw" class="hyo_register_input" placeholder="비밀번호" autocomplete=”off” maxlength="15"/>				
+						<input type="password" id="member_pw" name="member_pw" class="hyo_register_input" placeholder="비밀번호" autocomplete=”off” maxlength="16"/>
+					</span>
+				</span>
+			</div>
+			<div class="hyo_register_pwd" id="hyo_register_input-group">
+				<span class="hyo_register_input-outline">
+					<span class="hyo_register_input-box">
+						<input type="password" id="member_pw_check" class="hyo_register_input" placeholder="비밀번호확인" autocomplete=”off” maxlength="16"/>
 					</span>
 				</span>
 			</div>
 			<div class="hyo_register_name" id="hyo_register_input-group">
 				<span class="hyo_register_input-outline">
 					<span class="hyo_register_input-box">
-						<input type="text" id="member_name" class="hyo_register_input" placeholder="이름" autocomplete=”off” maxlength="15"/>				
+						<input type="text" id="member_name" name="member_name" class="hyo_register_input" placeholder="이름" autocomplete=”off” maxlength="7"/>				
 					</span>
 				</span>
 			</div>
 			<div class="hyo_register_tel" id="hyo_register_input-group">
 				<span class="hyo_register_input-outline">
 					<span class="hyo_register_input-box">
-						<input type="text" id="member_tel" class="hyo_register_input" placeholder="휴대폰번호" autocomplete=”off” maxlength="15"/>				
+						<input type="text" id="member_tel" name="member_tel" class="hyo_register_input" placeholder="휴대폰번호" autocomplete=”off” maxlength="13"/>				
 					</span>
 				</span>
 			</div>
 			<div class="hyo_register_email" id="hyo_register_input-group">
 				<span class="hyo_register_input-outline">
 					<span class="hyo_register_input-box">	
-						<input type="text" id="member_email" class="hyo_register_input" placeholder="이메일" autocomplete=”off” maxlength="15"/>				
+						<input type="text" id="member_email" name="member_email" class="hyo_register_input" placeholder="이메일" autocomplete=”off” maxlength="15"/>
 					</span>
 				</span>
 			</div>
 			<button class="hyo_register_button">회원가입</button>
 		</form>
-		메모
-		1. css, js 절대경로 설정 체크
-		2. jspf 인클루드 전체설정 논의
 	</div>

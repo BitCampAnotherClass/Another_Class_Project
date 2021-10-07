@@ -1,0 +1,60 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+
+	</div>
+	<style>
+		#footer{
+			background-color: #c9c9c9;
+		}
+	</style>
+	<footer id="footer">
+		<div class="inner-lg">
+			
+		</div>
+	</footer>
+</div>
+</body>
+
+
+<script>
+	
+	$(window).scroll(function(event){
+		fixMenu();
+	});
+	
+	
+	function fixMenu(){
+		var scrollTop = window.pageYOffset;
+		var headerTop = document.getElementById('header-top').offsetHeight;
+		var headerBottom = document.getElementById('header-bottom').style;
+		
+		if(scrollTop <= headerTop){
+			headerBottom.position = 'absolute';
+			headerBottom.top = headerTop + 'px';
+		} else {
+			headerBottom.position = 'fixed';
+			headerBottom.top = 0;
+		}
+	}
+	
+	
+	$(function(){
+		// 메뉴 마우스 오버
+		$('.gnb > li').mouseenter(function(){
+			$(this).children('.sub-menu1').css('display', 'flex');
+		}).mouseleave(function(){
+			$(this).children('.sub-menu1').css('display', 'none');
+		});
+		
+		$('.sub-menu1 > li').mouseenter(function(){
+			$(this).children('.sub-menu2').css('display', 'flex');
+		}).mouseleave(function(){
+			$(this).children('.sub-menu2').css('display', 'none');
+		});
+	});
+	
+</script>
+
+
+</html>

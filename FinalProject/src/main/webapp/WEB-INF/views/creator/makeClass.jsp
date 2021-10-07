@@ -8,68 +8,69 @@ console.log(d.getMonth()+1);
 console.log(d.getDate());
 </script>
 <style>
-	#contents{background-color:pink; height:1500px; width:950px; margin:0 auto;}
+	#contents{height:1500px; width:950px; margin:0 auto;}
     #contents>form>div:nth-child(1)>h1{color:gray; margin-left:50px;}
     #contents>form>div:nth-child(1)>ul>li{margin-left:50px;}
+    #insertTitle{width:745px; height:55px; font-size:1.3em;}
 	#picInsertDiv{float:left; width:950px;}
    	#picInsertDiv>div{float:left}
-   	#picInsertDiv>div:nth-child(2){background-color:red; width:650px; height:200px; }
+   	#picInsertDiv>div:nth-child(2){ width:650px; height:200px; }
     #picInsertDiv>div:nth-child(2)>ul{margin-top:50px; margin-left:100px;}
    	#picInsertDiv>div:nth-child(2)>ul>li{list-style-type:disc;}
-   	#picInsertDiv>div:nth-child(3){float:left; background-color:blue; width:850px; margin-left:50px;}
+   	#picInsertDiv>div:nth-child(3){float:left; width:850px; margin-left:50px;}
    	#picInsertDiv>div:nth-child(3)>div{float:left;}
-    #picInsertDiv>div:nth-child(3)>div:nth-child(1){background-color:white; margin-left:30px; margin-top:15px; }
-    #picInsertDiv>div:nth-child(3)>div:nth-child(2){margin-left:480px; margin-bottom:10px;  margin-top:10px; height:35px; width:205px; border:1px solid pink;}
+    #picInsertDiv>div:nth-child(3)>div:nth-child(1){margin-left:30px; margin-top:15px; }
+    #picInsertDiv>div:nth-child(3)>div:nth-child(2){margin-left:480px; margin-bottom:10px;  margin-top:10px; height:35px; width:205px; }
     #insertPicButton{color:gray; width:200px; height:35px; font-size:1.3em;}
     #picInsertSq{width:200px; height:200px; border:1px solid gray; margin-left:50px; float:left;}
     #picInsertSq>span{color:blue; line-height:200px; padding-left:50px;}
   	#insertSubject{ padding:0px; float:left; width:845px; height:295px; font-size:1.5em;}
-  	#insertSubjectDiv>div{border:1px solid green; margin-left:50px; width:850px;height:300px; margin-top:10px; }
+  	#insertSubjectDiv>div{ margin-left:50px; width:850px;height:300px; margin-top:10px; }
   	#insertSubjectDiv>ul{margin-left:50px;}
-  	#insertDateDiv{float:left; background-color:lightgreen; width:950px; height:150px; margin-bottom:10px;}
+  	#insertDateDiv{float:left; width:950px; height:150px; margin-bottom:10px;}
   	#insertDateDiv>div>span{margin-left:60px; line-height:150px;}
-  	#insertDateDiv>div:nth-child(1){border-left:1px solid red; width:150px; height:150px; float:left; margin-left:50px;}
-   	#insertDateDiv>div:nth-child(2){background-color:yellow; height:150px; width:700px; float:left; border-left:3px solid gray; }
-    #insertDateDiv>div:nth-child(2)>div:nth-child(1){border:1px solid blue; width:700px; height:55px; float:left; margin-top:5px;}
+  	#insertDateDiv>div:nth-child(1){width:150px; height:150px; float:left; margin-left:50px;}
+   	#insertDateDiv>div:nth-child(2){ height:150px; width:700px; float:left; border-left:3px solid gray; }
+    #insertDateDiv>div:nth-child(2)>div:nth-child(1){ width:700px; height:55px; float:left; margin-top:5px;}
     #insertDateDiv>div:nth-child(2)>div:nth-child(1)>div{float:left;}
-    #nowDate{width:330px; height:50px; font-size:1.8em; text-align:right;}
+    #nowDate{width:330px; height:50px; font-size:1.8em; text-align:right; margin-left:20px;}
     #comingDate{width:330px; height:50px; font-size:1.8em; text-align:right; }
-    #insertDateDiv>div:nth-child(2)>div:nth-child(2){border:1px solid blue; width:700px; height:55px;float:left; margin-top:30px}
+    #insertDateDiv>div:nth-child(2)>div:nth-child(2){ width:700px; height:55px;float:left; margin-top:30px}
     #insertDateDiv>div:nth-child(2)>div:nth-child(2)>div{float:left;}
-    #selectTime{width:330px; height:50px; font-size:1.8em; text-align:right;}
+    #selectTime{width:330px; height:50px; font-size:1.8em; text-align:right; margin-left:20px;}
  	#selectTime2{width:330px; height:50px; font-size:1.8em; text-align:right;}
- 	#insertPlaceDiv{background-color:blue; width:950px; height:150px;}
- 	#insertPlaceDiv>div:nth-child(1){border-left:1px solid red; width:150px; height:150px; float:left; margin-left:50px;}
+ 	#insertPlaceDiv{ width:950px; height:150px; }
+ 	#insertPlaceDiv>div:nth-child(1){ width:150px; height:150px; float:left; margin-left:50px;}
  	#insertPlaceDiv>div>span{margin-left:35px; line-height:150px;}
- 	#insertPlaceDiv>div:nth-child(2){background-color:yellow; height:150px; width:700px; float:left; border-left:3px solid gray; }
- 	#insertPlaceDiv>div:nth-child(2)>div:nth-child(1){border:1px solid green; height:55px; float:left; width:700px; margin-top:5px;}
- 	#insertPlaceDiv>div:nth-child(2)>div:nth-child(2){border:1px solid green; height:55px; width:700px; float:left; margin-top:30px;}
+ 	#insertPlaceDiv>div:nth-child(2){height:150px; width:700px; float:left; border-left:3px solid gray; }
+ 	#insertPlaceDiv>div:nth-child(2)>div:nth-child(1){height:55px; float:left; width:700px; margin-top:5px;}
+ 	#insertPlaceDiv>div:nth-child(2)>div:nth-child(2){ height:55px; width:700px; float:left; margin-top:30px;}
  	#insertPlaceDiv>div:nth-child(2)>div:nth-child(2)>ul{margin-left:50px;}
  	#insertPlaceDiv>div:nth-child(2)>div:nth-child(2)>ul>li{list-style-type:disc; line-height:25px;}
- 	#insertPlace{width:464px; height:50px; font-size:1.3em; text-align:right; float:left; padding:0px;}
- 	#insertPlaceButton{margin-left:20px; color:gray; width:200px; height:55px; font-size:1.3em;}
- 	#insertExtraImgDiv{background-color:blue; width:950px; height:150px;}
- 	#insertExtraImgDiv>div:nth-child(1){border-left:1px solid red; width:150px; height:150px; float:left; margin-left:50px;}
+ 	#insertPlace{width:464px; height:50px; font-size:1.3em; text-align:right; float:left; padding:0px; margin-left:20px;}
+ 	#insertPlaceButton{ color:gray; width:200px; height:50px; font-size:1.3em; margin-left:10px;}
+ 	#insertExtraImgDiv{ width:950px; height:150px;}
+ 	#insertExtraImgDiv>div:nth-child(1){width:150px; height:150px; float:left; margin-left:50px;}
  	#insertExtraImgDiv>div>span{margin-left:35px; line-height:150px;}
- 	#insertExtraImgDiv>div:nth-child(2){background-color:yellow; height:150px; width:700px; float:left; border-left:3px solid gray; }
- 	#insertFeeDiv{background-color:blue; width:950px; height:150px;}
- 	#insertFeeDiv>div:nth-child(1){border-left:1px solid red; width:150px; height:150px; float:left; margin-left:50px;}
+ 	#insertExtraImgDiv>div:nth-child(2){height:150px; width:700px; float:left; border-left:3px solid gray; }
+ 	#insertFeeDiv{ width:950px; height:150px;}
+ 	#insertFeeDiv>div:nth-child(1){ width:150px; height:150px; float:left; margin-left:50px;}
  	#insertFeeDiv>div>span{margin-left:50px; line-height:150px;}
- 	#insertFeeDiv>div:nth-child(2){background-color:yellow; height:150px; width:700px; float:left; border-left:3px solid gray; }
- 	#insertFeeDiv>div:nth-child(2)>div:nth-child(1){border:1px solid green; height:55px; margin-top:5px; width:700px; }
- 	#insertFeeDiv>div:nth-child(2)>div:nth-child(2){border:1px solid green; height:55px; margin-top:30px; float:left; width:700px;}
- 	#insertFee{width:464px; height:50px; font-size:1.3em; text-align:right; float:left; padding:0px; }
+ 	#insertFeeDiv>div:nth-child(2){ height:150px; width:700px; float:left; border-left:3px solid gray; }
+ 	#insertFeeDiv>div:nth-child(2)>div:nth-child(1){ height:55px; margin-top:5px; width:700px; }
+ 	#insertFeeDiv>div:nth-child(2)>div:nth-child(2){ height:55px; margin-top:30px; float:left; width:700px;}
+ 	#insertFee{width:464px; height:50px; font-size:1.3em; text-align:right; float:left; padding:0px; margin-left:20px;}
  	#insertFeeDiv>div:nth-child(2)>div:nth-child(2)>div:nth-child(1)>ul{margin-left:50px;}
  	#insertFeeDiv>div:nth-child(2)>div:nth-child(2)>div:nth-child(1)>ul>li{list-style-type:disc;}
- 	#insertFeeDiv>div:nth-child(2)>div:nth-child(2)>div:nth-child(1){ float:left; border:1px solid red;  width:485px; height:50px;}
- 	#insertFeeDiv>div:nth-child(2)>div:nth-child(2)>div:nth-child(2){ float:left; border:1px solid red; width:205px; height:50px;}
+ 	#insertFeeDiv>div:nth-child(2)>div:nth-child(2)>div:nth-child(1){ float:left;  width:485px; height:50px;}
+ 	#insertFeeDiv>div:nth-child(2)>div:nth-child(2)>div:nth-child(2){ float:left; width:205px; height:50px;}
  	#insertFeeButton{ width:200px; height:55px; font-size:1.3em;}
  	#createClassSubmitButton{width:100px; height:40px; color:gray; height:55px; width:200px; margin-left:750px; font-size:1.3em;}
 </style>
 <div id="contents">
 	<form>
 		<div>
-			<h1 class="notInclude">클래스 개설</h1>
+			<h1>클래스 개설</h1>
 			<hr/>
 			<ul>
 				<li>클래스 타이틀 : <input type="text" placeholder="(필수)클래스 타이틀을 입력하세요" id="insertTitle"></li>
@@ -179,4 +180,4 @@ console.log(d.getDate());
 		<hr/>
 		<input id="createClassSubmitButton" type="submit" value="개설 신청">
 	</form>
-</div>	<hr/>
+</div>	
