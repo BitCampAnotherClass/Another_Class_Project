@@ -55,6 +55,8 @@
 
 .user-img > img{
 	width: 100%;
+	height:100%;
+	object-fit: cover;
 }
 
 .user-review-info{
@@ -65,6 +67,10 @@
 	white-space: nowrap;
 	overflow:hidden;
 	text-overflow:ellipsis;
+}
+
+.review-info .star{
+	color:#FF385C;
 }
 
 
@@ -84,7 +90,9 @@
 }
 
 .review-img > img{
-	width:100%;
+	width: 100%;
+	height:100%;
+	object-fit: cover;
 	border-radius: 5px;
 }
 
@@ -110,6 +118,45 @@
 	margin-left:150px;
 }
 
+
+/* 댓글 */
+
+.review-comment{
+	display:flex;
+	justify-content: flex-start;
+	flex-direction: column;
+	background-color:#f5f5f5;
+	margin-top:30px;
+	padding:20px 40px 20px 60px;
+	border-radius: 5px;
+}
+
+.review-comment .comment-info {
+	width:100%;
+	display:flex;
+	justify-content: flex-start;
+}
+
+.class-review-content .review-comment .user-img{
+	width:26px;
+	height:26px;
+}
+
+.class-review-content .review-comment .user-review-info {
+	width:100%;
+	display:flex;
+	justify-content: flex-start;
+}
+
+.comment-text{
+	font-size:14px;
+	color:#666;
+}
+
+
+
+
+
 /******* // 공통 후기 CSS ---- End *******/
 
 
@@ -130,10 +177,11 @@
 
 .class-review-content .review-info .star{
 	margin-top:10px;
-	font-size:22px;
+	font-size:18px;
+	letter-spacing:-2px;
 }
 
-.class-review-content .review-content{
+.class-review-content .review-content, .class-review-content .comment-text{
 	width:640px;
 }
 
@@ -160,7 +208,8 @@
 
 .my-review-content .review-info .star{
 	margin-top:10px;
-	font-size:22px;
+	font-size:18px;
+	letter-spacing:-2px;
 }
 
 .my-review-content .review-content{
@@ -244,7 +293,9 @@
 }
 
 .review-class-img > img{
-	width:100%;
+	width: 100%;
+	height:100%;
+	object-fit: cover;
 }
 
 .review-class-info{
@@ -252,9 +303,10 @@
 }
 
 .star-point{
-	font-size:52px;
+	font-size:54px;
 	text-align:center;
 	color:#FF385C;
+	letter-spacing:-3px;
 }
 
 

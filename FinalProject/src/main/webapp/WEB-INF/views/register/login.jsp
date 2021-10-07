@@ -7,8 +7,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="css/common.css" rel="stylesheet" type="text/css"/>
-<link href="css/login.css" rel="stylesheet" type="text/css"/>
+<link href="<%=request.getContextPath()%>/css/common.css" rel="stylesheet" type="text/css"/>
+<link href="<%=request.getContextPath()%>/css/login.css" rel="stylesheet" type="text/css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
 </head>
 <body>
@@ -18,7 +18,7 @@
 	
 	<header id="header">
 		<div class="inner-header">
-			<h1 class="logo ir-text"><a href="/teamproject/">어나더클래스</a></h1>
+			<h1 class="logo ir-text"><a href="<%=request.getContextPath()%>/">어나더클래스</a></h1>
 		</div>
 	</header>
 	
