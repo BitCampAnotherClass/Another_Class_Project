@@ -31,14 +31,14 @@
 		<div id="header-top">
 			<div class="inner-lg">
 				<ul class="tnb login-menu">
-					<li><a href="/teamproject/login">로그인</a></li>
+					<li><a href="login">로그인</a></li>
 					<li><a href="#">회원가입</a></li>
 					<li><a href="#">♥</a></li>
 					<li><a href="#">장</a></li>
 				</ul>
 				<ul class="tnb logout-menu">
 					<li><a href="#">로그아웃</a></li>
-					<li><a href="/teamproject/mypage">마이페이지</a></li>
+					<li><a href="mypage">마이페이지</a></li>
 					<li><a href="#">♥</a></li>
 					<li><a href="#">장</a></li>
 				</ul>
@@ -46,7 +46,7 @@
 		</div>
 		<div id="header-bottom">
 			<div class="inner-lg">
-				<h1 class="logo ir-text"><a href="/teamproject/">어나더클래스</a></h1>
+				<h1 class="logo ir-text"><a href="<%=request.getContextPath()%>">어나더클래스</a></h1>
 				<nav id="nav">
 					<div class="search">
 						<form>
@@ -88,7 +88,7 @@
 								</li>
 							</ul>
 						</li>
-						<li><a href="/teamproject/classMap">내 주변 클래스</a></li>
+						<li><a href="classMap">내 주변 클래스</a></li>
 						<li><a href="#">커뮤니티</a></li>
 						<li class="c-center"><a href="#">고객지원</a>
 							<ul class="sub-menu1">
