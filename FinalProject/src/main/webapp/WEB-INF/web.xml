@@ -54,7 +54,6 @@
 	<jsp-config>
 		<jsp-property-group>
 			<url-pattern>/WEB-INF/views/user/*</url-pattern>
-			<url-pattern>/WEB-INF/views/register/*</url-pattern>
 			<include-prelude>/inc/user_header.jspf</include-prelude>
 			<include-coda>/inc/user_footer.jspf</include-coda>
 		</jsp-property-group>
@@ -75,8 +74,9 @@
     <error-page>
     	<error-code>404</error-code>
     	<location>/error404</location>
+    </error-page>
+     <error-page>
     	<error-code>500</error-code>
     	<location>/error404</location>
     </error-page>
-    
 </web-app>
