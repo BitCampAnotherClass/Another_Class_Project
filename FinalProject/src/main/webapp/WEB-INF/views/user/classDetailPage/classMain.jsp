@@ -19,8 +19,8 @@
 <style>
 
 	div{margin:0;padding:0; box-sizing:border-box;}
-	a:link, a:hover, a:visited{text-decoration:none; color:black;}
-	#Bcotainer{margin:0 auto; width:1200px; height:auto; display:flex;} /* 모든걸감싸는 큰박스*/
+	a:link, a:hover, a:visited{text-decoration:none; color:#333;}
+	#Bcotainer{margin:0 auto; width:1200px; height:auto; display:flex;margin-top:50px;} /* 모든걸감싸는 큰박스*/
 	
 	#leftdiv{width:800px;margin:0;}
 	
@@ -80,6 +80,8 @@
 	
 	#d6>div:nth-child(2){white-space: pre-line}
 	#d6>div:nth-child(2)>img{max-width:100%;max-height:500px;margin:20px 0 20px 0;}
+	
+	#d7>div:nth-child(2){margin:10px 0 10px 0;}
 	
 	#d9{width:100%;height:auto;}
 	#d9>div{width:100%;height:100%;}
@@ -200,7 +202,7 @@
 			<div id="d6" class="menu"> <!-- 강사소개 -->
 				<div class="menutitle"><span>강사소개</span></div>
 				<div>
-					<img src="img/flower5.png"/>
+					<img src="img/jisu/flower5.png"/>
 					안녕하세요. 감각적인 플라워상품과 클래스를 제공하는 버드세이지 플라워입니다.										
 					
 					저는 5년차 플로리스트로 원데이, 기초반부터 자격증, 창업반까지 

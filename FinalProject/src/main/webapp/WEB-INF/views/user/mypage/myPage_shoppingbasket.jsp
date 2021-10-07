@@ -20,7 +20,7 @@
 	/*쇼핑백리스트*/
 	#shoppingBagListUl{}
 	#shoppingBagListUl>li{padding:6px 0 6px 0;height:150px;margin-top:50px;}
-	#shoppingBagListUl>li>div{width:10%;height:100%;float:left;text-align:center;}/*height -> 100%? auto?*/
+	#shoppingBagListUl>li>div{width:10%;height:100%;float:left;text-align:center;border-bottom:1px solid #ddd;}/*height -> 100%? auto?*/
 	#shoppingBagListUl>li>div:nth-child(5n+1){width:5%;line-height:150px;}
 	#shoppingBagListUl>li>div:nth-child(5n+2){width:60%;} /*이미지+상세정보*/
 	#shoppingBagListUl>li>div:nth-child(5n+2)>div{width:100%;height:100%;}
