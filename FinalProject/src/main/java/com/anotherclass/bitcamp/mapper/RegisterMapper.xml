@@ -2,6 +2,14 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.anotherclass.bitcamp.mapper.register.RegisterDAO_Imp">
-	
+<mapper namespace="com.anotherclass.bitcamp.register.RegisterDAO_Imp">
+	<insert id="registerJoin" parameterType="com.anotherclass.bitcamp.register.RegisterVO">
+		call ex_account_in(
+			#{member_id, mode=IN, jdbcType=VARCHAR, javaType=String}, 
+			#{member_pw, mode=IN, jdbcType=VARCHAR, javaType=String}, 
+			#{member_name, mode=IN, jdbcType=VARCHAR, javaType=String}, 
+			#{member_tel, mode=IN, jdbcType=VARCHAR, javaType=String}, 
+			#{member_email, mode=IN, jdbcType=VARCHAR, javaType=String}
+		)
+	</insert>
 </mapper>

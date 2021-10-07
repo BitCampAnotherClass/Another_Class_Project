@@ -18,7 +18,7 @@
 	
 	<header id="header">
 		<div class="inner-header">
-			<h1 class="logo ir-text"><a href="#">어나더클래스</a></h1>
+			<h1 class="logo ir-text"><a href="/teamproject/">어나더클래스</a></h1>
 		</div>
 	</header>
 	

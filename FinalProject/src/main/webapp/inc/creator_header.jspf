@@ -100,7 +100,7 @@
 <body>
 <div class="container">
 	<div class="menuBar">
-	   		<h1 class="main_title"><a href="#">AnotherClass</a></h1>
+	   		<h1 class="main_title"><a href="/teamproject/creatorHome">AnotherClass</a></h1>
 		      <ul class="menu-box">
 		         <li class="menu_title"><a href="#">마이페이지</a>
 		            <ul>
@@ -124,7 +124,12 @@
 		               <li><a href="#" class="small-menu">클래스후기관리</a></li>
 		            </ul>
 		         </li>
-		         <li class="menu_title"><a href="#">수익관리</a></li>
+		         <li class="menu_title"><a href="#">수익관리</a>
+		        	 <ul>
+		               <li><a href="/teamproject/incomeChart" class="small-menu">클래스 통계</a></li>
+		               <li><a href="#" class="small-menu">정산내역</a></li>
+		            </ul>
+		         </li>
 		         <li class="menu_title"><a href="#">문의(Q&A)</a>
 		            <ul>
 		               <li><a href="#" class="small-menu">관리자문의</a></li>

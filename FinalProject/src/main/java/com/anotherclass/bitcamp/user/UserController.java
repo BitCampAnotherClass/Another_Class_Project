@@ -16,26 +16,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class UserController {
-	
-	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
-	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
+
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+	public String home() {
 		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
 		return "user/home";
 	}
 	
-	// 화면 보려고 임시 맵핑 --------------------------
+	// 임시 맵핑 --------------------------
 	// 은정
 	@RequestMapping(value = "/login")
 	public String login() {
@@ -57,10 +45,31 @@ public class UserController {
 		return "creator/creator";
 	}
 	
+	@RequestMapping(value = "/mypageReview")
+	public String mypageReview() {
+		return "/user/mypage/myPage_review";
+	}
+	
+	@RequestMapping(value = "/classReview")
+	public String classReview() {
+		return "/user/classDetailPage/test";
+	}
+
+	
+	
 	// 지수
 	@RequestMapping(value = "/mypage")
 	public String mypage() {
 		return "/user/mypage/myPage_order";
 	}
 	
+	@RequestMapping(value = "/classMainPage")
+	public String classMainPage() {
+		return "/user/classDetailPage/classMain";
+	}
+	
+	@RequestMapping(value = "/payPage")
+	public String payPage() {
+		return "/user/pay/payPage_info";
+	}
 }

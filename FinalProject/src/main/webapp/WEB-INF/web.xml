@@ -54,6 +54,7 @@
 	<jsp-config>
 		<jsp-property-group>
 			<url-pattern>/WEB-INF/views/user/*</url-pattern>
+			<url-pattern>/WEB-INF/views/register/*</url-pattern>
 			<include-prelude>/inc/user_header.jspf</include-prelude>
 			<include-coda>/inc/user_footer.jspf</include-coda>
 		</jsp-property-group>
