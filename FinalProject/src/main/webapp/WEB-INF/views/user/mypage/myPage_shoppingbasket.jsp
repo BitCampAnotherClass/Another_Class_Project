@@ -2,7 +2,10 @@
 
 
 <style>	
-	
+	html, body, div, ul, ol, li, dl, dt, dd, header, footer, main, article, section, aside, form, input, textarea, button, select, a, p, h1, h2, h3, h4, h5, h6, span, table, th, td{box-sizing:content-box}
+		
+
+
 	.shoppingBagList{width:100%;height:auto;margin-top:80px;margin:0 auto;} /*쇼핑백 리스트를 감싸고있는 제일큰div border:1px solid red;*/
 	.shoppingBagList>span:nth-child(1){margin-bottom:20px;margin-top:70px}
 	.shoppingBagList{width:100%;height:auto;}
@@ -67,7 +70,7 @@
 				<div><input type="checkbox"></div><!-- 체크박스 -->				
 				<div><!-- 이미지+상품정보 -->	
 					<div>							
-						<div><a href="#"><img src="../../img/jisu/classimg5.png"/></a></div><!-- 이미지 -->
+						<div><a href="#"><img src="img/jisu/classimg5.png"/></a></div><!-- 이미지 -->
 						<div><!-- 상품정보 -->
 							<a href="#">늘 예쁜 꽃, 디자인을 잘 하면 더 예뻐져요. 쉐이드그린의 감각적인 생화 디자인</a><!-- 클래스명 : -->
 							<span><a href="#">마치가든</a></span><!-- 크리에이터명 -->
@@ -91,7 +94,7 @@
 				<div><input type="checkbox"></div><!-- 체크박스 -->				
 				<div><!-- 이미지+상품정보 -->	
 					<div>							
-						<div><a href="#"><img src="../../img/jisu/classimg4.png"/></a></div><!-- 이미지 -->
+						<div><a href="#"><img src="img/jisu/classimg4.png"/></a></div><!-- 이미지 -->
 						<div><!-- 상품정보 -->
 							<a href="#">프로서퍼 김지나의 서핑 A to Z</a><!-- 클래스명 : -->
 							<span><a href="#">지나서퍼</a></span><!-- 크리에이터명 -->

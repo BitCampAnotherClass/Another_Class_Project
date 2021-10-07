@@ -58,18 +58,32 @@ public class UserController {
 	
 	
 	// 지수
-	@RequestMapping(value = "/mypage")
+	@RequestMapping(value = "/mypage1")
 	public String mypage() {
 		return "/user/mypage/myPage_order";
 	}
-	
+	@RequestMapping(value = "/mypage2")
+	public String mypage2() {
+		return "/user/mypage/myPage_shoppingbasket";
+	}
+	@RequestMapping(value = "/mypage3")
+	public String mypage3() {
+		return "/user/mypage/myPage_Ask";
+	}	
 	@RequestMapping(value = "/classMainPage")
 	public String classMainPage() {
 		return "/user/classDetailPage/classMain";
-	}
-	
+	}	
 	@RequestMapping(value = "/payPage")
 	public String payPage() {
 		return "/user/pay/payPage_info";
+	}
+	@RequestMapping(value = "/homeQnA")
+	public String homeQnA() {
+		return "/user/HomeQnA/userHelper_HomeQnA_view";
+	}
+	@RequestMapping(value = "/AhomeQnA")
+	public String AhomeQnA() {
+		return "/admin/HomeQnA/admin_HomeQnA_view";
 	}
 }

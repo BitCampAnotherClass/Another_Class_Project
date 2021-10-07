@@ -17,6 +17,7 @@
 
 </head>
 <style>
+
 	div{margin:0;padding:0; box-sizing:border-box;}
 	a:link, a:hover, a:visited{text-decoration:none; color:black;}
 	#Bcotainer{margin:0 auto; width:1200px; height:auto; display:flex;} /* 모든걸감싸는 큰박스*/
@@ -144,7 +145,7 @@
 	<!--  -->
 	<div id="leftdiv">
 		<div id="calssintro"> <!-- 클래스대표사진+소개글 , 강사프로필+강사닉네임 -->	
-			<div id="d1"><img src="../../img/classimg.png"/></div> <!-- 클래스 이미지 -->
+			<div id="d1"><img src="img/jisu/classimg.png"/></div> <!-- 클래스 이미지 -->
 			<div id="d2"> <!-- 클래스 소개 -->
 				<ul>
 					<li>플라워·가드닝</li> <!-- 위치?대분류? --> <!-- 왼쪽정렬 -->
@@ -152,16 +153,16 @@
 					<li>꽃처럼 마음도 예뻐지는 꽃꽃이 클래스</li> <!-- 짧은 소개글 *******************pre-wrap 아직 미설정-->
 					<li>
 						<div>
-							<div><img src="../../img/jisu/ff385bigborderheart.png"/></div><!--  좋아요버튼, 좋아요수 --> <!-- 왼쪽정렬 -->
+							<div><img src="img/jisu/ff385bigborderheart.png"/></div><!--  좋아요버튼, 좋아요수 --> <!-- 왼쪽정렬 -->
 							<div>120</div> <!--? 흠...div안에있는게 맞나모르겟음... -->
 						</div>
 					</li>
-					<li><img src="../../img/jisu/smalllocation.png"/>경기도 | 용인시</li> <!-- 위치 -->
+					<li><img src="img/jisu/smalllocation.png"/>경기도 | 용인시</li> <!-- 위치 -->
 					<li style="display:none;"><div><input type="button" value="공유"/></div></li> <!-- 공유하기 -->
 				</ul>
 			</div> 
 			<div id="d3"> <!-- 강사프로필 + 강사명 -->
-				<div><img src="../../img/jisu/creatorprofile.png"/></div> <!-- 강사프로필이미지 -->	
+				<div><img src="img/jisu/creatorprofile.png"/></div> <!-- 강사프로필이미지 -->	
 				<div> <!-- 강사닉네임 -->	
 					<a href="#">버드세이지 플라워</a>
 					<span>클래스3개 | 좋아요19개</span>
@@ -180,16 +181,16 @@
 			<div id="d5" class="menu"> <!-- 클래스소개 -->
 				<div class="menutitle"><span>클래스소개</span></div>
 				<div>		
-					<img src="../../img/jisu/flower2.png"/>			
+					<img src="img/jisu/flower2.png"/>			
 					플라워 클래스 공간을 새롭게 리뉴얼한 버드세이지 플라워!
 					한강진역 3번출구에서 도보로 5분이면 도착가능합니다.
 					자연광도 예쁘게 들어오고 좁고 답답한 플라워샵이나 오피스텔에서 진행하지 않고
 					널찍하고 세련된 인테리어로 	인생샷을 찍을 수 있는 트렌드바이미입니다.					
-					<img src="../../img/jisu/flower3.png"/>							
+					<img src="img/jisu/flower3.png"/>							
 					꽃꽂이 원데이 클래스,
 					기초부터 차근차근 알려드립니다 :)
 					선물하기에도 좋은 센터피스					
-					<img src="../../img/jisu/flower4.png"/>						
+					<img src="img/jisu/flower4.png"/>						
 					가장 대표적이며 기본적인 클래스라고 할수있는	'센터피스'입니다.
 					꽃줄기를 사선으로 자른뒤 화기 안의 플로럴폼(오아시스)에 꽂아서 완성하시게 됩니다.
 					고급스러운 화기가 함께 제공되며 집들이 선물, 첫인사 꽃으로 많이 신청하신답니다.					
@@ -199,7 +200,7 @@
 			<div id="d6" class="menu"> <!-- 강사소개 -->
 				<div class="menutitle"><span>강사소개</span></div>
 				<div>
-					<img src="../../img/flower5.png"/>
+					<img src="img/flower5.png"/>
 					안녕하세요. 감각적인 플라워상품과 클래스를 제공하는 버드세이지 플라워입니다.										
 					
 					저는 5년차 플로리스트로 원데이, 기초반부터 자격증, 창업반까지 
@@ -267,7 +268,7 @@
 					<ul>
 						<li> <!-- **문의댓글한줄 -->
 							<div><!-- 이미지 + 닉네임 + 작성날짜-->
-								<span><img src="../../img/jisu/basic.png"/></span> <!-- 이미지 -->
+								<span><img src="img/jisu/basic.png"/></span> <!-- 이미지 -->
 								<span><label>an** | 2021년 6월 6일 20:26 작성</label></span> <!-- 아이디 -->								
 							</div>							
 							<span>이번주 토요일 클래스 예약 2명 가능할까요?</span><!-- 내용 -->
@@ -275,7 +276,7 @@
 							<!-- -------------------------------------------------- -->
 							
 							<div> <!-- 강사답댓글 -->
-								<span><img src="../../img/jisu/creatorprofile.png"/></span> <!-- 이미지 -->
+								<span><img src="img/jisu/creatorprofile.png"/></span> <!-- 이미지 -->
 								<span><label> 버드세이지 플라워 | 2021년 6월 7일 12:00 작성</label></span> <!-- 아이디 -->		
 							</div>
 							<span>가능합니다 :)</span><!-- 내용 -->
@@ -284,7 +285,7 @@
 						
 						<li> <!-- **문의댓글한줄 -->
 							<div><!-- 이미지 + 닉네임 + 작성날짜-->
-								<span><img src="../../img/jisu/dog.png"/></span> <!-- 이미지 -->
+								<span><img src="img/jisu/dog.png"/></span> <!-- 이미지 -->
 								<span><label>tr2** | 2021년 6월 21일 12:41 작성</label></span> <!-- 아이디 -->								
 							</div>							
 							<span>23일 토요일 두명신청했는데 오후 4시쯤 방문해도 괜찮을까요?</span><!-- 내용 -->

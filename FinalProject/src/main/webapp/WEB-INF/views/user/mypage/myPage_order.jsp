@@ -3,7 +3,7 @@
 
 
 <style>
-
+	body{box-sizing:content;}
 	  
 	/*타이틀+리스트*/
 	.orderDiv{width:100%;height:auto;margin-top:80px;}/*border:1px solid red;*/
@@ -47,7 +47,7 @@
 		<ul>
 			<li>
 				<div><!-- 이미지 -->
-					<a href="#"><img src="../../img/jisu/classimg2.png"/></a><!-- 이미지 -->
+					<a href="#"><img src="img/jisu/classimg2.png"/></a><!-- 이미지 -->
 				</div>
 					
 				<div><!-- 구매정보 -->
@@ -75,7 +75,7 @@
 		<ul>
 			<li>
 				<div><!-- 이미지 -->
-					<a href="#"><img src="../../img/jisu/classimg6.png"/></a><!-- 이미지 -->
+					<a href="#"><img src="img/jisu/classimg6.png"/></a><!-- 이미지 -->
 				</div>
 					
 				<div><!-- 구매정보 -->
@@ -95,7 +95,7 @@
 			
 			<li>
 				<div><!-- 이미지 -->
-					<a href="#"><img src="../../img/jisu/classimg5.png"/></a><!-- 이미지 -->
+					<a href="#"><img src="img/jisu/classimg5.png"/></a><!-- 이미지 -->
 				</div>
 					
 				<div><!-- 구매정보 -->
@@ -122,7 +122,7 @@
 		<ul>
 			<li>
 				<div><!-- 이미지 -->
-					<a href="#"><img src="../../img/jisu/classimg7.png"/></a><!-- 이미지 -->
+					<a href="#"><img src="img/jisu/classimg7.png"/></a><!-- 이미지 -->
 				</div>
 					
 				<div><!-- 구매정보 -->
@@ -143,7 +143,7 @@
 			
 			<li>
 				<div><!-- 이미지 -->
-					<a href="#"><img src="../../img/jisu/classimg4.png"/></a><!-- 이미지 -->
+					<a href="#"><img src="img/jisu/classimg4.png"/></a><!-- 이미지 -->
 				</div>
 					
 				<div><!-- 구매정보 -->
