@@ -45,7 +45,7 @@ public class UserController {
 		return "creator/creator";
 	}
 	
-	@RequestMapping(value = "/mypageReview")
+	@RequestMapping(value = "/mypage/review")
 	public String mypageReview() {
 		return "/user/mypage/myPage_review";
 	}

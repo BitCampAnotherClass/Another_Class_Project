@@ -4,7 +4,7 @@
 
 <%@ include file="myPageTop.jspf" %>
 
-<link href="css/user/review.css" rel="stylesheet" type="text/css"/>
+<link href="<%=request.getContextPath()%>/css/user/review.css" rel="stylesheet" type="text/css"/>
 
 <div id="reviewPageTitle"><span class="h1style">나의후기</span></div>
 
@@ -27,7 +27,7 @@
 				<li class="my-review-content">
 					<div class="user-review">
 						<div class="review-info">
-							<div class="user-img"><img src="img/test/creator_01.PNG"/></div>
+							<div class="user-img"><img src="<%=request.getContextPath()%>/img/test/creator_01.PNG"/></div>
 							<div class="user-review-info">
 								<p>USERID</p>
 								<p>2021.10.05</p>
@@ -50,7 +50,7 @@
 								언젠가 제가 연기한 캐릭터 목소리를 들으실 날이 오겠죠?ㅎㅎ<br/>
 							</div>
 							<div class="review-img">
-								<img src="img/test/06.jpg"/>
+								<img src="<%=request.getContextPath()%>/img/test/06.jpg"/>
 							</div>
 						</div>
 						<div class="more-btn">
@@ -62,7 +62,7 @@
 				<li class="my-review-content">
 					<div class="user-review">
 						<div class="review-info">
-							<div class="user-img"><img src="img/test/creator_01.PNG"/></div>
+							<div class="user-img"><img src="<%=request.getContextPath()%>/img/test/creator_01.PNG"/></div>
 							<div class="user-review-info">
 								<p>USERIDUSERID</p>
 								<p>2021.10.05</p>
@@ -83,7 +83,7 @@
 				<li class="my-review-content">
 					<div class="user-review">
 						<div class="review-info">
-							<div class="user-img"><img src="img/test/creator_01.PNG"/></div>
+							<div class="user-img"><img src="<%=request.getContextPath()%>/img/test/creator_01.PNG"/></div>
 							<div class="user-review-info">
 								<p>USERID</p>
 								<p>2021.10.05</p>
@@ -96,7 +96,7 @@
 								있을거 같아요 
 							</div>
 							<div class="review-img">
-								<img src="img/test/02.jpg"/>
+								<img src="<%=request.getContextPath()%>/img/test/02.jpg"/>
 							</div>
 						</div>
 					</div>
@@ -105,7 +105,7 @@
 				<li class="my-review-content">
 					<div class="user-review">
 						<div class="review-info">
-							<div class="user-img"><img src="img/test/creator_01.PNG"/></div>
+							<div class="user-img"><img src="<%=request.getContextPath()%>/img/test/creator_01.PNG"/></div>
 							<div class="user-review-info">
 								<p>USERIDUSERIDUSER</p>
 								<p>2021.10.05</p>
@@ -119,7 +119,7 @@
 								언젠가 제가 연기한 캐릭터 목소리를 들으실 날이 오겠죠?ㅎㅎ
 							</div>
 							<div class="review-img">
-								<img src="img/test/02.jpg"/>
+								<img src="<%=request.getContextPath()%>/img/test/02.jpg"/>
 							</div>
 						</div>
 					</div>
@@ -128,7 +128,7 @@
 				<li class="my-review-content">
 					<div class="user-review">
 						<div class="review-info">
-							<div class="user-img"><img src="img/test/creator_01.PNG"/></div>
+							<div class="user-img"><img src="<%=request.getContextPath()%>/img/test/creator_01.PNG"/></div>
 							<div class="user-review-info">
 								<p>USERID</p>
 								<p>2021.10.05</p>
