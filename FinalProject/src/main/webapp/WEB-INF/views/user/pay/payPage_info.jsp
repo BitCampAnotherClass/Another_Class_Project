@@ -8,6 +8,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <style>
+	html, body, div, ul, ol, li, dl, dt, dd, header, footer, main, article, section, aside, form, input, textarea, button, select, a, p, h1, h2, h3, h4, h5, h6, span, table, th, td{box-sizing:content-box}
+	
+	
+	
 	
 	#payPageContainer{width:1200px;height:auto;margin:0 auto;display:flex;}/*모든걸감싸고있는 div*/
 	
@@ -120,7 +124,7 @@
 			
 			<div class="payclassinfoorder" style="height:150px;"><!-- 주문한줄.... -->
 				<div><!-- 이미지+제목 -->
-					<div><img src="../../img/jisu/classimg5.png"></div> <!-- 이미지 -->
+					<div><img src="img/jisu/classimg5.png"></div> <!-- 이미지 -->
 					<div><!-- 제목+강사 -->
 						<div>늘 예쁜 꽃, 디자인을 잘 하면 더 예뻐져요. 쉐이드그린의 감각적인 생화 디자인</div>
 						<div>마치가든</div>
@@ -143,7 +147,7 @@
 				
 		<div id="paymethod"><!-- 결제수단 -->
 			<div class="secondTitleD">결제수단</div>
-			<div id="paymethodselect" style="height:22px;">
+			<div id="paymethodselect"">
 				<span><input type="radio" name="paymentmethod" value="paycard"/>신용카드</span>
 				<span><input type="radio" name="paymentmethod" value="paybank"/>무통장입금</span>
 				<span><input type="radio" name="paymentmethod" value="paysimple"/>간편결제</span>

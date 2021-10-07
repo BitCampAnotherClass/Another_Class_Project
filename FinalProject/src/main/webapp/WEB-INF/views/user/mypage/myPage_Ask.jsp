@@ -132,7 +132,7 @@
 					<div style="display:none;"><a href="#">수정</a><a href="#">삭제</a></div><!-- 답변달리면 삭제수정불가? -->
 					
 					<div class="classAskcontenttextreplydiv"><!-- 문의답변 -->				
-						<div><a href="#"><img src="../../img/profileimg.jpg"/></a></div>		
+						<div><a href="#"><img src="img/profileimg.jpg"/></a></div>		
 						<div>
 							<span>도자마스터</span>
 							<span>2021년01월02일 작성</span>							
