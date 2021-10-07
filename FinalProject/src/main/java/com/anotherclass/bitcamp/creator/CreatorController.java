@@ -25,4 +25,9 @@ public class CreatorController {
 	public String creatorChannel() {
 	    return "creator/creatorChannel";
 	}
+	
+	@RequestMapping("/classMain")
+	public String classMain() {
+	    return "user/classDetailPage/classMain";
+	}
 }
