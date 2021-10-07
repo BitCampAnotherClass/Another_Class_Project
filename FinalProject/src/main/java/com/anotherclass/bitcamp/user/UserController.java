@@ -63,4 +63,13 @@ public class UserController {
 		return "/user/mypage/myPage_order";
 	}
 	
+	@RequestMapping(value = "/classMainPage")
+	public String classMainPage() {
+		return "/user/classDetailPage/classMain";
+	}
+	
+	@RequestMapping(value = "/payPage")
+	public String payPage() {
+		return "/user/pay/payPage_info";
+	}
 }
