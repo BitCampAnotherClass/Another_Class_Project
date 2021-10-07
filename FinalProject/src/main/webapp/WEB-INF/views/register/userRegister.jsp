@@ -46,7 +46,6 @@
 </style>
 <script>
 	$(()=>{
-		
 		$(".hyo_register_form").submit(function(){
 			var check = $("#member_id").val();
 			console.log(check);
