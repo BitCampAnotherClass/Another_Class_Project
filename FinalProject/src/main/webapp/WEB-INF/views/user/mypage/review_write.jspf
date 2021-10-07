@@ -9,7 +9,7 @@
 	}
 	
 	.review-modal{
-		
+		display:none;
 	}
 	
 	
@@ -26,7 +26,7 @@
 				<form id="reviewWrite">
 					<div class="review-class">
 						<div class="review-class-img">
-							<img src="img/test/creator_01.PNG"/>
+							<img src="<%=request.getContextPath()%>/img/test/creator_01.PNG"/>
 						</div>
 						<div class="review-class-info">
 							<p>늘 예쁜 꽃, 디자인을 잘 하면 더 예뻐져요. 쉐이드그린의 감각적인 생화 디자인 클래스</p>
@@ -35,7 +35,13 @@
 					</div>
 					<div class="review-point">
 						<h4>별점 평가</h4>
-						<div class="star-point">★★★★☆</div>
+						<div class="star-point">
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="fas fa-star"></i>
+							<i class="far fa-star"></i>
+						</div>
 					</div>
 					<div class="review-write-text">
 						<h4>후기 작성</h4>
