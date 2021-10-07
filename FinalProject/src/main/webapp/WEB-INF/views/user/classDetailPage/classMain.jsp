@@ -80,9 +80,31 @@
 	#d6>div:nth-child(2){white-space: pre-line}
 	#d6>div:nth-child(2)>img{max-width:100%;max-height:500px;margin:20px 0 20px 0;}
 	
-	#d9{width:100%;}
-	#d9>button{display:block;width:100%;height:100px;line-heigh:100px;background-color:white;border:1px solid #ff385c;border-radious:12px;}
-	#d9 a:hover{color:#ff385c;}
+	#d9{width:100%;height:auto;}
+	#d9>div{width:100%;height:100%;}
+	/* #d9>div *{height:100%;} */
+	#d9>div:nth-child(2n+1){margin-bottom:20px;}/*제목div*/
+	#d9>div:nth-child(2)>ul>li>div:nth-child(2n+1){width:100%;height:120px;}
+	#d9>div:nth-child(2) span{display:block;width:100%;height:100%;}/*댓글내용*/
+	/*#d9>div:nth-child(2)>ul>li>div:nth-child(1){}/*이미지+닉네임+작성날짜*/
+	#d9>div:nth-child(2)>ul>li>div:nth-child(2n+1)>span{float:left;position:flex;}
+	#d9>div:nth-child(2)>ul>li>div>span:nth-child(2n+1){width:15%;}
+	
+	#d9>div:nth-child(2) span:nth-child(1)>img{width:100%;height:95%;object-fit:fill;border-radius:100%;}
+	#d9>div:nth-child(2)>ul>li{margin-bottom:30px;}
+	#d9>div:nth-child(2)>ul>li>div>span:nth-child(2n+2){width:85%;}
+	#d9>div:nth-child(2)>ul>li>div>span:nth-child(2n+2)>label{display:block;padding-top: 77px;padding-left: 18px;font-size: 0.9rem;color: #666;}
+	#d9>div:nth-child(2)>ul>li>span{width:100%;height:100%;white-space: pre-line;margin:10px 0 10px 0;}/*댓글내용*/
+	/*#d9>div:nth-child(2)>ul>li>div:nth-child(2){width:100%;height:100%;white-space: pre-line;background-color:#ddd;display:flex;float:left;}/*답댓글*/
+	
+	#d9>div:nth-child(3){width:100%;height:100%;border:2px solid #ddd;margin:20px 0 20px 0;padding:10px 0 10px 0; }
+	#d9>div:nth-child(3)>span{display:block;margin:0 0 10px 36px;font-size:0.9rem;color:#333;}
+	#d9>div:nth-child(3)>form>div{text-align:center;}/*padding-left:26px;*/
+	#classMainAskTa{width:90%;height:100px;resize:none;overflow:auto;border-color:#ddd;}/*댓글작성하는부분*/
+	#d9>div:nth-child(3)>form>input[type=button]{margin: 10px 0 0 36px;background-color:white;border:none;border:1px solid #999;width:100px;padding-top:5px;padding-bottom:5px;}
+	textarea::placeholder {color:#999;}
+
+
 	
 	/*==================#rightDiv==================*/
 	
@@ -130,16 +152,16 @@
 					<li>꽃처럼 마음도 예뻐지는 꽃꽃이 클래스</li> <!-- 짧은 소개글 *******************pre-wrap 아직 미설정-->
 					<li>
 						<div>
-							<div><img src="../../img/ff385bigborderheart.png"/></div><!--  좋아요버튼, 좋아요수 --> <!-- 왼쪽정렬 -->
+							<div><img src="../../img/jisu/ff385bigborderheart.png"/></div><!--  좋아요버튼, 좋아요수 --> <!-- 왼쪽정렬 -->
 							<div>120</div> <!--? 흠...div안에있는게 맞나모르겟음... -->
 						</div>
 					</li>
-					<li><img src="../../img/smalllocation.png"/>경기도 | 용인시</li> <!-- 위치 -->
+					<li><img src="../../img/jisu/smalllocation.png"/>경기도 | 용인시</li> <!-- 위치 -->
 					<li style="display:none;"><div><input type="button" value="공유"/></div></li> <!-- 공유하기 -->
 				</ul>
 			</div> 
 			<div id="d3"> <!-- 강사프로필 + 강사명 -->
-				<div><img src="../../img/creatorprofile.png"/></div> <!-- 강사프로필이미지 -->	
+				<div><img src="../../img/jisu/creatorprofile.png"/></div> <!-- 강사프로필이미지 -->	
 				<div> <!-- 강사닉네임 -->	
 					<a href="#">버드세이지 플라워</a>
 					<span>클래스3개 | 좋아요19개</span>
@@ -158,16 +180,16 @@
 			<div id="d5" class="menu"> <!-- 클래스소개 -->
 				<div class="menutitle"><span>클래스소개</span></div>
 				<div>		
-					<img src="../../img/flower2.png"/>			
+					<img src="../../img/jisu/flower2.png"/>			
 					플라워 클래스 공간을 새롭게 리뉴얼한 버드세이지 플라워!
 					한강진역 3번출구에서 도보로 5분이면 도착가능합니다.
 					자연광도 예쁘게 들어오고 좁고 답답한 플라워샵이나 오피스텔에서 진행하지 않고
 					널찍하고 세련된 인테리어로 	인생샷을 찍을 수 있는 트렌드바이미입니다.					
-					<img src="../../img/flower3.png"/>							
+					<img src="../../img/jisu/flower3.png"/>							
 					꽃꽂이 원데이 클래스,
 					기초부터 차근차근 알려드립니다 :)
 					선물하기에도 좋은 센터피스					
-					<img src="../../img/flower4.png"/>						
+					<img src="../../img/jisu/flower4.png"/>						
 					가장 대표적이며 기본적인 클래스라고 할수있는	'센터피스'입니다.
 					꽃줄기를 사선으로 자른뒤 화기 안의 플로럴폼(오아시스)에 꽂아서 완성하시게 됩니다.
 					고급스러운 화기가 함께 제공되며 집들이 선물, 첫인사 꽃으로 많이 신청하신답니다.					
@@ -187,16 +209,100 @@
 			</div>
 			<div id="d7" class="menu"> <!-- 위치 -->
 				<div class="menutitle"><span>위치</span></div>
+				<div>광주광역시 북구 천지인로115번길 10</div>
+				<div style="width:100%;height:100%;">
+					<div id="map" style="width:90%;height:400px;"></div>
+					<!--
+					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=af2fbed4f8b6d0f0e4535ecf4e023244"></script><!-- 카카오지도api 
+					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=LIBRARY"></script>
+					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=services,clusterer,drawing"></script>
+					 -->
+					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=af2fbed4f8b6d0f0e4535ecf4e023244&libraries=services"></script> 
+					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=af2fbed4f8b6d0f0e4535ecf4e023244"></script>
+
+
+					<script>
+							var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+							var options = { //지도를 생성할 때 필요한 기본 옵션
+								center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
+								level: 4 //지도의 레벨(확대, 축소 정도)
+							};
+							var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴	
+							var geocoder = new kakao.maps.services.Geocoder();// 주소-좌표 변환 객체를 생성합니다
+							
+							// 주소로 좌표를 검색합니다
+							geocoder.addressSearch('광주광역시 북구 천지인로115번길 10', function(result, status) {
+						
+							    // 정상적으로 검색이 완료됐으면 
+							     if (status === kakao.maps.services.Status.OK) {
+						
+							        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+						
+							        // 결과값으로 받은 위치를 마커로 표시합니다
+							        var marker = new kakao.maps.Marker({
+							            map: map,
+							            position: coords
+							        });
+						
+							        // 인포윈도우로 장소에 대한 설명을 표시합니다
+							        var infowindow = new kakao.maps.InfoWindow({
+							            content: '<div style="width:150px;text-align:center;padding:6px 0;">버드세이지 플라워</div>'
+							        });
+							        infowindow.open(map, marker);
+						
+							        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+							        map.setCenter(coords);
+							    } 
+							});  	
+					</script>
+				</div>
 			</div>
 			<div id="d8" class="menu"> <!-- 후기 -->
 				<div class="menutitle"><span>후기</span></div>
 			</div>
+			
 			<div id="d9" class="menu"> <!-- 문의 -->
 				<div class="menutitle"><span>문의</span></div>
-				<div>
-				
+				<div><!-- 댓글내용 -->
+					<ul>
+						<li> <!-- **문의댓글한줄 -->
+							<div><!-- 이미지 + 닉네임 + 작성날짜-->
+								<span><img src="../../img/jisu/basic.png"/></span> <!-- 이미지 -->
+								<span><label>an** | 2021년 6월 6일 20:26 작성</label></span> <!-- 아이디 -->								
+							</div>							
+							<span>이번주 토요일 클래스 예약 2명 가능할까요?</span><!-- 내용 -->
+							 
+							<!-- -------------------------------------------------- -->
+							
+							<div> <!-- 강사답댓글 -->
+								<span><img src="../../img/jisu/creatorprofile.png"/></span> <!-- 이미지 -->
+								<span><label> 버드세이지 플라워 | 2021년 6월 7일 12:00 작성</label></span> <!-- 아이디 -->		
+							</div>
+							<span>가능합니다 :)</span><!-- 내용 -->
+							
+						</li>
+						
+						<li> <!-- **문의댓글한줄 -->
+							<div><!-- 이미지 + 닉네임 + 작성날짜-->
+								<span><img src="../../img/jisu/dog.png"/></span> <!-- 이미지 -->
+								<span><label>tr2** | 2021년 6월 21일 12:41 작성</label></span> <!-- 아이디 -->								
+							</div>							
+							<span>23일 토요일 두명신청했는데 오후 4시쯤 방문해도 괜찮을까요?</span><!-- 내용 -->
+							<div style="display:none;"> 
+								000
+							</div><!-- 답댓글 -->
+						</li>
+						
+					</ul>					
 				</div>
-				<button><a href="#">문의하기</a></button>
+				<div><!-- 댓글작성 -->
+					<span>문의 내용 작성</span>
+					<form method="post" id="">
+						<div><textarea name="classMainAskTa" id="classMainAskTa" placeholder="궁금하신 점 또는 클래스문의등을 자유롭게 작성해 주세요."></textarea></div>
+						<input type="button" id="" value="작성완료"/>
+						<input type="hidden" name="no" value="${vo.no}"/><!-- 클래스 번호 -->
+					</form>
+				</div>
 			</div>
 		</div>		
 	</div>

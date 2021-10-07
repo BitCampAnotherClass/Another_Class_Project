@@ -67,7 +67,7 @@
 				<div><input type="checkbox"></div><!-- 체크박스 -->				
 				<div><!-- 이미지+상품정보 -->	
 					<div>							
-						<div><a href="#"><img src="../../img/classimg5.png"/></a></div><!-- 이미지 -->
+						<div><a href="#"><img src="../../img/jisu/classimg5.png"/></a></div><!-- 이미지 -->
 						<div><!-- 상품정보 -->
 							<a href="#">늘 예쁜 꽃, 디자인을 잘 하면 더 예뻐져요. 쉐이드그린의 감각적인 생화 디자인</a><!-- 클래스명 : -->
 							<span><a href="#">마치가든</a></span><!-- 크리에이터명 -->
@@ -91,7 +91,7 @@
 				<div><input type="checkbox"></div><!-- 체크박스 -->				
 				<div><!-- 이미지+상품정보 -->	
 					<div>							
-						<div><a href="#"><img src="../../img/classimg4.png"/></a></div><!-- 이미지 -->
+						<div><a href="#"><img src="../../img/jisu/classimg4.png"/></a></div><!-- 이미지 -->
 						<div><!-- 상품정보 -->
 							<a href="#">프로서퍼 김지나의 서핑 A to Z</a><!-- 클래스명 : -->
 							<span><a href="#">지나서퍼</a></span><!-- 크리에이터명 -->
