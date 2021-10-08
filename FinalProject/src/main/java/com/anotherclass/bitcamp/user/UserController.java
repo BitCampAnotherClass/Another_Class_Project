@@ -90,4 +90,9 @@ public class UserController {
 	public String creatorclassoptionlist() {
 		return "/creator/optionList/classOptionList";
 	}
+	@RequestMapping(value = "/temporaryhome")
+	public String temporaryhome() {
+		return "/user/classDetailPage/temporaryhome";
+	}
+	
 }
