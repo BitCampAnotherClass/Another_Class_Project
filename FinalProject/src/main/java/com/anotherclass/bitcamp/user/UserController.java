@@ -62,6 +62,10 @@ public class UserController {
 	public String mypage3() {
 		return "/user/mypage/myPage_Ask";
 	}	
+	@RequestMapping(value = "/mypage4")
+	public String mypage4() {
+		return "/user/mypage/myPage_Creatorlike";
+	}	
 	@RequestMapping(value = "/classMainPage")
 	public String classMainPage() {
 		return "/user/classDetailPage/classMain";
@@ -72,7 +76,7 @@ public class UserController {
 	}
 	@RequestMapping(value = "/homeQnA")
 	public String homeQnA() {
-		return "/user/HomeQnA/userHelper_HomeQnA_write";
+		return "/user/HomeQnA/userHelper_HomeQnA_list";
 	}
 	@RequestMapping(value = "/AhomeQnA")
 	public String AhomeQnA() {

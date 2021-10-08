@@ -98,9 +98,14 @@
 	
 	#payInfoBox>div:nth-child(2){width:100%;height:250px;border:1px solid #999;margin-top:15px;}
     	
-    #payInfoBox>div:nth-child(2)>div{height:25%;}
-    #payInfoBox>div:nth-child(2)>div:nth-child(4){background-color:#333;color:white;font-size:1.1rem;font-weight:bold;text-align:center;}
-    #payInfoBox>div:nth-child(2)>div:nth-child(4)>label{display:inline-block;padding-top:20px;}   	
+     #howmuch2>div:nth-child(1)>div>label{margin-top:15px;}
+    #howmuch2>div:nth-child(2)>div>label{margin-top:8px;}
+    #howmuch3>div:nth-child(1)>div>label{margin-top:26px;}
+    #howmuch3>div:nth-child(2)>div>label{margin-top:37px;}
+    
+    #payInfoBox>div:nth-child(2)>div{height:62.5px;}
+  
+    #payEndBtn{width:100%;height:100%;background-color:#333;color:white;font-size:1.1rem;font-weight:bold;text-align:center;border:none;} 
 </style>
 
 </head>
@@ -203,7 +208,7 @@
 			
 			<div id="howmuch"><!-- 결제금액 -->
 				<div>최종결제금액</div>
-				<div>
+				<div id="howmuch2">
 					<div>
 						<div><label>총 상품금액</label></div><div><label>114,000원</label></div>
 					</div>
@@ -211,7 +216,7 @@
 						<div><label>포인트</label></div><div><label>3000원</label></div>
 					</div>
 				</div>
-				<div>
+				<div id="howmuch3">
 					<div>
 						<div><label>최종결제금액</label></div><div><label>111,000원</label></div>
 					</div>
@@ -225,9 +230,10 @@
 				<div style="visibility:hidden;">d</div>
 				<div style="visibility:hidden;">d</div>
 				<div style="visibility:hidden;">d</div>
-				<div><label>결제하기</label></div>
+				<div id="payEndD"><input type="button" name="" id="payEndBtn" value="결제하기"></div>
 			</div>
 		</div>
+		
 	</div>
 
 </div>
