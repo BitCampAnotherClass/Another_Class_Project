@@ -59,7 +59,7 @@
 		<div class="hyo_register_title-box">
 			<h1 class="hyo_register_title">회원가입</h1>
 		</div>
-		<form class="hyo_register_form" method="post" action="another/registerJoin">
+		<form class="hyo_register_form" method="post" action="<%=request.getContextPath()%>/registerJoin">
 			<div class="hyo_register_id" id="hyo_register_input-group">
 				<span class="hyo_register_input-outline">
 					<span class="hyo_register_input-box">
