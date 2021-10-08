@@ -5,6 +5,7 @@
 <%@ include file="myPageTop.jspf" %>
 
 <link href="<%=request.getContextPath()%>/css/user/review.css" rel="stylesheet" type="text/css"/>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
 <div id="reviewPageTitle"><span class="h1style">나의후기</span></div>
 
@@ -32,7 +33,13 @@
 								<p>USERID</p>
 								<p>2021.10.05</p>
 							</div>
-							<div class="star">★★★★☆</div>
+							<div class="star">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="far fa-star"></i>
+							</div>
 						</div>
 						<div class="review-content">
 							<div class="review-text">
@@ -67,7 +74,13 @@
 								<p>USERIDUSERID</p>
 								<p>2021.10.05</p>
 							</div>
-							<div class="star">★★★★☆</div>
+							<div class="star">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="far fa-star"></i>
+							</div>
 						</div>
 						<div class="review-content">
 							
@@ -88,7 +101,13 @@
 								<p>USERID</p>
 								<p>2021.10.05</p>
 							</div>
-							<div class="star">★★★★☆</div>
+							<div class="star">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="far fa-star"></i>
+							</div>
 						</div>
 						<div class="review-content">
 							<div class="review-text">
@@ -110,7 +129,13 @@
 								<p>USERIDUSERIDUSER</p>
 								<p>2021.10.05</p>
 							</div>
-							<div class="star">★★★★☆</div>
+							<div class="star">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="far fa-star"></i>
+							</div>
 						</div>
 						<div class="review-content">
 							<div class="review-text">
@@ -133,7 +158,13 @@
 								<p>USERID</p>
 								<p>2021.10.05</p>
 							</div>
-							<div class="star">★★★★☆</div>
+							<div class="star">
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="fas fa-star"></i>
+								<i class="far fa-star"></i>
+							</div>
 						</div>
 						<div class="review-content">
 							

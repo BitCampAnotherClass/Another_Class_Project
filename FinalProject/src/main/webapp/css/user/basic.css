@@ -189,6 +189,7 @@ li.c-center .sub-menu1{
 
 #contents-wrap{
 	padding-top:118px; /* header 높이 조절 시 같이 조절*/
+	min-height:640px;
 }
 
 
