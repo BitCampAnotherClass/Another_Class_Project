@@ -83,4 +83,12 @@ public class UserController {
 	public String AhomeQnA() {
 		return "/admin/HomeQnA/admin_HomeQnA_view";
 	}
+	@RequestMapping(value = "/creatorclasslist")
+	public String creatorclasslist() {
+		return "/creator/optionList/classList";
+	}
+	@RequestMapping(value = "/creatorclassoptionlist")
+	public String creatorclassoptionlist() {
+		return "/creator/optionList/classOptionList";
+	}
 }
