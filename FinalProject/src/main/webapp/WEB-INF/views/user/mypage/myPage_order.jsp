@@ -108,7 +108,7 @@
 					
 				<div><!-- 환불취소버튼 -->
 					<div>
-						<a href="#"><span>후기보기</span></a>							
+										
 					</div>
 				</div>
 			</li>

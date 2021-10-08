@@ -34,7 +34,7 @@
 	/* 클래스이미지 div */
 	#d1{width:100%;height:430px;overflow:hidden;margin-bottom:10px;} /*높이,배경색 수정*/
 	#d1>img{width:100%;height:100%;object-fit:cover;border-radius:12px;} /*object-fit:cover ? fill?  ;*/
-	ul,li{margin:0;padding:0;list-style-type:none;}
+
 	
 	/* 클래스소개 div*/
 	#d2{width:95%;overflow:auto;padding-bottom:10px;margin:0 auto;} 
@@ -45,9 +45,9 @@
 	
 	#d2 li:nth-child(4)>div{width:100%;height:26px;overflow:auto;}
 	#d2 li:nth-child(4)>div>div{float :left;}/*좋아요버튼+좋아요수*/	
-	#d2 li:nth-child(4)>div>div:nth-child(1){width:93%; text-align:right; height:100%;} /*좋아요버튼 , 이미지*/
-	#d2 li:nth-child(4)>div>div:nth-child(1)>img{width:24px;height:100%;}
-	#d2 li:nth-child(4)>div>div:nth-child(2){width:7%; height:100%;color:#666;font-size:18px;padding-left:4px;} /*좋아요 수 */
+	#d2 li:nth-child(4)>div>div:nth-child(1){width:88%; text-align:right; height:100%;} /*좋아요버튼 , 이미지*/
+	#d2 li:nth-child(4)>div>div:nth-child(1)>img{width:24px;height:90%;}
+	#d2 li:nth-child(4)>div>div:nth-child(2){width:7%; height:100%;color:#666;font-size:18px;padding-left:10px;} /*좋아요 수 */
 	
 	#d2 li:nth-child(5){width:100%;height:100%;color:#999;text-align:right;}
 	
@@ -60,15 +60,16 @@
 	#d3 div:nth-child(1){width:15%;height:100%; overflow:hidden; padding:2%;} /*overflow:hidden : 선택시 네모로 안보이겡*/
 	#d3 div:nth-child(1)>img{width:100%;height:100%;border-radius:100%;object-fit:fill;}
 	#d3 div:nth-child(2){width:80%;height:100%;padding-left:2%;}  /* height..흠*  -> 가운데로 정렬*/ 	
-	#d3 div:nth-child(2) :a:link,  a:visited{text-decoration:none; color:#333;}
+	#d3 div:nth-child(2) a:link,  a:visited{text-decoration:none; color:#333;}
 	#d3 div:nth-child(2) a:hover{color:#ff385c;}
 	#d3 div:nth-child(2)>*{display:block;width:100%;}
 	#d3 div:nth-child(2)>a{font-size:1.2rem;padding-top:25px;font-weight:bold;}
 	#d3 div:nth-child(2)>span{padding-top:5px;padding-left:1px;color:#666;font-size:0.9rem;}
 	
 	/* 메뉴바 */
-	#d4{width:100%;overflow:auto;}
-	#d4 li{float:left; width:20%; text-align:center; padding-top:2%; padding-bottom:1%; border-bottom:2px solid #999;}	
+	#d4{width:100%;height:auto;overflow:auto;position:sticky;top:78px;background-color:white;r}
+	#d4>ul{width:100%;height:auto;overflow:auto;}
+	#d4 li{float:left; width:20%;height:50px;line-height:50px; text-align:center;border-bottom:1px solid #ddd;}	
 	
 	/*클레스 상세페이지 메뉴*/
 	.menu{width:100%; min-height:500px;height:100%; border-bottom:1px solid #ddd; overflow:auto;padding-bottom:30px;} /*min-height*/	
@@ -85,20 +86,21 @@
 	
 	#d9{width:100%;height:auto;}
 	#d9>div{width:100%;height:100%;}
-	/* #d9>div *{height:100%;} */
-	#d9>div:nth-child(2n+1){margin-bottom:20px;}/*제목div*/
-	#d9>div:nth-child(2)>ul>li>div:nth-child(2n+1){width:100%;height:120px;}
-	#d9>div:nth-child(2) span{display:block;width:100%;height:100%;}/*댓글내용*/
-	/*#d9>div:nth-child(2)>ul>li>div:nth-child(1){}/*이미지+닉네임+작성날짜*/
-	#d9>div:nth-child(2)>ul>li>div:nth-child(2n+1)>span{float:left;position:flex;}
-	#d9>div:nth-child(2)>ul>li>div>span:nth-child(2n+1){width:15%;}
+	#d9_2{padding: 15px;} /*fff0f5 ffe4e4*/
+	#d9>div:nth-child(2n+1){margin-bottom:20px;}/*제목div*/	
 	
-	#d9>div:nth-child(2) span:nth-child(1)>img{width:100%;height:95%;object-fit:fill;border-radius:100%;}
-	#d9>div:nth-child(2)>ul>li{margin-bottom:30px;}
-	#d9>div:nth-child(2)>ul>li>div>span:nth-child(2n+2){width:85%;}
-	#d9>div:nth-child(2)>ul>li>div>span:nth-child(2n+2)>label{display:block;padding-top: 77px;padding-left: 18px;font-size: 0.9rem;color: #666;}
-	#d9>div:nth-child(2)>ul>li>span{width:100%;height:100%;white-space: pre-line;margin:10px 0 10px 0;}/*댓글내용*/
-	/*#d9>div:nth-child(2)>ul>li>div:nth-child(2){width:100%;height:100%;white-space: pre-line;background-color:#ddd;display:flex;float:left;}/*답댓글*/
+	#creatormemberoneask{width:100%;height:auto;overflow:auto;}
+	#creatormemberoneask>li{width:100%;}
+	#creatormemberoneask>li>div{width:100%;height:120px;margin-bottom:15px;}
+	#creatormemberoneask>li>div>div{float:left;height:100%;}
+	#creatormemberoneask>li>div>div:nth-child(2n+1){width:15%;height:100%;}
+	#creatormemberoneask>li>div>div:nth-child(2n+1)>img{width:100%;height:100%;border-radius:100%;}
+	#creatormemberoneask>li>div>div:nth-child(2n+2){width:85%;height:100%;}
+	#creatormemberoneask>li>div>div:nth-child(2n+2)>div{width:100%;}	
+	#creatormemberoneask>li>div>div>div{width:100%;height:auto;}
+	#creatormemberoneask>li>div>div>div:nth-child(2){overflow:auto;}
+	#creatormemberoneask>li>div>div>div:nth-child(1)>label{display:inline-block;margin:5px 0 20px 15px;font-size:0.9rem;color:#666;}
+	#creatormemberoneask>li>div>div>div:nth-child(2)>label{display:inline-block;margin-left:15px;}
 	
 	#d9>div:nth-child(3){width:100%;height:100%;border:2px solid #ddd;margin:20px 0 20px 0;padding:10px 0 10px 0; }
 	#d9>div:nth-child(3)>span{display:block;margin:0 0 10px 36px;font-size:0.9rem;color:#333;}
@@ -112,7 +114,7 @@
 	/*==================#rightDiv==================*/
 	
 	/*rightDiv*/
-	#calendardiv{width:100%; height:600px; border:2px solid #ff385c;position:sticky;top:100px;}
+	#calendardiv{width:100%; height:600px; border:2px solid #ff385c;position:sticky;top:125px;}
 	
 	/*달력*/
 	.dateSelector{width:98%; display:block;}	/* display:none */
@@ -167,7 +169,7 @@
 				<div><img src="img/jisu/creatorprofile.png"/></div> <!-- 강사프로필이미지 -->	
 				<div> <!-- 강사닉네임 -->	
 					<a href="#">버드세이지 플라워</a>
-					<span>클래스3개 | 좋아요19개</span>
+					<span>클래스 3개 | 좋아요 19개</span>
 				</div>
 			</div>
 			<div id="d4"> <!-- 메뉴 -->					
@@ -266,35 +268,43 @@
 			
 			<div id="d9" class="menu"> <!-- 문의 -->
 				<div class="menutitle"><span>문의</span></div>
-				<div><!-- 댓글내용 -->
-					<ul>
+				<div id="d9_2"><!-- 댓글내용 -->
+					<ul id="creatormemberoneask">
 						<li> <!-- **문의댓글한줄 -->
 							<div><!-- 이미지 + 닉네임 + 작성날짜-->
-								<span><img src="img/jisu/basic.png"/></span> <!-- 이미지 -->
-								<span><label>an** | 2021년 6월 6일 20:26 작성</label></span> <!-- 아이디 -->								
+								<div><img src="img/jisu/basic.png"/></div> <!-- 이미지 -->
+								<div>
+									<div><label>an** | 2021년 6월 6일 20:26 작성</label></div>
+									<div><label>이번주 토요일 클래스 예약 2명 가능할까요?</label></div>
+								</div> 						
 							</div>							
-							<span>이번주 토요일 클래스 예약 2명 가능할까요?</span><!-- 내용 -->
+							
 							 
 							<!-- -------------------------------------------------- -->
 							
 							<div> <!-- 강사답댓글 -->
-								<span><img src="img/jisu/creatorprofile.png"/></span> <!-- 이미지 -->
-								<span><label> 버드세이지 플라워 | 2021년 6월 7일 12:00 작성</label></span> <!-- 아이디 -->		
-							</div>
-							<span>가능합니다 :)</span><!-- 내용 -->
-							
+								<div><img src="img/jisu/creatorprofile.png"/></div> <!-- 이미지 -->
+								<div>
+									<div><label> 버드세이지 플라워 | 2021년 6월 7일 12:00 작성</label></div>
+									<div><label>가능합니다 :)</label></div>
+								</div> <!-- 아이디 -->		
+							</div>							
 						</li>
+						
 						
 						<li> <!-- **문의댓글한줄 -->
 							<div><!-- 이미지 + 닉네임 + 작성날짜-->
-								<span><img src="img/jisu/dog.png"/></span> <!-- 이미지 -->
-								<span><label>tr2** | 2021년 6월 21일 12:41 작성</label></span> <!-- 아이디 -->								
+								<div><img src="img/jisu/dog.png"/></div> <!-- 이미지 -->
+								<div>
+									<div><label>tr2** | 2021년 6월 21일 12:41 작성</label></div>
+									<div><label>23일 토요일 두명신청했는데 오후 4시쯤 방문해도 괜찮을까요?</label></div>
+								</div> 							
 							</div>							
-							<span>23일 토요일 두명신청했는데 오후 4시쯤 방문해도 괜찮을까요?</span><!-- 내용 -->
+							
 							<div style="display:none;"> 
-								000
-							</div><!-- 답댓글 -->
-						</li>
+								
+							</div><!-- 답댓글--> 
+					  </li>
 						
 					</ul>					
 				</div>
