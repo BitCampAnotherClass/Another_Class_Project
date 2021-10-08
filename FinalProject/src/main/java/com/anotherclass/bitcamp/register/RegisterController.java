@@ -1,25 +1,19 @@
 package com.anotherclass.bitcamp.register;
 
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.anotherclass.bitcamp.service.RegisterService;
+
 @Controller
 public class RegisterController {
 	
-	SqlSession sqlSession;
-
-	public SqlSession getSqlSession() {
-		return sqlSession;
-	}
-	
-	@Autowired
-	public void setSqlSession(SqlSession sqlSession) {
-		this.sqlSession = sqlSession;
-	}
+	@Inject
+	RegisterService registerService;
 	
 	@RequestMapping("/register")
 	public String register() {
@@ -27,11 +21,15 @@ public class RegisterController {
 	}
 	
 	// 회원가입
-	@RequestMapping(value="/another/registerJoin",method=RequestMethod.POST)
+	@RequestMapping(value="/registerJoin",method=RequestMethod.POST)
 	public ModelAndView userJoin(RegisterVO vo) {
 		ModelAndView mav = new ModelAndView();
-		RegisterDAO_Imp dao = sqlSession.getMapper(RegisterDAO_Imp.class);
-		dao.registerJoin(vo);
+		int check = registerService.registerJoin(vo);
+		if(check>0) {
+			
+		}else{
+	
+		}
 		mav.setViewName("redirect:/");
 		return mav;
 	}

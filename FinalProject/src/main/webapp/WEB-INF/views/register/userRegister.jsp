@@ -8,8 +8,14 @@
 		height: 1000px;
 	}
 	.hyo_register_title-box, .hyo_register_form{
-		margin: 0 auto;
 		width: 500px;
+		margin: 0 auto;
+	}
+	.hyo_register_main-box{
+		border:1px solid #464646;
+		border-radius: 10px;
+		width: 550px;
+		margin: 0 auto;
 	}
 	.hyo_register_title-box{
 		padding: 5px;
@@ -56,52 +62,54 @@
 	});
 </script>
 	<div class="hyo_register_user">
-		<div class="hyo_register_title-box">
-			<h1 class="hyo_register_title">회원가입</h1>
+		<div class="hyo_register_main-box">
+			<div class="hyo_register_title-box">
+				<h1 class="hyo_register_title">회원가입</h1>
+			</div>
+			<form class="hyo_register_form" method="post" action="<%=request.getContextPath()%>/registerJoin">
+				<div class="hyo_register_id" id="hyo_register_input-group">
+					<span class="hyo_register_input-outline">
+						<span class="hyo_register_input-box">
+							<input type="text" id="member_id" name="member_id" class="hyo_register_input" placeholder="아이디" autocomplete=”off” maxlength="15"/>				
+						</span>
+					</span>
+				</div>
+				<div class="hyo_register_pwd" id="hyo_register_input-group">
+					<span class="hyo_register_input-outline">
+						<span class="hyo_register_input-box">
+							<input type="password" id="member_pw" name="member_pw" class="hyo_register_input" placeholder="비밀번호" autocomplete=”off” maxlength="16"/>
+						</span>
+					</span>
+				</div>
+				<div class="hyo_register_pwd" id="hyo_register_input-group">
+					<span class="hyo_register_input-outline">
+						<span class="hyo_register_input-box">
+							<input type="password" id="member_pw_check" class="hyo_register_input" placeholder="비밀번호확인" autocomplete=”off” maxlength="16"/>
+						</span>
+					</span>
+				</div>
+				<div class="hyo_register_name" id="hyo_register_input-group">
+					<span class="hyo_register_input-outline">
+						<span class="hyo_register_input-box">
+							<input type="text" id="member_name" name="member_name" class="hyo_register_input" placeholder="이름" autocomplete=”off” maxlength="7"/>				
+						</span>
+					</span>
+				</div>
+				<div class="hyo_register_tel" id="hyo_register_input-group">
+					<span class="hyo_register_input-outline">
+						<span class="hyo_register_input-box">
+							<input type="text" id="member_tel" name="member_tel" class="hyo_register_input" placeholder="휴대폰번호" autocomplete=”off” maxlength="13"/>				
+						</span>
+					</span>
+				</div>
+				<div class="hyo_register_email" id="hyo_register_input-group">
+					<span class="hyo_register_input-outline">
+						<span class="hyo_register_input-box">	
+							<input type="text" id="member_email" name="member_email" class="hyo_register_input" placeholder="이메일" autocomplete=”off” maxlength="15"/>
+						</span>
+					</span>
+				</div>
+				<button class="hyo_register_button">회원가입</button>
+			</form>
 		</div>
-		<form class="hyo_register_form" method="post" action="another/registerJoin">
-			<div class="hyo_register_id" id="hyo_register_input-group">
-				<span class="hyo_register_input-outline">
-					<span class="hyo_register_input-box">
-						<input type="text" id="member_id" name="member_id" class="hyo_register_input" placeholder="아이디" autocomplete=”off” maxlength="15"/>				
-					</span>
-				</span>
-			</div>
-			<div class="hyo_register_pwd" id="hyo_register_input-group">
-				<span class="hyo_register_input-outline">
-					<span class="hyo_register_input-box">
-						<input type="password" id="member_pw" name="member_pw" class="hyo_register_input" placeholder="비밀번호" autocomplete=”off” maxlength="16"/>
-					</span>
-				</span>
-			</div>
-			<div class="hyo_register_pwd" id="hyo_register_input-group">
-				<span class="hyo_register_input-outline">
-					<span class="hyo_register_input-box">
-						<input type="password" id="member_pw_check" class="hyo_register_input" placeholder="비밀번호확인" autocomplete=”off” maxlength="16"/>
-					</span>
-				</span>
-			</div>
-			<div class="hyo_register_name" id="hyo_register_input-group">
-				<span class="hyo_register_input-outline">
-					<span class="hyo_register_input-box">
-						<input type="text" id="member_name" name="member_name" class="hyo_register_input" placeholder="이름" autocomplete=”off” maxlength="7"/>				
-					</span>
-				</span>
-			</div>
-			<div class="hyo_register_tel" id="hyo_register_input-group">
-				<span class="hyo_register_input-outline">
-					<span class="hyo_register_input-box">
-						<input type="text" id="member_tel" name="member_tel" class="hyo_register_input" placeholder="휴대폰번호" autocomplete=”off” maxlength="13"/>				
-					</span>
-				</span>
-			</div>
-			<div class="hyo_register_email" id="hyo_register_input-group">
-				<span class="hyo_register_input-outline">
-					<span class="hyo_register_input-box">	
-						<input type="text" id="member_email" name="member_email" class="hyo_register_input" placeholder="이메일" autocomplete=”off” maxlength="15"/>
-					</span>
-				</span>
-			</div>
-			<button class="hyo_register_button">회원가입</button>
-		</form>
 	</div>
