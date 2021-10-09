@@ -2,12 +2,15 @@ package com.anotherclass.bitcamp.register;
 
 public class RegisterVO {
 	
-	String member_id;
-	String member_pw;
-	String member_name;
-	String member_tel;
-	String member_email;
-	String creator_nick;
+	private String member_id;
+	private String member_pw;
+	private String member_name;
+	private String member_tel;
+	private String member_email;
+	private String creator_nick;
+	private String additional_information_one;
+	private String additional_information_two;
+	
 	
 	public String getMember_id() {
 		return member_id;
@@ -46,4 +49,18 @@ public class RegisterVO {
 	public void setCreator_nick(String creator_nick) {
 		this.creator_nick = creator_nick;
 	}
+	public String getAdditional_information_one() {
+		return additional_information_one;
+	}
+	public void setAdditional_information_one(String additional_information_one) {
+		this.additional_information_one = additional_information_one;
+	}
+	public String getAdditional_information_two() {
+		return additional_information_two;
+	}
+	public void setAdditional_information_two(String additional_information_two) {
+		this.additional_information_two = additional_information_two;
+	}
+	
+	
 }

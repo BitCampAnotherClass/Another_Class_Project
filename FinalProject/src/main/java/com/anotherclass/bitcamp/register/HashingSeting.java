@@ -3,9 +3,12 @@ package com.anotherclass.bitcamp.register;
 import java.security.MessageDigest;
 
 public class HashingSeting {
-		
+	
+	
+	// protected 사용중 패키지 이동금지
+	
 	//비밀번호와 Salt를 암호화 
-	static String getHashing(String password,String salt) {
+	protected static String getHashing(String password,String salt) {
 		StringBuffer result = new StringBuffer();
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-256"); // SHA-256 암호화

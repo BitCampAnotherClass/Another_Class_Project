@@ -1,8 +1,8 @@
-package com.anotherclass.bitcamp.dao;
+package com.anotherclass.bitcamp.service.register;
 
 import com.anotherclass.bitcamp.register.RegisterVO;
 
-public interface RegisterDAO {
+public interface RegisterService {
 	
 	public int userAccountJoin(RegisterVO vo);
 	
