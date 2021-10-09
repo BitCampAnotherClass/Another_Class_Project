@@ -15,7 +15,7 @@
 	#hQnAListUl>li:nth-child(5n+2){width:56%;white-space:nowrap;overflow:hidden;text-overflow: ellipsis;text-align:left;}
 	#hQnAListUl>li:nth-child(5n+4){width:14%}
 	
-	.hQnAListFli{border-bottom:1px solid black;margin-top:10px;padding:8px 0 8px 0;background-color:#ddd;font-weight:bold;} /*리스트타이틀*/	
+	.hQnAListFli{border-bottom:1px solid black;margin-top:10px;padding:8px 0 8px 0;background-color:#f0f0f0;font-weight:bold;} /*리스트타이틀*/	
 
 	#hQnWrite{text-align:right;margin-bottom:15px;margin-top:10px;padding-right:7px;}/*글쓰기 버튼div*/
 	#hQnWritelab{padding:7px 7px 7px 7px;background-color:#464646;}/*글쓰기 버튼div*/
@@ -35,13 +35,14 @@
 			<li  class="hQnAListFli">작성자</li>
 			<li  class="hQnAListFli">작성일자</li>
 			<li  class="hQnAListFli">답변여부</li>
-			
-			<li>1</li>
-			<li><a href="#">주문후 결제방법을 변경하고 싶은데 어떻게 해야 하나요?</a></li>
-			<li>신*솜</li>
-			<li>2021-01-01</li>
-			<li>답변완료</li>
-			
+		
+		<c:forEach var="vo" items="${list }">	
+			<li>${vo.user_qna_no}</li>
+			<li><a href="<%=request.getContextPath()%>/HomeQnAAsk/view?no=${vo.user_qna_no}">${vo.title }</a></li>
+			<li>${vo.member_id }</li>
+			<li>${vo.writedate }</li>
+			<li>${vo.board_no2}</li>
+		</c:forEach>
 			
 		</ul>
 	
