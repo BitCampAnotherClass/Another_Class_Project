@@ -8,6 +8,6 @@
 </head>
 <body>
 <h1>임시홈</h1>
-<a href="/bitcamp/user/classDetailPage/temporaryclasslist">클래스리스트</a>
+<a href="/teamproject/user/classDetailPage/temporaryclasslist">클래스리스트</a>
 </body>
 </html>

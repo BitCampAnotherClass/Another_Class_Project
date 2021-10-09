@@ -12,7 +12,7 @@ import com.anotherclass.bitcamp.service.ClassDetailPageService;
 public class ClassDetailPageController {
 	@Inject
 	ClassDetailPageService classDetailPageService;
-	
+	//클래스리스트
 	@RequestMapping("/user/classDetailPage/temporaryclasslist")
 	public ModelAndView temporaryclasslist() {
 		ModelAndView mav = new ModelAndView();

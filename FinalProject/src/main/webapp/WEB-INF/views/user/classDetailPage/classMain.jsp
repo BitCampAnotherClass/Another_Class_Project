@@ -77,7 +77,7 @@
 	
 	#d5>div:nth-child(1)>span{display:inline-block;box-shadow:inset -11px #ff385c;}
 	#d5>div:nth-child(2){ white-space: pre-line;text-align:center;}/*클래스소개*/
-	#d5>div:nth-child(2)>img{width:100%;height:500px;object-fit:fill;margin:20px 0 20px 0;}
+	#d5>div:nth-child(2) img{width:100%;height:500px;object-fit:fill;margin:20px 0 20px 0;}
 	
 	#d6>div:nth-child(2){white-space: pre-line}
 	#d6>div:nth-child(2)>img{max-width:100%;max-height:500px;margin:20px 0 20px 0;}
