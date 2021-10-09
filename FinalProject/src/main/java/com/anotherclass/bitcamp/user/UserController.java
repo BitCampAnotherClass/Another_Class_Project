@@ -90,10 +90,15 @@ public class UserController {
 	public String creatorclassoptionlist() {
 		return "/creator/optionList/classOptionList";
 	}	
-	//
+	//지수백위한임시홈
 	@RequestMapping(value = "/temporaryhome")
 	public String temporaryhome() {
 		return "/user/classDetailPage/temporaryhome";
+	}
+	//고개지원 - 홈페이지문의
+	@RequestMapping(value="/HomeAsk7")
+	public String HomeAsk7() {
+		return "/user/HomeQnA/userHelper_HomeQnA_list";
 	}
 	
 }

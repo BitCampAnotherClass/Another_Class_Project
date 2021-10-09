@@ -42,7 +42,23 @@
 			<li>2021-01-01</li>
 			<li>답변완료</li>
 			
+			<li class="replyNo">reply</li>
+			<li class="replySubject"><a href="#">&nbsp;ㄴ&nbsp;답변입니다</a></li>
+			<li>관리자</li>
+			<li>2021-01-02</li>
+			<li class="replysort">답변</li>
+		
+			<li >2</li>
+			<li><a href="#">결제시 에러메시지가 나오는경우 어떻게 해야하나요?</a></li>
+			<li>장*영</li>
+			<li>2021-01-01</li>
+			<li>미답변</li>
 			
+			<li >2</li>
+			<li><a href="#">결제시 에러메시지가 나오는경우 어떻게 해야하나요?</a></li>
+			<li>장*영</li>
+			<li>2021-01-01</li>
+			<li>미답변</li>
 		</ul>
 	
 	</div>

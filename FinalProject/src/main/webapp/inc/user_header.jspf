@@ -94,7 +94,7 @@
 							<ul class="sub-menu1">
 								<li><a href="#">공지사항</a></li>
 								<li><a href="#">자주 묻는 질문</a></li>
-								<li><a href="#">1:1문의</a></li>
+								<li><a href="<%=request.getContextPath()%>/HomeAsk7">홈페이지문의</a></li>
 							</ul>
 						</li>
 					</ul>
