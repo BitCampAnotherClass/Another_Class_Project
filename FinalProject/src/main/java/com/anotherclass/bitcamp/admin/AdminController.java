@@ -13,12 +13,12 @@ public class AdminController {
 	}
 	
 	@RequestMapping(value="/userManagement")
-	public String UserManagement() {
+	public String userManagement() {
 		return "admin/MemberManagement/userManagement";
 	}
 	
 	@RequestMapping(value="/creatorManagement")
-	public String CreatorManagement() {
+	public String creatorManagement() {
 		return "admin/MemberManagement/creatorManagement";
 	}
 }
