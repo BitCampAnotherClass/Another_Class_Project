@@ -9,39 +9,77 @@
 
 	#hQnWrite{width:100%;margin:0 auto;}
 	#hQnAList{width:100%;height:auto;margin:0 auto;overflow:auto;}
-	#hQnAListUl{width:100%;text-align:center;}
-	#hQnAListUl>li{float:left;width:10%;height:40px;margin:7px 0 7px 0;border-bottom:1px solid #ddd;padding-bottom:7px;}
-	#hQnAListUl>li:nth-child(5n+1){width:10%}
-	#hQnAListUl>li:nth-child(5n+2){width:56%;white-space:nowrap;overflow:hidden;text-overflow: ellipsis;text-align:left;}
-	#hQnAListUl>li:nth-child(5n+4){width:14%}
+	#hQnAListUl{width:100%;text-align:center;height:auto;overflow:auto;}
 	
-	.hQnAListFli{border-bottom:1px solid black;margin-top:10px;padding:8px 0 8px 0;background-color:#f0f0f0;font-weight:bold;} /*리스트타이틀*/	
+	.hQnAListFli10,.hQnAListFli{float:left;width:10%;height:60px;line-height:60px;border-bottom:1px solid #ddd;}
+	.hQnAListFli1,.hQnAListFli101{width:10%}
+	.hQnAListFli2,.hQnAListFli102{width:56%;white-space:nowrap;overflow:hidden;text-overflow: ellipsis;text-align:left;}
+	.hQnAListFli4,.hQnAListFli104{width:14%}
+	
+	.hQnAListFli{border-bottom:1px solid black;margin-top:10px;background-color:#f0f0f0;font-weight:bold;font-size:1.1rem;} /*리스트타이틀*/	
 
-	#hQnWrite{text-align:right;margin-bottom:15px;margin-top:10px;padding-right:7px;}/*글쓰기 버튼div*/
-	#hQnWritelab{padding:7px 7px 7px 7px;background-color:#464646;}/*글쓰기 버튼div*/
+	#hQnWrite{height:auto;text-align:right;margin-bottom:15px;margin-top:10px;padding-right:7px;}/*글쓰기 버튼div*/
+	#hQnWritelab{padding:7px 15px 7px 15px;background-color:#464646;font-size:18px;}/*글쓰기 버튼div*/
 	
 	/*답변
 	.replyNo,.replysort{visibility:hidden;} */
 	.replySubject{text-align:left;}
-</style>
+	
+	/*리스트
 
-<div id="hQnAD">
+	#hQnWrite{width:100%;margin:0 auto;}
+	#hQnAList{width:100%;height:auto;margin:0 auto;overflow:auto;}
+	#hQnAListUl{width:100%;text-align:center;height:auto;overflow:auto;}
+	
+	#hQnAListUl>li{float:left;width:10%;height:60px;line-height:60px;border-bottom:1px solid #ddd;}
+	#hQnAListUl>li:nth-child(5n+1){width:10%}
+	#hQnAListUl>li:nth-child(5n+2){width:56%;white-space:nowrap;overflow:hidden;text-overflow: ellipsis;text-align:left;}
+	#hQnAListUl>li:nth-child(5n+4){width:14%}
+	
+	.hQnAListFli{border-bottom:1px solid black;margin-top:10px;background-color:#f0f0f0;font-weight:bold;font-size:1.1rem;} /*리스트타이틀*/	
+/*
+	#hQnWrite{height:auto;text-align:right;margin-bottom:15px;margin-top:10px;padding-right:7px;}/*글쓰기 버튼div*/
+/*	#hQnWritelab{padding:7px 15px 7px 15px;background-color:#464646;font-size:18px;}/*글쓰기 버튼div*/
+	
+	/*답변
+	
+	.replySubject{text-align:left;}*/
+	
+</style>
+<script>
+
+	$(()=>{
+	
+		if($("#hQnAListUl>li:nth-child(5n+5)") == 2){
+			$("#hQnAListUl>li:nth-child(5n+5)").html("답변완료");
+		}else if($("#hQnAListUl>li:nth-child(5n+5)") == 1){
+			$("#hQnAListUl>li:nth-child(5n+5)").html("미답변");
+		}
+		
+	});
+	</script>
+
+	<div id="hQnAD">
 	<div class="hQnAT">홈페이지문의</div> <!-- 페이지 타이틀 -->
-	<div id="hQnWrite"><label id="hQnWritelab"><a href="#" style="color:white;">문의하기</a></label></div> <!-- 글쓰기버튼 -->
+	<div id="hQnWrite"><label id="hQnWritelab"><a href="<%=request.getContextPath()%>/HomeQnAAsk/write" style="color:white;">문의하기</a></label></div> <!-- 글쓰기버튼 -->
 	<div id="hQnAList"> <!-- 게시판리스트 -->
 		<ul id="hQnAListUl">
-			<li  class="hQnAListFli">No.</li>
-			<li  class="hQnAListFli" style="text-align:center">글제목</li>
-			<li  class="hQnAListFli">작성자</li>
-			<li  class="hQnAListFli">작성일자</li>
-			<li  class="hQnAListFli">답변여부</li>
+			<li  class="hQnAListFli hQnAListFli1">No.</li>
+			<li  class="hQnAListFli hQnAListFli2" style="text-align:center">글제목</li>
+			<li  class="hQnAListFli hQnAListFli3">작성자</li>
+			<li  class="hQnAListFli hQnAListFli4">작성일자</li>
+			<li  class="hQnAListFli hQnAListFli5">답변여부</li>
 		
 		<c:forEach var="vo" items="${list }">	
-			<li>${vo.user_qna_no}</li>
-			<li><a href="<%=request.getContextPath()%>/HomeQnAAsk/view?no=${vo.user_qna_no}">${vo.title }</a></li>
-			<li>${vo.member_id }</li>
-			<li>${vo.writedate }</li>
-			<li>${vo.board_no2}</li>
+			<li class="hQnAListFli10 hQnAListFli101">${vo.user_qna_no}</li>
+			<li class="hQnAListFli10 hQnAListFli102"><a href="<%=request.getContextPath()%>/HomeQnAAsk/view?no=${vo.user_qna_no}">${vo.title }</a></li>
+			<li class="hQnAListFli10 hQnAListFli103">${vo.member_id }</li>
+			<li class="hQnAListFli10 hQnAListFli104">${vo.writedate }</li>
+							 
+		
+			<li class="hQnAListFli10 hQnAListFli105">${vo.replycount}</li>
+			
+			<input type="hidden" value="${vo.board_no2 }"/>
 		</c:forEach>
 			
 		</ul>

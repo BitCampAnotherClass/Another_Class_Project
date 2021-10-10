@@ -16,6 +16,8 @@ public class UserHomeQnAVO {//비밀번호 칼럼..............추가...........
 	private int com_sec; //공개글:0 비공개 :1
 	private int delete_sort; //삭제여부 -> 기본 :0 삭제:1
 	
+	private int replycount; //user_qna_no -> boardno1갯수 : 답변이 달리면 boardno1(원글번호)의 번호가 같은 데이터갯수가 늘어난다
+	private String replystatus; //답변여부 - 미답변, 답변완료
 	
 	public int getUser_qna_no() {
 		return user_qna_no;
@@ -88,6 +90,18 @@ public class UserHomeQnAVO {//비밀번호 칼럼..............추가...........
 	}
 	public void setDelete_sort(int delete_sort) {
 		this.delete_sort = delete_sort;
+	}
+	public int getReplycount() {
+		return replycount;
+	}
+	public void setReplycount(int replycount) {
+		this.replycount = replycount;
+	}
+	public String getReplystatus() {
+		return replystatus;
+	}
+	public void setReplystatus(String replystatus) {
+		this.replystatus = replystatus;
 	}
 	
 	
