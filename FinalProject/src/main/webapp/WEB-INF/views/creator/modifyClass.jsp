@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <script>
 //현재 날짜 출력 테스트 콘솔에 뜸
 var d = new Date();
@@ -179,5 +180,6 @@ console.log(d.getDate());
 		</div>
 		<hr/>
 		<input id="modifyCreateClassSubmitButton" type="submit" value="수정 신청">
+		
 	</form>
 </div>

@@ -35,7 +35,7 @@
 
 </head>
 <body style="background-color:#eee;">
-	<article id="container" style="background-color:#fff; width:950px; height:1200px; margin:0 auto; padding: 0 20px;">
+	<article id="container" style="background-color:#fff; width:100%; height:1000px; margin:0 auto; padding: 0 20px;">
 		
 		<div class="income-top">
 			<section id="incomeInfo">

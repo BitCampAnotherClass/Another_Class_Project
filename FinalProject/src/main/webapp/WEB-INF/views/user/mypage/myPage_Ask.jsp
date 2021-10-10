@@ -37,7 +37,7 @@
 	/*홈페이지문의내용*/
 	#homepageAsk{position:absolute;visibility:hidden;}
 	.homeAskcontent{width:100%;}
-	.homeAskcontent>li{width:20%;float:left;border-bottom:1px solid #ddd;padding:10px 0 10px 0;text-align:center;}
+	.homeAskcontent>li{width:20%;float:left;border-bottom:1px solid #ddd;height:50px;padding:10px 0 10px 0;text-align:center;}
 	.homeAskcontent>.homeAskTli{border-bottom:2px solid #333;}
 	.homeAskcontent>li:nth-child(4n+1){width:10%;}
 	.homeAskcontent>li:nth-child(4n+2){width:60%;white-space:nowrap;overflow:hidden;text-overflow: ellipsis;}
@@ -103,6 +103,12 @@
 				<li>주문후 결제방법을 변경하고 싶은데 어떻게 해야 하나요?</li>
 				<li>2021-01-01</li>
 				<li>미답변</li>
+				
+				<li >3</li>
+				<li>주문후 결제방법을 변경하고 싶은데 어떻게 해야 하나요?</li>
+				<li>2021-01-02</li>
+				<li>미답변</li>
+				
 			</ul>
 		</div>
 		
@@ -132,7 +138,7 @@
 					<div style="display:none;"><a href="#">수정</a><a href="#">삭제</a></div><!-- 답변달리면 삭제수정불가? -->
 					
 					<div class="classAskcontenttextreplydiv"><!-- 문의답변 -->				
-						<div><a href="#"><img src="../../img/profileimg.jpg"/></a></div>		
+						<div><a href="#"><img src="img/jisu/profileimg.jpg"/></a></div>		
 						<div>
 							<span>도자마스터</span>
 							<span>2021년01월02일 작성</span>							

@@ -8,6 +8,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <style>
+	html, body, div, ul, ol, li, dl, dt, dd, header, footer, main, article, section, aside, form, input, textarea, button, select, a, p, h1, h2, h3, h4, h5, h6, span, table, th, td{box-sizing:content-box}
+	
+	
+	
 	
 	#payPageContainer{width:1200px;height:auto;margin:0 auto;display:flex;}/*모든걸감싸고있는 div*/
 	
@@ -94,9 +98,14 @@
 	
 	#payInfoBox>div:nth-child(2){width:100%;height:250px;border:1px solid #999;margin-top:15px;}
     	
-    #payInfoBox>div:nth-child(2)>div{height:25%;}
-    #payInfoBox>div:nth-child(2)>div:nth-child(4){background-color:#333;color:white;font-size:1.1rem;font-weight:bold;text-align:center;}
-    #payInfoBox>div:nth-child(2)>div:nth-child(4)>label{display:inline-block;padding-top:20px;}   	
+     #howmuch2>div:nth-child(1)>div>label{margin-top:15px;}
+    #howmuch2>div:nth-child(2)>div>label{margin-top:8px;}
+    #howmuch3>div:nth-child(1)>div>label{margin-top:26px;}
+    #howmuch3>div:nth-child(2)>div>label{margin-top:37px;}
+    
+    #payInfoBox>div:nth-child(2)>div{height:62.5px;}
+  
+    #payEndBtn{width:100%;height:100%;background-color:#333;color:white;font-size:1.1rem;font-weight:bold;text-align:center;border:none;} 
 </style>
 
 </head>
@@ -120,7 +129,7 @@
 			
 			<div class="payclassinfoorder" style="height:150px;"><!-- 주문한줄.... -->
 				<div><!-- 이미지+제목 -->
-					<div><img src="../../img/jisu/classimg5.png"></div> <!-- 이미지 -->
+					<div><img src="img/jisu/classimg5.png"></div> <!-- 이미지 -->
 					<div><!-- 제목+강사 -->
 						<div>늘 예쁜 꽃, 디자인을 잘 하면 더 예뻐져요. 쉐이드그린의 감각적인 생화 디자인</div>
 						<div>마치가든</div>
@@ -143,7 +152,7 @@
 				
 		<div id="paymethod"><!-- 결제수단 -->
 			<div class="secondTitleD">결제수단</div>
-			<div id="paymethodselect" style="height:22px;">
+			<div id="paymethodselect"">
 				<span><input type="radio" name="paymentmethod" value="paycard"/>신용카드</span>
 				<span><input type="radio" name="paymentmethod" value="paybank"/>무통장입금</span>
 				<span><input type="radio" name="paymentmethod" value="paysimple"/>간편결제</span>
@@ -199,7 +208,7 @@
 			
 			<div id="howmuch"><!-- 결제금액 -->
 				<div>최종결제금액</div>
-				<div>
+				<div id="howmuch2">
 					<div>
 						<div><label>총 상품금액</label></div><div><label>114,000원</label></div>
 					</div>
@@ -207,7 +216,7 @@
 						<div><label>포인트</label></div><div><label>3000원</label></div>
 					</div>
 				</div>
-				<div>
+				<div id="howmuch3">
 					<div>
 						<div><label>최종결제금액</label></div><div><label>111,000원</label></div>
 					</div>
@@ -221,9 +230,10 @@
 				<div style="visibility:hidden;">d</div>
 				<div style="visibility:hidden;">d</div>
 				<div style="visibility:hidden;">d</div>
-				<div><label>결제하기</label></div>
+				<div id="payEndD"><input type="button" name="" id="payEndBtn" value="결제하기"></div>
 			</div>
 		</div>
+		
 	</div>
 
 </div>

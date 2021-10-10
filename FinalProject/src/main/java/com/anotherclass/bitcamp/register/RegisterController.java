@@ -1,37 +1,49 @@
 package com.anotherclass.bitcamp.register;
 
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.anotherclass.bitcamp.service.register.RegisterService;
+
 @Controller
 public class RegisterController {
 	
-	SqlSession sqlSession;
-
-	public SqlSession getSqlSession() {
-		return sqlSession;
-	}
-	
-	@Autowired
-	public void setSqlSession(SqlSession sqlSession) {
-		this.sqlSession = sqlSession;
-	}
+	@Inject
+	RegisterService registerService;
 	
 	@RequestMapping("/register")
 	public String register() {
 		return "register/userRegister";
 	}
 	
-	// 회원가입
-	@RequestMapping(value="/another/registerJoin",method=RequestMethod.POST)
+	// 유저 회원가입
+	@RequestMapping(value="/userJoin",method=RequestMethod.POST)
 	public ModelAndView userJoin(RegisterVO vo) {
 		ModelAndView mav = new ModelAndView();
-		RegisterDAO_Imp dao = sqlSession.getMapper(RegisterDAO_Imp.class);
-		dao.registerJoin(vo);
+		int check = registerService.userAccountJoin(vo);
+		if(check>0) {
+			
+		}else{
+			
+		}
+		mav.setViewName("redirect:/");
+		return mav;
+	}
+	
+	// 강사 회원가입
+	@RequestMapping(value="/creatorJoin",method=RequestMethod.POST)
+	public ModelAndView creatorJoin(RegisterVO vo) {
+		ModelAndView mav = new ModelAndView();
+		int check = registerService.creatorAccountJoin(vo);
+		if(check>0) {
+			
+		}else{
+			
+		}
 		mav.setViewName("redirect:/");
 		return mav;
 	}

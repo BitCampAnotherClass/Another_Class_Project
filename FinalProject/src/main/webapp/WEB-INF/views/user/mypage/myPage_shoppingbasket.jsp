@@ -2,22 +2,26 @@
 
 
 <style>	
-	
+	html, body, div, ul, ol, li, dl, dt, dd, header, footer, main, article, section, aside, form, input, textarea, button, select, a, p, h1, h2, h3, h4, h5, h6, span, table, th, td{box-sizing:content-box}
+		
+
+
 	.shoppingBagList{width:100%;height:auto;margin-top:80px;margin:0 auto;} /*쇼핑백 리스트를 감싸고있는 제일큰div border:1px solid red;*/
 	.shoppingBagList>span:nth-child(1){margin-bottom:20px;margin-top:70px}
 	.shoppingBagList{width:100%;height:auto;}
-	.shoppingBagList>ul{width:100%;height:auto;}
+	.shoppingBagList>ul{width:100%;height:auto;overflow:auto;}
 	
 	/*쇼핑백리스트 제목*/
-	#shoppingBagListTitle>li{width:10%;float:left;border-top:3px solid #333;border-bottom:1px solid #666;padding:10px 0 10px 0;text-align:center;font-size:1.1rem;font-weight:bold;margin-bottom:30px;}	
+	
+	#shoppingBagListTitle>li{width:10%;height:30px;float:left;border-top:3px solid #333;border-bottom:1px solid #666;padding:10px 0 10px 0;text-align:center;font-size:1.1rem;font-weight:bold;}	
 	#shoppingBagListTitle>li:nth-child(1){width:5%;}
 	#shoppingBagListTitle>li:nth-child(2){width:60%;}
 	#shoppingBagListTitle>li:nth-child(5){width:15%;}
 	
 	/*쇼핑백리스트*/
-	#shoppingBagListUl{}
-	#shoppingBagListUl>li{padding:6px 0 6px 0;height:150px;margin-top:50px;}
-	#shoppingBagListUl>li>div{width:10%;height:100%;float:left;text-align:center;}/*height -> 100%? auto?*/
+	#shoppingBagListUl{width:100%;height:auto;overflow:auto;}
+	#shoppingBagListUl>li{padding:6px 0 6px 0;height:150px;margin-top:10px;}
+	#shoppingBagListUl>li>div{width:10%;height:100%;float:left;text-align:center;border-bottom:1px solid #ddd;}/*height -> 100%? auto?*/
 	#shoppingBagListUl>li>div:nth-child(5n+1){width:5%;line-height:150px;}
 	#shoppingBagListUl>li>div:nth-child(5n+2){width:60%;} /*이미지+상세정보*/
 	#shoppingBagListUl>li>div:nth-child(5n+2)>div{width:100%;height:100%;}
@@ -32,15 +36,15 @@
 	#shoppingBagListUl>li>div:nth-child(5n+4){line-height:150px;}
 	#shoppingBagListUl>li>div:nth-child(5n+5){width:15%;}
 	#shoppingBagListUl>li>div:nth-child(5n+5)>div{width:100%;}
-	#shoppingBagListUl>li>div:nth-child(5n+5)>div>a{display:block;width:100%;padding:10px 0 10px 0;text-align:center;}/*버튼*/
+	#shoppingBagListUl>li>div:nth-child(5n+5)>div>a{display:block;width:100%;padding:5px 0 5px 0;text-align:center;}/*버튼*/
 	#shoppingBagListUl>li>div:nth-child(5n+5)>div>a span{display:inline-block;width:84px;background-color:#666;padding:5px 10px 5px 10px;text-align:center;color:white;} /*이벤트줘야함 -> 이벤트오버시 글자색바뀌게*/
 	
 	/* 선택상품 - 삭제 ,주문 */
 	#shoppingbasketBtn{width:100%;height:auto;margin:0 auto;text-align:center;margin-top:50px;}
-	#shoppingbasketBtn>a{text-align:center;font-size:16px;border:1px solid #333;margin:0 20px 0 20px;padding:5px 10px 5px 10px;}
+	#shoppingbasketBtn>a{display:inline-block;text-align:center;font-size:20px;border:1px solid #333;margin:0 20px 0 20px;padding:10px 15px 10px 15px;}
 </style>
-</head>
-<body>
+
+
 
 
 	<%@ include file="myPageTop.jspf" %>
@@ -67,7 +71,7 @@
 				<div><input type="checkbox"></div><!-- 체크박스 -->				
 				<div><!-- 이미지+상품정보 -->	
 					<div>							
-						<div><a href="#"><img src="../../img/jisu/classimg5.png"/></a></div><!-- 이미지 -->
+						<div><a href="#"><img src="img/jisu/classimg5.png"/></a></div><!-- 이미지 -->
 						<div><!-- 상품정보 -->
 							<a href="#">늘 예쁜 꽃, 디자인을 잘 하면 더 예뻐져요. 쉐이드그린의 감각적인 생화 디자인</a><!-- 클래스명 : -->
 							<span><a href="#">마치가든</a></span><!-- 크리에이터명 -->
@@ -91,7 +95,7 @@
 				<div><input type="checkbox"></div><!-- 체크박스 -->				
 				<div><!-- 이미지+상품정보 -->	
 					<div>							
-						<div><a href="#"><img src="../../img/jisu/classimg4.png"/></a></div><!-- 이미지 -->
+						<div><a href="#"><img src="img/jisu/classimg4.png"/></a></div><!-- 이미지 -->
 						<div><!-- 상품정보 -->
 							<a href="#">프로서퍼 김지나의 서핑 A to Z</a><!-- 클래스명 : -->
 							<span><a href="#">지나서퍼</a></span><!-- 크리에이터명 -->

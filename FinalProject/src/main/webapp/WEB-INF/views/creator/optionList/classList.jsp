@@ -1,15 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <style>
-	ul,li,div{margin:0;padding:0;list-style-type:none;}
+	
 
-	#classListContainter{width:1000px;height:100%;margin:0 auto;} /*모든걸 감싸고 있는 div*/
+	#classListContainter{width:1200px;height:100%;margin:0 auto;} /*모든걸 감싸고 있는 div*/
 	
 	#classListSearchDiv{width:100%;margin-bottom:20px;}/*클래스 리스트 검색*/
 	#classListSubmit{padding:3px 7px 3px 7px;background-color:white;color:#333;border:1px solid #333;}
@@ -62,8 +56,7 @@
 		});
 	});
 </script>
-</head>
-<body>
+
 
 <div id="classListContainter">
 	
@@ -99,7 +92,7 @@
 			<li> <!-- ***클래스한줄*** -->
 				<span>920022</span><!-- 클래스번호 -->
 				<span><!-- 클래스명 + 상세정보-->
-					<span><img src="../../img/classimg7.png"/></span><!-- 클래스명 -->
+					<span><img src="img/jisu/classimg7.png"/></span><!-- 클래스명 -->
 					<span><!-- 상세정보 -->
 						<span>누구나 손쉽게 따라 하는 재즈피아노 입문 클래스</span>
 						<span><a href="">문의대기중</a><label>3건</label></span> <!-- 문의관리페이지로 이동 -->
@@ -118,7 +111,7 @@
 			<li> <!-- ***클래스한줄*** -->
 				<span>721093</span><!-- 클래스번호 -->
 				<span><!-- 클래스명 + 상세정보-->
-					<span><img src="../../img/classimg8.png"/></span><!-- 클래스명 -->
+					<span><img src="img/jisu/classimg8.png"/></span><!-- 클래스명 -->
 					<span><!-- 상세정보 -->
 						<span>재즈피아노 고급 클래스</span>
 						<span><a href="">문의대기중</a><label>0건</label></span>
@@ -145,5 +138,3 @@
 				
 
 
-</body>
-</html>

@@ -22,7 +22,7 @@
 	/*오른쪽*/
 	#mrightdiv{width:1000px;height:100%;}
 	
-	.bigTitle{width:100%;text-align:center;margin-top:90px; border-bottom:1px solid black;padding-bottom:20px;}/*주문조회,장바구니,나의후기....타이틀*/
+	.bigTitle{width:100%;text-align:center;padding-bottom:20px;}/*주문조회,장바구니,나의후기....타이틀*/
 	
 	/*h태그들 재설정*/
 	.h1style{display:block;font-size:32px;margin-block-start: 0.9rem;margin-block-end:0.9rem; margin-inline-start:0px;
@@ -43,7 +43,7 @@
 			<span class="h2style">김비트 님</span>
 				<span class="h3style"><a>주문조회</a></span>
 				<span class="h3style"><a>장바구니</a></span>
-				<span class="h3style"><a href="/teamproject/mypageReview">나의후기</a></span>
+				<span class="h3style"><a href="mypage/review">나의후기</a></span>
 				<span class="h3style">나의문의</span>
 					<ul>
 						<li class="m1"><a>클래스문의</a></li>
