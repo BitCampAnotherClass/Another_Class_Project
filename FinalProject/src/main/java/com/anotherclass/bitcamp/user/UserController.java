@@ -68,7 +68,7 @@ public class UserController {
 	}	
 	@RequestMapping(value = "/classMainPage")
 	public String classMainPage() {
-		return "/user/classDetailPage/classMain";
+		return "/user/classDetailPage/classMain2";
 	}	
 	@RequestMapping(value = "/payPage")
 	public String payPage() {

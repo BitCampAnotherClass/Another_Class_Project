@@ -71,13 +71,38 @@
 			<li  class="hQnAListFli hQnAListFli5">답변여부</li>
 		
 		<c:forEach var="vo" items="${list }">	
-			<li class="hQnAListFli10 hQnAListFli101">${vo.user_qna_no}</li>
-			<li class="hQnAListFli10 hQnAListFli102"><a href="<%=request.getContextPath()%>/HomeQnAAsk/view?no=${vo.user_qna_no}">${vo.title }</a></li>
+		
+			<!-- 글번호 -->
+			<c:set var="board_no2" value="${vo.board_no2}" />	
+			<c:if test="${board_no2 eq 0 }"> 
+				<li class="hQnAListFli10 hQnAListFli101">${vo.user_qna_no}</li>
+			</c:if>
+			<c:if test="${board_no2 eq 1 }"> 
+				<li class="hQnAListFli10 hQnAListFli101"><label style="visibility:hidden;">${vo.user_qna_no}</label></li>
+			</c:if>
+			<!-- 글제목 -->
+			<c:if test="${board_no2 eq 0 }">
+				<li class="hQnAListFli10 hQnAListFli102"><a href="<%=request.getContextPath()%>/HomeQnAAsk/view?no=${vo.user_qna_no}">${vo.title }</a></li>
+			</c:if>
+			<c:if test="${board_no2 eq 1 }">
+				<li class="hQnAListFli10 hQnAListFli102"><a href="<%=request.getContextPath()%>/HomeQnAAsk/view?no=${vo.user_qna_no}">&ensp;&ensp;&ensp;<label style="color:blue;">[Re]</label> ${vo.title }</a></li>
+			</c:if>
+			
 			<li class="hQnAListFli10 hQnAListFli103">${vo.member_id }</li>
 			<li class="hQnAListFli10 hQnAListFli104">${vo.writedate }</li>
-							 
-		
-			<li class="hQnAListFli10 hQnAListFli105">${vo.replycount}</li>
+			
+			<!-- 답변여부: 답변완료/미답변 <li class="hQnAListFli10 hQnAListFli105">${vo.replycount}</li> -->
+			<c:set var="replycount" value="${vo.replycount}" />							
+			<c:if test="${replycount eq 2 && board_no2 eq 0 }"> 
+				<li class="hQnAListFli10 hQnAListFli105">답변완료</li>
+			</c:if>
+			<c:if test="${replycount eq 2 && board_no2 eq 1 }"> 
+				<li class="hQnAListFli10 hQnAListFli105"></li>
+			</c:if>
+			<c:if test="${replycount eq 1}"> 
+				<li class="hQnAListFli10 hQnAListFli105">미답변</li>
+			</c:if>
+			
 			
 			<input type="hidden" value="${vo.board_no2 }"/>
 		</c:forEach>

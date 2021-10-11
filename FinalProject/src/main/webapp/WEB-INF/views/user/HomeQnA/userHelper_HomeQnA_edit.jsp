@@ -10,7 +10,7 @@
 	/*제일겉에있는 Div*/
 	#hQnAWriteD3{width:1200px;height:auto;margin:0 auto;}
 	.hQnAT{width:100%;text-align:center;font-size:32px;font-weight: bold;color:#333;margin:40px 0 40px 0;}
-	.hQnATWT3{width:100%;text-align:left;font-size:24px;font-weight: bold;color:#333;margin-left:8px;}
+	.hQnATWT3{width:100%;text-align:left;font-size:24px;font-weight: bold;color:#333;}
 		
 	
 	#hQnATul2{width:100%;height:auto;margin:0 auto;overflow:auto;} /*border:1px solid black;*/
@@ -18,9 +18,11 @@
 	#hQnATul2>li>div:nth-child(1){width:15%;}
 	#hQnATul2>li>div:nth-child(2){width:85%;}
 	#hQnATul2>li:nth-child(1){border-top:3px solid #333;padding-top:8px;}
-	#hQnATul2>li:nth-child(5)>div:nth-child(2)>label{background-color:rgb(125,125,125);color:white;padding:5px 8px 5px 8px;}
+	#labelfolre1, #labelfolre2, #labelfolre3{background-color:rgb(125,125,125);color:white;padding:5px 8px 5px 8px;}
+	#fue1 span{margin-left:40px;} #fue2 span{margin-left:40px;} #fue3 span{margin-left:40px;}
+	#hQnAWriteFileedit1,#hQnAWriteFileedit2,#hQnAWriteFileedit3{display:none;}
 	
-	#hQnAWriteSubedit{width:90%;background-color:#f0f0f0;border:none;height:35px;font-size:1.2rem;}/*제목텍스트박스*/
+	#hQnAWriteSubedit{width:90%;background-color:#f0f0f0;border:none;height:45px;font-size:1.2rem;}/*제목텍스트박스*/
 	#hQnAWriteConedit{width:90%;min-height:500px;background-color:#f0f0f0;border:none;resize:none;overflow:auto;font-size:1.2rem;}/*문의내용텍스트아리아*/
 	#hQnAWriteFileedit{display:none;}/*파일첨부*/
 	#hQnAButedit{border:none;justify-content:center;}/*취소 수정 목록 버튼*/
@@ -29,18 +31,41 @@
 	
 </style>
 <script>
-	$("input[type='file']").change(function(event){
-	    var imageFile = event.target.files[0];
-	    console.log(imageFile.name);
-	    var reader = new FileReader();
-	    reader.onload = (e) => {
-	       $("#fu").children().attr("src", e.target.result);
-	       $("#uploaded").html(imageFile.name);
-	    };
-	    reader.readAsDataURL(imageFile);           
-	 });
 	
 	$(()=>{
+		$("#hQnAWriteFileedit1").change(function(event){
+	    	var imageFile = event.target.files[0];
+	        console.log(imageFile.name);
+	        var reader = new FileReader();
+	        reader.onload = (e) => {
+				$("#fue1").children().attr("src", e.target.result);
+	            $("#uploadede1").html(imageFile.name);	              
+	        };
+	           reader.readAsDataURL(imageFile);           
+	    });		
+	    $("#hQnAWriteFileedit2").change(function(event){
+	    	var imageFile = event.target.files[0];
+	        console.log(imageFile.name);
+	        var reader = new FileReader();
+	        reader.onload = (e) => {
+				$("#fue2").children().attr("src", e.target.result);
+	            $("#uploadede2").html(imageFile.name);	              
+	        };
+	           reader.readAsDataURL(imageFile);           
+	    });
+	    $("#hQnAWriteFileedit3").change(function(event){
+	    	var imageFile = event.target.files[0];
+	        console.log(imageFile.name);
+	        var reader = new FileReader();
+	        reader.onload = (e) => {
+				$("#fue3").children().attr("src", e.target.result);
+	            $("#uploadede3").html(imageFile.name);	              
+	        };
+	           reader.readAsDataURL(imageFile);           
+	    });
+		
+		
+		
 		
 		//수정 hQnAWEdit
 		$("#hQnAeditSubmit").click(()=>{
@@ -84,11 +109,25 @@
 					<div>문의내용</div>
 					<div><textarea name="content" id="hQnAWriteConedit">${vo.content }</textarea></div>	
 				</li>
-				<li>
+				<li id="fue1">
 					<div>파일첨부</div>
-					<div id="fu">
-						<input type="file" name="file1" id="hQnAWriteFileedit">
-						<label for="hQnAWriteFileedit">파일선택</label><span id="uploaded"></span>
+					<div>
+						<input type="file" name="file1" id="hQnAWriteFileedit1">
+						<label for="hQnAWriteFileedit1" id="labelfolre1">파일선택</label><span id="uploadede1">${vo.file1 }</span>
+					</div>	
+				</li>
+				<li id="fue2">
+					<div>파일첨부</div>
+					<div>
+						<input type="file" name="file2" id="hQnAWriteFileedit2">
+						<label for="hQnAWriteFileedit2" id="labelfolre2">파일선택</label><span id="uploadede2">${vo.file2 }</span>
+					</div>	
+				</li>
+				<li id="fue3">
+					<div>파일첨부</div>
+					<div>
+						<input type="file" name="file3" id="hQnAWriteFileedit3">
+						<label for="hQnAWriteFileedit3" id="labelfolre3">파일선택</label><span id="uploadede3">${vo.file3 }</span>
 					</div>	
 				</li>
 				<li>
@@ -105,13 +144,3 @@
 
 </div>
 
-<!-- 
-<li id="fu">	
-	  <span id="fileTitle">파일첨부</span><label for="filename" id="fileUpload">파일 선택</label>
-      <sapn id="uploaded"></span>
-</li>
-<li>
-		<input type="file" name="filename" id="filename"/>
-</li>
-
- -->
