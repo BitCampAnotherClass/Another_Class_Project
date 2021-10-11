@@ -37,19 +37,19 @@ public class ClassDetailPageController {
 		return "/user/classDetailPage/temploginForm" ;
 	}
 	//-------------로그인
-	@RequestMapping(value="/loginOk", method=RequestMethod.POST)
-	   public String loginOk(tempMemberVO vo, HttpSession ses) {
-	      //로그인
-
-	         ses.setAttribute("member_id", "jisutestuser");
-	         ses.setAttribute("member_name", "사용자지수");
-	     
-	      return "user/classDetailPage/temporaryhome";
-	   }
-	   @RequestMapping("/logout")
-	   public String logout(HttpSession s) {
-	      s.invalidate();
-	      return "user/classDetailPage/temporaryhome";
-	   }
+//	@RequestMapping(value="/loginOk", method=RequestMethod.POST)
+//	   public String loginOk(tempMemberVO vo, HttpSession ses) {
+//	      //로그인
+//
+//	         ses.setAttribute("member_id", "jisutestuser");
+//	         ses.setAttribute("member_name", "사용자지수");
+//	     
+//	      return "user/classDetailPage/temporaryhome";
+//	   }
+//	   @RequestMapping("/logout")
+//	   public String logout(HttpSession s) {
+//	      s.invalidate();
+//	      return "user/classDetailPage/temporaryhome";
+//	   }
 	
 }

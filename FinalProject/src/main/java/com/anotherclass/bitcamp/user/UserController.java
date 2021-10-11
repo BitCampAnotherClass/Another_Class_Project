@@ -16,11 +16,6 @@ public class UserController {
 	}
 	
 	// 임시 맵핑 --------------------------
-	// 은정
-	@RequestMapping(value = "/login")
-	public String login() {
-		return "register/login";
-	}
 	
 	@RequestMapping(value = "/classMap")
 	public String classMap() {
@@ -30,11 +25,6 @@ public class UserController {
 	@RequestMapping(value = "/incomeChart")
 	public String incomeChart() {
 		return "creator/income/income_chart";
-	}
-	
-	@RequestMapping(value = "/creatorHome")
-	public String creatorHome() {
-		return "creator/creator";
 	}
 	
 	@RequestMapping(value = "/mypage/review")
