@@ -144,6 +144,7 @@ h1.logo > a{
 
 
 .btn-login{
+	display:block;
 	width:100%;
 	padding: 17px 0 17px;
 	outline:none;
@@ -151,9 +152,10 @@ h1.logo > a{
 	border-radius:6px;
 	margin-top:10px;
 	cursor:pointer;
+	text-align:center;
 }
 
-.btn-login > span{
+.btn-login, .btn-login > span{
 	font-size:17px;
 	font-weight:500;
 }
@@ -163,7 +165,7 @@ h1.logo > a{
 	background-color:#333;
 }
 
-#basicLogin > span{
+#basicLogin{
 	color:#fff;
 }
 

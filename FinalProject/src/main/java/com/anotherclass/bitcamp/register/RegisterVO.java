@@ -10,6 +10,7 @@ public class RegisterVO {
 	private String creator_nick;
 	private String additional_information_one;
 	private String additional_information_two;
+	private String member_img; // 프로필 이미지
 	
 	
 	public String getMember_id() {
@@ -22,8 +23,9 @@ public class RegisterVO {
 		return member_pw;
 	}
 	public void setMember_pw(String member_pw) throws Exception {
-		HashingSeting ha = new HashingSeting();
-		this.member_pw = ha.setEncryption(member_pw,member_id);
+		this.member_pw = member_pw;
+//		HashingSeting ha = new HashingSeting();
+//		this.member_pw = ha.setEncryption(member_pw,member_id);
 	}
 	public String getMember_name() {
 		return member_name;
@@ -60,6 +62,12 @@ public class RegisterVO {
 	}
 	public void setAdditional_information_two(String additional_information_two) {
 		this.additional_information_two = additional_information_two;
+	}
+	public String getMember_img() {
+		return member_img;
+	}
+	public void setMember_img(String member_img) {
+		this.member_img = member_img;
 	}
 	
 	
