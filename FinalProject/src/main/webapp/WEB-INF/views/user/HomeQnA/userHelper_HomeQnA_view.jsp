@@ -26,7 +26,7 @@
 		
 		//수정 hQnAWEdit
 		//$("hQnAWEdit").click(()=>{
-		//	$("#homeQnAVFrm").attr("action", "/teamproject/HomeQnAAsk/edit" );
+		//	$("#homeQnAVFrm").attr("action", "/teamproject/HomeQnAAsk/editForm" );
 		//	$("#homeQnAVFrm").submit();
 		//});
 		
@@ -38,8 +38,9 @@
 		
 		//삭제 hQnAWDel
 		$("#hQnAWDel").click(()=>{
-			if(confirm('글을 삭제하시겠습니까??')){
-				location.href="/teamproject/HomeQnAAsk/del?no=${vo.user_qna_no}";
+			if(confirm('글을 삭제하시겠습니까??')){			
+				$("#homeQnAVFrm").attr("action", "/teamproject/HomeQnAAsk/del?no=${vo.user_qna_no}" );
+				$("#homeQnAVFrm").submit();
 			}			
 		});
 		
@@ -84,7 +85,7 @@
 					<!-- 글작성자만 수정,삭제 버튼 보이게 				
 					<c:if test="${member_id=='memberid'}"></c:if>
 					-->
-						<input type="button" name="hQnAWEdit" id="hQnAWEdit" value="수정" onclick="location.href='/teamproject/HomeQnAAsk/Edit?no=${vo.user_qna_no}';"/>
+						<input type="button" name="hQnAWEdit" id="hQnAWEdit" value="수정" onclick="location.href='/teamproject/HomeQnAAsk/editForm?no=${vo.user_qna_no}';"/>
 						<input type="button" name="hQnAWDel" id="hQnAWDel" value="삭제"/>
 				
 					<input type="button" name="hQnAWList" id="hQnAWList" value="목록"/>

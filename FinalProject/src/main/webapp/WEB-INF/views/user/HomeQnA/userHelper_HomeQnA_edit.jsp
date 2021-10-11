@@ -20,8 +20,8 @@
 	#hQnATul2>li:nth-child(1){border-top:3px solid #333;padding-top:8px;}
 	#hQnATul2>li:nth-child(5)>div:nth-child(2)>label{background-color:rgb(125,125,125);color:white;padding:5px 8px 5px 8px;}
 	
-	#hQnAWriteSubedit{width:90%;background-color:#ddd;border:none;height:35px;font-size:1.2rem;}/*제목텍스트박스*/
-	#hQnAWriteConedit{width:90%;min-height:500px;background-color:#ddd;border:none;resize:none;overflow:auto;font-size:1.2rem;}/*문의내용텍스트아리아*/
+	#hQnAWriteSubedit{width:90%;background-color:#f0f0f0;border:none;height:35px;font-size:1.2rem;}/*제목텍스트박스*/
+	#hQnAWriteConedit{width:90%;min-height:500px;background-color:#f0f0f0;border:none;resize:none;overflow:auto;font-size:1.2rem;}/*문의내용텍스트아리아*/
 	#hQnAWriteFileedit{display:none;}/*파일첨부*/
 	#hQnAButedit{border:none;justify-content:center;}/*취소 수정 목록 버튼*/
 	#hQnAWEditedit{margin:0 20px 0 20px;width:150px;height:50px;font-size:20px;}
@@ -39,6 +39,24 @@
 	    };
 	    reader.readAsDataURL(imageFile);           
 	 });
+	
+	$(()=>{
+		
+		//수정 hQnAWEdit
+		$("#hQnAeditSubmit").click(()=>{
+			$("#homeQnAEFrm").attr("action", "/teamproject/HomeQnAAsk/edit" );
+			$("#homeQnAEFrm").submit();
+		});
+		
+		//취소 -> 글목록으로이동
+		$("#hQnAWEditedit").click(()=>{
+			$("#homeQnAEFrm").attr("action", "/teamproject/HomeQnAAsk/list" );
+			$("#homeQnAEFrm").submit();
+		});
+		
+		
+		
+	});
 </script>
 </head>
 <body>
@@ -47,40 +65,42 @@
 	
 		<div class="hQnATWT3">글수정</div>
 		
-		<form method="post" action="">
+		<form method="post" id="homeQnAEFrm">
 	
 			<ul id="hQnATul2">
 				<li>
 					<div>작성자</div>
-					<div>신*솜[asd*******]</div>	
+					<div>${vo.member_id }</div>	
 				</li>
 				<li>
 					<div>작성일자</div>
-					<div>2021-01-01</div>	
+					<div>${vo.writedate }</div>	
 				</li>
 				<li>
 					<div>제목</div>
-					<div><input type="text" name="hQnAWriteSubedit" id="hQnAWriteSubedit" value="주문후 결제방법을 변경하고 싶은데 어떻게 해야 하나요?"></div>	
+					<div><input type="text" name="title" id="hQnAWriteSubedit" value="${vo.title }"></div>	
 				</li>
 				<li>
 					<div>문의내용</div>
-					<div><textarea name="hQnAWriteConedit" id="hQnAWriteConedit">주문후 결제방법을 변경하고 싶은데 어떻게 해야 하나요?</textarea></div>	
+					<div><textarea name="content" id="hQnAWriteConedit">${vo.content }</textarea></div>	
 				</li>
 				<li>
 					<div>파일첨부</div>
 					<div id="fu">
-						<input type="file" name="hQnAWriteFileedit" id="hQnAWriteFileedit">
+						<input type="file" name="file1" id="hQnAWriteFileedit">
 						<label for="hQnAWriteFileedit">파일선택</label><span id="uploaded"></span>
 					</div>	
 				</li>
 				<li>
 					<div>답변여부</div>
-					<div>미답변</div>	
+					<div>${board_no2 }</div>	
 				</li>
 				<li id="hQnAButedit">
 					<input type="button" name="hQnAWEditedit" id="hQnAWEditedit" value="취소"/><input type="submit" name="hQnAWeditSubmit" id="hQnAeditSubmit" value="등록"/>
 				</li>				
 			</ul>
+			
+			   <input type="hidden" id="hiddennobox" name="user_qna_no" value="${vo.user_qna_no }"><!-- 글번호 -->
 		</form>
 
 </div>

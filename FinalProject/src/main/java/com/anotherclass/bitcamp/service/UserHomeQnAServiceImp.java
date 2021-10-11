@@ -32,4 +32,16 @@ public class UserHomeQnAServiceImp implements UserHomeQnAService {
 		
 		return userHomeQnADAO.userHomeQnAEdit(vo);
 	}
+
+	@Override
+	public int userHomeQnAWrite(UserHomeQnAVO vo) {
+		
+		return userHomeQnADAO.userHomeQnAWrite(vo);
+	}
+
+	@Override
+	public int userHomeQnADel(int no) {
+		
+		return userHomeQnADAO.userHomeQnADel(no);
+	}
 }
