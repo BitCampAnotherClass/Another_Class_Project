@@ -8,7 +8,7 @@ public interface RegisterDAO {
 	
 	public int creatorAccountJoin(RegisterVO vo);
 	
-	public int adminAccountCreate(RegisterVO vo);
+	public String adminAccountCreate(RegisterVO vo);
 	
 	public RegisterVO loginMember(RegisterVO vo);
 }

@@ -15,15 +15,22 @@ import com.anotherclass.bitcamp.service.register.RegisterService;
 
 @Controller
 public class RegisterController {
+	private HashingSeting hashing = new HashingSeting();
 	
 	@Inject
 	RegisterService registerService;
-	private HashingSeting hashing = new HashingSeting();
+	
 	
 	@RequestMapping("/register")
 	public String register() {
 		return "register/userRegister";
 	}
+	
+	@RequestMapping("/registerCreator")
+	public String registerCreator() {
+		return "register/creatorRegister";
+	}
+	
 	
 	// 유저 회원가입
 	@RequestMapping(value="/userJoin",method=RequestMethod.POST)
@@ -54,7 +61,6 @@ public class RegisterController {
 		mav.setViewName("redirect:/");
 		return mav;
 	}
-	
 	
 	// 로그인폼
 	@RequestMapping(value = "/login")

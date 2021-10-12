@@ -8,7 +8,7 @@ public class HashingSeting {
 	// protected 사용중 패키지 이동금지
 	
 	//비밀번호와 Salt를 암호화 
-	protected static String getHashing(String password,String salt) {
+	static String getHashing(String password,String salt) {
 		StringBuffer result = new StringBuffer();
 		try {
 			MessageDigest md = MessageDigest.getInstance("SHA-256"); // SHA-256 암호화
@@ -23,7 +23,7 @@ public class HashingSeting {
 		}
 		return result.toString();
 	}
-	protected String setEncryption(String pass, String id) throws Exception {
+	public String setEncryption(String pass, String id) throws Exception {
 		return HashingSeting.getHashing(pass,id);
 	}
 }
