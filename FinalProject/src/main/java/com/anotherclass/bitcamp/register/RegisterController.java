@@ -4,7 +4,6 @@ import java.security.PrivateKey;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -19,6 +18,7 @@ public class RegisterController {
 	
 	@Inject
 	RegisterService registerService;
+	private HashingSeting hashing = new HashingSeting();
 	
 	@RequestMapping("/register")
 	public String register() {
@@ -27,8 +27,9 @@ public class RegisterController {
 	
 	// 유저 회원가입
 	@RequestMapping(value="/userJoin",method=RequestMethod.POST)
-	public ModelAndView userJoin(RegisterVO vo) {
+	public ModelAndView userJoin(RegisterVO vo)throws Exception {
 		ModelAndView mav = new ModelAndView();
+		vo.setMember_pw(hashing.setEncryption(vo.getMember_pw(),vo.getMember_id()));
 		int check = registerService.userAccountJoin(vo);
 		if(check>0) {
 			
@@ -41,8 +42,9 @@ public class RegisterController {
 	
 	// 강사 회원가입
 	@RequestMapping(value="/creatorJoin",method=RequestMethod.POST)
-	public ModelAndView creatorJoin(RegisterVO vo) {
+	public ModelAndView creatorJoin(RegisterVO vo)throws Exception {
 		ModelAndView mav = new ModelAndView();
+		vo.setMember_pw(hashing.setEncryption(vo.getMember_pw(),vo.getMember_id()));
 		int check = registerService.creatorAccountJoin(vo);
 		if(check>0) {
 			
@@ -78,7 +80,7 @@ public class RegisterController {
 		System.out.println("복호화pw : " + memberPw);
 		
 		////////////////// 해싱 자리
-		HashingSeting hashing = new HashingSeting();
+		
 		String hashingPw = hashing.setEncryption(memberPw,memberId);
 		
 		vo.setMember_id(memberId);

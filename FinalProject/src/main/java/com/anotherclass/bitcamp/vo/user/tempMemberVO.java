@@ -1,4 +1,4 @@
-package com.anotherclass.bitcamp.vo;
+package com.anotherclass.bitcamp.vo.user;
 
 public class tempMemberVO {// 세션에 아이디 심어두고 백작업 우선적으로 하기위해 만든 멤버브이오..-지수-
 	private String member_id;

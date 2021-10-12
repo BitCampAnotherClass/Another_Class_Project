@@ -1,8 +1,8 @@
-package com.anotherclass.bitcamp.service;
+package com.anotherclass.bitcamp.service.user;
 
 import java.util.List;
 
-import com.anotherclass.bitcamp.vo.ClassVO;
+import com.anotherclass.bitcamp.vo.user.ClassVO;
 
 public interface ClassDetailPageService {
 	public List<ClassVO> temporarylistAllSelect();

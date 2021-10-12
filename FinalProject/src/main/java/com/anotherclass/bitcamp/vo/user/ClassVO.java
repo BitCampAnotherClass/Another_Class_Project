@@ -1,4 +1,4 @@
-package com.anotherclass.bitcamp.vo;
+package com.anotherclass.bitcamp.vo.user;
 
 public class ClassVO {
 	private int class_no;

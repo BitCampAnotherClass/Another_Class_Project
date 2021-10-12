@@ -1,4 +1,4 @@
-package com.anotherclass.bitcamp.service;
+package com.anotherclass.bitcamp.service.user;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.anotherclass.bitcamp.dao.UserHomeQnADAO;
-import com.anotherclass.bitcamp.vo.UserHomeQnAVO;
+import com.anotherclass.bitcamp.vo.user.UserHomeQnAVO;
 
 @Service
 public class UserHomeQnAServiceImp implements UserHomeQnAService {

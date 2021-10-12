@@ -1,8 +1,8 @@
-package com.anotherclass.bitcamp.service;
+package com.anotherclass.bitcamp.service.user;
 
 import java.util.List;
 
-import com.anotherclass.bitcamp.vo.UserHomeQnAVO;
+import com.anotherclass.bitcamp.vo.user.UserHomeQnAVO;
 
 public interface UserHomeQnAService {
 	

@@ -1,4 +1,4 @@
-package com.anotherclass.bitcamp.error;
+package com.anotherclass.bitcamp.controller.error;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

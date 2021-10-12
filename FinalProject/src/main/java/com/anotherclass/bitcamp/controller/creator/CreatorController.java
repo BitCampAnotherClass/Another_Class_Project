@@ -1,4 +1,4 @@
-package com.anotherclass.bitcamp.creator;
+package com.anotherclass.bitcamp.controller.creator;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

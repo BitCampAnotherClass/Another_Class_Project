@@ -2,7 +2,7 @@ package com.anotherclass.bitcamp.dao;
 
 import java.util.List;
 
-import com.anotherclass.bitcamp.vo.UserHomeQnAVO;
+import com.anotherclass.bitcamp.vo.user.UserHomeQnAVO;
 
 public interface UserHomeQnADAO {
 	

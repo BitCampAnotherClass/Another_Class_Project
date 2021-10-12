@@ -1,4 +1,4 @@
-package com.anotherclass.bitcamp.admin;
+package com.anotherclass.bitcamp.controller.admin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +19,11 @@ public class AdminController {
 	
 	@RequestMapping(value="/creatorManagement")
 	public String creatorManagement() {
+		return "admin/MemberManagement/creatorManagement";
+	}
+	
+	@RequestMapping(value="/adminTest")
+	public String adminTest() {
 		return "admin/MemberManagement/creatorManagement";
 	}
 }

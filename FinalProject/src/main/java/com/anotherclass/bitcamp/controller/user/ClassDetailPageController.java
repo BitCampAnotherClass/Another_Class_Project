@@ -1,4 +1,4 @@
-package com.anotherclass.bitcamp.user;
+package com.anotherclass.bitcamp.controller.user;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
@@ -8,9 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.anotherclass.bitcamp.service.ClassDetailPageService;
-
-import com.anotherclass.bitcamp.vo.tempMemberVO;
+import com.anotherclass.bitcamp.service.user.ClassDetailPageService;
+import com.anotherclass.bitcamp.vo.user.tempMemberVO;
 
 @Controller
 public class ClassDetailPageController {
