@@ -70,17 +70,15 @@ public class RegisterController {
 		Rsa rsa = new Rsa();
 		// 로그인 전 세션에 저장된 개인키 가져오기
 		PrivateKey privateKey = (PrivateKey) session.getAttribute(Rsa.RSA_WEB_KEY);
-		System.out.println("암호화id : " + vo.getMember_id());
-		System.out.println("암호화pw : " + vo.getMember_pw());
-		System.out.println(privateKey);
+//		System.out.println("암호화id : " + vo.getMember_id());
+//		System.out.println("암호화pw : " + vo.getMember_pw());
 		// 복호화
 		String memberId = rsa.decryptRsa(privateKey, vo.getMember_id());
 		String memberPw = rsa.decryptRsa(privateKey, vo.getMember_pw());
-		System.out.println("복호화id : " + memberId);
-		System.out.println("복호화pw : " + memberPw);
-		
-		////////////////// 해싱 자리
-		
+//		System.out.println("복호화id : " + memberId);
+//		System.out.println("복호화pw : " + memberPw);
+
+		// 해싱
 		String hashingPw = hashing.setEncryption(memberPw,memberId);
 		
 		vo.setMember_id(memberId);

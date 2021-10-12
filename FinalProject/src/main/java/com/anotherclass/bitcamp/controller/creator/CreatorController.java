@@ -31,4 +31,10 @@ public class CreatorController {
 	public String classMain() {
 	    return "user/classDetailPage/classMain";
 	}
+	
+	// 클래스 통계
+	@RequestMapping(value = "/incomeChart")
+	public String incomeChart() {
+		return "creator/income/income_chart";
+	}
 }
