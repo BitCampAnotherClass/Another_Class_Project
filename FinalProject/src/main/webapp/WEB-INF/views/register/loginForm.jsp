@@ -14,6 +14,7 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/prng4.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rng.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
 	// 유효성 검사
 	function validateFrm(){
