@@ -13,8 +13,8 @@
 					padding-left:20px;border-bottom:2px solid #333;}
 	/*주문내역 리스트*/
 	.orderDiv>ul{width:100%;height:auto;}
-	.orderDiv>ul>li{width:100%;height:150px;position:flex;padding-top:30px;} /*주문한줄*/
-	.orderDiv>ul>li>div{float:left;height:100%;} /*주문이미지+주문내역+주문상태에따른버튼들자리*/
+	.orderDiv>ul>li{width:100%;height:150px;position:flex;margin-top:30px;} /*주문한줄*/
+	.orderDiv>ul>li>div{float:left;height:100%;border-bottom:1px solid #ddd;} /*주문이미지+주문내역+주문상태에따른버튼들자리*/
 	
 	.orderDiv>ul>li>div:nth-child(3n+1){width:20%;}/*이미지*/
 	.orderDiv>ul>li>div:nth-child(3n+1) img{width:90%;height:90%;object-fit:cover;text-align:center;}/*주문이미지*/
@@ -108,7 +108,7 @@
 					
 				<div><!-- 환불취소버튼 -->
 					<div>
-						<a href="#"><span>후기보기</span></a>							
+										
 					</div>
 				</div>
 			</li>

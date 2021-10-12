@@ -34,7 +34,7 @@
 
 </style>
 
-	<article id="container" style="background-color:#fff; width:950px; height:1200px; margin:0 auto; padding: 0 20px;">
+	<article id="container" style="background-color:#fff; width:100%; height:1000px; margin:0 auto; padding: 0 20px;">
 		<section class="top-notice">
 			<div class="top-notice-title">
 				2021년 1월 (20년도 제2기) 부가세신고 관련하여 안내 드립니다. 2021.01.04

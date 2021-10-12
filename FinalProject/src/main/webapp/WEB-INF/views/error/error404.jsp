@@ -5,8 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>페이지를 찾을 수 없습니다.</title>
-<link href="css/error.css" rel="stylesheet" type="text/css"/>
-<link href="css/common.css" rel="stylesheet" type="text/css"/>
+<link href="<%=request.getContextPath()%>/css/error.css" rel="stylesheet" type="text/css"/>
+<link href="<%=request.getContextPath()%>/css/common.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 	<div class="error-main">

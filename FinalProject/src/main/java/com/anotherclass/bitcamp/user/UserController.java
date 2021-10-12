@@ -12,16 +12,10 @@ public class UserController {
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home() {
-		
 		return "user/home";
 	}
 	
 	// 임시 맵핑 --------------------------
-	// 은정
-	@RequestMapping(value = "/login")
-	public String login() {
-		return "register/login";
-	}
 	
 	@RequestMapping(value = "/classMap")
 	public String classMap() {
@@ -31,11 +25,6 @@ public class UserController {
 	@RequestMapping(value = "/incomeChart")
 	public String incomeChart() {
 		return "creator/income/income_chart";
-	}
-	
-	@RequestMapping(value = "/creatorHome")
-	public String creatorHome() {
-		return "creator/creator";
 	}
 	
 	@RequestMapping(value = "/mypage/review")
@@ -63,9 +52,13 @@ public class UserController {
 	public String mypage3() {
 		return "/user/mypage/myPage_Ask";
 	}	
+	@RequestMapping(value = "/mypage4")
+	public String mypage4() {
+		return "/user/mypage/myPage_Creatorlike";
+	}	
 	@RequestMapping(value = "/classMainPage")
 	public String classMainPage() {
-		return "/user/classDetailPage/classMain";
+		return "/user/classDetailPage/classMain2";
 	}	
 	@RequestMapping(value = "/payPage")
 	public String payPage() {
@@ -73,10 +66,25 @@ public class UserController {
 	}
 	@RequestMapping(value = "/homeQnA")
 	public String homeQnA() {
-		return "/user/HomeQnA/userHelper_HomeQnA_view";
+		return "/user/HomeQnA/userHelper_HomeQnA_list";
 	}
 	@RequestMapping(value = "/AhomeQnA")
 	public String AhomeQnA() {
 		return "/admin/HomeQnA/admin_HomeQnA_view";
 	}
+	@RequestMapping(value = "/creatorclasslist")
+	public String creatorclasslist() {
+		return "/creator/optionList/classList";
+	}
+	@RequestMapping(value = "/creatorclassoptionlist")
+	public String creatorclassoptionlist() {
+		return "/creator/optionList/classOptionList";
+	}	
+	//지수백위한임시홈
+	@RequestMapping(value = "/temporaryhome")
+	public String temporaryhome() {
+		return "/user/classDetailPage/temporaryhome";
+	}
+	
+	
 }

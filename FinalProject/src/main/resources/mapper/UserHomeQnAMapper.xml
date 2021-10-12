@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.anotherclass.bitcamp.dao.UserHomeQnADAO">
+		<select id="userHomeQnAAllSelect" resultType="com.anotherclass.bitcamp.vo.UserHomeQnAVO" parameterType="String">
+			<![CDATA[
+			select user_qna_no, member_id, title, writedate, board_no1, board_no2 , replycount from
+			(select user_qna_no, member_id, title, to_char(writedate, 'yyyy-MM-DD') writedate, board_no1 ,board_no2, count(board_no1)over(partition by board_no1) as replycount	from homeQnaUser where delete_sort =  0 order by  user_qna_no)
+			order by board_no1, user_qna_no
+			 ]]>
+		</select>
+		
+		<insert id="userHomeQnAWrite" parameterType="com.anotherclass.bitcamp.vo.UserHomeQnAVO">
+			insert into homeQnaUser ( user_qna_no, title, content, member_id , board_no1, board_no2, com_sec, delete_sort, file1, file2, file3 )
+			values (home_qna_sq.nextval, #{title}, #{content}, #{member_id} ,home_qna_sq.nextval , 0, 0, 0, #{file1}, #{file2}, #{file3})
+		</insert>
+		
+		<select id="userHomeQnAView" resultType="com.anotherclass.bitcamp.vo.UserHomeQnAVO">
+			select user_qna_no, member_id, to_char(writedate, 'yyyy-MM-DD') writedate,  title ,
+			content, file1, file2, file3, board_no2
+			from homeQnaUser 
+			where user_qna_no=#{param1}			
+		</select>
+		
+		<update id="userHomeQnAEdit" parameterType="com.anotherclass.bitcamp.vo.UserHomeQnAVO">
+			update homeQnaUser set title=#{title} , content=#{content} , file1=#{file1}, file2=#{file2}, file3=#{file3}
+			where user_qna_no=#{user_qna_no} and member_id=#{member_id}
+		</update>
+		
+		<update id="userHomeQnADel" parameterType="com.anotherclass.bitcamp.vo.UserHomeQnAVO">
+			update homeQnaUser set delete_sort<![CDATA[ = ]]>  1 
+			where board_no1=#{param1}
+		</update>
+  </mapper>

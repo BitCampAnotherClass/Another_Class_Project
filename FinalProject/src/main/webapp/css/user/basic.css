@@ -40,14 +40,35 @@ body{
 }
 
 .tnb{
-	width:200px;
+	width:400px;
 	display:flex;
-	justify-content: space-between;
+	justify-content: flex-end;
+	align-items:center;
 	margin-right:30px;
 }
 
 .tnb.logout-menu{
 	display:none;
+}
+
+.tnb li{
+	margin-left:20px;
+}
+
+.creator-home{
+}
+.creator-home > a{
+	display:inline-block;
+	width:140px;
+	height:30px;
+	line-height:30px;
+	border-radius:4px;
+	background-color:#fff;
+	color:#333;
+	border:1px solid #333;
+	box-sizing:border-box;
+	text-align:center;
+	font-size:15px;
 }
 
 
@@ -189,6 +210,7 @@ li.c-center .sub-menu1{
 
 #contents-wrap{
 	padding-top:118px; /* header 높이 조절 시 같이 조절*/
+	min-height:640px;
 }
 
 

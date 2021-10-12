@@ -32,15 +32,17 @@
 			<div class="inner-lg">
 				<ul class="tnb login-menu">
 					<li><a href="login">로그인</a></li>
-					<li><a href="#">회원가입</a></li>
+					<li><a href="register">회원가입</a></li>
 					<li><a href="#">♥</a></li>
-					<li><a href="#">장</a></li>
+					<li><a href="mypage2">장</a></li>
+					<li class="creator-home"><a href="creator">크리에이터 센터</a></li>
 				</ul>
 				<ul class="tnb logout-menu">
 					<li><a href="#">로그아웃</a></li>
-					<li><a href="mypage">마이페이지</a></li>
+					<li><a href="mypage1">마이페이지</a></li>
 					<li><a href="#">♥</a></li>
-					<li><a href="#">장</a></li>
+					<li><a href="mypage2">장</a></li>
+					<li class="creator-home"><a href="creator">크리에이터 센터</a></li>
 				</ul>
 			</div>
 		</div>
@@ -94,7 +96,7 @@
 							<ul class="sub-menu1">
 								<li><a href="#">공지사항</a></li>
 								<li><a href="#">자주 묻는 질문</a></li>
-								<li><a href="#">1:1문의</a></li>
+								<li><a href="<%=request.getContextPath()%>/HomeQnAAsk/list">홈페이지문의</a></li>
 							</ul>
 						</li>
 					</ul>
