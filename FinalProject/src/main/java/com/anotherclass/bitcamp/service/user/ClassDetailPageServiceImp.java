@@ -6,7 +6,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import com.anotherclass.bitcamp.dao.ClassDetailPageDAO;
+import com.anotherclass.bitcamp.dao.user.ClassDetailPageDAO;
 import com.anotherclass.bitcamp.vo.user.ClassVO;
 @Service
 public class ClassDetailPageServiceImp implements ClassDetailPageService {

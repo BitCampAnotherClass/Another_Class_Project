@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="com.anotherclass.bitcamp.dao.UserHomeQnADAO">
+  <mapper namespace="com.anotherclass.bitcamp.dao.user.UserHomeQnADAO">
 		<select id="userHomeQnAAllSelect" resultType="com.anotherclass.bitcamp.vo.user.UserHomeQnAVO" parameterType="String">
 			<![CDATA[
 			select user_qna_no, member_id, title, writedate, board_no1, board_no2 , replycount from

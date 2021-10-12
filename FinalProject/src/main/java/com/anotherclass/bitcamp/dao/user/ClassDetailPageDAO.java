@@ -1,4 +1,4 @@
-package com.anotherclass.bitcamp.dao;
+package com.anotherclass.bitcamp.dao.user;
 
 import java.util.List;
 
