@@ -43,10 +43,16 @@ public class AdminController {
 	public ModelAndView adminAccountMake(RegisterVO vo)throws Exception {
 		ModelAndView mav = new ModelAndView();
 		vo.setMember_pw(hashing.setEncryption(vo.getMember_pw(),vo.getMember_id()));
+		adminService.adminAccountCreate(vo);
+		String check =vo.getAdditional_information_two();
+		System.out.println(check);
 		
+		if(check=="NOT") {
+			mav.setViewName("redirect:/");
+		}else {
+			
+		}
 		
-		String check = adminService.adminAccountCreate(vo);
-		System.out.println(vo.getAdditional_information_two());
 		mav.setViewName("redirect:/");
 		return mav;
 	}
