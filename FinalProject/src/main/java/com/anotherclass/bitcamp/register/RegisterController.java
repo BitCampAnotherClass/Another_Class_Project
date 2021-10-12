@@ -26,6 +26,12 @@ public class RegisterController {
 		return "register/userRegister";
 	}
 	
+	@RequestMapping("/registerCreator")
+	public String registerCreator() {
+		return "register/creatorRegister";
+	}
+	
+	
 	// 유저 회원가입
 	@RequestMapping(value="/userJoin",method=RequestMethod.POST)
 	public ModelAndView userJoin(RegisterVO vo)throws Exception {

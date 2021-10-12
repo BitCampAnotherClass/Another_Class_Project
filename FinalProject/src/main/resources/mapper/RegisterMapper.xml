@@ -12,14 +12,14 @@
 			#{member_email, mode=IN, jdbcType=VARCHAR, javaType=String}
 		)
 	</insert>
-	<insert id="creatorJoin" parameterType="com.anotherclass.bitcamp.register.RegisterVO">
+	<insert id="creatorAccountJoin" parameterType="com.anotherclass.bitcamp.register.RegisterVO">
 		call creator_account_in(
 			#{member_id, mode=IN, jdbcType=VARCHAR, javaType=String}, 
 			#{member_pw, mode=IN, jdbcType=VARCHAR, javaType=String}, 
 			#{member_name, mode=IN, jdbcType=VARCHAR, javaType=String}, 
 			#{member_tel, mode=IN, jdbcType=VARCHAR, javaType=String}, 
 			#{member_email, mode=IN, jdbcType=VARCHAR, javaType=String},
-			#{creator_nick, mode=IN, jdbcType=VARCHAR, javaType=String}
+			#{nick, mode=IN, jdbcType=VARCHAR, javaType=String}
 		)
 	</insert>
 	<select id="adminAccountCreate" parameterType="com.anotherclass.bitcamp.register.RegisterVO" resultType="com.anotherclass.bitcamp.register.RegisterVO" statementType="CALLABLE">

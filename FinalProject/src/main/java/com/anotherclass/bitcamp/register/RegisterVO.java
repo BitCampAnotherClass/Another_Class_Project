@@ -7,7 +7,7 @@ public class RegisterVO {
 	private String member_name;
 	private String member_tel;
 	private String member_email;
-	private String creator_nick;
+	private String nick;
 	private String additional_information_one;
 	private String additional_information_two;
 	private String member_img; // 프로필 이미지
@@ -43,11 +43,12 @@ public class RegisterVO {
 	public void setMember_email(String member_email) {
 		this.member_email = member_email;
 	}
-	public String getCreator_nick() {
-		return creator_nick;
+	
+	public String getNick() {
+		return nick;
 	}
-	public void setCreator_nick(String creator_nick) {
-		this.creator_nick = creator_nick;
+	public void setNick(String nick) {
+		this.nick = nick;
 	}
 	public String getAdditional_information_one() {
 		return additional_information_one;
