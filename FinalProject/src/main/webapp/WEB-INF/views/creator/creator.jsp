@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<link href="css/creator/dashboard.css" rel="stylesheet" type="text/css"/>
-<link href="css/creator/Chart.min.css" rel="stylesheet" type="text/css"/>
+<link href="<%=request.getContextPath()%>/css/creator/dashboard.css" rel="stylesheet" type="text/css"/>
+<link href="<%=request.getContextPath()%>/css/creator/Chart.min.css" rel="stylesheet" type="text/css"/>
 
 
 <style>
@@ -99,7 +99,7 @@
 	
 	</article>
 	
-<script src="js/Chart.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/Chart.min.js"></script>
 
 <script>
 	const MONTHS = [

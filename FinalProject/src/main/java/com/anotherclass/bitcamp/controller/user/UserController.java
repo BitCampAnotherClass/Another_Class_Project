@@ -22,11 +22,6 @@ public class UserController {
 		return "user/class/class_map";
 	}
 	
-	@RequestMapping(value = "/incomeChart")
-	public String incomeChart() {
-		return "creator/income/income_chart";
-	}
-	
 	@RequestMapping(value = "/mypage/review")
 	public String mypageReview() {
 		return "/user/mypage/myPage_review";
