@@ -11,11 +11,12 @@
 	#hQnAWriteD33ul>li>div:nth-child(1){width:15%;}
 	#hQnAWriteD33ul>li>div:nth-child(2){width:85%;}
 	#hQnAWriteD33ul>li:nth-child(1){border-top:3px solid #333;padding-top:8px;}
-	#hQnAWriteD33ul>li:nth-child(4)>div:nth-child(2)>label{background-color:rgb(125,125,125);color:white;padding:5px 8px 5px 8px;}
+	#labelfor1, #labelfor2, #labelfor3{background-color:rgb(125,125,125);color:white;padding:5px 8px 5px 8px;}
+	#fu span{margin-left:40px;} #fu2 span{margin-left:40px;} #fu3 span{margin-left:40px;}
 	
-	#hQnAWriteSub{width:90%;background-color:#f0f0f0;border:none;height:35px;font-size:1.2rem;}/*제목텍스트박스*/
+	#hQnAWriteSub{width:90%;background-color:#f0f0f0;border:none;height:45px;font-size:1.2rem;}/*제목텍스트박스*/
 	#hQnAWriteCon{width:90%;min-height:500px;background-color:#f0f0f0;border:none;resize:none;overflow:auto;font-size:1.2rem;}/*문의내용텍스트아리아*/
-	#hQnAWriteFile{display:none;}/*파일첨부*/
+	#hQnAWriteFile,#hQnAWriteFile2,#hQnAWriteFile3{display:none;}/*파일첨부*/
 	#hQnABut{border:none;justify-content:center;}/*취소 등록 버튼*/
 	#hQnAWCan6{margin:0 20px 0 20px;width:150px;height:50px;font-size:20px;}
 	#hQnAWSubmit9{margin:0 20px 0 20px;width:150px;height:50px;font-size:20px;}
@@ -24,6 +25,38 @@
 <script>
 	$(()=>{
 		
+	    $("#hQnAWriteFile").change(function(event){
+	    	var imageFile = event.target.files[0];
+	        console.log(imageFile.name);
+	        var reader = new FileReader();
+	        reader.onload = (e) => {
+				$("#fu").children().attr("src", e.target.result);
+	            $("#uploaded").html(imageFile.name);	              
+	        };
+	           reader.readAsDataURL(imageFile);           
+	    });		
+	    $("#hQnAWriteFile2").change(function(event){
+	    	var imageFile = event.target.files[0];
+	        console.log(imageFile.name);
+	        var reader = new FileReader();
+	        reader.onload = (e) => {
+				$("#fu2").children().attr("src", e.target.result);
+	            $("#uploaded2").html(imageFile.name);	              
+	        };
+	           reader.readAsDataURL(imageFile);           
+	    });
+	    $("#hQnAWriteFile3").change(function(event){
+	    	var imageFile = event.target.files[0];
+	        console.log(imageFile.name);
+	        var reader = new FileReader();
+	        reader.onload = (e) => {
+				$("#fu3").children().attr("src", e.target.result);
+	            $("#uploaded3").html(imageFile.name);	              
+	        };
+	           reader.readAsDataURL(imageFile);           
+	    });
+	    
+	    
 		$("#hQnAWCan6").click(()=>{//취소버큰 클릭 -> 목록으로돌아가기
 			$("#hQnAWriteD33ulFrm").attr("action", "/teamproject/HomeQnAAsk/list" );
 			$("#hQnAWriteD33ulFrm").submit();			
@@ -57,9 +90,20 @@
 					<div>문의내용</div>
 					<div><textarea name="content" id="hQnAWriteCon"></textarea></div>	
 				</li>
-				<li>
+				<li id="fu">
 					<div>파일첨부</div>
-					<div><input type="file" name="file1" id="hQnAWriteFile"><label for="hQnAWriteFile">파일선택</label></div>	
+					<div><input type="file" name="file1" id="hQnAWriteFile">
+					<label for="hQnAWriteFile" id="labelfor1">파일선택</label><span id="uploaded"></span></div>	
+				</li>
+				<li id="fu2">
+					<div>파일첨부</div>
+					<div><input type="file" name="file2" id="hQnAWriteFile2">
+					<label for="hQnAWriteFile2" id="labelfor2">파일선택</label><span id="uploaded2"></span></div>	
+				</li>
+				<li id="fu3">
+					<div>파일첨부</div>
+					<div><input type="file" name="file3" id="hQnAWriteFile3">
+					<label for="hQnAWriteFile3" id="labelfor3">파일선택</label><span id="uploaded3"></span></div>	
 				</li>
 				<li id="hQnABut">
 				<input type="button" name="hQnAWCan6" id="hQnAWCan6" value="취소"/><input type="button" name="hQnAWSubmit9" id="hQnAWSubmit9" value="등록"/>

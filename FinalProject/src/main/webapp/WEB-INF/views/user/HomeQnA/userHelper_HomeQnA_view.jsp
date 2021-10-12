@@ -4,7 +4,7 @@
 	/*제일겉에있는 Div*/
 	#hQnAWriteD20{width:1200px;height:auto;margin:0 auto;}
 	.hQnAT{width:100%;text-align:center;font-size:32px;font-weight: bold;color:#333;margin:40px 0 40px 0;}
-	.hQnATWT20{width:100%;text-align:left;font-size:24px;font-weight: bold;color:#333;margin-left:8px;}
+	.hQnATWT20{width:100%;text-align:left;font-size:24px;font-weight: bold;color:#333;}
 	
 	#hQnATWT20 ul,li{margin:0;padding:0;list-style-type:none;}
 	#hQnATul{width:100%;height:auto;margin:0 auto;overflow:auto;} /*border:1px solid black;*/
@@ -12,9 +12,11 @@
 	#hQnATul>li>div:nth-child(1){width:15%;}
 	#hQnATul>li>div:nth-child(2){width:85%;}
 	#hQnATul>>li:nth-child(1){border-top:3px solid #333;padding-top:8px;}
-	#hQnATul>>li:nth-child(5)>div:nth-child(2)>label{background-color:rgb(125,125,125);color:white;padding:5px 8px 5px 8px;}
+	#labelforv1, #labelforv2, #labelforv3{background-color:rgb(125,125,125);color:white;padding:5px 8px 5px 8px;}
+
+	#hQnAWriteFileview1,#hQnAWriteFileview2,#hQnAWriteFileview3{display:none;}
 	
-	#hQnAWriteSubview{width:90%;background-color:#f0f0f0;border:none;height:35px;font-size:1.2rem;}/*제목텍스트박스*/
+	#hQnAWriteSubview{width:90%;background-color:#f0f0f0;border:none;height:45px;font-size:1.2rem;}/*제목텍스트박스*/
 	#hQnAWriteConview{width:90%;min-height:500px;background-color:#f0f0f0;border:none;resize:none;overflow:auto;font-size:1.2rem;}/*문의내용텍스트아리아*/
 	/*파일첨부*/
 	#hQnAButview{border:none;justify-content:center;}/*취소 수정 목록 버튼*/
@@ -24,11 +26,7 @@
 <script>
 	$(()=>{
 		
-		//수정 hQnAWEdit
-		//$("hQnAWEdit").click(()=>{
-		//	$("#homeQnAVFrm").attr("action", "/teamproject/HomeQnAAsk/editForm" );
-		//	$("#homeQnAVFrm").submit();
-		//});
+		
 		
 		//목록
 		$("#hQnAWList").click(()=>{
@@ -72,10 +70,20 @@
 					<div>문의내용</div>
 					<div><textarea name="hQnAWriteConview" id="hQnAWriteConview" readonly disabled >${vo.content }</textarea></div>	
 				</li>
-				<li>
-					<div>파일첨부</div>
-					<div>${vo.file1 }</div>	<!-- hQnAWriteFileview -->
+				<li id="fuV1">
+					<div>파일첨부</div><!-- hQnAWriteFileview -->
+					<div><span id="uploadedv">${vo.file1 }</span></div>	
+					
 				</li>
+				<li id="fuV2">
+					<div>파일첨부</div><!-- hQnAWriteFileview -->
+					<div><span id="uploadedv">${vo.file2 }</span></div>	
+				</li>
+				<li id="fuV3">
+					<div>파일첨부</div><!-- hQnAWriteFileview -->
+					<div><span id="uploadedv">${vo.file3 }</span></div>	
+				</li>
+				
 				<li>
 					<div>답변여부</div>
 					<div>${vo.board_no2 }</div>	

@@ -12,8 +12,8 @@
 		</select>
 		
 		<insert id="userHomeQnAWrite" parameterType="com.anotherclass.bitcamp.vo.UserHomeQnAVO">
-			insert into homeQnaUser ( user_qna_no, title, content, member_id , board_no1, board_no2, com_sec, delete_sort )
-			values (home_qna_sq.nextval, #{title}, #{content}, #{member_id} ,home_qna_sq.nextval , 0, 0, 0)
+			insert into homeQnaUser ( user_qna_no, title, content, member_id , board_no1, board_no2, com_sec, delete_sort, file1, file2, file3 )
+			values (home_qna_sq.nextval, #{title}, #{content}, #{member_id} ,home_qna_sq.nextval , 0, 0, 0, #{file1}, #{file2}, #{file3})
 		</insert>
 		
 		<select id="userHomeQnAView" resultType="com.anotherclass.bitcamp.vo.UserHomeQnAVO">
@@ -24,7 +24,7 @@
 		</select>
 		
 		<update id="userHomeQnAEdit" parameterType="com.anotherclass.bitcamp.vo.UserHomeQnAVO">
-			update homeQnaUser set title=#{title} , content=#{content} 
+			update homeQnaUser set title=#{title} , content=#{content} , file1=#{file1}, file2=#{file2}, file3=#{file3}
 			where user_qna_no=#{user_qna_no} and member_id=#{member_id}
 		</update>
 		
