@@ -22,11 +22,6 @@ public class RegisterServiceImp implements RegisterService {
 	public int creatorAccountJoin(RegisterVO vo) {
 		return registerDao.creatorAccountJoin(vo);
 	}
-	
-	@Override
-	public int adminAccountCreate(RegisterVO vo) {
-		return registerDao.adminAccountCreate(vo);
-	}
 
 	@Override
 	public RegisterVO loginMember(RegisterVO vo) {

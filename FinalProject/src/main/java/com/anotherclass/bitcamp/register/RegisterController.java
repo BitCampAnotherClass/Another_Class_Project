@@ -15,10 +15,11 @@ import com.anotherclass.bitcamp.service.register.RegisterService;
 
 @Controller
 public class RegisterController {
+	private HashingSeting hashing = new HashingSeting();
 	
 	@Inject
 	RegisterService registerService;
-	private HashingSeting hashing = new HashingSeting();
+	
 	
 	@RequestMapping("/register")
 	public String register() {
@@ -54,7 +55,6 @@ public class RegisterController {
 		mav.setViewName("redirect:/");
 		return mav;
 	}
-	
 	
 	// 로그인폼
 	@RequestMapping(value = "/login")

@@ -13,7 +13,7 @@
 		)
 	</insert>
 	<insert id="creatorJoin" parameterType="com.anotherclass.bitcamp.register.RegisterVO">
-		call ex_account_in(
+		call creator_account_in(
 			#{member_id, mode=IN, jdbcType=VARCHAR, javaType=String}, 
 			#{member_pw, mode=IN, jdbcType=VARCHAR, javaType=String}, 
 			#{member_name, mode=IN, jdbcType=VARCHAR, javaType=String}, 
@@ -22,14 +22,14 @@
 			#{creator_nick, mode=IN, jdbcType=VARCHAR, javaType=String}
 		)
 	</insert>
-	<insert id="adminAccountCreate" parameterType="com.anotherclass.bitcamp.register.RegisterVO">
+	<select id="adminAccountCreate" parameterType="com.anotherclass.bitcamp.register.RegisterVO" resultType="com.anotherclass.bitcamp.register.RegisterVO" statementType="CALLABLE">
 		call admin_account_in(
 			#{member_id, mode=IN, jdbcType=VARCHAR, javaType=String}, 
 			#{member_pw, mode=IN, jdbcType=VARCHAR, javaType=String}, 
 			#{additional_information_one, mode=IN, jdbcType=VARCHAR, javaType=String}, 
 			#{additional_information_two, mode=OUT, jdbcType=VARCHAR, javaType=String}
 		)
-	</insert>
+	</select>
 	<select id="loginMember" parameterType="com.anotherclass.bitcamp.register.RegisterVO" resultType="com.anotherclass.bitcamp.register.RegisterVO">
 		select member_id, member_name, member_img, creator_nick 
 		from memberTbl where member_id=#{member_id} and member_pw=#{member_pw}
