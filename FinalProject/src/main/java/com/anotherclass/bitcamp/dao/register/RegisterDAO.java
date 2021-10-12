@@ -1,4 +1,4 @@
-package com.anotherclass.bitcamp.dao;
+package com.anotherclass.bitcamp.dao.register;
 
 import com.anotherclass.bitcamp.register.RegisterVO;
 

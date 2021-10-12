@@ -4,7 +4,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import com.anotherclass.bitcamp.dao.RegisterDAO;
+import com.anotherclass.bitcamp.dao.register.RegisterDAO;
 import com.anotherclass.bitcamp.register.RegisterVO;
 
 @Service

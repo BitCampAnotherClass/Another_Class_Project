@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper namespace="com.anotherclass.bitcamp.dao.RegisterDAO">
+ <mapper namespace="com.anotherclass.bitcamp.dao.register.RegisterDAO">
 	<insert id="userAccountJoin" parameterType="com.anotherclass.bitcamp.register.RegisterVO">
 		call ex_account_in(
 			#{member_id, mode=IN, jdbcType=VARCHAR, javaType=String}, 
