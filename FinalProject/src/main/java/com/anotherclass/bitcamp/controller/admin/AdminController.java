@@ -1,11 +1,23 @@
 package com.anotherclass.bitcamp.controller.admin;
 
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.anotherclass.bitcamp.register.HashingSeting;
+import com.anotherclass.bitcamp.register.RegisterVO;
+import com.anotherclass.bitcamp.service.admin.AdminService;
 
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
+	private HashingSeting hashing = new HashingSeting();
+	
+	@Inject
+	AdminService adminService;
 	
 	@RequestMapping("/")
 	public String admin() {
@@ -24,6 +36,19 @@ public class AdminController {
 	
 	@RequestMapping(value="/adminTest")
 	public String adminTest() {
-		return "admin/MemberManagement/creatorManagement";
+		return "admin/adminTest";
 	}
+	
+	@RequestMapping(value="/adminAccountMake", method = RequestMethod.POST)
+	public ModelAndView adminAccountMake(RegisterVO vo)throws Exception {
+		ModelAndView mav = new ModelAndView();
+		vo.setMember_pw(hashing.setEncryption(vo.getMember_pw(),vo.getMember_id()));
+		
+		
+		String check = adminService.adminAccountCreate(vo);
+		System.out.println(vo.getAdditional_information_two());
+		mav.setViewName("redirect:/");
+		return mav;
+	}
+	
 }

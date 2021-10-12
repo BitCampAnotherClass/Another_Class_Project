@@ -11,10 +11,10 @@
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <!-- 구글맵 -->
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZO3MrykFpNpemqO2zPtG5M9ADUXSoApw&callback=initMap"></script>
+<!--  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZO3MrykFpNpemqO2zPtG5M9ADUXSoApw&callback=initMap"></script>-->
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
+<script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9551f210d2bfdcde36af42fb1ccab895&libraries=services"></script>
 <script>
 var count=0;
 var iitest=0;
@@ -89,6 +89,9 @@ $(document).ready(function() {
   			});
 });
 //////////////////////////////////////////////
+ 	
+
+
 function execDaumPostcode() {
    	var width = 500;
   	var height = 300;
@@ -116,92 +119,33 @@ function execDaumPostcode() {
                 guideTextBox.innerHTML = '';
                 guideTextBox.style.display = 'none';
             }
+            
+            // 주소로 상세 정보를 검색
+            geocoder.addressSearch(data.address, function(results, status) {
+                // 정상적으로 검색이 완료됐으면
+                if (status === daum.maps.services.Status.OK) {
+
+                    var result = results[0]; //첫번째 결과의 값을 활용
+
+                    // 해당 주소에 대한 좌표를 받아서
+                    var coords = new daum.maps.LatLng(result.y, result.x);
+                    // 지도를 보여준다.
+                    mapContainer.style.display = "block";
+                    map.relayout();
+                    // 지도 중심을 변경한다.
+                    map.setCenter(coords);
+                    // 마커를 결과값으로 받은 위치로 옮긴다.
+                    marker.setPosition(coords)
+                }
+            });
         }
     }).open({//embed('classAddressIframe'); 팝업아닌 넣어서 표시
     	 left: (window.screen.width / 2) - (width / 2),
     	 top: (window.screen.height / 2) - (height / 2)
     });
 }
-////////////////////////////////////////
-var latitude;
-	var longitude;
-	var nameGeo;
-	var addr;
-	var geoImg;
-	var bringAddress;
-	function setMapReset(){
-		latitude = 37.5729503;
-		longitude = 126.9793578;
-		bringAddress = document.getElementById("roadAddress").value;
-		
-		nameGeo = [bringAddress];//지명
-		addr = ['https://www.naver.com'];//url주소
-		geoImg = ['img/kimin/2.jpg'];//img
-		
-		//image
-	}
+
 /////////////////////////////////
-	var map;
-	var geoCoder;
-	var marker;
-/////////////////////////////	
-function initMap(){
-		setMapReset();
-		
-		var myCenter = new google.maps.LatLng(latitude, longitude);
-		var option = {
-				center : myCenter,
-				zoom:12,
-				mapTypeId:google.maps.MapTypeId.ROADMAP
-				
-		}
-		
-		map = new google.maps.Map(document.getElementById("googleMap"), option);
-		
-		geoCoder = new google.maps.Geocoder();
-		
-		for(var i=0; i<nameGeo.length; i++){
-			//				지명, 주소, 이미지
-			setMapPosition(nameGeo[i], addr[i], geoImg[i]);
-		}
-		
-	}//initMap
-///////////////////////////////////////	
-function setMapPosition(name2, addr2, geoImg2){
-		//지명을 이용하여 마커, 대화상자를 geoCoder 객체에 셋팅
-		
-		geoCoder.geocode({'address':name2},    //마커를 표시할 주소
-			function(results, status){
-				if(status == 'OK'){
-					map.setCenter(results[0].geometry.location);
-					
-					//마커 표시
-						marker = new google.maps.Marker({
-						map:map,
-						icon:'img/kimin/map_pin.png',
-						title: results[0]['formatted_address'], //마커에 마우스 오버를 하면 주소가 표시된다.
-						position:results[0].geometry.location
-						
-					});
-						//대화상자: 위도, 경도, 이미지-> url주소 이동하기
-						var la =  results[0]['geometry']['location']['lat']();//위도
-						var lo =  results[0]['geometry']['location']['lng']();//경도
-						
-						var popMsg = "주소 : "+results[0]['formatted_address']+'<br/>';
-							if(addr2!=""){
-							popMsg += "<a href='"+addr2+"'><img src='"+geoImg2+"' width='100' height='40'/></a>";
-							}
-						var info = new google.maps.InfoWindow({content:popMsg});
-						
-						google.maps.event.addListener(marker, 'click', function(){info.open(map, marker)});
-						
-				}else{
-					console.log("존재하지않는 지명입니다.")
-				}//if
-			}//function
-		);//geocoder
-		
-	}//function setMapPosition()
 function mapSearch(){
 	var searchName = document.getElementById("roadAddress").value;
 	if(searchName==""){
@@ -454,7 +398,7 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 #classAddressInnerDivGoogle{
 	height:500px;
 }
-#googleMap{
+#kakaoMap{
 	width:1160px;
 	height:460px;
 }
@@ -647,7 +591,7 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	<div>
 		<ul class="descriptionUl">
 			<li class="dsctitle">작성 Tip</li>
-			<li>클래스 개설 일정을 선택해 주세요</li>
+			<li>클래스 개설 일정과 시간을 선택해 주세요</li>
 			<li>최대 10일 까지 선택 가능합니다</li>
 			<li>10개 선택 초과시 빨강색으로 표시되며 선택한 요일을 다시 클릭하면 취소됩니다</li>
 		</ul>
@@ -667,8 +611,25 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 		</div>
 	</div>
 	<div class="classAddress" id="classAddressInnerDivGoogle">
-		<div id="googleMap"></div>
+		<div id="kakaoMap"></div>
 	</div>
+		<script>
+			var mapContainer = document.getElementById('kakaoMap'), // 지도를 표시할 div
+	        mapOption = {
+	            center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
+	            level: 5 // 지도의 확대 레벨
+	        };
+		
+		    //지도를 미리 생성
+		    var map = new daum.maps.Map(mapContainer, mapOption);
+		    //주소-좌표 변환 객체를 생성
+		    var geocoder = new daum.maps.services.Geocoder();
+		    //마커를 미리 생성
+		    var marker = new daum.maps.Marker({
+		        position: new daum.maps.LatLng(37.537187, 127.005476),
+		        map: map
+		    });
+		</script>
 	<div>
 		<ul class="descriptionUl">
 			<li class="dsctitle">작성 Tip</li>
