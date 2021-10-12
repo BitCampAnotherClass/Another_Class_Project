@@ -1,8 +1,8 @@
-package com.anotherclass.bitcamp.dao;
+package com.anotherclass.bitcamp.dao.user;
 
 import java.util.List;
 
-import com.anotherclass.bitcamp.vo.UserHomeQnAVO;
+import com.anotherclass.bitcamp.vo.user.UserHomeQnAVO;
 
 public interface UserHomeQnADAO {
 	

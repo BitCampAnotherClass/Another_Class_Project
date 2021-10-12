@@ -1,4 +1,4 @@
-package com.anotherclass.bitcamp.dao;
+package com.anotherclass.bitcamp.dao.register;
 
 import com.anotherclass.bitcamp.register.RegisterVO;
 
@@ -8,7 +8,7 @@ public interface RegisterDAO {
 	
 	public int creatorAccountJoin(RegisterVO vo);
 	
-	public int adminAccountCreate(RegisterVO vo);
+	public String adminAccountCreate(RegisterVO vo);
 	
 	public RegisterVO loginMember(RegisterVO vo);
 }

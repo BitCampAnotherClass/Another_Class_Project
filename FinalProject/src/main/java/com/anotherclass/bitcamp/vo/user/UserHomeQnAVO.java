@@ -1,4 +1,4 @@
-package com.anotherclass.bitcamp.vo;
+package com.anotherclass.bitcamp.vo.user;
 
 public class UserHomeQnAVO {//비밀번호 칼럼..............추가............
 	

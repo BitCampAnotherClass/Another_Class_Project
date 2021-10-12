@@ -1,12 +1,13 @@
-package com.anotherclass.bitcamp.creator;
+package com.anotherclass.bitcamp.controller.creator;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping("/creator")
 public class CreatorController {
 	
-	@RequestMapping("/creator")
+	@RequestMapping("/")
 	public String creator() {
 		return "creator/creator";
 	}
@@ -29,5 +30,11 @@ public class CreatorController {
 	@RequestMapping("/classMain")
 	public String classMain() {
 	    return "user/classDetailPage/classMain";
+	}
+	
+	// 클래스 통계
+	@RequestMapping(value = "/incomeChart")
+	public String incomeChart() {
+		return "creator/income/income_chart";
 	}
 }

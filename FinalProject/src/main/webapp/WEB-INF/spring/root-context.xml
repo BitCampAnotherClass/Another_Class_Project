@@ -17,5 +17,5 @@
 		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
 		<property name="mapperLocations" value="classpath:/mapper/*Mapper.xml"></property>
 	</bean>
-	<mybatis-spring:scan base-package="com.anotherclass.bitcamp.dao"/> 
+	<mybatis-spring:scan base-package="com.anotherclass.bitcamp.dao.register, com.anotherclass.bitcamp.dao.user, com.anotherclass.bitcamp.dao.admin, com.anotherclass.bitcamp.dao.creator"/>
 </beans>

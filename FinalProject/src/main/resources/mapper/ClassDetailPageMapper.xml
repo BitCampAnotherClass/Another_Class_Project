@@ -2,8 +2,8 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-  <mapper namespace="com.anotherclass.bitcamp.dao.ClassDetailPageDAO">
-  	<select id="temporarylistAllSelect" resultType="com.anotherclass.bitcamp.vo.ClassVO">
+  <mapper namespace="com.anotherclass.bitcamp.dao.user.ClassDetailPageDAO">
+  	<select id="temporarylistAllSelect" resultType="com.anotherclass.bitcamp.vo.user.ClassVO">
         select class_no, class_name, class_info, class_price,  member_id, class_thumb ,
         class_content, img_file, addr1, max_headcount, category_no, to_char(writedate, 'MM-DD HH:MI') writedate
          from classtbl
