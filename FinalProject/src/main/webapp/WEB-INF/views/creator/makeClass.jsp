@@ -647,7 +647,7 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	<div>
 		<ul class="descriptionUl">
 			<li class="dsctitle">작성 Tip</li>
-			<li>클래스 개설 일정을 선택해 주세요</li>
+			<li>클래스 개설 일정과 시간을 선택해 주세요</li>
 			<li>최대 10일 까지 선택 가능합니다</li>
 			<li>10개 선택 초과시 빨강색으로 표시되며 선택한 요일을 다시 클릭하면 취소됩니다</li>
 		</ul>
