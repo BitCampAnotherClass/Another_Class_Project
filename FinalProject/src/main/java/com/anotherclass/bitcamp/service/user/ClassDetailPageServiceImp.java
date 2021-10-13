@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.anotherclass.bitcamp.dao.user.ClassDetailPageDAO;
 import com.anotherclass.bitcamp.vo.user.ClassVO;
-import com.anotherclass.bitcamp.vo.user.userClassDetailVO;
+import com.anotherclass.bitcamp.vo.user.UserClassDetailVO;
 @Service
 public class ClassDetailPageServiceImp implements ClassDetailPageService {
 
@@ -22,14 +22,18 @@ public class ClassDetailPageServiceImp implements ClassDetailPageService {
 	}
 
 	@Override
-	public userClassDetailVO userClassDetailAllSelect(int no) {
+	public UserClassDetailVO userClassDetailAllSelect(int no) {
 		
 		return classDetailPageDAO.userClassDetailAllSelect(no);
 	}
 
 	@Override
-	public List<userClassDetailVO> userSelectOptionAllSelect(String datedate, String no) {
-	
+	public List<UserClassDetailVO> userSelectOptionAllSelect(String datedate, int no) {
+		 //List<UserClassDetailVO> list = classDetailPageDAO.userSelectOptionAllSelect(datedate,no);
+		  
+		// UserClassDetailVO vo2 = list.get(0);
+		// System.out.println(vo2.getStart_date());
+		 
 		return classDetailPageDAO.userSelectOptionAllSelect(datedate,no);
 	}
 
