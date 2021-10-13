@@ -550,7 +550,7 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 		<span><kimin>*</kimin> 4) 클래스 썸네일 <kimin>(필수)</kimin></span>
 	</div>
 	<div class="classImgDiv">
-			<div id="imgThumbDiv"><img src="img/kimin/uploadimg.png" ></div>
+			<div id="imgThumbDiv"><img src="<%=request.getContextPath()%>/img/kimin/uploadimg.png" ></div>
 			<input type="button" name="imgThumb" value="클래스 썸네일 이미지 등록" class="buttonClass">
 	</div>
 	<div>

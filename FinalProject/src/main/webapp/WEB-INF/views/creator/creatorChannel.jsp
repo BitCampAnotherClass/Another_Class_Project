@@ -5,8 +5,7 @@
 
 
 <style>
-li{float:left;}
-#myChannelMainDiv{background-color:pink;
+#myChannelMainDiv{border:1px solid pink;
 	width:1200px;
 	margin:0 auto;
 	height:1000px;
@@ -25,26 +24,28 @@ li{float:left;}
 	height:400px;
 	margin: 0px 0px 0px 20px;
 }
-#creatorNameDiv{background-color:white;
+#creatorNameDiv{background-color:;
 	width:400px;
 	height:120px;
-	margin:270px 0px 0px 0px;
+	margin:270px 0px 0px 20px;
 }
-#creatorNameDiv>ul>li{background-color:;
-	width:100%;
-	text-align: center;
-}
-#creatorNick{
-	font-size:2em; 
+#creatorNameDiv>ul>li{border:;
+	text-align:center;
+	font-size:2em;
 	color:gray;
-	font-weight:500;
-	border-bottom: 3px solid lightgray;
-	width: 100%;
-	height:50px;
+	font-weight: 500;
+	line-height: 55px;
+	width:100%;
 }
-#myChannelMenuDiv{
+#creatorNameDiv>ul>li:nth-child(2){
+	border-top:3px solid lightgray;
 }
-#myChannelMenuDiv li{
+#creatorNameDiv>ul{
+	width:100%;
+	height:100%;
+}
+
+#myChannelMenuDiv>ul>li{
 	width:33.3%;
 	line-height:45px;
 	height:50px;
@@ -52,6 +53,11 @@ li{float:left;}
 	border:3px solid lightgray;
 	font-size:1.3em; 
 	color:gray;
+	float:left;
+}
+#creatorNameDiv span{
+	color:#FF385C;
+	font-size:0.6em;
 }
 </style>
 <script>
@@ -62,8 +68,8 @@ li{float:left;}
 		<div class="creatorImgDiv"></div>
 		<div id="creatorNameDiv">
 			<ul>
-				<li><div id="creatorNick">버드세이지 플라워</div></li>
-				<li>젅</li>
+				<li>버드세이지 플라워</li>
+				<li>장동민 <span>크리에이터님</span></li>
 			</ul>
 		</div>
 	</div>
