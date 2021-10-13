@@ -7,8 +7,6 @@
 	}
 	.userMg-main{
 		width:1200px;
-		margin-left:300px;
-		padding: 20px;
 	}
 	.userMg-top, .userMg-bottom{
 		border: 1px solid #464646;
@@ -16,12 +14,11 @@
 		margin-bottom: 3%;
 	}
 	.userMg-chart-box, .userMg-top-search{
-		padding:20px;
 		width:1200px;
 		height:200px;
 	}
 	.userMg-chart-box{
-		width:1160px;
+		width:1200px;
 	}
 	.userMg-chart-boardlist{
 		float: left;
@@ -57,7 +54,7 @@
 				<li class="userMg-chart-boardlist">성명</li>
 				<li class="userMg-chart-boardlist">이메일</li>
 				<li class="userMg-chart-boardlist">휴대폰</li>
-				<li class="userMg-chart-boardlist">탈퇴일</li>
+				<li class="userMg-chart-boardlist">가입일</li>
 				<li class="userMg-chart-boardlist">관리</li>
 				<li class="userMg-chart-boardlist"><input type="checkbox" id="allcheck"/></li>
 				<li class="userMg-chart-boardlist">기본</li>
@@ -65,7 +62,11 @@
 				<li class="userMg-chart-boardlist">기본</li>
 				<li class="userMg-chart-boardlist">기본</li>
 				<li class="userMg-chart-boardlist">기본</li>
-				<li class="userMg-chart-boardlist">기본</li>
+				<li class="userMg-chart-boardlist">
+					<input type="button" value="상세 정보" />
+					<input type="button" value="수정" />
+					<input type="button" value="삭제" />
+				</li>
 			</ul>
 		</div>
 	</div>

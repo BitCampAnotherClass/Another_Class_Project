@@ -1,21 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+
 
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- 데이트피커 
+<script type="text/javascript" src="<%=request.getContextPath()%>/css/user/classCalendar/jquery-ui.min.js"></script>-->  
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/user/classCalendar/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js" integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk=" crossorigin="anonymous"></script> 
 
 
-<!-- 데이트피커 : flatpickr -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
-</head>
+
+
 <style>
 
 	div{margin:0;padding:0; box-sizing:border-box;}
@@ -108,17 +106,28 @@
 	#classMainAskTa{width:90%;height:100px;resize:none;overflow:auto;border-color:#ddd;}/*댓글작성하는부분*/
 	#d9>div:nth-child(3)>form>input[type=button]{margin: 10px 0 0 36px;background-color:white;border:none;border:1px solid #999;width:100px;padding-top:5px;padding-bottom:5px;}
 	textarea::placeholder {color:#999;}
-
+	
+	.askdiv909{border:1px solid #f0f0f0;padding:10px;}/*회원배경:회색*/
+	.askdiv808{background-color: #f0f0f0;padding:10px;}/*강사배경 : 연핑크 or 연하늘*/
 
 	
 	/*==================#rightDiv==================*/
 	
 	/*rightDiv*/
-	#calendardiv{width:100%; height:600px; border:2px solid #ff385c;position:sticky;top:125px;}
+	#rightConBox{width:96%;margin-left:10px; min-height:600px;height:auto; box-shadow: 0 0 8px rgba(0,0,0,0.3);position:sticky;top:125px;border-radius: 10px;}
+	#rightConBox div{margin:0 auto;}
 	
-	/*달력*/
-	.dateSelector{width:98%; display:block;}	/* display:none */
-	.flatpickr-calendar animate inline{width:98%;}
+	/*달력 width:350px;*/	
+	#datepicker{padding-top:25px;}
+	
+	/*클래스옵션목록*/
+	#selectClassListd{width:350px;min-height:120px;height:auto;border:1px solid #f0f0f0;overflow:auto;} 
+	/*버튼감싸고 있는div*/
+	#buttonhomec{width:350px;display:flex;height:auto;}
+	#buttonhomec input[type=button]{border:none;}
+	#gobasketB{width:119px;height:38px;font-size:18px;margin:10px 30px 15px 0;boder:1px solid #ddd;background-color:#616060;color:#fff;}
+	#gopayB{width:200px;height:38px;font-size:18px;margin:10px 0 15px 0;boder:1px solid #ddd;background-color:#616060;color:#fff;}
+	
 </style>
 <script>
 	$(function(){		
@@ -131,20 +140,31 @@
 		});
 				
 			
-		//달력		
-		$(".dateSelector").flatpickr({
-			inline : true,
-			mode: "multiple",
-			dateFormat: "Y-m-d",
-			minDate:"today",
-			maxDate: new Date().fp_incr(180)
-			});		
+	    $(function(){//달력
+	         $('.datepicker').datepicker({
+	        	 dateFormat: 'yy-mm-dd'
+	        	 ,dayNamesMin: ['일','월','화','수','목','금','토']
+	         	 ,minDate: "-0M" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
+	             ,maxDate: "+5M" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)  
+	        	
+	         });
+	         
+	         $('.datepicker').datepicker('setDate', 'today');
+	      })
+		
+	      $('#datepicker').on("change", function() { //날짜선택시 벌어지는일
+	          //var date9999 = $(this).val();
+	      	  //console.log(date9999);
+	      	  $("#inputdatebox").html($(this).val());
+	      });
+	      
+	   		
 	});
 	
 	
 
 </script>
-<body>
+
 <div id="Bcotainer">
 	<!--  -->
 	<div id="leftdiv">
@@ -152,9 +172,9 @@
 			<div id="d1"><img src="img/jisu/classimg.png"/></div> <!-- 클래스 이미지 -->
 			<div id="d2"> <!-- 클래스 소개 -->
 				<ul>
-					<li>플라워·가드닝</li> <!-- 위치?대분류? --> <!-- 왼쪽정렬 -->
-					<li>꽃꽃이 및 테라리움 레슨 서비스</li> <!-- 클래스 제목 -->
-					<li>꽃처럼 마음도 예뻐지는 꽃꽃이 클래스</li> <!-- 짧은 소개글 *******************pre-wrap 아직 미설정-->
+					<li>${vo.category_name }</li> <!-- 위치?대분류? --> <!-- 왼쪽정렬 -->
+					<li>${vo.class_name }</li> <!-- 클래스 제목 -->
+					<li>${vo.class_info }</li> <!-- 짧은 소개글 *******************pre-wrap 아직 미설정-->
 					<li>
 						<div>
 							<div><img src="img/jisu/ff385bigborderheart.png"/></div><!--  좋아요버튼, 좋아요수 --> <!-- 왼쪽정렬 -->
@@ -168,7 +188,7 @@
 			<div id="d3"> <!-- 강사프로필 + 강사명 -->
 				<div><img src="img/jisu/creatorprofile.png"/></div> <!-- 강사프로필이미지 -->	
 				<div> <!-- 강사닉네임 -->	
-					<a href="#">버드세이지 플라워</a>
+					<a href="#">${vo.nick }</a>
 					<span>클래스 3개 | 좋아요 19개</span>
 				</div>
 			</div>
@@ -185,36 +205,19 @@
 			<div id="d5" class="menu"> <!-- 클래스소개 -->
 				<div class="menutitle"><span>클래스소개</span></div>
 				<div>		
-					<img src="img/jisu/flower2.png"/>			
-					플라워 클래스 공간을 새롭게 리뉴얼한 버드세이지 플라워!
-					한강진역 3번출구에서 도보로 5분이면 도착가능합니다.
-					자연광도 예쁘게 들어오고 좁고 답답한 플라워샵이나 오피스텔에서 진행하지 않고
-					널찍하고 세련된 인테리어로 	인생샷을 찍을 수 있는 트렌드바이미입니다.					
-					<img src="img/jisu/flower3.png"/>							
-					꽃꽂이 원데이 클래스,
-					기초부터 차근차근 알려드립니다 :)
-					선물하기에도 좋은 센터피스					
-					<img src="img/jisu/flower4.png"/>						
-					가장 대표적이며 기본적인 클래스라고 할수있는	'센터피스'입니다.
-					꽃줄기를 사선으로 자른뒤 화기 안의 플로럴폼(오아시스)에 꽂아서 완성하시게 됩니다.
-					고급스러운 화기가 함께 제공되며 집들이 선물, 첫인사 꽃으로 많이 신청하신답니다.					
+					${vo.class_content }				
 				</div>
 				
 			</div>
 			<div id="d6" class="menu"> <!-- 강사소개 -->
 				<div class="menutitle"><span>강사소개</span></div>
 				<div>
-					<img src="img/jisu/flower5.png"/>
-					안녕하세요. 감각적인 플라워상품과 클래스를 제공하는 버드세이지 플라워입니다.										
-					
-					저는 5년차 플로리스트로 원데이, 기초반부터 자격증, 창업반까지 
-					
-					다양한 플라워클래스를 온,오프라인으로 진행하고 있어요:-)
+					${vo.creator_content }
 				</div>
 			</div>
 			<div id="d7" class="menu"> <!-- 위치 -->
 				<div class="menutitle"><span>위치</span></div>
-				<div>광주광역시 북구 천지인로115번길 10</div>
+				<div>${vo.class_addr1 }</div>
 				<div style="width:100%;height:100%;">
 					<div id="map" style="width:90%;height:400px;"></div>
 					<!--
@@ -236,7 +239,7 @@
 							var geocoder = new kakao.maps.services.Geocoder();// 주소-좌표 변환 객체를 생성합니다
 							
 							// 주소로 좌표를 검색합니다
-							geocoder.addressSearch('광주광역시 북구 천지인로115번길 10', function(result, status) {
+							geocoder.addressSearch( '${vo.class_addr1 }', function(result, status) {
 						
 							    // 정상적으로 검색이 완료됐으면 
 							     if (status === kakao.maps.services.Status.OK) {
@@ -271,7 +274,7 @@
 				<div id="d9_2"><!-- 댓글내용 -->
 					<ul id="creatormemberoneask">
 						<li> <!-- **문의댓글한줄 -->
-							<div><!-- 이미지 + 닉네임 + 작성날짜-->
+							<div class="askdiv909"><!-- 이미지 + 닉네임 + 작성날짜-->
 								<div><img src="img/jisu/basic.png"/></div> <!-- 이미지 -->
 								<div>
 									<div><label>an** | 2021년 6월 6일 20:26 작성</label></div>
@@ -282,9 +285,9 @@
 							 
 							<!-- -------------------------------------------------- -->
 							
-							<div> <!-- 강사답댓글 -->
-								<div><img src="img/jisu/creatorprofile.png"/></div> <!-- 이미지 -->
-								<div>
+							<div class="askdiv808" > <!-- 강사답댓글 -->
+								<div style="display:flex;width:20%;"><label style="display:block;width:20%;height:100%;vertical-align:middle;font-size:2rem;color:#666;">↳</label><img src="img/jisu/creatorprofile.png" style="width:80%"/></div> <!-- 이미지 -->
+								<div style="width:80%;">
 									<div><label> 버드세이지 플라워 | 2021년 6월 7일 12:00 작성</label></div>
 									<div><label>가능합니다 :)</label></div>
 								</div> <!-- 아이디 -->		
@@ -293,7 +296,7 @@
 						
 						
 						<li> <!-- **문의댓글한줄 -->
-							<div><!-- 이미지 + 닉네임 + 작성날짜-->
+							<div class="askdiv909"><!-- 이미지 + 닉네임 + 작성날짜-->
 								<div><img src="img/jisu/dog.png"/></div> <!-- 이미지 -->
 								<div>
 									<div><label>tr2** | 2021년 6월 21일 12:41 작성</label></div>
@@ -313,20 +316,28 @@
 					<form method="post" id="">
 						<div><textarea name="classMainAskTa" id="classMainAskTa" placeholder="궁금하신 점 또는 클래스문의등을 자유롭게 작성해 주세요."></textarea></div>
 						<input type="button" id="" value="작성완료"/>
-						<input type="hidden" name="no" value="${vo.no}"/><!-- 클래스 번호 -->
+						<input type="hidden" name="no" value="${vo.class_no }"/><!-- 클래스 번호 -->
 					</form>
 				</div>
 			</div>
 		</div>		
 	</div>
 	<div id="rightdiv">
-			<div id="calendardiv">
-				<div><!-- 달력 -->
-					<input class="dateSelector"/>
+			<div id="rightConBox">
+				<div id="datestr" style="display:none;"><input type="text" value=""/></div><!-- 선택한날짜입력 -->
+				
+				<div id="calendardiv"><!-- 달력 -->					
+					<div id="datepicker" class="datepicker"></div>
+				</div>
+				
+				<div id="selectClassListd" style="margin-top:10px;"><!-- 해당날짜에 선택된 강의옵션목록 -->
 				
 				</div>
+				
+				<div id="buttonhomec"><input type="button" value="장바구니" id="gobasketB" style="border-radius:5px;"/><input type="button" value="클래스 신청하기" id="gopayB" style="border-radius:5px;"/></div>
+				
+				<div style="display:none" id="inputdatebox"></div><!-- 선택된날짜입력될박스 -->
+				
 			</div>
 	</div>
 </div>
-</body>
-</html>

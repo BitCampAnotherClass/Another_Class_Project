@@ -1,65 +1,77 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<!-- include libraries(jQuery, bootstrap) -->
-<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<!-- include summernote css/js -->
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>  
+
 
 <style>
-	#myChannelMainDiv{
-		background-color:pink; height:1000px; width:950px; margin:0 auto;
-	}
-	.margin-left50px{
-		margin-left:50px;
-	}
-	#myChannelMainDiv>h1{
-		color:gray;
-	}
-	#myChannelMainDiv>div:nth-child(3){
-		background-color:lightblue; width:950px; height:240px;
-	}
-	#creatorChannelPicSq{
-		width:200px; height:240px; border:1px solid gray;  float:left;
-	}
-	#creatorChannelName{
-		background-color:gray; width:400px; height:55px; float:left; margin-top:185px; 
-		margin-left:30px; color:yellow; font-size:1.3em; text-align:left; line-height:60px;
-	}
-	#myChannelMainDiv>div:nth-child(5){
-		background-color:lightblue; width:950px; height:35px;
-	}
-	#selectMenu>input{
-	 float:left; width:33.3%; text-align:center; font-size: 1.3em;
-	}
-
+li{float:left;}
+#myChannelMainDiv{background-color:pink;
+	width:1200px;
+	margin:0 auto;
+	height:1000px;
+	padding-top:20px;
+}
+.divideDiv{
+	width:100%;
+	height:420px;
+}
+.divideDiv div{
+	float:left;
+}
+.creatorImgDiv{background-color:lightblue;
+	border-radius:200px;
+	width:400px;
+	height:400px;
+	margin: 0px 0px 0px 20px;
+}
+#creatorNameDiv{background-color:white;
+	width:400px;
+	height:120px;
+	margin:270px 0px 0px 0px;
+}
+#creatorNameDiv>ul>li{background-color:;
+	width:100%;
+	text-align: center;
+}
+#creatorNick{
+	font-size:2em; 
+	color:gray;
+	font-weight:500;
+	border-bottom: 3px solid lightgray;
+	width: 100%;
+	height:50px;
+}
+#myChannelMenuDiv{
+}
+#myChannelMenuDiv li{
+	width:33.3%;
+	line-height:45px;
+	height:50px;
+	text-align: center;
+	border:3px solid lightgray;
+	font-size:1.3em; 
+	color:gray;
+}
 </style>
 <script>
 	
 </script>
 <div id="myChannelMainDiv">
-	<h1 class="margin-left50px">나의 채널관리</h1>
-	<hr/>
-	<div>
-	 	<div id="creatorChannelPicSq" class="margin-left50px"></div>
-	 	<div id="creatorChannelName">크리에이터 이름</div>
+	<div class="divideDiv">
+		<div class="creatorImgDiv"></div>
+		<div id="creatorNameDiv">
+			<ul>
+				<li><div id="creatorNick">버드세이지 플라워</div></li>
+				<li>젅</li>
+			</ul>
+		</div>
 	</div>
-	<hr/>
-	<div id="selectMenu">
-		
-			<input type="button" value="크리에이터 프로필">
-			<input type="button" value="클래스 목록">
-			<input type="button" value="클래스 결과물">
-		
+	<div id="myChannelMenuDiv">
+		<ul>
+			<li>크리에이터 프로필</li>
+			<li>개설 클래스</li>
+			<li>클래스 결과물</li>
+		</ul>
 	</div>
-	<hr/>
-	<div id="summernote">Hello Summernote</div>
-	<script>
-	$(document).ready(function() {
-  $('#summernote').summernote();
-});
-</script>
 </div>

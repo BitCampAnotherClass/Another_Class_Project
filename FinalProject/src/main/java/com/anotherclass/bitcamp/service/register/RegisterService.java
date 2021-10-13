@@ -8,5 +8,5 @@ public interface RegisterService {
 	
 	public int creatorAccountJoin(RegisterVO vo);
 	
-	public int adminAccountCreate(RegisterVO vo);
+	public RegisterVO loginMember(RegisterVO vo);
 }

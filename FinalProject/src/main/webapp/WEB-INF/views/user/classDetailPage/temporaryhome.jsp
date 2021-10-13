@@ -12,6 +12,6 @@
 <a href="/teamproject/user/templogin">로그인</a><br/>
 <a href="/teamproject/logout">로그아웃</a><br/>
 
-아이디 : ${member_id } ,이름: ${member_name}
+아이디 : ${logid }
 </body>
 </html>

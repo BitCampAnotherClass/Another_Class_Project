@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>로그인</h1>
-<form method="post" action="/teamproject/loginOk">
+<form method="post" action="/teamproject/temploginOk">
    id : <input type="text" name="member_id"/>
    pwd : <input type="password" name="member_pw"/>
    <input type="submit" value="Login"/>
