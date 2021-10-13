@@ -79,9 +79,9 @@
 					</div>
 					
 					<div class="btn-signup-wrap">
-						<button type="button" id="basicSignup" class="btn-login">
+						<a href="<%=request.getContextPath()%>/register" id="basicSignup" class="btn-login">
 							<span>회원가입</span>
-						</button>
+						</a>
 					</div>
 				</div>
 				<!-- // 로그인 입력 공간 -->
@@ -163,7 +163,7 @@
 			        success: function(res) {
 			          console.log(JSON.stringify(res))
 			          console.log(res.id); // 아이디 찍어봄
-			          location.href='kakaoLoginOk';
+			          location.href='<%=request.getContextPath()%>/kakaoLoginOk';
 			        },
 			        fail: function(error) {
 			          alert(
@@ -185,7 +185,7 @@
 			        success: function(res) {
 			          console.log(JSON.stringify(res))
 			          console.log(res.id); // 아이디 찍어봄
-			          location.href='kakaoLoginOk';
+			          location.href='<%=request.getContextPath()%>/kakaoLoginOk';
 			        },
 			        fail: function(error) {
 			          alert(
