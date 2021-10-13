@@ -7,13 +7,13 @@
 	#classOptionListSearchDiv{width:100%;margin-bottom:20px;}/*클래스옵션별 리스트 검색*/
 	#classOptionListSubmit{padding:3px 7px 3px 7px;background-color:white;color:#333;border:1px solid #333;}
 	
-	#classOptionListDiv{width:100%;height:auto;overflow:auto;} /*옵션리스트 목록Div*/
+	#classOptionListDiv{width:100%;height:auto;} /*옵션리스트 목록Div*/
 	
 	.classOptionListUl{width:100%;height:auto;overflow:auto;}/*옵션리스트 목록Ul*/	
 	.classOptionListUl>li{width:100%;overflow:auto;padding:10px 0 10px 0;}
 	
 	/*옵션리스트 타이틀*/	
-	#classOptionListFirstLi{border-bottom:2px solid #666;height:22px;} 
+	#classOptionListFirstLi{border-bottom:2px solid #666;} 
 	#classOptionListFirstLi>span{display:block;float:left;}/*옵션리스트 타이틀*/
 	#classOptionListFirstLi>span:nth-child(1){width:10%;text-align:center;}
 	#classOptionListFirstLi>span:nth-child(2){width:60%;text-align:center;}
@@ -21,7 +21,7 @@
 	#classOptionListFirstLi>span:nth-child(4){width:15%;text-align:center;}
 	/*옵션리스트 리스트*/	
 	.classOptionListUl2{width:100%;height:auto;}/*옵션리스트 목록Ul*/	
-	.classOptionListUl2>li{width:100%;height:150px;padding:15px 0 15px 0;border-bottom:1px solid #ddd;}
+	.classOptionListUl2>li{width:100%;height:180px;padding:15px 0 15px 0;border-bottom:1px solid #ddd;}
 	.classOptionListUl2>li>span{display:block;height:100%;float:left;}
 	.classOptionListUl2>li>span:nth-child(4n+1){width:10%;text-align:center;line-height:150px;}/*클래스번호*/
 	.classOptionListUl2>li>span:nth-child(4n+2){width:60%;}/*클래스정보 : 이미지+클래스상세정보*/

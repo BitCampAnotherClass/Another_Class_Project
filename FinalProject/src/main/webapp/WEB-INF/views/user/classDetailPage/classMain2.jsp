@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<html>
+
 
 
 
@@ -122,8 +122,11 @@
 	
 	/*클래스옵션목록*/
 	#selectClassListd{width:350px;min-height:120px;height:auto;border:1px solid #f0f0f0;overflow:auto;} 
+	#startdiv{width:350px;}
+	#enddiv{width:350px;}
+	#headcountdiv{width:350px;}
 	/*버튼감싸고 있는div*/
-	#buttonhomec{width:350px;display:flex;height:auto;}
+	#buttonhomec{width:350px;display:flex;width:350px;}
 	#buttonhomec input[type=button]{border:none;}
 	#gobasketB{width:119px;height:38px;font-size:18px;margin:10px 30px 15px 0;boder:1px solid #ddd;background-color:#616060;color:#fff;}
 	#gopayB{width:200px;height:38px;font-size:18px;margin:10px 0 15px 0;boder:1px solid #ddd;background-color:#616060;color:#fff;}
@@ -152,10 +155,41 @@
 	         $('.datepicker').datepicker('setDate', 'today');
 	      })
 		
+	   
 	      $('#datepicker').on("change", function() { //날짜선택시 벌어지는일
-	          alert($(this).val()); 
+	          var date9999 = $(this).val();
+	      	  //console.log(date9999);
+	      	 $("#inputdatebox").val($(this).val());
 	      });
+	     
 	      
+	    //달력 Ajax
+	   
+	   // $(".ui-state-default").on("click",function(){
+	    $('#datepicker').on("change", function() { 	
+	    	console.log("날짜클릭이벤트발생");
+	    	var url ="/teamproject/classDetailDatePick";	    	
+	    	var params = {"datedate" : $("#inputdatebox").text(),"no":${vo.class_no }}
+	    
+	    	$.ajax({
+	    		
+	    		url:url,
+	    		data:params,
+	    		success:function(r){//받아온 데이터를 r에 넣음
+	    			var rr = $(r)
+	    			rr.each(function(idx,vo){
+	    				//가져온 클래스옵션리스트를 여기에 추가한다
+	    				$("#startdiv").html(vo.start_date);
+	    				$("#enddiv").html(vo.end_date);
+	    				$("#headcountdiv").html(vo.all_headcount);
+	    			});
+	    		}
+	    		
+	    		
+	    		
+	    	});
+	    
+	    }); 
 	   		
 	});
 	
@@ -170,9 +204,9 @@
 			<div id="d1"><img src="img/jisu/classimg.png"/></div> <!-- 클래스 이미지 -->
 			<div id="d2"> <!-- 클래스 소개 -->
 				<ul>
-					<li>플라워·가드닝</li> <!-- 위치?대분류? --> <!-- 왼쪽정렬 -->
-					<li>꽃꽃이 및 테라리움 레슨 서비스</li> <!-- 클래스 제목 -->
-					<li>꽃처럼 마음도 예뻐지는 꽃꽃이 클래스</li> <!-- 짧은 소개글 *******************pre-wrap 아직 미설정-->
+					<li>${vo.category_name }</li> <!-- 위치?대분류? --> <!-- 왼쪽정렬 -->
+					<li>${vo.class_name }</li> <!-- 클래스 제목 -->
+					<li>${vo.class_info }</li> <!-- 짧은 소개글 *******************pre-wrap 아직 미설정-->
 					<li>
 						<div>
 							<div><img src="img/jisu/ff385bigborderheart.png"/></div><!--  좋아요버튼, 좋아요수 --> <!-- 왼쪽정렬 -->
@@ -186,7 +220,7 @@
 			<div id="d3"> <!-- 강사프로필 + 강사명 -->
 				<div><img src="img/jisu/creatorprofile.png"/></div> <!-- 강사프로필이미지 -->	
 				<div> <!-- 강사닉네임 -->	
-					<a href="#">버드세이지 플라워</a>
+					<a href="#">${vo.nick }</a>
 					<span>클래스 3개 | 좋아요 19개</span>
 				</div>
 			</div>
@@ -203,36 +237,19 @@
 			<div id="d5" class="menu"> <!-- 클래스소개 -->
 				<div class="menutitle"><span>클래스소개</span></div>
 				<div>		
-					<img src="img/jisu/flower2.png"/>			
-					플라워 클래스 공간을 새롭게 리뉴얼한 버드세이지 플라워!
-					한강진역 3번출구에서 도보로 5분이면 도착가능합니다.
-					자연광도 예쁘게 들어오고 좁고 답답한 플라워샵이나 오피스텔에서 진행하지 않고
-					널찍하고 세련된 인테리어로 	인생샷을 찍을 수 있는 트렌드바이미입니다.					
-					<img src="img/jisu/flower3.png"/>							
-					꽃꽂이 원데이 클래스,
-					기초부터 차근차근 알려드립니다 :)
-					선물하기에도 좋은 센터피스					
-					<img src="img/jisu/flower4.png"/>						
-					가장 대표적이며 기본적인 클래스라고 할수있는	'센터피스'입니다.
-					꽃줄기를 사선으로 자른뒤 화기 안의 플로럴폼(오아시스)에 꽂아서 완성하시게 됩니다.
-					고급스러운 화기가 함께 제공되며 집들이 선물, 첫인사 꽃으로 많이 신청하신답니다.					
+					${vo.class_content }				
 				</div>
 				
 			</div>
 			<div id="d6" class="menu"> <!-- 강사소개 -->
 				<div class="menutitle"><span>강사소개</span></div>
 				<div>
-					<img src="img/jisu/flower5.png"/>
-					안녕하세요. 감각적인 플라워상품과 클래스를 제공하는 버드세이지 플라워입니다.										
-					
-					저는 5년차 플로리스트로 원데이, 기초반부터 자격증, 창업반까지 
-					
-					다양한 플라워클래스를 온,오프라인으로 진행하고 있어요:-)
+					${vo.creator_content }
 				</div>
 			</div>
 			<div id="d7" class="menu"> <!-- 위치 -->
 				<div class="menutitle"><span>위치</span></div>
-				<div>광주광역시 북구 천지인로115번길 10</div>
+				<div>${vo.class_addr1 }</div>
 				<div style="width:100%;height:100%;">
 					<div id="map" style="width:90%;height:400px;"></div>
 					<!--
@@ -254,7 +271,7 @@
 							var geocoder = new kakao.maps.services.Geocoder();// 주소-좌표 변환 객체를 생성합니다
 							
 							// 주소로 좌표를 검색합니다
-							geocoder.addressSearch('광주광역시 북구 천지인로115번길 10', function(result, status) {
+							geocoder.addressSearch( '${vo.class_addr1 }', function(result, status) {
 						
 							    // 정상적으로 검색이 완료됐으면 
 							     if (status === kakao.maps.services.Status.OK) {
@@ -331,7 +348,7 @@
 					<form method="post" id="">
 						<div><textarea name="classMainAskTa" id="classMainAskTa" placeholder="궁금하신 점 또는 클래스문의등을 자유롭게 작성해 주세요."></textarea></div>
 						<input type="button" id="" value="작성완료"/>
-						<input type="hidden" name="no" value="${vo.no}"/><!-- 클래스 번호 -->
+						<input type="hidden" name="no" value="${vo.class_no }"/><!-- 클래스 번호 -->
 					</form>
 				</div>
 			</div>
@@ -346,12 +363,15 @@
 				</div>
 				
 				<div id="selectClassListd" style="margin-top:10px;"><!-- 해당날짜에 선택된 강의옵션목록 -->
-				
+					<div id="startdiv">f</div>
+					<div id="enddiv">f</div>
+					<div id="headcountdiv">f</div>
 				</div>
 				
 				<div id="buttonhomec"><input type="button" value="장바구니" id="gobasketB" style="border-radius:5px;"/><input type="button" value="클래스 신청하기" id="gopayB" style="border-radius:5px;"/></div>
 				
-				
+				<!-- <div style="display:none" id="inputdatebox"></div><!-- 선택된날짜입력될박스 -->
+				<input type="text" id="inputdatebox" style="visibility:hidden;" />
 			</div>
 	</div>
 </div>
