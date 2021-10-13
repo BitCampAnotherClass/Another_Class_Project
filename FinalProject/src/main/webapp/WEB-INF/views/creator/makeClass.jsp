@@ -85,9 +85,38 @@ $(document).ready(function() {
   				placeholder:'클래스 소개글과 이미지를 넣어 작성하세요 ',
   				lang: "ko-KR",	
   				minHeight: 800, 
-  				maxHeight:800,   
+  				maxHeight:800,
+  				callbacks: {	//여기 부분이 이미지를 첨부하는 부분
+					onImageUpload : function(files) {
+						uploadSummernoteImageFile(files[0],this);
+					},
+					onPaste: function (e) {
+						var clipboardData = e.originalEvent.clipboardData;
+						if (clipboardData && clipboardData.items && clipboardData.items.length) {
+							var item = clipboardData.items[0];
+							if (item.kind === 'file' && item.type.indexOf('image/') !== -1) {
+								e.preventDefault();
+							}
+						}
+					}
   			});
 });
+
+function uploadSummernoteImageFile(file, editor) {
+	data = new FormData();
+	data.append("file", file);
+	$.ajax({
+		data : data,
+		type : "POST",
+		url : "/uploadSummernoteImageFile",
+		contentType : false,
+		processData : false,
+		success : function(data) {
+        	//항상 업로드된 파일의 url이 있어야 한다.
+			$(editor).summernote('insertImage', data.url);
+		}
+	});
+}
 //////////////////////////////////////////////
  	
 
