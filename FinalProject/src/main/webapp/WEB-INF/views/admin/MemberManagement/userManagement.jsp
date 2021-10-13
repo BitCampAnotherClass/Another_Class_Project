@@ -7,7 +7,6 @@
 	}
 	.userMg-main{
 		width:1200px;
-		margin-left:300px;
 	}
 	.userMg-top, .userMg-bottom{
 		border: 1px solid #464646;
