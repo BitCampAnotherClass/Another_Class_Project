@@ -103,6 +103,12 @@ public class RegisterController {
 		}
 		return mav;
 	}
+	
+	@RequestMapping(value = "/callback", method = { RequestMethod.GET, RequestMethod.POST })
+	public String callback(HttpServletRequest request) {
+		
+		return "register/loginForm";
+	}
 }
 
 
