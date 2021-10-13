@@ -18,4 +18,9 @@
 		<property name="mapperLocations" value="classpath:/mapper/*Mapper.xml"></property>
 	</bean>
 	<mybatis-spring:scan base-package="com.anotherclass.bitcamp.dao.register, com.anotherclass.bitcamp.dao.user, com.anotherclass.bitcamp.dao.admin, com.anotherclass.bitcamp.dao.creator"/>
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="-1"></property>
+		<property name="defaultEncoding" value="UTF-8"></property>
+	</bean>
 </beans>

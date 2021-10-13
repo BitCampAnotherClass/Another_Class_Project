@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>  
-
 <!-- summernote -->
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <!-- 데이트픽커 -->
@@ -85,9 +83,42 @@ $(document).ready(function() {
   				placeholder:'클래스 소개글과 이미지를 넣어 작성하세요 ',
   				lang: "ko-KR",	
   				minHeight: 800, 
-  				maxHeight:800,   
+  				maxHeight:800,
+  				callbacks: {	//여기 부분이 이미지를 첨부하는 부분
+					onImageUpload : function(files) {
+						uploadImageFile(files[0],this);
+					}
+		  			/* ,
+					onPaste: function (e) {
+						var clipboardData = e.originalEvent.clipboardData;
+						if (clipboardData && clipboardData.items && clipboardData.items.length) {
+							var item = clipboardData.items[0];
+							if (item.kind === 'file' && item.type.indexOf('image/') !== -1) {
+								console.log('if문 작동');
+								e.preventDefault();
+							}
+						}
+					} */
+				}
   			});
 });
+
+function uploadImageFile(file, editor) {
+	data = new FormData();
+	data.append("file", file);
+	$.ajax({
+		data : data,
+		type : "POST",
+		url : "/another/uploadImageFile",
+		contentType : false,
+		processData : false,
+		success : function(data) {
+			$(editor).summernote('insertImage', data.url);
+		},error : function(){
+			alert("업로드 실패");
+		}
+	});
+}
 //////////////////////////////////////////////
  	
 
@@ -550,7 +581,7 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 		<span><kimin>*</kimin> 4) 클래스 썸네일 <kimin>(필수)</kimin></span>
 	</div>
 	<div class="classImgDiv">
-			<div id="imgThumbDiv"><img src="img/kimin/uploadimg.png" ></div>
+			<div id="imgThumbDiv"><img src="<%=request.getContextPath()%>/img/kimin/uploadimg.png" ></div>
 			<input type="button" name="imgThumb" value="클래스 썸네일 이미지 등록" class="buttonClass">
 	</div>
 	<div>
