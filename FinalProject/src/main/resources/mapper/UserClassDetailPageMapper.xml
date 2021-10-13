@@ -19,7 +19,6 @@
 		and b.class_no= #{param1}
   		]]>
   	</select>
-  	
   	<select id="userSelectOptionAllSelect"  resultType="com.anotherclass.bitcamp.vo.user.UserClassDetailVO">
   		<![CDATA[
   		select to_char(start_date, 'yyyy-MM-DD HH:MM') start_date, to_char(end_date, 'yyyy-MM-DD HH:MM') end_date, all_headcount from classoption
