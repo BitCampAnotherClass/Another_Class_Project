@@ -1,10 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>  
-
 <!-- summernote -->
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <!-- 데이트픽커 -->
@@ -88,35 +86,39 @@ $(document).ready(function() {
   				maxHeight:800,
   				callbacks: {	//여기 부분이 이미지를 첨부하는 부분
 					onImageUpload : function(files) {
-						uploadSummernoteImageFile(files[0],this);
-					},
+						uploadImageFile(files[0],this);
+					}
+		  			/* ,
 					onPaste: function (e) {
 						var clipboardData = e.originalEvent.clipboardData;
 						if (clipboardData && clipboardData.items && clipboardData.items.length) {
 							var item = clipboardData.items[0];
 							if (item.kind === 'file' && item.type.indexOf('image/') !== -1) {
+								console.log('if문 작동');
 								e.preventDefault();
 							}
 						}
-					}
-  			}
+					} */
+				}
+  			});
 });
-});
-function uploadSummernoteImageFile(file, editor) {
+
+function uploadImageFile(file, editor) {
 	data = new FormData();
 	data.append("file", file);
 	$.ajax({
 		data : data,
 		type : "POST",
-		url : "/uploadSummernoteImageFile",
+		url : "/another/uploadImageFile",
 		contentType : false,
 		processData : false,
 		success : function(data) {
-        	//항상 업로드된 파일의 url이 있어야 한다.
 			$(editor).summernote('insertImage', data.url);
+		},error : function(){
+			alert("업로드 실패");
 		}
 	});
-};
+}
 //////////////////////////////////////////////
  	
 
