@@ -14,11 +14,12 @@
 
 <c:forEach var="vo" items="${list}">	
 	<div>
-		  ${vo.class_no },
-		<label>클래스명 :</label><a href="/user/classDetailPage/temporaryclassView?no=${vo.class_no}" ><label class="title22">${vo.class_name }</label></a>,
-		 ${vo.class_content },
 		 
-		  <img src="<%=request.getContextPath()%>/img/jisu/${vo.img_file}"/>
+		<label>클래스명 :</label><label class="title22">${vo.class_name }</label><br/>
+		<h2><a href="/teamproject/classDetailView?no=${vo.class_no}" > ${vo.class_no }</a></h2>
+		
+		 
+		
    </div>
 </c:forEach>
 

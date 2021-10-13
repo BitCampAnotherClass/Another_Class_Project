@@ -8,15 +8,15 @@ public class ClassVO {
 	private String member_id;	
 	private String class_thumb;
 	private String class_content;
-	private String img_file;
-	private String post_no;
-	private String addr1;
-	private String addr2;
+	private String class_img_file;
+	private String class_post_no;
+	private String class_addr1;
+	private String class_addr2;
 	private int max_headcount;
 	private int category_no;
 	private int request;
 	private int progress;
-	private String writedate;
+	private String class_writedate;
 	private String class_tag;
 	
 	public int getClass_no() {
@@ -61,29 +61,29 @@ public class ClassVO {
 	public void setClass_content(String class_content) {
 		this.class_content = class_content;
 	}
-	public String getImg_file() {
-		return img_file;
+	public String getClass_img_file() {
+		return class_img_file;
 	}
-	public void setImg_file(String img_file) {
-		this.img_file = img_file;
+	public void setClass_img_file(String class_img_file) {
+		this.class_img_file = class_img_file;
 	}
-	public String getPost_no() {
-		return post_no;
+	public String getClass_post_no() {
+		return class_post_no;
 	}
-	public void setPost_no(String post_no) {
-		this.post_no = post_no;
+	public void setClass_post_no(String class_post_no) {
+		this.class_post_no = class_post_no;
 	}
-	public String getAddr1() {
-		return addr1;
+	public String getClass_addr1() {
+		return class_addr1;
 	}
-	public void setAddr1(String addr1) {
-		this.addr1 = addr1;
+	public void setClass_addr1(String class_addr1) {
+		this.class_addr1 = class_addr1;
 	}
-	public String getAddr2() {
-		return addr2;
+	public String getClass_addr2() {
+		return class_addr2;
 	}
-	public void setAddr2(String addr2) {
-		this.addr2 = addr2;
+	public void setClass_addr2(String class_addr2) {
+		this.class_addr2 = class_addr2;
 	}
 	public int getMax_headcount() {
 		return max_headcount;
@@ -109,11 +109,11 @@ public class ClassVO {
 	public void setProgress(int progress) {
 		this.progress = progress;
 	}
-	public String getWritedate() {
-		return writedate;
+	public String getClass_writedate() {
+		return class_writedate;
 	}
-	public void setWritedate(String writedate) {
-		this.writedate = writedate;
+	public void setClass_writedate(String class_writedate) {
+		this.class_writedate = class_writedate;
 	}
 	public String getClass_tag() {
 		return class_tag;
@@ -121,6 +121,7 @@ public class ClassVO {
 	public void setClass_tag(String class_tag) {
 		this.class_tag = class_tag;
 	}
+	
 	
 
 }

@@ -14,6 +14,7 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/prng4.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rng.js"></script>
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
 	// 유효성 검사
 	function validateFrm(){
@@ -41,7 +42,8 @@
 			var RSAModulus = document.getElementById('RSAModulus').value;
 			var RSAExponent = document.getElementById('RSAExponent').value;
 		} catch(error){
-			alert(error);
+			alert('잠시 후 다시 시도해 주세요.');
+			console.log(error);
 		}
 		
 		// RSA 암호화
@@ -49,13 +51,12 @@
 		rsa.setPublic(RSAModulus, RSAExponent);
 		document.getElementById('member_id').value = rsa.encrypt(memberId);
 		document.getElementById('member_pw').value = rsa.encrypt(memberPw);
-		
-		console.log(document.getElementById('member_id').value);
-		console.log(document.getElementById('member_pw').value);
-		console.log(memberId);
-		console.log(memberPw);
+
 		frmLogin.submit();
 	}
+	
+	
+	
 
 </script>
 
@@ -113,12 +114,12 @@
 					
 					<div class="kakao-login">
 						<button type="button" id="kakagLogin" class="btn-login">
-							<span>카카오톡으로 로그인하기</span>
+							<span>카카오톡 아이디로 시작하기</span>
 						</button>
 					</div>
 					<div class="naver-login">
 						<button type="button" id="naverLogin" class="btn-login">
-							<span>네이버로 로그인하기</span>
+							<span>네이버 아이디로 시작하기</span>
 						</button>
 					</div>
 					
