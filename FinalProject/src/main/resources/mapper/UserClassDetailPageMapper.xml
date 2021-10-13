@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.anotherclass.bitcamp.dao.user.ClassDetailPageDAO">
+  	<select id="temporarylistAllSelect" resultType="com.anotherclass.bitcamp.vo.user.ClassVO">
+        select class_no, class_name, class_info, class_price,  member_id, class_thumb ,
+        class_content, class_img_file, class_addr1, max_headcount, category_no, to_char(class_writedate, 'MM-DD HH:MI') class_writedate
+         from classtbl
+     </select>
+  
+  	<select id="userClassDetailAllSelect" resultType="com.anotherclass.bitcamp.vo.user.userClassDetailVO">
+  		<![CDATA[
+  		select a.category_name, b.class_name, b.class_info, d.member_img, b.class_addr1 , d.nick, b.class_content ,c.creator_content, c.creator_content_img
+		from category a, classtbl b, creator c, membertbl d
+		where a.category_no = b.category_no
+		and    b.member_id = c.member_id
+		and   c.member_id = d.member_id
+		and b.class_no= #{param1}
+  		]]>
+  	</select>
+  	
+  	<select id="userSelectOptionAllSelect" parameterType="String" resultType="com.anotherclass.bitcamp.vo.user.userClassDetailVO">
+  		<![CDATA[
+  		select start_date, end_date,all_headcount from classoption
+		where class_no = #{no}
+		and  to_char(start_date, 'yyyy-MM-DD')= #{datedate};
+  		
+  		]]>
+  	
+  	</select>
+  	
+  </mapper>
