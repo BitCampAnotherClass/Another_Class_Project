@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+<!-- 테스트용!!!!!!!!!! 지울 것!!!!!!!!!!!!!!! -->
+
 
 <!DOCTYPE html>
 <html>
@@ -64,7 +66,7 @@
 					</div>
 					
 					<div class="kakao-login">
-						<a href="javascript:void(0);" onclick="kakaoLogin();" id="kakaoLogin" class="btn-login">
+						<a href="javascript:void(0);" onclick="kakaoLogin2();" id="kakaoLogin2" class="btn-login">
 							<span>카카오톡 아이디로 시작하기</span>
 						</a>
 					</div>
@@ -154,52 +156,27 @@
 	Kakao.init('033542c9317694f8d1bb2f13c3b67a2a'); //발급받은 키 중 javascript키를 사용해준다.
 	console.log(Kakao.isInitialized()); // sdk초기화여부판단
 	
-	function kakaoLogin() {
-		if(Kakao.Auth.getAccessToken()){
-			Kakao.Auth.login({
-			    success: function(authObj) {
-			      Kakao.API.request({
-			        url: '/v2/user/me',
-			        success: function(res) {
-			          console.log(JSON.stringify(res))
-			          console.log(res.id); // 아이디 찍어봄
-			          location.href='kakaoLoginOk';
-			        },
-			        fail: function(error) {
-			          alert(
-			            'login success, but failed to request user information: ' +
-			              JSON.stringify(error)
-			          )
-			        },
-			      })
-			    },
-			    fail: function(err) {
-			      alert('failed to login: ' + JSON.stringify(err))
-			    },
-			});
-		} else {
-			Kakao.Auth.loginForm({
-			    success: function(authObj) {
-			      Kakao.API.request({
-			        url: '/v2/user/me',
-			        success: function(res) {
-			          console.log(JSON.stringify(res))
-			          console.log(res.id); // 아이디 찍어봄
-			          location.href='kakaoLoginOk';
-			        },
-			        fail: function(error) {
-			          alert(
-			            'login success, but failed to request user information: ' +
-			              JSON.stringify(error)
-			          )
-			        },
-			      })
-			    },
-			    fail: function(err) {
-			      alert('failed to login: ' + JSON.stringify(err))
-			    },
-			});
-		}
+	function kakaoLogin2() {
+		Kakao.Auth.login({
+		    success: function(authObj) {
+		      Kakao.API.request({
+		        url: '/v2/user/me',
+		        success: function(res) {
+		          console.log(JSON.stringify(res))
+		          console.log(res.id);
+		        },
+		        fail: function(error) {
+		          alert(
+		            'login success, but failed to request user information: ' +
+		              JSON.stringify(error)
+		          )
+		        },
+		      })
+		    },
+		    fail: function(err) {
+		      alert('failed to login: ' + JSON.stringify(err))
+		    },
+		});
 	}
 	
 	
