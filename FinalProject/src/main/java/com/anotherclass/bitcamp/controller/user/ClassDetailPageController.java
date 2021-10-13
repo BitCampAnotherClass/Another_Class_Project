@@ -1,5 +1,6 @@
 package com.anotherclass.bitcamp.controller.user;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -13,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.anotherclass.bitcamp.service.user.ClassDetailPageService;
 import com.anotherclass.bitcamp.vo.user.tempMemberVO;
-import com.anotherclass.bitcamp.vo.user.userClassDetailVO;
+import com.anotherclass.bitcamp.vo.user.UserClassDetailVO;
 
 @Controller
 public class ClassDetailPageController {
@@ -38,16 +39,18 @@ public class ClassDetailPageController {
 		return mav;
 	}
 	
+	
+	
 	//달력에서 날짜선택 -> 클래스옵션리스트
-	@RequestMapping("/classDetailDatePick")
-	@ResponseBody
-	public List<userClassDetailVO> ajaxDatePick(String datedate,String no){
-		ModelAndView mav = new ModelAndView();
-		List<userClassDetailVO> list = classDetailPageService.userSelectOptionAllSelect(datedate,no);
+	@RequestMapping("/classDetailDatePick")  //  /teamproject/classDetailDatePick
+	@ResponseBody		
+	public List<UserClassDetailVO> ajaxDatePick(String datedate, int no){
+		//List<userClassDetailVO> list = new ArrayList<userClassDetailVO>();
+		System.out.println("컨트롤러 들어옴"+datedate+no);
+		List<UserClassDetailVO> list = classDetailPageService.userSelectOptionAllSelect(datedate,no);
+		System.out.print(list.size());
 		return list;
 	}
-	
-	
 	
 	
 	
