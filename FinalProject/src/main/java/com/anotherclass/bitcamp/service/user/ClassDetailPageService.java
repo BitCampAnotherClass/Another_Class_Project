@@ -9,4 +9,5 @@ public interface ClassDetailPageService {
 	public List<ClassVO> temporarylistAllSelect();//지울것
 	public UserClassDetailVO userClassDetailAllSelect(int no);
 	public List<UserClassDetailVO> userSelectOptionAllSelect(String datedate, int no);
+	public List<UserClassDetailVO> classLikeCount(int no);
 }

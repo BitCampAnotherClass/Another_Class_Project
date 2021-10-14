@@ -26,5 +26,12 @@
 		and  to_char(start_date, 'yyyy-MM-DD')= #{param1}  		
   		]]>  	
   	</select>
+  	<select id="classLikeCount" resultType="com.anotherclass.bitcamp.vo.user.UserClassDetailVO">
+  		<![CDATA[
+  			SELECT COUNT(*) AS class_count
+			FROM classlike 
+			where class_no =  #{param1}
+  		]]> 
+  	</select>
   	
   </mapper>

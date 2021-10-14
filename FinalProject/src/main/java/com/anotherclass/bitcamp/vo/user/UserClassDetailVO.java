@@ -53,6 +53,7 @@ public class UserClassDetailVO {
 	
 	/*클래스좋아요 테이블*/
 	private int  class_like_no;
+	private int class_count;//좋아요갯수
 	
 	
 	
@@ -301,6 +302,12 @@ public class UserClassDetailVO {
 	}
 	public void setClass_like_no(int class_like_no) {
 		this.class_like_no = class_like_no;
+	}
+	public int getClass_count() {
+		return class_count;
+	}
+	public void setClass_count(int class_count) {
+		this.class_count = class_count;
 	}
 	
 	

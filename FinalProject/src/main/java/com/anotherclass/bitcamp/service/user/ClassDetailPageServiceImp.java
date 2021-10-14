@@ -37,6 +37,12 @@ public class ClassDetailPageServiceImp implements ClassDetailPageService {
 		return classDetailPageDAO.userSelectOptionAllSelect(datedate,no);
 	}
 
+	@Override
+	public List<UserClassDetailVO> classLikeCount(int no) {
+		// TODO Auto-generated method stub
+		return classDetailPageDAO.classLikeCount(no);
+	}
+
 	
 	
 
