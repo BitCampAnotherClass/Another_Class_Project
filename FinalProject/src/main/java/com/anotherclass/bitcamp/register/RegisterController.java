@@ -31,6 +31,11 @@ public class RegisterController {
 		return "register/creatorRegister";
 	}
 	
+	@RequestMapping("/registerTest")
+	public String registerTest() {
+		return "register/userRegisterTest";
+	}
+	
 	
 	// 유저 회원가입
 	@RequestMapping(value="/userJoin",method=RequestMethod.POST)

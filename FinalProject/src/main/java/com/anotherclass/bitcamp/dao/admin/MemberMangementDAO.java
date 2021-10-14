@@ -1,13 +1,10 @@
-package com.anotherclass.bitcamp.service.admin;
+package com.anotherclass.bitcamp.dao.admin;
 
 import java.util.List;
 
 import com.anotherclass.bitcamp.register.RegisterVO;
 
-public interface AdminService {
-	
-	public String adminAccountCreate(RegisterVO vo);
+public interface MemberMangementDAO {
 	
 	public List<RegisterVO> MemberList(RegisterVO vo);
-	
 }
