@@ -184,9 +184,9 @@
 	
 	    function LikeCount(){
 	    	console.log("좋아요수함수실행됨");
-	    	var lUrl ="/teamproject/classDetailLikeCount";
+	    	var lUrl ="/another/classDetailLikeCount";
 			var lParam ="no=${vo.class_no}";
-			consoloe.log(${vo.class_no });
+			console.log(${vo.class_no });
 			$.ajax({
 				url : lUrl,
 				data : lParam,
@@ -195,7 +195,7 @@
 	    			console.log(tt);
 	    			tt.each(function(idx,vo){
 	    				
-	    				$("#likelikecount").html(vo.class_count);
+	    				$("#likelikecount").html(${vo.class_count});
 	    			
 	    			});
 	    		}    		
@@ -224,7 +224,7 @@
 	*/
 
 	   
-	
+	LikeCount();
 	
 	   		
 	});
@@ -255,13 +255,7 @@
 								<c:if test="${not empty logid}"><!-- 로그인o -->
 									<div><a href='javascript:  like_func();'><img src="img/jisu/ff385bigcheart.png"/></a></div><!--  좋아요버튼, 좋아요수 --> <!-- 왼쪽정렬 -->
 								</c:if>
-									<div id="likelikecount">150</div> <!--? 흠...div안에있는게 맞나모르겟음... -->
-							 
-							
-						<!-- <script>
-						LikeCount();
-						</script> -->
-							
+									<div id="likelikecount">0</div> <!--? 흠...div안에있는게 맞나모르겟음... -->
 						</div>
 					</li>
 					<li><img src="img/jisu/smalllocation.png"/>경기도 | 용인시</li> <!-- 위치 -->

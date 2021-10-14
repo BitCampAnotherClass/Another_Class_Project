@@ -1,6 +1,5 @@
 package com.anotherclass.bitcamp.controller.user;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
