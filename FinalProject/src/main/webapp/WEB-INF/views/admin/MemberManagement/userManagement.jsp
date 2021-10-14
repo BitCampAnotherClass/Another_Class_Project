@@ -5,9 +5,6 @@
 	body{
 		overflow:auto;
 	}
-	.userMg-title{
-		
-	}
 	.userMg-main{
 		width:1200px;
 	}
@@ -32,9 +29,6 @@
 		background:#f0f0f0;
 		border:1px solid #f0f0f0;
 	}
-	.userMg-menu{
-		
-	}
 	.userMg-chart-boardlist:nth-child(7n+1){
 		width: 5%;
 	}
@@ -45,35 +39,40 @@
 		background:white;
 	}
 </style>
-<script type="text/javascript">
-	$(function(){  
-		function userList() {
-			var url ="/another/MemberMangement/AccountUserList";
-			var board = '';
+<script>
+	$(function(){
+		var url="MemberMangement/userAccountList";
+		var board= "";
+		function userList(){
 			$.ajax({
-				url:url,
-				type:'POST',
+				url : url,
+				type : "GET",
 				success:function(result){
-					var result = $(result);					
-					result.each(function(num,vo){
+					var listData = $(result);
+					console.log('Ajax 성공 - 페이징');
+					listData.each(function(idx,vo){
 						board +='<li class="userMg-chart-boardlist"><input type="checkbox" id="allcheck"/></li>';
-						board +='<li class="userMg-chart-boardlist">기본</li>';
-						board +='<li class="userMg-chart-boardlist">기본</li>';
-						board +='<li class="userMg-chart-boardlist">기본</li>';
-						board +='<li class="userMg-chart-boardlist">기본</li>';
-						board +='<li class="userMg-chart-boardlist">기본</li>';
+						board +='<li class="userMg-chart-boardlist">'+vo.member_id+'</li>';
+						board +='<li class="userMg-chart-boardlist">'+vo.member_name+'</li>';
+						board +='<li class="userMg-chart-boardlist">'+vo.member_email+'</li>';
+						board +='<li class="userMg-chart-boardlist">'+vo.member_tel+'</li>';
+						board +='<li class="userMg-chart-boardlist">'+vo.signupdate+'</li>';
 						board +='<li class="userMg-chart-boardlist">';
 						board +='<input type="button" value="상세 정보"/>';
 						board +='<input type="button" value="수정" />';
 						board +='<input type="button" value="삭제" />';
 						board +='</li>';
 					});
-					$("#userMg-chart")
+					$(".userMg-chart-box").append(board);
+				},error: function(error){
+					console.log(error);
+					console.log('AJAX 목록 불러오기 실패');
 				}
 				
 			});
 		}
-	}
+		userList();
+	});
 </script>
 </head>
 <body>
