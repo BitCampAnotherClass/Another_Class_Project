@@ -97,13 +97,11 @@ public class RegisterController {
 		
 		vo.setMember_id(memberId);
 		vo.setMember_pw(hashingPw);
-		
-		
-		/////// 임시!!! 수정하기!!!!
+
 		ModelAndView mav = new ModelAndView();
 		RegisterVO logvo = new RegisterVO();
-		logvo = registerService.loginMember(vo);
-		if(logvo != null) {
+		logvo = registerService.loginUser(vo);
+		if(logvo!=null) {
 			if(logvo.getMember_img()==null || logvo.getMember_img().equals("")) {
 				logvo.setMember_img("/img/etc/basic_profile.png");				
 			}
@@ -114,7 +112,7 @@ public class RegisterController {
 			
 			mav.setViewName("redirect:/");			
 		} else {
-			mav.setViewName("/login"); // 수정하기
+			mav.setViewName("/register/loginResult");
 		}
 		return mav;
 	}
