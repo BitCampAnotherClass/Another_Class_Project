@@ -43,7 +43,7 @@
 			<span class="h2style">김비트 님</span>
 				<span class="h3style"><a>주문조회</a></span>
 				<span class="h3style"><a>장바구니</a></span>
-				<span class="h3style"><a href="mypage/review">나의후기</a></span>
+				<span class="h3style"><a href="<%=request.getContextPath()%>/mypage/review">나의후기</a></span>
 				<span class="h3style">나의문의</span>
 					<ul>
 						<li class="m1"><a>클래스문의</a></li>

@@ -70,6 +70,14 @@ public class RegisterController {
 		return "register/loginForm";
 	}
 	
+	// 로그인폼
+	@RequestMapping(value = "/login2")
+	public String login2(HttpServletRequest request) {
+		Rsa rsa = new Rsa();
+		rsa.initRsa(request);
+		return "register/loginForm2";
+	}
+	
 	// 로그인 실행
 	@RequestMapping(value = "/loginOk", method = RequestMethod.POST)
 	public ModelAndView loginOk(RegisterVO vo, HttpSession session) throws Exception{
@@ -90,6 +98,7 @@ public class RegisterController {
 		vo.setMember_id(memberId);
 		vo.setMember_pw(hashingPw);
 		
+		
 		/////// 임시!!! 수정하기!!!!
 		ModelAndView mav = new ModelAndView();
 		RegisterVO logvo = new RegisterVO();
@@ -97,12 +106,38 @@ public class RegisterController {
 		if(logvo != null) {
 			session.setAttribute("logid", logvo.getMember_id());
 			session.setAttribute("logname", logvo.getMember_name());
+			session.setAttribute("logState", 1);
+			
 			mav.setViewName("redirect:/");			
 		} else {
 			mav.setViewName("/login"); // 수정하기
 		}
 		return mav;
 	}
+	
+	// 카카오 로그인 ----------- 수정할 것
+	@RequestMapping(value = "/kakaoLoginOk")
+	public String kakaoLoginOk(HttpSession session) {
+		
+		session.setAttribute("logState", 1);
+		return "redirect:/";
+	}
+	
+	//// 콜백 ------- 수정할 것
+	@RequestMapping(value = "/callback", method = { RequestMethod.GET, RequestMethod.POST })
+	public String callback(HttpServletRequest request) {
+		
+		return "register/loginForm";
+	}
+	
+	
+	// 로그아웃
+	@RequestMapping(value = "/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
+	}
+	
 }
 
 

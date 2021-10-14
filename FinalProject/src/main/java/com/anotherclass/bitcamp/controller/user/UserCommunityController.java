@@ -10,4 +10,10 @@ public class UserCommunityController {
 		
 		return "/user/community/commu_main";
 	}
+
+	@RequestMapping(value = "/CommunityContentDetail")
+	public String CommunityContentDetail() {
+		
+		return "/user/community/commu_content_detail";
+	}
 }

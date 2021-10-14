@@ -1,6 +1,6 @@
 package com.anotherclass.bitcamp.vo.user;
 
-public class userClassDetailVO {
+public class UserClassDetailVO {
 	/*카테고리테이블*/
 	private int category_no;
 	private String category_name;
@@ -50,6 +50,11 @@ public class userClassDetailVO {
 	private int all_headcount; //수강신청인원
 	private int cancel;
 	private String cancel_reason;
+	
+	/*클래스좋아요 테이블*/
+	private int  class_like_no;
+	private int class_count;//좋아요갯수
+	
 	
 	
 	public int getCategory_no() {
@@ -291,6 +296,18 @@ public class userClassDetailVO {
 	}
 	public void setCancel_reason(String cancel_reason) {
 		this.cancel_reason = cancel_reason;
+	}
+	public int getClass_like_no() {
+		return class_like_no;
+	}
+	public void setClass_like_no(int class_like_no) {
+		this.class_like_no = class_like_no;
+	}
+	public int getClass_count() {
+		return class_count;
+	}
+	public void setClass_count(int class_count) {
+		this.class_count = class_count;
 	}
 	
 	

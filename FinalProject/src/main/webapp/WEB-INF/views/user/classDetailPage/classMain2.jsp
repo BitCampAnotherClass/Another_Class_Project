@@ -1,21 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-
-
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<!-- 데이트피커 
-<script type="text/javascript" src="<%=request.getContextPath()%>/css/user/classCalendar/jquery-ui.min.js"></script>-->  
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/user/classCalendar/jquery-ui.css">
-<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js" integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk=" crossorigin="anonymous"></script> 
-
-
-
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<!-- 데이트피커 
+	<script type="text/javascript" src="<%=request.getContextPath()%>/css/user/classCalendar/jquery-ui.min.js"></script>-->  
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/user/classCalendar/jquery-ui.css">
+	<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js" integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk=" crossorigin="anonymous"></script> 
 
 <style>
-
 	div{margin:0;padding:0; box-sizing:border-box;}
 	a:link, a:hover, a:visited{text-decoration:none; color:#333;}
 	#Bcotainer{margin:0 auto; width:1200px; height:auto; display:flex;margin-top:50px;} /* 모든걸감싸는 큰박스*/
@@ -41,7 +32,7 @@
 	#d2 li:nth-child(2){font-size:1.5rem; font-weight:bold;margin:5px 0 5px 0;}
 	#d2 li:nth-child(3){font-size:1rem;padding-bottom:0px;white-space: pre-line;}
 	
-	#d2 li:nth-child(4)>div{width:100%;height:26px;overflow:auto;}
+	#d2 li:nth-child(4)>div{width:100%;height:26px;}/*overflow:auto;*/
 	#d2 li:nth-child(4)>div>div{float :left;}/*좋아요버튼+좋아요수*/	
 	#d2 li:nth-child(4)>div>div:nth-child(1){width:88%; text-align:right; height:100%;} /*좋아요버튼 , 이미지*/
 	#d2 li:nth-child(4)>div>div:nth-child(1)>img{width:24px;height:90%;}
@@ -65,7 +56,7 @@
 	#d3 div:nth-child(2)>span{padding-top:5px;padding-left:1px;color:#666;font-size:0.9rem;}
 	
 	/* 메뉴바 */
-	#d4{width:100%;height:auto;overflow:auto;position:sticky;top:78px;background-color:white;r}
+	#d4{width:100%;height:auto;overflow:auto;position:sticky;top:0px;background-color:white;r}
 	#d4>ul{width:100%;height:auto;overflow:auto;}
 	#d4 li{float:left; width:20%;height:50px;line-height:50px; text-align:center;border-bottom:1px solid #ddd;}	
 	
@@ -114,7 +105,7 @@
 	/*==================#rightDiv==================*/
 	
 	/*rightDiv*/
-	#rightConBox{width:96%;margin-left:10px; min-height:600px;height:auto; box-shadow: 0 0 8px rgba(0,0,0,0.3);position:sticky;top:125px;border-radius: 10px;}
+	#rightConBox{width:96%;margin-left:10px; min-height:600px;height:auto; box-shadow: 0 0 8px rgba(0,0,0,0.3);position:sticky;top:50px;border-radius: 10px;}
 	#rightConBox div{margin:0 auto;}
 	
 	/*달력 width:350px;*/	
@@ -134,6 +125,7 @@
 </style>
 <script>
 	$(function(){		
+		
 		$('#d4 li').click(function(){	
 			$(this).children('a').css('color','#ff385c'); //글자색
 			$(this).css('border-bottom','3px solid #ff385c'); //li밑줄색 
@@ -154,45 +146,75 @@
 	         
 	         $('.datepicker').datepicker('setDate', 'today');
 	      })
-		
-	   
-	      $('#datepicker').on("change", function() { //날짜선택시 벌어지는일
-	          var date9999 = $(this).val();
-	      	  //console.log(date9999);
-	      	 $("#inputdatebox").val($(this).val());
-	      });
-	     
-	      
-	    //달력 Ajax
-	   
-	   // $(".ui-state-default").on("click",function(){
-	    $('#datepicker').on("change", function() { 	
-	    	console.log("날짜클릭이벤트발생");
-	    	var url ="/teamproject/classDetailDatePick";	    	
-	    	var params = {"datedate" : $("#inputdatebox").text(),"no":${vo.class_no }}
-	    
-	    	$.ajax({
-	    		
+
+	    //달력 Ajax	
+	    $('#datepicker').on("change", function() { 		    	
+	    	var url ="/another/classDetailDatePick";	
+	    	var params = {"datedate" : $(this).val(),"no":${vo.class_no }}
+	    	console.log($(this).val()+ " , "+${vo.class_no });	    	
+	    	$.ajax({	    		
 	    		url:url,
 	    		data:params,
 	    		success:function(r){//받아온 데이터를 r에 넣음
 	    			var rr = $(r)
+	    			
 	    			rr.each(function(idx,vo){
 	    				//가져온 클래스옵션리스트를 여기에 추가한다
-	    				$("#startdiv").html(vo.start_date);
-	    				$("#enddiv").html(vo.end_date);
-	    				$("#headcountdiv").html(vo.all_headcount);
+	    				$("#startdiv").append(vo.start_date);
+	    				$("#enddiv").append(vo.end_date);
+	    				$("#headcountdiv").apeend(vo.all_headcount);
 	    			});
-	    		}
-	    		
-	    		
-	    		
+	    		}    		
 	    	});
 	    
 	    }); 
+	    
+	    function LikeCount(){
+	    	console.log("좋아요수함수실행됨");
+	    	var lUrl ="/another/classDetailLikeCount";
+			var lParam ="no=${vo.class_no}";
+			console.log(${vo.class_no });
+			$.ajax({
+				url : lUrl,
+				data : lParam,
+				success:function(t){//받아온 데이터를 r에 넣음
+	    			var tt = $(t)
+	    			console.log(tt);
+	    			tt.each(function(idx,vo){
+	    				
+	    				$("#likelikecount").html(${vo.class_count});
+	    			
+	    			});
+	    		}    		
+				
+			})
+		}
+	    
+	  /*
+	  
+	  	⭐맨처음하트 +리스트  
+		-> 로그인 x -> 빈하트+ 갯수
+		-> 로그인 0 -> 좋아요있으면 빨강 없으면 빈하트 -> select()가져와서 프론트에서 해결 
+		 
+		⭐ 눌렀을때 
+		-> 로그인 x -> 알림창 or 로그인페이지 이동
+		
+		-> 로그인  0 -> 
+		     -> 좋아요o : 하트빈하트 + delete ->새로운리스트불러옴?
+		     -> 좋아요x : 빨강하트 + insert  ->새로운리스트불러옴
+		---------------------------------------------
+		문의글
+		
+		리스트 -> 글 다보이게
+		작성버튼클릭 ->
+			  
+	*/
+
+	   
+	LikeCount();
+	
 	   		
 	});
-	
 	
 
 </script>
@@ -208,9 +230,19 @@
 					<li>${vo.class_name }</li> <!-- 클래스 제목 -->
 					<li>${vo.class_info }</li> <!-- 짧은 소개글 *******************pre-wrap 아직 미설정-->
 					<li>
+						
 						<div>
-							<div><img src="img/jisu/ff385bigborderheart.png"/></div><!--  좋아요버튼, 좋아요수 --> <!-- 왼쪽정렬 -->
-							<div>120</div> <!--? 흠...div안에있는게 맞나모르겟음... -->
+						<!-- 	<div><img src="img/jisu/ff385bigborderheart.png" id="heartimg"/></div><!--  좋아요버튼, 좋아요수 --> <!-- 왼쪽정렬 -->
+						<!-- 	<div id="likelikecount">120</div> <!--? 흠...div안에있는게 맞나모르겟음... -->
+							 <c:set var="logid" value="${logid}" />	
+								<c:if test="${empty logid}"> <!-- 로그인x -->
+									<div><a href='javascript: login_need();'><img src="img/jisu/ff385bigborderheart.png"/></a></div><!--  좋아요버튼, 좋아요수 --> <!-- 왼쪽정렬 -->
+								</c:if>
+								
+								<c:if test="${not empty logid}"><!-- 로그인o -->
+									<div><a href='javascript:  like_func();'><img src="img/jisu/ff385bigcheart.png"/></a></div><!--  좋아요버튼, 좋아요수 --> <!-- 왼쪽정렬 -->
+								</c:if>
+									<div id="likelikecount">0</div> <!--? 흠...div안에있는게 맞나모르겟음... -->
 						</div>
 					</li>
 					<li><img src="img/jisu/smalllocation.png"/>경기도 | 용인시</li> <!-- 위치 -->

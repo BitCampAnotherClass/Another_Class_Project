@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.anotherclass.bitcamp.service.user.ClassDetailPageService;
 import com.anotherclass.bitcamp.vo.user.tempMemberVO;
-import com.anotherclass.bitcamp.vo.user.userClassDetailVO;
+import com.anotherclass.bitcamp.vo.user.UserClassDetailVO;
 
 @Controller
 public class ClassDetailPageController {
@@ -38,18 +38,27 @@ public class ClassDetailPageController {
 		return mav;
 	}
 	
+	
+	
 	//달력에서 날짜선택 -> 클래스옵션리스트
-	@RequestMapping("/classDetailDatePick")
-	@ResponseBody
-	public List<userClassDetailVO> ajaxDatePick(String datedate,String no){
-		ModelAndView mav = new ModelAndView();
-		List<userClassDetailVO> list = classDetailPageService.userSelectOptionAllSelect(datedate,no);
+	@RequestMapping("/classDetailDatePick")  //  /teamproject/classDetailDatePick
+	@ResponseBody		
+	public List<UserClassDetailVO> ajaxDatePick(String datedate, int no){
+	
+		System.out.println("컨트롤러 들어옴"+datedate+no);
+		List<UserClassDetailVO> list = classDetailPageService.userSelectOptionAllSelect(datedate,no);
+		System.out.print(list.size());
 		return list;
 	}
 	
-	
-	
-	
+	//클래스를 좋아요한 목록중에서 세션에 저장된 로그인 아이디가 있는 경우
+	@RequestMapping("/classDetailLikeCount")
+	@ResponseBody
+	public List<UserClassDetailVO> ajaxLikeChechk(int no){
+		System.out.println("좋아요수컨트롤러들어옴");
+		List<UserClassDetailVO> list = classDetailPageService.classLikeCount(no);
+		return list;
+	}
 	
 	
 	

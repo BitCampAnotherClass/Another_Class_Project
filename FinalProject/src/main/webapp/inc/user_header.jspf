@@ -30,20 +30,24 @@
 	<header id="header">
 		<div id="header-top">
 			<div class="inner-lg">
-				<ul class="tnb login-menu">
-					<li><a href="login">로그인</a></li>
-					<li><a href="register">회원가입</a></li>
-					<li><a href="#">♥</a></li>
-					<li><a href="mypage2">장</a></li>
-					<li class="creator-home"><a href="creator">크리에이터 센터</a></li>
-				</ul>
-				<ul class="tnb logout-menu">
-					<li><a href="#">로그아웃</a></li>
-					<li><a href="mypage1">마이페이지</a></li>
-					<li><a href="#">♥</a></li>
-					<li><a href="mypage2">장</a></li>
-					<li class="creator-home"><a href="creator">크리에이터 센터</a></li>
-				</ul>
+				<c:if test="${logState==null || logState!=1 }">
+					<ul class="tnb login-menu">
+						<li><a href="<%=request.getContextPath()%>/login">로그인</a></li>
+						<li><a href="<%=request.getContextPath()%>/register">회원가입</a></li>
+						<li><a href="#">♥</a></li>
+						<li><a href="<%=request.getContextPath()%>/mypage2">장</a></li>
+						<li class="creator-home"><a href="<%=request.getContextPath()%>/creator/">크리에이터 센터</a></li>
+					</ul>
+				</c:if>
+				<c:if test="${logState==1 }">
+					<ul class="tnb login-menu">
+						<li><a href="javascript:void(0);" onclick="kakaoLogout();">로그아웃</a></li>
+						<li><a href="<%=request.getContextPath()%>/mypage1">마이페이지</a></li>
+						<li><a href="#">♥</a></li>
+						<li><a href="<%=request.getContextPath()%>/mypage2">장</a></li>
+						<li class="creator-home"><a href="<%=request.getContextPath()%>/creator/">크리에이터 센터</a></li>
+					</ul>
+				</c:if>
 			</div>
 		</div>
 		<div id="header-bottom">
@@ -90,8 +94,8 @@
 								</li>
 							</ul>
 						</li>
-						<li><a href="classMap">내 주변 클래스</a></li>
-						<li><a href="#">커뮤니티</a></li>
+						<li><a href="<%=request.getContextPath()%>/classMap">내 주변 클래스</a></li>
+						<li><a href="<%=request.getContextPath()%>/CommunityMain">커뮤니티</a></li>
 						<li class="c-center"><a href="#">고객지원</a>
 							<ul class="sub-menu1">
 								<li><a href="#">공지사항</a></li>
@@ -104,6 +108,42 @@
 			</div>
 		</div>
 	</header>
+	
+	<!-- 카카오 스크립트 -->
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+	<script>
+	Kakao.init('033542c9317694f8d1bb2f13c3b67a2a'); //발급받은 키 중 javascript키를 사용해준다.
+	console.log(Kakao.isInitialized()); // sdk초기화여부판단
+	
+	//카카오로그아웃  
+	function kakaoLogout() {
+	    if (Kakao.Auth.getAccessToken()) {
+	      Kakao.API.request({
+	        url: '/v1/user/unlink',
+	        success: function (response) {
+	        	console.log(response);
+	        },
+	        fail: function (error) {
+	          console.log(error);
+	        },
+	      });
+
+	      Kakao.Auth.setAccessToken(undefined);
+	    }
+	    setTimeout(function(){
+		    logout();	    	
+	    }, 500);
+	}
+	
+	// 로그아웃
+	function logout(){
+		location.href='<%=request.getContextPath()%>/logout';
+	}
+	  
+	  
+	</script>
+
+
 	<div id="contents-wrap">
 	
 		

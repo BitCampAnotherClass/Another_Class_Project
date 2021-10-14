@@ -65,7 +65,7 @@
 	#d3 div:nth-child(2)>span{padding-top:5px;padding-left:1px;color:#666;font-size:0.9rem;}
 	
 	/* 메뉴바 */
-	#d4{width:100%;height:auto;overflow:auto;position:sticky;top:78px;background-color:white;r}
+	#d4{width:100%;height:auto;overflow:auto;position:sticky;top:0px;background-color:white;r}
 	#d4>ul{width:100%;height:auto;overflow:auto;}
 	#d4 li{float:left; width:20%;height:50px;line-height:50px; text-align:center;border-bottom:1px solid #ddd;}	
 	
@@ -114,7 +114,7 @@
 	/*==================#rightDiv==================*/
 	
 	/*rightDiv*/
-	#rightConBox{width:96%;margin-left:10px; min-height:600px;height:auto; box-shadow: 0 0 8px rgba(0,0,0,0.3);position:sticky;top:125px;border-radius: 10px;}
+	#rightConBox{width:96%;margin-left:10px; min-height:600px;height:auto; box-shadow: 0 0 8px rgba(0,0,0,0.3);position:sticky;top:50px;border-radius: 10px;}
 	#rightConBox div{margin:0 auto;}
 	
 	/*달력 width:350px;*/	
@@ -156,39 +156,110 @@
 	      })
 		
 	   
-	      $('#datepicker').on("change", function() { //날짜선택시 벌어지는일
-	          var date9999 = $(this).val();
-	      	  //console.log(date9999);
-	      	 $("#inputdatebox").html($(this).val());
-	      });
+//	      $('#datepicker').on("change", function() { //날짜선택시 벌어지는일
+	//          var date9999 = $(this).val();
+	  //    	  
+	    //  	 $("#inputdatebox").val($(this).val());
+	      	 
+	      //});
 	     
 	      
 	    //달력 Ajax
-	    $(".ui-datepicker td").on('click',function(){
-	    	
+	   
+	   // $(".ui-state-default").on("click",function(){
+	    $('#datepicker').on("change", function() { 	
 	    	console.log("날짜클릭이벤트발생");
-	    	var url ="/teamproject/classDetailDatePick";	    	
-	    	var params = {"datedate" : $("#inputdatebox").text(),"no":${vo.class_no }}
-	    
+	    	
+	    	//var no =${vo.class_no };
+	    	
+	    	var url ="/teamproject/classDetailDatePick";	
+	    	var params = {"datedate" : $(this).val(),"no":${vo.class_no }}
+	    	console.log($(this).val()+ " , "+${vo.class_no });
+	    	
 	    	$.ajax({
 	    		
 	    		url:url,
 	    		data:params,
 	    		success:function(r){//받아온 데이터를 r에 넣음
 	    			var rr = $(r)
+	    			console.log(rr);
 	    			rr.each(function(idx,vo){
 	    				//가져온 클래스옵션리스트를 여기에 추가한다
-	    				$("#startdiv").html(vo.start_date);
-	    				$("#enddiv").html(vo.end_date);
-	    				$("#headcountdiv").html(vo.all_headcount);
+	    				$("#startdiv").append(vo.start_date);
+	    				$("#enddiv").append(vo.end_date);
+	    				$("#headcountdiv").apeend(vo.all_headcount);
 	    			});
-	    		}
-	    		
-	    		
-	    		
+	    		}    		
 	    	});
 	    
-	    });
+	    }); 
+	  /*
+	  
+	  	⭐맨처음하트 +리스트  
+		-> 로그인 x -> 빈하트+ 갯수
+		-> 로그인 0 -> 좋아요있으면 빨강 없으면 빈하트 
+		 
+		⭐ 눌렀을때 
+		-> 로그인 x -> 알림창 or 로그인페이지 이동
+		
+		-> 로그인  0 -> 
+		     -> 좋아요o : 하트빈하트 + delete 
+		     -> 좋아요x : 빨강하트 + insert 
+		---------------------------------------------
+		문의글
+		
+		리스트 -> 글 다보이게
+		작성버튼클릭 ->
+			  
+	  */  
+	/*
+	  function likeCount(){//에이젝스로 좋아요 갯수 구하는 함수
+		
+		  var url ="/teamproject/classDetailLikeCount";
+	  	  var params ={"no":${vo.class_no } }
+		$.ajax({
+			url:url,
+    		data:params, 
+    		success:function(r){//받아온 데이터를 r에 넣음
+    			var rr = $(r)
+    			
+    			rr.each(function(idx,vo){
+    					
+    				$("#ikelikecount").append(vo.class_count);
+    			});
+    		}    		
+		
+		
+		
+		});
+		
+		  
+	  };
+	    
+	*/    
+//	    //클래스 상세보기 최초 접속시 처리 프로세스
+//	    //좋아요리스트 불러오기 ajax
+//  //세션값이 있는지 물어보고....
+			  $().ready(function(){
+			     //세션아이디값확인
+			     //String like_id = (String)session.getAttribute("logid");
+			     var url ="/teamproject/classDetailLikeChechk";	
+			     jstl로 불러왔던곳....
+			 	
+			  	if(like_id !="null"){// 세션에 아이디값이 있으면 
+			          //likecheck값에 1 넣어줌?
+			        //좋아요를 눌렀는가 -> yes : 빨강하트
+			         
+			       //좋아요를 눌렀는가 -> no : 테두리하트	    	
+			  	}
+			        else{ // 세션에 아이디값이 없으면
+			     	  //likecheck값에 0 넣어줌
+			     	  //-> 테두리하트
+			       }
+			 });  
+	  
+	  
+	  
 	   		
 	});
 	
@@ -208,8 +279,9 @@
 					<li>${vo.class_info }</li> <!-- 짧은 소개글 *******************pre-wrap 아직 미설정-->
 					<li>
 						<div>
+						
 							<div><img src="img/jisu/ff385bigborderheart.png"/></div><!--  좋아요버튼, 좋아요수 --> <!-- 왼쪽정렬 -->
-							<div>120</div> <!--? 흠...div안에있는게 맞나모르겟음... -->
+							<div id="likelikecount">120</div> <!--? 흠...div안에있는게 맞나모르겟음... -->
 						</div>
 					</li>
 					<li><img src="img/jisu/smalllocation.png"/>경기도 | 용인시</li> <!-- 위치 -->
@@ -369,8 +441,8 @@
 				
 				<div id="buttonhomec"><input type="button" value="장바구니" id="gobasketB" style="border-radius:5px;"/><input type="button" value="클래스 신청하기" id="gopayB" style="border-radius:5px;"/></div>
 				
-				<div style="display:none" id="inputdatebox"></div><!-- 선택된날짜입력될박스 -->
-				
+				<!-- <div style="display:none" id="inputdatebox"></div><!-- 선택된날짜입력될박스 -->
+				<input type="text" id="inputdatebox" style="visibility:hidden;" />
 			</div>
 	</div>
 </div>
