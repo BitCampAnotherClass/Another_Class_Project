@@ -1,21 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-
-
-
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<!-- 데이트피커 
-<script type="text/javascript" src="<%=request.getContextPath()%>/css/user/classCalendar/jquery-ui.min.js"></script>-->  
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/user/classCalendar/jquery-ui.css">
-<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js" integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk=" crossorigin="anonymous"></script> 
-
-
-
-
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<!-- 데이트피커 
+	<script type="text/javascript" src="<%=request.getContextPath()%>/css/user/classCalendar/jquery-ui.min.js"></script>-->  
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/css/user/classCalendar/jquery-ui.css">
+	<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js" integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk=" crossorigin="anonymous"></script> 
 
 <style>
-
 	div{margin:0;padding:0; box-sizing:border-box;}
 	a:link, a:hover, a:visited{text-decoration:none; color:#333;}
 	#Bcotainer{margin:0 auto; width:1200px; height:auto; display:flex;margin-top:50px;} /* 모든걸감싸는 큰박스*/
@@ -135,9 +126,6 @@
 <script>
 	$(function(){		
 		
-		
-		
-		
 		$('#d4 li').click(function(){	
 			$(this).children('a').css('color','#ff385c'); //글자색
 			$(this).css('border-bottom','3px solid #ff385c'); //li밑줄색 
@@ -161,7 +149,7 @@
 
 	    //달력 Ajax	
 	    $('#datepicker').on("change", function() { 		    	
-	    	var url ="/teamproject/classDetailDatePick";	
+	    	var url ="/another/classDetailDatePick";	
 	    	var params = {"datedate" : $(this).val(),"no":${vo.class_no }}
 	    	console.log($(this).val()+ " , "+${vo.class_no });	    	
 	    	$.ajax({	    		
@@ -181,7 +169,6 @@
 	    
 	    }); 
 	    
-	
 	    function LikeCount(){
 	    	console.log("좋아요수함수실행됨");
 	    	var lUrl ="/another/classDetailLikeCount";
