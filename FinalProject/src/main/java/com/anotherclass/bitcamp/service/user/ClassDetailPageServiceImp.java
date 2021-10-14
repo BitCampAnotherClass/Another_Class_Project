@@ -3,6 +3,7 @@ package com.anotherclass.bitcamp.service.user;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 
@@ -38,9 +39,15 @@ public class ClassDetailPageServiceImp implements ClassDetailPageService {
 	}
 
 	@Override
-	public List<UserClassDetailVO> classLikeCount(int no) {
-		// TODO Auto-generated method stub
+	public UserClassDetailVO classLikeCount(int no) {
+		
 		return classDetailPageDAO.classLikeCount(no);
+	}
+
+	@Override
+	public int classLikeCheck(int no, String logid) {
+	
+		return classDetailPageDAO.classLikeCheck(no,logid);
 	}
 
 	

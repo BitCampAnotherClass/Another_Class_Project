@@ -80,7 +80,7 @@
 			<ul id="hQnAWriteD33ul">
 				<li>
 					<div>회원정보</div>
-					<div>${logid}</div>	<!-- 세션에저장되어잉ㅆ는아이디 -->
+					<div>${userId}</div>	<!-- 세션에저장되어잉ㅆ는아이디 -->
 				</li>
 				<li>
 					<div>제목</div>
