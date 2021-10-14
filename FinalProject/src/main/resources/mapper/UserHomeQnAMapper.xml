@@ -17,10 +17,11 @@
 		</insert>
 		
 		<select id="userHomeQnAView" resultType="com.anotherclass.bitcamp.vo.user.UserHomeQnAVO">
-			select user_qna_no, member_id, to_char(writedate, 'yyyy-MM-DD') writedate,  title ,
-			content, file1, file2, file3, board_no2
-			from homeQnaUser 
-			where user_qna_no=#{param1}			
+			            
+			select user_qna_no, member_id, title, content,writedate, board_no1, board_no2 , replycount from
+			(select user_qna_no, member_id, title, content , file1, file2, file3, to_char(writedate, 'yyyy-MM-DD') writedate, board_no1 ,board_no2, 
+			count(board_no1)over(partition by board_no1) as replycount, com_sec, delete_sort	from homeQnaUser where delete_sort =  0 )
+			where user_qna_no =#{param1}		
 		</select>
 		
 		<update id="userHomeQnAEdit" parameterType="com.anotherclass.bitcamp.vo.user.UserHomeQnAVO">

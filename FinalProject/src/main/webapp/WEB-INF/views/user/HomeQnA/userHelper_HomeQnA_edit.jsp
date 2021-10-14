@@ -69,13 +69,13 @@
 		
 		//수정 hQnAWEdit
 		$("#hQnAeditSubmit").click(()=>{
-			$("#homeQnAEFrm").attr("action", "/teamproject/HomeQnAAsk/edit" );
+			$("#homeQnAEFrm").attr("action", "/another/HomeQnAAsk/edit" );
 			$("#homeQnAEFrm").submit();
 		});
 		
 		//취소 -> 글목록으로이동
 		$("#hQnAWEditedit").click(()=>{
-			$("#homeQnAEFrm").attr("action", "/teamproject/HomeQnAAsk/list" );
+			$("#homeQnAEFrm").attr("action", "/another/HomeQnAAsk/list" );
 			$("#homeQnAEFrm").submit();
 		});
 		

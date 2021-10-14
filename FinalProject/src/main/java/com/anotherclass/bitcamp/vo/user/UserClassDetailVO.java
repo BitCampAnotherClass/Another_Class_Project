@@ -54,9 +54,15 @@ public class UserClassDetailVO {
 	/*클래스좋아요 테이블*/
 	private int  class_like_no;
 	private int class_count;//좋아요갯수
+	private int class_like_check;
 	
 	
-	
+	public int getClass_like_check() {
+		return class_like_check;
+	}
+	public void setClass_like_check(int class_like_check) {
+		this.class_like_check = class_like_check;
+	}
 	public int getCategory_no() {
 		return category_no;
 	}

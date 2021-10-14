@@ -16,7 +16,7 @@
 	<div>
 		 
 		<label>클래스명 :</label><label class="title22">${vo.class_name }</label><br/>
-		<h2><a href="/teamproject/classDetailView?no=${vo.class_no}" > ${vo.class_no }</a></h2>
+		<h2><a href="/another/classDetailView?no=${vo.class_no}" > ${vo.class_no }</a></h2>
 		
 		 
 		

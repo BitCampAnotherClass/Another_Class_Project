@@ -58,13 +58,13 @@
 	    
 	    
 		$("#hQnAWCan6").click(()=>{//취소버큰 클릭 -> 목록으로돌아가기
-			$("#hQnAWriteD33ulFrm").attr("action", "/teamproject/HomeQnAAsk/list" );
+			$("#hQnAWriteD33ulFrm").attr("action", "/another/HomeQnAAsk/list" );
 			$("#hQnAWriteD33ulFrm").submit();			
 		});
 		
 		$("#hQnAWSubmit9").click(()=>{//등록
-			console.log("자스들어옴");
-			$("#hQnAWriteD33ulFrm").attr("action", "/teamproject/HomeQnAAsk/writeOk" );
+			console.log("자스들어옴");a
+			$("#hQnAWriteD33ulFrm").attr("action", "/another/HomeQnAAsk/writeOk" );
 			$("#hQnAWriteD33ulFrm").submit();			
 		});
 	});

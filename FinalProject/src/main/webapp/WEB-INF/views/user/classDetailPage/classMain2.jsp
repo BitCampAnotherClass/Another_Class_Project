@@ -162,7 +162,7 @@
 	    				//가져온 클래스옵션리스트를 여기에 추가한다
 	    				$("#startdiv").append(vo.start_date);
 	    				$("#enddiv").append(vo.end_date);
-	    				$("#headcountdiv").apeend(vo.all_headcount);
+	    				$("#headcountdiv").append(vo.all_headcount);
 	    			});
 	    		}    		
 	    	});
@@ -182,7 +182,7 @@
 	    			console.log(tt);
 	    			tt.each(function(idx,vo){
 	    				
-	    				$("#likelikecount").html(${vo.class_count});
+	    				$("#likelikecount").html(vo.class_count);
 	    			
 	    			});
 	    		}    		
@@ -242,7 +242,7 @@
 								<c:if test="${not empty logid}"><!-- 로그인o -->
 									<div><a href='javascript:  like_func();'><img src="img/jisu/ff385bigcheart.png"/></a></div><!--  좋아요버튼, 좋아요수 --> <!-- 왼쪽정렬 -->
 								</c:if>
-									<div id="likelikecount">0</div> <!--? 흠...div안에있는게 맞나모르겟음... -->
+									<div id="likelikecount"></div> <!--? 흠...div안에있는게 맞나모르겟음... -->
 						</div>
 					</li>
 					<li><img src="img/jisu/smalllocation.png"/>경기도 | 용인시</li> <!-- 위치 -->
