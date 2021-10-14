@@ -44,7 +44,7 @@
   	<insert id="classLikeInsert" parameterType="com.anotherclass.bitcamp.vo.user.UserClassDetailVO">
   		<![CDATA[
   			insert into classlike (class_like_no, class_no, member_id)
-  			values( class_like_sq.nextval , #{param2}, #{param1})
+  			values( class_like_sq.nextval , #{param1}, #{param2})
   		]]> 
   	</insert>
   	<delete id="classLikeDelete">

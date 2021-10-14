@@ -112,10 +112,11 @@
 	#datepicker{padding-top:25px;}
 	
 	/*클래스옵션목록*/
-	#selectClassListd{width:350px;min-height:120px;height:auto;border:1px solid #f0f0f0;overflow:auto;} 
-	#startdiv{width:350px;}
-	#enddiv{width:350px;}
-	#headcountdiv{width:350px;}
+	#selectClassListd{width:350px;min-height:120px;height:auto;border:1px solid #f0f0f0;overflow:auto;} /*오버플로우지울것*/
+	.oneclassdiv{width:350px;height:auto;}
+	.startdiv{width:350px;}
+	.enddiv{width:350px;}
+	.headcountdiv{width:350px;}
 	/*버튼감싸고 있는div*/
 	#buttonhomec{width:350px;display:flex;width:350px;}
 	#buttonhomec input[type=button]{border:none;}
@@ -157,12 +158,25 @@
 	    		data:params,
 	    		success:function(r){//받아온 데이터를 r에 넣음
 	    			var rr = $(r)
-	    			
-	    			rr.each(function(idx,vo){
+	    			var tag ="";
+	    			rr.each(function(idx,vo4){
 	    				//가져온 클래스옵션리스트를 여기에 추가한다
-	    				$("#startdiv").append(vo.start_date);
-	    				$("#enddiv").append(vo.end_date);
-	    				$("#headcountdiv").append(vo.all_headcount);
+	    				//$("#startdiv").append(vo.start_date);
+	    				//$("#enddiv").append(vo.end_date);
+	    				//$("#headcountdiv").append(vo.all_headcount);
+	    				
+	    				//<div class="oneclassdiv">
+		    				//<div class="startdiv">vo.start_date</div>
+							//<div class="enddiv">vo.end_date</div>
+							//<div class="headcountdiv">vo.all_headcount</div>
+	    				//</div>
+	    				tag += "<div class='oneclassdiv'>";
+	    				tag +="<div class='startdiv'>"+vo4.start_date+ "</div>";
+	    				tag +="<div class='enddiv'>"+vo4.end_date+ "</div>";
+	    				tag +="<div class='headcountdiv'>"+vo4.all_headcount+"</div>";
+	    				tag +="</div>";
+	    				 $("#selectClassListd").append(tag);
+	    				
 	    			});
 	    		}    		
 	    	});
@@ -434,9 +448,7 @@
 				</div>
 				
 				<div id="selectClassListd" style="margin-top:10px;"><!-- 해당날짜에 선택된 강의옵션목록 -->
-					<div id="startdiv">f</div>
-					<div id="enddiv">f</div>
-					<div id="headcountdiv">f</div>
+					
 				</div>
 				
 				<div id="buttonhomec"><input type="button" value="장바구니" id="gobasketB" style="border-radius:5px;"/><input type="button" value="클래스 신청하기" id="gopayB" style="border-radius:5px;"/></div>
