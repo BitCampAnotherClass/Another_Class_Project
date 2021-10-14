@@ -210,7 +210,7 @@
 	               <li><a href="#" class="small-menu">클래스 취소 관리</a></li>
 	            </ul>
 	         </li>
-	         <li class="menu_title"><a href="userManagement">회원관리</a></li>
+	         <li class="menu_title"><a href="<%=request.getContextPath()%>/admin/userManagement">회원관리</a></li>
 	         <li class="menu_title"><a href="#">크리에이터관리</a></li>
 	         <li class="menu_title"><a href="#">결제관리</a></li>
 	         <li class="menu_title"><a href="#">정산관리</a>
