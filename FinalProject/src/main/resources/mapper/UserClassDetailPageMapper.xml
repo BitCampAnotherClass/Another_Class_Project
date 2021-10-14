@@ -41,6 +41,17 @@
 			and  member_id=#{param2}
   		]]> 
   	</select>
-  
+  	<insert id="classLikeInsert" parameterType="com.anotherclass.bitcamp.vo.user.UserClassDetailVO">
+  		<![CDATA[
+  			insert into classlike (class_like_no, class_no, member_id)
+  			values( class_like_sq.nextval , #{param2}, #{param1})
+  		]]> 
+  	</insert>
+  	<delete id="classLikeDelete">
+  		<![CDATA[
+  			delete from classlike where member_id = #{param2} and class_no = #{param1}
+  		]]> 
+  	</delete>
+  	
   	
   </mapper>

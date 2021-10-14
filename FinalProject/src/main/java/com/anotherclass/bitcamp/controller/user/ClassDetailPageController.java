@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.anotherclass.bitcamp.service.user.ClassDetailPageService;
-import com.anotherclass.bitcamp.vo.user.tempMemberVO;
+
 import com.anotherclass.bitcamp.vo.user.UserClassDetailVO;
 
 @Controller
@@ -70,14 +70,35 @@ public class ClassDetailPageController {
 			
 			if(likecheck == 0) {
 				vo2.setClass_like_check(0); //좋아요x
+				
 			}else {
-				vo2.setClass_like_check(1);//좋아요ㅇ
-			}
-			
-		}
-		
+				vo2.setClass_like_check(1);//좋아요ㅇ				
+			}			
+		}		
 		return vo2;
 	}
+	@RequestMapping("/classDetailLikeFun")
+	@ResponseBody
+	public int ajaxLikeFunc(int no,HttpSession  sess) {
+		
+		System.out.println("좋아요버튼클릭컨트롤러들어옴");
+		String logid= (String)sess.getAttribute("userId");
+		int result;
+		System.out.println(no);
+		System.out.println(logid);
+		int likecheck = classDetailPageService.classLikeCheck(no,logid); //좋아요여부 -> 좋아요눌렀음 :1 , 좋아요안눌렀음:0
+		System.out.println(likecheck);
+		
+		if(likecheck == 0) {//좋아요 안눌럿음 -> 좋아요 테이블에 insert
+			result = classDetailPageService.classLikeInsert(no,logid); //1가 같거나 1보다 크면 인서트
+			
+		}else {//좋아요 눌럿음 -> 좋아요 테이블에 delete
+			result = classDetailPageService.classLikeDelete(no,logid);//1가 같거나 1보다 크면 인서트
+		}	
+		
+		return result;
+	}
+	
 	
 	
 	

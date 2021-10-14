@@ -50,6 +50,18 @@ public class ClassDetailPageServiceImp implements ClassDetailPageService {
 		return classDetailPageDAO.classLikeCheck(no,logid);
 	}
 
+	@Override
+	public int classLikeInsert(int no, String logid) {
+		
+		return classDetailPageDAO.classLikeInsert(no,logid);
+	}
+
+	@Override
+	public int classLikeDelete(int no, String logid) {
+		
+		return classDetailPageDAO.classLikeDelete(no,logid);
+	}
+
 	
 	
 

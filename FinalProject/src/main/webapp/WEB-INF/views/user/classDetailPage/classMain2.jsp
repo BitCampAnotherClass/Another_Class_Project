@@ -169,7 +169,7 @@
 	    
 	    }); 
 	    
-	    function LikeCount(){
+	    function LikeCount(){ //좋아요리스트 셋팅
 	    	console.log("좋아요수함수실행됨");
 	    	var lUrl ="/another/classDetailLikeCount";
 			var lParam ="no=${vo.class_no}";
@@ -185,16 +185,49 @@
 	    				$("#likelikecount").html(vo3.class_count);
 	    				
 	    				if(vo3.class_like_check==0){
-	    					//하트 -> 빈하트
+	    					//빈하트 //likeimgbox2
+	    					$("#likeimgbox2").attr("src", "img/jisu/ff385bigborderheart.png");
 	    				}else if(vo3.class_like_check==1){
 	    					//꽉찬하트
+	    					$("#likeimgbox2").attr("src", "img/jisu/ff385bigcheart.png");
 	    				}
 	    			
 	    			});
 	    		}    		
 				
 			})
-		}
+		}	    
+	    
+	    function like_func(){ //로그인상태 -> 좋아요 버튼 눌렀을때
+	    	console.log("로그인...좋아요버튼누름...함수실행");
+	    	var hUrl ="/another/classDetailLikeFun";
+	    	var hParam ="no=${vo.class_no}";
+	    	$.ajax({
+	    		url : hUrl,
+				data : hParam,
+				success:function(){
+					LikeCount(); //디비에서 작업끝내고 하트리스트보여줌.....
+				}
+	    	})
+	    	
+	    }	    
+	    
+	    function  login_need(){//로그인x상태 -> 좋아요 버튼 눌렀을때
+	    	alert("로그인 후 좋아요 가능합니다.");
+	    }
+	    
+	    
+	    $('#likeimgbox2').click(function(){
+	    	var logid = "${userId}";
+	    	console.log(logid);
+			if(logid=== null || logid=== ""){
+				alert("로그인후 좋아요 가능합니다");
+			}else{
+				like_func();
+			}
+	    	
+	    });
+	    
 	    
 	  /*
 	  
@@ -237,17 +270,17 @@
 					<li>${vo.class_info }</li> <!-- 짧은 소개글 *******************pre-wrap 아직 미설정-->
 					<li>
 						
-						<div>
-						<!-- 	<div><img src="img/jisu/ff385bigborderheart.png" id="heartimg"/></div><!--  좋아요버튼, 좋아요수 --> <!-- 왼쪽정렬 -->
-						<!-- 	<div id="likelikecount">120</div>  -->
-							 <c:set var="userId" value="${userId}" />	
+						<div>						
+							<!--   <c:set var="userId" value="${userId}" />	
 								<c:if test="${empty userId}"> <!-- 로그인x -->
-									<div><a href='javascript: login_need();'><img src="img/jisu/ff385bigborderheart.png"/></a></div><!--  좋아요버튼, 좋아요수 --> <!-- 왼쪽정렬 -->
-								</c:if>
+								<!--  	<div><a href='javascript: login_need();'><img id="likeimgbox2" src="img/jisu/ff385bigborderheart.png" /></a></div><!--  좋아요버튼, 좋아요수 --> <!-- 왼쪽정렬 -->
+							<!--  	</c:if>
 								
 								<c:if test="${not empty userId}"><!-- 로그인o -->
-									<div><a href='javascript:  like_func();'><img src="img/jisu/ff385bigcheart.png"/></a></div><!--  좋아요버튼, 좋아요수 --> <!-- 왼쪽정렬 -->
-								</c:if>
+							<!--  		<div><a href='javascript:like_func();'><img id="likeimgbox2" src="img/jisu/ff385bigcheart.png"/></a></div><!--  좋아요버튼, 좋아요수 --> <!-- 왼쪽정렬 -->
+							<!--  	</c:if> -->
+									<div><img id="likeimgbox2" src="img/jisu/ff385bigcheart.png"/></div>
+										
 									<div id="likelikecount"></div> 
 						</div>
 					</li>

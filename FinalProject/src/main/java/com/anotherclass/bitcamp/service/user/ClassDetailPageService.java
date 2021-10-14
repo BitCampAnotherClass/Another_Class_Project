@@ -13,4 +13,6 @@ public interface ClassDetailPageService {
 	public List<UserClassDetailVO> userSelectOptionAllSelect(String datedate, int no);
 	public UserClassDetailVO classLikeCount(int no);
 	public int classLikeCheck(int no, String logid);
+	public int classLikeInsert(int no, String logid);
+	public int classLikeDelete(int no,String logid);
 }
