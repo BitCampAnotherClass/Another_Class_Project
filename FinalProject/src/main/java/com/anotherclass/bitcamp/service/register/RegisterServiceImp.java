@@ -24,8 +24,13 @@ public class RegisterServiceImp implements RegisterService {
 	}
 
 	@Override
-	public RegisterVO loginMember(RegisterVO vo) {
-		return registerDao.loginMember(vo);
+	public RegisterVO loginUser(RegisterVO vo) {
+		return registerDao.loginUser(vo);
+	}
+
+	@Override
+	public int logIdCheck(RegisterVO vo) {
+		return registerDao.logIdCheck(vo);
 	}
 	
 	
