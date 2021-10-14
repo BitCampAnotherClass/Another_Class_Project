@@ -29,20 +29,28 @@
 		background:#f0f0f0;
 		border:1px solid #f0f0f0;
 	}
-	.userMg-chart-boardlist:nth-child(7n+1){
+	.userMg-chart-boardlist:nth-child(8n+1){
 		width: 5%;
 	}
-	.userMg-chart-boardlist:nth-child(7n+3){
-		width: 20%;
+	.userMg-chart-boardlist:nth-child(8n+2){
+		width: 10%;
 	}
-	.userMg-chart-boardlist:nth-child(n+8){
+	.userMg-chart-boardlist:nth-child(8n+3){
+		width: 10%;
+	}
+	.userMg-chart-boardlist:nth-child(8n+7){
+		width: 15%;
+	}
+	.userMg-chart-boardlist:nth-child(n+9){
 		background:white;
+		display: 
 	}
 </style>
 <script>
 	$(function(){
 		var url="MemberMangement/userAccountList";
 		var board= "";
+		var test = 'test';
 		function userList(){
 			$.ajax({
 				url : url,
@@ -57,8 +65,9 @@
 						board +='<li class="userMg-chart-boardlist">'+vo.member_email+'</li>';
 						board +='<li class="userMg-chart-boardlist">'+vo.member_tel+'</li>';
 						board +='<li class="userMg-chart-boardlist">'+vo.signupdate+'</li>';
+						board +='<li class="userMg-chart-boardlist">'+test+'</li>';
 						board +='<li class="userMg-chart-boardlist">';
-						board +='<input type="button" value="상세 정보"/>';
+						board +='<input type="button" value="상세 정보" id="account_information_btn"/>';
 						board +='<input type="button" value="수정" />';
 						board +='<input type="button" value="삭제" />';
 						board +='</li>';
@@ -72,6 +81,25 @@
 			});
 		}
 		userList();
+		
+	});
+</script>
+<script>
+	$(function(){
+		$("#account_information_btn").on('click',function(){
+			console.log('이게 왜 안되');
+			$('.userMg-chart-box').attr('style','display:none');
+			var member_information = '';
+			member_information += '<div class="userMg-information-box">';
+			member_information += '<input type="button" value="목록보기" class="account_list_btn" />';
+			member_information += '</div>';
+			$('.userMg-bottom').append(member_information);
+		});
+		
+		$('.account_list_btn').click(function(){
+			$('.userMg-information-box').css('display','none');
+			$('.userMg-chart-box').css('display','block');
+		});
 	});
 </script>
 </head>
@@ -93,10 +121,8 @@
 				<li class="userMg-chart-boardlist">이메일</li>
 				<li class="userMg-chart-boardlist">휴대폰</li>
 				<li class="userMg-chart-boardlist">가입일</li>
+				<li class="userMg-chart-boardlist">구분</li>
 				<li class="userMg-chart-boardlist">관리</li>
-				
-				
-				
 			</ul>
 		</div>
 	</div>
