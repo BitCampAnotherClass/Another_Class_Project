@@ -8,6 +8,7 @@
 <title>Another Class</title>
 <link href="<%=request.getContextPath()%>/css/login.css" rel="stylesheet" type="text/css"/>
 <link href="<%=request.getContextPath()%>/css/common.css" rel="stylesheet" type="text/css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
 <style>
 	.register_user{
 		margin: 0 auto;
@@ -69,32 +70,38 @@
 	}
 </style>
 <script type="text/javascript">
-		
-		function loginCheck(){
-			
-			$.ajax({
-				url: url,
-				type: post,
-				success:function(result)
+		$(()=>{
+			var url = 'ano';
+			$('#member_id').keyup(function(){
+				/* $.ajax({
+					url: url,
+					type: 'POST',
+					success:function(){
+						
+					}
+				}); */
+				console.log("아이디 생성 규칙 및 중복아이디 검출 작동");
+				document.getElementById('register_id_text').innerHTML="사용중이거나 삭제된 아이디 입니다.제작중 가입";
 			});
-			console.log("아이디 생성 규칙 및 중복아이디 검출 작동");
-			document.getElementById('register_id_text').innerHTML="사용중이거나 삭제된 아이디 입니다.";
-		}
-		function passWordRules(){
-			console.log("비밀번호 생성규칙 작동");
-			document.getElementById('register_pwd_text').innerHTML="비밀번호 생성 규칙을 따라주세요";
-		}
-		function passWordCheck(){
-			console.log("비밀번호 확인작동");
-			var pwd = document.getElementById('member_pw').value;
-			var pwdCheck = document.getElementById('member_pw_check').value;
-			document.getElementById('register_pwdCh_text').innerHTML="비밀번호가 일치하지 않습니다.";
-			if(pwd = pwdCheck){
-				document.getElementById('register_pwdCh_text').innerHTML="비밀번호가 일치합니다.";
-				console.log(pwd);
-				console.log(pwdCheck);
-			}
-		}
+			
+			$('#member_pw_check, #member_pw').keyup(function passWordCheck(){
+				
+				console.log("비밀번호 확인작동");
+				var check1 = $('#member_pw').val();
+				var check2 = $('#member_pw_check').val();
+				
+				if(check1.length < 8 || check1.length > 20){
+					$('#member_pw').html("비밀번호 생성 규칙을 지켜주세요"); 
+				}
+				if(check1 != "" || check2 != ""){
+					$('#register_pwdCh_text').html("비밀번호가 일치하지 않습니다.");
+					if(check1 == check2){
+						$('#register_pwdCh_text').html("비밀번호가 일치합니다.");
+					}
+				}
+			});
+			
+		});
 </script>
 </head>	
 	<body>
@@ -115,7 +122,7 @@
 								<div id="register_id" class="register_input-group">
 									<span class="register_input-outline">
 										<span class="register_input-box">
-											<input type="text" id="member_id" name="member_id" class="register_input" placeholder="아이디" autocomplete=”off” maxlength="15" onkeyup="javascript:loginCheck()"/>
+											<input type="text" id="member_id" name="member_id" class="register_input" placeholder="아이디" autocomplete=”off” maxlength="15" />
 										</span>
 											<label id="register_id_text"></label>	
 									</span>
@@ -123,7 +130,7 @@
 								<div id="register_pwd" class="register_input-group">
 									<span class="register_input-outline">
 										<span class="register_input-box">
-											<input type="password" id="member_pw" name="member_pw" class="register_input" placeholder="비밀번호" autocomplete=”off” maxlength="16" onkeyup="javascript:passWordRules()" autocomplete="new-password"/>
+											<input type="password" id="member_pw" name="member_pw" class="register_input" placeholder="비밀번호" autocomplete=”off” maxlength="16" autocomplete="new-password"/>
 										</span>
 											<label id="register_pwd_text"></label>
 									</span>
@@ -131,7 +138,7 @@
 								<div id="register_pwd" class="register_input-group">
 									<span class="register_input-outline">
 										<span class="register_input-box">
-											<input type="password" id="member_pw_check" class="register_input" placeholder="비밀번호확인" autocomplete=”off” maxlength="16"  onkeyup="javascript:passWordCheck()"/>
+											<input type="password" id="member_pw_check" name="member_pw_check" class="register_input" placeholder="비밀번호확인" autocomplete=”off” maxlength="16"/>
 										</span>
 											<label id="register_pwdCh_text"></label>
 									</span>
