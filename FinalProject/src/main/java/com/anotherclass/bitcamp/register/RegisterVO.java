@@ -18,6 +18,8 @@ public class RegisterVO {
 	
 	private String additional_information_one; // 추가 정보  --  프로시저 용도
 	private String additional_information_two; // 추가 정보 2 -- 프로시저 용도
+	private int log_cnt=0;// 로그인할 계정이 있는지 카운트
+	
 	
 	public String getMember_id() {
 		return member_id;
@@ -109,8 +111,10 @@ public class RegisterVO {
 	public void setAdditional_information_two(String additional_information_two) {
 		this.additional_information_two = additional_information_two;
 	}
-	
-	
-	
-	
+	public int getLog_cnt() {
+		return log_cnt;
+	}
+	public void setLog_cnt(int log_cnt) {
+		this.log_cnt = log_cnt;
+	}
 }
