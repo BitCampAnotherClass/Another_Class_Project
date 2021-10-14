@@ -14,4 +14,6 @@ public interface ClassDetailPageDAO {
 	public List<UserClassDetailVO> userSelectOptionAllSelect(String datedate, int no);//달력날짜선택 -> 옵션별클래스리스트
 	public UserClassDetailVO classLikeCount(int no);//클래수 좋아요 갯수 구하기
 	public int classLikeCheck(int no, String logid);//좋아요 여부 구하기
+	public int classLikeInsert(int no, String logid);//좋아요 insert
+	public int classLikeDelete(int no,String logid);//좋아요 취소 delete
 }
