@@ -35,7 +35,7 @@ public class UserHomeQnAController {
 	@RequestMapping(value="/HomeQnAAsk/writeOk",method=RequestMethod.POST)
 	public ModelAndView HomeQnAAskWriteOk(UserHomeQnAVO vo, HttpSession ses) {
 	
-		vo.setMember_id((String)ses.getAttribute("logid"));
+		vo.setMember_id((String)ses.getAttribute("userId"));
 		int result = userHomeQnAService.userHomeQnAWrite(vo);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("redirect:list");
@@ -63,7 +63,7 @@ public class UserHomeQnAController {
 	//글수정
 	@RequestMapping(value="/HomeQnAAsk/edit",method = RequestMethod.POST)
 	public ModelAndView HomeQnAAskEdit(UserHomeQnAVO vo, HttpSession ses) {
-		vo.setMember_id((String)ses.getAttribute("logid"));
+		vo.setMember_id((String)ses.getAttribute("userId"));
 		int result = userHomeQnAService.userHomeQnAEdit(vo);
 		ModelAndView mav = new ModelAndView();
 		if(result>0) {
@@ -80,7 +80,7 @@ public class UserHomeQnAController {
 	@RequestMapping(value="/HomeQnAAsk/del",method=RequestMethod.POST)
 	public ModelAndView HomeQnAAskDel(int no , HttpSession session) {
 		
-		String member_id = (String)session.getAttribute("logid"); //이부분은 삭세해도될거같은데
+		String member_id = (String)session.getAttribute("userId"); //이부분은 삭세해도될거같은데
 		int result = userHomeQnAService.userHomeQnADel(no);
 		ModelAndView mav = new ModelAndView();
 		if(result>0) {

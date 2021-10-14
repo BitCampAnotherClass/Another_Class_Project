@@ -177,12 +177,18 @@
 			$.ajax({
 				url : lUrl,
 				data : lParam,
-				success:function(t){//받아온 데이터를 r에 넣음
+				success:function(t){//받아온 데이터를 r에 넣음,,,
 	    			var tt = $(t)
 	    			console.log(tt);
-	    			tt.each(function(idx,vo){
+	    			tt.each(function(idx,vo3){
 	    				
-	    				$("#likelikecount").html(vo.class_count);
+	    				$("#likelikecount").html(vo3.class_count);
+	    				
+	    				if(vo3.class_like_check==0){
+	    					//하트 -> 빈하트
+	    				}else if(vo3.class_like_check==1){
+	    					//꽉찬하트
+	    				}
 	    			
 	    			});
 	    		}    		
@@ -233,16 +239,16 @@
 						
 						<div>
 						<!-- 	<div><img src="img/jisu/ff385bigborderheart.png" id="heartimg"/></div><!--  좋아요버튼, 좋아요수 --> <!-- 왼쪽정렬 -->
-						<!-- 	<div id="likelikecount">120</div> <!--? 흠...div안에있는게 맞나모르겟음... -->
-							 <c:set var="logid" value="${logid}" />	
-								<c:if test="${empty logid}"> <!-- 로그인x -->
+						<!-- 	<div id="likelikecount">120</div>  -->
+							 <c:set var="userId" value="${userId}" />	
+								<c:if test="${empty userId}"> <!-- 로그인x -->
 									<div><a href='javascript: login_need();'><img src="img/jisu/ff385bigborderheart.png"/></a></div><!--  좋아요버튼, 좋아요수 --> <!-- 왼쪽정렬 -->
 								</c:if>
 								
-								<c:if test="${not empty logid}"><!-- 로그인o -->
+								<c:if test="${not empty userId}"><!-- 로그인o -->
 									<div><a href='javascript:  like_func();'><img src="img/jisu/ff385bigcheart.png"/></a></div><!--  좋아요버튼, 좋아요수 --> <!-- 왼쪽정렬 -->
 								</c:if>
-									<div id="likelikecount"></div> <!--? 흠...div안에있는게 맞나모르겟음... -->
+									<div id="likelikecount"></div> 
 						</div>
 					</li>
 					<li><img src="img/jisu/smalllocation.png"/>경기도 | 용인시</li> <!-- 위치 -->

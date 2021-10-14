@@ -33,5 +33,14 @@
 			where class_no =  #{param1}
   		]]> 
   	</select>
+  	<select id="classLikeCheck" resultType="int">
+  		<![CDATA[
+  			SELECT COUNT(*) AS class_count
+			FROM classlike 
+			where class_no = #{param1}
+			and  member_id=#{param2}
+  		]]> 
+  	</select>
+  
   	
   </mapper>
