@@ -12,6 +12,9 @@ public class RegisterVO {
 	private String additional_information_two;
 	private String member_img; // 프로필 이미지
 	
+	// 로그인할 계정이 있는지 카운트
+	private int log_cnt=0;
+	
 	
 	public String getMember_id() {
 		return member_id;
@@ -67,6 +70,12 @@ public class RegisterVO {
 	}
 	public void setMember_img(String member_img) {
 		this.member_img = member_img;
+	}
+	public int getLog_cnt() {
+		return log_cnt;
+	}
+	public void setLog_cnt(int log_cnt) {
+		this.log_cnt = log_cnt;
 	}
 	
 	
