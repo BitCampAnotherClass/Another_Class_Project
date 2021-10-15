@@ -21,7 +21,7 @@
   	</select>
   	<select id="userSelectOptionAllSelect"  resultType="com.anotherclass.bitcamp.vo.user.UserClassDetailVO">
   		<![CDATA[
-  		select to_char(start_date, 'yyyy-MM-DD HH:MM') start_date, to_char(end_date, 'yyyy-MM-DD HH:MM') end_date, all_headcount from classoption
+  		select class_option_no , to_char(start_date, 'yyyy-MM-DD HH:MM') start_date, to_char(end_date, 'yyyy-MM-DD HH:MM') end_date, all_headcount from classoption
 		where class_no = #{param2}
 		and  to_char(start_date, 'yyyy-MM-DD')= #{param1}  		
   		]]>  	
@@ -52,6 +52,32 @@
   			delete from classlike where member_id = #{param2} and class_no = #{param1}
   		]]> 
   	</delete>
+  	<select id="userClassDetailAskAllSelect" resultType="com.anotherclass.bitcamp.vo.user.UserClassDetailVO2">
+  		<![CDATA[
+  			select a.class_qna_no, a.class_no, a.classQna_member_id, a.classqna_content,to_char( a.classqna_writedate,'yyyy-MM-DD HH:MM' ) classqna_writedate, a.classqna_com_sec, b.member_img 
+			from classQna a, membertbl b
+            where a.classQna_member_id = b.member_id
+			and a.class_no = #{param1}
+  		]]> 
+  	</select>
+  	
+  	<select id="AskReplyCheck" resultType="int">
+  		<![CDATA[
+  			select count(*)
+			from classQnaCom
+			where class_qna_no = #{param1}
+  		]]> 
+  	</select>
+  	<select id="userClassDetailAskReplySelect" resultType="com.anotherclass.bitcamp.vo.user.UserClassDetailVO2">
+  		select class_qna_com_no , class_qna_no,classqnacom_member_id, com_no1, com_no2, classqnacom_reply, classqnacom_writedate, classqnacom_com_sec, classqnacom_delete_sort
+		from classQnaCom
+		where class_qna_no =#{param1}
+  	</select>
+  	
+  	
+  	
+  	
+  	
   	
   	
   </mapper>
