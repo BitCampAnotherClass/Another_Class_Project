@@ -10,5 +10,7 @@ public interface RegisterDAO {
 	
 	public String adminAccountCreate(RegisterVO vo);
 	
-	public RegisterVO loginMember(RegisterVO vo);
+	public RegisterVO loginUser(RegisterVO vo);
+	
+	public int logIdCheck(RegisterVO vo);
 }

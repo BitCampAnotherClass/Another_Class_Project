@@ -30,7 +30,7 @@
 	<header id="header">
 		<div id="header-top">
 			<div class="inner-lg">
-				<c:if test="${logState==null || logState!=1 }">
+				<c:if test="${userLog==null || userLog!=1 }">
 					<ul class="tnb login-menu">
 						<li><a href="<%=request.getContextPath()%>/login">로그인</a></li>
 						<li><a href="<%=request.getContextPath()%>/register">회원가입</a></li>
@@ -39,8 +39,10 @@
 						<li class="creator-home"><a href="<%=request.getContextPath()%>/creator/">크리에이터 센터</a></li>
 					</ul>
 				</c:if>
-				<c:if test="${logState==1 }">
+				<c:if test="${userLog==1 }">
 					<ul class="tnb login-menu">
+						<li class="user-profile"><img src="<%=request.getContextPath()%>${userImg }"/></li>
+						<li>${userId }</li>
 						<li><a href="javascript:void(0);" onclick="kakaoLogout();">로그아웃</a></li>
 						<li><a href="<%=request.getContextPath()%>/mypage1">마이페이지</a></li>
 						<li><a href="#">♥</a></li>

@@ -18,7 +18,7 @@ public class UserClassDetailVO {
 	private String class_post_no;
 	private String class_addr1;
 	private String class_addr2;
-	private int max_headcount;	
+	private int max_headcount;	//클래스 최대인원
 	private int request;
 	private int progress;
 	private String class_writedate;
@@ -33,15 +33,18 @@ public class UserClassDetailVO {
 	private String addr2;
 	private String nick;
 	private String member_img;
-	//가입일
-	//탈퇴일
+	private String sns_type;
+	private String signupdate;
+	private String out_date;
+	
 	
 	/*크리에이터 테이블*/
 	private String pay_company;
 	private String account;
 	private String creator_content;
 	private String creator_content_img;
-	private String creator_img;
+	private String creator_tag;
+	
 	
 	/*클래스옵션테이블*/
 	private int class_option_no;
@@ -54,7 +57,9 @@ public class UserClassDetailVO {
 	/*클래스좋아요 테이블*/
 	private int  class_like_no;
 	private int class_count;//좋아요갯수
-	private int class_like_check;
+	private int class_like_check; //좋아요 여부 -> 0 : 좋아요x , 1 : 좋아요o
+	
+	/*클래스 문의*/
 	
 	
 	public int getClass_like_check() {
@@ -261,12 +266,7 @@ public class UserClassDetailVO {
 	public void setCreator_content_img(String creator_content_img) {
 		this.creator_content_img = creator_content_img;
 	}
-	public String getCreator_img() {
-		return creator_img;
-	}
-	public void setCreator_img(String creator_img) {
-		this.creator_img = creator_img;
-	}
+	
 	public int getClass_option_no() {
 		return class_option_no;
 	}
@@ -314,6 +314,30 @@ public class UserClassDetailVO {
 	}
 	public void setClass_count(int class_count) {
 		this.class_count = class_count;
+	}
+	public String getSns_type() {
+		return sns_type;
+	}
+	public void setSns_type(String sns_type) {
+		this.sns_type = sns_type;
+	}
+	public String getSignupdate() {
+		return signupdate;
+	}
+	public void setSignupdate(String signupdate) {
+		this.signupdate = signupdate;
+	}
+	public String getOut_date() {
+		return out_date;
+	}
+	public void setOut_date(String out_date) {
+		this.out_date = out_date;
+	}
+	public String getCreator_tag() {
+		return creator_tag;
+	}
+	public void setCreator_tag(String creator_tag) {
+		this.creator_tag = creator_tag;
 	}
 	
 	

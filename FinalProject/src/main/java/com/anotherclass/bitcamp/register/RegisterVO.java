@@ -7,10 +7,18 @@ public class RegisterVO {
 	private String member_name;
 	private String member_tel;
 	private String member_email;
+	private String post_no;
+	private String addr1;
+	private String addr2;
 	private String nick;
-	private String additional_information_one;
-	private String additional_information_two;
 	private String member_img; // 프로필 이미지
+	private String sns_type;
+	private String signupdate;
+	private String out_date;
+	
+	private String additional_information_one; // 추가 정보  --  프로시저 용도
+	private String additional_information_two; // 추가 정보 2 -- 프로시저 용도
+	private int log_cnt=0;// 로그인할 계정이 있는지 카운트
 	
 	
 	public String getMember_id() {
@@ -22,7 +30,7 @@ public class RegisterVO {
 	public String getMember_pw() {
 		return member_pw;
 	}
-	public void setMember_pw(String member_pw) throws Exception {
+	public void setMember_pw(String member_pw) {
 		this.member_pw = member_pw;
 	}
 	public String getMember_name() {
@@ -43,12 +51,53 @@ public class RegisterVO {
 	public void setMember_email(String member_email) {
 		this.member_email = member_email;
 	}
-	
+	public String getPost_no() {
+		return post_no;
+	}
+	public void setPost_no(String post_no) {
+		this.post_no = post_no;
+	}
+	public String getAddr1() {
+		return addr1;
+	}
+	public void setAddr1(String addr1) {
+		this.addr1 = addr1;
+	}
+	public String getAddr2() {
+		return addr2;
+	}
+	public void setAddr2(String addr2) {
+		this.addr2 = addr2;
+	}
 	public String getNick() {
 		return nick;
 	}
 	public void setNick(String nick) {
 		this.nick = nick;
+	}
+	public String getMember_img() {
+		return member_img;
+	}
+	public void setMember_img(String member_img) {
+		this.member_img = member_img;
+	}
+	public String getSns_type() {
+		return sns_type;
+	}
+	public void setSns_type(String sns_type) {
+		this.sns_type = sns_type;
+	}
+	public String getSignupdate() {
+		return signupdate;
+	}
+	public void setSignupdate(String signupdate) {
+		this.signupdate = signupdate;
+	}
+	public String getOut_date() {
+		return out_date;
+	}
+	public void setOut_date(String out_date) {
+		this.out_date = out_date;
 	}
 	public String getAdditional_information_one() {
 		return additional_information_one;
@@ -62,12 +111,10 @@ public class RegisterVO {
 	public void setAdditional_information_two(String additional_information_two) {
 		this.additional_information_two = additional_information_two;
 	}
-	public String getMember_img() {
-		return member_img;
+	public int getLog_cnt() {
+		return log_cnt;
 	}
-	public void setMember_img(String member_img) {
-		this.member_img = member_img;
+	public void setLog_cnt(int log_cnt) {
+		this.log_cnt = log_cnt;
 	}
-	
-	
 }

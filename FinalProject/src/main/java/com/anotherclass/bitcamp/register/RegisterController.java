@@ -31,6 +31,11 @@ public class RegisterController {
 		return "register/creatorRegister";
 	}
 	
+	@RequestMapping("/registerTest")
+	public String registerTest() {
+		return "register/userRegisterTest";
+	}
+	
 	
 	// 유저 회원가입
 	@RequestMapping(value="/userJoin",method=RequestMethod.POST)
@@ -97,20 +102,22 @@ public class RegisterController {
 		
 		vo.setMember_id(memberId);
 		vo.setMember_pw(hashingPw);
-		
-		
-		/////// 임시!!! 수정하기!!!!
+
 		ModelAndView mav = new ModelAndView();
 		RegisterVO logvo = new RegisterVO();
-		logvo = registerService.loginMember(vo);
-		if(logvo != null) {
-			session.setAttribute("logid", logvo.getMember_id());
-			session.setAttribute("logname", logvo.getMember_name());
-			session.setAttribute("logState", 1);
+		logvo = registerService.loginUser(vo);
+		if(logvo!=null) {
+			if(logvo.getMember_img()==null || logvo.getMember_img().equals("")) {
+				logvo.setMember_img("/img/etc/basic_profile.png");				
+			}
+			session.setAttribute("userId", logvo.getMember_id());
+			session.setAttribute("userNick", logvo.getNick());
+			session.setAttribute("userImg", logvo.getMember_img());
+			session.setAttribute("userLog", 1);
 			
 			mav.setViewName("redirect:/");			
 		} else {
-			mav.setViewName("/login"); // 수정하기
+			mav.setViewName("/register/loginResult");
 		}
 		return mav;
 	}
@@ -119,7 +126,7 @@ public class RegisterController {
 	@RequestMapping(value = "/kakaoLoginOk")
 	public String kakaoLoginOk(HttpSession session) {
 		
-		session.setAttribute("logState", 1);
+		session.setAttribute("userLog", 1);
 		return "redirect:/";
 	}
 	

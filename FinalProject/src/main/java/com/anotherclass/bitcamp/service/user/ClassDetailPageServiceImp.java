@@ -3,12 +3,14 @@ package com.anotherclass.bitcamp.service.user;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 
 import com.anotherclass.bitcamp.dao.user.ClassDetailPageDAO;
 import com.anotherclass.bitcamp.vo.user.ClassVO;
 import com.anotherclass.bitcamp.vo.user.UserClassDetailVO;
+import com.anotherclass.bitcamp.vo.user.UserClassDetailVO2;
 @Service
 public class ClassDetailPageServiceImp implements ClassDetailPageService {
 
@@ -38,10 +40,47 @@ public class ClassDetailPageServiceImp implements ClassDetailPageService {
 	}
 
 	@Override
-	public List<UserClassDetailVO> classLikeCount(int no) {
-		// TODO Auto-generated method stub
+	public UserClassDetailVO classLikeCount(int no) {
+		
 		return classDetailPageDAO.classLikeCount(no);
 	}
+
+	@Override
+	public int classLikeCheck(int no, String logid) {
+	
+		return classDetailPageDAO.classLikeCheck(no,logid);
+	}
+
+	@Override
+	public int classLikeInsert(int no, String logid) {
+		
+		return classDetailPageDAO.classLikeInsert(no,logid);
+	}
+
+	@Override
+	public int classLikeDelete(int no, String logid) {
+		
+		return classDetailPageDAO.classLikeDelete(no,logid);
+	}
+
+	@Override
+	public List<UserClassDetailVO2> userClassDetailAskAllSelect(int no) {
+		
+		return classDetailPageDAO.userClassDetailAskAllSelect(no);
+	}
+
+	@Override
+	public int AskReplyCheck(int no) {
+		
+		return classDetailPageDAO.AskReplyCheck(no);
+	}
+
+	@Override
+	public List<UserClassDetailVO2> userClassDetailAskReplySelect(int no) {
+		
+		return classDetailPageDAO.userClassDetailAskReplySelect(no);
+	}
+
 
 	
 	
