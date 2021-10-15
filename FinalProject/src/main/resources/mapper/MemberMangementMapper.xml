@@ -11,4 +11,10 @@
          where p_num >=1 and p_num<=15
          ]]>
 	</select>
+	<select id="boardLimit" parameterType="com.anotherclass.bitcamp.register.RegisterVO">
+		call paging_member_account(
+			#{param1, mode=OUT, jdbcType=NUMERIC, javaType=Integer},
+			#{param2, mode=IN, jdbcType=NUMERIC, javaType=Integer}
+			);
+	</select>
 </mapper>

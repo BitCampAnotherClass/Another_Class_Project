@@ -27,6 +27,11 @@ public class MemberMangementController {
 	@ResponseBody
 	public List<RegisterVO> userList(RegisterVO vo){
 		System.out.println("LIST 컨트롤러 작동");
+		int boardNumber = 0;
+		int boardLimit = 15;
+		int cnt = adminService.boardLimit(boardNumber, boardLimit);
+		System.out.println(cnt);
+		System.out.println(boardNumber);
 		List<RegisterVO> list = adminService.MemberList(vo);
 		return list;
 	}

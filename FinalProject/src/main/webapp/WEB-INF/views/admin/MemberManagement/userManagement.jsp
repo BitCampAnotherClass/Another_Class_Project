@@ -5,7 +5,6 @@
 	body{
 		overflow:auto;
 	}
-	
 	.userMg-main{
 		width:1200px;
 	}
@@ -67,6 +66,30 @@
 		background:white;
 		display: 
 	}
+	.userMg-information-back{
+		background-color: rgba(0, 0, 0, 0.3);
+		position: fixed;
+		width:100%;
+		height:100vh;
+		z-index:1000;
+	}
+	.userMg-information-box{
+  		position: relative;
+ 	 	width: 100%;
+ 	 	height: 100%;
+	}
+	.userMg-information-popup{
+	  position: absolute;
+	  top: 50%;
+	  left: 50%;
+	  transform: translate(-50%, -50%);
+	  background-color: #ffffff;
+	  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+	  
+	  /* 임시 지정 */
+	  width: 500px;
+	  height: 500px;
+	}
 </style>
 <script>
 	$(function(){
@@ -103,24 +126,30 @@
 		}
 		userList();
 		$(document).on('click',"#account_information_btn",function(){
-			$('.userMg-chart-box').attr('style','display:none');
 			var member_information = '';
+			member_information += '<div class="userMg-information-back">';
 			member_information += '<div class="userMg-information-box">';
+			member_information += '<div class="userMg-information-popup">';
+			member_information += '<h2>이름</h2>';
+			member_information += '<span>아이디</span>';
 			member_information += '<input type="button" value="목록보기" class="account_list_btn" />';
 			member_information += '</div>';
-			$('.userMg-bottom').append(member_information);
+			member_information += '</div>';
+			member_information += '</div>';
+			$('#contents-wrap').before(member_information);
 		});
 		
 		$(document).on('click','.account_list_btn',function(){
-			$('.userMg-information-box').css('display','none');
-			$('.userMg-chart-box').css('display','block');
+			$('.userMg-information-box').remove();
+			$('.userMg-information-back').remove();
+			$('.userMg-information-popup').remove();
 		});
 	});
 </script>
 </head>
 <body>
+	<div class="userMg-model"></div>
 	<div class="userMg-main">
-		<div class="userMg-top">
 			<div class="userMg-top">
 				<h1 class="userMg-title">회원리스트</h1>
 				<div class="userMg-menu">
@@ -128,7 +157,7 @@
 					<input type="button" value="크리에이터" class="userMg-menu-btn"/>
 				</div>
 			</div>
-		</div>
+	
 		<div class="userMg-bottom">
 			<ul class="userMg-chart-box">
 				<li class="userMg-chart-boardlist"><input type="checkbox" id="allcheck"/></li>
