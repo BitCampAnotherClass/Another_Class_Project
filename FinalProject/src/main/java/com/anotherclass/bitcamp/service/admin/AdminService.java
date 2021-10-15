@@ -9,5 +9,6 @@ public interface AdminService {
 	public String adminAccountCreate(RegisterVO vo);
 	
 	public List<RegisterVO> MemberList(RegisterVO vo);
-	
+
+	public int boardLimit(int boardNumber,int boardLimit);
 }

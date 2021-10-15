@@ -29,4 +29,8 @@ public class AdminServiceImp implements AdminService {
 		return memberMangementDao.MemberList(vo);
 	}
 	
+	@Override
+	public int boardLimit(int boardNumber, int boardLimit) {
+		return memberMangementDao.boardLimit(boardNumber, boardLimit);
+	}
 }
