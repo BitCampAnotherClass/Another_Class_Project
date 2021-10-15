@@ -8,5 +8,5 @@ public interface MemberMangementDAO {
 	
 	public List<RegisterVO> MemberList(RegisterVO vo);
 	
-	public int boardLimit(int boardNumber,int boardLimit);
+	public int boardLimit(RegisterVO vo);
 }

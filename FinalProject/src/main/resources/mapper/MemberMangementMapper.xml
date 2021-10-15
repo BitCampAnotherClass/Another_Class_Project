@@ -13,8 +13,7 @@
 	</select>
 	<select id="boardLimit" parameterType="com.anotherclass.bitcamp.register.RegisterVO">
 		call paging_member_account(
-			#{param1, mode=OUT, jdbcType=NUMERIC, javaType=Integer},
-			#{param2, mode=IN, jdbcType=NUMERIC, javaType=Integer}
+			#{num_information_one, mode=IN, jdbcType=NUMERIC, javaType=INTEGER}
 			);
 	</select>
 </mapper>

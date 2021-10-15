@@ -30,7 +30,7 @@ public class AdminServiceImp implements AdminService {
 	}
 	
 	@Override
-	public int boardLimit(int boardNumber, int boardLimit) {
-		return memberMangementDao.boardLimit(boardNumber, boardLimit);
+	public int boardLimit(RegisterVO vo) {
+		return memberMangementDao.boardLimit(vo);
 	}
 }
