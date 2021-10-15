@@ -56,7 +56,7 @@
 	#d3 div:nth-child(2)>span{padding-top:5px;padding-left:1px;color:#666;font-size:0.9rem;}
 	
 	/* 메뉴바 */
-	#d4{width:100%;height:auto;overflow:auto;position:sticky;top:0px;background-color:white;r}
+	#d4{width:100%;height:auto;overflow:auto;position:sticky;top:78px;background-color:white;r}
 	#d4>ul{width:100%;height:auto;overflow:auto;}
 	#d4 li{float:left; width:20%;height:50px;line-height:50px; text-align:center;border-bottom:1px solid #ddd;}	
 	
@@ -105,22 +105,24 @@
 	/*==================#rightDiv==================*/
 	
 	/*rightDiv*/
-	#rightConBox{width:96%;margin-left:10px; min-height:600px;height:auto; box-shadow: 0 0 8px rgba(0,0,0,0.3);position:sticky;top:50px;border-radius: 10px;}
+	#rightConBox{width:96%;margin-left:10px; min-height:540px;height:auto; box-shadow: 0 0 8px rgba(0,0,0,0.3);position:sticky;top:80px;border-radius: 10px;}
 	#rightConBox div{margin:0 auto;}
 	
 	/*달력 width:350px;*/	
 	#datepicker{padding-top:25px;}
 	
 	/*클래스옵션목록*/
-	#selectClassListd{width:350px;min-height:120px;height:auto;border:1px solid #f0f0f0;overflow:auto;} 
-	#startdiv{width:350px;}
-	#enddiv{width:350px;}
-	#headcountdiv{width:350px;}
+	#selectClassListd{width:350px;min-height:10px;height:auto;} /*border:1px solid #f0f0f0;*/
+	.oneclassdiv{width:350px;height:auto;border:1px solid #f0f0f0;}
+	.startdiv{width:350px;}
+	.enddiv{width:350px;}
+	.headcountdiv{width:350px;}
+	.classoptionno{display:none;}
 	/*버튼감싸고 있는div*/
 	#buttonhomec{width:350px;display:flex;width:350px;}
 	#buttonhomec input[type=button]{border:none;}
-	#gobasketB{width:119px;height:38px;font-size:18px;margin:10px 30px 15px 0;boder:1px solid #ddd;background-color:#616060;color:#fff;}
-	#gopayB{width:200px;height:38px;font-size:18px;margin:10px 0 15px 0;boder:1px solid #ddd;background-color:#616060;color:#fff;}
+	#gobasketB{width:119px;height:50px;font-size:20px;margin:10px 30px 0 0;boder:1px solid #ddd;background-color:#616060;color:#fff;}
+	#gopayB{width:200px;height:50px;font-size:20px;margin:10px 0 0 0;boder:1px solid #ddd;background-color:#616060;color:#fff;}
 	
 </style>
 <script>
@@ -128,27 +130,25 @@
 		
 		$('#d4 li').click(function(){	
 			$(this).children('a').css('color','#ff385c'); //글자색
-			$(this).css('border-bottom','3px solid #ff385c'); //li밑줄색 
-			
+			$(this).css('border-bottom','3px solid #ff385c'); //li밑줄색 			
 			$('#d4 li').not(this).children('a').css('color','black'); //글자색
 			$('#d4 li').not(this).css('border-bottom','2px solid #999');	//li밑줄색 
-		});
-				
+		});				
 			
 	    $(function(){//달력
 	         $('.datepicker').datepicker({
 	        	 dateFormat: 'yy-mm-dd'
 	        	 ,dayNamesMin: ['일','월','화','수','목','금','토']
-	         	 ,minDate: "-0M" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
-	             ,maxDate: "+5M" //최대 선택일자(+1D:하루후, -1M:한달후, -1Y:일년후)  
-	        	
+	         	 ,minDate: "-0M" 
+	             ,maxDate: "+5M" 
 	         });
 	         
 	         $('.datepicker').datepicker('setDate', 'today');
 	      })
 
 	    //달력 Ajax	
-	    $('#datepicker').on("change", function() { 		    	
+	    $('#datepicker').on("change", function() { 	
+	    	 $("#selectClassListd").empty(); //선택전에 있던 날짜 지워줌
 	    	var url ="/another/classDetailDatePick";	
 	    	var params = {"datedate" : $(this).val(),"no":${vo.class_no }}
 	    	console.log($(this).val()+ " , "+${vo.class_no });	    	
@@ -157,14 +157,17 @@
 	    		data:params,
 	    		success:function(r){//받아온 데이터를 r에 넣음
 	    			var rr = $(r)
-	    			
-	    			rr.each(function(idx,vo){
-	    				//가져온 클래스옵션리스트를 여기에 추가한다
-	    				$("#startdiv").append(vo.start_date);
-	    				$("#enddiv").append(vo.end_date);
-	    				$("#headcountdiv").append(vo.all_headcount);
+	    			var tag ="";
+	    			rr.each(function(idx,vo4){	   	    				
+	    				tag += "<div class='oneclassdiv' style='margin-bottom:10px;'>";
+	    				tag +="<div class='startdiv'>"+vo4.start_date+ "</div>";
+	    				tag +="<div class='enddiv'>"+vo4.end_date+ "</div>";
+	    				tag +="<div class='headcountdiv'>"+vo4.all_headcount+"</div>";
+	    				tag +="<div class='classoptionno'>"+vo4.class_option_no+"</div>";
+	    				tag +="</div>";
+	    				 $("#selectClassListd").html(tag);	    				
 	    			});
-	    		}    		
+	    		} 
 	    	});
 	    
 	    }); 
@@ -198,8 +201,7 @@
 			})
 		}	    
 	    
-	    function like_func(){ //로그인상태 -> 좋아요 버튼 눌렀을때
-	    	console.log("로그인...좋아요버튼누름...함수실행");
+	    function like_func(){ //로그인상태 -> 좋아요 버튼 눌렀을때	    	
 	    	var hUrl ="/another/classDetailLikeFun";
 	    	var hParam ="no=${vo.class_no}";
 	    	$.ajax({
@@ -228,30 +230,76 @@
 	    	
 	    });
 	    
-	    
-	  /*
-	  
-	  	⭐맨처음하트 +리스트  
-		-> 로그인 x -> 빈하트+ 갯수
-		-> 로그인 0 -> 좋아요있으면 빨강 없으면 빈하트 -> select()가져와서 프론트에서 해결 
-		 
-		⭐ 눌렀을때 
-		-> 로그인 x -> 알림창 or 로그인페이지 이동
-		
-		-> 로그인  0 -> 
-		     -> 좋아요o : 하트빈하트 + delete ->새로운리스트불러옴?
-		     -> 좋아요x : 빨강하트 + insert  ->새로운리스트불러옴
-		---------------------------------------------
-		문의글
-		
-		리스트 -> 글 다보이게
-		작성버튼클릭 ->
-			  
-	*/
-
-	   
-	LikeCount();
+	    //==============================================================================
+	    function AskList(){ //문의글 다 가져오는 리스트함수
+	    	console.log("문의글리스트 세팅");
+	    	var aUrl ="/another/classDetailAskList";
+	    	var aParam = {"no":${vo.class_no }}
+	    	
+	    	$.ajax({
+	    		url:aUrl,
+	    		data:aParam,
+	    		success:function(a){//문의글리스트가 담겨져잇음
+	    			var aa = $(a)
+	    			console.log("문의글함수 데이터success");
+					aa.each(function(idx,vo4){
+	    				
+	    				if(vo4.replycheck==0){//댓글없음
+	    					console.log("댓글없음");
+	    				}else if(vo4.replycheck==1){//댓글있음
+	    					console.log("댓글있음");
+	    					console.log(vo4.class_qna_no);
+	    					AskReply(vo4.class_qna_no);
+	    					
+	    				}	    			
+	    			});	    			
+	    		}	    		
+	    	})	    	
+	    }	   
+	   function AskReply(no){//댓글 가져오는 함수  
+		   console.log("댓글 세팅");
+		   var rUrl ="/another/classDetailAskReplyList";
+	       var rParam = {"no":no} //댓글테이블에 문의글번호 넣어서 문의글에 대한 댓글정보 가져옴
+	       $.ajax({
+	    		url:rUrl,
+	    		data:rParam,
+	    		success:function(b){
+	    			var bb = $(b)
+	    			console.log("댓글함수 데이터success");
+					bb.each(function(idx,vo5){
+	    				
+	    				console.log("댓글정보가져옴");
+	    			});	    			
+	    		}	    		
+	    	})	    	
+		   
+	   } 	    
+	   /*
+		<li> <!-- **문의댓글한줄 -->
+		<div class="askdiv909"><!-- 이미지 + 닉네임 + 작성날짜-->
+			<div><img src="img/jisu/basic.png"/></div> <!-- 이미지 -->
+			<div>
+				<div><label>an** | 2021년 6월 6일 20:26 작성</label></div>
+				<div><label>이번주 토요일 클래스 예약 2명 가능할까요?</label></div>
+			</div> 						
+		</div>		 
+		<!-- -------------------------------------------------- -->		
+		<div class="askdiv808" > <!-- 강사답댓글 -->
+			<div style="display:flex;width:20%;"><label style="display:block;width:20%;height:100%;vertical-align:middle;font-size:2rem;color:#666;">↳</label><img src="img/jisu/creatorprofile.png" style="width:80%"/></div> <!-- 이미지 -->
+			<div style="width:80%;">
+				<div><label> 버드세이지 플라워 | 2021년 6월 7일 12:00 작성</label></div>
+				<div><label>가능합니다 :)</label></div>
+			</div> <!-- 아이디 -->		
+		</div>							
+	</li>
 	
+	   
+	   
+	   */
+	   
+	   
+	LikeCount(); //좋아요수 셋팅
+	AskList(); //문의 셋팅
 	   		
 	});
 	
@@ -270,18 +318,9 @@
 					<li>${vo.class_info }</li> <!-- 짧은 소개글 *******************pre-wrap 아직 미설정-->
 					<li>
 						
-						<div>						
-							<!--   <c:set var="userId" value="${userId}" />	
-								<c:if test="${empty userId}"> <!-- 로그인x -->
-								<!--  	<div><a href='javascript: login_need();'><img id="likeimgbox2" src="img/jisu/ff385bigborderheart.png" /></a></div><!--  좋아요버튼, 좋아요수 --> <!-- 왼쪽정렬 -->
-							<!--  	</c:if>
-								
-								<c:if test="${not empty userId}"><!-- 로그인o -->
-							<!--  		<div><a href='javascript:like_func();'><img id="likeimgbox2" src="img/jisu/ff385bigcheart.png"/></a></div><!--  좋아요버튼, 좋아요수 --> <!-- 왼쪽정렬 -->
-							<!--  	</c:if> -->
-									<div><img id="likeimgbox2" src="img/jisu/ff385bigcheart.png"/></div>
-										
-									<div id="likelikecount"></div> 
+						<div>
+							<div><img id="likeimgbox2" src="img/jisu/ff385bigcheart.png"/></div>
+							<div id="likelikecount"></div> 
 						</div>
 					</li>
 					<li><img src="img/jisu/smalllocation.png"/>경기도 | 용인시</li> <!-- 위치 -->
@@ -412,7 +451,7 @@
 							</div><!-- 답댓글--> 
 					  </li>
 						
-					</ul>					
+					</ul>							
 				</div>
 				<div><!-- 댓글작성 -->
 					<span>문의 내용 작성</span>
@@ -434,9 +473,7 @@
 				</div>
 				
 				<div id="selectClassListd" style="margin-top:10px;"><!-- 해당날짜에 선택된 강의옵션목록 -->
-					<div id="startdiv">f</div>
-					<div id="enddiv">f</div>
-					<div id="headcountdiv">f</div>
+					
 				</div>
 				
 				<div id="buttonhomec"><input type="button" value="장바구니" id="gobasketB" style="border-radius:5px;"/><input type="button" value="클래스 신청하기" id="gopayB" style="border-radius:5px;"/></div>
