@@ -14,61 +14,7 @@
     margin-inline-end: 0px;
     font-weight: bold;
 }
-	.swiper {
-		width: 100%;
-	}
-	
-	.swiper-slide {
-		text-align: center;
-		font-size: 18px;
-		background: #eee;
-		/* Center slide text vertically */
-		display: -webkit-box;
-		display: -ms-flexbox;
-		display: -webkit-flex;
-		display: flex;
-		-webkit-box-pack: center;
-		-ms-flex-pack: center;
-		-webkit-justify-content: center;
-		justify-content: center;
-		-webkit-box-align: center;
-		-ms-flex-align: center;
-		-webkit-align-items: center;
-		align-items: center;
-	}
-	
-	.swiper-slide img {
-		display: block;
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-	}
-	
-	.swiper {
-		margin-left: auto;
-		margin-right: auto;
-	}
-.main-review-text{
-	max-height:100px;
-	min-height:100px;
-	font-size:14px;
-	color:#555;
-	line-height:1.5;
-	text-align:left;
-	white-space: normal;
-	overflow:hidden;
-	text-overflow:ellipsis;
-	
-	word-break: break-all;
-	word-wrap: break-word;
-	display: -webkit-box; 
-	-webkit-line-clamp: 5; 
-	-webkit-box-orient: vertical;
-}
-.main-review-content{
-	padding:14px 16px 18px;
-	color:#f5f5f5;
-}
+
 .search-bbar{
 	float:right;
 	margin : 65px 30px 30px 0;
@@ -91,7 +37,7 @@
 	background: #FF385C;
 	text-align: center;
 	
-	    border: 0;
+	border: 0;
     box-shadow: 0;
     display: block;
 
@@ -121,7 +67,7 @@
 			
 			<div class="a">
 				<h3 class="main-ah3">커뮤니티</h3>
-		<li class="creator-homee"><a href="#">게시글 작성</a></li>
+		<li class="creator-homee"><a href="CommunityNewContent">게시글 작성</a></li>
 		
 					<input class="search-bbar" type="text" placeholder="#태그를 이용하여 검색하세요" />
 					
