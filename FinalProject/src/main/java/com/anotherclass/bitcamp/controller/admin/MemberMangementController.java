@@ -23,15 +23,30 @@ public class MemberMangementController {
 	
 	private HashingSeting hashing = new HashingSeting();
 	
-	@RequestMapping("/MemberMangement/userAccountList")
+	@RequestMapping(value="/MemberMangement/userAccountList",method = RequestMethod.POST)
 	@ResponseBody
-	public List<RegisterVO> userList(RegisterVO vo){
-		System.out.println("LIST 컨트롤러 작동");
-		vo.setNum_information_one(15);
-		int cnt = adminService.boardLimit(vo);
-		System.out.println(cnt);
-		List<RegisterVO> list = adminService.MemberList(vo);
+	public List<RegisterVO> userList(int no){
+		int boardListNumber = adminService.boardLimit(); // 게시글 수 조회
+		int memberListLimit = 15; // 한페이지에 보여줄 페이지수
+		int num =no;
+		int numberList = ((num-1)*memberListLimit); // 페이징 시작 계산식
+		int numberLimitCal = (memberListLimit*num);
+		List<RegisterVO> list = adminService.MemberList(numberList, numberLimitCal);
 		return list;
+	}
+	
+	@RequestMapping(value="/MemberMangement/test")
+	public String test() {
+		int boardListNumber = adminService.boardLimit(); // 게시글 수 조회
+		int memberListLimit = 15; // 한페이지에 보여줄 페이지수
+		int listCalcul = (int) Math.ceil((double)boardListNumber/memberListLimit);
+		// 하단 버튼
+		int num =2;
+		int numberList = ((num-1)*memberListLimit); // 페이징 시작 계산식
+		int numberLimitCal = (memberListLimit*num);
+		System.out.println(numberList+"||"+numberLimitCal);
+		
+		return "admin/MemberManagement/userManagement";
 	}
 	
 	@RequestMapping(value="/userManagement")

@@ -95,14 +95,18 @@
 	$(function(){
 		var url="MemberMangement/userAccountList";
 		var board= "";
-		var test = 'test';
+		
 		function userList(){
+			var test = 'test';
+			var number = $('.paging-number').val();
+			var data = {"no":number};
+			console.log(data);
 			$.ajax({
 				url : url,
-				type : "GET",
+				type : "POST",
+				data : data,
 				success:function(result){
 					var listData = $(result);
-					console.log('Ajax 성공 - 페이징');
 					listData.each(function(idx,vo){
 						board +='<li class="userMg-chart-boardlist"><input type="checkbox" id="allcheck"/></li>';
 						board +='<li class="userMg-chart-boardlist">'+vo.member_id+'</li>';
@@ -144,6 +148,13 @@
 			$('.userMg-information-back').remove();
 			$('.userMg-information-popup').remove();
 		});
+		
+		$('.userMg-boardList-btn').on('click',function(){
+			console.log( $(this).val() );
+			$('.paging-number').val($(this).val());
+			$('.userMg-chart-boardlist:nth-child(n+9)').remove();
+			userList();
+		});
 	});
 </script>
 </head>
@@ -155,10 +166,13 @@
 				<div class="userMg-menu">
 					<input type="button" value="이용자" class="userMg-menu-btn"/>
 					<input type="button" value="크리에이터" class="userMg-menu-btn"/>
+					
+					<a href="MemberMangement/test">테스트</a>
 				</div>
 			</div>
 	
 		<div class="userMg-bottom">
+			<input type="hidden" value="1" class="paging-number"/>
 			<ul class="userMg-chart-box">
 				<li class="userMg-chart-boardlist"><input type="checkbox" id="allcheck"/></li>
 				<li class="userMg-chart-boardlist">아이디</li>
@@ -169,6 +183,7 @@
 				<li class="userMg-chart-boardlist">구분</li>
 				<li class="userMg-chart-boardlist">관리</li>
 			</ul>
+			<input type="button" class="userMg-boardList-btn" value="2"/>
 		</div>
 	</div>
 </body>

@@ -18,8 +18,7 @@ public class RegisterVO {
 	
 	private String additional_information_one; // 추가 정보  --  프로시저 용도
 	private String additional_information_two; // 추가 정보 2 -- 프로시저 용도
-	private int num_information_one; // 추가 정보 3 --  프로시저 용도
-	private int num_information_two; // 추가 정보 4 -- 프로시저 용도
+	private String additional_information_the; // 추가 정보 3 -- 프로시저 용도
 	private int log_cnt=0;// 로그인할 계정이 있는지 카운트
 	
 	
@@ -113,25 +112,18 @@ public class RegisterVO {
 	public void setAdditional_information_two(String additional_information_two) {
 		this.additional_information_two = additional_information_two;
 	}
+	
+	public String getAdditional_information_the() {
+		return additional_information_the;
+	}
+	public void setAdditional_information_the(String additional_information_the) {
+		this.additional_information_the = additional_information_the;
+	}
 	public int getLog_cnt() {
 		return log_cnt;
 	}
 	public void setLog_cnt(int log_cnt) {
 		this.log_cnt = log_cnt;
 	}
-	public int getNum_information_one() {
-		return num_information_one;
-	}
-	public void setNum_information_one(int num_information_one) {
-		this.num_information_one = num_information_one;
-	}
-	public int getNum_information_two() {
-		return num_information_two;
-	}
-	public void setNum_information_two(int num_information_two) {
-		this.num_information_two = num_information_two;
-	}
-	
-	
 	
 }
