@@ -38,6 +38,9 @@ public class UserClassDetailVO2 { //클래스문의 + 클래스문의댓글
 	/*문의글에대해 댓글이 달렸는지 알려줌 0:댓글없은 1:댓글있음*/
 	private int replycheck;
 	
+	/*list size*/
+	public int listSize;
+	
 	
 	public int getClass_qna_no() {
 		return class_qna_no;
@@ -200,6 +203,12 @@ public class UserClassDetailVO2 { //클래스문의 + 클래스문의댓글
 	}
 	public void setOut_date(String out_date) {
 		this.out_date = out_date;
+	}
+	public int getListSize() {
+		return listSize;
+	}
+	public void setListSize(int listSize) {
+		this.listSize = listSize;
 	}
 	
 

@@ -9,40 +9,28 @@
 <style>
 	div{margin:0;padding:0; box-sizing:border-box;}
 	a:link, a:hover, a:visited{text-decoration:none; color:#333;}
-	#Bcotainer{margin:0 auto; width:1200px; height:auto; display:flex;margin-top:50px;} /* 모든걸감싸는 큰박스*/
-	
-	#leftdiv{width:800px;margin:0;}
-	
-	#rightdiv{width:398px; position:relative;}
-	
+	#Bcotainer{margin:0 auto; width:1200px; height:auto; display:flex;margin-top:50px;} /* 모든걸감싸는 큰박스*/	
+	#leftdiv{width:800px;margin:0;}	
+	#rightdiv{width:398px; position:relative;}	
 	#calssintro{width:100%;} /* 클래스대표사진 + 소개 컨테이너 */
-	
-	
-	/*==================#leftdiv==================*/
-	
+	/*==================#leftdiv==================*/	
 	/* 클래스이미지 div */
 	#d1{width:100%;height:430px;overflow:hidden;margin-bottom:10px;} /*높이,배경색 수정*/
-	#d1>img{width:100%;height:100%;object-fit:cover;border-radius:12px;} /*object-fit:cover ? fill?  ;*/
-
-	
+	#d1>img{width:100%;height:100%;object-fit:cover;border-radius:12px;} /*object-fit:cover ? fill?  ;*/	
 	/* 클래스소개 div*/
 	#d2{width:95%;overflow:auto;padding-bottom:10px;margin:0 auto;} 
 	#d2>ul>li{padding-bottom:5px;} /* ===지울것===*/
 	#d2 li:nth-child(1){margin-top:5px;font-weight:bold;color:#ff385c;} 
 	#d2 li:nth-child(2){font-size:1.5rem; font-weight:bold;margin:5px 0 5px 0;}
-	#d2 li:nth-child(3){font-size:1rem;padding-bottom:0px;white-space: pre-line;}
-	
+	#d2 li:nth-child(3){font-size:1rem;padding-bottom:0px;white-space: pre-line;}	
 	#d2 li:nth-child(4)>div{width:100%;height:26px;}/*overflow:auto;*/
 	#d2 li:nth-child(4)>div>div{float :left;}/*좋아요버튼+좋아요수*/	
 	#d2 li:nth-child(4)>div>div:nth-child(1){width:88%; text-align:right; height:100%;} /*좋아요버튼 , 이미지*/
 	#d2 li:nth-child(4)>div>div:nth-child(1)>img{width:24px;height:90%;}
-	#d2 li:nth-child(4)>div>div:nth-child(2){width:7%; height:100%;color:#666;font-size:18px;padding-left:10px;} /*좋아요 수 */
-	
-	#d2 li:nth-child(5){width:100%;height:100%;color:#999;text-align:right;}
-	
+	#d2 li:nth-child(4)>div>div:nth-child(2){width:7%; height:100%;color:#666;font-size:18px;padding-left:10px;} /*좋아요 수 */	
+	#d2 li:nth-child(5){width:100%;height:100%;color:#999;text-align:right;}	
 	#d2 li:nth-child(6){overflow:auto; border:1px solid red;} /*공유*/
-	#d2 li:nth-child(6)>div{text-align:right;}
-	
+	#d2 li:nth-child(6)>div{text-align:right;}	
 	/*강사이미지프로필 + 강사닉네임*/
 	#d3{width:100%; height:105px; overflow:auto;border-bottom:1px solid #ddd;border-top:1px solid #ddd;}
 	#d3>div{float:left;}
@@ -53,34 +41,27 @@
 	#d3 div:nth-child(2) a:hover{color:#ff385c;}
 	#d3 div:nth-child(2)>*{display:block;width:100%;}
 	#d3 div:nth-child(2)>a{font-size:1.2rem;padding-top:25px;font-weight:bold;}
-	#d3 div:nth-child(2)>span{padding-top:5px;padding-left:1px;color:#666;font-size:0.9rem;}
-	
+	#d3 div:nth-child(2)>span{padding-top:5px;padding-left:1px;color:#666;font-size:0.9rem;}	
 	/* 메뉴바 */
 	#d4{width:100%;height:auto;overflow:auto;position:sticky;top:78px;background-color:white;r}
 	#d4>ul{width:100%;height:auto;overflow:auto;}
-	#d4 li{float:left; width:20%;height:50px;line-height:50px; text-align:center;border-bottom:1px solid #ddd;}	
-	
+	#d4 li{float:left; width:20%;height:50px;line-height:50px; text-align:center;border-bottom:1px solid #ddd;}		
 	/*클레스 상세페이지 메뉴*/
 	.menu{width:100%; min-height:500px;height:100%; border-bottom:1px solid #ddd; overflow:auto;padding-bottom:30px;} /*min-height*/	
-	.menutitle{height:70px;line-height:70px;font-size:1.2rem;font-weight:bold;}
-	
+	.menutitle{height:70px;line-height:70px;font-size:1.2rem;font-weight:bold;}	
 	#d5>div:nth-child(1)>span{display:inline-block;box-shadow:inset -11px #ff385c;}
 	#d5>div:nth-child(2){ white-space: pre-line;text-align:center;}/*클래스소개*/
-	#d5>div:nth-child(2) img{width:100%;height:500px;object-fit:fill;margin:20px 0 20px 0;}
-	
+	#d5>div:nth-child(2) img{width:100%;height:500px;object-fit:fill;margin:20px 0 20px 0;}	
 	#d6>div:nth-child(2){white-space: pre-line}
-	#d6>div:nth-child(2)>img{max-width:100%;max-height:500px;margin:20px 0 20px 0;}
-	
+	#d6>div:nth-child(2)>img{max-width:100%;max-height:500px;margin:20px 0 20px 0;}	
 	#d7>div:nth-child(2){margin:10px 0 10px 0;}
-	
 	#d9{width:100%;height:auto;}
 	#d9>div{width:100%;height:100%;}
 	#d9_2{padding: 15px;} /*fff0f5 ffe4e4*/
-	#d9>div:nth-child(2n+1){margin-bottom:20px;}/*제목div*/	
-	
-	#creatormemberoneask{width:100%;height:auto;overflow:auto;}
+	#d9>div:nth-child(2n+1){margin-bottom:20px;}/*제목div*/		
+	#creatormemberoneask{width:100%;height:auto;}/*overflow:auto;*/
 	#creatormemberoneask>li{width:100%;}
-	#creatormemberoneask>li>div{width:100%;height:120px;margin-bottom:15px;}
+	#creatormemberoneask>li>div{width:100%;height:120px;margin-bottom:15px;overflow:auto;}
 	#creatormemberoneask>li>div>div{float:left;height:100%;}
 	#creatormemberoneask>li>div>div:nth-child(2n+1){width:15%;height:100%;}
 	#creatormemberoneask>li>div>div:nth-child(2n+1)>img{width:100%;height:100%;border-radius:100%;}
@@ -89,34 +70,29 @@
 	#creatormemberoneask>li>div>div>div{width:100%;height:auto;}
 	#creatormemberoneask>li>div>div>div:nth-child(2){overflow:auto;}
 	#creatormemberoneask>li>div>div>div:nth-child(1)>label{display:inline-block;margin:5px 0 20px 15px;font-size:0.9rem;color:#666;}
-	#creatormemberoneask>li>div>div>div:nth-child(2)>label{display:inline-block;margin-left:15px;}
-	
+	#creatormemberoneask>li>div>div>div:nth-child(2)>label{display:inline-block;margin-left:15px;width:85%;}	/*margin-left:15px;*/
 	#d9>div:nth-child(3){width:100%;height:100%;border:2px solid #ddd;margin:20px 0 20px 0;padding:10px 0 10px 0; }
 	#d9>div:nth-child(3)>span{display:block;margin:0 0 10px 36px;font-size:0.9rem;color:#333;}
 	#d9>div:nth-child(3)>form>div{text-align:center;}/*padding-left:26px;*/
 	#classMainAskTa{width:90%;height:100px;resize:none;overflow:auto;border-color:#ddd;}/*댓글작성하는부분*/
 	#d9>div:nth-child(3)>form>input[type=button]{margin: 10px 0 0 36px;background-color:white;border:none;border:1px solid #999;width:100px;padding-top:5px;padding-bottom:5px;}
-	textarea::placeholder {color:#999;}
-	
+	textarea::placeholder {color:#999;}	
 	.askdiv909{border:1px solid #f0f0f0;padding:10px;}/*회원배경:회색*/
 	.askdiv808{background-color: #f0f0f0;padding:10px;}/*강사배경 : 연핑크 or 연하늘*/
-
-	
-	/*==================#rightDiv==================*/
-	
+	/*==================#rightDiv==================*/	
 	/*rightDiv*/
 	#rightConBox{width:96%;margin-left:10px; min-height:540px;height:auto; box-shadow: 0 0 8px rgba(0,0,0,0.3);position:sticky;top:80px;border-radius: 10px;}
-	#rightConBox div{margin:0 auto;}
-	
+	#rightConBox div{margin:0 auto;}	
 	/*달력 width:350px;*/	
-	#datepicker{padding-top:25px;}
-	
+	#datepicker{padding-top:25px;}	
 	/*클래스옵션목록*/
-	#selectClassListd{width:350px;min-height:10px;height:auto;} /*border:1px solid #f0f0f0;*/
-	.oneclassdiv{width:350px;height:auto;border:1px solid #f0f0f0;}
-	.startdiv{width:350px;}
-	.enddiv{width:350px;}
-	.headcountdiv{width:350px;}
+	#selectdateBB{width:350px;height:auto;border:1px solid #f0f0f0;}
+	#selectClassListd{width:300px;min-height:10px;height:auto;} /*border:1px solid #f0f0f0;*/
+	
+	.oneclassdiv{width:300px;height:auto;border:1px solid #ff385c;}/*border:1px solid #f0f0f0;*/
+	.startdiv{width:300px;}
+	.enddiv{width:300px;}
+	.headcountdiv{width:300px;}
 	.classoptionno{display:none;}
 	/*버튼감싸고 있는div*/
 	#buttonhomec{width:350px;display:flex;width:350px;}
@@ -148,7 +124,8 @@
 
 	    //달력 Ajax	
 	    $('#datepicker').on("change", function() { 	
-	    	 $("#selectClassListd").empty(); //선택전에 있던 날짜 지워줌
+	    	$("#selectClassListd").empty(); //선택전에 있던 날짜 지워줌
+	    	
 	    	var url ="/another/classDetailDatePick";	
 	    	var params = {"datedate" : $(this).val(),"no":${vo.class_no }}
 	    	console.log($(this).val()+ " , "+${vo.class_no });	    	
@@ -158,14 +135,16 @@
 	    		success:function(r){//받아온 데이터를 r에 넣음
 	    			var rr = $(r)
 	    			var tag ="";
-	    			rr.each(function(idx,vo4){	   	    				
-	    				tag += "<div class='oneclassdiv' style='margin-bottom:10px;'>";
+	    			rr.each(function(idx,vo4){	 
+	    				 
+	    				tag += "<div class='oneclassdiv' style='margin-bottom:10px;'>";	    				
 	    				tag +="<div class='startdiv'>"+vo4.start_date+ "</div>";
 	    				tag +="<div class='enddiv'>"+vo4.end_date+ "</div>";
 	    				tag +="<div class='headcountdiv'>"+vo4.all_headcount+"</div>";
 	    				tag +="<div class='classoptionno'>"+vo4.class_option_no+"</div>";
 	    				tag +="</div>";
-	    				 $("#selectClassListd").html(tag);	    				
+	    				 $("#selectClassListd").html(tag);	
+	    				
 	    			});
 	    		} 
 	    	});
@@ -181,23 +160,18 @@
 				url : lUrl,
 				data : lParam,
 				success:function(t){//받아온 데이터를 r에 넣음,,,
-	    			var tt = $(t)
-	    			console.log(tt);
-	    			tt.each(function(idx,vo3){
-	    				
-	    				$("#likelikecount").html(vo3.class_count);
-	    				
+	    			var tt = $(t)	    			
+	    			tt.each(function(idx,vo3){	    				
+	    				$("#likelikecount").html(vo3.class_count);	    				
 	    				if(vo3.class_like_check==0){
 	    					//빈하트 //likeimgbox2
 	    					$("#likeimgbox2").attr("src", "img/jisu/ff385bigborderheart.png");
 	    				}else if(vo3.class_like_check==1){
 	    					//꽉찬하트
 	    					$("#likeimgbox2").attr("src", "img/jisu/ff385bigcheart.png");
-	    				}
-	    			
+	    				}	    			
 	    			});
-	    		}    		
-				
+	    		}			
 			})
 		}	    
 	    
@@ -210,14 +184,12 @@
 				success:function(){
 					LikeCount(); //디비에서 작업끝내고 하트리스트보여줌.....
 				}
-	    	})
-	    	
+	    	})	    	
 	    }	    
 	    
 	    function  login_need(){//로그인x상태 -> 좋아요 버튼 눌렀을때
 	    	alert("로그인 후 좋아요 가능합니다.");
-	    }
-	    
+	    }	    
 	    
 	    $('#likeimgbox2').click(function(){
 	    	var logid = "${userId}";
@@ -241,99 +213,69 @@
 	    		data:aParam,
 	    		success:function(a){//문의글리스트가 담겨져잇음
 	    			var aa = $(a)
-	    			var tag ="";
-	    			console.log("문의글함수 데이터success");
+	    			var tag =""; 	    			
 					aa.each(function(idx,vo4){
-	    				//vo4.replycheck==0
-	    				
+						
+						console.log("문의글함수 데이터success");	
 	    					tag +="<li>";
 	    					tag +="<div class='askdiv909'>";
-	    					tag += "<div><img src='"+ vo4.member_img+"'/></div>"; //작성자이미지 
-	    					tag +="<div>;"
-	    					tag +="<div><label>"+ vo4.classqna_writedate+" | "+ vo4.classqna_writedate+" 작성</label></div>";
-	    					tag +="<div><label>"+ vo4.classqna_content+"</label></div>";
+	    					tag += "<div><img src='img/jisu/creatorprofile.png'/></div>"; //작성자이미지  vo4.member_img
+	    					tag +="<div>";
+	    					tag +="<div><label>"+ vo4.classqna_member_id+" | "+ vo4.classqna_writedate+" 작성</label></div>";
+	    					tag +="<div><label>"+ vo4.classqna_content+"</label><label><input type='button' value='댓글확인' style='float:right;' class='"+vo4.class_qna_no+"' id='replyshow' ></label></div>";
 	    					tag += "</div> ";
+	    					tag += "</div> ";	    					
+	    					//댓글
+	    					tag +="<div class='askdiv808' id='"+vo4.class_qna_no+"' style='display:none;'>";	    					 					
 	    					tag += "</div> ";
-	    					
-	    					
-	    					if(vo4.replycheck != 0){//댓글있음
-	    						console.log("엥에엥에엥에에ㅔ엥에ㅔ");
-	    						tag +="<div class='askdiv808' style='display:none;'>";
-	    					
-	    					 
-	    						tag += "</div> ";
-	    						tag +="</li>";
-	    					}
-	    					$("#creatormemberoneask").html(tag);
-
-	    				
+	    					tag +="</li>";	    					
+	    					$("#creatormemberoneask").html(tag);    				
 	    			});	    			
 	    		}	    		
 	    	})	    	
 	    }	   
-	   function AskReply(no){//댓글 가져오는 함수  
-		   console.log("댓글 세팅");
-		   var str;
+	  function AskReply(no){//댓글 가져오는 함수  
+		   console.log("댓글 세팅");		   
+	  	  
 		   var rUrl ="/another/classDetailAskReplyList";
-	       var rParam = {"no":no} //댓글테이블에 문의글번호 넣어서 문의글에 대한 댓글정보 가져옴
+	       var rParam = {"no":no} //댓글테이블에 문의글번호 넣어서 문의글에 대한 댓글정보 가져옴	      
 	       $.ajax({
 	    		url:rUrl,
 	    		data:rParam,
 	    		success:function(b){
 	    			var bb = $(b)
-	    			var tag ="";
-	    			console.log("댓글함수 데이터success");
-					
-	    			bb.each(function(idx,vo5){
-	    				tag += "div style='display:flex;width:20%;'><label style='display:block;width:20%;height:100%;vertical-align:middle;font-size:2rem;color:#666;'>↳</label><img src='img/jisu/"+${vo.member_img} +"' style='width:80%'/></div> ";
+	    			var tag ="";	    			
+	    			console.log("댓글함수 데이터success");					
+	    			bb.each(function(idx,vo5){	    	
+	    				tag +="<div class='askdiv808'>";
+	    				tag += "<div style='display:flex;width:20%;'><label style='display:block;width:20%;height:100%;vertical-align:middle;font-size:2rem;color:#666;'>↳</label><img src='img/jisu/creatorprofile.png' style='width:80%'/></div> ";
 	    				tag +="<div style='width:80%;'>";
-	    				tag +="<div><label> "+ ${vo.nick} +"| "+vo5.classqna_writedate +"작성</label></div>";
-	    				tag +="<div><label>"+vo5.classqnacom_reply +"</label></div>";
-						tag +="</div>";
-					   
-						str = tag; //이 str 을 어디서 리턴
+	    				tag +="<div><label> "+ vo5.classqnacom_member_id +"| "+vo5.classqna_writedate +"작성</label></div>";
+	    				tag +="<div><label>"+vo5.classqnacom_reply +"</label></div>"; 
+	    				tag +="</div>";
+	    				$("#creatormemberoneask").append(tag);  
 					});	    			
 	    		}	    		
 	    	})
-	    	console.log(str);
-	    	return str;
+	    	
 		   
-	   } 	    
-	   /*
-		<li> <!-- **문의댓글한줄 -->
-		<div class="askdiv909"><!-- 이미지 + 닉네임 + 작성날짜-->
-			<div><img src="img/jisu/basic.png"/></div> <!-- 이미지 -->
-			<div>
-				<div><label>an** | 2021년 6월 6일 20:26 작성</label></div>
-				<div><label>이번주 토요일 클래스 예약 2명 가능할까요?</label></div>
-			</div> 						
-		</div>							
-		
-		 
-		<!-- -------------------------------------------------- -->
-		
-		<div class="askdiv808" > <!-- 강사답댓글 -->
-			<div style="display:flex;width:20%;"><label style="display:block;width:20%;height:100%;vertical-align:middle;font-size:2rem;color:#666;">↳</label><img src="img/jisu/creatorprofile.png" style="width:80%"/></div> <!-- 이미지 -->
-			<div style="width:80%;">
-				<div><label> 버드세이지 플라워 | 2021년 6월 7일 12:00 작성</label></div>
-				<div><label>가능합니다 :)</label></div>
-			</div> <!-- 아이디 -->		
-		</div>							
-	</li>
-			tag +="<div class='askdiv808'>";
-			tag += "div style='display:flex;width:20%;'><label style='display:block;width:20%;height:100%;vertical-align:middle;font-size:2rem;color:#666;'>↳</label><img src='img/jisu/"+${vo.member_img} +"' style='width:80%'/></div> ";
-			tag +="<div style='width:80%;'>";
-			tag +="<div><label> "+ ${vo.nick} +"| "+vo5.classqna_writedate +"작성</label></div>";
-			tag +="<div><label>"+vo5.classqnacom_reply +"</label></div>";
-			tag +="</div>";
-			tag +="</div>";
+	   } 
+	//답글확인 클릭이벤트
+	  $(document).on('click','#replyshow',function(){
+		  var r = $(this).attr("class");
+		  console.log(r);
+		  console.log("답글확인클릭이벤트");
+		  AskReply(r);
+		});
 	   
 	   
-	   */
 	   
 	   
 	LikeCount(); //좋아요수 셋팅
 	AskList(); //문의 셋팅
+	
+	
+	
 	   		
 	});
 	
@@ -473,8 +415,10 @@
 					<div id="datepicker" class="datepicker"></div>
 				</div>
 				
-				<div id="selectClassListd" style="margin-top:10px;"><!-- 해당날짜에 선택된 강의옵션목록 -->
+				<div id="selectdateBB" style="margin-top:10px;"><!-- 해당날짜에 선택된 강의옵션목록 -->
+					<div  style="margin-top:10px;width:300px;color:#666;" id=>개설 된 클래스</div>
 					
+					<div id="selectClassListd"  style="margin-top:10px;"></div>
 				</div>
 				
 				<div id="buttonhomec"><input type="button" value="장바구니" id="gobasketB" style="border-radius:5px;"/><input type="button" value="클래스 신청하기" id="gopayB" style="border-radius:5px;"/></div>
