@@ -51,14 +51,11 @@ public class UserController {
 	public String mypage4() {
 		return "/user/mypage/myPage_Creatorlike";
 	}	
-	@RequestMapping(value = "/classMainPage")
-	public String classMainPage() {
-		return "/user/classDetailPage/classMain";
-	}	
-	@RequestMapping(value = "/payPage")
-	public String payPage() {
-		return "/user/pay/payPage_info";
-	}
+//	@RequestMapping(value = "/classMainPage")
+//	public String classMainPage() {
+//		return "/user/classDetailPage/classMain";
+//	}	
+//	
 	@RequestMapping(value = "/homeQnA")
 	public String homeQnA() {
 		return "/user/HomeQnA/userHelper_HomeQnA_list";
@@ -76,10 +73,10 @@ public class UserController {
 		return "/creator/optionList/classOptionList";
 	}	
 	//지수백위한임시홈
-	@RequestMapping(value = "/temporaryhome")
-	public String temporaryhome() {
-		return "/user/classDetailPage/temporaryhome";
-	}
+//	@RequestMapping(value = "/temporaryhome")
+//	public String temporaryhome() {
+//		return "/user/classDetailPage/temporaryhome";
+//	}
 	
 	
 }

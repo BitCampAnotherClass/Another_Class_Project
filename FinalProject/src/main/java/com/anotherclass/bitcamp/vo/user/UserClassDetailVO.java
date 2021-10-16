@@ -61,6 +61,9 @@ public class UserClassDetailVO {
 	
 	/*클래스 문의*/
 	
+	/*여러개의 클래스옵션번호를 담을 변수*/
+	private int[] classNoPayArray;
+	
 	
 	public int getClass_like_check() {
 		return class_like_check;
@@ -338,6 +341,12 @@ public class UserClassDetailVO {
 	}
 	public void setCreator_tag(String creator_tag) {
 		this.creator_tag = creator_tag;
+	}
+	public int[] getClassNoPayArray() {
+		return classNoPayArray;
+	}
+	public void setClassNoPayArray(int[] classNoPayArray) {
+		this.classNoPayArray = classNoPayArray;
 	}
 	
 	

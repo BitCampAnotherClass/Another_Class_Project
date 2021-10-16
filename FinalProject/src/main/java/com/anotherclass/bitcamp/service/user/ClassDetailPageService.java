@@ -21,4 +21,5 @@ public interface ClassDetailPageService {
 	public List<UserClassDetailVO2> userClassDetailAskAllSelect(int no);
 	public int AskReplyCheck(int no); 
 	public List<UserClassDetailVO2> userClassDetailAskReplySelect(int no);
+	public int classAskWritee(UserClassDetailVO2 askVo);
 }
