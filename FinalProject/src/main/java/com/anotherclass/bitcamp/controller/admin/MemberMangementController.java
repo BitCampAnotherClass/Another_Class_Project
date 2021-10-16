@@ -26,27 +26,23 @@ public class MemberMangementController {
 	@RequestMapping(value="/MemberMangement/userAccountList",method = RequestMethod.POST)
 	@ResponseBody
 	public List<RegisterVO> userList(int no){
-		int boardListNumber = adminService.boardLimit(); // 게시글 수 조회
 		int memberListLimit = 15; // 한페이지에 보여줄 페이지수
 		int num =no;
 		int numberList = ((num-1)*memberListLimit); // 페이징 시작 계산식
 		int numberLimitCal = (memberListLimit*num);
-		List<RegisterVO> list = adminService.MemberList(numberList, numberLimitCal);
+		System.out.println(numberLimitCal);
+		int numberListLast = (numberList+1);
+		List<RegisterVO> list = adminService.MemberList(numberListLast, numberLimitCal);
 		return list;
 	}
 	
-	@RequestMapping(value="/MemberMangement/test")
-	public String test() {
+	@RequestMapping(value="/MemberMangement/btnList", method = RequestMethod.POST)
+	@ResponseBody
+	public int buttonList() {
 		int boardListNumber = adminService.boardLimit(); // 게시글 수 조회
 		int memberListLimit = 15; // 한페이지에 보여줄 페이지수
-		int listCalcul = (int) Math.ceil((double)boardListNumber/memberListLimit);
-		// 하단 버튼
-		int num =2;
-		int numberList = ((num-1)*memberListLimit); // 페이징 시작 계산식
-		int numberLimitCal = (memberListLimit*num);
-		System.out.println(numberList+"||"+numberLimitCal);
-		
-		return "admin/MemberManagement/userManagement";
+		int listCalcul = (int) Math.ceil((double)boardListNumber/memberListLimit);		
+		return listCalcul;
 	}
 	
 	@RequestMapping(value="/userManagement")

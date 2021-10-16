@@ -85,22 +85,36 @@
 	  transform: translate(-50%, -50%);
 	  background-color: #ffffff;
 	  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
-	  
 	  /* 임시 지정 */
 	  width: 500px;
 	  height: 500px;
+	}
+	.userMg-information-popup{
+		padding:10px;
+		border-radius: 10px;
+	}
+	.userMg-boardList-btn{
+		width: 50px;
+		padding: 10px;
+	}
+	.userMg-info-closeButton{
+		float: right;
+	}
+	.userMg-info-title{
+		float: left;
+		width: 400px;
 	}
 </style>
 <script>
 	$(function(){
 		var url="MemberMangement/userAccountList";
-		var board= "";
+		var num;
 		
 		function userList(){
-			var test = 'test';
 			var number = $('.paging-number').val();
 			var data = {"no":number};
-			console.log(data);
+			var test = 'test';
+			var board= "";
 			$.ajax({
 				url : url,
 				type : "POST",
@@ -117,9 +131,11 @@
 						board +='<li class="userMg-chart-boardlist">'+test+'</li>';
 						board +='<li class="userMg-chart-boardlist">';
 						board +='<input type="button" value="상세 정보" id="account_information_btn"/>';
+						board +='<input type="hidden" value="'+vo.member_id+'" class="userMg-list-data'+idx+'"/>';
 						board +='<input type="button" value="수정" />';
 						board +='<input type="button" value="삭제" />';
 						board +='</li>';
+						num = idx;
 					});
 					$(".userMg-chart-box").append(board);
 				},error: function(error){
@@ -128,33 +144,66 @@
 				}
 			});
 		}
-		userList();
+		
+		function btnList(){
+			var btnList = "";
+			$.ajax({
+				url : 'MemberMangement/btnList'
+				, type : 'POST'
+				, success:function(res){
+					for(var i=1; i<=res; i++){
+						btnList +='<input type="button" class="userMg-boardList-btn"';
+						if(i>=3){
+						console.log('출력');
+						btnList +=' style="display:none" ';
+						}
+						btnList += 'value="'+i+'"/>';
+					}
+					$('.userMg-boardList-btn-box').html(btnList);
+				}
+				, error: function(error){
+					console.log(error);
+					console.log('btn 목록 불러오기 실패');
+				}
+				
+			});
+		}
+		
 		$(document).on('click',"#account_information_btn",function(){
+			var infoNum;
+			
 			var member_information = '';
 			member_information += '<div class="userMg-information-back">';
 			member_information += '<div class="userMg-information-box">';
 			member_information += '<div class="userMg-information-popup">';
-			member_information += '<h2>이름</h2>';
-			member_information += '<span>아이디</span>';
-			member_information += '<input type="button" value="목록보기" class="account_list_btn" />';
+			member_information += '<h2 class="userMg-info-title">회원 상세정보</h2>';
+			member_information += '<input type="button" value="X" class="userMg-info-closeButton" />';
+			member_information += '<ul>';
+			member_information += '<input type="text" class="account_input" />';
+			for(var i=0; i<=num; i++){
+				member_information += '숫자'+i;
+			}
+			member_information += '</ul>';
 			member_information += '</div>';
 			member_information += '</div>';
 			member_information += '</div>';
 			$('#contents-wrap').before(member_information);
 		});
 		
-		$(document).on('click','.account_list_btn',function(){
+		$(document).on('click','.userMg-info-closeButton',function(){
 			$('.userMg-information-box').remove();
 			$('.userMg-information-back').remove();
 			$('.userMg-information-popup').remove();
 		});
-		
-		$('.userMg-boardList-btn').on('click',function(){
-			console.log( $(this).val() );
+		$(document).on('click','.userMg-boardList-btn',function(){
 			$('.paging-number').val($(this).val());
+			console.log('버튼 숫자 가져오기'+ $(this).val() );
+			console.log('페이징 숫자 가져오기'+ $('.paging-number').val() );
 			$('.userMg-chart-boardlist:nth-child(n+9)').remove();
 			userList();
 		});
+		userList();
+		btnList();
 	});
 </script>
 </head>
@@ -164,10 +213,7 @@
 			<div class="userMg-top">
 				<h1 class="userMg-title">회원리스트</h1>
 				<div class="userMg-menu">
-					<input type="button" value="이용자" class="userMg-menu-btn"/>
-					<input type="button" value="크리에이터" class="userMg-menu-btn"/>
-					
-					<a href="MemberMangement/test">테스트</a>
+					<input type="button" value="회원 전체목록" class="userMg-menu-btn"/>
 				</div>
 			</div>
 	
@@ -183,7 +229,9 @@
 				<li class="userMg-chart-boardlist">구분</li>
 				<li class="userMg-chart-boardlist">관리</li>
 			</ul>
-			<input type="button" class="userMg-boardList-btn" value="2"/>
+			<div class="userMg-boardList-btn-box">
+			
+			</div>
 		</div>
 	</div>
 </body>
