@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.anotherclass.bitcamp.service.register.RegisterService;
@@ -26,16 +27,14 @@ public class RegisterController {
 		return "register/userRegister";
 	}
 	
-	@RequestMapping("/registerCreator")
-	public String registerCreator() {
-		return "register/creatorRegister";
+	@RequestMapping(value="/register/check", method = RequestMethod.POST)
+	@ResponseBody
+	public String idCheck(RegisterVO vo, String id) {
+		vo.setMember_id(id);
+		registerService.logIdCheck(vo);
+		String cnt =vo.getAdditional_information_one();
+		return cnt;
 	}
-	
-	@RequestMapping("/registerTest")
-	public String registerTest() {
-		return "register/userRegisterTest";
-	}
-	
 	
 	// 유저 회원가입
 	@RequestMapping(value="/userJoin",method=RequestMethod.POST)

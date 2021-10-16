@@ -15,15 +15,15 @@ $(function(){
 					var listData = $(result);
 					listData.each(function(idx,vo){
 						board +='<li class="userMg-chart-boardlist"><input type="checkbox" id="allcheck"/></li>';
-						board +='<li class="userMg-chart-boardlist">'+vo.member_id+'</li>';
+						board +='<li class="userMg-chart-boardlist" id="userMg-chart-id'+idx+'">'+vo.member_id+'</li>';
 						board +='<li class="userMg-chart-boardlist">'+vo.member_name+'</li>';
 						board +='<li class="userMg-chart-boardlist">'+vo.member_email+'</li>';
 						board +='<li class="userMg-chart-boardlist">'+vo.member_tel+'</li>';
 						board +='<li class="userMg-chart-boardlist">'+vo.signupdate+'</li>';
-						board +='<li class="userMg-chart-boardlist">'+test+'</li>';
+						board +='<li class="userMg-chart-boardlist">'+idx+1+'</li>';
 						board +='<li class="userMg-chart-boardlist">';
 						board +='<input type="button" value="상세 정보" id="account_information_btn"/>';
-						board +='<input type="hidden" value="'+vo.member_id+'" class="userMg-list-data'+idx+'"/>';
+						board +='<input type="hidden" value="'+vo.member_id+'" class="userMg-chart-id"/>';
 						board +='<input type="button" value="삭제" class="userMg-account-del" />';
 						board +='</li>';
 						num = idx;
@@ -70,6 +70,11 @@ $(function(){
 		});
 
 		$(document).on('click',"#account_information_btn",function(){
+			var n;
+			for(n=0; n<=num; n++){
+				var memberId = $('#userMg-chart-id'+n).text();
+				console.log(memberId);
+			}
 			// 회원 상세정보 버튼 클릭시 출력되는 창
 			var infoNum;
 			var member_information = '';
@@ -80,9 +85,8 @@ $(function(){
 			member_information += '<input type="button" value="X" class="userMg-info-closeButton" />';
 			member_information += '<ul>';
 			member_information += '<input type="text" class="account_input" />';
-			for(var i=0; i<=num; i++){
-				member_information += '숫자'+i;
-			}
+			member_information += memberId;
+			
 			member_information += '</ul>';
 			member_information += '</div>';
 			member_information += '</div>';
