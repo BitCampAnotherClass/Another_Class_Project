@@ -81,6 +81,12 @@ public class ClassDetailPageServiceImp implements ClassDetailPageService {
 		return classDetailPageDAO.userClassDetailAskReplySelect(no);
 	}
 
+	@Override
+	public int classAskWritee(UserClassDetailVO2 askVo) {
+		
+		return classDetailPageDAO.classAskWritee(askVo);
+	}
+
 
 	
 	

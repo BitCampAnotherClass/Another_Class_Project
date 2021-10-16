@@ -23,4 +23,5 @@ public interface ClassDetailPageDAO {
 	public List<UserClassDetailVO2> userClassDetailAskAllSelect(int no);//클래스에대한 모든 문의글들 셋팅
 	public int AskReplyCheck(int no); //문의번호가지고가서 그 문의글에대한 댓글잇는지 물어보는 다오
 	public List<UserClassDetailVO2> userClassDetailAskReplySelect(int no);//문의글번호가지고가서 그 문의글에대한 댓글가져오는 다오
+	public int classAskWritee(UserClassDetailVO2 askVo);//클래스번호 , 아이디
 }
