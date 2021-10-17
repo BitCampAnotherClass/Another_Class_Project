@@ -36,4 +36,10 @@
 		on m.member_id = i.member_id 
 		where m.member_id=#{member_id} and member_pw=#{member_pw} and type_user=1
 	</select>
+	<select id="logIdCheck" parameterType="com.anotherclass.bitcamp.register.RegisterVO" resultType="com.anotherclass.bitcamp.register.RegisterVO" statementType="CALLABLE">
+		call id_check_in(
+			#{member_id, mode=IN, jdbcType=VARCHAR, javaType=String}, 
+			#{additional_information_one, mode=OUT, jdbcType=VARCHAR, javaType=String} 
+		)
+	</select>
 </mapper>

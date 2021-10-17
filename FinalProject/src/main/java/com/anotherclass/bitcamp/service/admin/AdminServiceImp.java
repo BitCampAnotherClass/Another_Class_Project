@@ -25,12 +25,12 @@ public class AdminServiceImp implements AdminService {
 	}
 
 	@Override
-	public List<RegisterVO> MemberList(RegisterVO vo) {
-		return memberMangementDao.MemberList(vo);
+	public List<RegisterVO> MemberList(int numberList, int numberLimitCal){
+		return memberMangementDao.MemberList(numberList, numberLimitCal);
 	}
 	
 	@Override
-	public int boardLimit(int boardNumber, int boardLimit) {
-		return memberMangementDao.boardLimit(boardNumber, boardLimit);
+	public int boardLimit() {
+		return memberMangementDao.boardLimit();
 	}
 }

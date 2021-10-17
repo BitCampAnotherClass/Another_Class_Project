@@ -71,17 +71,26 @@
 </style>
 <script type="text/javascript">
 		$(()=>{
-			var url = 'ano';
+			var url = 'register/check';
 			$('#member_id').keyup(function(){
-				/* $.ajax({
-					url: url,
-					type: 'POST',
-					success:function(){
-						
+				var id = $('#member_id').val();
+				var data = {"id":id};
+				$.ajax({
+					url: url
+					, type: 'POST'
+					, data: data
+					, success:function(result){
+						if(result=='YES'){
+							document.getElementById('register_id_text').innerHTML="사용가능한 	아이디.";
+						}else{
+							document.getElementById('register_id_text').innerHTML="사용중이거나 삭제된 아이디 입니다.";
+						}
 					}
-				}); */
-				console.log("아이디 생성 규칙 및 중복아이디 검출 작동");
-				document.getElementById('register_id_text').innerHTML="사용중이거나 삭제된 아이디 입니다.제작중 가입";
+					, error:function(error){
+						console.log(error)
+					}
+				});
+				
 			});
 			
 			$('#member_pw_check, #member_pw').keyup(function passWordCheck(){
@@ -91,7 +100,7 @@
 				var check2 = $('#member_pw_check').val();
 				
 				if(check1.length < 8 || check1.length > 20){
-					$('#member_pw').html("비밀번호 생성 규칙을 지켜주세요"); 
+					$('#register_pwd_text').html("비밀번호 생성 규칙을 지켜주세요"); 
 				}
 				if(check1 != "" || check2 != ""){
 					$('#register_pwdCh_text').html("비밀번호가 일치하지 않습니다.");
