@@ -8,67 +8,9 @@
 <title>Another Class</title>
 <link href="<%=request.getContextPath()%>/css/login.css" rel="stylesheet" type="text/css"/>
 <link href="<%=request.getContextPath()%>/css/common.css" rel="stylesheet" type="text/css"/>
+<link href="<%=request.getContextPath()%>/css/register/register.css" rel="stylesheet" type="text/css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
-<style>
-	.register_user{
-		margin: 0 auto;
-		width: 900px;
-		height: 1000px;
-	}
-	.register_title-box, .register_form{
-		margin: 0 auto;
-	}
-	.register_title-box{
-		padding: 5px;
-	}
-	.register_input-group{
-		margin: 30px;
-	}
-	.register_button{
-		margin: 0 auto;
-		width: 100%;
-		height: 30px;
-		color:  #e5e5e5;
-		border:0;
-		background-color: #333;
-	}
-	.register_input-box, .register_input-outline {
-		display: block;
-		position: relative;
-	}
-	.register_input-outline{
-		border: 1px solid #e5e5e5;
-		width: 100%;
-	}
-	.register_input, .register_input_email{
-		outline: 0;
-		border: none;
-		padding: 10px;
-		font-size: 16px;
-		width: 90%;
-	}
-	#register_email{
-		height: 40px;
-	}
-	.register_input_email{
-		width: 90%;
-	}
-	#register_input_email{
-		width: 50%;
-		margin-right: 4%;
-	}
-	#register_input_email_addr{
-		width: 45%;
-	}
-	#register_input_email, #register_input_email_addr{
-		float:left;
-	}
-	#register_id_text, #register_pwd_text, #register_pwdCh_text{
-		float: left;
-		font-size: 0.9em;
-		padding: 2px;
-	}
-</style>
+
 <script type="text/javascript">
 		$(()=>{
 			var url = 'register/check';
@@ -115,15 +57,18 @@
 					$('#register_pwdCh_text').html("비밀번호가 일치하지 않습니다.");
 					if(check1 == check2){
 						$('#register_pwdCh_text').html("비밀번호가 일치합니다.");
+						$('.register_pwd_check').val('Y');
 					}
 				}
 			});
-			
-			$('#register_button').submit(function(){
+			$('.register_button').click(function(){
 				var chk1 = $('.register_id_check').val();
-				if(chk1 != Y){
-					
-				}	
+				var chk2 = $('.register_pwd_check').val();
+				if(chk1 != 'Y' || chk2 != 'Y'){
+					console.log('로그인실패');
+					return false;
+				}
+				$('.register_form').submit();
 			});
 		});
 </script>
@@ -193,9 +138,9 @@
 										</span>
 									</span>
 								</div>
-								<input type="hidden" class="register_id_check">
-								<input type="hidden" class="register_pwd_check">
-								<button class="register_button">회원가입</button>
+								<input type="hidden" class="register_id_check" value="N">
+								<input type="hidden" class="register_pwd_check" value="N">
+								<button type="button" class="register_button">회원가입</button>
 						</form>
 				</div>
 			</div>
