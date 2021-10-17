@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.anotherclass.bitcamp.dao.creator.CreatorInquiryDAO">
+  	<select id="creatorInquiry" resultType="com.anotherclass.bitcamp.vo.creator.CreatorInquiryVO">
+  		<![CDATA[
+  			select user_qna_no, member_id, title, writedate from homeQnaUser  where board_no2 =0 and member_id in(select member_id from idAll where type_creator = 1)
+  		]]>
+  	</select>
+  </mapper>

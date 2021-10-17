@@ -14,26 +14,32 @@
 <script type="text/javascript">
 		$(()=>{
 			var url = 'register/check';
-			var check = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+			var checkEng = /[a-z|A-Z|0-9]/;
 			$('#member_id').keyup(function(){
 				var id = $('#member_id').val();
 				var data = {"id":id};
-				
+				// 아이디 조회
 				$.ajax({
 					url: url
 					, type: 'POST'
 					, data: data
 					, success:function(result){
-						if(check.test(id)){
-							document.getElementById('register_id_text').innerHTML="아이디는 영문자와 숫자로 만들어주세요";
+						if(id.length< 5 || id.length > 15){
+							console.log(id.length);
+							document.getElementById('register_id_text').innerHTML="아이디는 5~ 15자의 영문과 숫자로만 사용가능합니다.";
 							$('.register_id_check').val('N');
 						}else{
-							if(result=='YES'){
-								document.getElementById('register_id_text').innerHTML="사용가능한 아이디입니다";
-								$('.register_id_check').val('Y');
-							}else{
-								document.getElementById('register_id_text').innerHTML="사용중이거나 삭제된 아이디 입니다.";
+							if(!checkEng.test(id)){
+								document.getElementById('register_id_text').innerHTML="아이디는 5~ 15자의 영문과 숫자로만 사용가능합니다.";
 								$('.register_id_check').val('N');
+							}else{
+								if(result=='YES'){
+									document.getElementById('register_id_text').innerHTML="사용가능한 아이디입니다";
+									$('.register_id_check').val('Y');
+								}else{
+									document.getElementById('register_id_text').innerHTML="사용중이거나 삭제된 아이디 입니다.";
+									$('.register_id_check').val('N');
+								}
 							}
 						}
 					}
@@ -45,27 +51,34 @@
 			});
 			
 			$('#member_pw_check, #member_pw').keyup(function passWordCheck(){
-				
-				console.log("비밀번호 확인작동");
+				var checkPwd = $('#member_pw').val();
+				if(checkPwd.length < 8 || checkPwd.length > 20){
+					$('#register_pwd_text').html("비밀번호 생성 규칙을 지켜주세요");
+					$('.register_pwd_check').val('N');
+				}else{
+					$('#register_pwd_text').html("사용가능한 비밀번호");
+					$('.register_pwd_check').val('Y');
+				}
+			});
+			
+			$('#member_pw_check').keyup(function passWordChecking(){
 				var check1 = $('#member_pw').val();
 				var check2 = $('#member_pw_check').val();
-				
-				if(check1.length < 8 || check1.length > 20){
-					$('#register_pwd_text').html("비밀번호 생성 규칙을 지켜주세요"); 
-				}
 				if(check1 != "" || check2 != ""){
 					$('#register_pwdCh_text').html("비밀번호가 일치하지 않습니다.");
+					$('.register_pwd_check').val('N');
 					if(check1 == check2){
 						$('#register_pwdCh_text').html("비밀번호가 일치합니다.");
 						$('.register_pwd_check').val('Y');
 					}
 				}
 			});
+			
 			$('.register_button').click(function(){
+				//최종 전송
 				var chk1 = $('.register_id_check').val();
 				var chk2 = $('.register_pwd_check').val();
 				if(chk1 != 'Y' || chk2 != 'Y'){
-					console.log('로그인실패');
 					return false;
 				}
 				$('.register_form').submit();
@@ -128,8 +141,9 @@
 								</div>
 								<div id="register_email" class="register_input-group">
 									<span class="register_input-outline" id="register_input_email">
-										<span class="register_input-box">	
-											<input type="text" id="member_email" name="member_email" class="register_input_email" placeholder="이메일" autocomplete=”off” maxlength="15"/>
+										<span class="register_input-box">
+											<input type="hidden" id="member_email" name="member_email" class="register_input_email" autocomplete=”off”/>
+											<input type="text" id="member_email_id" name="member_email_id" class="register_input_email" placeholder="이메일" autocomplete=”off” maxlength="15"/>
 										</span>
 									</span>
 									<span class="register_input-outline" id="register_input_email_addr">
