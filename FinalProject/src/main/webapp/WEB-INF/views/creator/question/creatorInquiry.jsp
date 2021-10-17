@@ -40,6 +40,9 @@
 		<div>
 			<div>
 				<h2>동기식 게시판생성</h2>
+				<label>동기식으로 게시판을 생성하려면 페이징또한 지속적으로 새로고침이 되어야 한다.</label><br/>
+				<label>예시) 주소:  http://localhost:9090/another/creator/testingMenu?nowPage=1</label><br/>
+				<label>nowPage가 현재페이지 번호 하단 번호를 누를때마다 변경되도록 </label><br/>
 			</div>
 			<div>
 				<ul>

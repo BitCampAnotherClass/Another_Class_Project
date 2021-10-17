@@ -19,11 +19,28 @@ public class ImSiController {
 	CreatorService creatorService;
 	
 	@RequestMapping("/testingMenu")
-	public ModelAndView testBoard() {
+	public ModelAndView testBoard(int no) {
+		// 진입시 http://localhost:9090/another/creator/testingMenu?no=1로
 		ModelAndView mav = new ModelAndView();
 		List<CreatorInquiryVO>  list = creatorService.creatorInquiry();
-		mav.addObject("list", list);
+		
+		int boardLimit = 5; // 한페이지에 보여줄 페이지수
+		int listFirst = ((no-1)*boardLimit); // 하단 버튼숫자에 따른 페이징 시작번호
+		int listLast =  boardLimit*no;
+		
+		int cnt = creatorService.creatorInquiryBoardCount(); // 컬럼 전체숫자 출력
+		System.out.println("총 게시글 수:"+cnt);
+		List<CreatorInquiryVO> listPaging = creatorService.creatorInquiryPageing(listFirst+1,listLast);
+		System.out.println(listPaging);
+		
+		mav.addObject("list", listPaging);
 		mav.setViewName("creator/question/creatorInquiry");
 		return mav;
+	}
+	
+	@RequestMapping("/testingMenu2")
+	public String testing() {
+		
+		return "creator/question/creatorInquiry";
 	}
 }

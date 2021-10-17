@@ -20,4 +20,14 @@ public class CreatorServiceImp implements CreatorService{
 		return creatorInquiryDao.creatorInquiry();
 	}
 	
+	@Override
+	public int creatorInquiryBoardCount() {
+		return creatorInquiryDao.creatorInquiryBoardCount();
+	}
+	
+	@Override
+	public List<CreatorInquiryVO> creatorInquiryPageing(int start, int end) {
+		return creatorInquiryDao.creatorInquiryPageing(start, end);
+	}
+	
 }

@@ -5,7 +5,18 @@
   <mapper namespace="com.anotherclass.bitcamp.dao.creator.CreatorInquiryDAO">
   	<select id="creatorInquiry" resultType="com.anotherclass.bitcamp.vo.creator.CreatorInquiryVO">
   		<![CDATA[
-  			select user_qna_no, member_id, title, writedate from homeQnaUser  where board_no2 =0 and member_id in(select member_id from idAll where type_creator = 1)
+  			select user_qna_no, member_id, title, writedate from homeQnaUser where board_no2 =0 and member_id in(select member_id from idAll where type_creator = 1)
+  		]]>
+  	</select>
+  	<select id="creatorInquiryBoardCount" resultType="int">
+  		select count(user_qna_no) from homeQnaUser  where board_no2 =0 and member_id in(select member_id from idAll where type_creator = 1)
+  	</select>
+  	<select id="creatorInquiryPageing" resultType="com.anotherclass.bitcamp.vo.creator.CreatorInquiryVO">
+  		<![CDATA[
+  			SELECT user_qna_no, member_id, title, writedate  FROM (SELECT a.*, ROWNUM as p_num FROM 
+   	 		(SELECT user_qna_no, member_id, title, writedate
+    		FROM homeQnaUser where board_no2 = 0 and member_id in(select member_id from idAll where type_creator = 1) ORDER BY user_qna_no DESC) a)
+    		where p_num >= #{param1} and p_num<=#{param2}
   		]]>
   	</select>
   </mapper>
