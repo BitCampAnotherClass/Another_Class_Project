@@ -15,8 +15,8 @@ public class UserPayServiceImp implements UserPayService {
 	UserPayDAO userpaydao;
 
 	@Override
-	public List<UserPayVO> userPayAllselect(int[] classNoPayArray) {
+	public List<UserPayVO> userPayAllselect(List<Integer> classNoPayList ) {
 		System.out.println("페이서비스 들어왔다");
-		return userpaydao.userPayAllselect(classNoPayArray);
+		return userpaydao.userPayAllselect(classNoPayList);
 	}
 }

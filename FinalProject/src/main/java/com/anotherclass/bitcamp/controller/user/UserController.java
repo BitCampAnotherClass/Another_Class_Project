@@ -34,23 +34,8 @@ public class UserController {
 
 	
 	
-	// 지수
-	@RequestMapping(value = "/mypage1")
-	public String mypage() {
-		return "/user/mypage/myPage_order";
-	}
-	@RequestMapping(value = "/mypage2")
-	public String mypage2() {
-		return "/user/mypage/myPage_shoppingbasket";
-	}
-	@RequestMapping(value = "/mypage3")
-	public String mypage3() {
-		return "/user/mypage/myPage_Ask";
-	}	
-	@RequestMapping(value = "/mypage4")
-	public String mypage4() {
-		return "/user/mypage/myPage_Creatorlike";
-	}	
+	
+	
 //	@RequestMapping(value = "/classMainPage")
 //	public String classMainPage() {
 //		return "/user/classDetailPage/classMain";

@@ -144,8 +144,8 @@
 	    				tag +="<div class='headcountdiv'> 최대인원 : "+maxheadcount+"신청인원 : "+vo4.all_headcount+"</div>";
 	    				tag +="<div class='classoptionno'>"+vo4.class_option_no+"</div>";
 	    				
-	    				if(maxheadcount != vo4.all_headcount){
-	    					tag +="<div><input type='checkbox' class='checkbb' name='checkedclassoption' value='"+vo4.class_option_no +"'></div>";
+	    				if(maxheadcount != vo4.all_headcount){//name변경 checkedclassoption
+	    					tag +="<div><input type='checkbox' class='checkbb' name='class_option_no' value='"+vo4.class_option_no +"'></div>";
 	    				   }else{
 	    					tag +="<div>신청마감</div>";  
 	    				}
@@ -310,12 +310,12 @@
 		}else{
 			 // checkedclassoption : 체크박스
 			 // payfrm : form name
-			if(payfrm.checkedclassoption.checked != true){ 
+			if(payfrm.class_option_no.checked != true){ 
 				alert("신청할 클래스를 선택해주세요"); 
 				return false; 
 			}			 
 			  $("#payfrm").attr("action", "/another/PayPage");
-		      $("#payfrm").submit();;
+		      $("#payfrm").submit();
 		}	 
 	});
 	

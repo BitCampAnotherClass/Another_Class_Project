@@ -5,5 +5,5 @@ import java.util.List;
 import com.anotherclass.bitcamp.vo.user.UserPayVO;
 
 public interface UserPayDAO {
-	public List<UserPayVO> userPayAllselect(int[] classNoPayArray);
+	public List<UserPayVO> userPayAllselect(List<Integer> classNoPayList );
 }

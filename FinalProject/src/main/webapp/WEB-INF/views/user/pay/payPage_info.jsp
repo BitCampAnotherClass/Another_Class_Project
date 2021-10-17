@@ -265,8 +265,11 @@
                     $.ajax({
                         type: "GET",
                         url: "", //충전 금액값을 보낼 url 설정
+                        //headers: { "Content-Type": "application/json" },
                         data: {
-                            "amount": money
+                        	 imp_uid: rsp.imp_uid,
+                             merchant_uid: rsp.merchant_uid
+                             //기타 필요한 데이터가 있으면 추가 전달
                         },
                     });
                 } else { //결제실패시 로직

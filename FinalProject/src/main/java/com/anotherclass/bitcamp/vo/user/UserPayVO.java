@@ -1,10 +1,12 @@
 package com.anotherclass.bitcamp.vo.user;
 
+import java.util.List;
+
 public class UserPayVO {
 	
 	/*여러개의 클래스옵션번호를 담을 변수*/
 	private int[] classNoPayArray;
-	
+	private List<Integer> classNoPayList;
 	
 	/*주문자정보*/
 	private String member_id;
@@ -378,6 +380,12 @@ public class UserPayVO {
 	}
 	public void setClassNoPayArray(int[] classNoPayArray) {
 		this.classNoPayArray = classNoPayArray;
+	}
+	public List<Integer> getClassNoPayList() {
+		return classNoPayList;
+	}
+	public void setClassNoPayList(List<Integer> classNoPayList) {
+		this.classNoPayList = classNoPayList;
 	}
 	
 	

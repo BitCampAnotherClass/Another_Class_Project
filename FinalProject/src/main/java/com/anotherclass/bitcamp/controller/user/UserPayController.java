@@ -26,7 +26,7 @@ public class UserPayController {
 		//클래스옵션테이블+클래스+주문테이블에서 원하는 정보 받아와서 vo여러개를 list로 담아와서
 		//mav에 저장해주고
 		//뷰에서 받아온 리스트를 반복문 돌려서 셋팅
-		mav.addObject("list",userPayService.userPayAllselect(vo.getClassNoPayArray()));
+		mav.addObject("list",userPayService.userPayAllselect(vo.getClassNoPayList())); // 여기가문제??
 		mav.setViewName("/user/pay/payPage_info");
 		return mav;
 	}
