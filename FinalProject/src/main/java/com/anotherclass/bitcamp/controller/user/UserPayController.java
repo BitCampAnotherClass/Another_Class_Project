@@ -16,8 +16,9 @@ public class UserPayController {
 	@Inject 
 	UserPayService userPayService;
 
-	@RequestMapping(value= "/PayPage", method =RequestMethod.POST)
+	@RequestMapping(value= "/PayPage", method = RequestMethod.POST)
 	public ModelAndView payPage(UserPayVO vo) {//주문할 클래스옵션번호 , 주문자
+		System.out.println("페이컨트롤러들어왔다");
 		ModelAndView mav = new ModelAndView();
 		//String logid= (String)ses.getAttribute("userId");
 		//dao에 갑니다~~ -> 리스트로 받아온 주문할 여러개의 클래스옵션이 담겨져잇슴다

@@ -55,11 +55,11 @@ public class UserController {
 //	public String classMainPage() {
 //		return "/user/classDetailPage/classMain";
 //	}	
-//	
-	@RequestMapping(value = "/homeQnA")
-	public String homeQnA() {
-		return "/user/HomeQnA/userHelper_HomeQnA_list";
-	}
+////	
+//	@RequestMapping(value = "/homeQnA")
+//	public String homeQnA() {
+//		return "/user/HomeQnA/userHelper_HomeQnA_list";
+//	}
 	@RequestMapping(value = "/AhomeQnA")
 	public String AhomeQnA() {
 		return "/admin/HomeQnA/admin_HomeQnA_view";

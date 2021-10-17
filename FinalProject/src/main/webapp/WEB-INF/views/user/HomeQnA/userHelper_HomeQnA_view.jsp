@@ -97,7 +97,8 @@
 				</li>
 				<li id="hQnAButview">
 					<c:set var="userId" value="${userId}" />	
-					<c:if test="${not empty userId}">
+					<c:set var="writeId" value="${vo.member_id}" />					
+					<c:if test="${writeId eq userId}">
 							<input type="button" name="hQnAWEdit" id="hQnAWEdit" value="수정" onclick="location.href='/another/HomeQnAAsk/editForm?no=${vo.user_qna_no}';"/>
 							<input type="button" name="hQnAWDel" id="hQnAWDel" value="삭제"/>
 					</c:if>				
