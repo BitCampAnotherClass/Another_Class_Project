@@ -22,8 +22,6 @@ public class ImSiController {
 	public ModelAndView testBoard(int no) {
 		// 진입시 http://localhost:9090/another/creator/testingMenu?no=1로
 		ModelAndView mav = new ModelAndView();
-		List<CreatorInquiryVO>  list = creatorService.creatorInquiry();
-		
 		int boardLimit = 5; // 한페이지에 보여줄 페이지수
 		int listFirst = ((no-1)*boardLimit); // 하단 버튼숫자에 따른 페이징 시작번호
 		int listLast =  boardLimit*no;
