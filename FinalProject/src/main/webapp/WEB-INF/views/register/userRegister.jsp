@@ -72,18 +72,27 @@
 <script type="text/javascript">
 		$(()=>{
 			var url = 'register/check';
+			var check = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
 			$('#member_id').keyup(function(){
 				var id = $('#member_id').val();
 				var data = {"id":id};
+				
 				$.ajax({
 					url: url
 					, type: 'POST'
 					, data: data
 					, success:function(result){
-						if(result=='YES'){
-							document.getElementById('register_id_text').innerHTML="사용가능한 	아이디.";
+						if(check.test(id)){
+							document.getElementById('register_id_text').innerHTML="아이디는 영문자와 숫자로 만들어주세요";
+							$('.register_id_check').val('N');
 						}else{
-							document.getElementById('register_id_text').innerHTML="사용중이거나 삭제된 아이디 입니다.";
+							if(result=='YES'){
+								document.getElementById('register_id_text').innerHTML="사용가능한 아이디입니다";
+								$('.register_id_check').val('Y');
+							}else{
+								document.getElementById('register_id_text').innerHTML="사용중이거나 삭제된 아이디 입니다.";
+								$('.register_id_check').val('N');
+							}
 						}
 					}
 					, error:function(error){
@@ -110,6 +119,12 @@
 				}
 			});
 			
+			$('#register_button').submit(function(){
+				var chk1 = $('.register_id_check').val();
+				if(chk1 != Y){
+					
+				}	
+			});
 		});
 </script>
 </head>	
@@ -178,6 +193,8 @@
 										</span>
 									</span>
 								</div>
+								<input type="hidden" class="register_id_check">
+								<input type="hidden" class="register_pwd_check">
 								<button class="register_button">회원가입</button>
 						</form>
 				</div>
