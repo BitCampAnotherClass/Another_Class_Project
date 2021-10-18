@@ -32,7 +32,7 @@
 			#{additional_information_two, mode=OUT, jdbcType=VARCHAR, javaType=String}
 		)
 	</select>
-	<select id="loginUser" parameterType="com.anotherclass.bitcamp.register.RegisterVO" resultType="com.anotherclass.bitcamp.register.RegisterVO">
+	<select id="loginMember" parameterType="com.anotherclass.bitcamp.register.RegisterVO" resultType="com.anotherclass.bitcamp.register.RegisterVO">
 		select m.member_id, member_name, member_img, nick 
 		from memberTbl m join idAll i 
 		on m.member_id = i.member_id 
@@ -43,6 +43,9 @@
 			<when test='sns_type!="" and logType=="1"'> and type_user=1 and sns_type=#{sns_type}</when>
 			<when test='sns_type!="" and logType=="2"'> and type_creator=1 and sns_type=#{sns_type}</when>
 		</choose>
+	</select>
+	<select id="loginAdmin" parameterType="com.anotherclass.bitcamp.register.RegisterVO" resultType="String">
+		select member_id from adminTbl where member_id=#{member_id, jdbcType=VARCHAR} and member_pw=#{member_pw, jdbcType=VARCHAR}
 	</select>
 	<select id="logIdCheck" parameterType="com.anotherclass.bitcamp.register.RegisterVO" resultType="com.anotherclass.bitcamp.register.RegisterVO" statementType="CALLABLE">
 		call id_check_in(
