@@ -1,21 +1,59 @@
 package com.anotherclass.bitcamp.controller.creator;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.anotherclass.bitcamp.service.creator.MakeClassApplyService;
+import com.anotherclass.bitcamp.vo.creator.CreatorClassCategoryVO;
+import com.anotherclass.bitcamp.vo.creator.CreatorMakeClassVO;
 
 @Controller
 @RequestMapping("/creator")
 public class CreatorController {
+	@Inject
+	MakeClassApplyService makeClassApplyService;
 	
 	@RequestMapping("/")
 	public String creator() {
 		return "creator/creator";
 	}
+	@RequestMapping("/historyback")
+	public String historyBack() {
+		return "creator/historyback";
+	}
 	
 	@RequestMapping("/makeClass")
-	public String creatClass() {
-	    return "creator/makeClass";
+	public ModelAndView makeClass() {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("cate", makeClassApplyService.makeClassCategoryL());
+		mav.setViewName("/creator/makeClass");
+		return mav;
+	}
+	
+	
+	@RequestMapping(value="/makeClassOk", method=RequestMethod.POST)
+	public ModelAndView creatClass(CreatorMakeClassVO vo, HttpSession ses) {
+		ModelAndView mav = new ModelAndView();
+		vo.setMember_id("test100");
+		int result = makeClassApplyService.makeClassApply(vo);
+		if(result == 1) {
+			System.out.println("등록성공");
+			mav.setViewName("/creator/makeClassOk");
+		}else if(result != 1) {
+			System.out.println("등록실패");
+			mav.setViewName("/creator/historyback");
+		}	
+		
+		return mav;
 	}
 	   
 	@RequestMapping("/modifyClass")
@@ -38,22 +76,15 @@ public class CreatorController {
 	public String incomeChart() {
 		return "creator/income/income_chart";
 	}
-	
-	
-	@RequestMapping(value="creatorChannel/ajaxJson", produces="application/text;charset=UTF-8")
+	@RequestMapping(value="makeClass/ajaxList")
 	@ResponseBody
-	public String ajaxJson() {
-		int no = 1234;
-		String username = "홍길동";
-		String tel = "010-1234-4567";
-		String addr = "서울시 마포구 백범로";
+	public List<CreatorClassCategoryVO> ajaxList(CreatorClassCategoryVO vo) {
+		List<CreatorClassCategoryVO> list = new ArrayList<CreatorClassCategoryVO>();
 		
-		//데이터를 문자열로 만든다.
-		String jsonData = "{\"no\":\""+no+"\",\"username\":\""+username+"\"";
-				jsonData += ",\"tel\":\""+tel+"\",\"addr\":\""+addr+"\"}";
-				
-		System.out.println(jsonData);
+		list.add(new CreatorClassCategoryVO(100));
 		
-		return jsonData;
+		System.out.println("dddddd");
+		
+		return list;
 	}
 }

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anotherclass.bitcamp.dao.creator.MakeClassDAO">
+	<insert id="makeClassApply" parameterType="com.anotherclass.bitcamp.vo.creator.CreatorMakeClassVO" >
+	<![CDATA[
+		insert into classTbl(class_no, class_name, class_info, class_price, member_id, class_thumb, class_content, class_img_file, class_post_no, class_addr1, class_addr2, max_headcount, category_no, request, progress, class_writedate, class_tag)
+		values(class_sq.nextval, #{class_name}, #{class_info}, #{class_price}, #{member_id}, #{class_thumb}, #{class_content}, 'ddd.jpg', #{class_post_no}, #{class_addr1}, #{class_addr2}, #{max_headcount}, 100, 0, 0, sysdate, #{class_tag})
+	]]>
+	</insert>
+	<select id="makeClassCategoryL" resultType="com.anotherclass.bitcamp.vo.creator.CreatorClassCategoryVO">
+	<![CDATA[
+		select category_name, category1_no from category where category_sort=0 order by category_no asc
+	]]>
+	</select>
+	<select id="makeClassCategoryS" resultType="com.anotherclass.bitcamp.vo.creator.CreatorClassCategoryVO">
+	<![CDATA[
+		select category_name from category where category_sort=1 and category1_no=#{category1_no} order by category_no asc;
+	]]>
+	</select>
+	
+</mapper>
