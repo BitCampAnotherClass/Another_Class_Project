@@ -19,7 +19,7 @@ public class RegisterVO {
 	private String additional_information_one; // 추가 정보  --  프로시저 용도
 	private String additional_information_two; // 추가 정보 2 -- 프로시저 용도
 	private String additional_information_the; // 추가 정보 3 -- 프로시저 용도
-	private int logType=1; // 로그인 타입 - 회원:1 / 강사:2
+	private String logType; // 로그인 타입 - 회원:1 / 강사:2
 	
 	
 	public String getMember_id() {
@@ -119,10 +119,10 @@ public class RegisterVO {
 	public void setAdditional_information_the(String additional_information_the) {
 		this.additional_information_the = additional_information_the;
 	}
-	public int getLogType() {
+	public String getLogType() {
 		return logType;
 	}
-	public void setLogType(int logType) {
+	public void setLogType(String logType) {
 		this.logType = logType;
 	}
 	
