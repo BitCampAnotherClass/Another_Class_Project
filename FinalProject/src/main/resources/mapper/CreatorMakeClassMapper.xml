@@ -16,7 +16,7 @@
 	</select>
 	<select id="makeClassCategoryS" resultType="com.anotherclass.bitcamp.vo.creator.CreatorClassCategoryVO">
 	<![CDATA[
-		select category_name from category where category_sort=1 and category1_no=#{category1_no} order by category_no asc;
+		select category_name from category where category_sort=1 and category1_no=#{category1_no} order by category_no asc
 	]]>
 	</select>
 	

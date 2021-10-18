@@ -20,7 +20,7 @@ $(function(){
 	////////////////////////////////////////////////
 	$("#json").on('click',function(){
 		var url = "makeClass/ajaxList" //서버에서 받을 맴핑주소
-		var params = 300;
+		var params = {"no":300};
 		$.ajax({
 			url : url,
 			data : params,

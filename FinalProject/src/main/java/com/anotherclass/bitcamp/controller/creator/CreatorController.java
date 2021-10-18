@@ -48,11 +48,7 @@ public class CreatorController {
 		if(result == 1) {
 			System.out.println("등록성공");
 			mav.setViewName("/creator/makeClassOk");
-		}else if(result != 1) {
-			System.out.println("등록실패");
-			mav.setViewName("/creator/historyback");
-		}	
-		
+		}
 		return mav;
 	}
 	   
@@ -78,13 +74,11 @@ public class CreatorController {
 	}
 	@RequestMapping(value="makeClass/ajaxList")
 	@ResponseBody
-	public List<CreatorClassCategoryVO> ajaxList(CreatorClassCategoryVO vo) {
-		List<CreatorClassCategoryVO> list = new ArrayList<CreatorClassCategoryVO>();
-		
-		list.add(new CreatorClassCategoryVO(100));
+	public List<CreatorClassCategoryVO> ajaxList(CreatorClassCategoryVO vo, int no) {
+		List<CreatorClassCategoryVO> result = makeClassApplyService.makeClassCategoryS(no);
 		
 		System.out.println("dddddd");
 		
-		return list;
+		return result;
 	}
 }
