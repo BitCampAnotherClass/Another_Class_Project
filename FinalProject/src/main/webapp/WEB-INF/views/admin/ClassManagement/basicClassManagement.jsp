@@ -38,6 +38,20 @@
 	.userMg-chart-boardlist:nth-child(n+9){
 		background:white;
 	}
+	.userMg-title  {
+	width: 100%;
+    text-align: center;
+    padding-bottom: 20px; 
+    }
+	.h1style {
+    display: block;
+    font-size: 32px;
+    margin-block-start: 0.9rem;
+    margin-block-end: 0.9rem;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
 </style>
 <!-- 
 <script>
@@ -81,7 +95,7 @@
 	<div class="userMg-main">
 		<div class="userMg-top">
 			<div class="userMg-top">
-				<h1 class="userMg-title">기본클래스 관리</h1>
+				<h1 class="userMg-title"><span class="h1style" >기본클래스 관리</span></h1>
 				<div class="userMg-menu">
 					
 				</div>
