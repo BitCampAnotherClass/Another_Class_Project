@@ -49,7 +49,7 @@
 						<li class="m1"><a>클래스문의</a></li>
 						<li class="m1"><a>홈페이지문의</a></li>
 					</ul>				  -->
-				<span class="h3style"><a>나의게시글</a></span>		
+				<span class="h3style"><a href="<%=request.getContextPath()%>/mypage/mypage6">나의게시글</a></span>		
 				<span class="h3style">MY ♥</span>
 					<ul>
 						<li class="m1"><a href="<%=request.getContextPath()%>/mypage/mypage5">클래스</a></li>

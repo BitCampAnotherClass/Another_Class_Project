@@ -39,6 +39,10 @@ public class UserMyPageController {
 	public String mypage5() {
 		return "/user/mypage/myPage_Classlike";
 	}	
+	@RequestMapping(value = "/mypage/mypage6") //나의게시물
+	public String mypage6() {
+		return "/user/mypage/myPage_post";
+	}	
 	
 	//	///HomeAskReplyList999 홈페이지문의 에이젝스로불러오기
 	@RequestMapping("/HomeAskReplyList999")

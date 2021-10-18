@@ -24,12 +24,18 @@ public class RegisterServiceImp implements RegisterService {
 	}
 
 	@Override
-	public RegisterVO loginUser(RegisterVO vo) {
-		return registerDao.loginUser(vo);
+	public RegisterVO loginMember(RegisterVO vo) {
+		return registerDao.loginMember(vo);
+	}
+	
+	@Override
+	public String loginAdmin(RegisterVO vo) {
+		return null;
 	}
 
 	@Override
 	public String logIdCheck(RegisterVO vo) {
 		return registerDao.logIdCheck(vo);
 	}
+
 }
