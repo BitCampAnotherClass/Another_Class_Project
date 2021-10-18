@@ -55,7 +55,7 @@ public class UserMyPageController {
 			}		
 		return list;
 	}
-	
+	//클래스문의
 	@RequestMapping("/ClassAskReplyList999")
 	@ResponseBody
 	public List<UserClassDetailVO2> ajaxClassAskList2(String logid){
@@ -86,7 +86,7 @@ public class UserMyPageController {
 		}	
 		return list;
 	}
-	
+	//강사좋아요목록
 	@RequestMapping("/LikedListCrea")
 	@ResponseBody
 	public List<UserClassDetailVO> ajaxLikedCreatorList(String logid){
@@ -107,6 +107,7 @@ public class UserMyPageController {
 		}
 		return list;
 	}
+	//강사좋아요취소
 	@RequestMapping("/cancelLikedListCrea")
 	@ResponseBody
 	public int ajaxCancelCreatorLike(int no) {
@@ -115,5 +116,28 @@ public class UserMyPageController {
 		System.out.println("강사좋아요취소"+result);
 		return result;
 	}
+	
+	//장바구니목록 ajax
+	@RequestMapping("/ShoppingBasket")
+	@ResponseBody
+	public List<UserClassDetailVO> ajaxgetBasketList(String logid){
+		System.out.println("컨트롤러들어옴");
+		List<UserClassDetailVO> list = userMyPageService.BaskList(logid);//1차 : 장바구니테이블에서 아이디에해당하는정보담아옹ㄴ다 
+		for(int i=0; i<list.size(); i++) {
+			UserClassDetailVO vo = list.get(i);
+			String creatorNick = userMyPageService.getCreatorNick(vo.getClass_no());//클래스번호가지고 강사명구함
+			vo.setCreator_nick2(creatorNick);//구한강사명을 넣어줌
+			System.out.println(creatorNick);
+		}
+		return list;
+	}
+	//장바구니상품갯수
+	@RequestMapping("/BasketCount")
+	@ResponseBody
+	public int ajaxgetBasketCoung(String logid) {
+		int basketCount = userMyPageService. getBasketNum(logid);
+		return basketCount;
+	}
+	
 	
 }

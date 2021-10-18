@@ -43,82 +43,11 @@
 	#shoppingbasketBtn{width:100%;height:auto;margin:0 auto;text-align:center;margin-top:50px;}
 	#shoppingbasketBtn>a{display:inline-block;text-align:center;font-size:20px;border:1px solid #333;margin:0 20px 0 20px;padding:10px 15px 10px 15px;}
 </style>
-<script>
 
-$(function(){ 
-	var logid = "${userId}"; // 세션에저장된아이디	
-	console.log(logid);
-	
-	
-	//장바구니 전체셋팅
-	function getBaList(){		
-		var bUrl = "/another/ShoppingBasket";
-		var bParam = {"logid":logid} 
-		$.ajax({// 회원아이디 가져감.....
-			url:bUrl,
-			data :bParam,
-			success:function(b){
-				var bb = $(b)
-    			var tag =""; 
-				bb.each(function(idx,vo){	//성공해서 정보담아옴
-					tag += "<li>";
-					tag += "<div><input type='checkbox'></div>";
-					tag += "<div>";
-					tag += "<div>";
-					//var a = vo.class_thumb;
-					//console.log(a);
-					tag += "<div><a href='#'><img src='another/img/jisu/classimg4.png'/></a></div>"; 
-					tag += "<div>";
-					tag += "<a href='#'>"+vo.class_name+"</a>";
-					tag += "<span><a href='#'>"+vo.creator_nick2+"</a></span>";
-					tag += "<span>옵션날짜 : "+vo.start_date+"</span>";
-					tag += "<span>인원 : "+vo.headcount+"명</span>"; //없앨까?
-					tag += "</div>";
-					tag += "</div>";
-					tag += "</div>";
-					tag += "<div>"+vo.class_price+"</div>";
-					tag += "<div>"+vo.class_price*0.01+"</div>";
-					tag += "<div>";
-					tag += "<div>";
-					tag += "<a href='#'><span>주문하기</span></a>";
-					tag += "<a href='#'><span>찜하기</span></a>";
-					tag += "<a href='#'><span>삭제</span></a>";
-					tag += "</div>";
-					tag += "</div>";
-					tag += "</li>";				
-					$("#shoppingBagListUl").html(tag);
-				});					
-			}
-		})
-	}
-	//장바구니 상품갯수 구해오는 함수
-	function getBaCount(){
-		var dUrl = "/another/BasketCount";
-		var dParam = {"logid":logid} 
-		$.ajax({// 회원아이디 가져감.....
-			url:dUrl,
-			data :dParam,
-			success:function(d){
-				var BasketCoun = d;
-				$("#num").html(d);
-			}
-		})
-				
-	}
-	
-	
-	//삭제 -> 선택상품삭제 , 삭제
-	//주문 -> 선택상품주문 , 주문
-	
-	//주문페이지이동 -> 장바구니페이지에서삭제?:결제성공하면 삭제하고 아니면 냅둘까?.. 클래스옵션번호가지고
-	
-	
-	getBaList();
-	getBaCount();
-});
 
-</script>
-<%@ include file="myPageTop.jspf" %>
+
+
+	<%@ include file="myPageTop.jspf" %>
 
 
 
@@ -126,7 +55,7 @@ $(function(){
 	
 	
 	<div  class="shoppingBagList">
-		<span class="h3style">장바구니 상품( <label id="num">2</label> )</span>		
+		<span class="h3style">장바구니 상품( 2 )</span>		
 		
 		<ul id="shoppingBagListTitle">
 			<li><input type="checkbox" id="allchk"></li>		
@@ -138,8 +67,54 @@ $(function(){
 		
 		<ul id="shoppingBagListUl">
 			
+			<li><!-- 주문한줄 -->
+				<div><input type="checkbox"></div><!-- 체크박스 -->				
+				<div><!-- 이미지+상품정보 -->	
+					<div>							
+						<div><a href="#"><img src="img/jisu/classimg5.png"/></a></div><!-- 이미지 -->
+						<div><!-- 상품정보 -->
+							<a href="#">늘 예쁜 꽃, 디자인을 잘 하면 더 예뻐져요. 쉐이드그린의 감각적인 생화 디자인</a><!-- 클래스명 : -->
+							<span><a href="#">마치가든</a></span><!-- 크리에이터명 -->
+							<span>옵션날짜 : 2021.09.02 14:00</span>
+							<span>인원 : 1명</span>
+						</div>
+					</div>
+				</div>				
+				<div>38000원</div><!-- 상품금액 -->				
+				<div>3800</div><!-- 포인트 -->				
+				<div><!-- 선택 -->
+					<div>
+						<a href="#"><span>주문하기</span></a>
+						<a href="#"><span>찜하기</span></a>	
+						<a href="#"><span>삭제  </span></a>		
+					</div>
+				</div>
+			</li>
 			
+			<li><!-- 주문한줄 -->
+				<div><input type="checkbox"></div><!-- 체크박스 -->				
+				<div><!-- 이미지+상품정보 -->	
+					<div>							
+						<div><a href="#"><img src="img/jisu/classimg4.png"/></a></div><!-- 이미지 -->
+						<div><!-- 상품정보 -->
+							<a href="#">프로서퍼 김지나의 서핑 A to Z</a><!-- 클래스명 : -->
+							<span><a href="#">지나서퍼</a></span><!-- 크리에이터명 -->
+							<span>옵션날짜 : 2021.09.03 10:30</span>
+							<span>인원 : 2명</span>
+						</div>
+					</div>
+				</div>				
+				<div>65000원</div><!-- 상품금액 -->				
+				<div>6500</div><!-- 포인트 -->				
+				<div><!-- 선택 -->
+					<div>
+						<a href="#"><span>주문하기</span></a>
+						<a href="#"><span>찜하기</span></a>	
+						<a href="#"><span>삭제  </span></a>		
+					</div>
+				</div>
 			
+			</li>
 		</ul>
 	</div>
 	

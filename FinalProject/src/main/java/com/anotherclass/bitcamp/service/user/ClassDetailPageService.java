@@ -22,4 +22,5 @@ public interface ClassDetailPageService {
 	public int AskReplyCheck(int no); 
 	public List<UserClassDetailVO2> userClassDetailAskReplySelect(int no);
 	public int classAskWritee(UserClassDetailVO2 askVo);
+	//public int insertBasket( int no,String logid);
 }

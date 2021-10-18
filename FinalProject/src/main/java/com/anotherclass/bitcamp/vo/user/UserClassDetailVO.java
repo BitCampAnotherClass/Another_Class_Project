@@ -74,6 +74,37 @@ public class UserClassDetailVO {
 	private int creatorlikecount;//강사좋아요테이블에 강사아이디가 몇개있는지...
 	public String creator_nick2; //멤버테이블의 닉네임 -> 강사로만원함
 	
+	public int basketCount;//장바구니테이블에서 어이디갯수 -> 흠 리스트사이즈로 셋팅?...
+	/*장바구니테이블*/
+	private int basket_no;
+	private int headcount;
+	
+	
+	
+	public int getBasket_no() {
+		return basket_no;
+	}
+	public void setBasket_no(int basket_no) {
+		this.basket_no = basket_no;
+	}
+	public int getHeadcount() {
+		return headcount;
+	}
+	public void setHeadcount(int headcount) {
+		this.headcount = headcount;
+	}
+	public String getCreator_nick2() {
+		return creator_nick2;
+	}
+	public void setCreator_nick2(String creator_nick2) {
+		this.creator_nick2 = creator_nick2;
+	}
+	public int getBasketCount() {
+		return basketCount;
+	}
+	public void setBasketCount(int basketCount) {
+		this.basketCount = basketCount;
+	}
 	public int getClass_like_check() {
 		return class_like_check;
 	}

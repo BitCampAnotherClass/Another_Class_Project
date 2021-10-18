@@ -16,4 +16,7 @@ public interface UserMyPageService {
 	public int LikedcreatorCount(String logid);
 	public int OpenClassCount(String logid);
 	public int CancelLikeCreator(int no);
+	public List<UserClassDetailVO> BaskList(String logid);
+	public int getBasketNum(String logid);
+	public String getCreatorNick(int no); 	
 }

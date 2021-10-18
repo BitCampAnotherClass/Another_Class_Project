@@ -75,4 +75,28 @@
 			delete creatorlike where creator_like_no = #{param1}
 	  	]]> 
   	</delete>
+  	<select id="BaskList" resultType="com.anotherclass.bitcamp.vo.user.UserClassDetailVO">
+  		<![CDATA[	 
+  			select a.basket_no ,a.headcount , a.class_option_no, b.class_no, to_char( b.start_date,'yyyy-MM-DD HH:MM') start_date, to_char( b.end_date,'yyyy-MM-DD HH:MM') end_date , c.class_name, c.class_price, c.category_no, c.class_thumb
+			from basket a, classoption b, classtbl c
+			where a.class_option_no = b.class_option_no
+			and b.class_no = c.class_no
+			and a.member_id = #{param1}
+  			]]> 
+  	</select>
+  	<select id="getBasketNum" resultType="int">  	
+	  	<![CDATA[	
+	  		select count(*)from basket
+			where member_id = #{param1}
+	  	]]>
+  	</select>
+  	<select id="getCreatorNick" resultType="String">
+  		<![CDATA[	
+		  	select b.nick
+			from classtbl a, membertbl b
+			where a.member_id = b.member_id
+			and a.class_no= #{param1}
+		]]>
+  	</select>
+  	
   </mapper>

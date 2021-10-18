@@ -17,4 +17,8 @@ public interface UserMyPageDAO {
 	public int LikedcreatorCount(String logid);//강사-좋아요당한개수
 	public int OpenClassCount(String logid);//강사-개설한클래스개수
 	public int CancelLikeCreator(int no);//강사좋아요취소
+	
+	public List<UserClassDetailVO> BaskList(String logid);//장바구니리스트 -> 장바구니테이블에서 회원
+	public int getBasketNum(String logid);//회원장바구니에있는 상품갯수
+	public String getCreatorNick(int no);//강사닉네임가져오기 -> 클래스번호가지고가서
 }
