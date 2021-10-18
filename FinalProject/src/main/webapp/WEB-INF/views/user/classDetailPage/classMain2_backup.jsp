@@ -104,6 +104,32 @@
 <script>
 	$(function(){		
 		
+		var maxheadcount = "${vo.max_headcount}"; //이 클래스의 최대인원
+		console.log(maxheadcount);
+		
+		/*
+		<div id="d4"> <!-- 메뉴 -->					
+			<ul class="menu_title_container">
+				<li id="classcontent"><a href="#d5">클래스소개</a></li> //여기를 클릭하면 ㅕid d5인 div로 이동
+				<li id="creatorcontent"><a href="#d6">강사소개</a></li>// 여기를 클릭하면 idrk d6인 div로 이동
+				<li id="classaddr"><a href="#d7">위치</a></li>
+				<li id="review"><a href="#d8">후기</a></li>
+				<li id="classqna"><a href="#d9">문의</a></li>
+			</ul>
+		</div>	
+		
+		 var d5Y = $("d5").offset().top; -> 이만큼 스크롤이동		
+		 
+		 function fnMove(seq){
+        		var offset = $("#d" + seq).offset();
+        		$('html, body').animate({scrollTop : offset.top}, 400);
+    }
+
+
+출처: https://cofs.tistory.com/191 [CofS]
+		*/
+		
+		
 		$('#d4 li').click(function(){	
 			$(this).children('a').css('color','#ff385c'); //글자색
 			$(this).css('border-bottom','3px solid #ff385c'); //li밑줄색 			
@@ -137,8 +163,18 @@
 	    				tag += "<div class='oneclassdiv' style='margin-bottom:10px;'>";	    				
 	    				tag +="<div class='startdiv'>"+vo4.start_date+ "</div>";
 	    				tag +="<div class='enddiv'>"+vo4.end_date+ "</div>";
-	    				tag +="<div class='headcountdiv'>"+vo4.all_headcount+"</div>";
+	    				tag +="<div class='headcountdiv'> 최대인원 : "+maxheadcount+"신청인원 : "+vo4.all_headcount+"</div>";
 	    				tag +="<div class='classoptionno'>"+vo4.class_option_no+"</div>";
+	    				
+	    				if(maxheadcount != vo4.all_headcount){//name변경 checkedclassoption
+	    					tag +="<div><input type='checkbox' class='checkbb' name='class_option_no' value='"+vo4.class_option_no +"'  /></div>";
+	    					var a = vo4.class_option_no;	 
+	    					console.log("드러왓따");
+	    					console.log(a+"a");
+	    				   }else{
+	    					tag +="<div>신청마감</div>";  
+	    				}
+	    				
 	    				tag +="</div>";
 	    				 $("#selectClassListd").html(tag);		    				
 	    			});
@@ -209,16 +245,22 @@
 	    					tag +="<div class='askdiv909'>";
 	    					tag += "<div><img src='img/jisu/creatorprofile.png'/></div>"; //작성자이미지  vo4.member_img
 	    					tag +="<div>";
-	    					tag +="<div><label>"+ vo4.classqna_member_id+" | "+ vo4.classqna_writedate+" 작성</label></div>";
-	    					tag +="<div><label>"+ vo4.classqna_content+"</label><label>";
+	    					tag +="<div><label>"+ vo4.classqna_member_id+" | "+ vo4.classqna_writedate+" 작성</label></div>"; // 멤버아이디가 나일때 ->글 수정 삭제 버튼 보이게....
+	    					
+	    					
+	    					
+	    					tag +="<div><label>"+ vo4.classqna_content+"</label><label>"; //내용
+	    					
 	    					if(vo4.replycheck==1){
 	    						tag +=	"<label><input type='button' value='답변확인' style='float:right;' class='"+vo4.class_qna_no+"' id='replyshow' ></label>";
 	    					}else{
 	    						tag += "<label><input type='button' value='미답변' style='float:right;'></label>";
 	    					}	    					
+	    					
 	    					tag += "</div></div> ";
 	    					tag += "</div> ";    					
-	    					if(vo4.replycheck==1){
+	    					
+	    					if(vo4.replycheck==1){//답변이 있으면 답변번호도 더해준다
 	    						tag +="<div class='askdiv808' id='"+vo4.class_qna_no+"' style='display:none;'></div>";	    					 					
 	    					}    				
 		    				tag +="</li>";
@@ -289,8 +331,47 @@
 			}
 	  });
 	
+	//결제하기버튼 누르면 이동
+	//체크값 가지고 이동 -> //신청인원이 최대인원보다 크면 마감 //	//$(document).on('click','#gopayB',function(){	
+		
+	$(document).on('click','#gopayB',function(){			
+		
+		console.log("결제하기눌렷다");
+		var logid = "${userId}";    	
+		if(logid=== null || logid=== ""){
+			alert("로그인 후 이용가능합니다");
+		}else{
+			 // checkedclassoption : 체크박스
+			 // payfrm : form name
+			if(payfrm.class_option_no.checked != true){ //체크안되면 알림창
+				alert("신청할 클래스를 선택해주세요"); 
+				return false; 
+			}			 
+			
+			 $("#payfrm").attr("action", "/another/PayPage");
+		     $("#payfrm").submit();
+		}	 
+	});
 	
+	/*
+	function getCheckboxValue()  {
+		  // 선택된 목록 가져오기
+		  var query = 'input[name="class_option_no"]:checked';
+		  var selectedEls = 
+		      document.querySelectorAll(query);
+		  
+		  // 선택된 목록에서 value 찾기
+		  let result = '';
+		  selectedEls.forEach((el) => {
+		    result += el.value + ' ';
+		  });
+		  
+		  // 출력
+		  document.getElementById('#result999').innerText
+		    = result;
+		}
 	
+	*/
 	
 	
 	LikeCount(); //좋아요수 셋팅
@@ -420,14 +501,35 @@
 				<div id="datestr" style="display:none;"><input type="text" value=""/></div><!-- 선택한날짜입력 -->				
 				<div id="calendardiv"><!-- 달력 -->					
 					<div id="datepicker" class="datepicker"></div>
-				</div>				
-				<div id="selectdateBB" style="margin-top:10px;"><!-- 해당날짜에 선택된 강의옵션목록 -->
-					<div  style="margin-top:10px;width:300px;color:#666;" id=>개설 된 클래스</div>					
-					<div id="selectClassListd"  style="margin-top:10px;"></div>
-				</div>		
-				<!--  장바구니,결제하기 -> 옵션클래스번호가지고이동  -->		
-				<div id="buttonhomec"><input type="button" value="장바구니" id="gobasketB" style="border-radius:5px;"/><input type="button" value="클래스 신청하기" id="gopayB" style="border-radius:5px;"/></div>
-				<!-- <div style="display:none" id="inputdatebox"></div><!-- 선택된날짜입력될박스 -->
+				</div>						
+				
+				<!--                              버큰클릭시                                  -->
+				
+				
+				
+				<form method="post" id="payfrm" name="payfrm">
+					<div id="selectdateBB" style="margin-top:10px;"><!-- 해당날짜에 선택된 강의옵션목록 -->
+						<div  style="margin-top:10px;width:300px;color:#666;" id=>개설 된 클래스</div>				
+				
+						<div id="selectClassListd"  style="margin-top:10px;">
+						
+						
+						<!-- 날짜별 클래스 일정이 뜨는곳 
+							 + 체크박스
+						-->
+						
+						
+						</div>
+						<div id="result999"></div>
+					</div>		
+					<!--  장바구니,결제하기 -> 옵션클래스번호가지고이동  -->		
+					<div id="buttonhomec"><input type="button" value="장바구니" id="gobasketB" style="border-radius:5px;"/><input type="button" value="클래스 신청하기" id="gopayB" style="border-radius:5px;"/></div>
+				</form>
+				
+				
+				
+				
+				
 				<input type="text" id="inputdatebox" style="visibility:hidden;" />
 			</div>
 	</div>

@@ -40,7 +40,7 @@
 
 		<div id="mypagemenu">
 			<span id="mypagespan" class="h1style">My Page</span>
-			<span class="h2style">김비트 님</span>
+			<span class="h2style">${userId} 님</span>
 				<span class="h3style"><a href="<%=request.getContextPath()%>/mypage/mypage1">주문조회</a></span>
 				<span class="h3style"><a href="<%=request.getContextPath()%>/mypage/mypage2">장바구니</a></span>
 				<span class="h3style"><a href="<%=request.getContextPath()%>/mypage/review">나의후기</a></span>

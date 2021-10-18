@@ -2,6 +2,11 @@ package com.anotherclass.bitcamp.vo.user;
 
 public class UserClassDetailVO2 { //클래스문의 + 클래스문의댓글
 	
+	/*클래스테이블*/
+	private String class_name;
+	private int category_no;
+	
+	
 	/*멤버테이블*/
 	private String member_pw;
 	private String member_name;
@@ -41,7 +46,31 @@ public class UserClassDetailVO2 { //클래스문의 + 클래스문의댓글
 	/*list size*/
 	public int listSize;
 	
+	/*댓글정보따로담기...*/
+	public String creator_img;//강사 - 멤버이미지
+	public String creator_nick;//강사닉네임 - 멤버닉
+	public String creator_reply;//댓글내용
+	public String creator_writedate;//댓글작성자
 	
+	
+	/*카테고리테이블*/
+	private String category_name;
+	
+	
+	
+	
+	public String getCreator_writedate() {
+		return creator_writedate;
+	}
+	public void setCreator_writedate(String creator_writedate) {
+		this.creator_writedate = creator_writedate;
+	}
+	public String getCreator_reply() {
+		return creator_reply;
+	}
+	public void setCreator_reply(String creator_reply) {
+		this.creator_reply = creator_reply;
+	}
 	public int getClass_qna_no() {
 		return class_qna_no;
 	}
@@ -102,6 +131,7 @@ public class UserClassDetailVO2 { //클래스문의 + 클래스문의댓글
 	public void setCom_no2(int com_no2) {
 		this.com_no2 = com_no2;
 	}
+
 	public String getClassqnacom_reply() {
 		return classqnacom_reply;
 	}
@@ -209,6 +239,36 @@ public class UserClassDetailVO2 { //클래스문의 + 클래스문의댓글
 	}
 	public void setListSize(int listSize) {
 		this.listSize = listSize;
+	}
+	public String getCreator_img() {
+		return creator_img;
+	}
+	public void setCreator_img(String creator_img) {
+		this.creator_img = creator_img;
+	}
+	public String getCreator_nick() {
+		return creator_nick;
+	}
+	public void setCreator_nick(String creator_nick) {
+		this.creator_nick = creator_nick;
+	}
+	public String getClass_name() {
+		return class_name;
+	}
+	public void setClass_name(String class_name) {
+		this.class_name = class_name;
+	}
+	public int getCategory_no() {
+		return category_no;
+	}
+	public void setCategory_no(int category_no) {
+		this.category_no = category_no;
+	}
+	public String getCategory_name() {
+		return category_name;
+	}
+	public void setCategory_name(String category_name) {
+		this.category_name = category_name;
 	}
 	
 
