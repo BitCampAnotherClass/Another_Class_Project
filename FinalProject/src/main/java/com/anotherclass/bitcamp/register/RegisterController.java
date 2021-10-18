@@ -28,6 +28,11 @@ public class RegisterController {
 		return "register/userRegister";
 	}
 	
+	@RequestMapping("/registerCreator")
+	public String registerCreator() {
+		return "register/creatorRegister";
+	}
+	
 	@RequestMapping(value="/register/check", method = RequestMethod.POST)
 	@ResponseBody
 	public String idCheck(RegisterVO vo, String id) {
