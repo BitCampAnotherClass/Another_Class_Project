@@ -44,7 +44,7 @@
 		
 		if(memberId == ''){
 			alert('아이디를 입력해주세요.');
-			focusInput();
+			focusInputId();
 			return false;
 		}
 		if(memberPw == ''){
@@ -78,6 +78,8 @@
 	}
 	
 	
+	var log_type = document.getElementById('logType').value;
+	
 	// 카카오톡 로그인
 	Kakao.init('033542c9317694f8d1bb2f13c3b67a2a'); //발급받은 키 중 javascript키를 사용해준다.
 	console.log(Kakao.isInitialized()); // sdk초기화여부판단
@@ -89,10 +91,13 @@
 			      Kakao.API.request({
 			        url: '/v2/user/me',
 			        success: function(res) {
-			        	//document.getElementById('sns_type').value = 'kakao';
-			          	console.log(JSON.stringify(res));
-			          	console.log(res.id); // 아이디 찍어봄
-			          	location.href='<%=request.getContextPath()%>/loginOk?sns_type=kakao';
+			        	document.getElementById('member_id').value = res.id;
+			        	document.getElementById('member_name').value = res.properties.nickname;
+			        	document.getElementById('member_email').value = res.email;
+			        	document.getElementById('nick').value = res.id;
+			        	document.getElementById('sns_type').value = 'kakao';
+			        	
+			        	frmLogin.submit();
 			        },
 			        fail: function(error) {
 			          alert(
@@ -112,10 +117,9 @@
 			      Kakao.API.request({
 			        url: '/v2/user/me',
 			        success: function(res) {
-			        	//document.getElementById('sns_type').value = 'kakao';
 			          	console.log(JSON.stringify(res));
 			          	console.log(res.id); // 아이디 찍어봄
-			          	location.href='<%=request.getContextPath()%>/loginOk?sns_type=kakao';
+			          	location.href='<%=request.getContextPath()%>/loginOk?sns_type=kakao&logType='+log_type;
 			        },
 			        fail: function(error) {
 			          alert(

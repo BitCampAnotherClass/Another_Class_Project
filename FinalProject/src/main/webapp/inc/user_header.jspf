@@ -36,7 +36,7 @@
 						<li><a href="<%=request.getContextPath()%>/register">회원가입</a></li>
 						<li><a href="#">♥</a></li>
 						<li><a href="<%=request.getContextPath()%>/mypage2">장</a></li>
-						<li class="creator-home"><a href="<%=request.getContextPath()%>/creator/">크리에이터 센터</a></li>
+						<li class="creator-home"><a href="<%=request.getContextPath()%>/creatorLogin/">크리에이터 센터</a></li>
 					</ul>
 				</c:if>
 				<c:if test="${userLog==1 }">
