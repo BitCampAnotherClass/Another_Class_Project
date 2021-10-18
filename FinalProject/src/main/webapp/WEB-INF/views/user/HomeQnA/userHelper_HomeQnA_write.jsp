@@ -62,8 +62,7 @@
 			$("#hQnAWriteD33ulFrm").submit();			
 		});
 		
-		$("#hQnAWSubmit9").click(()=>{//등록
-			console.log("자스들어옴");a
+		$("#hQnAWSubmit9").click(()=>{//등록		
 			$("#hQnAWriteD33ulFrm").attr("action", "/another/HomeQnAAsk/writeOk" );
 			$("#hQnAWriteD33ulFrm").submit();			
 		});
@@ -110,7 +109,7 @@
 				</li>				
 			</ul>
 			
-			<!--  <input type="hidden" id="hiddennobox" name="member_id" value="${member_id}"><!-- 작성자 -->
+			
 		</form>
 		
 	</div>

@@ -1,11 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <style>
 	html, body, div, ul, ol, li, dl, dt, dd, header, footer, main, article, section, aside, form, input, textarea, button, select, a, p, h1, h2, h3, h4, h5, h6, span, table, th, td{box-sizing:content-box}
@@ -108,8 +102,13 @@
     #payEndBtn{width:100%;height:100%;background-color:#333;color:white;font-size:1.1rem;font-weight:bold;text-align:center;border:none;} 
 </style>
 
-</head>
-<body>
+
+<!-- jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<!-- iamport.payment.js -->
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+
+
 <div id="payPageContainer">
 		
 	<div id="leftdiv">
@@ -235,7 +234,51 @@
 		</div>
 		
 	</div>
-
+	  
+	  <script>
+        $('#payEndBtn').click(function () {
+            // getter
+            var IMP = window.IMP;
+            IMP.init('imp53433684');
+            var money = 200;
+            
+            IMP.request_pay({
+            	pg: 'kcp', // PG사 선택
+                pay_method: 'card', // 지불 수단
+                merchant_uid: 'merchant' + new Date().getTime(),
+                name: '주문명 : 주문명 설정',
+                amount: money,
+                buyer_email: 'iamport@siot.do',
+                buyer_name: '구매자이름',
+                buyer_tel: '010-1234-5678',
+                buyer_addr: '인천광역시 부평구',
+                buyer_postcode: '123-456'
+            }, function (rsp) { // 결제성공시 imp_uid 와 merchant_uid를 가맹점 서버에 진자로 전달
+                console.log(rsp);
+                if (rsp.success) { //결제성공시 로직
+                    var msg = '결제가 완료되었습니다.';
+                    msg += '고유ID : ' + rsp.imp_uid;
+                    msg += '상점 거래ID : ' + rsp.merchant_uid;
+                    msg += '결제 금액 : ' + rsp.paid_amount;
+                    msg += '카드 승인번호 : ' + rsp.apply_num;
+                    
+                    $.ajax({
+                        type: "GET",
+                        url: "", //충전 금액값을 보낼 url 설정
+                        //headers: { "Content-Type": "application/json" },
+                        data: {
+                        	 imp_uid: rsp.imp_uid,
+                             merchant_uid: rsp.merchant_uid
+                             //기타 필요한 데이터가 있으면 추가 전달
+                        },
+                    });
+                } else { //결제실패시 로직
+                    var msg = '결제에 실패하였습니다.';
+                    msg += '에러내용 : ' + rsp.error_msg;
+                }
+                alert(msg);
+          //      document.location.href = "/user/mypage/home"; //alert창 확인 후 이동할 url 설정
+            });
+        });
+    </script>
 </div>
-</body>
-</html>

@@ -12,13 +12,14 @@ public class RegisterVO {
 	private String addr2;
 	private String nick;
 	private String member_img; // 프로필 이미지
-	private String sns_type;
+	private String sns_type="";
 	private String signupdate;
 	private String out_date;
 	
 	private String additional_information_one; // 추가 정보  --  프로시저 용도
 	private String additional_information_two; // 추가 정보 2 -- 프로시저 용도
-	private int log_cnt=0;// 로그인할 계정이 있는지 카운트
+	private String additional_information_the; // 추가 정보 3 -- 프로시저 용도
+	private int logType=1; // 로그인 타입 - 회원:1 / 강사:2
 	
 	
 	public String getMember_id() {
@@ -111,10 +112,18 @@ public class RegisterVO {
 	public void setAdditional_information_two(String additional_information_two) {
 		this.additional_information_two = additional_information_two;
 	}
-	public int getLog_cnt() {
-		return log_cnt;
+	
+	public String getAdditional_information_the() {
+		return additional_information_the;
 	}
-	public void setLog_cnt(int log_cnt) {
-		this.log_cnt = log_cnt;
+	public void setAdditional_information_the(String additional_information_the) {
+		this.additional_information_the = additional_information_the;
 	}
+	public int getLogType() {
+		return logType;
+	}
+	public void setLogType(int logType) {
+		this.logType = logType;
+	}
+	
 }

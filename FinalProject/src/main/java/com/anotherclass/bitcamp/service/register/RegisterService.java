@@ -10,5 +10,5 @@ public interface RegisterService {
 	
 	public RegisterVO loginUser(RegisterVO vo);
 	
-	public int logIdCheck(RegisterVO vo);
+	public String logIdCheck(RegisterVO vo);
 }

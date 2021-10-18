@@ -5,15 +5,16 @@
   <mapper namespace="com.anotherclass.bitcamp.dao.user.UserHomeQnADAO">
 		<select id="userHomeQnAAllSelect" resultType="com.anotherclass.bitcamp.vo.user.UserHomeQnAVO" parameterType="String">
 			<![CDATA[
-			select user_qna_no, member_id, title, writedate, board_no1, board_no2 , replycount from
-			(select user_qna_no, member_id, title, to_char(writedate, 'yyyy-MM-DD') writedate, board_no1 ,board_no2, count(board_no1)over(partition by board_no1) as replycount	from homeQnaUser where delete_sort =  0 order by  user_qna_no)
-			order by board_no1, user_qna_no
+			select user_qna_no, member_id, title, writedate, board_no1, board_no2 , replycount, view_grade from
+			(select user_qna_no, member_id, title, to_char(writedate, 'yyyy-MM-DD') writedate, board_no1 ,board_no2,view_grade, count(board_no1)over(partition by board_no1) as replycount	from homeQnaUser where delete_sort =  0 order by  user_qna_no)
+			where view_grade =1 
+			order by board_no1 desc, user_qna_no
 			 ]]>
 		</select>
 		
 		<insert id="userHomeQnAWrite" parameterType="com.anotherclass.bitcamp.vo.user.UserHomeQnAVO">
-			insert into homeQnaUser ( user_qna_no, title, content, member_id , board_no1, board_no2, com_sec, delete_sort, file1, file2, file3 )
-			values (home_qna_sq.nextval, #{title}, #{content}, #{member_id} ,home_qna_sq.nextval , 0, 0, 0, #{file1}, #{file2}, #{file3})
+			insert into homeQnaUser ( user_qna_no, title, content, member_id , board_no1, board_no2, com_sec, delete_sort, file1, file2, file3 , view_grade)
+			values (home_qna_sq.nextval, #{title}, #{content}, #{member_id} ,home_qna_sq.nextval , 0, 0, 0, #{file1}, #{file2}, #{file3}, 1)
 		</insert>
 		
 		<select id="userHomeQnAView" resultType="com.anotherclass.bitcamp.vo.user.UserHomeQnAVO">

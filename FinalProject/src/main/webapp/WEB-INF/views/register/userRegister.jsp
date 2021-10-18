@@ -8,99 +8,81 @@
 <title>Another Class</title>
 <link href="<%=request.getContextPath()%>/css/login.css" rel="stylesheet" type="text/css"/>
 <link href="<%=request.getContextPath()%>/css/common.css" rel="stylesheet" type="text/css"/>
+<link href="<%=request.getContextPath()%>/css/register/register.css" rel="stylesheet" type="text/css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
-<style>
-	.register_user{
-		margin: 0 auto;
-		width: 900px;
-		height: 1000px;
-	}
-	.register_title-box, .register_form{
-		margin: 0 auto;
-	}
-	.register_title-box{
-		padding: 5px;
-	}
-	.register_input-group{
-		margin: 30px;
-	}
-	.register_button{
-		margin: 0 auto;
-		width: 100%;
-		height: 30px;
-		color:  #e5e5e5;
-		border:0;
-		background-color: #333;
-	}
-	.register_input-box, .register_input-outline {
-		display: block;
-		position: relative;
-	}
-	.register_input-outline{
-		border: 1px solid #e5e5e5;
-		width: 100%;
-	}
-	.register_input, .register_input_email{
-		outline: 0;
-		border: none;
-		padding: 10px;
-		font-size: 16px;
-		width: 90%;
-	}
-	#register_email{
-		height: 40px;
-	}
-	.register_input_email{
-		width: 90%;
-	}
-	#register_input_email{
-		width: 50%;
-		margin-right: 4%;
-	}
-	#register_input_email_addr{
-		width: 45%;
-	}
-	#register_input_email, #register_input_email_addr{
-		float:left;
-	}
-	#register_id_text, #register_pwd_text, #register_pwdCh_text{
-		float: left;
-		font-size: 0.9em;
-		padding: 2px;
-	}
-</style>
+
 <script type="text/javascript">
 		$(()=>{
-			var url = 'ano';
+			var url = 'register/check';
+			var checkEng = /[a-z|A-Z|0-9]/;
 			$('#member_id').keyup(function(){
-				/* $.ajax({
-					url: url,
-					type: 'POST',
-					success:function(){
-						
+				var id = $('#member_id').val();
+				var data = {"id":id};
+				// 아이디 조회
+				$.ajax({
+					url: url
+					, type: 'POST'
+					, data: data
+					, success:function(result){
+						if(id.length< 5 || id.length > 15){
+							console.log(id.length);
+							document.getElementById('register_id_text').innerHTML="아이디는 5~ 15자의 영문과 숫자로만 사용가능합니다.";
+							$('.register_id_check').val('N');
+						}else{
+							if(!checkEng.test(id)){
+								document.getElementById('register_id_text').innerHTML="아이디는 5~ 15자의 영문과 숫자로만 사용가능합니다.";
+								$('.register_id_check').val('N');
+							}else{
+								if(result=='YES'){
+									document.getElementById('register_id_text').innerHTML="사용가능한 아이디입니다";
+									$('.register_id_check').val('Y');
+								}else{
+									document.getElementById('register_id_text').innerHTML="사용중이거나 삭제된 아이디 입니다.";
+									$('.register_id_check').val('N');
+								}
+							}
+						}
 					}
-				}); */
-				console.log("아이디 생성 규칙 및 중복아이디 검출 작동");
-				document.getElementById('register_id_text').innerHTML="사용중이거나 삭제된 아이디 입니다.제작중 가입";
+					, error:function(error){
+						console.log(error)
+					}
+				});
+				
 			});
 			
 			$('#member_pw_check, #member_pw').keyup(function passWordCheck(){
-				
-				console.log("비밀번호 확인작동");
+				var checkPwd = $('#member_pw').val();
+				if(checkPwd.length < 8 || checkPwd.length > 20){
+					$('#register_pwd_text').html("비밀번호 생성 규칙을 지켜주세요");
+					$('.register_pwd_check').val('N');
+				}else{
+					$('#register_pwd_text').html("사용가능한 비밀번호");
+					$('.register_pwd_check').val('Y');
+				}
+			});
+			
+			$('#member_pw_check').keyup(function passWordChecking(){
 				var check1 = $('#member_pw').val();
 				var check2 = $('#member_pw_check').val();
-				
-				if(check1.length < 8 || check1.length > 20){
-					$('#member_pw').html("비밀번호 생성 규칙을 지켜주세요"); 
-				}
 				if(check1 != "" || check2 != ""){
 					$('#register_pwdCh_text').html("비밀번호가 일치하지 않습니다.");
+					$('.register_pwd_check').val('N');
 					if(check1 == check2){
 						$('#register_pwdCh_text').html("비밀번호가 일치합니다.");
+						$('.register_pwd_check').val('Y');
 					}
 				}
 			});
 			
+			$('.register_button').click(function(){
+				//최종 전송
+				var chk1 = $('.register_id_check').val();
+				var chk2 = $('.register_pwd_check').val();
+				if(chk1 != 'Y' || chk2 != 'Y'){
+					return false;
+				}
+				$('.register_form').submit();
+			});
 		});
 </script>
 </head>	
@@ -159,8 +141,9 @@
 								</div>
 								<div id="register_email" class="register_input-group">
 									<span class="register_input-outline" id="register_input_email">
-										<span class="register_input-box">	
-											<input type="text" id="member_email" name="member_email" class="register_input_email" placeholder="이메일" autocomplete=”off” maxlength="15"/>
+										<span class="register_input-box">
+											<input type="hidden" id="member_email" name="member_email" class="register_input_email" autocomplete=”off”/>
+											<input type="text" id="member_email_id" name="member_email_id" class="register_input_email" placeholder="이메일" autocomplete=”off” maxlength="15"/>
 										</span>
 									</span>
 									<span class="register_input-outline" id="register_input_email_addr">
@@ -169,7 +152,9 @@
 										</span>
 									</span>
 								</div>
-								<button class="register_button">회원가입</button>
+								<input type="hidden" class="register_id_check" value="N">
+								<input type="hidden" class="register_pwd_check" value="N">
+								<button type="button" class="register_button">회원가입</button>
 						</form>
 				</div>
 			</div>

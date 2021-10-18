@@ -49,19 +49,30 @@
 <script>
 
 	$(()=>{
-	
-		if($("#hQnAListUl>li:nth-child(5n+5)") == 2){
-			$("#hQnAListUl>li:nth-child(5n+5)").html("답변완료");
-		}else if($("#hQnAListUl>li:nth-child(5n+5)") == 1){
-			$("#hQnAListUl>li:nth-child(5n+5)").html("미답변");
-		}
+		//셋팅된리스트에 답변부분 설정
+//		if($("#hQnAListUl>li:nth-child(5n+5)") == 2){
+//			$("#hQnAListUl>li:nth-child(5n+5)").html("답변완료");
+//		}else if($("#hQnAListUl>li:nth-child(5n+5)") == 1){
+//			$("#hQnAListUl>li:nth-child(5n+5)").html("미답변");
+//		}
+		
+		$("#hQnWritelab").click(function(){
+			var logid = "${userId}";
+	    	console.log(logid);
+			if(logid=== null || logid=== ""){
+				alert("로그인 후 문의작성 가능합니다");
+			}else{
+				location.href="/another//HomeQnAAsk/write"
+			}	    	
+		});
 		
 	});
 	</script>
 
 	<div id="hQnAD">
 	<div class="hQnAT">홈페이지문의</div> <!-- 페이지 타이틀 -->
-	<div id="hQnWrite"><label id="hQnWritelab"><a href="<%=request.getContextPath()%>/HomeQnAAsk/write" style="color:white;">문의하기</a></label></div> <!-- 글쓰기버튼 -->
+	<!-- <div id="hQnWrite"><label id="hQnWritelab"><a href="<%=request.getContextPath()%>/HomeQnAAsk/write" style="color:white;">문의하기</a></label></div> <!-- 글쓰기버튼 -->
+	<div id="hQnWrite"><label id="hQnWritelab" style="color:white;">문의하기</label></div> <!-- 글쓰기버튼 -->
 	<div id="hQnAList"> <!-- 게시판리스트 -->
 		<ul id="hQnAListUl">
 			<li  class="hQnAListFli hQnAListFli1">No.</li>
