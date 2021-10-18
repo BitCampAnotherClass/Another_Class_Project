@@ -30,7 +30,7 @@
 							<input type="hidden" id="member_id" name="member_id"/>
 							<input type="hidden" id="member_pw" name="member_pw"/>
 							<input type="hidden" id="member_name" name="member_name"/>
-							<input type="hidden" id="member_email" name="member_pw"/>
+							<input type="hidden" id="member_email" name="member_email"/>
 							<input type="hidden" id="nick" name="nick"/>
 							<input type="hidden" id="sns_type" name="sns_type"/>
 							<c:if test="${logType=='1'}">
