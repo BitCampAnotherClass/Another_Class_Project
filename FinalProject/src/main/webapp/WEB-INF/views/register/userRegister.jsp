@@ -53,7 +53,7 @@
 			$('#member_pw_check, #member_pw').keyup(function passWordCheck(){
 				var checkPwd = $('#member_pw').val();
 				if(checkPwd.length < 8 || checkPwd.length > 20){
-					$('#register_pwd_text').html("비밀번호 생성 규칙을 지켜주세요");
+					$('#register_pwd_text').html("비밀번호는 8자 이상 생성 가능합니다.");
 					$('.register_pwd_check').val('N');
 				}else{
 					$('#register_pwd_text').html("사용가능한 비밀번호");
@@ -74,10 +74,26 @@
 				}
 			});
 			
+			$('#member_email_addr').keyup(function emailSeting(){
+				var eID = $('#member_email_id').val();
+				var addrEmail =$('#member_email_addr').val();
+				
+				if(!checkEng.test(eID) && !checkEng.test(addrEmail) ){
+					document.getElementById('#register_emailCh_text').innerHTML="아이디는 5~ 15자의 영문과 숫자로만 사용가능합니다.";
+					$('.register_email_check').val('N');
+				}else{
+					var emailVal = eID+addrEmail;
+					var testing = eID+'@'+addrEmail;
+					$('#member_email').attr('value',emailVal);
+					$('.register_email_check').val('Y');
+				}
+			});
+			
 			$('.register_button').click(function(){
 				//최종 전송
 				var chk1 = $('.register_id_check').val();
 				var chk2 = $('.register_pwd_check').val();
+				
 				if(chk1 != 'Y' || chk2 != 'Y'){
 					return false;
 				}
@@ -145,6 +161,7 @@
 											<input type="hidden" id="member_email" name="member_email" class="register_input_email" autocomplete=”off”/>
 											<input type="text" id="member_email_id" name="member_email_id" class="register_input_email" placeholder="이메일" autocomplete=”off” maxlength="15"/>
 										</span>
+											<label id="register_emailCh_text"></label>
 									</span>
 									<span class="register_input-outline" id="register_input_email_addr">
 										<span class="register_input-box">	
@@ -154,6 +171,7 @@
 								</div>
 								<input type="hidden" class="register_id_check" value="N">
 								<input type="hidden" class="register_pwd_check" value="N">
+								<input type="hidden" class="register_email_check" value="N">
 								<button type="button" class="register_button">회원가입</button>
 						</form>
 				</div>
