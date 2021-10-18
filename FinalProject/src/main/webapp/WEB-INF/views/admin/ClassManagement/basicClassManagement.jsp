@@ -22,23 +22,24 @@
 	}
 	.userMg-chart-boardlist{
 		float: left;
-		width:15%;
+		width:12%;
 		height: 40px;
 		line-height: 40px;
 		text-align:center;
 		background:#f0f0f0;
 		border:1px solid #f0f0f0;
 	}
-	.userMg-chart-boardlist:nth-child(7n+1){
+	.userMg-chart-boardlist:nth-child(8n+1){
 		width: 5%;
 	}
-	.userMg-chart-boardlist:nth-child(7n+3){
+	.userMg-chart-boardlist:nth-child(8n+3){
 		width: 20%;
 	}
-	.userMg-chart-boardlist:nth-child(n+8){
+	.userMg-chart-boardlist:nth-child(n+9){
 		background:white;
 	}
 </style>
+<!-- 
 <script>
 	$(function(){
 		var url="MemberMangement/userAccountList";
@@ -74,6 +75,7 @@
 		userList();
 	});
 </script>
+ -->
 </head>
 <body>
 	<div class="userMg-main">

@@ -33,6 +33,10 @@ public class UserMyPageController {
 	public String mypage5() {
 		return "/user/mypage/myPage_Classlike";
 	}	
+	@RequestMapping(value = "/mypage/mypage6") //나의게시물
+	public String mypage6() {
+		return "/user/mypage/myPage_post";
+	}	
 	
 	
 }

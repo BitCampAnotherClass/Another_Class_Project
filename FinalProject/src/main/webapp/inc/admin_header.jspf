@@ -205,8 +205,8 @@
 	      <ul class="menu-box">
 	         <li class="menu_title"><a href="#">클래스관리</a>
 	            <ul>
-	               <li><a href="#" class="small-menu">기본 클래스 관리</a></li>
-	               <li><a href="#" class="small-menu">옵션별 클래스 관리</a></li>
+	               <li><a href="<%=request.getContextPath()%>/admin/basicClassManagement" class="small-menu">기본 클래스 관리</a></li>
+	               <li><a href="<%=request.getContextPath()%>/admin/optionClassManagement" class="small-menu">옵션별 클래스 관리</a></li>
 	               <li><a href="#" class="small-menu">클래스 취소 관리</a></li>
 	            </ul>
 	         </li>
