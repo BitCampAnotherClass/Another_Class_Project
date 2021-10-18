@@ -65,6 +65,15 @@ public class UserClassDetailVO {
 	private int[] classNoPayArray;
 	
 	
+	/*강사좋아요*/
+	private int creator_like_no;//좋아요번호-index ->좋아요갯수아니고 좋아요할때부여받은단순번호
+	private String creator_id; //좋아요당한 강사아이디
+	private String user_id; // 좋아요한 회원아이디
+	/*만든부분*/
+	private int creatorclasscount;//강사가 개설한클래스개수 -> 클래스테이블에 있는 강사아이디갯수
+	private int creatorlikecount;//강사좋아요테이블에 강사아이디가 몇개있는지...
+	public String creator_nick2; //멤버테이블의 닉네임 -> 강사로만원함
+	
 	public int getClass_like_check() {
 		return class_like_check;
 	}
@@ -347,6 +356,36 @@ public class UserClassDetailVO {
 	}
 	public void setClassNoPayArray(int[] classNoPayArray) {
 		this.classNoPayArray = classNoPayArray;
+	}
+	public int getCreator_like_no() {
+		return creator_like_no;
+	}
+	public void setCreator_like_no(int creator_like_no) {
+		this.creator_like_no = creator_like_no;
+	}
+	public String getCreator_id() {
+		return creator_id;
+	}
+	public void setCreator_id(String creator_id) {
+		this.creator_id = creator_id;
+	}
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
+	public int getCreatorclasscount() {
+		return creatorclasscount;
+	}
+	public void setCreatorclasscount(int creatorclasscount) {
+		this.creatorclasscount = creatorclasscount;
+	}
+	public int getCreatorlikecount() {
+		return creatorlikecount;
+	}
+	public void setCreatorlikecount(int creatorlikecount) {
+		this.creatorlikecount = creatorlikecount;
 	}
 	
 	

@@ -1,5 +1,7 @@
 package com.anotherclass.bitcamp.controller.user;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -17,7 +19,7 @@ public class UserPayController {
 	UserPayService userPayService;
 
 	@RequestMapping(value= "/PayPage", method = RequestMethod.POST)
-	public ModelAndView payPage(UserPayVO vo) {//주문할 클래스옵션번호 , 주문자
+	public ModelAndView payPage(UserPayVO vo ) {//주문할 클래스옵션번호
 		System.out.println("페이컨트롤러들어왔다");
 		ModelAndView mav = new ModelAndView();
 		//String logid= (String)ses.getAttribute("userId");
@@ -26,12 +28,15 @@ public class UserPayController {
 		//클래스옵션테이블+클래스+주문테이블에서 원하는 정보 받아와서 vo여러개를 list로 담아와서
 		//mav에 저장해주고
 		//뷰에서 받아온 리스트를 반복문 돌려서 셋팅
-		mav.addObject("list",userPayService.userPayAllselect(vo.getClassNoPayList())); // 여기가문제??
+		List<Integer>  list2 = vo.getClassNoPayList();
+		System.out.println("ss"+list2);
+		
+		mav.addObject("list",userPayService.userPayAllselect(list2)); // 여기가문제??
 		mav.setViewName("/user/pay/payPage_info");
 		return mav;
 	}
 	
-	
+
 	
 	
 	
