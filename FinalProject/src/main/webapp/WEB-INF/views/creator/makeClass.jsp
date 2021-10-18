@@ -14,29 +14,31 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9551f210d2bfdcde36af42fb1ccab895&libraries=services"></script>
 <script>
+var categoryS;
 var count=0;
 var iitest=0;
 $(function(){
-	////////////////////////////////////////////////
-	$("#json").on('click',function(){
-		var url = "makeClass/ajaxList" //서버에서 받을 맴핑주소
-		var params = {"no":300};
-		$.ajax({
-			url : url,
-			data : params,
-			success:function(r){
-				var rr = $(r);
-				rr.each(function(idx, vo){
-					$("#test1").append("<hr/>"+idx+"-->"+vo.category1_no+":"+vo.category_name+":"+vo.nick);
-				});
-				
-			},error:function(e){
-				console.log("List전송 에러발생함",e.responseText)
-			}
-		});
+	//////////////////////////////////////// 대분류 카테고리 눌렀을시 소분류 불러오기
+	$('.categoryL').on('click',function(){
+		categoryS = $(this).val();
+		alert($(this).val());
 		
+		var url = "makeClass/ajaxList" 
+			var params = {"no":categoryS};
+			$.ajax({
+				url : url,
+				data : params,
+				success:function(r){
+					var rr = $(r);
+					rr.each(function(idx, vo){
+						$("#test1").append("<li><input type='checkbox' name='categoryS'>"+vo.category_name+"</li>"); 
+					});
+					
+				},error:function(e){
+					console.log("List전송 에러발생함",e.responseText)
+				}
+			});
 	});
-	
 	/////////////////////////////////////////////////////////숫자만 입력
 	
 	$("#class_fee").on("keyup", function() {
@@ -61,15 +63,14 @@ $(function(){
 	$('input[type="checkbox"][name="categoryL"]').click(function(){
 		 
 		  if($(this).prop('checked')){
-		 	$('#smallCategoryDiv').css("display","block");
-		 	
-		    $("input[type='checkbox'][name='categoryL']").prop("checked",false);
+			  
+			$('#smallCategoryDiv').css("display","block");
+		 	$("input[type='checkbox'][name='categoryL']").prop("checked",false);
+			$(this).prop('checked',true);
 		 
-		    $(this).prop('checked',true);
-		 
-		    }else if($("input[type='checkbox'][name='categoryL']").is("checked") == false) {
-		    	$('#smallCategoryDiv').css("display","none");
-		    	$("input[type='checkbox'][name='categoryS']").prop("checked",false);
+		  }else if($("input[type='checkbox'][name='categoryL']").is("checked") == false) {
+		   	$('#smallCategoryDiv').css("display","none");
+		   	$("input[type='checkbox'][name='categoryS']").prop("checked",false);
 		    }
 	});
 	//////////////////////////////////////////////////////달력
@@ -699,7 +700,7 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	<div class="classCategoryDiv" id="forEach">
 		<ul>
 			<c:forEach var="vo" items="${cate }">
-			<li ><input type="checkbox" name="categoryL" value=" ${vo.category_name }" class="categoryL" > ${vo.category_name }, ${vo.category1_no }</li> <!-- 반복문 -->
+			<li ><input type="checkbox" name="categoryL" value=" ${vo.category1_no }" class="categoryL" > ${vo.category_name }</li> <!-- 반복문 -->
 			</c:forEach>
 		</ul>
 	
@@ -709,12 +710,7 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 			<span><kimin>*</kimin> 3-1) 클래스 서브 카테고리 <kimin>(필수)</kimin></span>
 		</div>
 		<div class="classCategoryDiv">
-			<ul>
-				<li><input type="checkbox" name="categoryS"> 캔들/디퓨져</li> <!-- 반복문 -->
-				<li><input type="checkbox" name="categoryS"> 캔들/디퓨져</li> <!-- 반복문 -->
-				<li><input type="checkbox" name="categoryS"> 캔들/디퓨져</li> <!-- 반복문 -->
-				<li><input type="checkbox" name="categoryS"> 캔들/디퓨져</li> <!-- 반복문 -->
-				<li><input type="checkbox" name="categoryS"> 캔들/디퓨져</li> <!-- 반복문 -->
+			<ul id="test1">
 			</ul>
 		</div>
 	</div>
@@ -852,7 +848,4 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 </div>
 
 </form>
-
-<input type="button" id="json" value="dddddddddddd">
-<div id="test1">dddd</div>
 
