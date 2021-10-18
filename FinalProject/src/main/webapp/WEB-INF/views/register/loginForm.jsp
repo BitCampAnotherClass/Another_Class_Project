@@ -25,10 +25,20 @@
 						<input type="hidden" id="RSAExponent" value="${RSAExponent }"/>
 					</div>
 					<!-------- 실제 넘어가는 로그인 폼 --------->
-					<form id="frmLogin" name="frmLogin" method="post" action="loginOk">
+					<form id="frmLogin" name="frmLogin" method="post" action="<%=request.getContextPath()%>/loginOk">
 						<div class="secret-id-pw-wrap">
 							<input type="hidden" id="member_id" name="member_id"/>
 							<input type="hidden" id="member_pw" name="member_pw"/>
+							<input type="hidden" id="member_name" name="member_name"/>
+							<input type="hidden" id="member_email" name="member_pw"/>
+							<input type="hidden" id="nick" name="nick"/>
+							<input type="hidden" id="sns_type" name="sns_type"/>
+							<c:if test="${logType=='1'}">
+								<input type="hidden" id="logType" name="logType" value="1"/>
+							</c:if>
+							<c:if test="${logType=='2'}">
+								<input type="hidden" id="logType" name="logType" value="2"/>
+							</c:if>
 						</div>
 						<!-- // 아이디, 비번 -->
 						<div class="chk-login-wrap">
@@ -39,7 +49,12 @@
 					<!-- // 로그인 버튼 - 자바스크립트 미설치 시 로그인 실패 화면-->
 					<div class="btn-login-wrap">
 						<a href="#" onclick="validateFrm(); return false;" id="basicLogin" class="btn-login">
-							회원 로그인
+							<c:if test="${logType=='1'}">
+								회원 로그인
+							</c:if>
+							<c:if test="${logType=='2'}">
+								크리에이터 로그인
+							</c:if>
 						</a>
 					</div>
 					
