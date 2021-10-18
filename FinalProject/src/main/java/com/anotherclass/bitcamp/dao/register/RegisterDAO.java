@@ -13,4 +13,5 @@ public interface RegisterDAO {
 	public RegisterVO loginUser(RegisterVO vo);
 	
 	public String logIdCheck(RegisterVO vo);
+
 }

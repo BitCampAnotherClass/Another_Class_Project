@@ -3,5 +3,76 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.anotherclass.bitcamp.dao.user.UserMyPageDAO">
-  
+  	<select id="myPageHomePageAsk" resultType="com.anotherclass.bitcamp.vo.user.UserHomeQnAVO" >
+		<![CDATA[
+			select user_qna_no, member_id, title, content, file1, file2, file3, writedate, board_no1, board_no2 , replycount, view_grade from
+			(select user_qna_no, member_id, title, content, file1, file2, file3, to_char(writedate, 'yyyy-MM-DD') writedate, board_no1 ,board_no2,view_grade, count(board_no1)over(partition by board_no1) as replycount	from homeQnaUser where delete_sort =  0 order by  user_qna_no)
+			where view_grade = 1 
+			and member_id = #{param1}
+			and board_no2 = 0
+			order by board_no1 desc, user_qna_no
+  		]]>
+  	</select>
+  	<select id="myPageHpmePageAskReply" resultType="String">
+  		<![CDATA[
+  			select  content
+  			from homeQnaUser 
+			where view_grade =1
+			and board_no1 = #{param1}
+			and  board_no2=1
+			and delete_sort=0			
+  		]]>
+  	</select>
+  	<select id="myPageClassAskAll" resultType="com.anotherclass.bitcamp.vo.user.UserClassDetailVO2">  
+	  	<![CDATA[
+	  		select  a.class_qna_no, a.class_no,a.classqna_member_id, a.classqna_content, to_char(a.classqna_writedate, 'yyyy-MM-DD') classqna_writedate, b.class_name, c.category_name
+			from classQna a, classtbl b, category c
+			where a.class_no = b.class_no
+			and b.category_no = c.category_no
+			and a.classqna_member_id =#{param1}
+	  	]]>
+  	</select>
+  	<select id="classAskRepltCheck" resultType="int">
+  		<![CDATA[
+  			select count(*)
+			from classQnaCom
+			where class_qna_no = #{param1}
+  		]]>   		
+  	</select>
+  	<select id="Replycreatorinfo" resultType="com.anotherclass.bitcamp.vo.user.UserClassDetailVO2">
+  		<![CDATA[
+  			select a.class_qna_com_no, a.classqnacom_member_id, a.classqnacom_reply, to_char(a.classqnacom_writedate, 'yyyy-MM-DD') classqnacom_writedate, b.nick, b.member_img
+			from classqnacom a , membertbl b
+			where a.classqnacom_member_id = b.member_id
+			and a.classqnacom_com_sec =0
+			and a.class_qna_no = #{param1}
+  		]]>   
+  	</select>
+  	<select id="Likedcreator" resultType="com.anotherclass.bitcamp.vo.user.UserClassDetailVO">
+  		<![CDATA[
+  			select a.creator_like_no, a.creator_id, b.nick, b.member_img
+			from creatorlike a, membertbl b 
+			where a.creator_id = b.member_id
+			and a.user_id = #{param1}
+  		]]>  
+  	</select>
+  	<select id="LikedcreatorCount" resultType="int">
+  		<![CDATA[
+	  		SELECT COUNT(*) AS creatorlikecount
+			FROM creatorlike 
+			where creator_id = #{param1}
+  		]]> 
+  	</select>
+  	<select id="OpenClassCount" resultType="int">
+	  	<![CDATA[
+		  	SELECT  COUNT(*) AS creatorclasscount
+			FROM classtbl
+			where member_id  = #{param1}
+	  		]]> 
+  	</select>
+  	<delete id="CancelLikeCreator">
+	  	<![CDATA[	  	
+			delete creatorlike where creator_like_no = #{param1}
+	  	]]> 
+  	</delete>
   </mapper>

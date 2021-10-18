@@ -14,23 +14,66 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9551f210d2bfdcde36af42fb1ccab895&libraries=services"></script>
 <script>
+var categoryS;
 var count=0;
 var iitest=0;
 $(function(){
+	//////////////////////////////////////// 대분류 카테고리 눌렀을시 소분류 불러오기
+	$('.categoryL').on('click',function(){
+		categoryS = $(this).val();
+		alert($(this).val());
+		
+		var url = "makeClass/ajaxList" 
+			var params = {"no":categoryS};
+			$.ajax({
+				url : url,
+				data : params,
+				success:function(r){
+					var rr = $(r);
+					rr.each(function(idx, vo){
+						$("#test1").append("<li><input type='checkbox' name='categoryS'>"+vo.category_name+"</li>"); 
+					});
+					
+				},error:function(e){
+					console.log("List전송 에러발생함",e.responseText)
+				}
+			});
+	});
+	/////////////////////////////////////////////////////////숫자만 입력
+	
+	$("#class_fee").on("keyup", function() {
+		if(!$.isNumeric($('#class_fee').val())){
+     		 $(this).val($(this).val().replace(/[^0-9]/g,""));
+     		 alert('숫자만 입력할수 있습니다');
+  		};
+	});
+	
+	$("#class_nop").on("keyup", function() {
+		if(!$.isNumeric($('#class_nop').val())){
+     		 $(this).val($(this).val().replace(/[^0-9]/g,""));
+     		 alert('숫자만 입력할수 있습니다');
+  		};
+	});
+	$("#classTag").on("keyup", function() {
+		$(this).val($(this).val().replace(/ /g,""))
+	});
+	
+	
+	////////////////////////////////////////////////////////// 카테고리 
 	$('input[type="checkbox"][name="categoryL"]').click(function(){
 		 
 		  if($(this).prop('checked')){
-		 	$('#smallCategoryDiv').css("display","block");
-		 	
-		    $("input[type='checkbox'][name='categoryL']").prop("checked",false);
+			  
+			$('#smallCategoryDiv').css("display","block");
+		 	$("input[type='checkbox'][name='categoryL']").prop("checked",false);
+			$(this).prop('checked',true);
 		 
-		    $(this).prop('checked',true);
-		 
-		    }else if($("input[type='checkbox'][name='categoryL']").is("checked") == false) {
-		    	$('#smallCategoryDiv').css("display","none");
-		    	$("input[type='checkbox'][name='categoryS']").prop("checked",false);
+		  }else if($("input[type='checkbox'][name='categoryL']").is("checked") == false) {
+		   	$('#smallCategoryDiv').css("display","none");
+		   	$("input[type='checkbox'][name='categoryS']").prop("checked",false);
 		    }
 	});
+	//////////////////////////////////////////////////////달력
 	$(".flatpickrCalender").flatpickr({
 		inline : true,
 		mode: "multiple",
@@ -53,11 +96,14 @@ $(function(){
             }
        }
 	});	
+	//////////////////////////////////////////////////////테그 변환
 	$("#class_tagButton").click(function(){
 			if(count < 5){
-				if($('#class_tag').val() !== ""){
+				if($('#classTag').val() !== ""){
 					iitest++;
-					$("#tagInsert").append("<div style='float:left' id='tagInsertInner"+iitest+"'>"+"#"+$('#class_tag').val()+"<input type='button' value='x' id='divdel' onclick='deleteDiv()'>"+"</div>");
+					$("#tagInsert").append("<div style='float:left' id='tagInsertInner"+iitest+"'>"+"#"+$('#classTag').val()+"<input type='button' value='x' id='divdel' onclick='deleteDiv()'>"+"</div>");
+					var tagInsert = $("#tagInsert").text();
+					$('#class_tag').val(tagInsert);
 					count++;
 				}else{
 					alert("태그로 사용할 문구를 입력해주세요")
@@ -65,19 +111,53 @@ $(function(){
 			}else{
 				alert("5개 태그 모두 선택하였습니다.")
 			}
-			$('#class_tag').val("");
+			$('#classTag').val("");
 	});
-});
-///////////////////////////////
-function deleteDiv(){
-	var div = document.getElementById('tagInsertInner'+iitest);
-	div.remove();
-	count--;
-	iitest--;
-	console.log(count);
-};
-/////////////////////////////////////////////
-$(document).ready(function() {
+/////////////////////////////////파일이름 넣기
+	$('#fileButton').on('change',function(){
+		var fileName = $('#fileButton').val().replace(/^c:\\fakepath\\/i, " ");///fakepath주소 없애기
+		$('.imgThumbFileName').val(fileName);
+	});
+///////////////////////////////////////////////////////빈칸확인
+	$('#class_apply').click(function(){
+		if($('#class_name').val() == ""){
+			alert('클래스명을 입력하세요');
+			window.location.href="#f1";
+			return false;
+		}else if($('#class_info').val() == ""){
+			alert('클래스 간단 소개를 입력하세요');
+			window.location.href="#f2";
+			return false;
+		}else if($('#class_thumb').val() == ""){		//카테고리 빠져있음
+			alert('클래스 썸네 파일을 업로드하세요');
+			window.location.href="#f4";
+			return false;
+		}else if($('#summernote').val() == ""){
+			alert('클래스 소개를 입력하세요');
+			window.location.href="#f5";
+			return false;
+		}else if($('#roadAddress').val() == ""){
+			alert('도로명 주소 검색하세요');
+			window.location.href="#f7";
+			return false;
+		}else if($('#postcode').val() == ""){
+			alert('우편번호를 검색하세요');
+			window.location.href="#f7";
+			return false;
+		}else if($('#detailAddress').val() == ""){
+			alert('상세주소를 입력하세요');
+			window.location.href="#f7";
+			return false;
+		}else if($('#class_fee').val() == ""){
+			alert('수강료를 입력하세요');
+			return false;
+		}else if($('#class_nop').val() == ""){
+			alert('최대인원을 입력하세요');
+			return false;
+		}
+	});
+/////////////////////////////////////////////  썸머노트
+	$(document).ready(function() {
 		  $('#summernote').summernote({
   				height:800,
   				placeholder:'클래스 소개글과 이미지를 넣어 작성하세요 ',
@@ -101,8 +181,18 @@ $(document).ready(function() {
 					} */
 				}
   			});
-});
+	});
 
+	});
+/////////////////////////////// 태그에 빨간 div 삭제
+function deleteDiv(){
+	var div = document.getElementById('tagInsertInner'+iitest);
+	div.remove();
+	count--;
+	iitest--;
+	console.log(count);
+};
+//////////////////////////// 
 function uploadImageFile(file, editor) {
 	data = new FormData();
 	data.append("file", file);
@@ -118,8 +208,8 @@ function uploadImageFile(file, editor) {
 			alert("업로드 실패");
 		}
 	});
-}
-//////////////////////////////////////////////
+};
+////////////////////////////////////////////// 주소 검색 지도
  	
 
 
@@ -174,21 +264,43 @@ function execDaumPostcode() {
     	 left: (window.screen.width / 2) - (width / 2),
     	 top: (window.screen.height / 2) - (height / 2)
     });
-}
+};
 
-/////////////////////////////////
-function mapSearch(){
+///////////////////////////////// 주소를 지도로 옮김 구글지도만 해당
+/* function mapSearch(){
 	var searchName = document.getElementById("roadAddress").value;
 	if(searchName==""){
 		alert("주소검색을 먼저 진행해 주세요");
 	return; //리턴은 중단 명령어
 	}
 	setMapPosition(searchName,"","");
-}
-function feeComma(){
+}*/
+///////////////////////////////////////////이미지 바꾸기 
+var sel_file;
+$(document).ready(function(){
+	$('#fileButton').on("change", handleImgFileSelect);
+});
+function handleImgFileSelect(e){
+	var files = e.target.files;
+	var filesArr = Array.prototype.slice.call(files);
 	
-}
-	
+	filesArr.forEach(function(f){
+		if(!f.type.match("image.*")){
+			alert("확장자는 이미지 확장자만 가능");
+			document.getElementById("class_thumb").value="";
+			$("#previewImg").attr("src", "<%=request.getContextPath()%>/img/kimin/uploadimg.jpg");
+			return;
+		}
+		sel_file=f;
+		
+		var reader = new FileReader();
+		reader.onload = function(e){
+			$("#previewImg").attr("src",e.target.result);
+		}
+		reader.readAsDataURL(f);
+	});
+};
+//////////////////////////////////////////
 
 	
 </script>	
@@ -202,7 +314,7 @@ kimin2{font-size: 1.3em; color:gray; margin-left:5px;}
 #class_name{
 	height:50px; width:100%;
 }
-#class_short{
+#class_info{
 	height:100px; 
 	padding-top:15px; 
 	resize:none;
@@ -315,24 +427,24 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 }
 .classImgDiv{
 	width:100%;
-	height:560px;
+	height:500px;
 	border:2px solid lightgray;
 	border-radius:8px;
 	margin-top:20px;
 	margin-bottom:20px;
-	padding:20px 0px 0px 0px; 
+	padding:10px 0px 0px 0px; 
 	font-size: 1.2em;
 	text-align:center;
 }
-#imgThumbDiv{
+#imgThumbDiv{border:2px dotted lightgray;
 	border-radius:8px;
-	width:400px;
-	height:480px;
-	border:3px solid lightgray;
+	display:inline-block;
+	height:430px;
+	
 	margin:0 auto;
 }
 #imgThumbDiv img{
-	width:100%;
+	
 	height:100%;
 }
 .buttonClass{
@@ -349,7 +461,8 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	color:white;
 }
 .classImgDiv>input[type=button]{
-	width:400px;
+	margin-top:0px;
+	width:800px;
 	height:40px;
 }
 #summernoteForm{
@@ -378,8 +491,8 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 .classDate li{
 	float:left;
 }
-#putDateTime{
-	background-color:#f1f1f1;
+#putDateTime{background-color:;
+	border:2px dotted lightgray;
 	width:240px;
 	height:340px;
 	color:#FF385C; 
@@ -459,7 +572,7 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	color:gray;
 	margin-left:10px;
 }
-#class_tag{
+#classTag{
 	width:500px;
 	height:50px;
 	margin-left:320px;
@@ -477,11 +590,11 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	margin-bottom: 20px;
 }
 #tagInsertInner1,#tagInsertInner2,#tagInsertInner3,#tagInsertInner4,#tagInsertInner5{
+	color:white;
 	width:18%;
 	height:40px;
 	border-radius:8px;
 	background-color:#FF385C;
-	color:white;
 	font-size: 1.2em;
 	margin-left:1%;
 	margin-right:1%;
@@ -508,8 +621,39 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	font-size: 1.5em;
 	font-weight: 600px;
 }
+#class_tag{
+	display:none;
+}
+.filebox .imgThumbFileName{
+	height: 40px;
+	display: inline-block;
+	vertical-align: middle;
+	text-align:center;
+    border: 2px solid #dddddd;
+    width: 300px;
+    margin-top: 7px;
+    color:gray;
+    font-weight: 500;
+    border-radius: 8px;
+    
+}
+.filebox label{
+	display: inline-block;
+	vertical-align: middle;
+	color:white;
+    font-weight: 500;
+    cursor: pointer;
+    background-color:#FF385C;
+    border-radius: 8px;
+    padding: 5px 20px;
+    margin-top: 7px;
+    margin-left: 10px;
+}
+.filebox input[type="file"]{
+	display: none;
+}
 </style>
-<form>
+<form method="post" action="<%=request.getContextPath()%>/creator/makeClassOk" enctype="multipart/form-data">
 <div class="container">
 	<h1>클래스개설</h1>
 	<div class="followDiv">
@@ -537,11 +681,11 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 			<li>등록 후 수업시작 전까지 수정이 가능합니다</li>
 		</ul>
 	</div>
-	<div class="classCommonDiv" id="f2">
+	<div class="classCommonDiv" id="f2" >
 		<span><kimin>*</kimin> 2) 클래스 간단 소개 <kimin>(필수)</kimin></span>
 	</div>
 	<div>
-		<textarea name="class_short" class="inputCommonClass" placeholder="클래스 간단 소개를 &#13;&#10;입력하세요" id="class_short"></textarea>
+		<textarea name="class_info" class="inputCommonClass" placeholder="클래스 간단 소개를 &#13;&#10;입력하세요" id="class_info"></textarea>
 		<ul class="descriptionUl">
 			<li class="dsctitle">작성 Tip</li>
 			<li>클래스 요약 설명 작성란 입니다</li>
@@ -552,28 +696,21 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	<div class="classCommonDiv" id="f3">
 		<span><kimin>*</kimin> 3) 클래스 카테고리 <kimin>(필수)</kimin></span>
 	</div>
-	<div class="classCategoryDiv">
+	
+	<div class="classCategoryDiv" id="forEach">
 		<ul>
-			<li><input type="checkbox" name="categoryL" value="" class="categoryL"> 캔들/디퓨져</li> <!-- 반복문 -->
-			<li><input type="checkbox" name="categoryL" value="" class="categoryL"> 캔들/디퓨져</li> <!-- 반복문 -->
-			<li><input type="checkbox" name="categoryL" value="" class="categoryL"> 캔들/디퓨져</li> <!-- 반복문 -->
-			<li><input type="checkbox" name="categoryL" value="" class="categoryL"> 캔들/디퓨져</li> <!-- 반복문 -->
-			<li><input type="checkbox" name="categoryL" value="" class="categoryL"> 캔들/디퓨져</li> <!-- 반복문 -->
-			<li><input type="checkbox" name="categoryL" value="" class="categoryL"> 캔들/디퓨져</li> <!-- 반복문 -->
-			<li><input type="checkbox" name="categoryL" value="" class="categoryL"> 캔들/디퓨져</li> <!-- 반복문 -->
+			<c:forEach var="vo" items="${cate }">
+			<li ><input type="checkbox" name="categoryL" value=" ${vo.category1_no }" class="categoryL" > ${vo.category_name }</li> <!-- 반복문 -->
+			</c:forEach>
 		</ul>
+	
 	</div>
 	<div id="smallCategoryDiv">
 		<div class="classCommonDiv">
 			<span><kimin>*</kimin> 3-1) 클래스 서브 카테고리 <kimin>(필수)</kimin></span>
 		</div>
 		<div class="classCategoryDiv">
-			<ul>
-				<li><input type="checkbox" name="categoryS"> 캔들/디퓨져</li> <!-- 반복문 -->
-				<li><input type="checkbox" name="categoryS"> 캔들/디퓨져</li> <!-- 반복문 -->
-				<li><input type="checkbox" name="categoryS"> 캔들/디퓨져</li> <!-- 반복문 -->
-				<li><input type="checkbox" name="categoryS"> 캔들/디퓨져</li> <!-- 반복문 -->
-				<li><input type="checkbox" name="categoryS"> 캔들/디퓨져</li> <!-- 반복문 -->
+			<ul id="test1">
 			</ul>
 		</div>
 	</div>
@@ -581,8 +718,12 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 		<span><kimin>*</kimin> 4) 클래스 썸네일 <kimin>(필수)</kimin></span>
 	</div>
 	<div class="classImgDiv">
-			<div id="imgThumbDiv"><img src="<%=request.getContextPath()%>/img/kimin/uploadimg.png" ></div>
-			<input type="button" name="imgThumb" value="클래스 썸네일 이미지 등록" class="buttonClass">
+			<div id="imgThumbDiv"><img src="<%=request.getContextPath()%>/img/kimin/uploadimg.jpg" id="previewImg" ></div>
+			<div class="filebox">
+				<input class="imgThumbFileName" placeholder="썸네일사진 파일명" name="class_thumb" id="class_thumb" readonly="readonly">
+				<label for="fileButton">업로드</label>
+				<input type="file" id="fileButton" accept="img/*" required>
+			</div>
 	</div>
 	<div>
 		<ul class="descriptionUl">
@@ -597,7 +738,7 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	</div>
 	<div>
 		<div id="summernoteForm">
-  			<textarea id="summernote" name="editordata"></textarea>
+  			<textarea id="summernote" name="class_content"></textarea>
 		</div>
 	</div>
 	<div>
@@ -632,11 +773,11 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	</div>
 	<div class="classAddress">
 		<div id="classAddressInnerDiv">
-			<input type="text" id="postcode" placeholder="우편번호" >
+			<input type="text" id="postcode" placeholder="우편번호" name="class_post_no" readonly="readonly">
 			<input type="button" onclick="execDaumPostcode()" value="주소검색" class="buttonClass"><br>
-			<input type="text" id="roadAddress" placeholder="도로명주소" >
+			<input type="text" id="roadAddress" placeholder="도로명주소" name="class_addr1" readonly="readonly">
 			<span id="guide" style="color:#999;display:none"></span>
-			<input type="text" id="roadAddress" placeholder="상세주소" />
+			<input type="text" id="detailAddress" placeholder="상세주소" name="class_addr2"/>
 			<!-- 구글맵 -->
 			<input id="serchOnGoogle" type="button" value="지도에 위치표시 하기" onclick="mapSearch()"/>
 		</div>
@@ -673,8 +814,8 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 		<span><kimin>*</kimin> 8) 클래스 수강료 및 최대인원 <kimin>(필수)</kimin></span>
 	</div>
 	<div id="classFee">
-		<span> 수강료 : </span><input type="text" name="class_fee" class="inputCommonClass" placeholder="희망 수강료를 입력하세요" id="class_fee"><kimin2>원</kimin2>
-		<span> 최대인원 : </span><input type="text" name="class_nop" class="inputCommonClass" placeholder="수강가능 최대인원을 입력하세요" id="class_nop"><kimin2>명</kimin2>
+		<span> 수강료 : </span><input type="text" name="class_price" class="inputCommonClass" placeholder="희망 수강료를 입력하세요" id="class_fee"><kimin2>원</kimin2>
+		<span> 최대인원 : </span><input type="text" name="max_headcount" class="inputCommonClass" placeholder="수강가능 최대인원을 입력하세요" id="class_nop"><kimin2>명</kimin2>
 	</div>
 	<div>
 		<ul class="descriptionUl">
@@ -688,15 +829,16 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 		<span>* 9) 검색 #태그 </span>
 	</div>
 	<div id="classFee">
-		<input type="text" name="class_tag" class="inputCommonClass" placeholder="#없이 태그를 입력하세요" id="class_tag">
+		<input type="text"  class="inputCommonClass" placeholder="#없이 태그를 입력하세요" id="classTag">
 		<input type="button" value="추가" id="class_tagButton" class="buttonClass"><br/>
 		<div id="tagInsert"></div>
+		<input type="text" name="class_tag" id="class_tag" >
 	</div>
 	<div>
 		<ul class="descriptionUl">
 			<li class="dsctitle">작성 Tip</li>
 			<li>5개 태그까지 추가 할 수 있습니다</li>
-			<li># 표시 없이 입력해주세요</li>
+			<li>띄어쓰기 대신 _를 사용해 주세요</li>
 			<li>추가버튼을 누르면 항목이 밑에 표시됩니다 </li>
 		</ul>
 	</div>
@@ -704,8 +846,6 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 		<input type="submit" value="클래스 등록신청" name="class_apply" id="class_apply" class="buttonClass">
 	</div>
 </div>
+
 </form>
-
-
-
 

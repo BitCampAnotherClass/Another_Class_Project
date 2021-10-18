@@ -1,4 +1,4 @@
-package com.anotherclass.bitcamp.controller.user;
+ package com.anotherclass.bitcamp.controller.user;
 
 import java.util.List;
 
@@ -89,7 +89,7 @@ public class ClassDetailPageController {
 		if(likecheck == 0) {//좋아요 안눌럿음 -> 좋아요 테이블에 insert
 			result = classDetailPageService.classLikeInsert(no,logid); //1가 같거나 1보다 크면 인서트			
 		}else {//좋아요 눌럿음 -> 좋아요 테이블에 delete
-			result = classDetailPageService.classLikeDelete(no,logid);//1가 같거나 1보다 크면 인서트
+			result = classDetailPageService.classLikeDelete(no,logid);//1가 같거나 1보다 크면 삭제
 		}			
 		return result;
 	}
