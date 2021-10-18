@@ -3,12 +3,14 @@ package com.anotherclass.bitcamp.register;
 import java.security.PrivateKey;
 
 import javax.inject.Inject;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.anotherclass.bitcamp.service.register.RegisterService;
@@ -26,16 +28,14 @@ public class RegisterController {
 		return "register/userRegister";
 	}
 	
-	@RequestMapping("/registerCreator")
-	public String registerCreator() {
-		return "register/creatorRegister";
+	@RequestMapping(value="/register/check", method = RequestMethod.POST)
+	@ResponseBody
+	public String idCheck(RegisterVO vo, String id) {
+		vo.setMember_id(id);
+		registerService.logIdCheck(vo);
+		String cnt =vo.getAdditional_information_one();
+		return cnt;
 	}
-	
-	@RequestMapping("/registerTest")
-	public String registerTest() {
-		return "register/userRegisterTest";
-	}
-	
 	
 	// 유저 회원가입
 	@RequestMapping(value="/userJoin",method=RequestMethod.POST)
@@ -67,25 +67,25 @@ public class RegisterController {
 		return mav;
 	}
 	
-	// 로그인폼
+	// 회원 로그인폼
 	@RequestMapping(value = "/login")
 	public String login(HttpServletRequest request) {
 		Rsa rsa = new Rsa();
 		rsa.initRsa(request);
-		return "register/loginForm";
+		return "register/loginFormUser";
 	}
 	
-	// 로그인폼
-	@RequestMapping(value = "/login2")
-	public String login2(HttpServletRequest request) {
+	// 강사 로그인폼
+	@RequestMapping(value = "/creatorLogin")
+	public String creatorlogin(HttpServletRequest request) {
 		Rsa rsa = new Rsa();
 		rsa.initRsa(request);
-		return "register/loginForm2";
+		return "register/loginFormCreator";
 	}
 	
-	// 로그인 실행
-	@RequestMapping(value = "/loginOk", method = RequestMethod.POST)
-	public ModelAndView loginOk(RegisterVO vo, HttpSession session) throws Exception{
+	
+	// 로그인 시 복호화 -- 회원/강사
+	public void rsaLog(RegisterVO vo, HttpSession session) throws Exception{
 		Rsa rsa = new Rsa();
 		// 로그인 전 세션에 저장된 개인키 가져오기
 		PrivateKey privateKey = (PrivateKey) session.getAttribute(Rsa.RSA_WEB_KEY);
@@ -98,11 +98,24 @@ public class RegisterController {
 //		System.out.println("복호화pw : " + memberPw);
 
 		// 해싱
-		String hashingPw = hashing.setEncryption(memberPw,memberId);
+		String hashingPw = hashing.setEncryption(memberPw, memberId);
 		
 		vo.setMember_id(memberId);
 		vo.setMember_pw(hashingPw);
-
+	}
+	
+	// 회원 로그인 실행
+	@RequestMapping(value = "/loginOk", method = {RequestMethod.POST, RequestMethod.GET})
+	public ModelAndView loginOk(RegisterVO vo, HttpSession session, HttpServletRequest request) throws Exception{
+		String snsType = request.getParameter("sns_type");
+		if(snsType==null || snsType.equals("")) { // 일반 로그인 시
+			// 복호화
+			rsaLog(vo, session);			
+		} else {
+			vo.setSns_type(snsType); // sns로그인 타입 저장 // ex) kakao
+		}
+		
+		vo.setLogType(1);
 		ModelAndView mav = new ModelAndView();
 		RegisterVO logvo = new RegisterVO();
 		logvo = registerService.loginUser(vo);
@@ -116,6 +129,41 @@ public class RegisterController {
 			session.setAttribute("userLog", 1);
 			
 			mav.setViewName("redirect:/");			
+		} else {
+			if(vo.getSns_type()!=null && !vo.getSns_type().equals("")) { // sns 로그인 - 기존 계정 없을 시
+				// 계정 db 저장하기 ㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+				mav.setViewName("/register/registerResult");
+			} else {
+				mav.addObject("logType", "회원");
+				mav.setViewName("/register/loginResult");
+			}
+		}
+		return mav;
+	}
+	
+	
+	// 강사 로그인 실행
+	@RequestMapping(value = "/creatorLoginOk", method = RequestMethod.POST)
+	public ModelAndView creatorLoginOk(RegisterVO vo, HttpSession session) throws Exception{
+		if(vo.getSns_type()==null || vo.getSns_type().equals("")) { // 일반 로그인 시
+			// 복호화
+			rsaLog(vo, session);			
+		}
+	
+		vo.setLogType(2);
+		ModelAndView mav = new ModelAndView();
+		RegisterVO logvo = new RegisterVO();
+		logvo = registerService.loginUser(vo);
+		if(logvo!=null) {
+			if(logvo.getMember_img()==null || logvo.getMember_img().equals("")) {
+				logvo.setMember_img("/img/etc/basic_profile.png");				
+			}
+			session.setAttribute("creatorId", logvo.getMember_id());
+			session.setAttribute("creatorNick", logvo.getNick());
+			session.setAttribute("creatorImg", logvo.getMember_img());
+			session.setAttribute("creatorLog", 1);
+			
+			mav.setViewName("redirect:/creator/");			
 		} else {
 			mav.setViewName("/register/loginResult");
 		}

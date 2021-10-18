@@ -29,9 +29,7 @@ public class RegisterServiceImp implements RegisterService {
 	}
 
 	@Override
-	public int logIdCheck(RegisterVO vo) {
+	public String logIdCheck(RegisterVO vo) {
 		return registerDao.logIdCheck(vo);
 	}
-	
-	
 }

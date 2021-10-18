@@ -34,6 +34,18 @@
 		select m.member_id, member_name, member_img, nick 
 		from memberTbl m join idAll i 
 		on m.member_id = i.member_id 
-		where m.member_id=#{member_id} and member_pw=#{member_pw} and type_user=1
+		where m.member_id=#{member_id, jdbcType=VARCHAR} and 
+		<choose>
+			<when test='sns_type=="" and logType==1'>member_pw=#{member_pw} and type_user=1 and sns_type is null</when>
+			<when test='sns_type=="" and logType==2'>member_pw=#{member_pw} and type_creator=1 sns_type is null</when>
+			<when test='sns_type!="" and logType==1'>type_user=1 and sns_type=#{sns_type}</when>
+			<when test='sns_type!="" and logType!=1'>type_creator=1 and sns_type=#{sns_type}</when>
+		</choose>
+	</select>
+	<select id="logIdCheck" parameterType="com.anotherclass.bitcamp.register.RegisterVO" resultType="com.anotherclass.bitcamp.register.RegisterVO" statementType="CALLABLE">
+		call id_check_in(
+			#{member_id, mode=IN, jdbcType=VARCHAR, javaType=String}, 
+			#{additional_information_one, mode=OUT, jdbcType=VARCHAR, javaType=String} 
+		)
 	</select>
 </mapper>

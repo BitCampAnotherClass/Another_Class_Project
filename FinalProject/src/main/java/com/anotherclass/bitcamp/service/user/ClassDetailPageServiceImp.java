@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.anotherclass.bitcamp.dao.user.ClassDetailPageDAO;
 import com.anotherclass.bitcamp.vo.user.ClassVO;
 import com.anotherclass.bitcamp.vo.user.UserClassDetailVO;
+import com.anotherclass.bitcamp.vo.user.UserClassDetailVO2;
 @Service
 public class ClassDetailPageServiceImp implements ClassDetailPageService {
 
@@ -61,6 +62,31 @@ public class ClassDetailPageServiceImp implements ClassDetailPageService {
 		
 		return classDetailPageDAO.classLikeDelete(no,logid);
 	}
+
+	@Override
+	public List<UserClassDetailVO2> userClassDetailAskAllSelect(int no) {
+		
+		return classDetailPageDAO.userClassDetailAskAllSelect(no);
+	}
+
+	@Override
+	public int AskReplyCheck(int no) {
+		
+		return classDetailPageDAO.AskReplyCheck(no);
+	}
+
+	@Override
+	public List<UserClassDetailVO2> userClassDetailAskReplySelect(int no) {
+		
+		return classDetailPageDAO.userClassDetailAskReplySelect(no);
+	}
+
+	@Override
+	public int classAskWritee(UserClassDetailVO2 askVo) {
+		
+		return classDetailPageDAO.classAskWritee(askVo);
+	}
+
 
 	
 	

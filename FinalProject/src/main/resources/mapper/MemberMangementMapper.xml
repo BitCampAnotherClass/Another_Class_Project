@@ -5,10 +5,13 @@
 <mapper namespace="com.anotherclass.bitcamp.dao.admin.MemberMangementDAO">
 	<select id="MemberList" parameterType="com.anotherclass.bitcamp.register.RegisterVO" resultType="com.anotherclass.bitcamp.register.RegisterVO">
 		<![CDATA[
-		 SELECT p_num, member_id, member_name, member_email, member_tel, signupdate  FROM (SELECT a.*, ROWNUM as p_num FROM 
-         (SELECT member_id, member_name, member_email, member_tel, signupdate
-         FROM memberTbl ORDER BY signupdate DESC, member_name ASC) a)
-         where p_num >=1 and p_num<=15
+			SELECT p_num, member_id, member_name, member_email, member_tel, signupdate  FROM (SELECT a.*, ROWNUM as p_num FROM 
+   	 		(SELECT member_id, member_name, member_email, member_tel, signupdate
+    		FROM memberTbl ORDER BY signupdate DESC, member_name ASC) a)
+    		where p_num >=#{param1} and p_num<=#{param2}
          ]]>
+	</select>
+	<select id="boardLimit" resultType="int" >
+		SELECT COUNT(member_id) FROM memberTbl
 	</select>
 </mapper>

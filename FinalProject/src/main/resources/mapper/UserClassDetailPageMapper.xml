@@ -4,14 +4,15 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.anotherclass.bitcamp.dao.user.ClassDetailPageDAO">
   	<select id="temporarylistAllSelect" resultType="com.anotherclass.bitcamp.vo.user.ClassVO">
+        <![CDATA[
         select class_no, class_name, class_info, class_price,  member_id, class_thumb ,
         class_content, class_img_file, class_addr1, max_headcount, category_no, to_char(class_writedate, 'MM-DD HH:MI') class_writedate
          from classtbl
-     </select>
-  
+     	]]>
+     </select>  
   	<select id="userClassDetailAllSelect" resultType="com.anotherclass.bitcamp.vo.user.UserClassDetailVO">
   		<![CDATA[
-  		select b.class_no , a.category_name, b.class_name, b.class_info, d.member_img, b.class_addr1 , d.nick, b.class_content ,c.creator_content, c.creator_content_img
+  		select b.class_no , a.category_name, b.class_name, b.max_headcount , b.class_info, d.member_img, b.class_addr1 , d.nick, b.class_content ,c.creator_content, c.creator_content_img
 		from category a, classtbl b, creator c, membertbl d
 		where a.category_no = b.category_no
 		and    b.member_id = c.member_id
@@ -21,7 +22,7 @@
   	</select>
   	<select id="userSelectOptionAllSelect"  resultType="com.anotherclass.bitcamp.vo.user.UserClassDetailVO">
   		<![CDATA[
-  		select to_char(start_date, 'yyyy-MM-DD HH:MM') start_date, to_char(end_date, 'yyyy-MM-DD HH:MM') end_date, all_headcount from classoption
+  		select class_option_no , to_char(start_date, 'yyyy-MM-DD HH:MM') start_date, to_char(end_date, 'HH:MM') end_date, all_headcount from classoption
 		where class_no = #{param2}
 		and  to_char(start_date, 'yyyy-MM-DD')= #{param1}  		
   		]]>  	
@@ -52,6 +53,37 @@
   			delete from classlike where member_id = #{param2} and class_no = #{param1}
   		]]> 
   	</delete>
+  	<select id="userClassDetailAskAllSelect" resultType="com.anotherclass.bitcamp.vo.user.UserClassDetailVO2">
+  		<![CDATA[
+  			select class_qna_no, class_no, classQna_member_id, classqna_content,to_char( classqna_writedate,'yyyy-MM-DD HH:MM' ) classqna_writedate, classqna_com_sec 
+			from classQna 
+			where class_no = #{param1}
+  		]]> 
+  	</select>  	
+  	<select id="AskReplyCheck" resultType="int">
+  		<![CDATA[
+  			select count(*)
+			from classQnaCom
+			where class_qna_no = #{param1}
+  		]]> 
+  	</select>
+  	<select id="userClassDetailAskReplySelect" resultType="com.anotherclass.bitcamp.vo.user.UserClassDetailVO2">
+  		<![CDATA[
+  		select class_qna_com_no , class_qna_no,classqnacom_member_id, com_no1, com_no2, classqnacom_reply,to_char ( classqnacom_writedate , 'yyyy-MM-DD HH:MM') classqnacom_writedate, classqnacom_com_sec, classqnacom_delete_sort
+		from classQnaCom
+		where class_qna_no =#{param1}
+		]]> 
+  	</select>
+  	<insert id="classAskWritee" parameterType="com.anotherclass.bitcamp.vo.user.UserClassDetailVO2">
+  		<![CDATA[
+  			insert into classQna(class_qna_no , class_no , classqna_member_id, classqna_content, classqna_writedate, classqna_com_sec)
+			values(class_qna_sq.nextval, #{class_no}, #{classqna_member_id}, #{classqna_content}, sysdate,  0)
+  		]]> 
+  	</insert>
+  	
+  	
+  	
+  	
   	
   	
   </mapper>

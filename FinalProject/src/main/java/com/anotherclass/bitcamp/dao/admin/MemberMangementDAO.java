@@ -6,5 +6,7 @@ import com.anotherclass.bitcamp.register.RegisterVO;
 
 public interface MemberMangementDAO {
 	
-	public List<RegisterVO> MemberList(RegisterVO vo);
+	public List<RegisterVO> MemberList(int numberList, int numberLimitCal);
+	
+	public int boardLimit();
 }
