@@ -100,8 +100,8 @@
 						<li><a href="<%=request.getContextPath()%>/CommunityMain">커뮤니티</a></li>
 						<li class="c-center"><a href="#">고객지원</a>
 							<ul class="sub-menu1">
-								<li><a href="#">공지사항</a></li>
-								<li><a href="#">자주 묻는 질문</a></li>
+								<li><a href="<%=request.getContextPath()%>/UserNotice">공지사항</a></li>
+								<li><a href="<%=request.getContextPath()%>/UserFaq">자주 묻는 질문</a></li>
 								<li><a href="<%=request.getContextPath()%>/HomeQnAAsk/list">홈페이지문의</a></li>
 							</ul>
 						</li>
