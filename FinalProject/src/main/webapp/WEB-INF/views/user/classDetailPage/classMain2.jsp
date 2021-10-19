@@ -324,7 +324,7 @@ $(function(){
 	  });
 	
 	//결제하기버튼 누르면 이동	
-	$(document).on('click','#gopayB',function(){			
+	$(document).on('click','#gopayB',function(){//select			
 		var logid = "${userId}";    	
 		if(logid=== null || logid=== ""){
 			alert("로그인 후 이용가능합니다");
@@ -339,7 +339,7 @@ $(function(){
 	});
 	
 	//장바구니버튼 이동 -> 디비에저장 , 장바구니페이로 갈건지 물어보고 ㅇㅋ 하면 이동 아니면 이동x	
-	$(document).on('click','#gobasketB',function(){
+	$(document).on('click','#gobasketB',function(){//insert
 		var logid = "${userId}";    	
 		if(logid=== null || logid=== ""){
 			alert("로그인 후 이용가능합니다");

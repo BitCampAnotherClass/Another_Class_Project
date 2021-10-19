@@ -22,5 +22,9 @@
 			where member_id= #{param1}
 		]]>
   	</select>
+  	<insert id="saveBasket" parameterType="com.anotherclass.bitcamp.vo.user.UserPayVO">
+  		
+  		
+  	</insert>
   
   </mapper>

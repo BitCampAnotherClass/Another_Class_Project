@@ -112,8 +112,12 @@ $(function(){
 		
 	}
 
-
+	
 	memberInfo();
+	
+	//주문상품포인트값 넣기
+	//$("#orderpp").
+	
 
 });	
 </script>
@@ -130,7 +134,7 @@ $(function(){
 			
 			
 			<c:forEach var="vo" items="${list}">
-				<div class="payclassinfoorder" style="height:150px;"><!-- 주문한줄.... -->
+				<div class="payclassinfoorder " style="height:150px;"><!-- 주문한줄.... -->
 					<div><!-- 이미지+제목 -->
 						<div><img src="img/jisu/classimg5.png"></div> <!-- 이미지  vo.class_thumb --> 						
 						<div><!-- 제목+강사 -->
@@ -140,9 +144,8 @@ $(function(){
 						</div>
 					</div>
 					<div class="orderN"><label>1</label>명</div><!-- 인원 -->
-					<div class="orderP" id="번호....">${vo.class_price }원</div><!-- 총상품금액 -->
-						
-					<div class="orderPP"><label>${vo.class_price }*0.01</label>P</div>
+					<div class="orderP" id="conprice"><label>${vo.class_price }</label>원</div><!-- 총상품금액 -->						
+					<div class="orderPP"><label id="orderpp">${vo.class_price }*0.01</label>P</div>
 				</div>
 			</c:forEach> 
 		

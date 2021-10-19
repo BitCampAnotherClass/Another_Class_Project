@@ -47,7 +47,7 @@ public class ClassDetailPageController {
 	public List<UserClassDetailVO> ajaxDatePick(String datedate, int no){	
 		System.out.println("컨트롤러 들어옴"+datedate+no);
 		List<UserClassDetailVO> list = classDetailPageService.userSelectOptionAllSelect(datedate,no);
-		System.out.print(list.size());
+		//System.out.print(list.size());
 		return list;
 	}
 	

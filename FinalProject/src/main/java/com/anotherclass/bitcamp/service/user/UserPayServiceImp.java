@@ -23,4 +23,9 @@ public class UserPayServiceImp implements UserPayService {
 	public UserPayVO userInfo(String logid) {		
 		return userpaydao.userInfo(logid);
 	}
+
+	@Override
+	public int saveBasket(int[] classNoPayList) {	
+		return userpaydao. saveBasket(classNoPayList);
+	}
 }
