@@ -28,6 +28,11 @@ public class NoticeManagementController {
 		return "admin/BoardManagement/faqManagement";
 	}
 	
+	@RequestMapping(value="/inquiryManagement")
+	public String inquiryManagement() {
+		return "admin/BoardManagement/inquiryManagement";
+	}
+	
 
 	
 }

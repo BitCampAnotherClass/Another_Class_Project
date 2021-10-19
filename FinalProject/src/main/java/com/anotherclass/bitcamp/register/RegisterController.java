@@ -69,20 +69,36 @@ public class RegisterController {
 	
 	// 회원 로그인폼
 	@RequestMapping(value = "/login")
-	public String login(HttpServletRequest request) {
+	public ModelAndView login(HttpServletRequest request) {
 		Rsa rsa = new Rsa();
 		rsa.initRsa(request);
-		return "register/loginFormUser";
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("logType", "1");
+		mav.setViewName("/register/loginForm");
+		return mav;
 	}
 	
 	// 강사 로그인폼
 	@RequestMapping(value = "/creatorLogin")
-	public String creatorlogin(HttpServletRequest request) {
+	public ModelAndView creatorLogin(HttpServletRequest request) {
 		Rsa rsa = new Rsa();
 		rsa.initRsa(request);
-		return "register/loginFormCreator";
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("logType", "2");
+		mav.setViewName("/register/loginForm");
+		return mav;
 	}
 	
+	// 관리자 로그인폼
+	@RequestMapping(value = "/adminLogin")
+	public ModelAndView  adminLogin(HttpServletRequest request) {
+		Rsa rsa = new Rsa();
+		rsa.initRsa(request);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("logType", "3");
+		mav.setViewName("/register/loginFormAdmin");
+		return mav;
+	}
 	
 	// 로그인 시 복호화 -- 회원/강사
 	public void rsaLog(RegisterVO vo, HttpSession session) throws Exception{
@@ -104,79 +120,102 @@ public class RegisterController {
 		vo.setMember_pw(hashingPw);
 	}
 	
-	// 회원 로그인 실행
-	@RequestMapping(value = "/loginOk", method = {RequestMethod.POST, RequestMethod.GET})
-	public ModelAndView loginOk(RegisterVO vo, HttpSession session, HttpServletRequest request) throws Exception{
-		String snsType = request.getParameter("sns_type");
-		if(snsType==null || snsType.equals("")) { // 일반 로그인 시
-			// 복호화
-			rsaLog(vo, session);			
+	
+	// 회원/강사 로그인 실행
+	@RequestMapping(value = "/loginOk", method = RequestMethod.POST)
+	public ModelAndView loginOk(RegisterVO vo, HttpSession session) throws Exception{
+		if(vo.getSns_type()==null || vo.getSns_type().equals("")) { // 일반 로그인 시
+			rsaLog(vo, session); // 복호화
 		} else {
-			vo.setSns_type(snsType); // sns로그인 타입 저장 // ex) kakao
+			String hashingPw = hashing.setEncryption("snspassword", vo.getMember_id()); // 임의 비밀번호
+			vo.setMember_pw(hashingPw);
 		}
 		
-		vo.setLogType(1);
 		ModelAndView mav = new ModelAndView();
 		RegisterVO logvo = new RegisterVO();
-		logvo = registerService.loginUser(vo);
-		if(logvo!=null) {
-			if(logvo.getMember_img()==null || logvo.getMember_img().equals("")) {
+		logvo = registerService.loginMember(vo); // 로그인 계정 조회
+		
+		if(logvo!=null) { // 기존 계정 있을 시
+			if(logvo.getMember_img()==null || logvo.getMember_img().equals("")) {  // 프로필 없을 때 기본 이미지
 				logvo.setMember_img("/img/etc/basic_profile.png");				
 			}
-			session.setAttribute("userId", logvo.getMember_id());
-			session.setAttribute("userNick", logvo.getNick());
-			session.setAttribute("userImg", logvo.getMember_img());
-			session.setAttribute("userLog", 1);
-			
-			mav.setViewName("redirect:/");			
-		} else {
-			if(vo.getSns_type()!=null && !vo.getSns_type().equals("")) { // sns 로그인 - 기존 계정 없을 시
-				// 계정 db 저장하기 ㅡㅡㅡㅡㅡㅡㅡㅡㅡ
+			if(vo.getLogType().equals("1")) {  // 회원
+				session.setAttribute("userId", logvo.getMember_id());
+				session.setAttribute("userNick", logvo.getNick());
+				session.setAttribute("userImg", logvo.getMember_img());
+				session.setAttribute("userLog", 1);
+				mav.setViewName("redirect:/");	
+				
+			} else if(vo.getLogType().equals("2")) { // 강사
+				session.setAttribute("creatorId", logvo.getMember_id());
+				session.setAttribute("creatorNick", logvo.getNick());
+				session.setAttribute("creatorImg", logvo.getMember_img());
+				session.setAttribute("creatorLog", 1);
+				mav.setViewName("redirect:/creator/");	
+				
+			}			
+		} else { // 기존 계정 없을 시
+			if(vo.getSns_type()!=null && !vo.getSns_type().equals("")) { // 첫 sns 로그인 (가입)
+				int cnt=0;
+				if(vo.getLogType().equals("1")) { // 회원
+					cnt = registerService.userAccountJoin(vo); // sns 회원 등록
+					if(cnt>0) {
+						session.setAttribute("userId", logvo.getMember_id());
+						session.setAttribute("userNick", logvo.getNick());
+						session.setAttribute("userImg", logvo.getMember_img());
+						session.setAttribute("userLog", 1);
+						mav.setViewName("redirect:/"); // 회원 홈
+					} else {
+						/////////////
+					}
+				} else if(vo.getLogType().equals("2")) { // 강사
+					cnt = registerService.creatorAccountJoin(vo); // sns 강사 등록
+					if(cnt>0) {
+						session.setAttribute("creatorId", logvo.getMember_id());
+						session.setAttribute("creatorNick", logvo.getNick());
+						session.setAttribute("creatorImg", logvo.getMember_img());
+						session.setAttribute("creatorLog", 1);
+						mav.setViewName("redirect:/creator/");	// 강사 홈
+					} else {
+						////////////////
+					}
+				}
 				mav.setViewName("/register/registerResult");
-			} else {
-				mav.addObject("logType", "회원");
-				mav.setViewName("/register/loginResult");
+			} else { // sns 계정 아니고 일반 계정도 일치하지 않을 때
+				if(vo.getLogType().equals("1")) { // 회원
+					mav.addObject("logTypeStr", "회원");
+				} else if(vo.getLogType().equals("2")) { // 강사
+					mav.addObject("logTypeStr", "크리에이터");
+				}
+				mav.setViewName("/register/loginResult"); // 로그인 폼 페이지로 돌아가기
 			}
 		}
 		return mav;
 	}
 	
 	
-	// 강사 로그인 실행
-	@RequestMapping(value = "/creatorLoginOk", method = RequestMethod.POST)
-	public ModelAndView creatorLoginOk(RegisterVO vo, HttpSession session) throws Exception{
-		if(vo.getSns_type()==null || vo.getSns_type().equals("")) { // 일반 로그인 시
-			// 복호화
-			rsaLog(vo, session);			
-		}
-	
-		vo.setLogType(2);
+	// 관리자 로그인 실행
+	@RequestMapping(value = "/adminLoginOk", method = RequestMethod.POST)
+	public ModelAndView adminLoginOk(RegisterVO vo, HttpSession session) throws Exception{
+		rsaLog(vo, session); // 복호화
+		System.out.println("실행0");
 		ModelAndView mav = new ModelAndView();
 		RegisterVO logvo = new RegisterVO();
-		logvo = registerService.loginUser(vo);
-		if(logvo!=null) {
-			if(logvo.getMember_img()==null || logvo.getMember_img().equals("")) {
-				logvo.setMember_img("/img/etc/basic_profile.png");				
-			}
-			session.setAttribute("creatorId", logvo.getMember_id());
-			session.setAttribute("creatorNick", logvo.getNick());
-			session.setAttribute("creatorImg", logvo.getMember_img());
-			session.setAttribute("creatorLog", 1);
-			
-			mav.setViewName("redirect:/creator/");			
+		System.out.println("실행1");
+		String adminId = registerService.loginAdmin(vo); // 관리자 로그인 계정 조회
+		System.out.println(adminId);
+		if(adminId!=null && !adminId.equals("")) {
+			System.out.println("실행3");
+			session.setAttribute("adminId", adminId);
+			session.setAttribute("adminLog", 1);
+			mav.setViewName("redirect:/admin/");		
 		} else {
+			mav.addObject("logTypeStr", "관리자");
 			mav.setViewName("/register/loginResult");
 		}
 		return mav;
 	}
-	
-	// 카카오 로그인 ----------- 수정할 것
-	@RequestMapping(value = "/kakaoLoginOk")
-	public String kakaoLoginOk(HttpSession session) {
-		
-		session.setAttribute("userLog", 1);
-		return "redirect:/";
-	}
+
 	
 	//// 콜백 ------- 수정할 것
 	@RequestMapping(value = "/callback", method = { RequestMethod.GET, RequestMethod.POST })

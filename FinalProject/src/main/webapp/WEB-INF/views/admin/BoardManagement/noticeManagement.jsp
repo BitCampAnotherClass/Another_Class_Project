@@ -1,115 +1,326 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<style>
-	/*제일겉에있는 Div*/
-	#hQnAWriteD33{width:1200px;height:auto;margin:0 auto;}
-	.hQnAT{width:100%;text-align:center;font-size:32px;font-weight: bold;color:#333;margin:40px 0 40px 0;}
-	.hQnATWT{width:100%;text-align:left;font-size:24px;font-weight: bold;color:#333;margin-left:8px;}
-		
-	#hQnAWriteD33ul{width:100%;height:auto;margin:0 auto;overflow:auto;} /*border:1px solid black;*/
-	#hQnAWriteD33ul>li{width:100%;height:auto;float:left;display:flex;font-size:20px;margin:10px 0 10px 0;padding:8px 0px 15px 0px;;border-bottom:1px solid #ddd;}
-	#hQnAWriteD33ul>li>div:nth-child(1){width:15%;}
-	#hQnAWriteD33ul>li>div:nth-child(2){width:85%;}
-	#hQnAWriteD33ul>li:nth-child(1){border-top:3px solid #333;padding-top:8px;}
-	#labelfor1, #labelfor2, #labelfor3{background-color:rgb(125,125,125);color:white;padding:5px 8px 5px 8px;}
-	#fu span{margin-left:40px;} #fu2 span{margin-left:40px;} #fu3 span{margin-left:40px;}
+<style>	
 	
-	#hQnAWriteSub{width:90%;background-color:#f0f0f0;border:none;height:45px;font-size:1.2rem;}/*제목텍스트박스*/
-	#hQnAWriteCon{width:90%;min-height:500px;background-color:#f0f0f0;border:none;resize:none;overflow:auto;font-size:1.2rem;}/*문의내용텍스트아리아*/
-	#hQnAWriteFile,#hQnAWriteFile2,#hQnAWriteFile3{display:none;}/*파일첨부*/
-	#hQnABut{border:none;justify-content:center;}/*취소 등록 버튼*/
-	#hQnAWCan6{margin:0 20px 0 20px;width:150px;height:50px;font-size:20px;}
-	#hQnAWSubmit9{margin:0 20px 0 20px;width:150px;height:50px;font-size:20px;}
+	#askWhat{width:85%;margin:0 auto;text-align:center;display:flex;margin-top:60px;}
+	#askWhat>li{width:50%;font-size:22px;padding-top:10px;padding-bottom:10px;}
+	#askWhat>li:nth-child(1){color:#464646;}
+	#askWhat>li:nth-child(2){color:#464646;}
+	
+	/*클래스문의,홈페이지문의 자리div*/
+	#askBigDiv{width:85%;height:auto;margin:0 auto;margin-top:30px;position:relative}/*border:1px solid black;*/
+	.askDiv{width:100%;height:auto;}
+	.bigTitle {
+    width: 100%;
+    text-align: center;
+    padding-bottom: 20px;
+}
+.h1style {
+    display: block;
+    font-size: 32px;
+    margin-block-start: 0.9rem;
+    margin-block-end: 0.9rem;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+	/*클래스문의내용*/
+	#classAsk{position:relative;visibility:hidden;}
+	#classAskcontent{width:100%;height:auto;}
+	#classAskcontent>li{height:auto;margin-top:15px;margin-bottom:15px;padding-bottom:10px;border-bottom:1px solid #ddd;}
+	#classAskcontent>li>*{display:block;width:100%;margin-bottom:5px;}
+	#classAskcontent>li>a:nth-child(1){font-size:1.1rem;font-weight:bold;margin-bottom:12px;}/*문의한 클래스명*/
+	#classAskcontent>li>span{font-size:0.8rem;color:#666;padding-left:5px;}/*답변여부,작성일자*/
+	#classAskcontent>li>div:nth-child(1){width:100%;}
+	#classAskcontent>li>div textarea{width:100%;height:auto;background-color:#f0f0f0;font-size:14px;font-color:#333;border:none;resize:none;overflow:auto;padding:10px 0 10px 0px;margin:7px 0 7px 0;}/*문의내용*/
+	.classAskcontentBtn a{background-color:#333;padding:3px 12px 3px 12px;font-size:0.8rem;}/*수정,삭제*/
+	.classAskcontentBtn a:link{color:white;}
+	.classAskcontentBtn a:visited{color:white;}
+	.classAskcontentBtn a:hover{color:#ff385c;}
+	.classAskcontentBtn a:nth-child(2){margin-left:20px;}
+	
+	.classAskcontenttextreplydiv{width:100%;height:auto;overflow:auto;background-color:#f0f0f0;}/*답변*/
+	.classAskcontenttextreplydiv>div{float:left;min-height:100px;height:auto;word-break:break-all}
+	.classAskcontenttextreplydiv>div:nth-child(1){width:12%; padding:2%;}/*강사이미지*/
+	.classAskcontenttextreplydiv>div:nth-child(1) img{width:100%;border-radius:100%;}
+	.classAskcontenttextreplydiv>div:nth-child(2){width:88%;overflow:auto;}/*강사가 작성한 답변내용*//*auto?scroll세로?*/
+	.classAskcontenttextreplydiv>div:nth-child(2)>span{display:block;margin-top:3px;}
+	.classAskcontenttextreplydiv>div:nth-child(2)>span:nth-child(2){font-size:0.8rem;color:#666;}
+	
+	/*홈페이지문의내용*/
+	#homepageAsk{position:absolute;visibility:hidden;}
+	.homeAskcontent{width:100%;}
+	.homeAskcontent>li{width:20%;float:left;border-bottom:1px solid #ddd;height:50px;padding:10px 0 10px 0;text-align:center;}
+	.homeAskcontent>.homeAskTli{border-bottom:2px solid #999;}
+	/*.homeAskcontent>li:nth-child(4n+1){width:10%;}
+	.homeAskcontent>li:nth-child(4n+2){width:60%;white-space:nowrap;overflow:hidden;text-overflow: ellipsis;}
+	.homeAskcontent>li:nth-child(4n+3){width:15%;}
+	.homeAskcontent>li:nth-child(4n+4){width:15%;}
+	/*.classAskTbl{background-color:#ff385c;}*/
 	
 </style>
 <script>
-	$(()=>{
+	$(function(){ 
+		var logid = "${userId}"; // 세션에저장된아이디		
 		
-	    $("#hQnAWriteFile").change(function(event){
-	    	var imageFile = event.target.files[0];
-	        console.log(imageFile.name);
-	        var reader = new FileReader();
-	        reader.onload = (e) => {
-				$("#fu").children().attr("src", e.target.result);
-	            $("#uploaded").html(imageFile.name);	              
-	        };
-	           reader.readAsDataURL(imageFile);           
-	    });		
-	    $("#hQnAWriteFile2").change(function(event){
-	    	var imageFile = event.target.files[0];
-	        console.log(imageFile.name);
-	        var reader = new FileReader();
-	        reader.onload = (e) => {
-				$("#fu2").children().attr("src", e.target.result);
-	            $("#uploaded2").html(imageFile.name);	              
-	        };
-	           reader.readAsDataURL(imageFile);           
-	    });
-	    $("#hQnAWriteFile3").change(function(event){
-	    	var imageFile = event.target.files[0];
-	        console.log(imageFile.name);
-	        var reader = new FileReader();
-	        reader.onload = (e) => {
-				$("#fu3").children().attr("src", e.target.result);
-	            $("#uploaded3").html(imageFile.name);	              
-	        };
-	           reader.readAsDataURL(imageFile);           
-	    });
-	    
-	    
-		$("#hQnAWCan6").click(()=>{//취소버큰 클릭 -> 목록으로돌아가기
-			$("#hQnAWriteD33ulFrm").attr("action", "/another/HomeQnAAsk/list" );
-			$("#hQnAWriteD33ulFrm").submit();			
+	  $("#classAskT").on({			
+			click:function(){				
+				getClassAsk();
+				//마우스오버가 발생하면 실행할 실행문
+				$(this).css('color','#ff385c');
+				$("#classAsk").css("visibility","visible");				
+				$("#homepageAskT").css('color','#464646');
+				$("#homepageAsk").css("visibility","hidden");			
+			}			
 		});
-		
-		$("#hQnAWSubmit9").click(()=>{//등록		
-			$("#hQnAWriteD33ulFrm").attr("action", "/another/HomeQnAAsk/writeOk" );
-			$("#hQnAWriteD33ulFrm").submit();			
-		});
-	});
 	
+	  $("#homepageAskT").on({			
+			click:function(){				
+				getHomeAsk();//홈페이지리스트가져오는 함수문					
+				//마우스오버가 발생하면 실행할 실행문
+				$(this).css('color','#ff385c');
+				$("#homepageAsk").css("visibility","visible");				
+				$("#classAskT").css('color','#464646');
+				$("#classAsk").css("visibility","hidden");					
+			}			
+		});
 
+		//세션아이디기 가지고 회원이 작성한 홈페이지문의 목록 가져오기
+		function getHomeAsk(){
+			var hUrl ="/another/HomeAskReplyList999";
+			var hParam = {"logid":logid} //세션에 저장된 로그인한 회원아이디	    	
+			$.ajax({
+				url:hUrl,
+				data :hParam,
+				success:function(h){//hParam가지고 hUrl로 이동해서 h에 데이터가져옴
+					var hh = $(h)
+	    			var tag =""; 	
+						tag +="<li class='homeAskTli' style='width:10%;background-color:#f0f0f0;'>No.</li>";
+						tag +="<li class='homeAskTli' style='width:60%;white-space:nowrap;overflow:hidden;text-overflow: ellipsis;background-color:#f0f0f0;'>제목</li>";
+						tag +="<li class='homeAskTli' style='width:15%;background-color:#f0f0f0;'>작성일자</li>";
+						tag +="<li class='homeAskTli'  style='width:15%;background-color:#f0f0f0;'>답변여부</li>";
+					hh.each(function(idx,vo){						
+						tag +="<li style='width:10%;padding-top:17px;'>"+vo.user_qna_no+"</li>";	
+						tag +="<li style='width:60%;white-space:nowrap;overflow:hidden;text-overflow: ellipsis;'>"+vo.title+"</li>";
+						tag +="<li style='width:15%;padding-top:17px;'>"+vo.writedate+"</li>";
+						if(vo.replycount == 1){
+							tag +="<li style='width:15%;'>미답변</li>";
+						}else{
+							tag +="<li style='width:15%;'>답변완료</li>";
+						}
+						tag+="<li  class='conconli' style='width:100%;min-height:100px;height:auto;background-color:#f0f0f0;display:none;'>";//id값,안보이게........
+						tag +="<div  style='width:100%;word-break:break-all;padding-left:62px;text-align:left;'>"+vo.content+"</div>";// ->토글로
+						tag +="</li>"
+						if(vo.replycount ==2){
+								//답글
+							tag+="<li  class='reprepli' style='width:100%;min-height:100px;height:auto;display:none;'>";
+							tag +="<div  style='width:100%;word-break:break-all;padding-left:62px;text-align:left;'>"+vo.replyContent+"</div>";
+							tag +="</li>"
+						}
+						//tag +="<li>"
+						//<div><input type="button" value="수정"><input type="button" value="삭제"></div> -> 누르면이동
+						//tag +="</li>"
+						$("#homeAskcontent").html(tag);  
+					});	
+				}
+			})
+	  }
+		//세션아이디기 가지고 회원이 작성한 클래스문의 목록 가져오기
+	function getClassAsk(){
+			var cUrl ="/another/ClassAskReplyList999";
+			var cParam = {"logid":logid}
+			$.ajax({
+				url:cUrl,
+				data : cParam,
+				success:function(c){
+					var cc = $(c)
+	    			var tag =""; 	
+					cc.each(function(idx,vo){//vo -> 
+					console.log("클래스문의가져옴");
+						tag += "<li>";
+						tag +="<a href='#'>[ "+vo.category_name +" ] "+vo.class_name+"</a>";
+						//var a = vo.class_no
+						//console.log(a);
+						if(vo.replycheck == 0){
+							tag +="<span>미답변</span>";
+						}else{
+							tag +="<span>답변완료</span>";
+						}
+						
+						tag +="<span>"+vo.classqna_writedate+" 작성</span>";
+						tag +="<div>";
+						tag += "<textarea  style='padding-left:25px;' name='classAskcontenttext' readonly disabled >"+vo.classqna_content+"</textarea>";
+						tag +="</div>";
+						
+						if(vo.replycheck == 0){
+							tag +="<div'><a href='#'>수정</a><a href='#'>삭제</a></div>"
+						}else{
+							tag +="<div><a href='#'>삭제</a></div>"; //style='display:none;'
+						}
+						
+						if(vo.replycheck == 1){
+							tag +="<div class='classAskcontenttextreplydiv'>";
+							tag +="<div><a href='#'><img src='img/jisu/profileimg.jpg'/></a></div>";//vo.creator_img
+							tag +="<div>";
+							tag +="<span>"+vo.creator_nick+"</span>";
+							tag +="<span>"+vo.classqnacom_writedate+"</span>";
+							tag+="<textarea name='classAskcontenttextreply' readonly disabled >"+vo.creator_reply+"</textarea>";
+							tag+="</div>";
+							tag+="</div>";
+							tag+="</li>";
+						}
+						$("#classAskcontent").html(tag);  
+					});						
+				}				
+			})
+		}	
+		
+		
+		
+		//$().click(function()=>{
+			
+		//});
+	});
 </script>
-	<div id="hQnAWriteD33">
-		<div class="hQnAT">홈페이지문의</div> <!-- 페이지 타이틀 -->
-		
-		<div class="hQnATWT">1:1문의</div>
-		
-		<form method="post" id="hQnAWriteD33ulFrm">
-			<ul id="hQnAWriteD33ul">
-				<li>
-					<div>회원정보</div>
-					<div>${userId}</div>	<!-- 세션에저장되어잉ㅆ는아이디 -->
-				</li>
-				<li>
-					<div>제목</div>
-					<div><input type="text" name="title" id="hQnAWriteSub" ></div>	
-				</li>
-				<li>
-					<div>문의내용</div>
-					<div><textarea name="content" id="hQnAWriteCon"></textarea></div>	
-				</li>
-				<li id="fu">
-					<div>파일첨부</div>
-					<div><input type="file" name="file1" id="hQnAWriteFile">
-					<label for="hQnAWriteFile" id="labelfor1">파일선택</label><span id="uploaded"></span></div>	
-				</li>
-				<li id="fu2">
-					<div>파일첨부</div>
-					<div><input type="file" name="file2" id="hQnAWriteFile2">
-					<label for="hQnAWriteFile2" id="labelfor2">파일선택</label><span id="uploaded2"></span></div>	
-				</li>
-				<li id="fu3">
-					<div>파일첨부</div>
-					<div><input type="file" name="file3" id="hQnAWriteFile3">
-					<label for="hQnAWriteFile3" id="labelfor3">파일선택</label><span id="uploaded3"></span></div>	
-				</li>
-				<li id="hQnABut">
-				<input type="button" name="hQnAWCan6" id="hQnAWCan6" value="취소"/><input type="button" name="hQnAWSubmit9" id="hQnAWSubmit9" value="등록"/>
-				</li>				
+
+
+
+	<div class="bigTitle"><span class="h1style" >공지사항 관리</span></div>
+	<ul id="askWhat"><li id="classAskT" class="atitlediv">크리에이터 공지사항</li><li id="homepageAskT" class="atitlediv">고객 공지사항</li></ul>	
+	<div id="askBigDiv">		
+		<!-- 홈페이지문의  -->
+		<div id="homepageAsk" class="askDiv">
+			<ul class="homeAskcontent" id="homeAskcontent">
 			</ul>
-			
-			
-		</form>
+		</div>		
+		<!--클래스문의 -->
+		<div id="classAsk"class="askDiv">
+			<ul id="classAskcontent">					
+				
 		
+			</ul>
+		</div>
+	</div>	
+
+<style>
+	a:link, a:visited{text-decoration:none;color:#333;}
+	#hQnAD{width:1200px;height:auto;margin:0 auto;}
+	.hQnAT{width:100%;text-align:center;font-size:32px;font-weight: bold;color:#333;margin:40px 0 40px 0;}
+	
+	/*리스트*/
+
+	#hQnWrite{width:100%;margin:0 auto;}
+	#hQnAList{width:100%;height:auto;margin:0 auto;overflow:auto; padding-left:180px;}
+	#hQnAListUl{width:100%;text-align:center;height:auto;overflow:auto;}
+	
+	.hQnAListFli10,.hQnAListFli{float:left;width:10%;height:60px;line-height:60px;border-bottom:1px solid #ddd;}
+	.hQnAListFli1,.hQnAListFli101{width:10%}
+	.hQnAListFli2,.hQnAListFli102{width:56%;white-space:nowrap;overflow:hidden;text-overflow: ellipsis;text-align:left;}
+	.hQnAListFli4,.hQnAListFli104{width:14%}
+	
+	.hQnAListFli{border-bottom:1px solid black;margin-top:10px;background-color:#f0f0f0;font-weight:bold;font-size:1.1rem;} /*리스트타이틀*/	
+
+	#hQnWrite{height:auto;text-align:right;margin-bottom:15px;margin-top:30px;padding-right:205px;}/*글쓰기 버튼div*/
+	#hQnWritelab{padding:7px 15px 7px 15px;background-color:#464646;font-size:18px;}/*글쓰기 버튼div*/
+	
+	/*답변
+	.replyNo,.replysort{visibility:hidden;} */
+	.replySubject{text-align:left;}
+	
+	/*리스트
+
+	#hQnWrite{width:100%;margin:0 auto;}
+	#hQnAList{width:100%;height:auto;margin:0 auto;overflow:auto;}
+	#hQnAListUl{width:100%;text-align:center;height:auto;overflow:auto;}
+	
+	#hQnAListUl>li{float:left;width:10%;height:60px;line-height:60px;border-bottom:1px solid #ddd;}
+	#hQnAListUl>li:nth-child(5n+1){width:10%}
+	#hQnAListUl>li:nth-child(5n+2){width:56%;white-space:nowrap;overflow:hidden;text-overflow: ellipsis;text-align:left;}
+	#hQnAListUl>li:nth-child(5n+4){width:14%}
+	
+	.hQnAListFli{border-bottom:1px solid black;margin-top:10px;background-color:#f0f0f0;font-weight:bold;font-size:1.1rem;} /*리스트타이틀*/	
+/*
+	#hQnWrite{height:auto;text-align:right;margin-bottom:15px;margin-top:10px;padding-right:7px;}/*글쓰기 버튼div*/
+/*	#hQnWritelab{padding:7px 15px 7px 15px;background-color:#464646;font-size:18px;}/*글쓰기 버튼div*/
+	
+	/*답변
+	
+	.replySubject{text-align:left;}*/
+	
+</style>
+<script>
+
+	$(()=>{
+		//셋팅된리스트에 답변부분 설정
+//		if($("#hQnAListUl>li:nth-child(5n+5)") == 2){
+//			$("#hQnAListUl>li:nth-child(5n+5)").html("답변완료");
+//		}else if($("#hQnAListUl>li:nth-child(5n+5)") == 1){
+//			$("#hQnAListUl>li:nth-child(5n+5)").html("미답변");
+//		}
+		
+		$("#hQnWritelab").click(function(){
+			var logid = "${userId}";
+	    	console.log(logid);
+			if(logid=== null || logid=== ""){
+				alert("로그인 후 문의작성 가능합니다");
+			}else{
+				location.href="/another//HomeQnAAsk/write"
+			}	    	
+		});
+		
+	});
+	</script>
+
+	<div id="hQnAD">
+
+	<!-- <div id="hQnWrite"><label id="hQnWritelab"><a href="<%=request.getContextPath()%>/HomeQnAAsk/write" style="color:white;">문의하기</a></label></div> <!-- 글쓰기버튼 -->
+	
+	<div id="hQnAList"> <!-- 게시판리스트 -->
+		<ul id="hQnAListUl">
+			<li  class="hQnAListFli hQnAListFli1">No.</li>
+			<li  class="hQnAListFli hQnAListFli2" style="text-align:center">글제목</li>
+			<li  class="hQnAListFli hQnAListFli4">작성일자</li>
+
+		<c:forEach var="vo" items="${list }">	
+		
+			<!-- 글번호 -->
+			<c:set var="board_no2" value="${vo.board_no2}" />	
+			<c:if test="${board_no2 eq 0 }"> 
+				<li class="hQnAListFli10 hQnAListFli101">${vo.user_qna_no}</li>
+			</c:if>
+			<c:if test="${board_no2 eq 1 }"> 
+				<li class="hQnAListFli10 hQnAListFli101"><label style="visibility:hidden;">${vo.user_qna_no}</label></li>
+			</c:if>
+			<!-- 글제목 -->
+			<c:if test="${board_no2 eq 0 }">
+				<li class="hQnAListFli10 hQnAListFli102"><a href="<%=request.getContextPath()%>/HomeQnAAsk/view?no=${vo.user_qna_no}">${vo.title }</a></li>
+			</c:if>
+			<c:if test="${board_no2 eq 1 }">
+				<li class="hQnAListFli10 hQnAListFli102"><a href="<%=request.getContextPath()%>/HomeQnAAsk/view?no=${vo.user_qna_no}">&ensp;&ensp;&ensp;<label style="color:blue;">[Re]</label> ${vo.title }</a></li>
+			</c:if>
+			
+			<li class="hQnAListFli10 hQnAListFli103">${vo.member_id }</li>
+			<li class="hQnAListFli10 hQnAListFli104">${vo.writedate }</li>
+			
+			<!-- 답변여부: 답변완료/미답변 <li class="hQnAListFli10 hQnAListFli105">${vo.replycount}</li> -->
+			<c:set var="replycount" value="${vo.replycount}" />							
+			<c:if test="${replycount eq 2 && board_no2 eq 0 }"> 
+				<li class="hQnAListFli10 hQnAListFli105">답변완료</li>
+			</c:if>
+			<c:if test="${replycount eq 2 && board_no2 eq 1 }"> 
+				<li class="hQnAListFli10 hQnAListFli105"></li>
+			</c:if>
+			<c:if test="${replycount eq 1}"> 
+				<li class="hQnAListFli10 hQnAListFli105">미답변</li>
+			</c:if>
+			
+			
+			<input type="hidden" value="${vo.board_no2 }"/>
+		</c:forEach>
+			
+		</ul>
+	
 	</div>
+</div>
+<div id="hQnWrite"><label id="hQnWritelab" style="color:white;">새글작성</label></div> <!-- 글쓰기버튼 -->
+

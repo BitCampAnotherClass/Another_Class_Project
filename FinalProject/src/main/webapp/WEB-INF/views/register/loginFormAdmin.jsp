@@ -6,10 +6,6 @@
 		<div class="contents">
 			<!-- 로그인 박스 -->
 			<div class="login-wrap">
-				<ul class="tab-login">
-					<li class="tab-login-user on"><a href="#none">회원 로그인</a></li>
-					<li class="tab-login-creator"><a href="#none">강사 로그인</a></li>
-				</ul>
 				<div class="input-login-wrap">
 					<!-- 보여지는 로그인폼 -->
 					<div class="id-pw-wrap">
@@ -25,7 +21,7 @@
 						<input type="hidden" id="RSAExponent" value="${RSAExponent }"/>
 					</div>
 					<!-------- 실제 넘어가는 로그인 폼 --------->
-					<form id="frmLogin" name="frmLogin" method="post" action="loginOk">
+					<form id="frmLogin" name="frmLogin" method="post" action="adminLoginOk">
 						<div class="secret-id-pw-wrap">
 							<input type="hidden" id="member_id" name="member_id"/>
 							<input type="hidden" id="member_pw" name="member_pw"/>
@@ -39,18 +35,7 @@
 					<!-- // 로그인 버튼 - 자바스크립트 미설치 시 로그인 실패 화면-->
 					<div class="btn-login-wrap">
 						<a href="#" onclick="validateFrm(); return false;" id="basicLogin" class="btn-login">
-							회원 로그인
-						</a>
-					</div>
-					
-					<div class="kakao-login">
-						<a href="javascript:void(0);" onclick="kakaoLogin();" id="kakaoLogin" class="btn-login">
-							<span>카카오톡 아이디로 시작하기</span>
-						</a>
-					</div>
-					<div class="naver-login">
-						<a href="#" id="naverLogin" class="btn-login">
-							<span>네이버 아이디로 시작하기</span>
+							관리자 로그인
 						</a>
 					</div>
 					
@@ -71,5 +56,20 @@
 			<!-- // 로그인 박스 -->
 		</div>	
 		
-		
+
+
 <%@ include file="/inc/register_footer.jspf" %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

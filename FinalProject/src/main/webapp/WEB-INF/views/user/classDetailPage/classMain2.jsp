@@ -102,11 +102,9 @@
 	
 </style>
 <script>
-	$(function(){		
-		
+$(function(){			
 		var maxheadcount = "${vo.max_headcount}"; //이 클래스의 최대인원
-		console.log(maxheadcount);
-		
+		console.log(maxheadcount);		
 		/*
 		<div id="d4"> <!-- 메뉴 -->					
 			<ul class="menu_title_container">
@@ -124,39 +122,23 @@
         		var offset = $("#d" + seq).offset();
         		$('html, body').animate({scrollTop : offset.top}, 400);
     	}
-
-
-
-		*/
-		
+		*/		
 		/*
 		$('#d4 li').click(function(){	
 			$(this).children('a').css('color','#ff385c'); //글자색
 			$(this).css('border-bottom','3px solid #ff385c'); //li밑줄색 			
 			$('#d4 li').not(this).children('a').css('color','black'); //글자색
 			$('#d4 li').not(this).css('border-bottom','2px solid #999');	//li밑줄색 
-		});			
-		
-		
-		
+		});					
 		$(document).on('click','#d4 li',function(){			
-		
 		//클릭한 li의 id값을 가져와서 
 		//$()안에넣는다
 		var id =  $(this).attr("id");
 		var offset = $("#"+id).offset();
 		console.log(offset);
-		$('html, body').animate({scrollTop : offset.top}, 400);
-		
-		
-		
-		
-		
+		$('html, body').animate({scrollTop : offset.top}, 400);		
 		});	
-		*/
-			
-	
-		
+		*/	
 	    $(function(){//달력
 	         $('.datepicker').datepicker({
 	        	 dateFormat: 'yy-mm-dd'
@@ -193,8 +175,7 @@
 	    					console.log(a+"a");
 	    				   }else{
 	    					tag +="<div>신청마감</div>";  
-	    				}
-	    				
+	    				}	    				
 	    				tag +="</div>";
 	    				 $("#selectClassListd").html(tag);		    				
 	    			});
@@ -258,28 +239,21 @@
 	    		success:function(a){//문의글리스트가 담겨져잇음
 	    			var aa = $(a)
 	    			var tag =""; 	    			
-					aa.each(function(idx,vo4){
-						
+					aa.each(function(idx,vo4){						
 						console.log("문의글함수 데이터success");	
 	    					tag +="<li>";
 	    					tag +="<div class='askdiv909'>";
 	    					tag += "<div><img src='img/jisu/creatorprofile.png'/></div>"; //작성자이미지  vo4.member_img
 	    					tag +="<div>";
-	    					tag +="<div><label>"+ vo4.classqna_member_id+" | "+ vo4.classqna_writedate+" 작성</label></div>"; // 멤버아이디가 나일때 ->글 수정 삭제 버튼 보이게....
-	    					
-	    					
-	    					
-	    					tag +="<div><label>"+ vo4.classqna_content+"</label><label>"; //내용
-	    					
+	    					tag +="<div><label>"+ vo4.classqna_member_id+" | "+ vo4.classqna_writedate+" 작성</label></div>"; // 멤버아이디가 나일때 ->글 수정 삭제 버튼 보이게....    					
+	    					tag +="<div><label>"+ vo4.classqna_content+"</label><label>"; //내용	    					
 	    					if(vo4.replycheck==1){
 	    						tag +=	"<label><input type='button' value='답변확인' style='float:right;' class='"+vo4.class_qna_no+"' id='replyshow' ></label>";
 	    					}else{
 	    						tag += "<label><input type='button' value='미답변' style='float:right;'></label>";
-	    					}	    					
-	    					
+	    					}	    						    					
 	    					tag += "</div></div> ";
-	    					tag += "</div> ";    					
-	    					
+	    					tag += "</div> ";    			    					
 	    					if(vo4.replycheck==1){//답변이 있으면 답변번호도 더해준다
 	    						tag +="<div class='askdiv808' id='"+vo4.class_qna_no+"' style='display:none;'></div>";	    					 					
 	    					}    				
@@ -290,8 +264,7 @@
 	    	})	    	
 	    }	   
 	  function AskReply(no){//댓글 가져오는 함수  
-		   console.log("댓글 세팅");		   
-	  	  
+		   console.log("댓글 세팅");		  	  
 		   var rUrl ="/another/classDetailAskReplyList";
 	       var rParam = {"no":no} //댓글테이블에 문의글번호 넣어서 문의글에 대한 댓글정보 가져옴	      
 	       $.ajax({
@@ -325,8 +298,7 @@
 	   
 	  //문의글작성 ajax
 	  $(document).on('click','#replysub',function(){
-		  var logid = "${userId}";//세션값에 저장된 로그id
-		  
+		  var logid = "${userId}";//세션값에 저장된 로그id		  
 		  if($("#classMainAskTa").val()==""){
 				alert("댓글을 입력후 등록하세요");
 		  }else if(logid=== null || logid=== ""){
@@ -351,67 +323,48 @@
 			}
 	  });
 	
-	//결제하기버튼 누르면 이동
-	//체크값 가지고 이동 -> //신청인원이 최대인원보다 크면 마감 //	//$(document).on('click','#gopayB',function(){	
-		
+	//결제하기버튼 누르면 이동	
 	$(document).on('click','#gopayB',function(){			
-		 alert('aaaaa');
-		console.log("결제하기눌렷다");
 		var logid = "${userId}";    	
 		if(logid=== null || logid=== ""){
 			alert("로그인 후 이용가능합니다");
 		}else{
-			 // checkedclassoption : 체크박스
-			 // payfrm : form name
 			if(payfrm.classNoPayList.checked != true){ //체크안되면 알림창
 				alert("신청할 클래스를 선택해주세요"); 
 				return false; 
-			}			 
-			alert('bbbb');
-			 $("#payfrm").attr("action", "/another/PayPage");
-			 var lst = $("#payfrm").serialize();
-			 alert(lst);
+			}			 			
+			 $("#payfrm").attr("action", "/another/PayPage");			
 		     $("#payfrm").submit();
 		}	 
 	});
 	
-	/*
-	function getCheckboxValue()  {
-		  // 선택된 목록 가져오기
-		  var query = 'input[name="class_option_no"]:checked';
-		  var selectedEls = 
-		      document.querySelectorAll(query);
-		  
-		  // 선택된 목록에서 value 찾기
-		  let result = '';
-		  selectedEls.forEach((el) => {
-		    result += el.value + ' ';
-		  });
-		  
-		  // 출력
-		  document.getElementById('#result999').innerText
-		    = result;
-		}
+	//장바구니버튼 이동 -> 디비에저장 , 장바구니페이로 갈건지 물어보고 ㅇㅋ 하면 이동 아니면 이동x	
+	$(document).on('click','#gobasketB',function(){
+		var logid = "${userId}";    	
+		if(logid=== null || logid=== ""){
+			alert("로그인 후 이용가능합니다");
+		}else{
+			if(payfrm.classNoPayList.checked != true){ //체크안되면 알림창
+				alert("클래스를 선택해주세요"); 
+				return false; 
+			}			 			
+			 $("#payfrm").attr("action", "/another/InsertBasketDB");			
+		     $("#payfrm").submit();
+		}	 
+	
+	});
 	
 	
 	
-	
-
-	*/
-		function fnMove(seq){		
-			
+	//메뉴바 버튼 클릭하면 이동
+		function fnMove(seq){			
 			var offset = $("#d" + seq).offset();
 			console.log(offset.top);
 			//$('html, body').animate({scrollTop : offset.top}, 400);
-		}
-	
-	
-	
+		}	
 	LikeCount(); //좋아요수 셋팅
 	AskList(); //문의 셋팅
-
-	});
-	
+});	
 
 </script>
 
@@ -455,8 +408,7 @@
 				<div class="menutitle"><span>클래스소개</span></div>
 				<div>		
 					${vo.class_content }				
-				</div>
-				
+				</div>				
 			</div>
 			<div id="d6" class="menu"> <!-- 강사소개 -->
 				<div class="menutitle"><span>강사소개</span></div>
@@ -510,8 +462,7 @@
 			</div>
 			<div id="d8" class="menu"> <!-- 후기 -->
 				<div class="menutitle"><span>후기</span></div>
-			</div>
-			
+			</div>			
 			<div id="d9" class="menu"> <!-- 문의 -->
 				<div class="menutitle"><span>문의</span></div>
 				<div id="d9_2"><!-- 댓글내용 -->
@@ -558,11 +509,6 @@
 					<!--  장바구니,결제하기 -> 옵션클래스번호가지고이동  -->		
 					<div id="buttonhomec"><input type="button" value="장바구니" id="gobasketB" style="border-radius:5px;"/><input type="button" value="클래스 신청하기" id="gopayB" style="border-radius:5px;"/></div>
 				</form>
-				
-				
-				
-				
-				
 				<input type="text" id="inputdatebox" style="visibility:hidden;" />
 			</div>
 	</div>

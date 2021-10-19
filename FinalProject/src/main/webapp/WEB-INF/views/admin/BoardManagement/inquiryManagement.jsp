@@ -185,8 +185,8 @@
 
 
 
-	<div class="bigTitle"><span class="h1style" >자주묻는질문 관리</span></div>
-	<ul id="askWhat"><li id="classAskT" class="atitlediv">크리에이터 자주묻는질문</li><li id="homepageAskT" class="atitlediv">고객 자주묻는질문</li></ul>	
+	<div class="bigTitle"><span class="h1style" >문의 관리</span></div>
+	<ul id="askWhat"><li id="classAskT" class="atitlediv">크리에이터 문의</li><li id="homepageAskT" class="atitlediv">고객 문의</li></ul>	
 	<div id="askBigDiv">		
 		<!-- 홈페이지문의  -->
 		<div id="homepageAsk" class="askDiv">
