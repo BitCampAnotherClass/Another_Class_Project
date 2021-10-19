@@ -7,7 +7,10 @@ public class UserPayVO {
 	/*여러개의 클래스옵션번호를 담을 변수*/	
 	private int[] classNoPayList;
 	
-	/*클래스옵션가지고 장바구니디비에 추가*/
+	
+	
+	
+	/*클래스옵션가지고 장바구니디비에 추가*/	
 	private int[] classinsertBasket;
 	
 	/*주문자정보*/
