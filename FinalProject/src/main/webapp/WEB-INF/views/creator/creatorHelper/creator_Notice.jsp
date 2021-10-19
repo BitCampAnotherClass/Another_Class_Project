@@ -88,7 +88,9 @@ body, table, input, select, textarea {
     color: rgb(98, 96, 95);
 }
 #fag {
-    margin: 50px 50px 50px 50px;
+    margin: 50px auto;
+    width:1200px;
+    padding-left: 0px;
 }
 .q{color:#ff385c;font-size: 1.2em; font-weight: bold; padding-right:10px;}
 

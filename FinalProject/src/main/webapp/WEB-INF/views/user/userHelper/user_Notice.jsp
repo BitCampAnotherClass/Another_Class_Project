@@ -32,6 +32,11 @@ td, div, p, li, dt, dd, input, textarea, select, h1, h2, h3, h4, h5 {
     font-weight: normal;
     word-break: break-all;
 }
+#fag {
+    margin: 50px auto;
+    width:1200px;
+    padding-left: 0px;
+}
 .fagArea {
     position: relative;
     margin: 0 auto;
@@ -87,9 +92,7 @@ body, table, input, select, textarea {
     font-weight: normal;
     color: rgb(98, 96, 95);
 }
-#fag {
-    margin: 50px 50px 50px 50px;
-}
+
 .q{color:#ff385c;font-size: 1.2em; font-weight: bold; padding-right:10px;}
 
 .wrapper{}
