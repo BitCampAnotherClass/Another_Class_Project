@@ -9,4 +9,6 @@ public interface MemberMangementDAO {
 	public List<RegisterVO> MemberList(int numberList, int numberLimitCal);
 	
 	public int boardLimit();
+	
+	public List<RegisterVO> MemberAccountInfo(String idCheck);
 }

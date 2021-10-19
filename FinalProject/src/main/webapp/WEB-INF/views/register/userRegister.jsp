@@ -71,11 +71,14 @@
 									<span class="register_input-outline" id="register_input_email">
 										<span class="register_input-box">
 											<input type="text" id="member_email_id" name="member_email_id" class="register_input_email" placeholder="이메일" autocomplete=”off” maxlength="15"/>
+											
 										</span>
 									</span>
+									<span class="member_email_AtSign">@</span>	
 									<span class="register_input-outline" id="register_input_email_addr">
-										<span class="register_input-box">	
-											<input type="text" id="member_email_addr" name="member_email_addr" class="register_input_email" placeholder="이메일" autocomplete=”off” maxlength="15"/>
+										<span class="register_input-box">
+										
+											<input type="text" id="member_email_addr" name="member_email_addr" class="register_input_email" placeholder="직접입력" autocomplete=”off” maxlength="12"/>
 										</span>
 									</span>
 									<label id="register_emailCh_text"></label>	
