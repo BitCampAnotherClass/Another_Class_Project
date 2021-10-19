@@ -301,32 +301,28 @@ $(function(){
 		if(logid=== null || logid=== ""){
 			alert("로그인 후 이용가능합니다");
 		}else{
-			if(payfrm.classNoPayList.checked != true){ //체크안되면 알림창
-				alert("신청할 클래스를 선택해주세요"); 
+				if(payfrm.classNoPayList.checked != true){ //체크안되면 알림창
+				console.log('testing');
 				return false; 
-			}			 			
+			}		 			
 			 $("#payfrm").attr("action", "/another/PayPage");			
 		     $("#payfrm").submit();
 		}	 
 	});	
-	//장바구니버튼 이동 -> 디비에저장 , 장바구니페이로 갈건지 물어보고 ㅇㅋ 하면 이동 아니면 이동x	
+	//장바구니버튼 이동 -> 디비에저장 , 장바구니페이로 갈건지 물어보고 ㅇㅋ 하면 이동 아니면 이동x	-> 페이컨트롤러로감...
 	$(document).on('click','#gobasketB',function(){//insert
 		var logid = "${userId}";    	
 		if(logid=== null || logid=== ""){
 			alert("로그인 후 이용가능합니다");
 		}else{
-			if(payfrm.classNoPayList.checked != true){ //체크안되면 알림창
-				alert("클래스를 선택해주세요"); 
-				return false; 
-			}			 			
-			 $("#payfrm").attr("action", "/anotherㄴ");			
+			//if(payfrm.classNoPayList.checked != true){ //체크안되면 알림창
+			//	alert("클래스를 선택해주세요"); 
+			//	return false; 
+			//}			 			
+			 $("#payfrm").attr("action", "/another/InsertBasketDB");			
 		     $("#payfrm").submit();
 		}		
-	});
-	
-	
-	
-	
+	});	
 	
 	$(document).on('click','#classcontent',function(){
 		var offset = $("#d5").offset().top;	

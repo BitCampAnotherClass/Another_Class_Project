@@ -17,9 +17,10 @@
   	</select>
   	<select id="userInfo" resultType="com.anotherclass.bitcamp.vo.user.UserPayVO">
   		<![CDATA[
-		  	select member_name, member_tel, member_email 
-			from membertbl
-			where member_id= #{param1}
+		  	select a.member_name, a.member_tel, a.member_email , b.point
+			from membertbl a, usertbl b
+			where a.member_id = b.member_id
+			and a.member_id = #{param1}
 		]]>
   	</select>
   	<insert id="saveBasket" parameterType="com.anotherclass.bitcamp.vo.user.UserPayVO">
