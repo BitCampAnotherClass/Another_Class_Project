@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.anotherclass.bitcamp.service.user.UserPayService;
@@ -28,16 +29,22 @@ public class UserPayController {
 		//클래스옵션테이블+클래스+주문테이블에서 원하는 정보 받아와서 vo여러개를 list로 담아와서
 		//mav에 저장해주고
 		//뷰에서 받아온 리스트를 반복문 돌려서 셋팅
-		List<Integer>  list2 = vo.getClassNoPayList();
-		System.out.println("ss"+list2);
+//		List<UserPayVO>  list2 = vo.getClassNoPayList();
+//		System.out.println("ss"+list2);		
+		mav.addObject("list",userPayService.userPayAllselect(vo.getClassNoPayList())); // 여기가문제??
+		List<UserPayVO> list =  userPayService.userPayAllselect(vo.getClassNoPayList());
 		
-		mav.addObject("list",userPayService.userPayAllselect(list2)); // 여기가문제??
 		mav.setViewName("/user/pay/payPage_info");
 		return mav;
 	}
 	
-
-	
+	@RequestMapping("/memInfo")
+	@ResponseBody
+	public UserPayVO ajaxMemInfo(String logid) {
+		UserPayVO vo =  userPayService.userInfo(logid);
+		return vo;
+		
+	}
 	
 	
 }

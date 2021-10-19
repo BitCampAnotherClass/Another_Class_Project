@@ -3,19 +3,24 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="com.anotherclass.bitcamp.dao.user.UserPayDAO">
-  	<select id="userPayAllselect" parameterType="com.anotherclass.bitcamp.vo.user.UserPayVO" resultType='list'>
-  		
-  		select b.class_name, b.class_price, b.class_thumb, a.nick, to_char(c.start_date,'yyyy-MM-DD HH:MM') start_date
-		from membertbl a, classtbl b , classoption c
-		where a.member_id <![CDATA[ =  ]]>b.member_id
-		and b.class_no <![CDATA[ =  ]]>c.class_no 
-		and
-         <foreach item="list2" index="index" collection="list" open="(" separator="," close=")">
-          c.class_option_no in
-         #{list2}
-         </foreach> 	
-        
+  	<select id="userPayAllselect"  resultType="com.anotherclass.bitcamp.vo.user.UserPayVO">  		
+  		<![CDATA[
+	  		select b.class_name, b.class_price, b.class_thumb, a.nick, to_char(c.start_date,'yyyy-MM-DD HH:MM') start_date
+			from membertbl a, classtbl b , classoption c
+			where a.member_id  =  b.member_id
+			and b.class_no  =  c.class_no 
+			and  c.class_option_no in
+		]]>
+         <foreach item="item" index="index" collection="array" open="(" separator="," close=")">         
+         #{item}
+         </foreach>        
   	</select>
-  
+  	<select id="userInfo" resultType="com.anotherclass.bitcamp.vo.user.UserPayVO">
+  		<![CDATA[
+		  	select member_name, member_tel, member_email 
+			from membertbl
+			where member_id= #{param1}
+		]]>
+  	</select>
   
   </mapper>

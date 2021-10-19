@@ -60,4 +60,20 @@ public class UserMyPageServiceImp implements UserMyPageService {
 	public int CancelLikeCreator(int no) {
 	return  userMyPageDAO.CancelLikeCreator(no);
 	}
+
+	@Override
+	public List<UserClassDetailVO> BaskList(String logid) {		
+		return userMyPageDAO. BaskList(logid);
+	}
+
+	@Override
+	public String getCreatorNick(int no) {		
+		return userMyPageDAO.getCreatorNick(no);
+	}
+
+	@Override
+	public int getBasketNum(String logid) {
+		
+		return userMyPageDAO.getBasketNum(logid);
+	}
 }

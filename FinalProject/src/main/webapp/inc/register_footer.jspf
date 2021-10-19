@@ -91,9 +91,10 @@
 			      Kakao.API.request({
 			        url: '/v2/user/me',
 			        success: function(res) {
+			        	console.log(res);
 			        	document.getElementById('member_id').value = res.id;
 			        	document.getElementById('member_name').value = res.properties.nickname;
-			        	document.getElementById('member_email').value = res.email;
+			        	document.getElementById('member_email').value = res.kakao_account.email;
 			        	document.getElementById('nick').value = res.id;
 			        	document.getElementById('sns_type').value = 'kakao';
 			        	
@@ -117,9 +118,14 @@
 			      Kakao.API.request({
 			        url: '/v2/user/me',
 			        success: function(res) {
-			          	console.log(JSON.stringify(res));
-			          	console.log(res.id); // 아이디 찍어봄
-			          	location.href='<%=request.getContextPath()%>/loginOk?sns_type=kakao&logType='+log_type;
+			        	console.log(res);
+			        	document.getElementById('member_id').value = res.id;
+			        	document.getElementById('member_name').value = res.properties.nickname;
+			        	document.getElementById('member_email').value = res.kakao_account.email;
+			        	document.getElementById('nick').value = res.id;
+			        	document.getElementById('sns_type').value = 'kakao';
+			        	
+			        	frmLogin.submit();
 			        },
 			        fail: function(error) {
 			          alert(
