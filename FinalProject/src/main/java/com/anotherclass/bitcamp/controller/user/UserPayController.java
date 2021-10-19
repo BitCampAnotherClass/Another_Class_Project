@@ -51,6 +51,7 @@ public class UserPayController {
 		for(int i=0; i<a.length; i++) {
 			list.set(i, vo);
 		}
+		return 1;
 		
 	}
 	
