@@ -18,7 +18,25 @@ var categoryNumL;
 var categoryNumS;
 var count=0;
 var iitest=0;
+var start_date;
+var start_str;
 $(function(){
+	
+	////////////////////////////////////////////////////달력입력  -->> 다른 li 정보 옮기기
+	$(document).on('DOMSubtreeModified propertychange','#putDateTime',function(){
+		var testing1 = $(this).text();
+		var testing2 = testing1.split(",");
+		var testing3 = new Array(testing2);
+		
+		$("#classDateRealStart").val(testing3);
+		console.log(testing3);
+	});
+	//////////////////////////////////////////////////////////
+
+//		$("#classDateReal").html($('#putDateTime').text().split("/"));
+//	  var fileval = $('input[name="'start_date'"]').length;
+//	  var testing = new Array();
+//	  console.log(testing);
 	//////////////////////////////////////// 대분류 카테고리 눌렀을시 소분류 불러오기
 	$('.categoryL').on('click',function(){
 		
@@ -49,9 +67,6 @@ $(function(){
 			$("input:checkbox[name='NAME']").is(":checked")
 	});
 	/////////////////////////////////////////////////////////숫자만 입력
-	
-	
-	///////////////////////////////////////////////////
 	
 	$("#class_fee").on("keyup", function() {
 		if(!$.isNumeric($('#class_fee').val())){
@@ -99,17 +114,16 @@ $(function(){
 	$(".flatpickrCalender").flatpickr({
 		inline : true,
 		mode: "multiple",
-		dateFormat: " Y - m - d , H : i ",
+		dateFormat: " Y - m - d '",
 		minDate:"today",
 		maxDate: new Date().fp_incr(180),
-		enableTime: true,
 		altInput: true,
-		altFormat: " Y - m - d , H : i ",
+		altFormat: " Y - m - d '",
 		onChange(selectedDates, dateStr, instance) {
-            var array=selectedDates;
+            var array = selectedDates;
             if(array.length <= 10){
-            	$('#putDateTime').html(instance.altInput.value);
-            	
+            	$('#putDateTime').html(((instance.altInput.value).replace(/'/g,"<input type='time' value='09:00:00'><input type='time' value='18:00:00'><br/>")).replace(/,/g,""));
+            	console.log(instance.altInput.value);
             }else if(array.length >= 11){
             	var count = array.length - 10;
             	alert("선택"+count+"를 초과하였습니다\n"+count+"개를 취소해 주십시오.");
@@ -117,7 +131,7 @@ $(function(){
             	//$(".flatpickr-day").css("pointer-events","none");*/ 캘린더 클릭못하게 막을수있음
             }
        }
-	});	
+	});
 	//////////////////////////////////////////////////////테그 변환
 	$("#class_tagButton").click(function(){
 			if(count < 5){
@@ -149,6 +163,10 @@ $(function(){
 		}else if($('#class_info').val() == ""){
 			alert('클래스 간단 소개를 입력하세요');
 			window.location.href="#f2";
+			return false;
+		}else if($("#categoryReal").val() == ""){		//카테고리 빠져있음
+			alert('클래스 카테고리를 선택하세요');
+			window.location.href="#f3";
 			return false;
 		}else if($('#class_thumb').val() == ""){		//카테고리 빠져있음
 			alert('클래스 썸네 파일을 업로드하세요');
@@ -204,7 +222,6 @@ $(function(){
 				}
   			});
 	});
-
 	});
 /////////////////////////////// 태그에 빨간 div 삭제
 function deleteDiv(){
@@ -504,26 +521,33 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	font-size: 1.2em;
 	line-height: 30px;
 }
-.classDate>ul{background-color:;
-	width:610px;
+.classDate>ul{border:;
+	width:800px;
 	height:340px;
 	margin:0 auto;
+	margin-top:20px;
 	padding:0, 0, 0, 0;
+	
 }
 .classDate li{
 	float:left;
 }
-#putDateTime{background-color:;
+#putDateTime{background-color:;display:;
 	border:2px dotted lightgray;
-	width:240px;
+	width:400px;
 	height:340px;
 	color:#FF385C; 
 	font-weight:600;
 	font-size:1em;
 	text-align: center;
-	margin-left: 50px;
+	margin:-20px 0 0 30px;
 	line-height: 34px;
 	border-radius:8px;
+}
+#putDateTime input[type="time"]{
+	margin-left:10px;
+	width:120px;
+	height:30px;
 }
 #putDateTime>div{
 	color:#FF385C;
@@ -689,6 +713,9 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	padding:0;
 	width:100%;
 }
+#classDateRealStart{
+	display:;
+}
 </style>
 <form method="post" action="<%=request.getContextPath()%>/creator/makeClassOk" enctype="multipart/form-data">
 <div class="container">
@@ -790,14 +817,16 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 			<li>사진을 첨부 할 수 있습니다</li>
 		</ul>
 	</div>
+	<input type="text" id="classDateRealStart" name="start_date">
+	<input type="text" id="classDateRealEnd" name="end_date">
 	<!-- ////////////////////// -->
 	<div class="classCommonDiv" id="f6">
-		<span><kimin>*</kimin> 6) 클래스 일정 <kimin>(필수)</kimin></span>
+		<span><kimin>*</kimin> 6) 클래스 일정 <kimin>(필수)</kimin></span> 	
 	</div>
 	<div class="classDate">
 		<ul>
 			<li><input class="flatpickrCalender"/></li>
-			<li id="putDateTime"><div>선택하신 날짜가 표시됩니다</div></li>	
+			<li><div id="putDateTime"><div id="dateTimeDiv">선택하신 날짜가 표시됩니다</div></div></li>	
 		</ul>
 	</div>
 	<div>
