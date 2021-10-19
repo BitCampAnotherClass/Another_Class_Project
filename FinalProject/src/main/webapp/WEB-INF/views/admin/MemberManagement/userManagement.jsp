@@ -4,13 +4,17 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
 <script src="<%=request.getContextPath()%>/js/admin/memberManagement/memberManagement.js"></script>
 
-
+<script>
+	$(()=>{
+		
+	});
+</script>
 </head>
 <body>
 	<div class="userMg-model"></div>
 	<div class="userMg-main">
 			<div class="userMg-top">
-				<h1 class="userMg-title">회원리스트</h1>
+				<h1 class="userMg-title">회원목록</h1>
 				<div class="userMg-menu">
 					<input type="button" value="회원 전체목록" class="userMg-menu-btn"/>
 				</div>
@@ -28,9 +32,12 @@
 				<li class="userMg-chart-boardlist">구분</li>
 				<li class="userMg-chart-boardlist">관리</li>
 			</ul>
-			<div class="userMg-boardList-btn-box">
-			
-			</div>
+				<div class="userMg-board-margin">
+					<div class="userMg-boardList-btn-outbox">
+						<div class="userMg-boardList-btn-box"></div>
+					</div>
+				</div>
+				
 		</div>
 	</div>
 </body>
