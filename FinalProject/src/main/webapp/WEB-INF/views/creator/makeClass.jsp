@@ -41,7 +41,6 @@ $(function(){
 							$(this).prop('checked',true);
 							var dsds = $(this).attr('value');
 							$("#categoryReal").val(dsds);
-							alert(dsds);
 						});
 				},error:function(e){
 					console.log("List전송 에러발생함",e.responseText)
@@ -686,7 +685,7 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 #classCategorySUL input{
 	margin:0px 5px 0px -80px;
 }
-#classCategorySUL{ background-color:pink;
+#classCategorySUL{ background-color:;
 	padding:0;
 	width:100%;
 }
