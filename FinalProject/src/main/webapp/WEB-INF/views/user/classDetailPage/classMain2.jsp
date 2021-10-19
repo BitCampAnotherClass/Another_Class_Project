@@ -300,11 +300,11 @@ $(function(){
 		var logid = "${userId}";    	
 		if(logid=== null || logid=== ""){
 			alert("로그인 후 이용가능합니다");
-		}else{
-				if(payfrm.classNoPayList.checked != true){ //체크안되면 알림창
-				console.log('testing');
-				return false; 
-			}		 			
+		}else{			
+			if ($("input:checkbox[name='classNoPayList']").is(":checked")==false) {
+				alert("적어도 하나는 선택하여 주십시오.");
+				return;
+			}
 			 $("#payfrm").attr("action", "/another/PayPage");			
 		     $("#payfrm").submit();
 		}	 
@@ -315,10 +315,10 @@ $(function(){
 		if(logid=== null || logid=== ""){
 			alert("로그인 후 이용가능합니다");
 		}else{
-			//if(payfrm.classNoPayList.checked != true){ //체크안되면 알림창
-			//	alert("클래스를 선택해주세요"); 
-			//	return false; 
-			//}			 			
+			if ($("input:checkbox[name='classNoPayList']").is(":checked")==false) {
+				alert("적어도 하나는 선택하여 주십시오.");
+				return;
+			}	 			
 			 $("#payfrm").attr("action", "/another/InsertBasketDB");			
 		     $("#payfrm").submit();
 		}		

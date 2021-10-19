@@ -100,9 +100,6 @@ $(function(){
 			data :mParam,
 			success:function(vo){
 				var tag =""; 
-				/*<div><span>주문하시는분</span><span>김비트</span></div>
-				<div><span>이메일</span><span>bitcamp@nate.com</span></div>
-				<div><span>휴대폰번호</span><span>010-1234-5678</span></div>*/
 				tag += "<div><span>주문하시는분</span><span>"+vo.member_name+"</span></div>";
 				tag += "<div><span>이메일</span><span>"+vo.member_email+"</span></div>";
 				tag += "<div><span>휴대폰번호</span><span>"+vo.member_tel+"</span></div>";
@@ -110,11 +107,21 @@ $(function(){
 			}				
 		})		
 	}
-
-	var conductCount = $(".payclassinfoorder").length;// 주문할상품며몇개인지구한다
-	console.log(conductCount);
-	
-	
+	//가격총액 셋팅하는 함수
+	/*
+	var conductCount = $(".payclassinfoorder").length;// 주문할상품몇개인지구한다	
+	var tag ;
+	for(var i =0; i<conductCount; i++){//상품갯수만큼 반복문돌림
+		tag = $(".orderP label").eq(i).text();		
+	}
+	console.log(tag);
+	// 주문몇개인지 개수 구함
+	// 개수만큼...반복문돌림 
+	/*<c:set var="sum" value="0"/>
+    <c:forEach var="vo" items="${list}">   
+   	 <c:set var="sum" value="${vo.class_price}"/> 
+   </c:forEach> 
+   <c:out value="${sum}"/>
 	//총상품금액 , 결제예정금액 구하는 함수
 	/*function totalprice(){
 		var tag ="";
@@ -126,24 +133,26 @@ $(function(){
 	}
 	
 	*/
+	/*
 	function totalprice(){
-		var tag ="";
+		 var tag ="";
+		 var test ="";
 		<c:forEach var="vo" items="${list}">
-			var test = ${vo.class_price};
-			tag += test;
+			test = parseInt(${vo.class_price});
+			tag += parseInt(test);
+			
+			
 		</c:forEach> 
-		console.log(test);
-	}
-	
-	
-	
+		console.log(tag);
+	}	
+	*/
 	
 	
 	
 	
 	
 	memberInfo();//회원정보ajax셋팅
-	
+	//totalprice();
 
 	
 
@@ -153,14 +162,11 @@ $(function(){
 	<div id="leftdiv">
 		<div id="payPageTitle"><span>주문결제</span></div><!-- 페이지타이틀 -->		
 		<div id="paymemberinfo"><!-- 주문자정보 -->
-			<div class="secondTitleD">주문자정보</div>
-			
+			<div class="secondTitleD">주문자정보</div>			
 		</div>
 			<div id="payclassinfo"><!-- 주문상품 -->
 			<div class="secondTitleD">주문상품</div>
-				<div><span>상품정보</span><span>인원</span><span>총상품금액</span><span>포인트</span></div>			
-				
-				
+				<div><span>상품정보</span><span>인원</span><span>총상품금액</span><span>포인트</span></div>					
 				<c:forEach var="vo" items="${list}">
 					<div class="payclassinfoorder " style="height:150px;"><!-- 주문한줄.... -->
 						<div><!-- 이미지+제목 -->
@@ -173,17 +179,26 @@ $(function(){
 						</div>
 						<div class="orderN"><label>1</label>명</div><!-- 인원 -->
 						<div class="orderP"><label>${vo.class_price }</label>원</div><!-- 총상품금액 -->						
-						<div class="orderPP"><label id="orderpp">${vo.class_price }</label>P</div>
+						<div class="orderPP"><label>${vo.class_price }</label></div>						
 					</div>
-				</c:forEach> 
-			
-		
-		</div>
-		
-				
+				</c:forEach> 	
+		</div>			
 		<div id="paydiscount"><!-- 할인받기 -->
 			<div class="secondTitleD">할인받기</div>
-			<div><span>결제예정금액</span><span>114,000원</span></div>
+			
+			<div><span>결제예정금액</span><span>
+			
+			<script>
+			<c:forEach var="vo" items="${list}">
+				var n = Number(${vo.class_price });
+				var s += n;
+			</c:forEach>
+				console.log(s);
+			</script>
+				
+			
+			원</span></div>
+			
 			<div><span>포인트</span><span><input type="text">잔액<label> ${vo.point}</label>p</span></div>			
 		</div>				
 		<div id="paymethod"><!-- 결제수단 -->
