@@ -63,37 +63,16 @@
 					</div>
 					<ul class="gnb">
 						<li class="category"><a href="#">클래스 목록</a>
+						
 							<ul class="sub-menu1">
-								<li><a href="#">핸드메이드·공예</a>
-									<ul class="sub-menu2">
-										<li><a href="#">핸드메이드</a></li>
-										<li><a href="#">공예</a></li>
-									</ul>
-								</li>
-								<li><a href="#">쿠킹·베이킹</a>
-									<ul class="sub-menu2">
-										<li><a href="#">쿠킹</a></li>
-										<li><a href="#">베이킹</a></li>
-									</ul>
-								</li>
-								<li><a href="#">스포츠·피트니스</a>
-									<ul class="sub-menu2">
-										<li><a href="#">스포츠</a></li>
-										<li><a href="#">피트니스</a></li>
-										<li><a href="#">아웃도어</a></li>
-									</ul>
-								</li>
-								<li><a href="#">드로잉·가드닝</a>
-									<ul class="sub-menu2">
-										<li><a href="#">드로잉</a></li>
-										<li><a href="#">가드닝</a></li>
-									</ul>
-								</li>
-								<li><a href="#">반려동물</a>
-									<ul class="sub-menu2">
-										<li><a href="#">반려동물</a></li>
-									</ul>
-								</li>
+								<c:forEach var="cateL" items="${cateL}">
+									<li><a href="<%=request.getContextPath()%>/class/list?category1_no=${cateL.category1_no }">${cateL.category_name }</a>
+										<ul class="sub-menu2">
+											<li><a href="class_list?no=110">핸드메이드</a></li>
+											<li><a href="#">공예</a></li>
+										</ul>
+									</li>
+								</c:forEach>
 							</ul>
 						</li>
 						<li><a href="<%=request.getContextPath()%>/classMap">내 주변 클래스</a></li>
