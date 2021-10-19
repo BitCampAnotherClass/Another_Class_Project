@@ -22,6 +22,8 @@ public class UserHomeQnAVO {//비밀번호 칼럼..............추가...........
 	
 	private String replyContent; //답글내용저장
 	
+	private int boardNumber;
+	
 	public int getUser_qna_no() {
 		return user_qna_no;
 	}
@@ -117,6 +119,12 @@ public class UserHomeQnAVO {//비밀번호 칼럼..............추가...........
 	}
 	public void setReplyContent(String replyContent) {
 		this.replyContent = replyContent;
+	}
+	public int getBoardNumber() {
+		return boardNumber;
+	}
+	public void setBoardNumber(int boardNumber) {
+		this.boardNumber = boardNumber;
 	}
 	
 	

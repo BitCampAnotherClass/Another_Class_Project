@@ -1,6 +1,12 @@
 @charset "UTF-8";
-body{
+
+
+
+	body{
 		overflow:auto;
+	}
+	.container{
+		height: 800px;
 	}
 	.userMg-main{
 		width:1200px;
@@ -31,6 +37,7 @@ body{
 	
 	.userMg-chart-box{
 		width:1200px;
+		height:500px;
 	}
 	
 	.userMg-chart-boardlist{
@@ -100,3 +107,14 @@ body{
 		float: left;
 		width: 400px;
 	}
+	
+	.userMg-boardList-btn-outbox{
+		margin:0 auto;
+		height:50px;
+		width:500px;
+	}
+	.userMg-boardList-btn-box{
+		height:50px;
+		width:100%;
+	}
+	

@@ -16,9 +16,9 @@ public class UserHomeQnAServiceImp implements UserHomeQnAService {
 	UserHomeQnADAO userHomeQnADAO;
 
 	@Override
-	public List<UserHomeQnAVO> userHomeQnAAllSelect() {
+	public List<UserHomeQnAVO> userHomeQnAAllSelect(int start, int end) {
 	
-		return userHomeQnADAO.userHomeQnAAllSelect();
+		return userHomeQnADAO.userHomeQnAAllSelect(start,end);
 	}
 
 	@Override
@@ -43,5 +43,10 @@ public class UserHomeQnAServiceImp implements UserHomeQnAService {
 	public int userHomeQnADel(int no) {
 		
 		return userHomeQnADAO.userHomeQnADel(no);
+	}
+	
+	@Override
+	public int userHomeOnABoardCnt() {
+		return userHomeQnADAO.userHomeOnABoardCnt();
 	}
 }
