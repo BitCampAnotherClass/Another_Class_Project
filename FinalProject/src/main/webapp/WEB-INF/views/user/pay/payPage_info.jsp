@@ -89,6 +89,7 @@
 
 <script>
 $(function(){
+	
 	var logid = "${userId}"; // 세션에저장된아이디		
 	
 	function memberInfo(){
@@ -106,17 +107,44 @@ $(function(){
 				tag += "<div><span>이메일</span><span>"+vo.member_email+"</span></div>";
 				tag += "<div><span>휴대폰번호</span><span>"+vo.member_tel+"</span></div>";
 				$("#paymemberinfo").append(tag);
-			}
-				
-		})
-		
+			}				
+		})		
 	}
 
+	var conductCount = $(".payclassinfoorder").length;// 주문할상품며몇개인지구한다
+	console.log(conductCount);
 	
-	memberInfo();
 	
-	//주문상품포인트값 넣기
-	//$("#orderpp").
+	//총상품금액 , 결제예정금액 구하는 함수
+	/*function totalprice(){
+		var tag ="";
+		<c:forEach var="vo" items="${list}">
+			var test = {vo.class_price};
+			tag += test;
+		</c:forEach> 
+		console.log(test);
+	}
+	
+	*/
+	function totalprice(){
+		var tag ="";
+		<c:forEach var="vo" items="${list}">
+			var test = ${vo.class_price};
+			tag += test;
+		</c:forEach> 
+		console.log(test);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	memberInfo();//회원정보ajax셋팅
+	
+
 	
 
 });	
@@ -130,25 +158,25 @@ $(function(){
 		</div>
 			<div id="payclassinfo"><!-- 주문상품 -->
 			<div class="secondTitleD">주문상품</div>
-			<div><span>상품정보</span><span>인원</span><span>총상품금액</span><span>포인트</span></div>			
-			
-			
-			<c:forEach var="vo" items="${list}">
-				<div class="payclassinfoorder " style="height:150px;"><!-- 주문한줄.... -->
-					<div><!-- 이미지+제목 -->
-						<div><img src="img/jisu/classimg5.png"></div> <!-- 이미지  vo.class_thumb --> 						
-						<div><!-- 제목+강사 -->
-							<div>${vo.class_name }</div>
-							<div>${vo.nick }</div>
-							<div>옵션날짜 : ${vo.start_date }</div>
+				<div><span>상품정보</span><span>인원</span><span>총상품금액</span><span>포인트</span></div>			
+				
+				
+				<c:forEach var="vo" items="${list}">
+					<div class="payclassinfoorder " style="height:150px;"><!-- 주문한줄.... -->
+						<div><!-- 이미지+제목 -->
+							<div><img src="img/jisu/classimg5.png"></div> <!-- 이미지  vo.class_thumb --> 						
+							<div><!-- 제목+강사 -->
+								<div>${vo.class_name }</div>
+								<div>${vo.nick }</div>
+								<div>옵션날짜 : ${vo.start_date }</div>
+							</div>
 						</div>
+						<div class="orderN"><label>1</label>명</div><!-- 인원 -->
+						<div class="orderP"><label>${vo.class_price }</label>원</div><!-- 총상품금액 -->						
+						<div class="orderPP"><label id="orderpp">${vo.class_price }</label>P</div>
 					</div>
-					<div class="orderN"><label>1</label>명</div><!-- 인원 -->
-					<div class="orderP" id="conprice"><label>${vo.class_price }</label>원</div><!-- 총상품금액 -->						
-					<div class="orderPP"><label id="orderpp">${vo.class_price }*0.01</label>P</div>
-				</div>
-			</c:forEach> 
-		
+				</c:forEach> 
+			
 		
 		</div>
 		
@@ -156,7 +184,7 @@ $(function(){
 		<div id="paydiscount"><!-- 할인받기 -->
 			<div class="secondTitleD">할인받기</div>
 			<div><span>결제예정금액</span><span>114,000원</span></div>
-			<div><span>포인트</span><span><input type="text"><label>잔액 3000p</label></span></div>			
+			<div><span>포인트</span><span><input type="text">잔액<label> ${vo.point}</label>p</span></div>			
 		</div>				
 		<div id="paymethod"><!-- 결제수단 -->
 			<div class="secondTitleD">결제수단</div>

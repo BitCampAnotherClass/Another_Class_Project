@@ -39,31 +39,34 @@ public class UserPayController {
 		return vo;
 		
 	}
+	
+	@RequestMapping(value="/basketResult")
+	public String basketResult() {
+		return "/result/BasketResult";
+	}
+	
 	@RequestMapping("/InsertBasketDB")
 	@ResponseBody
-	public int ajaxInsertBasket(UserPayVO vo) {//장바구니 테이블에 insert 할클래스번호
+	public ModelAndView ajaxInsertBasket(UserPayVO vo, HttpSession session) {//장바구니 테이블에 insert 할클래스번호
 		
-//		int []a = vo.getClassNoPayList(); //담아온클래스옵션번호		
-//		System.out.println("배열에담은클래스옵션번호"+a[0]);
-//		System.out.println(a.length);
-//		
-//		List<UserPayVO> list = new ArrayList<UserPayVO>();// 클래스옵션번호 , 이름
-//		
-//		for(int i=0; i<a.length; i++) {
-//			list.set(i, vo);
-//		}
+		ModelAndView  mav = new ModelAndView();
+		
+		String member_id = (String)session.getAttribute("userId"); 
 		BasketVO bvo = new BasketVO();
-		int [] te= {1000,1003};
-		bvo.setMember_id("test103");
+		int[]te= vo.getClassNoPayList();
+		bvo.setMember_id(member_id);
 		bvo.setHeadcount(1);
+		
 		int cnt = 0;
 		for(int i=0; i<te.length; i++) {
 			bvo.setClass_option_no(te[i]);
-			cnt = userPayService.testBasket(bvo);
+			cnt = userPayService.testBasket(bvo);//디비에저장함
 		}
 		
 		System.out.println(cnt);
-		return 1;
+		mav.addObject("cnt",cnt);
+		mav.setViewName("redirect:basketResult");
+		return mav;
 		
 	}
 	
