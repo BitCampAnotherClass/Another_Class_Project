@@ -69,13 +69,13 @@
 		
 		//수정 hQnAWEdit
 		$("#hQnAeditSubmit").click(()=>{
-			$("#homeQnAEFrm").attr("action", "/teamproject/HomeQnAAsk/edit" );
+			$("#homeQnAEFrm").attr("action", "/another/HomeQnAAsk/edit" );
 			$("#homeQnAEFrm").submit();
 		});
 		
 		//취소 -> 글목록으로이동
 		$("#hQnAWEditedit").click(()=>{
-			$("#homeQnAEFrm").attr("action", "/teamproject/HomeQnAAsk/list" );
+			$("#homeQnAEFrm").attr("action", "/another/HomeQnAAsk/list" );
 			$("#homeQnAEFrm").submit();
 		});
 		
@@ -132,7 +132,13 @@
 				</li>
 				<li>
 					<div>답변여부</div>
-					<div>${board_no2 }</div>	
+					<c:set var="replycount" value="${vo.replycount}" />	
+					<c:if test="${replycount eq 2}"> 
+						<div>답변완료</div>					
+					</c:if>
+					<c:if test="${replycount eq 1}"> 
+						<div>미답변</div>					
+					</c:if>	
 				</li>
 				<li id="hQnAButedit">
 					<input type="button" name="hQnAWEditedit" id="hQnAWEditedit" value="취소"/><input type="submit" name="hQnAWeditSubmit" id="hQnAeditSubmit" value="등록"/>

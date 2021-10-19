@@ -15,14 +15,14 @@ public class LoginCheckIntercepter extends HandlerInterceptorAdapter {
 		
 		//로그인된 아이디구하기
 		HttpSession session = request.getSession();
-		String memberId= (String)session.getAttribute("세션아이디 들어올자리");
+		int userLog= (Integer)session.getAttribute("userLog");
 		
 		//로그인이 안된경우
-		if(memberId==null || memberId.equals("")) {
-			response.sendRedirect(request.getContextPath()+"/");
+		if(userLog!=1) {
+			response.sendRedirect(request.getContextPath()+"/login");
 			return false;
 		}
-		//로그인이 된경우
+		//로그인이 된 경우
 		return true;
 	}
 	// 컨트롤러가 실행된 후 view 페이지로 이동하기 전에 호출된다.

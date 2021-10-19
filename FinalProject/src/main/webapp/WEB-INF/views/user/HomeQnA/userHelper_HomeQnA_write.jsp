@@ -58,13 +58,12 @@
 	    
 	    
 		$("#hQnAWCan6").click(()=>{//취소버큰 클릭 -> 목록으로돌아가기
-			$("#hQnAWriteD33ulFrm").attr("action", "/teamproject/HomeQnAAsk/list" );
+			$("#hQnAWriteD33ulFrm").attr("action", "/another/HomeQnAAsk/list" );
 			$("#hQnAWriteD33ulFrm").submit();			
 		});
 		
-		$("#hQnAWSubmit9").click(()=>{//등록
-			console.log("자스들어옴");
-			$("#hQnAWriteD33ulFrm").attr("action", "/teamproject/HomeQnAAsk/writeOk" );
+		$("#hQnAWSubmit9").click(()=>{//등록		
+			$("#hQnAWriteD33ulFrm").attr("action", "/another/HomeQnAAsk/writeOk" );
 			$("#hQnAWriteD33ulFrm").submit();			
 		});
 	});
@@ -80,7 +79,7 @@
 			<ul id="hQnAWriteD33ul">
 				<li>
 					<div>회원정보</div>
-					<div>${logid}</div>	<!-- 세션에저장되어잉ㅆ는아이디 -->
+					<div>${userId}</div>	<!-- 세션에저장되어잉ㅆ는아이디 -->
 				</li>
 				<li>
 					<div>제목</div>
@@ -110,7 +109,7 @@
 				</li>				
 			</ul>
 			
-			<!--  <input type="hidden" id="hiddennobox" name="member_id" value="${member_id}"><!-- 작성자 -->
+			
 		</form>
 		
 	</div>

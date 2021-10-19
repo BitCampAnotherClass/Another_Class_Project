@@ -1,19 +1,57 @@
 package com.anotherclass.bitcamp.controller.user;
 
+import java.util.List;
+
+import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.anotherclass.bitcamp.service.creator.MakeClassApplyService;
+import com.anotherclass.bitcamp.vo.creator.CreatorClassCategoryVO;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class UserController {
+	
+	@Inject
+	MakeClassApplyService makeClassApplyService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home() {
-		return "user/home";
+	public ModelAndView home(HttpServletRequest req) {
+		ModelAndView mav = new ModelAndView();
+    	// 카테고리 가져오기
+    	List<CreatorClassCategoryVO> cateL = makeClassApplyService.makeClassCategoryL();
+//    	System.out.println(req.getParameter("category1_no"));
+//    	int cateL_str = Integer.parseInt(req.getParameter("category1_no"));
+    	//List<CreatorClassCategoryVO> cateS = makeClassApplyService.makeClassCategoryS(cateL_str);
+
+    	mav.addObject("cateL", cateL);
+    	//mav.addObject("cateS", cateS);
+
+    	mav.setViewName("/user/home");
+    	return mav;
 	}
+	
+	@RequestMapping(value = "/home/", method = RequestMethod.GET)
+	@ResponseBody
+	public List<CreatorClassCategoryVO> homeCategory(CreatorClassCategoryVO vo, HttpServletRequest req) {
+		ModelAndView mav = new ModelAndView();
+    	// 카테고리 가져오기
+		System.out.println(req.getParameter("category1_no"));
+    	//int cateL_str = Integer.parseInt(req.getParameter("category1_no"));
+    	List<CreatorClassCategoryVO> cateS = makeClassApplyService.makeClassCategoryS(vo.getCategory1_no());
+    	System.out.println("실행2");
+
+    	return cateS;
+	}
+	
 	
 	// 임시 맵핑 --------------------------
 	
@@ -34,35 +72,17 @@ public class UserController {
 
 	
 	
-	// 지수
-	@RequestMapping(value = "/mypage1")
-	public String mypage() {
-		return "/user/mypage/myPage_order";
-	}
-	@RequestMapping(value = "/mypage2")
-	public String mypage2() {
-		return "/user/mypage/myPage_shoppingbasket";
-	}
-	@RequestMapping(value = "/mypage3")
-	public String mypage3() {
-		return "/user/mypage/myPage_Ask";
-	}	
-	@RequestMapping(value = "/mypage4")
-	public String mypage4() {
-		return "/user/mypage/myPage_Creatorlike";
-	}	
-	@RequestMapping(value = "/classMainPage")
-	public String classMainPage() {
-		return "/user/classDetailPage/classMain";
-	}	
-	@RequestMapping(value = "/payPage")
-	public String payPage() {
-		return "/user/pay/payPage_info";
-	}
-	@RequestMapping(value = "/homeQnA")
-	public String homeQnA() {
-		return "/user/HomeQnA/userHelper_HomeQnA_list";
-	}
+	
+	
+//	@RequestMapping(value = "/classMainPage")
+//	public String classMainPage() {
+//		return "/user/classDetailPage/classMain";
+//	}	
+////	
+//	@RequestMapping(value = "/homeQnA")
+//	public String homeQnA() {
+//		return "/user/HomeQnA/userHelper_HomeQnA_list";
+//	}
 	@RequestMapping(value = "/AhomeQnA")
 	public String AhomeQnA() {
 		return "/admin/HomeQnA/admin_HomeQnA_view";
@@ -76,10 +96,10 @@ public class UserController {
 		return "/creator/optionList/classOptionList";
 	}	
 	//지수백위한임시홈
-	@RequestMapping(value = "/temporaryhome")
-	public String temporaryhome() {
-		return "/user/classDetailPage/temporaryhome";
-	}
+//	@RequestMapping(value = "/temporaryhome")
+//	public String temporaryhome() {
+//		return "/user/classDetailPage/temporaryhome";
+//	}
 	
 	
 }

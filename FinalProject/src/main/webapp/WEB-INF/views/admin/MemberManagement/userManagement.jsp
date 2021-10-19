@@ -1,53 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<link href="<%=request.getContextPath()%>/css/admin/memberManagement/memberManagement.css" rel="stylesheet" type="text/css"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+<script src="<%=request.getContextPath()%>/js/admin/memberManagement/memberManagement.js"></script>
 
-<style>
-	body{
-		overflow:auto;
-	}
-	.userMg-main{
-		width:1200px;
-	}
-	.userMg-top, .userMg-bottom{
-		border: 1px solid #464646;
-		height:20%;
-		margin-bottom: 3%;
-	}
-	.userMg-chart-box, .userMg-top-search{
-		width:1200px;
-		height:200px;
-	}
-	.userMg-chart-box{
-		width:1200px;
-	}
-	.userMg-chart-boardlist{
-		float: left;
-		width:15%;
-		height: 40px;
-		line-height: 40px;
-		text-align:center;
-		background:#f0f0f0;
-		border:1px solid #f0f0f0;
-	}
-	.userMg-chart-boardlist:nth-child(7n+1){
-		width: 5%;
-	}
-	.userMg-chart-boardlist:nth-child(7n+3){
-		width: 20%;
-	}
-	.userMg-chart-boardlist:nth-child(n+8){
-		background:white;
-	}
-</style>
+<script>
+	$(()=>{
+		
+	});
+</script>
 </head>
 <body>
+	<div class="userMg-model"></div>
 	<div class="userMg-main">
-		<div class="userMg-top">
-			<div class="userMg-top-search">
-				
+			<div class="userMg-top">
+				<h1 class="userMg-title">회원목록</h1>
+				<div class="userMg-menu">
+					<input type="button" value="회원 전체목록" class="userMg-menu-btn"/>
+				</div>
 			</div>
-		</div>
+	
 		<div class="userMg-bottom">
+			<input type="hidden" value="1" class="paging-number"/>
 			<ul class="userMg-chart-box">
 				<li class="userMg-chart-boardlist"><input type="checkbox" id="allcheck"/></li>
 				<li class="userMg-chart-boardlist">아이디</li>
@@ -55,19 +29,15 @@
 				<li class="userMg-chart-boardlist">이메일</li>
 				<li class="userMg-chart-boardlist">휴대폰</li>
 				<li class="userMg-chart-boardlist">가입일</li>
+				<li class="userMg-chart-boardlist">구분</li>
 				<li class="userMg-chart-boardlist">관리</li>
-				<li class="userMg-chart-boardlist"><input type="checkbox" id="allcheck"/></li>
-				<li class="userMg-chart-boardlist">기본</li>
-				<li class="userMg-chart-boardlist">기본</li>
-				<li class="userMg-chart-boardlist">기본</li>
-				<li class="userMg-chart-boardlist">기본</li>
-				<li class="userMg-chart-boardlist">기본</li>
-				<li class="userMg-chart-boardlist">
-					<input type="button" value="상세 정보" />
-					<input type="button" value="수정" />
-					<input type="button" value="삭제" />
-				</li>
 			</ul>
+				<div class="userMg-board-margin">
+					<div class="userMg-boardList-btn-outbox">
+						<div class="userMg-boardList-btn-box"></div>
+					</div>
+				</div>
+				
 		</div>
 	</div>
 </body>

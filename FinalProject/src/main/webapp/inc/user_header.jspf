@@ -30,21 +30,23 @@
 	<header id="header">
 		<div id="header-top">
 			<div class="inner-lg">
-				<c:if test="${logState==null || logState!=1 }">
+				<c:if test="${userLog==null || userLog!=1 }">
 					<ul class="tnb login-menu">
 						<li><a href="<%=request.getContextPath()%>/login">로그인</a></li>
 						<li><a href="<%=request.getContextPath()%>/register">회원가입</a></li>
 						<li><a href="#">♥</a></li>
 						<li><a href="<%=request.getContextPath()%>/mypage2">장</a></li>
-						<li class="creator-home"><a href="<%=request.getContextPath()%>/creator/">크리에이터 센터</a></li>
+						<li class="creator-home"><a href="<%=request.getContextPath()%>/creatorLogin/">크리에이터 센터</a></li>
 					</ul>
 				</c:if>
-				<c:if test="${logState==1 }">
+				<c:if test="${userLog==1 }">
 					<ul class="tnb login-menu">
+						<li class="user-profile"><img src="<%=request.getContextPath()%>${userImg }"/></li>
+						<li>${userId }</li>
 						<li><a href="javascript:void(0);" onclick="kakaoLogout();">로그아웃</a></li>
-						<li><a href="<%=request.getContextPath()%>/mypage1">마이페이지</a></li>
+						<li><a href="<%=request.getContextPath()%>/mypage/mypage1">마이페이지</a></li>
 						<li><a href="#">♥</a></li>
-						<li><a href="<%=request.getContextPath()%>/mypage2">장</a></li>
+						<li><a href="<%=request.getContextPath()%>/mypage/mypage2">장</a></li>
 						<li class="creator-home"><a href="<%=request.getContextPath()%>/creator/">크리에이터 센터</a></li>
 					</ul>
 				</c:if>
@@ -61,45 +63,24 @@
 					</div>
 					<ul class="gnb">
 						<li class="category"><a href="#">클래스 목록</a>
+						
 							<ul class="sub-menu1">
-								<li><a href="#">핸드메이드·공예</a>
-									<ul class="sub-menu2">
-										<li><a href="#">핸드메이드</a></li>
-										<li><a href="#">공예</a></li>
-									</ul>
-								</li>
-								<li><a href="#">쿠킹·베이킹</a>
-									<ul class="sub-menu2">
-										<li><a href="#">쿠킹</a></li>
-										<li><a href="#">베이킹</a></li>
-									</ul>
-								</li>
-								<li><a href="#">스포츠·피트니스</a>
-									<ul class="sub-menu2">
-										<li><a href="#">스포츠</a></li>
-										<li><a href="#">피트니스</a></li>
-										<li><a href="#">아웃도어</a></li>
-									</ul>
-								</li>
-								<li><a href="#">드로잉·가드닝</a>
-									<ul class="sub-menu2">
-										<li><a href="#">드로잉</a></li>
-										<li><a href="#">가드닝</a></li>
-									</ul>
-								</li>
-								<li><a href="#">반려동물</a>
-									<ul class="sub-menu2">
-										<li><a href="#">반려동물</a></li>
-									</ul>
-								</li>
+								<c:forEach var="cateL" items="${cateL}">
+									<li><a href="<%=request.getContextPath()%>/class/list?category1_no=${cateL.category1_no }">${cateL.category_name }</a>
+										<ul class="sub-menu2">
+											<li><a href="class_list?no=110">핸드메이드</a></li>
+											<li><a href="#">공예</a></li>
+										</ul>
+									</li>
+								</c:forEach>
 							</ul>
 						</li>
 						<li><a href="<%=request.getContextPath()%>/classMap">내 주변 클래스</a></li>
 						<li><a href="<%=request.getContextPath()%>/CommunityMain">커뮤니티</a></li>
 						<li class="c-center"><a href="#">고객지원</a>
 							<ul class="sub-menu1">
-								<li><a href="#">공지사항</a></li>
-								<li><a href="#">자주 묻는 질문</a></li>
+								<li><a href="<%=request.getContextPath()%>/UserNotice">공지사항</a></li>
+								<li><a href="<%=request.getContextPath()%>/UserFaq">자주 묻는 질문</a></li>
 								<li><a href="<%=request.getContextPath()%>/HomeQnAAsk/list">홈페이지문의</a></li>
 							</ul>
 						</li>

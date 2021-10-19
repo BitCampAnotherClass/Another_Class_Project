@@ -18,7 +18,7 @@ public class UserClassDetailVO {
 	private String class_post_no;
 	private String class_addr1;
 	private String class_addr2;
-	private int max_headcount;	
+	private int max_headcount;	//클래스 최대인원
 	private int request;
 	private int progress;
 	private String class_writedate;
@@ -33,15 +33,18 @@ public class UserClassDetailVO {
 	private String addr2;
 	private String nick;
 	private String member_img;
-	//가입일
-	//탈퇴일
+	private String sns_type;
+	private String signupdate;
+	private String out_date;
+	
 	
 	/*크리에이터 테이블*/
 	private String pay_company;
 	private String account;
 	private String creator_content;
 	private String creator_content_img;
-	private String creator_img;
+	private String creator_tag;
+	
 	
 	/*클래스옵션테이블*/
 	private int class_option_no;
@@ -54,9 +57,60 @@ public class UserClassDetailVO {
 	/*클래스좋아요 테이블*/
 	private int  class_like_no;
 	private int class_count;//좋아요갯수
+	private int class_like_check; //좋아요 여부 -> 0 : 좋아요x , 1 : 좋아요o
+	
+	/*클래스 문의*/
+	
+	/*여러개의 클래스옵션번호를 담을 변수*/
+	private int[] classNoPayArray;
+	
+	
+	/*강사좋아요*/
+	private int creator_like_no;//좋아요번호-index ->좋아요갯수아니고 좋아요할때부여받은단순번호
+	private String creator_id; //좋아요당한 강사아이디
+	private String user_id; // 좋아요한 회원아이디
+	/*만든부분*/
+	private int creatorclasscount;//강사가 개설한클래스개수 -> 클래스테이블에 있는 강사아이디갯수
+	private int creatorlikecount;//강사좋아요테이블에 강사아이디가 몇개있는지...
+	public String creator_nick2; //멤버테이블의 닉네임 -> 강사로만원함
+	
+	public int basketCount;//장바구니테이블에서 어이디갯수 -> 흠 리스트사이즈로 셋팅?...
+	/*장바구니테이블*/
+	private int basket_no;
+	private int headcount;
 	
 	
 	
+	public int getBasket_no() {
+		return basket_no;
+	}
+	public void setBasket_no(int basket_no) {
+		this.basket_no = basket_no;
+	}
+	public int getHeadcount() {
+		return headcount;
+	}
+	public void setHeadcount(int headcount) {
+		this.headcount = headcount;
+	}
+	public String getCreator_nick2() {
+		return creator_nick2;
+	}
+	public void setCreator_nick2(String creator_nick2) {
+		this.creator_nick2 = creator_nick2;
+	}
+	public int getBasketCount() {
+		return basketCount;
+	}
+	public void setBasketCount(int basketCount) {
+		this.basketCount = basketCount;
+	}
+	public int getClass_like_check() {
+		return class_like_check;
+	}
+	public void setClass_like_check(int class_like_check) {
+		this.class_like_check = class_like_check;
+	}
 	public int getCategory_no() {
 		return category_no;
 	}
@@ -255,12 +309,7 @@ public class UserClassDetailVO {
 	public void setCreator_content_img(String creator_content_img) {
 		this.creator_content_img = creator_content_img;
 	}
-	public String getCreator_img() {
-		return creator_img;
-	}
-	public void setCreator_img(String creator_img) {
-		this.creator_img = creator_img;
-	}
+	
 	public int getClass_option_no() {
 		return class_option_no;
 	}
@@ -308,6 +357,66 @@ public class UserClassDetailVO {
 	}
 	public void setClass_count(int class_count) {
 		this.class_count = class_count;
+	}
+	public String getSns_type() {
+		return sns_type;
+	}
+	public void setSns_type(String sns_type) {
+		this.sns_type = sns_type;
+	}
+	public String getSignupdate() {
+		return signupdate;
+	}
+	public void setSignupdate(String signupdate) {
+		this.signupdate = signupdate;
+	}
+	public String getOut_date() {
+		return out_date;
+	}
+	public void setOut_date(String out_date) {
+		this.out_date = out_date;
+	}
+	public String getCreator_tag() {
+		return creator_tag;
+	}
+	public void setCreator_tag(String creator_tag) {
+		this.creator_tag = creator_tag;
+	}
+	public int[] getClassNoPayArray() {
+		return classNoPayArray;
+	}
+	public void setClassNoPayArray(int[] classNoPayArray) {
+		this.classNoPayArray = classNoPayArray;
+	}
+	public int getCreator_like_no() {
+		return creator_like_no;
+	}
+	public void setCreator_like_no(int creator_like_no) {
+		this.creator_like_no = creator_like_no;
+	}
+	public String getCreator_id() {
+		return creator_id;
+	}
+	public void setCreator_id(String creator_id) {
+		this.creator_id = creator_id;
+	}
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
+	public int getCreatorclasscount() {
+		return creatorclasscount;
+	}
+	public void setCreatorclasscount(int creatorclasscount) {
+		this.creatorclasscount = creatorclasscount;
+	}
+	public int getCreatorlikecount() {
+		return creatorlikecount;
+	}
+	public void setCreatorlikecount(int creatorlikecount) {
+		this.creatorlikecount = creatorlikecount;
 	}
 	
 	

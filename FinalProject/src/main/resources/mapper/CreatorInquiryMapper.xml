@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.anotherclass.bitcamp.dao.creator.CreatorInquiryDAO">
+  	<select id="creatorInquiryBoardCount" resultType="int">
+  		select count(user_qna_no) from homeQnaUser  where board_no2 =0 and member_id in(select member_id from idAll where type_creator = 1)
+  	</select>
+  	<select id="creatorInquiryPageing" resultType="com.anotherclass.bitcamp.vo.user.UserHomeQnAVO">
+  		<![CDATA[
+  			select user_qna_no, member_id, title, writedate, board_no1, board_no2 , replycount, view_grade FROM (SELECT a.*, ROWNUM as p_num FROM 
+             (select user_qna_no, member_id, title, to_char(writedate, 'yyyy-MM-DD') writedate, board_no1 ,board_no2,view_grade, 
+             count(board_no1)over(partition by board_no1) as replycount   from homeQnaUser where delete_sort =  0 order by user_qna_no DESC) a )
+             where view_grade =1 and (p_num >= #{param1} and p_num<=#{param2})
+             order by board_no1 desc, user_qna_no
+  		]]>
+  	</select>
+  	
+  </mapper>

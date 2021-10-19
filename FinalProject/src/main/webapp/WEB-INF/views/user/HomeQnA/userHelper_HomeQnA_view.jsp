@@ -30,14 +30,15 @@
 		
 		//목록
 		$("#hQnAWList").click(()=>{
-			$("#homeQnAVFrm").attr("action", "/teamproject/HomeQnAAsk/list" );
+			console.log(${number});
+			$("#homeQnAVFrm").attr("action", "/another/HomeQnAAsk/list?no=?${number}" );
 			$("#homeQnAVFrm").submit();
 		});
 		
 		//삭제 hQnAWDel
 		$("#hQnAWDel").click(()=>{
 			if(confirm('글을 삭제하시겠습니까??')){			
-				$("#homeQnAVFrm").attr("action", "/teamproject/HomeQnAAsk/del?no=${vo.user_qna_no}" );
+				$("#homeQnAVFrm").attr("action", "/another/HomeQnAAsk/del?no=${vo.user_qna_no}" );
 				$("#homeQnAVFrm").submit();
 			}			
 		});
@@ -86,15 +87,23 @@
 				
 				<li>
 					<div>답변여부</div>
-					<div>${vo.board_no2 }</div>	
+					<c:set var="replycount" value="${vo.replycount}" />	
+					<c:if test="${replycount eq 2}"> 
+						<div>답변완료</div>					
+					</c:if>
+					<c:if test="${replycount eq 1}"> 
+						<div>미답변</div>					
+					</c:if>
+						
 				</li>
 				<li id="hQnAButview">
-					
-					<!-- 글작성자만 수정,삭제 버튼 보이게 				
-					<c:if test="${member_id=='memberid'}"></c:if>
-					-->
-						<input type="button" name="hQnAWEdit" id="hQnAWEdit" value="수정" onclick="location.href='/teamproject/HomeQnAAsk/editForm?no=${vo.user_qna_no}';"/>
-						<input type="button" name="hQnAWDel" id="hQnAWDel" value="삭제"/>
+					<c:set var="userId" value="${userId}" />	
+					<c:set var="writeId" value="${vo.member_id}" />					
+					<c:if test="${writeId eq userId}">
+							<input type="button" name="hQnAWEdit" id="hQnAWEdit" value="수정" onclick="location.href='/another/HomeQnAAsk/editForm?no=${vo.user_qna_no}';"/>
+							<input type="button" name="hQnAWDel" id="hQnAWDel" value="삭제"/>
+					</c:if>				
+							
 				
 					<input type="button" name="hQnAWList" id="hQnAWList" value="목록"/>
 				</li>				
