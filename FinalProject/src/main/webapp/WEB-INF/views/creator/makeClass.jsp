@@ -14,32 +14,45 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9551f210d2bfdcde36af42fb1ccab895&libraries=services"></script>
 <script>
-var categoryS;
+var categoryNumL;
+var categoryNumS;
 var count=0;
 var iitest=0;
 $(function(){
 	//////////////////////////////////////// 대분류 카테고리 눌렀을시 소분류 불러오기
 	$('.categoryL').on('click',function(){
-		categoryS = $(this).val();
-		alert($(this).val());
 		
+		$("#classCategorySUL").html("");
+		categoryNumL = $(this).val();
+		var category_no;
 		var url = "makeClass/ajaxList" 
-			var params = {"no":categoryS};
+			var params = {"no":categoryNumL};
 			$.ajax({
 				url : url,
 				data : params,
 				success:function(r){
 					var rr = $(r);
 					rr.each(function(idx, vo){
-						$("#test1").append("<li><input type='checkbox' name='categoryS'>"+vo.category_name+"</li>"); 
+						category_no = vo.category_no;
+						$("#classCategorySUL").append("<li><input type='checkbox' value='"+vo.category_no+"' name='"+vo.category_no+"' class='categoryS'>"+vo.category_name+"</li>"); 
 					});
-					
+						$('.categoryS').on('click',function(){
+							$(".categoryS").prop("checked",false);
+							$(this).prop('checked',true);
+							var dsds = $(this).attr('value');
+							$("#categoryReal").val(dsds);
+							alert(dsds);
+						});
 				},error:function(e){
 					console.log("List전송 에러발생함",e.responseText)
 				}
 			});
+			$("input:checkbox[name='NAME']").is(":checked")
 	});
 	/////////////////////////////////////////////////////////숫자만 입력
+	
+	
+	///////////////////////////////////////////////////
 	
 	$("#class_fee").on("keyup", function() {
 		if(!$.isNumeric($('#class_fee').val())){
@@ -60,15 +73,25 @@ $(function(){
 	
 	
 	////////////////////////////////////////////////////////// 카테고리 
-	$('input[type="checkbox"][name="categoryL"]').click(function(){
-		 
-		  if($(this).prop('checked')){
-			  
-			$('#smallCategoryDiv').css("display","block");
-		 	$("input[type='checkbox'][name='categoryL']").prop("checked",false);
+	$('.categoryL').click(function(){
+		if($(this).prop('checked') &&  categoryNumL == 800){
+			alert("자기계발 카테고리(대)는 하위 카테고리가 없습니다")
+			$("#categoryReal").val(800);
+			$(".categoryL").prop("checked",false);
 			$(this).prop('checked',true);
+			$('#smallCategoryDiv').css("display","none");
+		}else if($(this).prop('checked') &&  categoryNumL == 900){	
+			$("#categoryReal").val(900);
+			alert("기타 카테고리(대)는 하위 카테고리가 없습니다")
+			$(".categoryL").prop("checked",false);
+			$(this).prop('checked',true);
+			$('#smallCategoryDiv').css("display","none");
+		}else if($(this).prop('checked') && categoryNumL != 800){
+				$('#smallCategoryDiv').css("display","block");
+			 	$(".categoryL").prop("checked",false);
+				$(this).prop('checked',true);
 		 
-		  }else if($("input[type='checkbox'][name='categoryL']").is("checked") == false) {
+		}else if($(".categoryL").is("checked") == false) {
 		   	$('#smallCategoryDiv').css("display","none");
 		   	$("input[type='checkbox'][name='categoryS']").prop("checked",false);
 		    }
@@ -652,6 +675,21 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 .filebox input[type="file"]{
 	display: none;
 }
+#categoryReal{
+	color:black; 
+	display: none;
+}
+#classCategorySUL>li{
+	width:20%; 
+	line-height: 35px;
+}
+#classCategorySUL input{
+	margin:0px 5px 0px -80px;
+}
+#classCategorySUL{ background-color:pink;
+	padding:0;
+	width:100%;
+}
 </style>
 <form method="post" action="<%=request.getContextPath()%>/creator/makeClassOk" enctype="multipart/form-data">
 <div class="container">
@@ -700,17 +738,20 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	<div class="classCategoryDiv" id="forEach">
 		<ul>
 			<c:forEach var="vo" items="${cate }">
-			<li ><input type="checkbox" name="categoryL" value=" ${vo.category1_no }" class="categoryL" > ${vo.category_name }</li> <!-- 반복문 -->
+			<li ><input type="checkbox"  value=" ${vo.category1_no }" class="categoryL" > ${vo.category_name }</li> <!-- 반복문 -->
 			</c:forEach>
 		</ul>
 	
 	</div>
+	<input type="text" name="category_no" class="categoryPutInput" id="categoryReal" >
 	<div id="smallCategoryDiv">
 		<div class="classCommonDiv">
 			<span><kimin>*</kimin> 3-1) 클래스 서브 카테고리 <kimin>(필수)</kimin></span>
+			
 		</div>
 		<div class="classCategoryDiv">
-			<ul id="test1">
+			<ul id="classCategorySUL">
+				
 			</ul>
 		</div>
 	</div>
