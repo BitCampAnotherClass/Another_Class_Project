@@ -34,6 +34,7 @@
 		background:white;
 	}
 </style>
+
 </head>
 <body>
 	<div>
@@ -62,6 +63,15 @@
 					</c:forEach>
 				</ul>
 			</div>
+			<script type="text/javascript">
+				<c:forEach var="vo" items="${list}">
+					var test = ${vo.user_qna_no};
+					</c:forEach>
+					
+					$(()=>{
+						console.log(test);	
+					});
+				</script>
 		</div>
 	</div>
 </body>

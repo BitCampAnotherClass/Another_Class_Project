@@ -26,5 +26,8 @@
   		
   		
   	</insert>
-  
+  	
+  	<insert id="testBasket" parameterType="com.anotherclass.bitcamp.vo.user.BasketVO" >
+		  insert into basket values(basket_sq.nextval, #{member_id}, #{class_option_no}, #{headcount} <![CDATA[)  ]]>
+  	</insert>
   </mapper>
