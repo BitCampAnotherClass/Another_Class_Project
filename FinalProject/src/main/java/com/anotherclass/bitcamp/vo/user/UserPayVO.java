@@ -4,9 +4,14 @@ import java.util.List;
 
 public class UserPayVO {
 	
-	/*여러개의 클래스옵션번호를 담을 변수*/
-	private int[] classNoPayArray;
-	private List<Integer> classNoPayList;
+	/*여러개의 클래스옵션번호를 담을 변수*/	
+	private int[] classNoPayList;
+	
+	
+	
+	
+	/*클래스옵션가지고 장바구니디비에 추가*/	
+	private int[] classinsertBasket;
 	
 	/*주문자정보*/
 	private String member_id;
@@ -375,21 +380,18 @@ public class UserPayVO {
 	public void setMerchant(String merchant) {
 		this.merchant = merchant;
 	}
-	public int[] getClassNoPayArray() {
-		return classNoPayArray;
-	}
-	public void setClassNoPayArray(int[] classNoPayArray) {
-		this.classNoPayArray = classNoPayArray;
-	}
-	public List<Integer> getClassNoPayList() {
+	public int[] getClassNoPayList() {
 		return classNoPayList;
 	}
-	public void setClassNoPayList(List<Integer> classNoPayList) {
+	public void setClassNoPayList(int[] classNoPayList) {
 		this.classNoPayList = classNoPayList;
 	}
-	
-	
-	
+	public int[] getClassinsertBasket() {
+		return classinsertBasket;
+	}
+	public void setClassinsertBasket(int[] classinsertBasket) {
+		this.classinsertBasket = classinsertBasket;
+	}	
 	
 	
 	

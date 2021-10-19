@@ -52,7 +52,7 @@
 	#register_input_email, #register_input_email_addr{
 		float:left;
 	}
-	#register_id_text, #register_pwd_text, #register_pwdCh_text{
+	#register_id_text, #register_pwd_text, #register_pwdCh_text, #register_nick_text, #register_emailCh_text, #register_tel_text{
 		float: left;
 		font-size: 0.9em;
 		padding: 2px;

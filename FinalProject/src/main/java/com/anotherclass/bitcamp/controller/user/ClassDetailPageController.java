@@ -44,11 +44,10 @@ public class ClassDetailPageController {
 	//달력에서 날짜선택 -> 클래스옵션리스트
 	@RequestMapping("/classDetailDatePick")  //  /teamproject/classDetailDatePick
 	@ResponseBody		
-	public List<UserClassDetailVO> ajaxDatePick(String datedate, int no){
-	
+	public List<UserClassDetailVO> ajaxDatePick(String datedate, int no){	
 		System.out.println("컨트롤러 들어옴"+datedate+no);
 		List<UserClassDetailVO> list = classDetailPageService.userSelectOptionAllSelect(datedate,no);
-		System.out.print(list.size());
+		//System.out.print(list.size());
 		return list;
 	}
 	
@@ -77,9 +76,7 @@ public class ClassDetailPageController {
 	}
 	@RequestMapping("/classDetailLikeFun")
 	@ResponseBody
-	public int ajaxLikeFunc(int no,HttpSession  sess) {		
-		
-		System.out.println("좋아요버튼클릭컨트롤러들어옴");
+	public int ajaxLikeFunc(int no,HttpSession  sess) {			
 		String logid= (String)sess.getAttribute("userId");
 		int result;
 		System.out.println(no);
@@ -114,8 +111,7 @@ public class ClassDetailPageController {
 	
 	@RequestMapping("/classDetailAskReplyList")
 	@ResponseBody
-	public List<UserClassDetailVO2> ajaxAskReply(int no){
-		System.out.println("댓글리스트컨트롤러들어옴");
+	public List<UserClassDetailVO2> ajaxAskReply(int no){		
 		List<UserClassDetailVO2> list = classDetailPageService.userClassDetailAskReplySelect(no); //문의글에대한 댓글리스트 담아옴
 		return list;
 	}
@@ -127,32 +123,5 @@ public class ClassDetailPageController {
 		return classDetailPageService.classAskWritee(askVo); // return값이 0보다크면 글등록된거
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-//	@RequestMapping("/user/templogin")
-//	public String loginForm() {
-//		return "/user/classDetailPage/temploginForm" ;
-//	}
-//	//-------------로그인
-//	@RequestMapping(value="/temploginOk", method=RequestMethod.POST)
-//	   public String loginOk(tempMemberVO vo, HttpSession ses) {
-//	      //로그인
-//
-//	         ses.setAttribute("logid", "goguma123");
-//	        
-//	     
-//	      return "user/classDetailPage/temporaryhome";
-//	   }
-////	   @RequestMapping("/logout")
-////	   public String logout(HttpSession s) {
-////	      s.invalidate();
-////	      return "user/classDetailPage/temporaryhome";
-////	   }
-//	
+
 }
