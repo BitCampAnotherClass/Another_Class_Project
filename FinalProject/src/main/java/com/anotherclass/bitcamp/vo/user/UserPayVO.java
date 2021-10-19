@@ -77,6 +77,8 @@ public class UserPayVO {
 	private String charge;//수수료?
 	private String merchant;//결제번호 ->  /*결제후 뱉어주는 정보 담을 부분*/
 	
+	
+	
 	/*결제후 뱉어주는 정보 담을 부분*/
 	
 	
