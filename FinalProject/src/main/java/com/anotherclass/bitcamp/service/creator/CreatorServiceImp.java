@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.anotherclass.bitcamp.dao.creator.CreatorInquiryDAO;
 import com.anotherclass.bitcamp.vo.creator.CreatorInquiryVO;
+import com.anotherclass.bitcamp.vo.user.UserHomeQnAVO;
 
 @Service
 public class CreatorServiceImp implements CreatorService{
@@ -26,7 +27,7 @@ public class CreatorServiceImp implements CreatorService{
 	}
 	
 	@Override
-	public List<CreatorInquiryVO> creatorInquiryPageing(int start, int end) {
+	public List<UserHomeQnAVO> creatorInquiryPageing(int start, int end) {
 		return creatorInquiryDao.creatorInquiryPageing(start, end);
 	}
 	

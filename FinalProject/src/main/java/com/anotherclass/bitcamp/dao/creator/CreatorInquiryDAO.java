@@ -3,6 +3,7 @@ package com.anotherclass.bitcamp.dao.creator;
 import java.util.List;
 
 import com.anotherclass.bitcamp.vo.creator.CreatorInquiryVO;
+import com.anotherclass.bitcamp.vo.user.UserHomeQnAVO;
 
 public interface CreatorInquiryDAO {
 	
@@ -10,5 +11,5 @@ public interface CreatorInquiryDAO {
 	
 	public int creatorInquiryBoardCount();
 	
-	public List<CreatorInquiryVO> creatorInquiryPageing(int start, int end);
+	public List<UserHomeQnAVO> creatorInquiryPageing(int start, int end);
 }
