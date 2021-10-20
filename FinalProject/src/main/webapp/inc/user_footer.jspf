@@ -36,7 +36,7 @@
 	$(function(){
 		
 		// 대분류 카테고리 세팅
-		var url = '<%=request.getContextPath()%>/cateL/';
+		var url = '<%=request.getContextPath()%>/cateL';
 		$.ajax({
 			url: url,
 			success: function(result){
@@ -50,24 +50,19 @@
 						$('.category > .sub-menu1').append(tag);
 					});
 				}
-				console.log('실행');
 				
 				// 중분류 카테고리 세팅
 				$('.category > .sub-menu1 > li').each(function(){
 					var submenu2 = $(this).children('.sub-menu2');
 					var cateL_link = $(this).children('a').attr('href');
-					console.log(cateL_link);
 					var cateL_no = cateL_link.substring(cateL_link.indexOf('category1_no=')+'category1_no='.length);
-					console.log(cateL_no);
 					
-					var url = '<%=request.getContextPath()%>/cateS/';
+					var url = '<%=request.getContextPath()%>/cateS';
 					var params = 'category1_no='+cateL_no;
-					console.log(params);
 					$.ajax({
 						url: url,
 						data: params,
 						success: function(result2){
-							console.log('실행2');
 							var rr = $(result2);
 							if(rr.length!=0){
 								rr.each(function(idx){
