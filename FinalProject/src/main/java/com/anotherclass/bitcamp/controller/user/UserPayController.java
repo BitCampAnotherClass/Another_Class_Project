@@ -123,5 +123,8 @@ public class UserPayController {
 		return mav;
 		
 	}
+	
+	//결제하고나서오는곳
+	
 
 }

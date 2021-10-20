@@ -8,6 +8,8 @@ public class BasketVO {
 	private int headcount;
 	
 	private int[] option_seting;
+	private int[] classoptiono; //결제페이지에서 보내는 클래스옵션번호배열...
+	
 	
 	public int getBasket_no() {
 		return basket_no;
@@ -40,6 +42,12 @@ public class BasketVO {
 	}
 	public void setOption_seting(int[] option_seting) {
 		this.option_seting = option_seting;
+	}
+	public int[] getClassoptiono() {
+		return classoptiono;
+	}
+	public void setClassoptiono(int[] classoptiono) {
+		this.classoptiono = classoptiono;
 	}
 	
 	
