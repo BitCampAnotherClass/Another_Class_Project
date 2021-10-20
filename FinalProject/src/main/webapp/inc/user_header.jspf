@@ -73,7 +73,7 @@
 							<ul class="sub-menu1">
 								<li><a href="<%=request.getContextPath()%>/UserNotice">공지사항</a></li>
 								<li><a href="<%=request.getContextPath()%>/UserFaq">자주 묻는 질문</a></li>
-								<li><a href="<%=request.getContextPath()%>/HomeQnAAsk/list">홈페이지문의</a></li>
+								<li><a href="<%=request.getContextPath()%>/HomeQnAAsk/list?no=1">홈페이지문의</a></li>
 							</ul>
 						</li>
 					</ul>
