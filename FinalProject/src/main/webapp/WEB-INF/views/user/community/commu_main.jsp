@@ -208,10 +208,15 @@ li{list-style: none;}
 </div>
 
 <script>
-var dataURL = 'https://api.tvmaze.com/search/shows?q=batman';
+//var dataURL = 'https://api.tvmaze.com/search/shows?q=batman';
+const dataURL = 'js/MOCK_DATA.txt';
 var _WRAP = document.querySelector('.wrap');
 var _UL = document.querySelector('.listWrap');
+//var data = ${data};
 
+//console.log("3--",'${data.score}');
+//console.log("4--",'${data.show.name}');
+//console.log('${data.show.image.medium}')
 var list = {
     init:function(){
         list.ajax();
@@ -219,15 +224,16 @@ var list = {
     listView:function(data){
         let _LI = document.createElement('li');
         _LI.className = 'list';
-        _LI.innerHTML = `<a href="CommunityContentDetail"><div class="list-thum">
-                            <img src="${data.show.image.medium}" 
+        _LI.innerHTML = `<div class="list-thum">
+                            <img src="img/jisu/classimg3.png" 
                                  alt="img-${data.show.id}">
                          </div>
                          <div class="list-user">
                             <span>${data.show.name}</span>
                             <span>${data.show.premiered}</span>
                          </div>
-                         <div class="list-email">${data.score}</div></a>`;
+                         <div class="list-email">${data.score}</div>`;
+                         console.log(_LI.innerHTML);
         return _LI;
     },
     more:function(length){
@@ -242,7 +248,7 @@ var list = {
             type : 'get',
             url: dataURL,
             datatype : 'json',
-            success : function(data){    
+            success : function(data){             	
             	var max = 4;
                 let maxList = data.length / max;
                 let start = 0;
