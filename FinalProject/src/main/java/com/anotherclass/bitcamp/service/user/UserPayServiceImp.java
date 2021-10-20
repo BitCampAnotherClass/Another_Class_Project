@@ -34,4 +34,10 @@ public class UserPayServiceImp implements UserPayService {
 	public int testBasket(BasketVO vo) {
 		return userpaydao.testBasket(vo);
 	}
+
+	@Override
+	public int delBasket(BasketVO vo) {
+		// TODO Auto-generated method stub
+		return userpaydao.delBasket(vo);
+	}
 }

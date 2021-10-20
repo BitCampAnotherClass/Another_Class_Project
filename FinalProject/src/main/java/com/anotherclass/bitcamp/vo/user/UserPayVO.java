@@ -6,10 +6,7 @@ public class UserPayVO {
 	
 	/*여러개의 클래스옵션번호를 담을 변수*/	
 	private int[] classNoPayList;
-	
-	
-	
-	
+
 	/*클래스옵션가지고 장바구니디비에 추가*/	
 	private int[] classinsertBasket;
 	
@@ -29,7 +26,7 @@ public class UserPayVO {
 	private String out_date;
 	
 	/*포인트 잇는 테이블 usertbl*/
-	//id
+	//idㄴ
 	private int point;
 	
 	
@@ -77,7 +74,11 @@ public class UserPayVO {
 	private String charge;//수수료?
 	private String merchant;//결제번호 ->  /*결제후 뱉어주는 정보 담을 부분*/
 	
-	
+	/*총결제금액담을부분*/
+	private int totalPrice;
+	/*적립포인트*/
+	private int savePoint;
+	private int totalSavePoint;
 	
 	/*결제후 뱉어주는 정보 담을 부분*/
 	
@@ -393,6 +394,24 @@ public class UserPayVO {
 	}
 	public void setClassinsertBasket(int[] classinsertBasket) {
 		this.classinsertBasket = classinsertBasket;
+	}
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+	public int getSavePoint() {
+		return savePoint;
+	}
+	public void setSavePoint(int savePoint) {
+		this.savePoint = savePoint;
+	}
+	public int getTotalSavePoint() {
+		return totalSavePoint;
+	}
+	public void setTotalSavePoint(int totalSavePoint) {
+		this.totalSavePoint = totalSavePoint;
 	}	
 	
 	
