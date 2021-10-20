@@ -41,13 +41,20 @@
 	
 	/* 선택상품 - 삭제 ,주문 */
 	#shoppingbasketBtn{width:100%;height:auto;margin:0 auto;text-align:center;margin-top:50px;}
-	#shoppingbasketBtn>a{display:inline-block;text-align:center;font-size:20px;border:1px solid #333;margin:0 20px 0 20px;padding:10px 15px 10px 15px;}
+	#shoppingbasketBtn>#selectdel{display:inline-block;text-align:center;font-size:20px;border:1px solid #333;margin:0 20px 0 20px;padding:10px 15px 10px 15px;background-color:#fff;}
+	#shoppingbasketBtn>#goPay{display:inline-block;text-align:center;font-size:20px;border:1px solid #333;margin:0 20px 0 20px;padding:10px 15px 10px 15px;background-color:#fff;}
 </style>
 <script>
 
 $(function(){ 
 	var logid = "${userId}"; // 세션에저장된아이디	
 	console.log(logid);
+	
+	 // 전체 선택
+    $("#allchk").click(function() {
+       $("#payfrmm input").prop("checked", $(this).prop("checked"));
+    });    
+	
 	
 	
 	//장바구니 전체셋팅
@@ -61,8 +68,9 @@ $(function(){
 				var bb = $(b)
     			var tag =""; 
 				bb.each(function(idx,vo){	//성공해서 정보담아옴
+					//vo.basket_no
 					tag += "<li>";
-					tag += "<div><input type='checkbox'></div>";
+					tag += "<div><input type='checkbox' class='checkbb' name='classNoPayList' value='"+vo.class_option_no +"' id='"+vo.class_option_no+"' ></div>";
 					tag += "<div>";
 					tag += "<div>";
 					//var a = vo.class_thumb;
@@ -80,9 +88,9 @@ $(function(){
 					tag += "<div>"+vo.class_price*0.01+"</div>";
 					tag += "<div>";
 					tag += "<div>";
-					tag += "<a href='#'><span>주문하기</span></a>";
-					tag += "<a href='#'><span>찜하기</span></a>";
-					tag += "<a href='#'><span>삭제</span></a>";
+					tag += "<a href='#'><span class='order'>주문하기</span></a>";
+					tag += "<a href='#'><span class='heart'>찜하기</span></a>";
+					tag += "<a href='#'><span class='del''>삭제</span></a>";
 					tag += "</div>";
 					tag += "</div>";
 					tag += "</li>";				
@@ -107,14 +115,46 @@ $(function(){
 	}
 	
 	
-	//삭제 -> 선택상품삭제 , 삭제
-	//주문 -> 선택상품주문 , 주문
+	//삭제 -> 선택상품삭제 	
+	$(document).on('click','#selectdel',function(){//delete
+		var logid = "${userId}";    	
 	
+		if ($("input:checkbox[name='classNoPayList']").is(":checked")==false) {
+			alert("삭제할 클래스를 선택해주세요.");
+			return;
+		}	 			
+			$("#payfrmm").attr("action", "/another/DeleteBasketDB");			
+		 	$("#payfrmm").submit();				
+	});	
+	
+	//삭제 -> 개별상품
+	
+	/*
+	$(document).on('click','.del',function(){//delete
+		var logid = "${userId}";    	
+	
+		//$(this).closet('input:checkbox[name='classNoPayList']').val() 		
+		console.log($(this).parents("input").attr('id'));
+		//	$("#payfrmm").attr("action", "/another/DeleteBasketDB");			
+		 //	$("#payfrmm").submit();				
+	});	
+	*/
+	//주문 -> 선택상품주문 , 주문
+	$(document).on('click','#goPay',function(){//delete
+		var logid = "${userId}";    	
+	
+		if ($("input:checkbox[name='classNoPayList']").is(":checked")==false) {
+			alert("주문할 클래스를 선택해주세요.");
+			return;
+		}	 			
+			$("#payfrmm").attr("action", "/another/PayPage");			
+		 	$("#payfrmm").submit();				
+	});	
 	//주문페이지이동 -> 장바구니페이지에서삭제?:결제성공하면 삭제하고 아니면 냅둘까?.. 클래스옵션번호가지고
 	
 	
-	getBaList();
-	getBaCount();
+	getBaList();//장바구니리스트블러옴
+	getBaCount();//장바구니갯수가져옴
 });
 
 </script>
@@ -124,28 +164,36 @@ $(function(){
 
 	<div id="shoppingbasketPageTitle" class="bigTitle"><h1>장바구니</h1></div><!-- style="border:1px solid red" -->
 	
-	
-	<div  class="shoppingBagList">
-		<span class="h3style">장바구니 상품( <label id="num">2</label> )</span>		
+	<form  method="post" id="payfrmm" name="payfrmm">	
 		
-		<ul id="shoppingBagListTitle">
-			<li><input type="checkbox" id="allchk"></li>		
-			<li>상품정보</li> <!-- 이미지 + 클래스정보 + 옵션:인원?날짜?... -->
-			<li>상품금액</li> <!-- 인원?날짜?... -->
-			<li>포인트</li>	
-			<li>선택</li> <!-- 주문하기,찜하기,삭제 -->				
-		</ul>
+		<div  class="shoppingBagList">
+			<span class="h3style">장바구니 상품( <label id="num">2</label> )</span>		
+			
+			<ul id="shoppingBagListTitle">
+				<li><input type="checkbox" id="allchk"></li>		
+				<li>상품정보</li> <!-- 이미지 + 클래스정보 + 옵션:인원?날짜?... -->
+				<li>상품금액</li> <!-- 인원?날짜?... -->
+				<li>포인트</li>	
+				<li>선택</li> <!-- 주문하기,찜하기,삭제 -->				
+			</ul>			
+			<ul id="shoppingBagListUl">
+			
+				<!-- 여기에 주문정보가 저장됨................................ -->
+				
+				
+			</ul>
 		
-		<ul id="shoppingBagListUl">
-			
-			
-			
-		</ul>
-	</div>
+		</div>
+		
+		<div id="shoppingbasketBtn">		
+			<input type='button' id='selectdel' value='선택상품삭제'>
+			<input type='button' id='goPay' value='선택상품주문'>
+		
+		</div>
+		
+	</form>
 	
-	<div id="shoppingbasketBtn">		
-		<a href="#">선택상품삭제</a>
-		<a href="#">선택상품주문하기</a>
-	</div>
+	
+	
 	
 <%@ include file="myPageBottom.jspf" %>

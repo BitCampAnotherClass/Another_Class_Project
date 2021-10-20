@@ -33,4 +33,9 @@ public class AdminServiceImp implements AdminService {
 	public int boardLimit() {
 		return memberMangementDao.boardLimit();
 	}
+	
+	@Override
+	public List<RegisterVO> MemberAccountInfo(String idCheck) {
+		return memberMangementDao.MemberAccountInfo(idCheck);
+	}
 }

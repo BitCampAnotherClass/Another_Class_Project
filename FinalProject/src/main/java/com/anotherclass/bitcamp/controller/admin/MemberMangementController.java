@@ -26,11 +26,10 @@ public class MemberMangementController {
 	@RequestMapping(value="/MemberMangement/userAccountList",method = RequestMethod.POST)
 	@ResponseBody
 	public List<RegisterVO> userList(int no){
-		int memberListLimit = 15; // 한페이지에 보여줄 페이지수
+		int memberListLimit = 10; // 한페이지에 보여줄 페이지수
 		int num =no;
 		int numberList = ((num-1)*memberListLimit); // 페이징 시작 계산식
 		int numberLimitCal = (memberListLimit*num);
-		System.out.println(numberLimitCal);
 		int numberListLast = (numberList+1);
 		List<RegisterVO> list = adminService.MemberList(numberListLast, numberLimitCal);
 		return list;
@@ -40,9 +39,16 @@ public class MemberMangementController {
 	@ResponseBody
 	public int buttonList() {
 		int boardListNumber = adminService.boardLimit(); // 게시글 수 조회
-		int memberListLimit = 15; // 한페이지에 보여줄 페이지수
+		int memberListLimit = 10; // 한페이지에 보여줄 페이지수
 		int listCalcul = (int) Math.ceil((double)boardListNumber/memberListLimit);		
 		return listCalcul;
+	}
+	
+	@RequestMapping(value="/MemberMangement/AccountInformation", method= RequestMethod.POST)
+	@ResponseBody
+	public List<RegisterVO> memberAccountInfo(String idData){
+		List<RegisterVO> list = adminService.MemberAccountInfo(idData);
+		return list;
 	}
 	
 	@RequestMapping(value="/userManagement")
@@ -50,10 +56,6 @@ public class MemberMangementController {
 		return "admin/MemberManagement/userManagement";
 	}
 	
-	@RequestMapping(value="/adminManagement")
-	public String creatorManagement() {
-		return "admin/MemberManagement/adminManagement";
-	}
 	
 	@RequestMapping(value="/adminTest")
 	public String adminTest() {
@@ -64,10 +66,11 @@ public class MemberMangementController {
 	public ModelAndView adminAccountMake(RegisterVO vo)throws Exception {
 		ModelAndView mav = new ModelAndView();
 		vo.setMember_pw(hashing.setEncryption(vo.getMember_pw(),vo.getMember_id()));
-		adminService.adminAccountCreate(vo);
+		vo.setAdditional_information_one("admin1");
+		String s = adminService.adminAccountCreate(vo);
 		String check =vo.getAdditional_information_two();
 		System.out.println(check);
-		
+		System.out.println("테스트"+s);
 		if(check=="NOT") {
 			mav.setViewName("redirect:/");
 		}else {

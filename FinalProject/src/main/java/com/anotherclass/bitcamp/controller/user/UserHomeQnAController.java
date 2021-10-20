@@ -1,5 +1,7 @@
 package com.anotherclass.bitcamp.controller.user;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
@@ -18,10 +20,18 @@ public class UserHomeQnAController {
 	
 	//고객지원 - 홈페이지문의->리스트목록보기
 	@RequestMapping("/HomeQnAAsk/list")
-	public ModelAndView HomeQnAAskList() {
+	public ModelAndView HomeQnAAskList(int no) {
 		
 		ModelAndView mav = new ModelAndView();	
-		mav.addObject("list",userHomeQnAService.userHomeQnAAllSelect());		
+		int boardLimit = 10; // 한페이지에 보여줄 페이지수
+		int listFirst = ((no-1)*boardLimit); // 하단 버튼숫자에 따른 페이징 시작번호
+		int listLast =  boardLimit*no;
+		int cnt = userHomeQnAService.userHomeOnABoardCnt(); // 컬럼 전체숫자 출력
+		System.out.println("테스트--->"+cnt);
+		List<UserHomeQnAVO> list = userHomeQnAService.userHomeQnAAllSelect(listFirst+1,listLast);
+		mav.addObject("list",list);
+		System.out.println(no);
+		mav.addObject("number",no);
 		mav.setViewName("/user/HomeQnA/userHelper_HomeQnA_list");		
 		return mav;
 	}

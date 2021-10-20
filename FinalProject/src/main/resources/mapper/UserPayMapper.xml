@@ -31,4 +31,8 @@
   	<insert id="testBasket" parameterType="com.anotherclass.bitcamp.vo.user.BasketVO" >
 		  insert into basket values(basket_sq.nextval, #{member_id}, #{class_option_no}, #{headcount} <![CDATA[)  ]]>
   	</insert>
+  	<delete id="delBasket" parameterType="com.anotherclass.bitcamp.vo.user.BasketVO">
+
+  		delete basket where class_option_no =#{class_option_no} and member_id=#{member_id}
+  	</delete>  	
   </mapper>

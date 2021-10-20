@@ -34,18 +34,91 @@
 	
 	
 	$(function(){
+		
+		// 대분류 카테고리 세팅
+		var url = '<%=request.getContextPath()%>/cateL/';
+		$.ajax({
+			url: url,
+			success: function(result){
+				var r = $(result);
+				//console.log(r);
+				var tag='';
+				if(r.length!=0){
+					r.each(function(idx){
+						tag = '<li><a href="<%=request.getContextPath()%>/class/list?category1_no=' + r[idx].category1_no + '">' + r[idx].category_name + '</a>';
+						tag += '<ul class="sub-menu2"></ul></li>';
+						$('.category > .sub-menu1').append(tag);
+					});
+				}
+				console.log('실행');
+				
+				// 중분류 카테고리 세팅
+				$('.category > .sub-menu1 > li').each(function(){
+					var submenu2 = $(this).children('.sub-menu2');
+					var cateL_link = $(this).children('a').attr('href');
+					console.log(cateL_link);
+					var cateL_no = cateL_link.substring(cateL_link.indexOf('category1_no=')+'category1_no='.length);
+					console.log(cateL_no);
+					
+					var url = '<%=request.getContextPath()%>/cateS/';
+					var params = 'category1_no='+cateL_no;
+					console.log(params);
+					$.ajax({
+						url: url,
+						data: params,
+						success: function(result2){
+							console.log('실행2');
+							var rr = $(result2);
+							if(rr.length!=0){
+								rr.each(function(idx){
+									submenu2.append('<li><a href="<%=request.getContextPath()%>/class/list?category_no=' + rr[idx].category_no + '">'+ rr[idx].category_name +'</a></li>');
+								});
+							}
+						}, error: function(e){
+							console.log('카테고리 불러오기 에러', e.responseText);
+						}
+					});
+				}); // 중분류 ajax
+				
+			}, error: function(e){
+				console.log('카테고리 불러오기 에러', e.responseText);
+			}
+		}); // 대분류 ajax
+
+		
+		
 		// 메뉴 마우스 오버
 		$('.gnb > li').mouseenter(function(){
 			$(this).children('.sub-menu1').css('display', 'flex');
+			
+			// 카테고리 대분류 마우스 오버 시 중분류 보이기
+			$('.sub-menu1 > li').mouseenter(function(){
+				$(this).css('background', '#ff385c');
+				$(this).children('a').css('color', '#fff');
+				
+				if($(this).children('.sub-menu2').children().length>0){
+					$(this).children('.sub-menu2').css('display', 'flex');
+					// 중분류 마우스 오버 시 글씨색 바꾸기
+					$('.sub-menu2 > li').mouseenter(function(){
+						$(this).children('a').css('color', '#ff385c');
+					}).mouseleave(function(){
+						$(this).children('a').css('color', '#333');
+					});
+				}
+			}).mouseleave(function(){
+				$(this).css('background', '#fff');
+				$(this).children('a').css('color', '#333');
+				
+				$(this).children('.sub-menu2').css('display', 'none');
+			});
+			
 		}).mouseleave(function(){
 			$(this).children('.sub-menu1').css('display', 'none');
 		});
 		
-		$('.sub-menu1 > li').mouseenter(function(){
-			$(this).children('.sub-menu2').css('display', 'flex');
-		}).mouseleave(function(){
-			$(this).children('.sub-menu2').css('display', 'none');
-		});
+		
+		
+		
 	});
 	
 </script>

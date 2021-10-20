@@ -44,7 +44,6 @@
 	}
 	#register_input_email{
 		width: 50%;
-		margin-right: 4%;
 	}
 	#register_input_email_addr{
 		width: 45%;
@@ -56,4 +55,13 @@
 		float: left;
 		font-size: 0.9em;
 		padding: 2px;
+	}
+	.member_email_AtSign{
+		float:left;
+		font-family:fantasy;
+		margin-top:7px;
+		text-align:center;
+		width:5%;
+		color:  #333;
+		font-size: 1.2em;
 	}

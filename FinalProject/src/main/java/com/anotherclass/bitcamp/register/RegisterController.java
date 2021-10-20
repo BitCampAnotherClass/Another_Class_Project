@@ -149,6 +149,9 @@ public class RegisterController {
 				session.setAttribute("userNick", logvo.getNick());
 				session.setAttribute("userImg", logvo.getMember_img());
 				session.setAttribute("userLog", 1);
+				if(vo.getSns_type()!=null) {
+					session.setAttribute("userSnsType", vo.getSns_type());
+				};
 				mav.setViewName("redirect:/");	
 				
 			} else if(vo.getLogType().equals("2")) { // 강사
@@ -156,8 +159,10 @@ public class RegisterController {
 				session.setAttribute("creatorNick", logvo.getNick());
 				session.setAttribute("creatorImg", logvo.getMember_img());
 				session.setAttribute("creatorLog", 1);
-				mav.setViewName("redirect:/creator/");	
-				
+				if(vo.getSns_type()!=null) {
+					session.setAttribute("creatorSnsType", vo.getSns_type());
+				}
+				mav.setViewName("redirect:/creator/");		
 			}			
 		} else { // 기존 계정 없을 시
 			if(vo.getSns_type()!=null && !vo.getSns_type().equals("")) { // 첫 sns 로그인 (가입)
@@ -165,24 +170,26 @@ public class RegisterController {
 				if(vo.getLogType().equals("1")) { // 회원
 					cnt = registerService.userAccountJoin(vo); // sns 회원 등록
 					if(cnt>0) {
-						session.setAttribute("userId", logvo.getMember_id());
-						session.setAttribute("userNick", logvo.getNick());
-						session.setAttribute("userImg", logvo.getMember_img());
+						session.setAttribute("userId", vo.getMember_id());
+						session.setAttribute("userNick",vo.getNick());
+						session.setAttribute("userImg", vo.getMember_img());
 						session.setAttribute("userLog", 1);
-						mav.setViewName("redirect:/"); // 회원 홈
+						session.setAttribute("userSnsType", vo.getSns_type());
+						mav.addObject("msgType", "1"); // 회원가입 완료 메세지
 					} else {
-						/////////////
+						mav.addObject("msgType", "2"); // 회원가입 실패 메세지
 					}
 				} else if(vo.getLogType().equals("2")) { // 강사
 					cnt = registerService.creatorAccountJoin(vo); // sns 강사 등록
 					if(cnt>0) {
-						session.setAttribute("creatorId", logvo.getMember_id());
-						session.setAttribute("creatorNick", logvo.getNick());
-						session.setAttribute("creatorImg", logvo.getMember_img());
+						session.setAttribute("creatorId", vo.getMember_id());
+						session.setAttribute("creatorNick", vo.getNick());
+						session.setAttribute("creatorImg", vo.getMember_img());
 						session.setAttribute("creatorLog", 1);
-						mav.setViewName("redirect:/creator/");	// 강사 홈
+						session.setAttribute("creatorSnsType", vo.getSns_type());
+						mav.addObject("msgType", "1"); // 회원가입 완료 메세지
 					} else {
-						////////////////
+						mav.addObject("msgType", "2"); // 회원가입 실패 메세지
 					}
 				}
 				mav.setViewName("/register/registerResult");
@@ -203,15 +210,12 @@ public class RegisterController {
 	@RequestMapping(value = "/adminLoginOk", method = RequestMethod.POST)
 	public ModelAndView adminLoginOk(RegisterVO vo, HttpSession session) throws Exception{
 		rsaLog(vo, session); // 복호화
-		System.out.println("실행0");
+
 		ModelAndView mav = new ModelAndView();
 		RegisterVO logvo = new RegisterVO();
-		System.out.println("실행1");
-		String adminId = registerService.loginAdmin(vo); // 관리자 로그인 계정 조회
-		System.out.println(adminId);
-		if(adminId!=null && !adminId.equals("")) {
-			System.out.println("실행3");
-			session.setAttribute("adminId", adminId);
+		logvo = registerService.loginAdmin(vo); // 관리자 로그인 계정 조회
+		if(logvo!=null) {
+			session.setAttribute("adminId", logvo.getMember_id());
 			session.setAttribute("adminLog", 1);
 			mav.setViewName("redirect:/admin/");		
 		} else {
@@ -233,8 +237,31 @@ public class RegisterController {
 	// 로그아웃
 	@RequestMapping(value = "/logout")
 	public String logout(HttpSession session) {
-		session.invalidate();
+		session.removeAttribute("userId");
+		session.removeAttribute("userNick");
+		session.removeAttribute("userImg");
+		session.removeAttribute("userLog");
+		session.removeAttribute("userSnsType");
 		return "redirect:/";
+	}
+	
+	// 강사 로그아웃
+	@RequestMapping(value = "/creatorlogout")
+	public String creatorLogout(HttpSession session) {
+		session.removeAttribute("creatorId");
+		session.removeAttribute("creatorNick");
+		session.removeAttribute("creatorImg");
+		session.removeAttribute("creatorLog");
+		session.removeAttribute("creatorSnsType");
+		return "redirect:/creator/";
+	}
+	
+	// 로그아웃
+	@RequestMapping(value = "/adminlogout")
+	public String adminLogout(HttpSession session) {
+		session.removeAttribute("adminId");
+		session.removeAttribute("adminLog");
+		return "redirect:/admin/";
 	}
 	
 }

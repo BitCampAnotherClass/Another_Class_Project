@@ -77,7 +77,14 @@
     #howmuch2>div:nth-child(2)>div>label{margin-top:8px;}
     #howmuch3>div:nth-child(1)>div>label{margin-top:26px;}
     #howmuch3>div:nth-child(2)>div>label{margin-top:37px;}    
-    #payInfoBox>div:nth-child(2)>div{height:62.5px;}  
+    
+    /* #payInfoBox>div:nth-child(2)>div{height:62.5px;}  */
+    
+     #payInfoBox>div:nth-child(2)>div:nth-child(1){height:40.5px;color:#666;border-bottom:0.5px dotted #ddd;}  
+     #payInfoBox>div:nth-child(2)>div:nth-child(2){height:62.5px;font-size:12px;border-bottom:0.5px dotted #ddd;}  
+     #payInfoBox>div:nth-child(2)>div:nth-child(3){height:52.5px;padding-top:5px;font-size:12px;}  
+     #payInfoBox>div:nth-child(2)>div:nth-child(4){height:62.5px;} 
+    
     #payEndBtn{width:100%;height:100%;background-color:#333;color:white;font-size:1.1rem;font-weight:bold;text-align:center;border:none;} 
 </style>
 
@@ -88,9 +95,18 @@
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 <script>
+
+var member_id ="";
+var member_email ="";
+var member_tel ="";
 $(function(){
 	
 	var logid = "${userId}"; // 세션에저장된아이디		
+	
+	
+	
+	
+	
 	
 	function memberInfo(){
 		var mUrl = "/another/memInfo";
@@ -100,52 +116,24 @@ $(function(){
 			data :mParam,
 			success:function(vo){
 				var tag =""; 
-				/*<div><span>주문하시는분</span><span>김비트</span></div>
-				<div><span>이메일</span><span>bitcamp@nate.com</span></div>
-				<div><span>휴대폰번호</span><span>010-1234-5678</span></div>*/
-				tag += "<div><span>주문하시는분</span><span>"+vo.member_name+"</span></div>";
-				tag += "<div><span>이메일</span><span>"+vo.member_email+"</span></div>";
-				tag += "<div><span>휴대폰번호</span><span>"+vo.member_tel+"</span></div>";
+				tag += "<div><span>주문하시는분</span><span id='member_name'>"+vo.member_name+"</span></div>";
+				tag += "<div><span>이메일</span><span id='member_email'>"+vo.member_email+"</span></div>";
+				tag += "<div><span>휴대폰번호</span><span id='member_tel'>"+vo.member_tel+"</span></div>";
+				tag +="<input type='hidden' id='pointbox' value='"+vo.point+"'>"
+				//console.log(vo.point);
+				//member_id += vo.member_name;
+				//member_email +=vo.member_email;
+				//member_tel += vo.member_tel;
+				//console.log(member_id+member_email+member_tel);
 				$("#paymemberinfo").append(tag);
 			}				
 		})		
 	}
-
-	var conductCount = $(".payclassinfoorder").length;// 주문할상품며몇개인지구한다
-	console.log(conductCount);
 	
-	
-	//총상품금액 , 결제예정금액 구하는 함수
-	/*function totalprice(){
-		var tag ="";
-		<c:forEach var="vo" items="${list}">
-			var test = {vo.class_price};
-			tag += test;
-		</c:forEach> 
-		console.log(test);
-	}
-	
-	*/
-	function totalprice(){
-		var tag ="";
-		<c:forEach var="vo" items="${list}">
-			var test = ${vo.class_price};
-			tag += test;
-		</c:forEach> 
-		console.log(test);
-	}
-	
-	
-	
-	
-	
-	
-	
+	//console.log(member_id+member_email+member_tel);
 	
 	memberInfo();//회원정보ajax셋팅
-	
 
-	
 
 });	
 </script>
@@ -153,14 +141,11 @@ $(function(){
 	<div id="leftdiv">
 		<div id="payPageTitle"><span>주문결제</span></div><!-- 페이지타이틀 -->		
 		<div id="paymemberinfo"><!-- 주문자정보 -->
-			<div class="secondTitleD">주문자정보</div>
-			
+			<div class="secondTitleD">주문자정보</div>			
 		</div>
 			<div id="payclassinfo"><!-- 주문상품 -->
 			<div class="secondTitleD">주문상품</div>
-				<div><span>상품정보</span><span>인원</span><span>총상품금액</span><span>포인트</span></div>			
-				
-				
+				<div><span>상품정보</span><span>인원</span><span>총상품금액</span><span>포인트</span></div>					
 				<c:forEach var="vo" items="${list}">
 					<div class="payclassinfoorder " style="height:150px;"><!-- 주문한줄.... -->
 						<div><!-- 이미지+제목 -->
@@ -172,23 +157,37 @@ $(function(){
 							</div>
 						</div>
 						<div class="orderN"><label>1</label>명</div><!-- 인원 -->
-						<div class="orderP"><label>${vo.class_price }</label>원</div><!-- 총상품금액 -->						
-						<div class="orderPP"><label id="orderpp">${vo.class_price }</label>P</div>
+						<div class="orderP"><label>${vo.class_price }</label>원</div><!-- 총상품금액 -->		
+						
+						
+						
+										
+						<div class="orderPP"><label style="display:inline-block;margin-top:4px;">${vo.savePoint }</label></div>						
 					</div>
-				</c:forEach> 
-			
-		
-		</div>
-		
-				
+				</c:forEach> 	
+		</div>			
 		<div id="paydiscount"><!-- 할인받기 -->
 			<div class="secondTitleD">할인받기</div>
-			<div><span>결제예정금액</span><span>114,000원</span></div>
-			<div><span>포인트</span><span><input type="text">잔액<label> ${vo.point}</label>p</span></div>			
+			
+			<div><span>결제예정금액</span><span>${sum }원</span></div>
+			
+			<script>
+			/*<c:forEach var="vo" items="${list}">
+				var n = Number(${vo.class_price });
+				var s += n;
+			</c:forEach>
+				console.log(s);
+				*/
+			</script>
+				
+			
+	
+			
+			<div><span>사용포인트</span><span><input type="text">&nbsp;&nbsp;보유포인트<label id="havePoint"></label>p</span></div>			
 		</div>				
 		<div id="paymethod"><!-- 결제수단 -->
 			<div class="secondTitleD">결제수단</div>
-			<div id="paymethodselect"">
+			<div id="paymethodselect">
 				<span><input type="radio" name="paymentmethod" value="paycard"/>신용카드</span>
 				<span><input type="radio" name="paymentmethod" value="paybank"/>무통장입금</span>
 				<span><input type="radio" name="paymentmethod" value="paysimple"/>간편결제</span>
@@ -236,37 +235,67 @@ $(function(){
 				<div>최종결제금액</div>
 				<div id="howmuch2">
 					<div>
-						<div><label>총 상품금액</label></div><div><label>114,000원</label></div>
+						<div><label>총 상품금액</label></div><div><label>${sum }</label></div>
 					</div>
 					<div>
-						<div><label>포인트</label></div><div><label>3000원</label></div>
+						<div><label>사용포인트</label></div><div><label>p</label></div>
 					</div>
 				</div>
 				<div id="howmuch3">
 					<div>
-						<div><label>최종결제금액</label></div><div><label>111,000원</label></div>
+						<div><label>최종결제금액</label></div><div><label>${sum }원</label></div>
 					</div>
 					<div>
-						<div><label>적립예정 포인트</label></div><div><label>1110 p</label></div>
+						<div><label>적립예정 포인트</label></div><div><label>${sum2 }p</label></div>
 					</div>
 				</div>
 			</div>			
 			<div><!-- 동의+결제하기 -->
-				<div style="visibility:hidden;">d</div>
-				<div style="visibility:hidden;">d</div>
-				<div style="visibility:hidden;">d</div>
+				<div style='padding-top:10px;'><label style='padding-left:15px;'><input type="checkbox" name='ckkk' value='kkk'></label><label style='font-size:1.1rem;padding-left:10px;'>전체동의합니다</label></div><!--  style="visibility:hidden;" -->
+				<div style='padding-top:10px;'>
+					<p style='padding-left:15px;color:#999;'>주문 상품정보에 동의(필수)</p>
+					<p style='padding-left:15px;color:#999;'>(전자상거래법 제 8조 제 2항)</p>
+					<p style='padding-left:15px;color:#999;'>상품명, 가격, 배송정보, 할인내역을 확인함</p>				
+				</div>
+				<div style='color:#999;padding-top:10px;'>
+					<p style='padding-left:15px;color:#999;'>결제대행서비스 이용을 위한 개인정보</p>
+					<p style='padding-left:15px;color:#999;'>제3자 제공 및 위탁 동의(필수)</p>				
+				</div>
 				<div id="payEndD"><input type="button" name="" id="payEndBtn" value="결제하기"></div>
 			</div>
 		</div>
 		
 	</div>
 	  
-	  <script>
+	  
+	  
+<script>
+
+
+
+
+	  
+	  
+	  
+	  
+	  
+	  
+	  
+	  
         $('#payEndBtn').click(function () {
-            // getter
+            
+        	if ($("input:checkbox[name='ckkk']").is(":checked")==false) {
+				alert("주문 상품정보(전자상거래법 제 8조 제 2항)에 대해 동의해 주세요.(필수)");
+				return;
+			}	    	
+        	
+        	
+        	// getter
             var IMP = window.IMP;
             IMP.init('imp53433684');
-            var money = 200;
+            var money = ${sum };
+            
+            
             
             IMP.request_pay({
             	pg: 'kcp', // PG사 선택
@@ -303,8 +332,14 @@ $(function(){
                     msg += '에러내용 : ' + rsp.error_msg;
                 }
                 alert(msg);
-          //      document.location.href = "/user/mypage/home"; //alert창 확인 후 이동할 url 설정
+          //      document.location.href = "/user/mypage/home"; //alert창 확인 후 이동할 url 설정            
+            
             });
+            
+            
+            
         });
-    </script>
+        
+
+</script>
 </div>

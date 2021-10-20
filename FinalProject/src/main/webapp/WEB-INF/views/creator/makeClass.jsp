@@ -87,7 +87,6 @@ $(function(){
             var array=selectedDates;
             if(array.length <= 10){
             	$('#putDateTime').html(instance.altInput.value);
-            	
             }else if(array.length >= 11){
             	var count = array.length - 10;
             	alert("선택"+count+"를 초과하였습니다\n"+count+"개를 취소해 주십시오.");

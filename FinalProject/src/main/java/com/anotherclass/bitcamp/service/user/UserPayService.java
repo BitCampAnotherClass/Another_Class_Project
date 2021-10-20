@@ -11,4 +11,5 @@ public interface UserPayService {
 	public int saveBasket(int[] classNoPayList);
 	
 	public int testBasket(BasketVO vo);
+	public int delBasket(BasketVO vo);;
 }
