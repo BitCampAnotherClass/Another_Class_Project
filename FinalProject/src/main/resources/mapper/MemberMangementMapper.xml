@@ -14,4 +14,9 @@
 	<select id="boardLimit" resultType="int" >
 		SELECT COUNT(member_id) FROM memberTbl
 	</select>
+	<select id="MemberAccountInfo" resultType="com.anotherclass.bitcamp.register.RegisterVO" parameterType="com.anotherclass.bitcamp.register.RegisterVO" >
+	<![CDATA[
+		SELECT member_id, member_name, member_email, member_tel, signupdate from memberTbl where member_id = #{param1}
+	 ]]>	
+	</select>
 </mapper>

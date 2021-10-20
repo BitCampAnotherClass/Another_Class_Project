@@ -30,7 +30,6 @@ public class MemberMangementController {
 		int num =no;
 		int numberList = ((num-1)*memberListLimit); // 페이징 시작 계산식
 		int numberLimitCal = (memberListLimit*num);
-		System.out.println(numberLimitCal);
 		int numberListLast = (numberList+1);
 		List<RegisterVO> list = adminService.MemberList(numberListLast, numberLimitCal);
 		return list;
@@ -45,15 +44,18 @@ public class MemberMangementController {
 		return listCalcul;
 	}
 	
+	@RequestMapping(value="/MemberMangement/AccountInformation", method= RequestMethod.POST)
+	@ResponseBody
+	public List<RegisterVO> memberAccountInfo(String idData){
+		List<RegisterVO> list = adminService.MemberAccountInfo(idData);
+		return list;
+	}
+	
 	@RequestMapping(value="/userManagement")
 	public String userManagement() {
 		return "admin/MemberManagement/userManagement";
 	}
 	
-	@RequestMapping(value="/adminManagement")
-	public String creatorManagement() {
-		return "admin/MemberManagement/adminManagement";
-	}
 	
 	@RequestMapping(value="/adminTest")
 	public String adminTest() {

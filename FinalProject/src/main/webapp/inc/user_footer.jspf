@@ -42,6 +42,34 @@
 		});
 		
 		$('.sub-menu1 > li').mouseenter(function(){
+			var submenu2 = $(this).children('.sub-menu2');
+			
+			var cateL_link = $(this).children('a').attr('href');
+			var cateL_no = cateL_link.substring(cateL_link.indexOf('category1_no=')+'category1_no='.length);
+			console.log(cateL_no);
+			
+			var url = '<%=request.getContextPath()%>/home/';
+			var params = 'category1_no='+cateL_no;
+			$.ajax({
+				url: url,
+				data: params,
+				success: function(result){
+					var r = $(result);
+					console.log(r.length);
+					r.each(function(idx, cateS){
+						//console.log(r.cateS.length);
+							console.log("2//"+idx);
+							console.log(r[idx].category_no);
+						for(i=0; i<r.length; i++){
+							submenu2.html('<li><a href="/?category_no=' + r[idx].category_no + '">'+ r[idx].category_name +'</a></li>');
+						}
+					});
+				}, error: function(e){
+					console.log('cateS 불러오기 에러', e.responseText);
+				}
+			});
+			
+		//	$(this).children('.sub-menu2').html('');
 			$(this).children('.sub-menu2').css('display', 'flex');
 		}).mouseleave(function(){
 			$(this).children('.sub-menu2').css('display', 'none');

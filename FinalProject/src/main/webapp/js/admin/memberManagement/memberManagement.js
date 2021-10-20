@@ -22,9 +22,8 @@ $(function(){
 						board +='<li class="userMg-chart-boardlist">'+vo.signupdate+'</li>';
 						board +='<li class="userMg-chart-boardlist">'+idx+'</li>';
 						board +='<li class="userMg-chart-boardlist">';
-						board +='<input type="button" value="상세 정보" id="account_information_btn"/>';
+						board +='<input type="button" value="관리메뉴" id="account_information_btn"/>';
 						board +='<input type="hidden" value="'+vo.member_id+'" id="userMg-chart-id"/>';
-						board +='<input type="button" value="삭제" class="userMg-account-del" />';
 						board +='</li>';
 						num = idx;
 					});
@@ -69,27 +68,72 @@ $(function(){
 		});
 
 		$(document).on('click',"#account_information_btn",function(){
-			var arrayData;
-			var n;
-			var nim = $(this).next().val();
-			console.log(nim);
-			
-			// 회원 상세정보 버튼 클릭시 출력되는 창
-			var infoNum;
+			var idData = $(this).next().val();
+			var data = {"idData":idData};
 			var member_information = '';
-			member_information += '<div class="userMg-information-back">';
-			member_information += '<div class="userMg-information-box">';
-			member_information += '<div class="userMg-information-popup">';
-			member_information += '<h2 class="userMg-info-title">회원 상세정보</h2>';
-			member_information += '<input type="button" value="X" class="userMg-info-closeButton" />';
-			member_information += '<ul>';
-			member_information += '<input type="text" class="account_input" />';
-			member_information += '</ul>';
-			member_information += '</div>';
-			member_information += '</div>';
-			member_information += '</div>';
-			$('#contents-wrap').before(member_information);
+			var infoAccount="MemberMangement/AccountInformation";
+			$.ajax({
+				url : infoAccount,
+				type : "POST",
+				data : data,
+				success:function(result){
+					var infor= $(result);
+					infor.each(function(idx,vo){
+						member_information += '<div class="userMg-information-back">';
+						member_information += '<div class="userMg-information-box">';
+						member_information += '<div class="userMg-information-popup">';
+						member_information += '<h2 class="userMg-info-title">'+vo.member_name+' 회원님의 상세정보</h2>';
+						member_information += '<input type="button" value="X" class="userMg-info-closeButton" />';
+						member_information += '<ul class="userMg-info-popup-ul">';
+						member_information += '<li>아이디</li>';
+						member_information += '<li>'+vo.member_id+'</li>';
+						member_information += '<li>이름</li>';
+						member_information += '<div class="userMg-information-popup-div">';
+						member_information += '<li><input type="text" class="userMg-information-popup-input"  value="'+vo.member_name+'" readonly="true"></li>';
+						member_information += '</div>';
+						member_information += '<li>이메일</li>';
+						member_information += '<div class="userMg-information-popup-div">';
+						member_information += '<li><input type="text" class="userMg-information-popup-input"  value="'+vo.member_email+'" readonly="true"></li>';
+						member_information += '</div>';
+						member_information += '<li>전화번호</li>';
+						member_information += '<div class="userMg-information-popup-div">';
+						member_information += '<li><input type="text" class="userMg-information-popup-input"  value="'+vo.member_tel+'" readonly="true"></li>';
+						member_information += '</div>';
+						member_information += '<li>가입날짜</li>';
+						member_information += '<div class="userMg-information-popup-div">';
+						member_information += '<li><input type="text" class="userMg-information-popup-input-sing"  value="'+vo.signupdate+'" readonly="true"></li>';
+						member_information += '</div>';
+						member_information += '<li><input type="button" id="userMg-information-popup-button-one" value="수정 활성화"/></li>';
+						member_information += '<li><input type="button" id="userMg-information-popup-button-del" value="삭제"/></li>';
+						member_information += '<li><input type="button" id="userMg-information-popup-button-two" value="수정전송" style="display: none;" /></li>';
+						member_information += '</ul>';
+						member_information += '</div>';
+						member_information += '</div>';
+						member_information += '</div>';
+					});
+						// 회원 상세정보 버튼 클릭시 출력되는 창
+						$('#contents-wrap').before(member_information);
+				},error: function(error){
+					console.log(error);
+					console.log('AJAX 목록 불러오기 실패');
+				}
+				
+			});
+			
 		});
+		
+		$(document).on('click','#userMg-information-popup-button-one',function(){
+			$(this).css('display','none');
+			$('#userMg-information-popup-button-two').css('display','block');
+			$('.userMg-information-popup-input').removeAttr('readonly');
+		});
+		
+		$(document).on('click','#userMg-information-popup-button-two',function(){
+			$(this).css('display','none');
+			$('#userMg-information-popup-button-one').css('display','block');
+			$('.userMg-information-popup-input').attr('readonly','true');
+		});
+		
 		
 		$(document).on('click','.userMg-info-closeButton',function(){
 			// 상세정보 닫기
