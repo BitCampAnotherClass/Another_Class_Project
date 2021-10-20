@@ -20,10 +20,24 @@ var count=0;
 var iitest=0;
 var start_date;
 var start_str;
+var DateArray = [];
 $(function(){
+	//////////////////////////////////////////////////////날짜 선택 모달
+	 $(".modal").css({
+         "top": (($(window).height()-$(".modal").outerHeight())/2+$(window).scrollTop())+"px",
+         "left": (($(window).width()-$(".modal").outerWidth())/2+$(window).scrollLeft())+"px"
+      }); 
 	
+	$("#modalButton").click(function(){
+		$(".modal").fadeIn(); 
+		}); 
+	$(".modal").click(function(){
+			$(".modal").fadeOut();
+			});
+
 	////////////////////////////////////////////////////달력입력  -->> 다른 li 정보 옮기기
 	$(document).on('DOMSubtreeModified propertychange','#putDateTime',function(){
+		
 		var testing1 = $(this).text();
 		var testing2 = testing1.split(",");
 		var testing3 = new Array(testing2);
@@ -113,20 +127,31 @@ $(function(){
 	//////////////////////////////////////////////////////달력
 	$(".flatpickrCalender").flatpickr({
 		inline : true,
-		mode: "multiple",
+		mode: "single",
 		dateFormat: " Y - m - d '",
 		minDate:"today",
 		maxDate: new Date().fp_incr(180),
 		altInput: true,
 		altFormat: " Y - m - d '",
 		onChange(selectedDates, dateStr, instance) {
-            var array = selectedDates;
-            if(array.length <= 10){
-            	$('#putDateTime').html(((instance.altInput.value).replace(/'/g,"<input type='time' value='09:00:00'><input type='time' value='18:00:00'><br/>")).replace(/,/g,""));
+			
+             DateArray += $(".flatpickr-day.selected").text()+",";
+             var results=DateArray.match(/,/g);
+             
+            if(results.length <= 10){
+            	if($(this).click()){
+            		$(".flatpickr-day.selected").css("background","#FF385C");
+            	}
+            	
+            	$('#putDateTime').append("<div class='putDateTime2' id='dateTimeDivDel'><div title='cancel' class='dateCancelButton' onclick='deleteDivDate(this)'><img src='<%=request.getContextPath()%>/img/kimin/xbu.png'></div>"
+            			+((instance.altInput.value).replace(/'/g,"<input type='time' value='09:00:00'><img  src='<%=request.getContextPath()%>/img/kimin/~.png'><input type='time' value='18:00:00'></div>"))
+            				.replace(/,/g,""));
+            				
             	console.log(instance.altInput.value);
-            }else if(array.length >= 11){
-            	var count = array.length - 10;
-            	alert("선택"+count+"를 초과하였습니다\n"+count+"개를 취소해 주십시오.");
+            }else if(results.length >= 11){
+            	var count = results.length - 10;
+            	//alert("선택"+count+"를 초과하였습니다\n"+count+"개를 취소해 주십시오.");
+            	alert("10개를 모두 선택하였습니다\n");
             	$(".flatpickr-day.selected").css("background","#FF385C");
             	//$(".flatpickr-day").css("pointer-events","none");*/ 캘린더 클릭못하게 막을수있음
             }
@@ -223,6 +248,11 @@ $(function(){
   			});
 	});
 	});
+//////////////////////////////////// 날짜 선택 지우기 div
+function deleteDivDate(del){
+	$($(del).parents("#dateTimeDivDel")).remove();
+	$(del).remove();
+};
 /////////////////////////////// 태그에 빨간 div 삭제
 function deleteDiv(){
 	var div = document.getElementById('tagInsertInner'+iitest);
@@ -479,11 +509,9 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	border-radius:8px;
 	display:inline-block;
 	height:430px;
-	
 	margin:0 auto;
 }
 #imgThumbDiv img{
-	
 	height:100%;
 }
 .buttonClass{
@@ -521,8 +549,8 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	font-size: 1.2em;
 	line-height: 30px;
 }
-.classDate>ul{border:;
-	width:800px;
+.classDate>ul{border:;background-color:;
+	width:830px;
 	height:340px;
 	margin:0 auto;
 	margin-top:20px;
@@ -532,26 +560,47 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 .classDate li{
 	float:left;
 }
-#putDateTime{background-color:;display:;
+.simg{
+	margin-top:0px;
+}
+#putDateTime{display:;border:;background-color:;
 	border:2px dotted lightgray;
-	width:400px;
-	height:340px;
+	width:500px;
+	height:360px;
+	text-align: center;
+	margin:-30px 0 0 20px;
+	line-height: 34px;
+	border-radius:8px;
+	padding-top:10px;
+}
+.dateCancelButton{
+	width:25px;
+	height:25px;
+	background-color: #FF385C; 
+	border-radius:8px;
+	margin:5px 0 0 0;
+	color: white;
+	font-weight: 600;
+	line-height: 25px;
+	margin-left: 5px;
+	cursor: pointer;
+}
+.putDateTime2{
 	color:#FF385C; 
 	font-weight:600;
 	font-size:1em;
-	text-align: center;
-	margin:-20px 0 0 30px;
-	line-height: 34px;
-	border-radius:8px;
+}
+.putDateTime2>div{
+	float:left;
 }
 #putDateTime input[type="time"]{
 	margin-left:10px;
-	width:120px;
+	width:140px;
 	height:30px;
-}
-#putDateTime>div{
-	color:#FF385C;
-	margin-top:150px;
+	border-radius:8px;
+	text-align: center;
+	border:1px solid lightgray;
+	font-size: 1em;
 }
 .flatpickrCalender{
 	display: none;
@@ -716,6 +765,12 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 #classDateRealStart{
 	display:;
 }
+.modal{
+ position:absolute; width:500px; height:500px; background: rgba(0,0,0,0.8); 
+ top:2000px; left:50%; display:none; 
+ }
+
+
 </style>
 <form method="post" action="<%=request.getContextPath()%>/creator/makeClassOk" enctype="multipart/form-data">
 <div class="container">
@@ -826,7 +881,7 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	<div class="classDate">
 		<ul>
 			<li><input class="flatpickrCalender"/></li>
-			<li><div id="putDateTime"><div id="dateTimeDiv">선택하신 날짜가 표시됩니다</div></div></li>	
+			<li><div  id="putDateTime"></div></li>	
 		</ul>
 	</div>
 	<div>
@@ -915,6 +970,8 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 		<input type="submit" value="클래스 등록신청" name="class_apply" id="class_apply" class="buttonClass">
 	</div>
 </div>
-
 </form>
-
+<button id="modalButton">모달창</button> 
+<div class="modal"> 
+	<div class="modal_content" title="클릭하면 창이 닫힙니다."> 여기에 모달창 내용을 적어줍니다.<br> 이미지여도 좋고 글이어도 좋습니다. </div>
+</div>
