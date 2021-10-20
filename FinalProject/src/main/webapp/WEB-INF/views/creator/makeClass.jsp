@@ -21,6 +21,8 @@ var iitest=0;
 var start_date;
 var start_str;
 var DateArray = [];
+var classDateDivCount;
+var  resultsArray;
 $(function(){
 	//////////////////////////////////////////////////////날짜 선택 모달
 	 $(".modal").css({
@@ -125,6 +127,8 @@ $(function(){
 		    }
 	});
 	//////////////////////////////////////////////////////달력
+	classDateDivCount = 1;
+	classDateCount=0;
 	$(".flatpickrCalender").flatpickr({
 		inline : true,
 		mode: "single",
@@ -136,25 +140,23 @@ $(function(){
 		onChange(selectedDates, dateStr, instance) {
 			
              DateArray += $(".flatpickr-day.selected").text()+",";
-             var results=DateArray.match(/,/g);
-             
-            if(results.length <= 10){
-            	if($(this).click()){
-            		$(".flatpickr-day.selected").css("background","#FF385C");
-            	}
-            	
+              resultsArray=DateArray.match(/,/g);
+           
+            
+            if(classDateDivCount <= 10){
+            	   
             	$('#putDateTime').append("<div class='putDateTime2' id='dateTimeDivDel'><div title='cancel' class='dateCancelButton' onclick='deleteDivDate(this)'><img src='<%=request.getContextPath()%>/img/kimin/xbu.png'></div>"
-            			+((instance.altInput.value).replace(/'/g,"<input type='time' value='09:00:00'><img  src='<%=request.getContextPath()%>/img/kimin/~.png'><input type='time' value='18:00:00'></div>"))
+            				+((instance.altInput.value).replace(/'/g,"<input type='time' value='09:00:00'><img  src='<%=request.getContextPath()%>/img/kimin/~.png'><input type='time' value='18:00:00'></div>"))
             				.replace(/,/g,""));
-            				
-            	console.log(instance.altInput.value);
-            }else if(results.length >= 11){
-            	var count = results.length - 10;
+            	 classDateDivCount++;	
+            		
+            }else if(classDateDivCount >= 11){
             	//alert("선택"+count+"를 초과하였습니다\n"+count+"개를 취소해 주십시오.");
+            	
             	alert("10개를 모두 선택하였습니다\n");
             	$(".flatpickr-day.selected").css("background","#FF385C");
-            	//$(".flatpickr-day").css("pointer-events","none");*/ 캘린더 클릭못하게 막을수있음
             }
+           
        }
 	});
 	//////////////////////////////////////////////////////테그 변환
@@ -189,11 +191,11 @@ $(function(){
 			alert('클래스 간단 소개를 입력하세요');
 			window.location.href="#f2";
 			return false;
-		}else if($("#categoryReal").val() == ""){		//카테고리 빠져있음
+		}else if($("#categoryReal").val() == ""){		
 			alert('클래스 카테고리를 선택하세요');
 			window.location.href="#f3";
 			return false;
-		}else if($('#class_thumb').val() == ""){		//카테고리 빠져있음
+		}else if($('#class_thumb').val() == ""){		
 			alert('클래스 썸네 파일을 업로드하세요');
 			window.location.href="#f4";
 			return false;
@@ -252,6 +254,8 @@ $(function(){
 function deleteDivDate(del){
 	$($(del).parents("#dateTimeDivDel")).remove();
 	$(del).remove();
+	classDateDivCount--;
+	console.log(classDateDivCount);
 };
 /////////////////////////////// 태그에 빨간 div 삭제
 function deleteDiv(){
@@ -325,7 +329,7 @@ function execDaumPostcode() {
                     // 지도 중심을 변경한다.
                     map.setCenter(coords);
                     // 마커를 결과값으로 받은 위치로 옮긴다.
-                    marker.setPosition(coords)
+                    marker.setPosition(coords);
                 }
             });
         }
@@ -379,7 +383,6 @@ function handleImgFileSelect(e){
 /* body{ background-color:#FFF5F5;} */
 kimin{ color:#FF385C; }
 kimin2{font-size: 1.3em; color:gray; margin-left:5px;}
-
 #class_name{
 	height:50px; width:100%;
 }
@@ -770,7 +773,6 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
  top:2000px; left:50%; display:none; 
  }
 
-
 </style>
 <form method="post" action="<%=request.getContextPath()%>/creator/makeClassOk" enctype="multipart/form-data">
 <div class="container">
@@ -881,7 +883,8 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	<div class="classDate">
 		<ul>
 			<li><input class="flatpickrCalender"/></li>
-			<li><div  id="putDateTime"></div></li>	
+			<li><div  id="putDateTime"></div></li>
+			<li><div id="dateCount"></div></li>	
 		</ul>
 	</div>
 	<div>
