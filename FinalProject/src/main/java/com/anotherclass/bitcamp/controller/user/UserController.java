@@ -26,11 +26,8 @@ public class UserController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
-    	// 카테고리 가져오기
+    	// 대분류 카테고리 가져오기
     	List<CreatorClassCategoryVO> cateL = makeClassApplyService.makeClassCategoryL();
-//    	System.out.println(req.getParameter("category1_no"));
-//    	int cateL_str = Integer.parseInt(req.getParameter("category1_no"));
-    	//List<CreatorClassCategoryVO> cateS = makeClassApplyService.makeClassCategoryS(cateL_str);
 
     	mav.addObject("cateL", cateL);
     	//mav.addObject("cateS", cateS);
@@ -39,13 +36,20 @@ public class UserController {
     	return mav;
 	}
 	
-	@RequestMapping(value = "/home/", method = RequestMethod.GET)
+	@RequestMapping(value = "/cateL/", method = RequestMethod.GET)
 	@ResponseBody
-	public List<CreatorClassCategoryVO> homeCategory(CreatorClassCategoryVO vo, HttpServletRequest req) {
-		ModelAndView mav = new ModelAndView();
-    	// 카테고리 가져오기
-		System.out.println(req.getParameter("category1_no"));
-    	//int cateL_str = Integer.parseInt(req.getParameter("category1_no"));
+	public List<CreatorClassCategoryVO> cateL() {
+    	// 대분류 카테고리 가져오기
+    	List<CreatorClassCategoryVO> cateL = makeClassApplyService.makeClassCategoryL();
+
+    	return cateL;
+	}
+	
+	
+	@RequestMapping(value = "/cateS/", method = RequestMethod.GET)
+	@ResponseBody
+	public List<CreatorClassCategoryVO> cateS(CreatorClassCategoryVO vo) {
+    	// 중분류 카테고리 가져오기
     	List<CreatorClassCategoryVO> cateS = makeClassApplyService.makeClassCategoryS(vo.getCategory1_no());
     	System.out.println("실행2");
 
