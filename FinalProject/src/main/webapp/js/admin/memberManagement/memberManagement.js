@@ -2,6 +2,21 @@ $(function(){
 		var url="MemberMangement/userAccountList";
 		var num;
 		
+		function replaceAt (indata){
+			
+			if(indata != null) {
+				var telValue1 = indata.substr(9);
+				var trans = telVal.replaceAll(/[0-9|-]/gi,'*');
+				var telValue2 = indata.substr(0,9);
+				console.log(telValue1);
+				console.log(trans);
+				console.log(telValue2);
+			}else{
+				indata = '없음';
+			}
+     		return indata;
+		}
+		
 		function userList(){
 			var number = $('.paging-number').val();
 			var data = {"no":number};
@@ -14,11 +29,13 @@ $(function(){
 				success:function(result){
 					var listData = $(result);
 					listData.each(function(idx,vo){
+						var tel = replaceAt(vo.member_tel,1,'*');
+						
 						board +='<li class="userMg-chart-boardlist"><input type="checkbox" id="allcheck"/></li>';
 						board +='<li class="userMg-chart-boardlist" id="userMg-chart-id">'+vo.member_id+'</li>';
 						board +='<li class="userMg-chart-boardlist">'+vo.member_name+'</li>';
 						board +='<li class="userMg-chart-boardlist">'+vo.member_email+'</li>';
-						board +='<li class="userMg-chart-boardlist">'+vo.member_tel+'</li>';
+						board +='<li class="userMg-chart-boardlist">'+tel+'</li>';
 						board +='<li class="userMg-chart-boardlist">'+vo.signupdate+'</li>';
 						board +='<li class="userMg-chart-boardlist">'+idx+'</li>';
 						board +='<li class="userMg-chart-boardlist">';
