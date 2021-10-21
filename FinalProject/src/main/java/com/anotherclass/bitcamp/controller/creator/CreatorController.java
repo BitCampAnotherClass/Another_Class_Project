@@ -48,8 +48,10 @@ public class CreatorController {
 		
 		ModelAndView mav = new ModelAndView();
 		vo.setMember_id("test100");
-		int result_date = makeClassApplyService.makeClassApplyDateTime(vo2);
 		int result = makeClassApplyService.makeClassApply(vo);
+		vo2.setClass_no(vo.getClass_no()); 
+		vo2.setAll_headcount(vo.getMax_headcount());
+		int result_date = makeClassApplyService.makeClassApplyDateTime(vo2);
 		if(result == 1 && result_date ==1) {
 			System.out.println("등록성공");
 			mav.setViewName("/creator/makeClassOk");
