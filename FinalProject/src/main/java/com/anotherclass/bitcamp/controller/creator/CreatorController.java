@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.anotherclass.bitcamp.service.creator.MakeClassApplyService;
 import com.anotherclass.bitcamp.vo.creator.CreatorClassCategoryVO;
+import com.anotherclass.bitcamp.vo.creator.CreatorMakeClassDateTimeVO;
 import com.anotherclass.bitcamp.vo.creator.CreatorMakeClassVO;
 
 @Controller
@@ -42,11 +43,14 @@ public class CreatorController {
 	
 	
 	@RequestMapping(value="/makeClassOk", method=RequestMethod.POST)
-	public ModelAndView creatClass(CreatorMakeClassVO vo, HttpSession ses) {
+	public ModelAndView creatClass(CreatorMakeClassVO vo,CreatorMakeClassDateTimeVO vo2, HttpSession ses) {
+	
+		
 		ModelAndView mav = new ModelAndView();
 		vo.setMember_id("test100");
+		int result_date = makeClassApplyService.makeClassApplyDateTime(vo2);
 		int result = makeClassApplyService.makeClassApply(vo);
-		if(result == 1) {
+		if(result == 1 && result_date ==1) {
 			System.out.println("등록성공");
 			mav.setViewName("/creator/makeClassOk");
 		}
@@ -78,7 +82,7 @@ public class CreatorController {
 	public List<CreatorClassCategoryVO> ajaxList(CreatorClassCategoryVO vo, int no) {
 		List<CreatorClassCategoryVO> result = makeClassApplyService.makeClassCategoryS(no);
 		
-		System.out.println("dddddd");
+		System.out.println("카테고리 디비");
 		
 		return result;
 	}
