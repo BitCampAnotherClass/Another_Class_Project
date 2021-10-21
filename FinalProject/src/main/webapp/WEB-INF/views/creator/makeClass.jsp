@@ -141,7 +141,6 @@ $(function(){
 			
              DateArray += $(".flatpickr-day.selected").text()+",";
               resultsArray=DateArray.match(/,/g);
-           
             
             if(classDateDivCount <= 10){
             	   
