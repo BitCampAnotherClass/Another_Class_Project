@@ -302,8 +302,7 @@ $(function(){
                 buyer_addr: '인천광역시 부평구',
                 buyer_postcode: '123-456'
             }, function (rsp) { // 결제성공시 imp_uid 와 merchant_uid를 가맹점 서버에 진자로 전달
-	               
-	            	//console.log(rsp);
+	               	            	
 	            	conosole.log("결제에 성공하였습니다");
 	                
 	            if (rsp.success) { //결제성공시 로직
@@ -330,8 +329,7 @@ $(function(){
 	                    msg += '에러내용 : ' + rsp.error_msg;
 	                }
 	                alert(msg);
-	          //      document.location.href = "/user/mypage/home"; //alert창 확인 후 이동할 url 설정            
-	               // history.back();
+	          		
             });
             
             
