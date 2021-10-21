@@ -124,16 +124,32 @@ $(function(){
 		if ($("input:checkbox[name='classNoPayList']").is(":checked")==false) {
 			alert("삭제할 클래스를 선택해주세요.");
 			return;
-		}	 			
+		}	
+		if(confirm('클래스를 삭제하시겠습니까?')){
 			$("#payfrmm").attr("action", "/another/DeleteBasketDB");			
-		 	$("#payfrmm").submit();				
+		 	$("#payfrmm").submit();		
+		 	
+		}
 	});	
 	
 	//삭제 -> 개별상품	
 	$(document).on('click','.del',function(){//delete
 		var logid = "${userId}";    	
 		var a =$(".class_option_no_val").val();
-		console.log(a);
+		var ddUrl = "/another/delOneClass";
+		var ddParam = {"no":a} 
+		
+		if(confirm('클래스를 삭제하시겠습니까?')){
+			$.ajax({// 디비삭제
+				url:ddUrl,
+				data :ddParam,
+				success:function(dd){
+					alert('삭제 되었습니다');
+					getBaList();
+					getBaCount();
+				}
+			})
+		}		
 	});	
 	
 	//주문 -> 선택상품주문 , 주문
@@ -151,7 +167,7 @@ $(function(){
 	$(document).on('click','.order',function(){//delete
 		var logid = "${userId}";    	
 		var a =$(".class_option_no_val").val();
-        location.href="another/goPayPP?no="+no;
+        location.href="/PayPage2";
 	});	
 			
 			

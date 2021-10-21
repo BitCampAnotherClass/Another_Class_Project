@@ -73,6 +73,7 @@
 				url : 'buttonCnt'
 				, type : 'GET'
 				, success:function(res){
+						
 					for(var i=1; i<=res; i++){
 						btnList +='<a href="list?no='+i+'"';
 						if(i>=10){
@@ -142,8 +143,8 @@
 			<input type="hidden" value="${vo.board_no2 }"/>
 		</c:forEach>
 		</ul>
-			<div class="hQnAList-button">
-				
+			<div class="hQnAList-button" style='text-align:center;margin-top:50px;'>
+				<!-- 페이징 -->
 			</div>
 			
 	</div>

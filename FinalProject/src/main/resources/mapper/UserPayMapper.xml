@@ -5,7 +5,7 @@
   <mapper namespace="com.anotherclass.bitcamp.dao.user.UserPayDAO">
   	<select id="userPayAllselect"  resultType="com.anotherclass.bitcamp.vo.user.UserPayVO">  		
   		<![CDATA[
-	  		select b.class_name, b.class_price, b.class_thumb, a.nick, to_char(c.start_date,'yyyy-MM-DD HH:MM') start_date
+	  		select b.class_name, b.class_price, b.class_thumb, a.nick, to_char(c.start_date,'yyyy-MM-DD HH:MM') start_date , c.class_option_no
 			from membertbl a, classtbl b , classoption c
 			where a.member_id  =  b.member_id
 			and b.class_no  =  c.class_no 
@@ -32,7 +32,21 @@
 		  insert into basket values(basket_sq.nextval, #{member_id}, #{class_option_no}, #{headcount} <![CDATA[)  ]]>
   	</insert>
   	<delete id="delBasket" parameterType="com.anotherclass.bitcamp.vo.user.BasketVO">
-
   		delete basket where class_option_no =#{class_option_no} and member_id=#{member_id}
   	</delete>  	
+  	<delete id="delOneBasket">
+  		delete basket where class_option_no =#{param1} 
+  	</delete>  
+  	<select id="userPayoneSelect" resultType="com.anotherclass.bitcamp.vo.user.UserPayVO"
+  	
+  	
+  	>
+  		<![CDATA[
+  		select b.class_name, b.class_price, b.class_thumb, a.nick, to_char(c.start_date,'yyyy-MM-DD HH:MM') start_date , c.class_option_no
+		from membertbl a, classtbl b , classoption c
+		where a.member_id  =  b.member_id
+		and b.class_no  =  c.class_no 
+		and  c.class_option_no in =#{param1}
+  		]]>  	
+  	</select>
   </mapper>

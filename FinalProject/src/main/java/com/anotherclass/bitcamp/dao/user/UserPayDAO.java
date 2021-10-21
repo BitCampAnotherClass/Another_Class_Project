@@ -7,9 +7,12 @@ import com.anotherclass.bitcamp.vo.user.UserPayVO;
 
 public interface UserPayDAO {
 	public List<UserPayVO> userPayAllselect(int[] classNoPayList );//결제페이지로이동 ->클래스옵션번호가지고 select
+	public List<UserPayVO> userPayoneSelect(int no);//장바구니에서 한개주문 -> 결제페이지로이동
 	public UserPayVO userInfo(String logid);
 	public int saveBasket(int[] classNoPayList);//장바구니에저장
 	
 	public int testBasket(BasketVO vo);//장바구니저장
-	public int delBasket(BasketVO vo);//장바구니삭제
+	public int delBasket(BasketVO vo);//장바구니 선택삭제
+	public int delOneBasket(int no);//장바구니 한개삭제
+	
 }
