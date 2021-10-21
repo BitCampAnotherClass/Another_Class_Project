@@ -23,7 +23,7 @@
 					<h3 class="text-h3">후기 작성하기</h3>
 					<button type="button" class="modal-close">Χ</button>
 				</div>
-				<form id="reviewWrite">
+				<form id="reviewWrite" method="post" action="<%=request.getContextPath()%>/writeReviewOK">
 					<div class="review-class">
 						<div class="review-class-img">
 							<img src="<%=request.getContextPath()%>/img/test/creator_01.PNG"/>
@@ -49,7 +49,7 @@
 					</div>
 					<div class="review-write-text">
 						<h4>후기 작성</h4>
-						<textarea placeholder="자세한 후기는 다른 고객에게 큰 도움이 됩니다. (최소 10자 이상, 최대 1000자까지 가능)" maxlength="1000"></textarea>
+						<textarea id="review-content" name="content" placeholder="자세한 후기는 다른 고객에게 큰 도움이 됩니다. (최소 10자 이상, 최대 1000자까지 가능)" maxlength="1000"></textarea>
 					</div>
 					<div class="review-write-img">
 						<h4>사진 첨부</h4>
