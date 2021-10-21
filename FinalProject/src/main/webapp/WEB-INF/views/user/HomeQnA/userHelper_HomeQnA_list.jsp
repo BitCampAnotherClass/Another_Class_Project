@@ -66,6 +66,30 @@
 			}	    	
 		});
 		
+		function btnList(){
+			//페이징 버튼 출력
+			var btnList = "";
+			$.ajax({
+				url : 'buttonCnt'
+				, type : 'GET'
+				, success:function(res){
+					for(var i=1; i<=res; i++){
+						btnList +='<a href="list?no='+i+'"';
+						if(i>=10){
+						btnList +=' style="display:none" ';
+						}
+						btnList += '>'+i+'<a>';
+					}
+					$('.hQnAList-button').html(btnList);
+				}
+				, error: function(error){
+					console.log(error);
+					console.log('btn 목록 불러오기 실패');
+				}
+				
+			});
+		}
+		btnList();
 	});
 	</script>
 
@@ -117,8 +141,10 @@
 			
 			<input type="hidden" value="${vo.board_no2 }"/>
 		</c:forEach>
-			
 		</ul>
-	
+			<div class="hQnAList-button">
+				
+			</div>
+			
 	</div>
 </div>

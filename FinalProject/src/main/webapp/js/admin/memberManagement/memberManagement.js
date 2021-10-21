@@ -127,7 +127,7 @@ $(function(){
 						member_information += '<div class="userMg-information-popup-div">';
 						member_information += '<li><input type="text" class="userMg-information-popup-input-sing"  value="'+vo.signupdate+'" readonly="true"></li>';
 						member_information += '</div>';
-						member_information += '<li><input type="button" class="userMg-information-button" id="userMg-information-popup-button-one" value="수정 활성화"/></li>';
+						member_information += '<li><input type="button" class="userMg-information-button"  id="userMg-information-popup-button-one" value="수정 활성화"/></li>';
 						member_information += '<li><input type="button" class="userMg-information-button"  id="userMg-information-popup-button-del" value="삭제"/></li>';
 						member_information += '<li><input type="button" class="userMg-information-button"  id="userMg-information-popup-button-two" value="수정전송" style="display: none;" /></li>';
 						member_information += '</ul>';
