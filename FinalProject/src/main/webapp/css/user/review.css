@@ -5,6 +5,10 @@
 /******* 공통 후기 CSS *******/
 
 
+textarea{
+	resize:none;
+}
+
 .review-chart{
 	height:150px;
 	border-radius:8px;
@@ -70,7 +74,7 @@
 }
 
 .review-info .star{
-	color:#FF385C;
+	color:#FFC400;
 }
 
 
@@ -241,7 +245,7 @@
 
 .review-modal-wrap{
 	position:relative;
-	width:700px;
+	width:670px;
 	margin:50px auto;
 	background-color:#fff;
 	border-radius: 15px;
@@ -267,6 +271,7 @@
 	width:20px;
 	height:20px;
 	background-color:#fff;
+	cursor:pointer;
 }
 
 
@@ -283,7 +288,7 @@
 
 .review-class{
 	display:flex;
-	justify-content: space-around;
+	justify-content: flex-start;
 }
 
 .review-class-img{
@@ -299,16 +304,42 @@
 }
 
 .review-class-info{
-	width:500px;
+	width:484px;
+	padding-left:20px;
 }
 
 .star-point{
 	font-size:54px;
 	text-align:center;
-	color:#FF385C;
+	color:#FFC400;
 	letter-spacing:-3px;
 }
 
+.fa-star{
+	cursor:pointer;
+}
+
+
+.star-txt{
+	height:41px;
+	padding-top:8px;
+	text-align:center;
+	color:#999;
+	font-size:16px;
+}
+
+.star-txt > span:first-child{
+	color:#ff385c;
+	font-size:27px;
+	font-weight: 700;
+}
+
+
+.star-txt > span:nth-child(2){
+	color:#ff385c;
+	font-size:18px;
+	font-weight: 700;
+}
 
 .review-write-text > textarea{
 	width:100%;
