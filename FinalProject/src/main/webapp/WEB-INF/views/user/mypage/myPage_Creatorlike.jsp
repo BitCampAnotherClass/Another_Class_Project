@@ -46,7 +46,7 @@
 	  grid-template-rows: 1fr;	
 	  border-bottom-left-radius: 15px;
 	  border-bottom-right-radius: 15px;
-	  background: rgb(255, 7, 110);
+	  background: #FDD7E4; /*#FDD7E4; rgb(255, 7, 110)*/
 	}
 	.card-stats .stat {
 	  display: flex;
