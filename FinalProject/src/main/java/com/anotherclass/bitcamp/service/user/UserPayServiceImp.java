@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.anotherclass.bitcamp.dao.user.UserPayDAO;
+import com.anotherclass.bitcamp.vo.user.BasketVO;
 import com.anotherclass.bitcamp.vo.user.UserPayVO;
 
 @Service   
@@ -22,5 +23,21 @@ public class UserPayServiceImp implements UserPayService {
 	@Override
 	public UserPayVO userInfo(String logid) {		
 		return userpaydao.userInfo(logid);
+	}
+
+	@Override
+	public int saveBasket(int[] classNoPayList) {	
+		return userpaydao. saveBasket(classNoPayList);
+	}
+	
+	@Override
+	public int testBasket(BasketVO vo) {
+		return userpaydao.testBasket(vo);
+	}
+
+	@Override
+	public int delBasket(BasketVO vo) {
+		// TODO Auto-generated method stub
+		return userpaydao.delBasket(vo);
 	}
 }

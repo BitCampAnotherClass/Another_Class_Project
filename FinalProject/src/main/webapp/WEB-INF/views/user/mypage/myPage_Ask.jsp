@@ -15,6 +15,7 @@
 	#classAsk{position:relative;visibility:hidden;}
 	#classAskcontent{width:100%;height:auto;}
 	#classAskcontent>li{height:auto;margin-top:15px;margin-bottom:15px;padding-bottom:10px;border-bottom:1px solid #ddd;}
+	#classAskcontent>li>div{word-break:break-all;}
 	#classAskcontent>li>*{display:block;width:100%;margin-bottom:5px;}
 	#classAskcontent>li>a:nth-child(1){font-size:1.1rem;font-weight:bold;margin-bottom:12px;}/*문의한 클래스명*/
 	#classAskcontent>li>span{font-size:0.8rem;color:#666;padding-left:5px;}/*답변여부,작성일자*/
@@ -26,12 +27,13 @@
 	.classAskcontentBtn a:hover{color:#ff385c;}
 	.classAskcontentBtn a:nth-child(2){margin-left:20px;}
 	
-	.classAskcontenttextreplydiv{width:100%;height:auto;overflow:auto;background-color:#f0f0f0;}/*답변*/
+	.classAskcontenttextreplydiv{width:100%;height:auto;overflow:auto;background-color:#999;}/*답변*/
+	.classAskcontenttextreplydiv textarea{background-color:#999;}
 	.classAskcontenttextreplydiv>div{float:left;min-height:100px;height:auto;word-break:break-all}
 	.classAskcontenttextreplydiv>div:nth-child(1){width:12%; padding:2%;}/*강사이미지*/
 	.classAskcontenttextreplydiv>div:nth-child(1) img{width:100%;border-radius:100%;}
 	.classAskcontenttextreplydiv>div:nth-child(2){width:88%;overflow:auto;}/*강사가 작성한 답변내용*//*auto?scroll세로?*/
-	.classAskcontenttextreplydiv>div:nth-child(2)>span{display:block;margin-top:3px;}
+	.classAskcontenttextreplydiv>div:nth-child(2)>span{display:block;margin-top:3px;padding-top: 12px;padding-bottom: 8px;}
 	.classAskcontenttextreplydiv>div:nth-child(2)>span:nth-child(2){font-size:0.8rem;color:#666;}
 	
 	/*홈페이지문의내용*/
@@ -95,13 +97,18 @@
 						}else{
 							tag +="<li style='width:15%;'>답변완료</li>";
 						}
-						tag+="<li  class='conconli' style='width:100%;min-height:100px;height:auto;background-color:#f0f0f0;display:none;'>";//id값,안보이게........
+						tag+="<li  class='conconli' style='border: none;width:100%;min-height:100px;height:auto;background-color:#f0f0f0;'>";//id값,안보이게........display:none;
 						tag +="<div  style='width:100%;word-break:break-all;padding-left:62px;text-align:left;'>"+vo.content+"</div>";// ->토글로
+						tag +="</li>"
+						
+						tag+="<li  class='conconli' style='width:100%;height:100%;background-color:#f0f0f0;'>";//id값,안보이게........display:none;
+						tag +="<div  style='width:100%;text-align:right;'><a href='#' style='margin-right:25px;border: 1px solid #ddd;padding: 5px 10px 5px 10px;color: #666;font-size:0.8rem;'>수정</a>";
+						tag += "<a href='#' style='margin-right:25px;border: 1px solid #ddd;padding: 5px 10px 5px 10px;color: #666;font-size:0.8rem;'>수정</a></div>";// ->토글로
 						tag +="</li>"
 						if(vo.replycount ==2){
 								//답글
-							tag+="<li  class='reprepli' style='width:100%;min-height:100px;height:auto;display:none;'>";
-							tag +="<div  style='width:100%;word-break:break-all;padding-left:62px;text-align:left;'>"+vo.replyContent+"</div>";
+							tag+="<li  class='reprepli' style='width:100%;min-height:100px;height:auto;'>";//display:none;
+							tag +="<div  style='width:100%;word-break:break-all;padding-left:62px;text-align:left;'>[<label style='color:blue;'>Re</label>]&nbsp;"+vo.replyContent+"</div>";
 							tag +="</li>"
 						}
 						//tag +="<li>"
@@ -136,22 +143,23 @@
 						
 						tag +="<span>"+vo.classqna_writedate+" 작성</span>";
 						tag +="<div>";
-						tag += "<textarea  style='padding-left:25px;' name='classAskcontenttext' readonly disabled >"+vo.classqna_content+"</textarea>";
+						tag += "<textarea  style='padding-left:25px;min-height:110px;height:auto;' name='classAskcontenttext' readonly disabled >"+vo.classqna_content+"</textarea>";
 						tag +="</div>";
 						
 						if(vo.replycheck == 0){
-							tag +="<div'><a href='#'>수정</a><a href='#'>삭제</a></div>"
+							tag +="<div style='text-align:right;display:inline-block;width:100%;'><a href='#' style='margin-right:25px;border: 1px solid #ddd;padding: 5px 10px 5px 10px;color: #666;font-size:0.8rem;'>수정</a>";
+							tag += "<a href='#' style=' border: 1px solid #ddd;padding: 5px 10px 5px 10px;color: #666;font-size:0.8rem;'>삭제</a></div>"
 						}else{
-							tag +="<div><a href='#'>삭제</a></div>"; //style='display:none;'
+							tag +="<div style='text-align:right;display:inline-block;width:100%;margin-bottom:10px;'><a href='#' style=' border: 1px solid #ddd;padding: 5px 10px 5px 10px;color: #666;font-size:0.8rem;'>삭제</a></div>"; //style='display:none;'
 						}
 						
 						if(vo.replycheck == 1){
 							tag +="<div class='classAskcontenttextreplydiv'>";
-							tag +="<div><a href='#'><img src='img/jisu/profileimg.jpg'/></a></div>";//vo.creator_img
+							tag +="<div><a href='#'><img src='another/img/jisu/profileimg.jpg'/></a></div>";//vo.creator_img
 							tag +="<div>";
 							tag +="<span>"+vo.creator_nick+"</span>";
 							tag +="<span>"+vo.classqnacom_writedate+"</span>";
-							tag+="<textarea name='classAskcontenttextreply' readonly disabled >"+vo.creator_reply+"</textarea>";
+							tag+="<textarea name='classAskcontenttextreply' readonly disabled style='background-color:#999;'>"+vo.creator_reply+"</textarea>";
 							tag+="</div>";
 							tag+="</div>";
 							tag+="</li>";
@@ -163,10 +171,8 @@
 		}	
 		
 		
+	//getClassAsk();
 		
-		//$().click(function()=>{
-			
-		//});
 	});
 </script>
 

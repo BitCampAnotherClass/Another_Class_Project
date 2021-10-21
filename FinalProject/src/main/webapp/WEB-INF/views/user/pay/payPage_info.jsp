@@ -77,7 +77,14 @@
     #howmuch2>div:nth-child(2)>div>label{margin-top:8px;}
     #howmuch3>div:nth-child(1)>div>label{margin-top:26px;}
     #howmuch3>div:nth-child(2)>div>label{margin-top:37px;}    
-    #payInfoBox>div:nth-child(2)>div{height:62.5px;}  
+    
+    /* #payInfoBox>div:nth-child(2)>div{height:62.5px;}  */
+    
+     #payInfoBox>div:nth-child(2)>div:nth-child(1){height:40.5px;color:#666;border-bottom:0.5px dotted #ddd;}  
+     #payInfoBox>div:nth-child(2)>div:nth-child(2){height:62.5px;font-size:12px;border-bottom:0.5px dotted #ddd;}  
+     #payInfoBox>div:nth-child(2)>div:nth-child(3){height:52.5px;padding-top:5px;font-size:12px;}  
+     #payInfoBox>div:nth-child(2)>div:nth-child(4){height:62.5px;} 
+    
     #payEndBtn{width:100%;height:100%;background-color:#333;color:white;font-size:1.1rem;font-weight:bold;text-align:center;border:none;} 
 </style>
 
@@ -88,7 +95,12 @@
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 <script>
+//var member_id ="";
+//var member_email ="";
+//var member_tel ="";
+
 $(function(){
+	
 	var logid = "${userId}"; // 세션에저장된아이디		
 	
 	function memberInfo(){
@@ -96,24 +108,33 @@ $(function(){
 		var mParam = {"logid":logid} 
 		$.ajax({
 			url:mUrl,
+			async:false,
 			data :mParam,
 			success:function(vo){
 				var tag =""; 
-				/*<div><span>주문하시는분</span><span>김비트</span></div>
-				<div><span>이메일</span><span>bitcamp@nate.com</span></div>
-				<div><span>휴대폰번호</span><span>010-1234-5678</span></div>*/
-				tag += "<div><span>주문하시는분</span><span>"+vo.member_name+"</span></div>";
-				tag += "<div><span>이메일</span><span>"+vo.member_email+"</span></div>";
-				tag += "<div><span>휴대폰번호</span><span>"+vo.member_tel+"</span></div>";
-				$("#paymemberinfo").append(tag);
-			}
+			
+				tag += "<div><span>주문하시는분</span><span id='member_name'>"+vo.member_name+"</span></div>";
+				tag += "<div><span>이메일</span><span id='member_email'>"+vo.member_email+"</span></div>";
+				tag += "<div><span>휴대폰번호</span><span id='member_tel'>"+vo.member_tel+"</span></div>";
+				tag +="<input type='hidden' id='pointbox' value='"+vo.point+"'>"
 				
-		})
+				tag +="<input type='hidden' id='member_name_val' value='"+vo.member_name+"'>"
+				tag +="<input type='hidden' id='member_email_val' value='"+vo.member_email+"'>"
+				tag +="<input type='hidden' id='member_tel_val' value='"+vo.member_tel+"'>"
+				
+				$("#paymemberinfo").append(tag);
+				
+			}	
+				
+		})	
+		
 		
 	}
 
-
-	memberInfo();
+	
+	memberInfo();//회원정보ajax셋팅
+	point = $("#pointbox").val();
+	$("#havePoint").html(point);
 
 });	
 </script>
@@ -121,43 +142,42 @@ $(function(){
 	<div id="leftdiv">
 		<div id="payPageTitle"><span>주문결제</span></div><!-- 페이지타이틀 -->		
 		<div id="paymemberinfo"><!-- 주문자정보 -->
-			<div class="secondTitleD">주문자정보</div>
-			
+			<div class="secondTitleD">주문자정보</div>			
 		</div>
 			<div id="payclassinfo"><!-- 주문상품 -->
 			<div class="secondTitleD">주문상품</div>
-			<div><span>상품정보</span><span>인원</span><span>총상품금액</span><span>포인트</span></div>			
-			
-			
-			<c:forEach var="vo" items="${list}">
-				<div class="payclassinfoorder" style="height:150px;"><!-- 주문한줄.... -->
-					<div><!-- 이미지+제목 -->
-						<div><img src="img/jisu/classimg5.png"></div> <!-- 이미지  vo.class_thumb --> 						
-						<div><!-- 제목+강사 -->
-							<div>${vo.class_name }</div>
-							<div>${vo.nick }</div>
-							<div>옵션날짜 : ${vo.start_date }</div>
+				<div><span>상품정보</span><span>인원</span><span>총상품금액</span><span>포인트</span></div>					
+				<c:forEach var="vo" items="${list}">
+					<div class="payclassinfoorder " style="height:150px;"><!-- 주문한줄.... -->
+						<div><!-- 이미지+제목 -->
+							<div><img src="img/jisu/classimg5.png"></div> <!-- 이미지  vo.class_thumb --> 						
+							<div><!-- 제목+강사 -->
+								<div>${vo.class_name }</div>
+								<div>${vo.nick }</div>
+								<div>옵션날짜 : ${vo.start_date }</div>
+							</div>
 						</div>
-					</div>
-					<div class="orderN"><label>1</label>명</div><!-- 인원 -->
-					<div class="orderP" id="번호....">${vo.class_price }원</div><!-- 총상품금액 -->
+						<div class="orderN"><label>1</label>명</div><!-- 인원 -->
+						<div class="orderP"><label>${vo.class_price }</label>원</div><!-- 총상품금액 -->		
 						
-					<div class="orderPP"><label>${vo.class_price }*0.01</label>P</div>
-				</div>
-			</c:forEach> 
-		
-		
-		</div>
-		
-				
+						
+						
+										
+						<div class="orderPP"><label style="display:inline-block;margin-top:4px;">${vo.savePoint }</label></div>						
+					</div>					
+				</c:forEach> 	
+		</div>			
 		<div id="paydiscount"><!-- 할인받기 -->
 			<div class="secondTitleD">할인받기</div>
-			<div><span>결제예정금액</span><span>114,000원</span></div>
-			<div><span>포인트</span><span><input type="text"><label>잔액 3000p</label></span></div>			
+			
+			<div><span>결제예정금액</span><span>${sum }원</span></div>
+
+			
+			<div><span>사용포인트</span><span><input type="text">&nbsp;&nbsp;보유포인트<label id="havePoint"></label>p</span></div>			
 		</div>				
 		<div id="paymethod"><!-- 결제수단 -->
 			<div class="secondTitleD">결제수단</div>
-			<div id="paymethodselect"">
+			<div id="paymethodselect">
 				<span><input type="radio" name="paymentmethod" value="paycard"/>신용카드</span>
 				<span><input type="radio" name="paymentmethod" value="paybank"/>무통장입금</span>
 				<span><input type="radio" name="paymentmethod" value="paysimple"/>간편결제</span>
@@ -205,61 +225,99 @@ $(function(){
 				<div>최종결제금액</div>
 				<div id="howmuch2">
 					<div>
-						<div><label>총 상품금액</label></div><div><label>114,000원</label></div>
+						<div><label>총 상품금액</label></div><div><label>${sum }</label></div>
 					</div>
 					<div>
-						<div><label>포인트</label></div><div><label>3000원</label></div>
+						<div><label>사용포인트</label></div><div><label>p</label></div>
 					</div>
 				</div>
 				<div id="howmuch3">
 					<div>
-						<div><label>최종결제금액</label></div><div><label>111,000원</label></div>
+						<div><label>최종결제금액</label></div><div><label>${sum }원</label></div>
 					</div>
 					<div>
-						<div><label>적립예정 포인트</label></div><div><label>1110 p</label></div>
+						<div><label>적립예정 포인트</label></div><div><label>${sum2 }p</label></div>
 					</div>
 				</div>
 			</div>			
 			<div><!-- 동의+결제하기 -->
-				<div style="visibility:hidden;">d</div>
-				<div style="visibility:hidden;">d</div>
-				<div style="visibility:hidden;">d</div>
+				<div style='padding-top:10px;'><label style='padding-left:15px;'><input type="checkbox" name='ckkk' value='kkk'></label><label style='font-size:1.1rem;padding-left:10px;'>전체동의합니다</label></div><!--  style="visibility:hidden;" -->
+				<div style='padding-top:10px;'>
+					<p style='padding-left:15px;color:#999;'>주문 상품정보에 동의(필수)</p>
+					<p style='padding-left:15px;color:#999;'>(전자상거래법 제 8조 제 2항)</p>
+					<p style='padding-left:15px;color:#999;'>상품명, 가격, 배송정보, 할인내역을 확인함</p>				
+				</div>
+				<div style='color:#999;padding-top:10px;'>
+					<p style='padding-left:15px;color:#999;'>결제대행서비스 이용을 위한 개인정보</p>
+					<p style='padding-left:15px;color:#999;'>제3자 제공 및 위탁 동의(필수)</p>				
+				</div>
 				<div id="payEndD"><input type="button" name="" id="payEndBtn" value="결제하기"></div>
 			</div>
 		</div>
 		
 	</div>
 	  
-	  <script>
+	 <div style='display:none;'>
+	 <form>
+	 	
+	 </form>
+	 </div> 
+	  
+<script>
+		
+
         $('#payEndBtn').click(function () {
-            // getter
+            
+        	if ($("input:checkbox[name='ckkk']").is(":checked")==false) {
+				alert("주문 상품정보(전자상거래법 제 8조 제 2항)에 대해 동의해 주세요.(필수)");
+				return;
+			}	    	
+        	
+        	
+        	// getter
             var IMP = window.IMP;
             IMP.init('imp53433684');
-            var money = 200;
+            var money = ${sum };
+            
+            name = $("#member_name_val").val();
+            tel = $("#member_tel_val").val();
+            email = $("#member_email_val").val();
+            
+           
+            money1 = parseInt(${sum});
+            money2= parseInt(${vo.savePoint});
+            money3 = money1-money2;
+            console.log("돈돈");
+  			console.log(money3);
             
             IMP.request_pay({
             	pg: 'kcp', // PG사 선택
-                pay_method: 'card', // 지불 수단
-                merchant_uid: 'merchant' + new Date().getTime(),
-                name: '주문명 : 주문명 설정',
-                amount: money,
-                buyer_email: 'iamport@siot.do',
-                buyer_name: '구매자이름',
-                buyer_tel: '010-1234-5678',
+                pay_method: 'card',  // 지불 수단
+                merchant_uid: ${vo.class_name} + new Date().getTime(),
+                name: name,
+                amount: '100',
+                buyer_email: email,
+                buyer_name: name,
+                buyer_tel: tel,
                 buyer_addr: '인천광역시 부평구',
                 buyer_postcode: '123-456'
             }, function (rsp) { // 결제성공시 imp_uid 와 merchant_uid를 가맹점 서버에 진자로 전달
-                console.log(rsp);
-                if (rsp.success) { //결제성공시 로직
+               
+            	//console.log(rsp);
+            	conosole.log("결제에 성공하였습니다");
+                
+            if (rsp.success) { //결제성공시 로직
                     var msg = '결제가 완료되었습니다.';
                     msg += '고유ID : ' + rsp.imp_uid;
                     msg += '상점 거래ID : ' + rsp.merchant_uid;
                     msg += '결제 금액 : ' + rsp.paid_amount;
                     msg += '카드 승인번호 : ' + rsp.apply_num;
+                    msg += '결제방법 : ' + rsp.pay_method;
                     
+                    var purl = ""; 
                     $.ajax({
                         type: "GET",
-                        url: "", //충전 금액값을 보낼 url 설정
+                        url: "", //컨트롤러보낼 url 설정
                         //headers: { "Content-Type": "application/json" },
                         data: {
                         	 imp_uid: rsp.imp_uid,
@@ -272,8 +330,14 @@ $(function(){
                     msg += '에러내용 : ' + rsp.error_msg;
                 }
                 alert(msg);
-          //      document.location.href = "/user/mypage/home"; //alert창 확인 후 이동할 url 설정
+          //      document.location.href = "/user/mypage/home"; //alert창 확인 후 이동할 url 설정            
+               // history.back();
             });
+            
+            
+            
         });
-    </script>
+        
+
+</script>
 </div>

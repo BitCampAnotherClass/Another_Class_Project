@@ -11,7 +11,7 @@
 <link href="<%=request.getContextPath()%>/css/register/register.css" rel="stylesheet" type="text/css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
 <script src="<%=request.getContextPath()%>/js/register/register.js"></script>
-<script src="<%=request.getContextPath()%>/js/register/registerUser.js"></script>
+<script src="<%=request.getContextPath()%>/js/register/registerCreator.js"></script>
 </head>	
 	<body>
 	
@@ -64,30 +64,36 @@
 										<span class="register_input-box">
 											<input type="text" id="member_tel" name="member_tel" class="register_input" placeholder="휴대폰번호" autocomplete=”off” maxlength="13"/>				
 										</span>
-											<label id="register_tel_text"></label>	
+										<label id="register_tel_text"></label>
 									</span>
 								</div>
 								<div id="register_email" class="register_input-group">
 									<span class="register_input-outline" id="register_input_email">
 										<span class="register_input-box">
 											<input type="text" id="member_email_id" name="member_email_id" class="register_input_email" placeholder="이메일" autocomplete=”off” maxlength="15"/>
-											
 										</span>
 									</span>
-									<span class="member_email_AtSign">@</span>	
+									<span class="member_email_AtSign">@</span>
 									<span class="register_input-outline" id="register_input_email_addr">
-										<span class="register_input-box">
-										
-											<input type="text" id="member_email_addr" name="member_email_addr" class="register_input_email" placeholder="직접입력" autocomplete=”off” maxlength="12"/>
+										<span class="register_input-box">	
+											<input type="text" id="member_email_addr" name="member_email_addr" class="register_input_email" placeholder="이메일" autocomplete=”off” maxlength="15"/>
 										</span>
 									</span>
-									<label id="register_emailCh_text"></label>	
+									<label id="register_emailCh_text"></label>
+								</div>
+								<div id="register_nick" class="register_input-group">
+									<span class="register_input-outline">
+										<span class="register_input-box">
+											<input type="text" id="member_nick" name="nick" class="register_input" placeholder="닉네임" autocomplete=”off” maxlength="12"/>				
+										</span>
+											<label id="register_nick_text"></label>
+									</span>
 								</div>
 								<input type="hidden" id="member_email" name="member_email"/>
 								<input type="hidden" class="register_id_check" value="N">
 								<input type="hidden" class="register_pwd_check" value="N">
 								<input type="hidden" class="register_email_check" value="N">
-								<input type="hidden" class="register_tel_check" value="N">
+								<input type="hidden" class="register_nick_check" value="N">
 								<button type="button" class="register_button">회원가입</button>
 						</form>
 				</div>

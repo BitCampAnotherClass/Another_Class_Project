@@ -30,7 +30,8 @@
 		
 		//목록
 		$("#hQnAWList").click(()=>{
-			$("#homeQnAVFrm").attr("action", "/another/HomeQnAAsk/list" );
+			console.log(${number});
+			$("#homeQnAVFrm").attr("action", "/another/HomeQnAAsk/list?no=?${number}" );
 			$("#homeQnAVFrm").submit();
 		});
 		

@@ -22,7 +22,7 @@
 	/*오른쪽*/
 	#mrightdiv{width:1000px;height:100%;}
 	
-	.bigTitle{width:100%;text-align:center;padding-bottom:20px;}/*주문조회,장바구니,나의후기....타이틀*/
+	.bigTitle{width:100%;text-align:center;padding-bottom:20px;margin-top: 55px;}/*주문조회,장바구니,나의후기....타이틀*/
 	
 	/*h태그들 재설정*/
 	.h1style{display:block;font-size:32px;margin-block-start: 0.9rem;margin-block-end:0.9rem; margin-inline-start:0px;

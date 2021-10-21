@@ -29,8 +29,8 @@ public class RegisterServiceImp implements RegisterService {
 	}
 	
 	@Override
-	public String loginAdmin(RegisterVO vo) {
-		return null;
+	public RegisterVO loginAdmin(RegisterVO vo) {
+		return registerDao.loginAdmin(vo);
 	}
 
 	@Override
