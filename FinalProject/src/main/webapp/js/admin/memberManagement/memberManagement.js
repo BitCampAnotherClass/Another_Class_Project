@@ -16,6 +16,15 @@ $(function(){
      		return indata;
 		}
 		
+		function checkType(typeData){
+			if (typeData != 0){
+				typeData = '이용자';
+			}else{
+				typeData = '강사';
+			}
+			return typeData;
+		}
+		
 		function userList(){
 			var number = $('.paging-number').val();
 			var data = {"no":number};
@@ -29,14 +38,14 @@ $(function(){
 					var listData = $(result);
 					listData.each(function(idx,vo){
 						var tel = replaceAt(vo.member_tel);
-						
+						var memberType = checkType(vo.type_user);
 						board +='<li class="userMg-chart-boardlist"><input type="checkbox" id="allcheck"/></li>';
 						board +='<li class="userMg-chart-boardlist" id="userMg-chart-id">'+vo.member_id+'</li>';
 						board +='<li class="userMg-chart-boardlist">'+vo.member_name+'</li>';
 						board +='<li class="userMg-chart-boardlist">'+vo.member_email+'</li>';
 						board +='<li class="userMg-chart-boardlist">'+tel+'</li>';
 						board +='<li class="userMg-chart-boardlist">'+vo.signupdate+'</li>';
-						board +='<li class="userMg-chart-boardlist">'+idx+'</li>';
+						board +='<li class="userMg-chart-boardlist">'+memberType+'</li>';
 						board +='<li class="userMg-chart-boardlist">';
 						board +='<input type="button" value="관리메뉴" id="account_information_btn"/>';
 						board +='<input type="hidden" value="'+vo.member_id+'" id="userMg-chart-id"/>';
@@ -95,14 +104,13 @@ $(function(){
 				success:function(result){
 					var infor= $(result);
 					infor.each(function(idx,vo){
+						var tel = replaceAt(vo.member_tel);
 						member_information += '<div class="userMg-information-back">';
 						member_information += '<div class="userMg-information-box">';
 						member_information += '<div class="userMg-information-popup">';
 						member_information += '<h2 class="userMg-info-title">'+vo.member_name+' 회원님의 상세정보</h2>';
 						member_information += '<input type="button" value="X" class="userMg-info-closeButton" />';
 						member_information += '<ul class="userMg-info-popup-ul">';
-						member_information += '<li>아이디</li>';
-						member_information += '<li>'+vo.member_id+'</li>';
 						member_information += '<li>이름</li>';
 						member_information += '<div class="userMg-information-popup-div">';
 						member_information += '<li><input type="text" class="userMg-information-popup-input"  value="'+vo.member_name+'" readonly="true"></li>';
@@ -113,15 +121,15 @@ $(function(){
 						member_information += '</div>';
 						member_information += '<li>전화번호</li>';
 						member_information += '<div class="userMg-information-popup-div">';
-						member_information += '<li><input type="text" class="userMg-information-popup-input"  value="'+vo.member_tel+'" readonly="true"></li>';
+						member_information += '<li><input type="text" class="userMg-information-popup-input"  value="'+tel+'" readonly="true"></li>';
 						member_information += '</div>';
 						member_information += '<li>가입날짜</li>';
 						member_information += '<div class="userMg-information-popup-div">';
 						member_information += '<li><input type="text" class="userMg-information-popup-input-sing"  value="'+vo.signupdate+'" readonly="true"></li>';
 						member_information += '</div>';
-						member_information += '<li><input type="button" id="userMg-information-popup-button-one" value="수정 활성화"/></li>';
-						member_information += '<li><input type="button" id="userMg-information-popup-button-del" value="삭제"/></li>';
-						member_information += '<li><input type="button" id="userMg-information-popup-button-two" value="수정전송" style="display: none;" /></li>';
+						member_information += '<li><input type="button" class="userMg-information-button" id="userMg-information-popup-button-one" value="수정 활성화"/></li>';
+						member_information += '<li><input type="button" class="userMg-information-button"  id="userMg-information-popup-button-del" value="삭제"/></li>';
+						member_information += '<li><input type="button" class="userMg-information-button"  id="userMg-information-popup-button-two" value="수정전송" style="display: none;" /></li>';
 						member_information += '</ul>';
 						member_information += '</div>';
 						member_information += '</div>';
