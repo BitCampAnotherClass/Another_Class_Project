@@ -25,4 +25,8 @@ public interface ClassDetailPageDAO {
 	public List<UserClassDetailVO2> userClassDetailAskReplySelect(int no);//문의글번호가지고가서 그 문의글에대한 댓글가져오는 다오
 	public int classAskWritee(UserClassDetailVO2 askVo);//클래스번호 , 아이디
 	//public int insertBasket( int no,String logid);//장바구니 저장하고 리절트값 뱉음
+	
+	public int ClassAskDDel(int no);//문의글삭제
+	public int ClassASkCheckRep(int no);//문의글 댓글잇는지 여부확인
+	public int ClassASkCheckRepDelUp(int no);//문의글이 삭데 되엇을대댓글 delete_sort 1로 업데이트
 }

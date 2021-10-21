@@ -48,7 +48,7 @@ public class UserHomeQnAController {
 		vo.setMember_id((String)ses.getAttribute("userId"));
 		int result = userHomeQnAService.userHomeQnAWrite(vo);
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("redirect:list");
+		mav.setViewName("redirect:list?no=1");
 		return mav;
 	}
 	
@@ -94,7 +94,7 @@ public class UserHomeQnAController {
 		int result = userHomeQnAService.userHomeQnADel(no);
 		ModelAndView mav = new ModelAndView();
 		if(result>0) {
-			mav.setViewName("redirect:list"); //디ㅏ른컨트롤러호풀
+			mav.setViewName("redirect:list?no=1"); //디ㅏ른컨트롤러호풀
 		}else {
 			System.out.println("삭제실패");
 			mav.addObject("no",no); //no라는 변수에 매개변수no를 보맨다

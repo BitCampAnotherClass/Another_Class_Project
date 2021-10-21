@@ -122,6 +122,19 @@ public class ClassDetailPageController {
 		askVo.setClassqna_member_id((String)ses.getAttribute("userId")); //세션에저장된 로그인한사람의 id를 작성자에 넣음
 		return classDetailPageService.classAskWritee(askVo); // return값이 0보다크면 글등록된거
 	}
+	//문의글삭제
+	//classAskDD
+	@RequestMapping(value="/classAskDD")
+	@ResponseBody
+	public int ajaxClassAskDD(int no) {
+		
+		int result=0;
+		result = classDetailPageService.ClassAskDDel(no);
+		//ClassASkCheckRep(no);//문의글에 댓글달렸는지 여부
+		//ClassAskDDel(no) ->없으면 바로삭제
+		//ClassASkCheckRepDelUp(no) ->있으면 댓글 달렸을 경우 문의글 삭제->classqnacom_delete_sort 컬럼 업데이트 : 1
+		return result;
+	}
 	
 
 }

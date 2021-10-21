@@ -66,6 +66,18 @@ public class ClassDetailPageServiceImp implements ClassDetailPageService {
 //		
 //		return classDetailPageDAO.insertBasket(no,logid);
 //	}
+	@Override
+	public int ClassAskDDel(int no) {		
+		return classDetailPageDAO.ClassAskDDel(no);
+	}
+	@Override
+	public int ClassASkCheckRep(int no) {	
+		return classDetailPageDAO.ClassASkCheckRep(no);
+	}
+	@Override
+	public int ClassASkCheckRepDelUp(int no) {		
+		return classDetailPageDAO.ClassASkCheckRepDelUp(no);
+	}
 
 
 	

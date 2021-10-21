@@ -49,7 +49,7 @@
 	
 </style>
 <script>
-	$(function(){ 
+$(function(){ 
 		var logid = "${userId}"; // 세션에저장된아이디		
 		
 	  $("#classAskT").on({			
@@ -90,20 +90,20 @@
 						tag +="<li class='homeAskTli'  style='width:15%;background-color:#f0f0f0;'>답변여부</li>";
 					hh.each(function(idx,vo){						
 						tag +="<li style='width:10%;padding-top:17px;'>"+vo.user_qna_no+"</li>";	
-						tag +="<li style='width:60%;white-space:nowrap;overflow:hidden;text-overflow: ellipsis;'>"+vo.title+"</li>";
+						tag +="<li style='width:60%;white-space:nowrap;overflow:hidden;text-overflow: ellipsis;padding-top: 14px;'>"+vo.title+"</li>";
 						tag +="<li style='width:15%;padding-top:17px;'>"+vo.writedate+"</li>";
 						if(vo.replycount == 1){
-							tag +="<li style='width:15%;'>미답변</li>";
+							tag +="<li style='width:15%;padding-top: 14px;'>미답변</li>";
 						}else{
-							tag +="<li style='width:15%;'>답변완료</li>";
+							tag +="<li style='width:15%;padding-top: 14px;'>답변완료</li>";
 						}
 						tag+="<li  class='conconli' style='border: none;width:100%;min-height:100px;height:auto;background-color:#f0f0f0;'>";//id값,안보이게........display:none;
 						tag +="<div  style='width:100%;word-break:break-all;padding-left:62px;text-align:left;'>"+vo.content+"</div>";// ->토글로
 						tag +="</li>"
 						
 						tag+="<li  class='conconli' style='width:100%;height:100%;background-color:#f0f0f0;'>";//id값,안보이게........display:none;
-						tag +="<div  style='width:100%;text-align:right;'><a href='#' style='margin-right:25px;border: 1px solid #ddd;padding: 5px 10px 5px 10px;color: #666;font-size:0.8rem;'>수정</a>";
-						tag += "<a href='#' style='margin-right:25px;border: 1px solid #ddd;padding: 5px 10px 5px 10px;color: #666;font-size:0.8rem;'>수정</a></div>";// ->토글로
+						tag +="<div  style='width:100%;text-align:right;'><a href='#' style='margin-right:25px;border: 1px solid #666;padding: 5px 10px 5px 10px;color: #666;font-size:0.8rem;'>수정</a>";
+						tag += "<a href='#' style='margin-right:25px;border: 1px solid #666;padding: 5px 10px 5px 10px;color: #666;font-size:0.8rem;'>삭제</a></div>";// ->토글로
 						tag +="</li>"
 						if(vo.replycount ==2){
 								//답글
@@ -131,7 +131,7 @@
 	    			var tag =""; 	
 					cc.each(function(idx,vo){//vo -> 
 					console.log("클래스문의가져옴");
-						tag += "<li>";
+						tag +="<li>";
 						tag +="<a href='#'>[ "+vo.category_name +" ] "+vo.class_name+"</a>";
 						//var a = vo.class_no
 						//console.log(a);
@@ -143,14 +143,16 @@
 						
 						tag +="<span>"+vo.classqna_writedate+" 작성</span>";
 						tag +="<div>";
-						tag += "<textarea  style='padding-left:25px;min-height:110px;height:auto;' name='classAskcontenttext' readonly disabled >"+vo.classqna_content+"</textarea>";
+						tag +="<textarea  style='padding-left:25px;min-height:110px;height:auto;' name='classAskcontenttext' readonly disabled >"+vo.classqna_content+"</textarea>";
 						tag +="</div>";
 						
 						if(vo.replycheck == 0){
-							tag +="<div style='text-align:right;display:inline-block;width:100%;'><a href='#' style='margin-right:25px;border: 1px solid #ddd;padding: 5px 10px 5px 10px;color: #666;font-size:0.8rem;'>수정</a>";
-							tag += "<a href='#' style=' border: 1px solid #ddd;padding: 5px 10px 5px 10px;color: #666;font-size:0.8rem;'>삭제</a></div>"
+							tag +="<div style='text-align:right;display:inline-block;width:100%;'><button class='CAedit' style='margin-right:25px;border: 1px solid #ddd;padding: 4px 13px 4px 13px;color: #666;font-size:0.8rem;background-color:#fff;'>수정";
+							tag +="<input type='hidden' value='"+vo.class_qna_no+"'></button>";
+							tag +="<button class='CAdel' style=' border: 1px solid #ddd;padding: 4px 13px 4px 13px;color: #666;font-size:0.8rem;background-color:#fff;'>삭제";
+							tag +="<input type='hidden' value='"+vo.class_qna_no+"'></button></div>"
 						}else{
-							tag +="<div style='text-align:right;display:inline-block;width:100%;margin-bottom:10px;'><a href='#' style=' border: 1px solid #ddd;padding: 5px 10px 5px 10px;color: #666;font-size:0.8rem;'>삭제</a></div>"; //style='display:none;'
+							tag +="<div style='text-align:right;display:inline-block;width:100%;margin-bottom:10px;'><button class='CAdel' style=' border: 1px solid #ddd;padding: 4px 13px 4px 13px;color: #666;font-size:0.8rem;background-color:#fff;'>삭제</button></div>"; //style='display:none;'
 						}
 						
 						if(vo.replycheck == 1){
@@ -159,10 +161,10 @@
 							tag +="<div>";
 							tag +="<span>"+vo.creator_nick+"</span>";
 							tag +="<span>"+vo.classqnacom_writedate+"</span>";
-							tag+="<textarea name='classAskcontenttextreply' readonly disabled style='background-color:#999;'>"+vo.creator_reply+"</textarea>";
-							tag+="</div>";
-							tag+="</div>";
-							tag+="</li>";
+							tag +="<textarea name='classAskcontenttextreply' readonly disabled style='background-color:#999;'>"+vo.creator_reply+"</textarea>";
+							tag +="</div>";
+							tag +="</div>";
+							tag +="</li>";
 						}
 						$("#classAskcontent").html(tag);  
 					});						
@@ -171,9 +173,30 @@
 		}	
 		
 		
-	//getClassAsk();
+	//클래스문의글 삭제버튼클릭
+	//delBtn 문의글삭제
+	$(document).on('click','.CAdel',function(){
+		//문의글번호가지고이동
+		//var a = $(this).children("input").val();//삭제할 글번호
+		// var params = "no="+$(this).children("input").val();
+		 if(confirm('문의글을 삭제하시겠습니까?')){
+             var params = "no="+$(this).children("input").val();
+             $.ajax({
+               url : "/another/classAskDD", //문의글삭제
+               data : params,
+               success : function(result){
+            	   if(result>0){
+            		   getClassAsk(); //문의글리스트부른느함수
+            	   }else{
+            		   alert("글삭제 실패하였습니다.");
+            	   }
+               }
+             });
+          }	
+	});	
 		
-	});
+
+});
 </script>
 
 <%@ include file="myPageTop.jspf" %>

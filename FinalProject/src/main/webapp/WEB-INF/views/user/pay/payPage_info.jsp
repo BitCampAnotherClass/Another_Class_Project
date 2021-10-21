@@ -302,36 +302,36 @@ $(function(){
                 buyer_addr: '인천광역시 부평구',
                 buyer_postcode: '123-456'
             }, function (rsp) { // 결제성공시 imp_uid 와 merchant_uid를 가맹점 서버에 진자로 전달
-               
-            	//console.log(rsp);
-            	conosole.log("결제에 성공하였습니다");
-                
-            if (rsp.success) { //결제성공시 로직
-                    var msg = '결제가 완료되었습니다.';
-                    msg += '고유ID : ' + rsp.imp_uid;
-                    msg += '상점 거래ID : ' + rsp.merchant_uid;
-                    msg += '결제 금액 : ' + rsp.paid_amount;
-                    msg += '카드 승인번호 : ' + rsp.apply_num;
-                    msg += '결제방법 : ' + rsp.pay_method;
-                    
-                    var purl = ""; 
-                    $.ajax({
-                        type: "GET",
-                        url: "", //컨트롤러보낼 url 설정
-                        //headers: { "Content-Type": "application/json" },
-                        data: {
-                        	 imp_uid: rsp.imp_uid,
-                             merchant_uid: rsp.merchant_uid
-                             //기타 필요한 데이터가 있으면 추가 전달
-                        },
-                    });
-                } else { //결제실패시 로직
-                    var msg = '결제에 실패하였습니다.';
-                    msg += '에러내용 : ' + rsp.error_msg;
-                }
-                alert(msg);
-          //      document.location.href = "/user/mypage/home"; //alert창 확인 후 이동할 url 설정            
-               // history.back();
+	               
+	            	//console.log(rsp);
+	            	conosole.log("결제에 성공하였습니다");
+	                
+	            if (rsp.success) { //결제성공시 로직
+	                    var msg = '결제가 완료되었습니다.';
+	                    msg += '고유ID : ' + rsp.imp_uid;
+	                    msg += '상점 거래ID : ' + rsp.merchant_uid;
+	                    msg += '결제 금액 : ' + rsp.paid_amount;
+	                    msg += '카드 승인번호 : ' + rsp.apply_num;
+	                    msg += '결제방법 : ' + rsp.pay_method;
+	                    
+	                    var purl = ""; 
+	                    $.ajax({
+	                        type: "GET",
+	                        url: "", //컨트롤러보낼 url 설정
+	                        //headers: { "Content-Type": "application/json" },
+	                        data: {
+	                        	 imp_uid: rsp.imp_uid,
+	                             merchant_uid: rsp.merchant_uid
+	                             //기타 필요한 데이터가 있으면 추가 전달
+	                        },
+	                    });
+	                } else { //결제실패시 로직
+	                    var msg = '결제에 실패하였습니다.';
+	                    msg += '에러내용 : ' + rsp.error_msg;
+	                }
+	                alert(msg);
+	          //      document.location.href = "/user/mypage/home"; //alert창 확인 후 이동할 url 설정            
+	               // history.back();
             });
             
             
