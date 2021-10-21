@@ -14,30 +14,73 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9551f210d2bfdcde36af42fb1ccab895&libraries=services"></script>
 <script>
-var categoryS;
+var categoryNumL;
+var categoryNumS;
 var count=0;
 var iitest=0;
+var start_date;
+var start_str;
+var DateArray = [];
+var classDateDivCount;
+var  resultsArray;
 $(function(){
+	//////////////////////////////////////////////////////날짜 선택 모달
+	 $(".modal").css({
+         "top": (($(window).height()-$(".modal").outerHeight())/2+$(window).scrollTop())+"px",
+         "left": (($(window).width()-$(".modal").outerWidth())/2+$(window).scrollLeft())+"px"
+      }); 
+	
+	$("#modalButton").click(function(){
+		$(".modal").fadeIn(); 
+		}); 
+	$(".modal").click(function(){
+			$(".modal").fadeOut();
+			});
+
+	////////////////////////////////////////////////////달력입력  -->> 다른 li 정보 옮기기
+	$(document).on('DOMSubtreeModified propertychange','#putDateTime',function(){
+		
+		var testing1 = $(this).text();
+		var testing2 = testing1.split(",");
+		var testing3 = new Array(testing2);
+		
+		$("#classDateRealStart").val(testing3);
+		console.log(testing3);
+	});
+	//////////////////////////////////////////////////////////
+
+//		$("#classDateReal").html($('#putDateTime').text().split("/"));
+//	  var fileval = $('input[name="'start_date'"]').length;
+//	  var testing = new Array();
+//	  console.log(testing);
 	//////////////////////////////////////// 대분류 카테고리 눌렀을시 소분류 불러오기
 	$('.categoryL').on('click',function(){
-		categoryS = $(this).val();
-		alert($(this).val());
 		
+		$("#classCategorySUL").html("");
+		categoryNumL = $(this).val();
+		var category_no;
 		var url = "makeClass/ajaxList" 
-			var params = {"no":categoryS};
+			var params = {"no":categoryNumL};
 			$.ajax({
 				url : url,
 				data : params,
 				success:function(r){
 					var rr = $(r);
 					rr.each(function(idx, vo){
-						$("#test1").append("<li><input type='checkbox' name='categoryS'>"+vo.category_name+"</li>"); 
+						category_no = vo.category_no;
+						$("#classCategorySUL").append("<li><input type='checkbox' value='"+vo.category_no+"' name='"+vo.category_no+"' class='categoryS'>"+vo.category_name+"</li>"); 
 					});
-					
+						$('.categoryS').on('click',function(){
+							$(".categoryS").prop("checked",false);
+							$(this).prop('checked',true);
+							var dsds = $(this).attr('value');
+							$("#categoryReal").val(dsds);
+						});
 				},error:function(e){
 					console.log("List전송 에러발생함",e.responseText)
 				}
 			});
+			$("input:checkbox[name='NAME']").is(":checked")
 	});
 	/////////////////////////////////////////////////////////숫자만 입력
 	
@@ -60,29 +103,40 @@ $(function(){
 	
 	
 	////////////////////////////////////////////////////////// 카테고리 
-	$('input[type="checkbox"][name="categoryL"]').click(function(){
-		 
-		  if($(this).prop('checked')){
-			  
-			$('#smallCategoryDiv').css("display","block");
-		 	$("input[type='checkbox'][name='categoryL']").prop("checked",false);
+	$('.categoryL').click(function(){
+		if($(this).prop('checked') &&  categoryNumL == 800){
+			alert("자기계발 카테고리(대)는 하위 카테고리가 없습니다")
+			$("#categoryReal").val(800);
+			$(".categoryL").prop("checked",false);
 			$(this).prop('checked',true);
+			$('#smallCategoryDiv').css("display","none");
+		}else if($(this).prop('checked') &&  categoryNumL == 900){	
+			$("#categoryReal").val(900);
+			alert("기타 카테고리(대)는 하위 카테고리가 없습니다")
+			$(".categoryL").prop("checked",false);
+			$(this).prop('checked',true);
+			$('#smallCategoryDiv').css("display","none");
+		}else if($(this).prop('checked') && categoryNumL != 800){
+				$('#smallCategoryDiv').css("display","block");
+			 	$(".categoryL").prop("checked",false);
+				$(this).prop('checked',true);
 		 
-		  }else if($("input[type='checkbox'][name='categoryL']").is("checked") == false) {
+		}else if($(".categoryL").is("checked") == false) {
 		   	$('#smallCategoryDiv').css("display","none");
 		   	$("input[type='checkbox'][name='categoryS']").prop("checked",false);
 		    }
 	});
 	//////////////////////////////////////////////////////달력
+	classDateDivCount = 1;
+	classDateCount=0;
 	$(".flatpickrCalender").flatpickr({
 		inline : true,
-		mode: "multiple",
-		dateFormat: " Y - m - d , H : i ",
+		mode: "single",
+		dateFormat: " Y - m - d '",
 		minDate:"today",
 		maxDate: new Date().fp_incr(180),
-		enableTime: true,
 		altInput: true,
-		altFormat: " Y - m - d , H : i ",
+		altFormat: " Y - m - d '",
 		onChange(selectedDates, dateStr, instance) {
             var array=selectedDates;
             if(array.length <= 10){
@@ -90,11 +144,27 @@ $(function(){
             }else if(array.length >= 11){
             	var count = array.length - 10;
             	alert("선택"+count+"를 초과하였습니다\n"+count+"개를 취소해 주십시오.");
+=======
+			
+             DateArray += $(".flatpickr-day.selected").text()+",";
+              resultsArray=DateArray.match(/,/g);
+            
+            if(classDateDivCount <= 10){
+            	   
+            	$('#putDateTime').append("<div class='putDateTime2' id='dateTimeDivDel'><div title='cancel' class='dateCancelButton' onclick='deleteDivDate(this)'><img src='<%=request.getContextPath()%>/img/kimin/xbu.png'></div>"
+            				+((instance.altInput.value).replace(/'/g,"<input type='time' value='09:00:00'><img  src='<%=request.getContextPath()%>/img/kimin/~.png'><input type='time' value='18:00:00'></div>"))
+            				.replace(/,/g,""));
+            	 classDateDivCount++;	
+            		
+            }else if(classDateDivCount >= 11){
+            	//alert("선택"+count+"를 초과하였습니다\n"+count+"개를 취소해 주십시오.");
+            	
+            	alert("10개를 모두 선택하였습니다\n");
             	$(".flatpickr-day.selected").css("background","#FF385C");
-            	//$(".flatpickr-day").css("pointer-events","none");*/ 캘린더 클릭못하게 막을수있음
             }
+           
        }
-	});	
+	});
 	//////////////////////////////////////////////////////테그 변환
 	$("#class_tagButton").click(function(){
 			if(count < 5){
@@ -127,7 +197,11 @@ $(function(){
 			alert('클래스 간단 소개를 입력하세요');
 			window.location.href="#f2";
 			return false;
-		}else if($('#class_thumb').val() == ""){		//카테고리 빠져있음
+		}else if($("#categoryReal").val() == ""){		
+			alert('클래스 카테고리를 선택하세요');
+			window.location.href="#f3";
+			return false;
+		}else if($('#class_thumb').val() == ""){		
 			alert('클래스 썸네 파일을 업로드하세요');
 			window.location.href="#f4";
 			return false;
@@ -181,8 +255,14 @@ $(function(){
 				}
   			});
 	});
-
 	});
+//////////////////////////////////// 날짜 선택 지우기 div
+function deleteDivDate(del){
+	$($(del).parents("#dateTimeDivDel")).remove();
+	$(del).remove();
+	classDateDivCount--;
+	console.log(classDateDivCount);
+};
 /////////////////////////////// 태그에 빨간 div 삭제
 function deleteDiv(){
 	var div = document.getElementById('tagInsertInner'+iitest);
@@ -255,7 +335,7 @@ function execDaumPostcode() {
                     // 지도 중심을 변경한다.
                     map.setCenter(coords);
                     // 마커를 결과값으로 받은 위치로 옮긴다.
-                    marker.setPosition(coords)
+                    marker.setPosition(coords);
                 }
             });
         }
@@ -309,7 +389,6 @@ function handleImgFileSelect(e){
 /* body{ background-color:#FFF5F5;} */
 kimin{ color:#FF385C; }
 kimin2{font-size: 1.3em; color:gray; margin-left:5px;}
-
 #class_name{
 	height:50px; width:100%;
 }
@@ -439,11 +518,9 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	border-radius:8px;
 	display:inline-block;
 	height:430px;
-	
 	margin:0 auto;
 }
 #imgThumbDiv img{
-	
 	height:100%;
 }
 .buttonClass{
@@ -481,30 +558,58 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	font-size: 1.2em;
 	line-height: 30px;
 }
-.classDate>ul{background-color:;
-	width:610px;
+.classDate>ul{border:;background-color:;
+	width:830px;
 	height:340px;
 	margin:0 auto;
+	margin-top:20px;
 	padding:0, 0, 0, 0;
+	
 }
 .classDate li{
 	float:left;
 }
-#putDateTime{background-color:;
+.simg{
+	margin-top:0px;
+}
+#putDateTime{display:;border:;background-color:;
 	border:2px dotted lightgray;
-	width:240px;
-	height:340px;
+	width:500px;
+	height:360px;
+	text-align: center;
+	margin:-30px 0 0 20px;
+	line-height: 34px;
+	border-radius:8px;
+	padding-top:10px;
+}
+.dateCancelButton{
+	width:25px;
+	height:25px;
+	background-color: #FF385C; 
+	border-radius:8px;
+	margin:5px 0 0 0;
+	color: white;
+	font-weight: 600;
+	line-height: 25px;
+	margin-left: 5px;
+	cursor: pointer;
+}
+.putDateTime2{
 	color:#FF385C; 
 	font-weight:600;
 	font-size:1em;
-	text-align: center;
-	margin-left: 50px;
-	line-height: 34px;
-	border-radius:8px;
 }
-#putDateTime>div{
-	color:#FF385C;
-	margin-top:150px;
+.putDateTime2>div{
+	float:left;
+}
+#putDateTime input[type="time"]{
+	margin-left:10px;
+	width:140px;
+	height:30px;
+	border-radius:8px;
+	text-align: center;
+	border:1px solid lightgray;
+	font-size: 1em;
 }
 .flatpickrCalender{
 	display: none;
@@ -651,6 +756,29 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 .filebox input[type="file"]{
 	display: none;
 }
+#categoryReal{
+	color:black; 
+	display: none;
+}
+#classCategorySUL>li{
+	width:20%; 
+	line-height: 35px;
+}
+#classCategorySUL input{
+	margin:0px 5px 0px -80px;
+}
+#classCategorySUL{ background-color:;
+	padding:0;
+	width:100%;
+}
+#classDateRealStart{
+	display:;
+}
+.modal{
+ position:absolute; width:500px; height:500px; background: rgba(0,0,0,0.8); 
+ top:2000px; left:50%; display:none; 
+ }
+
 </style>
 <form method="post" action="<%=request.getContextPath()%>/creator/makeClassOk" enctype="multipart/form-data">
 <div class="container">
@@ -699,17 +827,20 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	<div class="classCategoryDiv" id="forEach">
 		<ul>
 			<c:forEach var="vo" items="${cate }">
-			<li ><input type="checkbox" name="categoryL" value=" ${vo.category1_no }" class="categoryL" > ${vo.category_name }</li> <!-- 반복문 -->
+			<li ><input type="checkbox"  value=" ${vo.category1_no }" class="categoryL" > ${vo.category_name }</li> <!-- 반복문 -->
 			</c:forEach>
 		</ul>
 	
 	</div>
+	<input type="text" name="category_no" class="categoryPutInput" id="categoryReal" >
 	<div id="smallCategoryDiv">
 		<div class="classCommonDiv">
 			<span><kimin>*</kimin> 3-1) 클래스 서브 카테고리 <kimin>(필수)</kimin></span>
+			
 		</div>
 		<div class="classCategoryDiv">
-			<ul id="test1">
+			<ul id="classCategorySUL">
+				
 			</ul>
 		</div>
 	</div>
@@ -749,14 +880,17 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 			<li>사진을 첨부 할 수 있습니다</li>
 		</ul>
 	</div>
+	<input type="text" id="classDateRealStart" name="start_date">
+	<input type="text" id="classDateRealEnd" name="end_date">
 	<!-- ////////////////////// -->
 	<div class="classCommonDiv" id="f6">
-		<span><kimin>*</kimin> 6) 클래스 일정 <kimin>(필수)</kimin></span>
+		<span><kimin>*</kimin> 6) 클래스 일정 <kimin>(필수)</kimin></span> 	
 	</div>
 	<div class="classDate">
 		<ul>
 			<li><input class="flatpickrCalender"/></li>
-			<li id="putDateTime"><div>선택하신 날짜가 표시됩니다</div></li>	
+			<li><div  id="putDateTime"></div></li>
+			<li><div id="dateCount"></div></li>	
 		</ul>
 	</div>
 	<div>
@@ -845,6 +979,8 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 		<input type="submit" value="클래스 등록신청" name="class_apply" id="class_apply" class="buttonClass">
 	</div>
 </div>
-
 </form>
-
+<button id="modalButton">모달창</button> 
+<div class="modal"> 
+	<div class="modal_content" title="클릭하면 창이 닫힙니다."> 여기에 모달창 내용을 적어줍니다.<br> 이미지여도 좋고 글이어도 좋습니다. </div>
+</div>
