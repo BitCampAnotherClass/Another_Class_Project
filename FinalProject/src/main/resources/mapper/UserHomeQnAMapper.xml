@@ -37,4 +37,9 @@
 			update homeQnaUser set delete_sort<![CDATA[ = ]]>  1 
 			where board_no1=#{param1}
 		</update>
+		<select id="userHomeQnAboardLimit" resultType="int" >
+			<![CDATA[
+			SELECT COUNT(user_qna_no) FROM homeQnaUser where view_grade =1 and delete_sort =  0
+			]]>
+		</select>
   </mapper>

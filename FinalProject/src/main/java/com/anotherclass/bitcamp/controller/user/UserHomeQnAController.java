@@ -6,8 +6,10 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.anotherclass.bitcamp.service.user.UserHomeQnAService;
@@ -35,6 +37,17 @@ public class UserHomeQnAController {
 		mav.setViewName("/user/HomeQnA/userHelper_HomeQnA_list");		
 		return mav;
 	}
+	
+	@RequestMapping(value="/HomeQnAAsk/buttonCnt", method = RequestMethod.GET)
+	@ResponseBody
+	public int buttonList() {
+		int boardListNumber = userHomeQnAService.userHomeQnAboardLimit(); // 게시글 수 조회
+		int memberListLimit = 10; // 한페이지에 보여줄 페이지수
+		int listCalcul = (int) Math.ceil((double)boardListNumber/memberListLimit);		
+		return listCalcul;
+	}
+	
+	
 	//문의하기(글쓰기)페이지로 이동
 	@RequestMapping("/HomeQnAAsk/write")
 	public String HomeQnAAskWrite() {
