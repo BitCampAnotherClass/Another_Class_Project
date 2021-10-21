@@ -12,4 +12,5 @@ public interface UserHomeQnADAO {
 	public int userHomeQnAEdit(UserHomeQnAVO vo);
 	public int userHomeOnABoardCnt();
 	public int userHomeQnADel(int no);
+	public int userHomeQnAboardLimit();
 }

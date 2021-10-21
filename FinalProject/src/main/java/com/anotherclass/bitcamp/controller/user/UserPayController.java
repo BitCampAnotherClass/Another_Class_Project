@@ -24,9 +24,9 @@ public class UserPayController {
 
 	//결제페이지
 	@RequestMapping(value= "/PayPage", method = RequestMethod.POST)
-	public ModelAndView payPage(UserPayVO vo ) {//주문할 클래스옵션번호		
+	public ModelAndView payPage(UserPayVO vo ) {//주문할 클래스옵션번호			
 		ModelAndView mav = new ModelAndView();
-		//userPayService.userPayAllselect(vo.getClassNoPayList())
+		
 		//포인트셋팅해서 list 에넣기.......
 		List<UserPayVO> list2 =  userPayService.userPayAllselect(vo.getClassNoPayList());
 		for(int i=0; i<list2.size(); i++) {
@@ -59,6 +59,23 @@ public class UserPayController {
 		
 		
 		
+		mav.setViewName("/user/pay/payPage_info");
+		return mav;
+	}
+	
+	//개별결제페이지
+	@RequestMapping(value= "/PayPage2", method = RequestMethod.POST)
+	public ModelAndView payPage2(int no) {//주문할 클래스옵션번호		
+		ModelAndView mav = new ModelAndView();
+		List<UserPayVO> list8=  userPayService.userPayoneSelect(no);
+		
+			UserPayVO vo2=list8.get(0);
+			int a = vo2.getClass_price();
+			double b = a*0.01;
+			int c = (int)Math.round(b);
+			vo2.setSavePoint(c);//적립포인트
+			
+		mav.addObject("list",vo2); 			
 		mav.setViewName("/user/pay/payPage_info");
 		return mav;
 	}
@@ -123,8 +140,24 @@ public class UserPayController {
 		return mav;
 		
 	}
+	//개별상품삭제 ///another/delOneClass
+	@RequestMapping("/delOneClass")
+	@ResponseBody
+	public int DelOneClass(int no) {
+		int result =0;
+		result = userPayService.delOneBasket(no);
+		return result;
+	}
 	
 	//결제하고나서오는곳
-	
+	@RequestMapping("/SaveOrder")
+	@ResponseBody
+	public int saveOrder(String imp_uid, String merchant_uid) {
+		int result = 0;
+		System.out.println(imp_uid);
+		System.out.println(merchant_uid);
+		
+		return result;
+	}
 
 }

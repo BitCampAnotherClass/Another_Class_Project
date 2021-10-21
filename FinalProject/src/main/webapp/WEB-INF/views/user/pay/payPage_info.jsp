@@ -122,16 +122,10 @@ $(function(){
 				tag +="<input type='hidden' id='member_email_val' value='"+vo.member_email+"'>"
 				tag +="<input type='hidden' id='member_tel_val' value='"+vo.member_tel+"'>"
 				
-				$("#paymemberinfo").append(tag);
-				
-			}	
-				
-		})	
-		
-		
-	}
-
-	
+				$("#paymemberinfo").append(tag);				
+			}				
+		})			
+	}	
 	memberInfo();//회원정보ajax셋팅
 	point = $("#pointbox").val();
 	$("#havePoint").html(point);
@@ -158,21 +152,15 @@ $(function(){
 							</div>
 						</div>
 						<div class="orderN"><label>1</label>명</div><!-- 인원 -->
-						<div class="orderP"><label>${vo.class_price }</label>원</div><!-- 총상품금액 -->		
-						
-						
-						
-										
+						<div class="orderP"><label>${vo.class_price }</label>원</div><!-- 총상품금액 -->											
 						<div class="orderPP"><label style="display:inline-block;margin-top:4px;">${vo.savePoint }</label></div>						
+						<input type='hidden' value='${vo.class_option_no}'>
 					</div>					
 				</c:forEach> 	
 		</div>			
 		<div id="paydiscount"><!-- 할인받기 -->
-			<div class="secondTitleD">할인받기</div>
-			
-			<div><span>결제예정금액</span><span>${sum }원</span></div>
-
-			
+			<div class="secondTitleD">할인받기</div>			
+			<div><span>결제예정금액</span><span>${sum }원</span></div>			
 			<div><span>사용포인트</span><span><input type="text">&nbsp;&nbsp;보유포인트<label id="havePoint"></label>p</span></div>			
 		</div>				
 		<div id="paymethod"><!-- 결제수단 -->
@@ -253,21 +241,16 @@ $(function(){
 				</div>
 				<div id="payEndD"><input type="button" name="" id="payEndBtn" value="결제하기"></div>
 			</div>
-		</div>
-		
-	</div>
-	  
+		</div>		
+	</div>	  
 	 <div style='display:none;'>
-	 <form>
-	 	
+	 <form>	 	
 	 </form>
 	 </div> 
 	  
 <script>
-		
 
-        $('#payEndBtn').click(function () {
-            
+        $('#payEndBtn').click(function () {            
         	if ($("input:checkbox[name='ckkk']").is(":checked")==false) {
 				alert("주문 상품정보(전자상거래법 제 8조 제 2항)에 대해 동의해 주세요.(필수)");
 				return;
@@ -302,9 +285,8 @@ $(function(){
                 buyer_addr: '인천광역시 부평구',
                 buyer_postcode: '123-456'
             }, function (rsp) { // 결제성공시 imp_uid 와 merchant_uid를 가맹점 서버에 진자로 전달
-	               
-	            	//console.log(rsp);
-	            	conosole.log("결제에 성공하였습니다");
+	               	            	
+	            	console.log("결제에 성공하였습니다");
 	                
 	            if (rsp.success) { //결제성공시 로직
 	                    var msg = '결제가 완료되었습니다.';
@@ -314,10 +296,10 @@ $(function(){
 	                    msg += '카드 승인번호 : ' + rsp.apply_num;
 	                    msg += '결제방법 : ' + rsp.pay_method;
 	                    
-	                    var purl = ""; 
+	                    var purl = "/another/SaveOrder"; 
 	                    $.ajax({
-	                        type: "GET",
-	                        url: "", //컨트롤러보낼 url 설정
+	                        type: "POST",
+	                        url: purl, //컨트롤러보낼 url 설정
 	                        //headers: { "Content-Type": "application/json" },
 	                        data: {
 	                        	 imp_uid: rsp.imp_uid,
@@ -330,8 +312,7 @@ $(function(){
 	                    msg += '에러내용 : ' + rsp.error_msg;
 	                }
 	                alert(msg);
-	          //      document.location.href = "/user/mypage/home"; //alert창 확인 후 이동할 url 설정            
-	               // history.back();
+	          		
             });
             
             

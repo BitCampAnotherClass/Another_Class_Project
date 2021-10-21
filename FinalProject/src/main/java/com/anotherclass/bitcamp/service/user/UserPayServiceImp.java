@@ -36,8 +36,18 @@ public class UserPayServiceImp implements UserPayService {
 	}
 
 	@Override
-	public int delBasket(BasketVO vo) {
-		// TODO Auto-generated method stub
+	public int delBasket(BasketVO vo) {		
 		return userpaydao.delBasket(vo);
+	}
+
+	@Override
+	public int delOneBasket(int no) {	
+		return userpaydao.delOneBasket(no);
+	}
+
+	@Override
+	public List<UserPayVO> userPayoneSelect(int no) {
+		
+		return userpaydao.userPayoneSelect(no);
 	}
 }
