@@ -90,7 +90,7 @@
 
 
 <!-- jQuery -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <!-- iamport.payment.js -->
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
@@ -117,11 +117,10 @@ $(function(){
 				tag += "<div><span>이메일</span><span id='member_email'>"+vo.member_email+"</span></div>";
 				tag += "<div><span>휴대폰번호</span><span id='member_tel'>"+vo.member_tel+"</span></div>";
 				tag +="<input type='hidden' id='pointbox' value='"+vo.point+"'>"
-				
 				tag +="<input type='hidden' id='member_name_val' value='"+vo.member_name+"'>"
 				tag +="<input type='hidden' id='member_email_val' value='"+vo.member_email+"'>"
 				tag +="<input type='hidden' id='member_tel_val' value='"+vo.member_tel+"'>"
-				
+				tag += "</form>"
 				$("#paymemberinfo").append(tag);				
 			}				
 		})			
@@ -130,8 +129,11 @@ $(function(){
 	point = $("#pointbox").val();
 	$("#havePoint").html(point);
 
+	
 });	
+	var arrayTest = new Array();
 </script>
+<form method="POST" action=""></form>
 <div id="payPageContainer">		
 	<div id="leftdiv">
 		<div id="payPageTitle"><span>주문결제</span></div><!-- 페이지타이틀 -->		
@@ -141,7 +143,7 @@ $(function(){
 			<div id="payclassinfo"><!-- 주문상품 -->
 			<div class="secondTitleD">주문상품</div>
 				<div><span>상품정보</span><span>인원</span><span>총상품금액</span><span>포인트</span></div>					
-				<c:forEach var="vo" items="${list}">
+				<c:forEach var="vo" items="${list}" varStatus="status">
 					<div class="payclassinfoorder " style="height:150px;"><!-- 주문한줄.... -->
 						<div><!-- 이미지+제목 -->
 							<div><img src="img/jisu/classimg5.png"></div> <!-- 이미지  vo.class_thumb --> 						
@@ -155,7 +157,15 @@ $(function(){
 						<div class="orderP"><label>${vo.class_price }</label>원</div><!-- 총상품금액 -->											
 						<div class="orderPP"><label style="display:inline-block;margin-top:4px;">${vo.savePoint }</label></div>						
 						<input type='hidden' value='${vo.class_option_no}'>
-					</div>					
+					</div>
+					<script type="text/javascript">
+						var testDa = ${vo.class_option_no};
+						arrayTest[${status.index}] = testDa;
+						console.log(testDa);
+						console.log(${status.index});
+						console.log(arrayTest[${status.index}]);
+					</script>
+					
 				</c:forEach> 	
 		</div>			
 		<div id="paydiscount"><!-- 할인받기 -->
@@ -251,6 +261,8 @@ $(function(){
 <script>
 
         $('#payEndBtn').click(function () {            
+        	console.log(arrayTest[0]);
+        	console.log(arrayTest[1]);
         	if ($("input:checkbox[name='ckkk']").is(":checked")==false) {
 				alert("주문 상품정보(전자상거래법 제 8조 제 2항)에 대해 동의해 주세요.(필수)");
 				return;
@@ -262,11 +274,15 @@ $(function(){
             IMP.init('imp53433684');
             var money = ${sum };
             
+            console.log(arrayTest);
+            console.log('클래스다'+arrayTest);
+            
             name = $("#member_name_val").val();
             tel = $("#member_tel_val").val();
             email = $("#member_email_val").val();
             
            
+            
             money1 = parseInt(${sum});
             money2= parseInt(${vo.savePoint});
             money3 = money1-money2;
@@ -287,7 +303,7 @@ $(function(){
             }, function (rsp) { // 결제성공시 imp_uid 와 merchant_uid를 가맹점 서버에 진자로 전달
 	               	            	
 	            	console.log("결제에 성공하였습니다");
-	                
+	                console.log(arrayTest);
 	            if (rsp.success) { //결제성공시 로직
 	                    var msg = '결제가 완료되었습니다.';
 	                    msg += '고유ID : ' + rsp.imp_uid;
@@ -296,15 +312,17 @@ $(function(){
 	                    msg += '카드 승인번호 : ' + rsp.apply_num;
 	                    msg += '결제방법 : ' + rsp.pay_method;
 	                    
-	                    var purl = "/another/SaveOrder"; 
+	                    var purl = "/another/SaveOrder";
+	                    console.log(arrayTest);
 	                    $.ajax({
 	                        type: "POST",
 	                        url: purl, //컨트롤러보낼 url 설정
-	                        //headers: { "Content-Type": "application/json" },
+	                        headers: { "Content-Type": "application/json" },
 	                        data: {
 	                        	 imp_uid: rsp.imp_uid,
-	                             merchant_uid: rsp.merchant_uid
+	                             merchant_uid: rsp.merchant_uid,
 	                             //기타 필요한 데이터가 있으면 추가 전달
+	                             test: arrayTest
 	                        },
 	                    });
 	                } else { //결제실패시 로직

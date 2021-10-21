@@ -5,17 +5,20 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.anotherclass.bitcamp.service.user.UserPayService;
 import com.anotherclass.bitcamp.vo.user.BasketVO;
 import com.anotherclass.bitcamp.vo.user.UserPayVO;
+
 
 @Controller
 public class UserPayController {
@@ -156,8 +159,6 @@ public class UserPayController {
 		int result = 0;
 		System.out.println(imp_uid);
 		System.out.println(merchant_uid);
-		
 		return result;
 	}
-
 }
