@@ -95,45 +95,46 @@
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 <script>
+//var member_id ="";
+//var member_email ="";
+//var member_tel ="";
 
-var member_id ="";
-var member_email ="";
-var member_tel ="";
 $(function(){
 	
 	var logid = "${userId}"; // 세션에저장된아이디		
-	
-	
-	
-	
-	
 	
 	function memberInfo(){
 		var mUrl = "/another/memInfo";
 		var mParam = {"logid":logid} 
 		$.ajax({
 			url:mUrl,
+			async:false,
 			data :mParam,
 			success:function(vo){
 				var tag =""; 
+			
 				tag += "<div><span>주문하시는분</span><span id='member_name'>"+vo.member_name+"</span></div>";
 				tag += "<div><span>이메일</span><span id='member_email'>"+vo.member_email+"</span></div>";
 				tag += "<div><span>휴대폰번호</span><span id='member_tel'>"+vo.member_tel+"</span></div>";
 				tag +="<input type='hidden' id='pointbox' value='"+vo.point+"'>"
-				//console.log(vo.point);
-				//member_id += vo.member_name;
-				//member_email +=vo.member_email;
-				//member_tel += vo.member_tel;
-				//console.log(member_id+member_email+member_tel);
+				
+				tag +="<input type='hidden' id='member_name_val' value='"+vo.member_name+"'>"
+				tag +="<input type='hidden' id='member_email_val' value='"+vo.member_email+"'>"
+				tag +="<input type='hidden' id='member_tel_val' value='"+vo.member_tel+"'>"
+				
 				$("#paymemberinfo").append(tag);
-			}				
-		})		
+				
+			}	
+				
+		})	
+		
+		
 	}
-	
-	//console.log(member_id+member_email+member_tel);
+
 	
 	memberInfo();//회원정보ajax셋팅
-
+	point = $("#pointbox").val();
+	$("#havePoint").html(point);
 
 });	
 </script>
@@ -163,25 +164,14 @@ $(function(){
 						
 										
 						<div class="orderPP"><label style="display:inline-block;margin-top:4px;">${vo.savePoint }</label></div>						
-					</div>
+					</div>					
 				</c:forEach> 	
 		</div>			
 		<div id="paydiscount"><!-- 할인받기 -->
 			<div class="secondTitleD">할인받기</div>
 			
 			<div><span>결제예정금액</span><span>${sum }원</span></div>
-			
-			<script>
-			/*<c:forEach var="vo" items="${list}">
-				var n = Number(${vo.class_price });
-				var s += n;
-			</c:forEach>
-				console.log(s);
-				*/
-			</script>
-				
-			
-	
+
 			
 			<div><span>사용포인트</span><span><input type="text">&nbsp;&nbsp;보유포인트<label id="havePoint"></label>p</span></div>			
 		</div>				
@@ -267,21 +257,15 @@ $(function(){
 		
 	</div>
 	  
-	  
+	 <div style='display:none;'>
+	 <form>
+	 	
+	 </form>
+	 </div> 
 	  
 <script>
+		
 
-
-
-
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
         $('#payEndBtn').click(function () {
             
         	if ($("input:checkbox[name='ckkk']").is(":checked")==false) {
@@ -295,31 +279,45 @@ $(function(){
             IMP.init('imp53433684');
             var money = ${sum };
             
+            name = $("#member_name_val").val();
+            tel = $("#member_tel_val").val();
+            email = $("#member_email_val").val();
             
+           
+            money1 = parseInt(${sum});
+            money2= parseInt(${vo.savePoint});
+            money3 = money1-money2;
+            console.log("돈돈");
+  			console.log(money3);
             
             IMP.request_pay({
             	pg: 'kcp', // PG사 선택
-                pay_method: 'card', // 지불 수단
-                merchant_uid: 'merchant' + new Date().getTime(),
-                name: '주문명 : 주문명 설정',
-                amount: money,
-                buyer_email: 'iamport@siot.do',
-                buyer_name: '구매자이름',
-                buyer_tel: '010-1234-5678',
+                pay_method: 'card',  // 지불 수단
+                merchant_uid: ${vo.class_name} + new Date().getTime(),
+                name: name,
+                amount: '100',
+                buyer_email: email,
+                buyer_name: name,
+                buyer_tel: tel,
                 buyer_addr: '인천광역시 부평구',
                 buyer_postcode: '123-456'
             }, function (rsp) { // 결제성공시 imp_uid 와 merchant_uid를 가맹점 서버에 진자로 전달
-                console.log(rsp);
-                if (rsp.success) { //결제성공시 로직
+               
+            	//console.log(rsp);
+            	conosole.log("결제에 성공하였습니다");
+                
+            if (rsp.success) { //결제성공시 로직
                     var msg = '결제가 완료되었습니다.';
                     msg += '고유ID : ' + rsp.imp_uid;
                     msg += '상점 거래ID : ' + rsp.merchant_uid;
                     msg += '결제 금액 : ' + rsp.paid_amount;
                     msg += '카드 승인번호 : ' + rsp.apply_num;
+                    msg += '결제방법 : ' + rsp.pay_method;
                     
+                    var purl = ""; 
                     $.ajax({
                         type: "GET",
-                        url: "", //충전 금액값을 보낼 url 설정
+                        url: "", //컨트롤러보낼 url 설정
                         //headers: { "Content-Type": "application/json" },
                         data: {
                         	 imp_uid: rsp.imp_uid,
@@ -333,7 +331,7 @@ $(function(){
                 }
                 alert(msg);
           //      document.location.href = "/user/mypage/home"; //alert창 확인 후 이동할 url 설정            
-            
+               // history.back();
             });
             
             

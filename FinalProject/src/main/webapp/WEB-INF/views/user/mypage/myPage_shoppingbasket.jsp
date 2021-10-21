@@ -36,7 +36,7 @@
 	#shoppingBagListUl>li>div:nth-child(5n+4){line-height:150px;}
 	#shoppingBagListUl>li>div:nth-child(5n+5){width:15%;}
 	#shoppingBagListUl>li>div:nth-child(5n+5)>div{width:100%;}
-	#shoppingBagListUl>li>div:nth-child(5n+5)>div>a{display:block;width:100%;padding:5px 0 5px 0;text-align:center;}/*버튼*/
+	#shoppingBagListUl>li>div:nth-child(5n+5)>div>a{display:block;width:100%;padding:22px 0 5px 0;text-align:center;}/*버튼*/
 	#shoppingBagListUl>li>div:nth-child(5n+5)>div>a span{display:inline-block;width:84px;background-color:#666;padding:5px 10px 5px 10px;text-align:center;color:white;} /*이벤트줘야함 -> 이벤트오버시 글자색바뀌게*/
 	
 	/* 선택상품 - 삭제 ,주문 */
@@ -89,8 +89,10 @@ $(function(){
 					tag += "<div>";
 					tag += "<div>";
 					tag += "<a href='#'><span class='order'>주문하기</span></a>";
-					tag += "<a href='#'><span class='heart'>찜하기</span></a>";
+					tag += "<input type='hidden' value='"+vo.class_option_no+"'>";
+					//tag += "<a href='#'><span class='heart'>찜하기</span></a>";
 					tag += "<a href='#'><span class='del''>삭제</span></a>";
+					tag += "<input type='hidden' class='class_option_no_val' value='"+vo.class_option_no+"'>";
 					tag += "</div>";
 					tag += "</div>";
 					tag += "</li>";				
@@ -127,18 +129,13 @@ $(function(){
 		 	$("#payfrmm").submit();				
 	});	
 	
-	//삭제 -> 개별상품
-	
-	/*
+	//삭제 -> 개별상품	
 	$(document).on('click','.del',function(){//delete
 		var logid = "${userId}";    	
-	
-		//$(this).closet('input:checkbox[name='classNoPayList']').val() 		
-		console.log($(this).parents("input").attr('id'));
-		//	$("#payfrmm").attr("action", "/another/DeleteBasketDB");			
-		 //	$("#payfrmm").submit();				
+		var a =$(".class_option_no_val").val();
+		console.log(a);
 	});	
-	*/
+	
 	//주문 -> 선택상품주문 , 주문
 	$(document).on('click','#goPay',function(){//delete
 		var logid = "${userId}";    	
@@ -151,7 +148,16 @@ $(function(){
 		 	$("#payfrmm").submit();				
 	});	
 	//주문페이지이동 -> 장바구니페이지에서삭제?:결제성공하면 삭제하고 아니면 냅둘까?.. 클래스옵션번호가지고
-	
+	$(document).on('click','.order',function(){//delete
+		var logid = "${userId}";    	
+		var a =$(".class_option_no_val").val();
+        location.href="another/goPayPP?no="+no;
+	});	
+			
+			
+			
+			
+			
 	
 	getBaList();//장바구니리스트블러옴
 	getBaCount();//장바구니갯수가져옴
@@ -178,8 +184,7 @@ $(function(){
 			</ul>			
 			<ul id="shoppingBagListUl">
 			
-				<!-- 여기에 주문정보가 저장됨................................ -->
-				
+		
 				
 			</ul>
 		

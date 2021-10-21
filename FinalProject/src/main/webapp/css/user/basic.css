@@ -23,6 +23,7 @@ body{
 	top:0; left:0;
 	width:100%;
 	height:118px; /* #nav .gnb > li > a 의 height, #contents-wrap padding-top 같이 조절할 것*/
+	z-index:600;
 }
 
 #header-top{
@@ -97,7 +98,7 @@ body{
 	-moz-box-shadow: 0 4px 4px -3px rgba(0,0,0,.15);
 	box-shadow: 0 4px 4px -3px rgba(0,0,0,.15);
 	opacity:1;
-	z-index:500;
+	z-index:601;
 }
 
 #header-bottom > .inner-lg{

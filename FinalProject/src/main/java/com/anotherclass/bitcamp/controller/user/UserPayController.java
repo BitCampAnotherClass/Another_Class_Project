@@ -114,7 +114,7 @@ public class UserPayController {
 		int cnt = 0;
 		for(int i=0; i<te.length; i++) {
 			bvo.setClass_option_no(te[i]);
-			cnt = userPayService.delBasket(bvo);//디비에저장함
+			cnt = userPayService.delBasket(bvo);//디비에서삭제
 		}
 		
 		System.out.println(cnt);
@@ -123,5 +123,8 @@ public class UserPayController {
 		return mav;
 		
 	}
+	
+	//결제하고나서오는곳
+	
 
 }

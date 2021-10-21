@@ -26,17 +26,12 @@ public class UserController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
-    	// 대분류 카테고리 가져오기
-    	List<CreatorClassCategoryVO> cateL = makeClassApplyService.makeClassCategoryL();
-
-    	mav.addObject("cateL", cateL);
-    	//mav.addObject("cateS", cateS);
 
     	mav.setViewName("/user/home");
     	return mav;
 	}
 	
-	@RequestMapping(value = "/cateL/", method = RequestMethod.GET)
+	@RequestMapping(value = "/cateL", method = RequestMethod.GET)
 	@ResponseBody
 	public List<CreatorClassCategoryVO> cateL() {
     	// 대분류 카테고리 가져오기
@@ -46,23 +41,17 @@ public class UserController {
 	}
 	
 	
-	@RequestMapping(value = "/cateS/", method = RequestMethod.GET)
+	@RequestMapping(value = "/cateS", method = RequestMethod.GET)
 	@ResponseBody
 	public List<CreatorClassCategoryVO> cateS(CreatorClassCategoryVO vo) {
     	// 중분류 카테고리 가져오기
     	List<CreatorClassCategoryVO> cateS = makeClassApplyService.makeClassCategoryS(vo.getCategory1_no());
-    	System.out.println("실행2");
 
     	return cateS;
 	}
 	
 	
 	// 임시 맵핑 --------------------------
-	
-	@RequestMapping(value = "/classMap")
-	public String classMap() {
-		return "user/class/class_map";
-	}
 	
 	@RequestMapping(value = "/mypage/review")
 	public String mypageReview() {
