@@ -23,6 +23,7 @@ var start_str;
 var DateArray = [];
 var classDateDivCount;
 var  resultsArray;
+var startTimeArray =[];
 $(function(){
 	//////////////////////////////////////////////////////날짜 선택 모달
 	 $(".modal").css({
@@ -132,12 +133,13 @@ $(function(){
              DateArray += $(".flatpickr-day.selected").text()+",";
               resultsArray=DateArray.match(/,/g);
            
-            
+           
             if(classDateDivCount <= 10){
-            	   
             	$('#putDateTime').append("<div class='putDateTime2' id='dateTimeDivDel'><div title='cancel' class='dateCancelButton' onclick='deleteDivDate(this)'><img src='<%=request.getContextPath()%>/img/kimin/xbu.png'></div>"
-            				+((instance.altInput.value).replace(/'/g,"<input type='time' id='startTime' value='09:00:00'><img  src='<%=request.getContextPath()%>/img/kimin/~.png'><input type='time' id='endTime' value='18:00:00'></div>"))
+            				+((instance.altInput.value).replace(/'/g,"<input type='time' class='testtest' id='startTime' value='09:00:00' onchange='inputStartTime($(this).val())'><img  src='<%=request.getContextPath()%>/img/kimin/~.png'><input type='time' id='endTime' value='18:00:00' onchange='inputEndTime($(this).val())'></div>"))
             				.replace(/,/g,""));
+            	inputStartTime($('#startTime').val());
+            	inputEndTime($('#startTime').val());
             	 classDateDivCount++;	
             		
             }else if(classDateDivCount >= 11){
@@ -146,18 +148,10 @@ $(function(){
             	alert("10개를 모두 선택하였습니다\n");
             	$(".flatpickr-day.selected").css("background","#FF385C");
             }
-           
-       }
+       	}
 	});
-	////////////////////////////////////////////////////달력입력  -->> 다른 li 정보 옮기기
-	$(document).on('DOMSubtreeModified propertychange','#putDateTime',function(){
-		
-		var selectedDate = $(this).text();
-		
-		var selectedArray = selectedDate+$('#startTime').val();
-		
-		$("#classDateRealStart").val(selectedArray);
-	});
+	////////
+	
 	//////////////////////////////////////////////////////테그 변환
 	$("#class_tagButton").click(function(){
 			if(count < 5){
@@ -228,8 +222,8 @@ $(function(){
   				height:800,
   				placeholder:'클래스 소개글과 이미지를 넣어 작성하세요 ',
   				lang: "ko-KR",	
-  				minHeight: 800, 
-  				maxHeight:800,
+  				minHeight: 600, 
+  				maxHeight:600,
   				callbacks: {	//여기 부분이 이미지를 첨부하는 부분
 					onImageUpload : function(files) {
 						uploadImageFile(files[0],this);
@@ -248,10 +242,25 @@ $(function(){
 				}
   			});
 	});
-	});
+});
+////////////////////////////////////////////////
+var startTime = [];
+var endTime = [];
+function inputStartTime(time){
+	//for(time.length)	
+	startTime[0] = $('#putDateTime').text()+time;
+	$("#classDateRealStart").val(startTime);
+}
+function inputEndTime(time){
+	endTime[0] = $('#putDateTime').text()+time;
+	$("#classDateRealEnd").val(endTime);
+}
+
 //////////////////////////////////// 날짜 선택 지우기 div
 function deleteDivDate(del){
 	$($(del).parents("#dateTimeDivDel")).remove();
+	$("#classDateRealStart").val("");
+	$("#classDateRealEnd").val("");
 	$(del).remove();
 	classDateDivCount--;
 	console.log(classDateDivCount);
@@ -433,7 +442,7 @@ kimin2{font-size: 1.3em; color:gray; margin-left:5px;}
 .followDiv{background-color:;
 	width:100%;
 	height:35px;
-	border-bottom:3px solid lightgray;
+	border-bottom:2px dotted lightgray;
 	margin-top:30px;
 	margin-bottom:30px;
 }
@@ -461,7 +470,7 @@ kimin2{font-size: 1.3em; color:gray; margin-left:5px;}
 .classCommonDiv{
 	width:100%; 
 	height:50px;
-	border-bottom:3px solid lightgray;
+	border-bottom:2px dotted lightgray;
 	text-align:left;
 	line-height:50px;
 }
@@ -878,8 +887,8 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 			<li>사진을 첨부 할 수 있습니다</li>
 		</ul>
 	</div>
-	<input type="text" id="classDateRealStart" name="start_date">
-	<input type="text" id="classDateRealEnd" name="end_date">
+	<input type="text" id="classDateRealStart" name="start_date" >
+	<input type="text" id="classDateRealEnd" name="end_date" >
 	<!-- ////////////////////// -->
 	<div class="classCommonDiv" id="f6">
 		<span><kimin>*</kimin> 6) 클래스 일정 <kimin>(필수)</kimin></span> 	
