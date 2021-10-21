@@ -37,16 +37,6 @@ $(function(){
 			$(".modal").fadeOut();
 			});
 
-	////////////////////////////////////////////////////달력입력  -->> 다른 li 정보 옮기기
-	$(document).on('DOMSubtreeModified propertychange','#putDateTime',function(){
-		
-		var testing1 = $(this).text();
-		var testing2 = testing1.split(",");
-		var testing3 = new Array(testing2);
-		
-		$("#classDateRealStart").val(testing3);
-		console.log(testing3);
-	});
 	//////////////////////////////////////////////////////////
 
 //		$("#classDateReal").html($('#putDateTime').text().split("/"));
@@ -138,21 +128,15 @@ $(function(){
 		altInput: true,
 		altFormat: " Y - m - d '",
 		onChange(selectedDates, dateStr, instance) {
-            var array=selectedDates;
-            if(array.length <= 10){
-            	$('#putDateTime').html(instance.altInput.value);
-            }else if(array.length >= 11){
-            	var count = array.length - 10;
-            	alert("선택"+count+"를 초과하였습니다\n"+count+"개를 취소해 주십시오.");
-=======
 			
              DateArray += $(".flatpickr-day.selected").text()+",";
               resultsArray=DateArray.match(/,/g);
+           
             
             if(classDateDivCount <= 10){
             	   
             	$('#putDateTime').append("<div class='putDateTime2' id='dateTimeDivDel'><div title='cancel' class='dateCancelButton' onclick='deleteDivDate(this)'><img src='<%=request.getContextPath()%>/img/kimin/xbu.png'></div>"
-            				+((instance.altInput.value).replace(/'/g,"<input type='time' value='09:00:00'><img  src='<%=request.getContextPath()%>/img/kimin/~.png'><input type='time' value='18:00:00'></div>"))
+            				+((instance.altInput.value).replace(/'/g,"<input type='time' id='startTime' value='09:00:00'><img  src='<%=request.getContextPath()%>/img/kimin/~.png'><input type='time' id='endTime' value='18:00:00'></div>"))
             				.replace(/,/g,""));
             	 classDateDivCount++;	
             		
@@ -164,6 +148,15 @@ $(function(){
             }
            
        }
+	});
+	////////////////////////////////////////////////////달력입력  -->> 다른 li 정보 옮기기
+	$(document).on('DOMSubtreeModified propertychange','#putDateTime',function(){
+		
+		var selectedDate = $(this).text();
+		
+		var selectedArray = selectedDate+$('#startTime').val();
+		
+		$("#classDateRealStart").val(selectedArray);
 	});
 	//////////////////////////////////////////////////////테그 변환
 	$("#class_tagButton").click(function(){
@@ -771,8 +764,13 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	padding:0;
 	width:100%;
 }
-#classDateRealStart{
+#classDateRealStart{border:1px dotted lightgray;
 	display:;
+	width:400px;
+}
+#classDateRealEnd{border:1px dotted lightgray;
+	display:;
+	width:400px;
 }
 .modal{
  position:absolute; width:500px; height:500px; background: rgba(0,0,0,0.8); 
