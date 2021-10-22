@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.anotherclass.bitcamp.register.RegisterVO;
 import com.anotherclass.bitcamp.service.creator.MakeClassApplyService;
+import com.anotherclass.bitcamp.service.user.UserHomeService;
 import com.anotherclass.bitcamp.vo.creator.CreatorClassCategoryVO;
 
 
@@ -20,11 +22,17 @@ public class UserController {
 	
 	@Inject
 	MakeClassApplyService makeClassApplyService;
+	@Inject
+	UserHomeService userHomeService;
+	
+	
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
-
+		List<RegisterVO> creatorList = userHomeService.popularCreator();
+		
+		mav.addObject("creatorList", creatorList);
     	mav.setViewName("/user/home");
     	return mav;
 	}

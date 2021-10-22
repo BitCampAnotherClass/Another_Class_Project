@@ -334,10 +334,12 @@
 				<!-- Swiper -->
 				<div class="swiper classSwiper4">
 					<div class="swiper-wrapper">
-						<div class="swiper-slide">
-							<div class="creator-list-img"><img src="<%=request.getContextPath()%>/img/test/creator_01.PNG"/></div>
-							<div class="creator-nick">스트릿우먼파이터</div>
-						</div>
+						<!--<c:forEach var="creator" items="creatorList">
+							<div class="swiper-slide">
+								<div class="creator-list-img"><img src="<%=request.getContextPath()%>/img/test/creator_01.PNG"/></div>
+								<div class="creator-nick">fdsfs</div>
+							</div>
+						</c:forEach>-->
 						<div class="swiper-slide">
 							<div class="creator-list-img"><img src="<%=request.getContextPath()%>/img/test/creator_01.PNG"/></div>
 							<div class="creator-nick">스트릿</div>
