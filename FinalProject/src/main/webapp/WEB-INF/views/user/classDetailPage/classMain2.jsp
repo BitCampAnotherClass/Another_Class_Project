@@ -61,7 +61,7 @@
 	#d9>div:nth-child(2n+1){margin-bottom:20px;}/*제목div*/		
 	#creatormemberoneask{width:100%;height:auto;}/*overflow:auto;*/
 	#creatormemberoneask>li{width:100%;}
-	#creatormemberoneask>li>div{width:100%;height:135px;margin-bottom:15px;overflow:auto;}
+	#creatormemberoneask>li>div{width:100%;height:137px;margin-bottom:15px;overflow:auto;}
 	#creatormemberoneask>li>div>div{float:left;height:100%;}
 	#creatormemberoneask>li>div>div:nth-child(2n+1){width:12%;height:100%;}
 	#creatormemberoneask>li>div>div:nth-child(2n+1)>img{width:80%;height:64%;border-radius:100%;display: inline-block;margin-left: 4px;margin-top: 3px;}
@@ -220,23 +220,21 @@ $(function(){
 	    		success:function(a){//문의글리스트가 담겨져잇음
 	    			var aa = $(a)
 	    			var tag =""; 	    			
-					aa.each(function(idx,vo4){						
-						console.log("문의글함수 데이터success");	
-	    					tag +="<li>";
-	    					tag +="<div class='askdiv909'>";
+					aa.each(function(idx,vo4){		
+						
+	    					//문의글						
+							tag +="<li>";
+	    					tag +="<div class='askdiv909' id='a"+vo4.class_qna_no+"'>";
 	    					tag +="<div><img src='img/jisu/creatorprofile.png'/></div>"; //작성자이미지  vo4.member_img
 	    					tag +="<div>";
 	    					tag +="<div><label>"+ vo4.classqna_member_id+" | "+ vo4.classqna_writedate+" 작성</label></div>"; // 멤버아이디가 나일때 ->글 수정 삭제 버튼 보이게....    					
 	    					tag +="<div><label>"+ vo4.classqna_content+"</label>"; //내용	    					
 	    					
-	    					if(logid == vo4.classqna_member_id){
-	    						//tag += "<label><input type='button' value='수정' style='float:right;border-radius:7px;margin-left: 8px;float: right;font-size: 0.7rem;background-color: white;border: none;border: 1px solid #666; padding: 2px 5px 2px 5px;'>";
-	    						//<input type='button' value='수정' style='float:right;border-radius:7px;margin-left: 8px;float: right;font-size: 0.7rem;background-color: white;border: none;border: 1px solid #666; padding: 2px 5px 2px 5px;'>
-	    						tag +="<label><button style='float:right;border-radius:7px;margin-left: 8px;float: right;font-size: 0.7rem;background-color: white;border: none;border: 1px solid #666; padding: 2px 5px 2px 5px;'>수정";
+	    					if(logid == vo4.classqna_member_id){	    						
+	    						tag +="<label><button class='ediBtn' style='float:right;border-radius:7px;margin-left: 8px;float: right;font-size: 0.7rem;background-color: white;border: none;border: 1px solid #666; padding: 2px 5px 2px 5px;'>수정";
 	    						tag +="<input type='hidden' value='"+vo4.class_qna_no+"'></button>";
 	    						tag +="<button class='delBtn' style='float:right;border-radius: 7px;float: right;font-size: 0.7rem;background-color: white;border: none;border: 1px solid #666; padding: 2px 5px 2px 5px;'>삭제";
-	    						tag +="<input type='hidden' value='"+vo4.class_qna_no+"'></button></label>";
-	    								
+	    						tag +="<input type='hidden' value='"+vo4.class_qna_no+"'></button></label>";	    								
 	    					}else{
 	    						tag+="<label></label>";
 	    					}
@@ -252,6 +250,25 @@ $(function(){
 	    					if(vo4.replycheck==1){//답변이 있으면 답변번호도 더해준다
 	    						tag +="<div class='askdiv808' id='"+vo4.class_qna_no+"' style='display:none;'></div>";	    					 					
 	    					}    				
+		    				tag +="</li>";	    				
+		    				
+		    				//수정폼		    			
+		    				tag +="<li style='display:none' id='b"+vo4.class_qna_no+"'>";//style='display:none'
+	    					tag +="<div class='askdiv909 editaskdiv909'>";
+	    					tag +="<div><img src='img/jisu/creatorprofile.png'/></div>"; //작성자이미지  vo4.member_img
+	    					tag +="<div>";
+	    					tag +="<div><label>"+ vo4.classqna_member_id+" | "+ vo4.classqna_writedate+" 작성</label></div>"; // 멤버아이디가 나일때 ->글 수정 삭제 버튼 보이게....    					
+	    					tag += "<form method='post' >"
+	    					tag +="<div><textarea name='classqna_content' style='width:640px;height:50px;resize:none;margin-left: 13px;'>"+ vo4.classqna_content+"</textarea>"; //내용	    					
+	    					tag +="<label style='display:block;'><input type='submit' id='c"+vo4.class_qna_no+"' value='수정완료' class='edit' style='float:right;border-radius:7px;margin-left: 8px;float: right;font-size: 0.7rem;background-color: white;border: none;border: 1px solid #666; padding: 2px 5px 2px 5px;'>";
+	    					tag +="<input type='hidden' name='class_qna_no' value='"+vo4.class_qna_no+"'>";
+	    					tag +="</form>";
+	    					tag +="<button class='cancel' style='float:right;border-radius: 7px;float: right;font-size: 0.7rem;background-color: white;border: none;border: 1px solid #666; padding: 2px 5px 2px 5px;'>취소";
+	    					tag +="<input type='hidden' value='"+vo4.class_qna_no+"'></button></label>";
+	    					
+	    					tag +="<label></label>";
+	    					tag += "</div></div> ";
+	    					tag += "</div> ";
 		    				tag +="</li>";
 		    				$("#creatormemberoneask").html(tag);    				
 	    			});	    			
@@ -368,9 +385,37 @@ $(function(){
                }
              });
           }
+	});		
+	//문의글수정폼 클릭
+	$(document).on('click','.ediBtn',function(){
+		//원래문의글 display none id='class_qna_no'
+		//수정폼 display block	id=a+'class_qna_no'
 		
+		var a = $(this).children("input").val();
+		console.log(a);
+		$('#a'+a).css('display','none');
+		$('#b'+a).css('display','block');
 		
 	});	
+	//수정완료버튼 클릭시
+	//Edit 버튼 선택시 댓글 수정실행.
+      //                           <form>태그
+      $(document).on('submit','.editaskdiv909 form',function(){ //submit이라 에이젝스인대도 다시실행되므로 리턴폴스해준다
+         var url ="/another/classAskConEdit";
+         var params = $(this).serialize(); //coment=문자&num=888
+         console.log('수정완료버튼클릭');
+         $.ajax({
+            url : url,
+            data :params,
+            type : "POST",
+            success : function(result){
+            	AskList(); 
+            }
+         });
+         return false; //submit은 action으로 이동하여 페이지가 실행되는 것을 차단한다.
+      });
+	
+	
 	
 	$(document).on('click','#classcontent',function(){
 		var offset = $("#d5").offset().top;	
