@@ -47,16 +47,6 @@
 <article id="container">
 	<div class="class-map-wrap">
 		<section id="class-map-view">
-			<div id="menu_wrap" class="bg_white">
-				<div class="option">
-		            <div>
-		                <form onsubmit="searchPlaces(); return false;">
-		                    키워드 : <input type="text" value="이태원 맛집" id="keyword" size="15"> 
-		                    <button type="submit">검색하기</button> 
-		                </form>
-		            </div>
-		        </div>
-			</div>
 			
 		</section>
 		<section class="class-map-list">
@@ -71,6 +61,7 @@
 			
 			<div class="class-list1">
 				<ul id="placesList">
+				<!-- 
 					<li>
 						<div class="class-list-thumb"><img src="<%=request.getContextPath()%>/img/jisu/img300.png"/></div>
 						<div class="class-list-info">
@@ -136,8 +127,20 @@
 							<div class="class-addr">경기도 고양시 덕양구 오부자로150</div>
 							<div class="class-price">155,000원</div>
 						</div>
-					</li>
+					</li>-->
 				</ul>
+				<div class="more">
+					<button type="button">+ more</button>
+				</div>
+				<!-- <div class="paging">
+					<ul>
+						<li class="page-item"><a href="#">1</a></li>
+						<li class="page-item"><a href="#">2</a></li>
+						<li class="page-item"><a href="#">3</a></li>
+						<li class="page-item"><a href="#">4</a></li>
+						<li class="page-item"><a href="#">5</a></li>
+					</ul>
+				</div>-->
 			</div>
 		</section>
 		
@@ -186,6 +189,7 @@ $(function(){
 					tag += '<div class="class-list-info">';
 					tag += '<div class="class-category">핸드메이드</div>';
 					tag += '<div class="class-name">직접 만들고 선물하는 재미! 서진과 함께 뜨는 코바늘 수세미</div>';
+					tag += '<div class="class-creator">핸드메이드서진</div>';
 					tag += '<div class="class-point">★★★★★ 4.3</div>';
 					tag += '<div class="class-like">♥ 150</div>';
 					tag += '<div class="class-addr">경기도 고양시 덕양구 오부자로150</div>';
@@ -193,7 +197,25 @@ $(function(){
 					tag += '</div>';
 					tag += '</li>';
 					
-					$('#placesList').append(tag);
+					var listCnt = 10; // 목록에서 한 번에 보여줄 클래스 개수
+					
+					if( idx <= (listCnt-1) ){ // 처음 보여줄 클래스 목록
+						$('#placesList').append(tag);
+						if(idx >= r.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
+							$('.more > button').hide();
+						}
+					}
+					var n=1;
+					$('.more > button').click(function(){ // more 버튼 클릭 시 보여줄 클래스 목록
+						n++;
+						if( idx >= listCnt*(n-1) && idx <= (listCnt*n-1) ){
+							$('#placesList').append(tag);
+							if(idx >= r.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
+								$('.more > button').hide();
+							}
+						}
+					});
+					
 				});
 				console.log('실행5');
 			}, error: function(e){
@@ -233,6 +255,10 @@ $(function(){
 	// 주소-좌표 변환 객체를 생성합니다
 	
 	
+	
+	var infoArr=[];
+	var j=0;
+	
 	// 주소 - 좌표 변환 + 마커 생성
 	function setMapPosition(addr, className, classImg, classPrice){
 		// 주소로 좌표를 검색합니다
@@ -254,19 +280,40 @@ $(function(){
 		        markerInfo += '<div class="marker-class-info">'
 		        markerInfo += '<div class="marker-class-category">' + '핸드메이드' + '</div>'
 		        markerInfo += '<div class="marker-class-name">' + className + '</div>';
+		        markerInfo += '<div class="marker-class-creator">핸드메이드서진</div>';
 		       // markerInfo += '<div class="marker-class-like">' + '♥ 150' + '</div>';
 		        markerInfo += '<div class="marker-class-addr">' + addr + '</div>';
 		       // markerInfo += '<div class="marker-class-point">' + '★★★★★ 5.0' + '</div>';
 		        markerInfo += '<div class="marker-class-price">' + classPrice + '원</div>';
 		        markerInfo += '</div>';
-		        // 인포윈도우로 장소에 대한 설명을 표시합니다
+		        // 인포윈도우로 장소에 대한 설명 표시
 		        var infowindow = new kakao.maps.InfoWindow({
 		            content: markerInfo
 		        });
-		        infowindow.open(map, marker);
+		        
+		        infoArr[j] = infowindow; // 인포윈도우 배열에 담기
+		        
+		        // 모든 인포윈도우 닫는 함수
+		        function closeInfoWindow() {
+		        	for(var z=0; z<infoArr.length; z++){
+	        			infoArr[z].close();
+	        	    }
+		        }
+		        
+		        kakao.maps.event.addListener(marker, 'click', function() {
+		        	closeInfoWindow(); // 모든 인포윈도우 닫기
+		        	infowindow.open(map, marker); // 마커 위에 현재 인포윈도우 표시
+		        });
+
+		    	// 지도 클릭 이벤트 - 인포윈도우 닫기
+				kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
+					infowindow.close(); // 인포윈도우 닫기
+				});	
 		
 		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 		        map.setCenter(coords);
+		        
+		        j++;
 		        
 		    } //if
 		});   

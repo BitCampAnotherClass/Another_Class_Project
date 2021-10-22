@@ -45,6 +45,10 @@
 	
 	.replySubject{text-align:left;}*/
 	
+	
+	.hQnAList-button>a:hover{color:ff385c;}
+	.hQnAList-button>a:active{color:ff385c;}
+	
 </style>
 <script>
 
@@ -73,14 +77,15 @@
 				url : 'buttonCnt'
 				, type : 'GET'
 				, success:function(res){
-						
+					btnList += '<&nbsp;&nbsp; '
 					for(var i=1; i<=res; i++){
-						btnList +='<a href="list?no='+i+'"';
+						btnList +='<a style="margin: 0 20px 0 20px;" href="list?no='+i+'"';
 						if(i>=10){
 						btnList +=' style="display:none" ';
 						}
 						btnList += '>'+i+'<a>';
 					}
+					btnList += ' &nbsp;&nbsp;>'
 					$('.hQnAList-button').html(btnList);
 				}
 				, error: function(error){

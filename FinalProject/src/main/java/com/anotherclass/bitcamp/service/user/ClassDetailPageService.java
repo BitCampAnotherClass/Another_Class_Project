@@ -27,4 +27,6 @@ public interface ClassDetailPageService {
 	public int ClassAskDDel(int no);
 	public int ClassASkCheckRep(int no);
 	public int ClassASkCheckRepDelUp(int no);
+	
+	public int ClassAskReplyEdit(UserClassDetailVO2 vo);
 }

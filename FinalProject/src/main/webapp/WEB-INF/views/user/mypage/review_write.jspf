@@ -9,7 +9,7 @@
 	}
 	
 	.review-modal{
-		display:none;
+		display:block;
 	}
 	
 	
@@ -23,29 +23,33 @@
 					<h3 class="text-h3">후기 작성하기</h3>
 					<button type="button" class="modal-close">Χ</button>
 				</div>
-				<form id="reviewWrite">
+				<form id="reviewWrite" method="post" action="<%=request.getContextPath()%>/writeReviewOK">
 					<div class="review-class">
 						<div class="review-class-img">
 							<img src="<%=request.getContextPath()%>/img/test/creator_01.PNG"/>
 						</div>
 						<div class="review-class-info">
-							<p>늘 예쁜 꽃, 디자인을 잘 하면 더 예뻐져요. 쉐이드그린의 감각적인 생화 디자인 클래스</p>
-							<p>55,000</p>
+							<div>늘 예쁜 꽃, 디자인을 잘 하면 더 예뻐져요. 쉐이드그린의 감각적인 생화 디자인 클래스</div>
+							<div>핸드메이드지선</div>
+							<div>55,000</div>
 						</div>
 					</div>
 					<div class="review-point">
 						<h4>별점 평가</h4>
 						<div class="star-point">
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
-							<i class="fas fa-star"></i>
 							<i class="far fa-star"></i>
+							<i class="far fa-star"></i>
+							<i class="far fa-star"></i>
+							<i class="far fa-star"></i>
+							<i class="far fa-star"></i>
+							<!-- <i class="far fa-star"></i>-->
 						</div>
+						<div class="star-txt">별점을 선택해 주세요.</div>
+						<input type="hidden" id="star" name="star" value="0"/>
 					</div>
 					<div class="review-write-text">
 						<h4>후기 작성</h4>
-						<textarea placeholder="자세한 리뷰는 다른 고객에게 큰 도움이 됩니다. (최소 10자 이상)"></textarea>
+						<textarea id="review-content" name="content" placeholder="자세한 후기는 다른 고객에게 큰 도움이 됩니다. (최소 10자 이상, 최대 1000자까지 가능)" maxlength="1000"></textarea>
 					</div>
 					<div class="review-write-img">
 						<h4>사진 첨부</h4>
@@ -65,3 +69,76 @@
 		</section>
 	</div>
 </div>
+
+
+<script>
+	var idxS=-1;
+
+$(document).ready(function(){
+	// 별점 클릭 시 별점 조정
+
+	$(document).on('click', '.fa-star', function(evt){
+		console.log('실행');
+		var idxS = $(this).index();
+		console.log(idxS);
+		for(var i=0; i<=idxS; i++){ // 별점 채우기
+			$('.star-point').children().eq(i).attr('data-prefix', 'fas');
+		}
+		for(var i=4; i>idxS; i--){ // 별점 비우기
+			$('.star-point').children().eq(i).attr('data-prefix', 'far');
+		}
+		
+		$('#star').val(idxS+1);
+		$('.star-txt').html('<span>'+ (idxS+1) +'</span><span>점</span>');
+		
+	});
+	
+	/*
+	$(document).on('mouseover', '.fa-star', function(e){	
+		var idxM = $(this).index();
+		if(idxM >= idxS){
+			console.log(idxM);
+				for(var i=0; i<=idxM; i++){ // 별점 채우기
+					console.log('채우기'+i);
+					$('.star-point').children().eq(i).attr('data-prefix', 'fas');
+				}
+				for(var i=4; i>idxM; i--){ // 별점 비우기
+					console.log('비우기'+i);
+					$('.star-point').children().eq(i).attr('data-prefix', 'far');
+				}
+			
+			$('.fa-star').off('mouseover');
+		}
+	});
+	*/
+	
+	// 닫기, 취소 클릭 시 이벤트
+	$('.modal-close, #review-cancel-btn').click(function(){
+		$('.review-modal').css('display', 'none'); // 창 없애기
+		// 후기 쓰기 내용 리셋하기
+       	$('form').each(function() { // 폼 리셋  
+       		$(this).reset();
+       	});
+       	for(var i=0; i<5; i++){ // 별점 5점으로 채우기
+			$('.star-point').children().eq(i).attr('data-prefix', 'fas');
+		}
+    });
+	
+	
+	// 등록 버튼 클릭 시 폼 검사
+	$('#review-ok-btn').click(function(){
+		if($('#star').val()=='0'){
+			alert('별점을 선택해 주세요.');
+			return false;
+		}
+		
+		if($('.review-write-text > textarea').val().length < 10){
+			alert('내용을 10자 이상 입력해 주세요.');
+			return false;
+		}
+	});
+	
+	
+});
+
+</script>

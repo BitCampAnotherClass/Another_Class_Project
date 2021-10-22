@@ -5,17 +5,20 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.anotherclass.bitcamp.service.user.UserPayService;
 import com.anotherclass.bitcamp.vo.user.BasketVO;
 import com.anotherclass.bitcamp.vo.user.UserPayVO;
+
 
 @Controller
 public class UserPayController {
@@ -55,9 +58,7 @@ public class UserPayController {
 			sum2 += vo4.getSavePoint();
 		}
 		System.out.println(sum2);		
-		mav.addObject("sum2", sum2);
-		
-		
+		mav.addObject("sum2", sum2);	
 		
 		mav.setViewName("/user/pay/payPage_info");
 		return mav;
@@ -146,18 +147,96 @@ public class UserPayController {
 	public int DelOneClass(int no) {
 		int result =0;
 		result = userPayService.delOneBasket(no);
+		System.out.println("개별상품삭제"+result);
 		return result;
 	}
 	
 	//결제하고나서오는곳
-	@RequestMapping("/SaveOrder")
+	@RequestMapping("/SaveOrder1")
 	@ResponseBody
-	public int saveOrder(String imp_uid, String merchant_uid) {
+	public int saveOrder(String imp_uid, String merchant_uid, String test,String total_price,String card_num,HttpSession session) {
+		String member_id = (String)session.getAttribute("userId");
 		int result = 0;
-		System.out.println(imp_uid);
-		System.out.println(merchant_uid);
+		//결제번호
+		String str = test;
+		String[] str2 = str.split(",");
+		//int a = str2.length;
+		//int[] classno = new int[];
+		
+		for(int i=0; i<str2.length; i++) {
+			System.out.println(str2[i]);
+		}
+		/////////////////////////////////////////
+		UserPayVO vo = new UserPayVO();
+		
+		vo.setMember_id(member_id);
+		vo.setTotal_price(Integer.parseInt(total_price));		
+		double a = vo.getTotal_price()*0.01;
+		int b = (int)Math.round(a);
+		vo.setCharge(b);		
+		vo.setTotal_price(Integer.parseInt(total_price));
+		vo.setCard_num(card_num);
+		vo.setMerchant(merchant_uid);
+		
+		//headcount
+		//use_point
+		
+
+		for(int i=0; i<str2.length; i++) {
+			vo.setClass_option_no(Integer.parseInt(str2[i]));
+			userPayService.oneClassOrder(vo); //클래스들 오더테이블에저장
+			userPayService.addHeadCount(Integer.parseInt(str2[i]));
+		}
+		
+	
 		
 		return result;
 	}
-
+	/*
+	 //결제하고나서오는곳
+	@RequestMapping("/SaveOrder1")
+	@ResponseBody
+	public int saveOrder(String imp_uid, String merchant_uid, String test,String total_price,String card_num,HttpSession session) {
+		int result = 0;
+		//결제번호
+		String str = test;
+		String[] str2 = str.split(",");
+		for(int i=0; i<str2.length; i++) {
+			System.out.println(str2[i]);
+		}
+	
+		return result;
+	} 
+	  
+	*/
+	
+	//결제하고나서오는곳2 -> 상품한개//카드
+	@RequestMapping("/SaveOrder2")
+	@ResponseBody
+	public int saveOrder2(String imp_uid,String merchant_uid,String total_price,String card_num,int class_option_no,String test ,HttpSession session) {
+		String member_id = (String)session.getAttribute("userId"); 
+		int result = 0;
+		UserPayVO vo = new UserPayVO();
+		vo.setMember_id(member_id);
+		vo.setClass_option_no(class_option_no);
+		//headcount
+		//use_point
+		vo.setTotal_price(Integer.parseInt(total_price));
+		
+		double a = vo.getTotal_price()*0.01;
+		int b = (int)Math.round(a);
+		vo.setCharge(b);
+		
+		vo.setCard_num(card_num);
+		vo.setMerchant(merchant_uid);
+		
+		result = userPayService.oneClassOrder(vo);//오더테이블저장
+		int aaa =userPayService.addHeadCount(class_option_no);//옵션클래스신청인원 +1 
+		System.out.println("신청인원증가"+aaa);
+		//사용자포인트 증가,감소
+		
+		return result;
+	}
+	
+	
 }

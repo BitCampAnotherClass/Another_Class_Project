@@ -144,12 +144,14 @@ $(function(){
 				url:ddUrl,
 				data :ddParam,
 				success:function(dd){
-					alert('삭제 되었습니다');
 					getBaList();
 					getBaCount();
+					alert('삭제 되었습니다');
+					
 				}
 			})
-		}		
+		}
+		
 	});	
 	
 	//주문 -> 선택상품주문 , 주문
@@ -189,7 +191,7 @@ $(function(){
 	<form  method="post" id="payfrmm" name="payfrmm">	
 		
 		<div  class="shoppingBagList">
-			<span class="h3style">장바구니 상품( <label id="num">2</label> )</span>		
+			<span class="h3style">장바구니 상품( <label id="num"></label> )</span>		
 			
 			<ul id="shoppingBagListTitle">
 				<li><input type="checkbox" id="allchk"></li>		

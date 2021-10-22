@@ -15,4 +15,7 @@ public interface UserPayDAO {
 	public int delBasket(BasketVO vo);//장바구니 선택삭제
 	public int delOneBasket(int no);//장바구니 한개삭제
 	
+	public int oneClassOrder(UserPayVO vo);//상품한개 오더테이블에 insert
+	public int addHeadCount(int no);//상품한개결제후 신청한클래스 신청인원증가
+	
 }

@@ -14,9 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.anotherclass.bitcamp.service.creator.MakeClassApplyService;
 import com.anotherclass.bitcamp.vo.creator.CreatorClassCategoryVO;
 
-/**
- * Handles requests for the application home page.
- */
+
 @Controller
 public class UserController {
 	
