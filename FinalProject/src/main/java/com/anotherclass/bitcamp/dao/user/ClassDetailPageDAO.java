@@ -29,4 +29,6 @@ public interface ClassDetailPageDAO {
 	public int ClassAskDDel(int no);//문의글삭제
 	public int ClassASkCheckRep(int no);//문의글 댓글잇는지 여부확인
 	public int ClassASkCheckRepDelUp(int no);//문의글이 삭데 되엇을대댓글 delete_sort 1로 업데이트
+	
+	public int ClassAskReplyEdit(UserClassDetailVO2 vo);//문의글수정
 }

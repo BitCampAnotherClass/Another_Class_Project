@@ -97,6 +97,11 @@
 			where class_qna_no=#{param1}
 		]]> 
   	</update>
+  	<update id="ClassAskReplyEdit" parameterType="com.anotherclass.bitcamp.vo.user.UserClassDetailVO2">
+  		<![CDATA[
+  			update classqna set classqna_content =#{classqna_content} where class_qna_no = #{class_qna_no}
+  		]]> 
+  	</update>
   	
   	
   	

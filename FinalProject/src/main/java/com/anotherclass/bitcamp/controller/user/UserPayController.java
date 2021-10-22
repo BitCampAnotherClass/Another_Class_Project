@@ -152,19 +152,68 @@ public class UserPayController {
 	}
 	
 	//결제하고나서오는곳
-	@RequestMapping("/SaveOrder")
+	@RequestMapping("/SaveOrder1")
 	@ResponseBody
-	public int saveOrder(String imp_uid, String merchant_uid) {
+	public int saveOrder(String imp_uid, String merchant_uid, String test,String total_price,String card_num,HttpSession session) {
+		String member_id = (String)session.getAttribute("userId");
 		int result = 0;
-		System.out.println(imp_uid);
-		System.out.println(merchant_uid);
+		//결제번호
+		String str = test;
+		String[] str2 = str.split(",");
+		//int a = str2.length;
+		//int[] classno = new int[];
+		
+		for(int i=0; i<str2.length; i++) {
+			System.out.println(str2[i]);
+		}
+		/////////////////////////////////////////
+		UserPayVO vo = new UserPayVO();
+		
+		vo.setMember_id(member_id);
+		vo.setTotal_price(Integer.parseInt(total_price));		
+		double a = vo.getTotal_price()*0.01;
+		int b = (int)Math.round(a);
+		vo.setCharge(b);		
+		vo.setTotal_price(Integer.parseInt(total_price));
+		vo.setCard_num(card_num);
+		vo.setMerchant(merchant_uid);
+		
+		//headcount
+		//use_point
+		
+
+		for(int i=0; i<str2.length; i++) {
+			vo.setClass_option_no(Integer.parseInt(str2[i]));
+			userPayService.oneClassOrder(vo); //클래스들 오더테이블에저장
+			userPayService.addHeadCount(Integer.parseInt(str2[i]));
+		}
+		
+	
+		
 		return result;
 	}
+	/*
+	 //결제하고나서오는곳
+	@RequestMapping("/SaveOrder1")
+	@ResponseBody
+	public int saveOrder(String imp_uid, String merchant_uid, String test,String total_price,String card_num,HttpSession session) {
+		int result = 0;
+		//결제번호
+		String str = test;
+		String[] str2 = str.split(",");
+		for(int i=0; i<str2.length; i++) {
+			System.out.println(str2[i]);
+		}
+	
+		return result;
+	} 
+	  
+	*/
 	
 	//결제하고나서오는곳2 -> 상품한개//카드
 	@RequestMapping("/SaveOrder2")
 	@ResponseBody
-	public int saveOrder2(String imp_uid,String merchant_uid,String total_price,String card_num,int class_option_no,HttpSession session) {
+	public int saveOrder2(String imp_uid,String merchant_uid,String total_price,String card_num,int class_option_no,String test ,HttpSession session) {
 		String member_id = (String)session.getAttribute("userId"); 
 		int result = 0;
 		UserPayVO vo = new UserPayVO();

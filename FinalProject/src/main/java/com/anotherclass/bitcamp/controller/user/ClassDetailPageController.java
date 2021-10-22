@@ -136,5 +136,15 @@ public class ClassDetailPageController {
 		return result;
 	}
 	
+	//문의글 수정
+	@RequestMapping(value="/classAskConEdit")
+	@ResponseBody
+	public int ClassAskConEdit(UserClassDetailVO2 vo) {//form으로 문의번호와 내용가져온다
+		int result =0;
+		result = classDetailPageService.ClassAskReplyEdit(vo);
+		//수정하는dao메소드
+		return result;
+	}
+	
 
 }
