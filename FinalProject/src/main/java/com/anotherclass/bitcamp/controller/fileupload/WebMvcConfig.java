@@ -10,9 +10,10 @@ public class WebMvcConfig implements WebMvcConfigurer{
 	
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    	String testPath = this.getClass().getResource("/").getPath();
+		System.out.println(testPath);
         registry.addResourceHandler("/testing/**")
-                .addResourceLocations("classpath:/img/test");
+                .addResourceLocations("/img/test");
     }
-    
-    
 }
+	

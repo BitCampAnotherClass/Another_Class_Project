@@ -21,6 +21,7 @@ public class FileController {
 	@PostMapping(value="creator/imageUploadUrl" , produces="application/json")
 	@ResponseBody
 	public JsonObject uploadFileUpload(@RequestParam("file") MultipartFile mulitpartFile, HttpServletRequest req) {
+		
 		UploadSetingTO uploadTo = new UploadSetingTO();
 		JsonObject jsonOb = new JsonObject();
 		//String path ="D:\\image\\test\\"; // 컴퓨터 절대경로설정
