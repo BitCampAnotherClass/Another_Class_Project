@@ -16,24 +16,26 @@ import com.google.gson.JsonObject;
 @Controller
 public class FileController {
 		
-	@PostMapping(value="/uploadImageFile" , produces="application/json")
+	@PostMapping(value="creator/imageUploadUrl" , produces="application/json")
 	@ResponseBody
 	public JsonObject uploadFileUpload(@RequestParam("file") MultipartFile mulitpartFile) {
 		
 		JsonObject jsonOb = new JsonObject();
-		String path ="C:\\imgimg\\test\\";
-		//String path = "https://sung3moon.synology.me:49583/";
-		String originFileName = mulitpartFile.getOriginalFilename();
-		String extension = originFileName.substring(originFileName.lastIndexOf("."));
-		String saveFileName = UUID.randomUUID() + extension;
+		String path ="D:\\image\\test\\"; // 경로설정	
+		String originFileName = mulitpartFile.getOriginalFilename(); //파일이름
+		String extension = originFileName.substring(originFileName.lastIndexOf(".")); 
+		String saveFileName = UUID.randomUUID() + extension; // 저장되는 파일명  랜덤 + 파일명
 		File targetFile = new File(path+saveFileName);
+		System.out.println(targetFile);
 		try {
 			InputStream fileStream = mulitpartFile.getInputStream();
 			FileUtils.copyInputStreamToFile(fileStream, targetFile);
 			jsonOb.addProperty("url", "/testing/"+saveFileName);
 			jsonOb.addProperty("responseCode", "success");
+			System.out.println("작동됨");
 		}catch(Exception e){
 			FileUtils.deleteQuietly(targetFile);
+			System.out.println("작동안됨");
 			jsonOb.addProperty("responseCode", "error");
 			e.printStackTrace();
 		}
