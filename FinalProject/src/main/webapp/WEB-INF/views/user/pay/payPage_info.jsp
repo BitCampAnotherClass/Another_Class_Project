@@ -42,6 +42,7 @@
 	#paydiscount>div>span:nth-child(2){width:65%;}
 	#paydiscount>div:nth-child(3)>span>label{margin-left:15px;color:#666;font-size:0.9rem;}	
 	/*결제수단*/	
+	
 	#paymethod>div{padding:15px 0 15px 0;width:100%;height:auto;overflow:auto;}
 	#paymethodselect{width:100%;border:1px solid #333;}/*결제방선택*/	
 	#paymethodselect>span{margin:0 15px 0 15px;}	
@@ -102,7 +103,6 @@
 $(function(){
 	
 	var logid = "${userId}"; // 세션에저장된아이디		
-	
 	function memberInfo(){
 		var mUrl = "/another/memInfo";
 		var mParam = {"logid":logid} 
@@ -111,8 +111,7 @@ $(function(){
 			async:false,
 			data :mParam,
 			success:function(vo){
-				var tag =""; 
-			
+				var tag =""; 			
 				tag += "<div><span>주문하시는분</span><span id='member_name'>"+vo.member_name+"</span></div>";
 				tag += "<div><span>이메일</span><span id='member_email'>"+vo.member_email+"</span></div>";
 				tag += "<div><span>휴대폰번호</span><span id='member_tel'>"+vo.member_tel+"</span></div>";
@@ -128,7 +127,6 @@ $(function(){
 	memberInfo();//회원정보ajax셋팅
 	point = $("#pointbox").val();
 	$("#havePoint").html(point);
-
 	
 });	
 	var arrayTest = new Array();
@@ -156,7 +154,7 @@ $(function(){
 						<div class="orderN"><label>1</label>명</div><!-- 인원 -->
 						<div class="orderP"><label>${vo.class_price }</label>원</div><!-- 총상품금액 -->											
 						<div class="orderPP"><label style="display:inline-block;margin-top:4px;">${vo.savePoint }</label></div>						
-						<input type='hidden' value='${vo.class_option_no}'>
+						<input type='hidden' value='${vo.class_option_no}' >
 					</div>
 					<script type="text/javascript">
 						var testDa = ${vo.class_option_no};
@@ -269,7 +267,7 @@ $(function(){
 			}	    	
         	
         	
-        	// getter
+        
             var IMP = window.IMP;
             IMP.init('imp53433684');
             var money = ${sum };
@@ -280,14 +278,16 @@ $(function(){
             name = $("#member_name_val").val();
             tel = $("#member_tel_val").val();
             email = $("#member_email_val").val();
-            
+           <c:forEach var='vo' items="${list}">
+           	var classoptionno= Number(${vo.class_option_no});
+           </c:forEach>
            
             
-            money1 = parseInt(${sum});
-            money2= parseInt(${vo.savePoint});
-            money3 = money1-money2;
-            console.log("돈돈");
-  			console.log(money3);
+            //money1 = parseInt(${sum});
+            //money2= parseInt(${vo.savePoint});
+            //money3 = money1-money2;
+            //console.log("돈돈");
+  			//console.log(money3);
             
             IMP.request_pay({
             	pg: 'kcp', // PG사 선택
@@ -312,17 +312,20 @@ $(function(){
 	                    msg += '카드 승인번호 : ' + rsp.apply_num;
 	                    msg += '결제방법 : ' + rsp.pay_method;
 	                    
-	                    var purl = "/another/SaveOrder";
+	                    var purl = "/another/SaveOrder2";
 	                    console.log(arrayTest);
 	                    $.ajax({
 	                        type: "POST",
 	                        url: purl, //컨트롤러보낼 url 설정
-	                        headers: { "Content-Type": "application/json" },
+	                        //headers: { "Content-Type": "application/json" },
 	                        data: {
 	                        	 imp_uid: rsp.imp_uid,
 	                             merchant_uid: rsp.merchant_uid,
-	                             //기타 필요한 데이터가 있으면 추가 전달
-	                             test: arrayTest
+	                             total_price: rsp.paid_amount,
+	                             card_num: rsp.apply_num,
+	                             class_option_no: classoptionno
+	                            //+총용포인트
+	                            // test: arrayTest
 	                        },
 	                    });
 	                } else { //결제실패시 로직

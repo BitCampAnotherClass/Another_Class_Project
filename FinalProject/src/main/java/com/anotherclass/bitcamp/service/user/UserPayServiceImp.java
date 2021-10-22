@@ -46,8 +46,17 @@ public class UserPayServiceImp implements UserPayService {
 	}
 
 	@Override
-	public List<UserPayVO> userPayoneSelect(int no) {
-		
+	public List<UserPayVO> userPayoneSelect(int no) {		
 		return userpaydao.userPayoneSelect(no);
+	}
+
+	@Override
+	public int oneClassOrder(UserPayVO vo) {		
+		return userpaydao.oneClassOrder(vo);
+	}
+
+	@Override
+	public int addHeadCount(int no) {		
+		return userpaydao.addHeadCount(no);
 	}
 }

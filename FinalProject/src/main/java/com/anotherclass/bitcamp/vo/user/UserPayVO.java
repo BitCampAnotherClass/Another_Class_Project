@@ -71,7 +71,7 @@ public class UserPayVO {
 	private String cancel_date;//취소
 	private String refund_date;//환불
 	private String calcu_date;//정산
-	private String charge;//수수료?
+	private int charge;//수수료?
 	private String merchant;//결제번호 ->  /*결제후 뱉어주는 정보 담을 부분*/
 	
 	/*총결제금액담을부분*/
@@ -81,6 +81,7 @@ public class UserPayVO {
 	private int totalSavePoint;
 	
 	/*결제후 뱉어주는 정보 담을 부분*/
+
 	
 	
 	public String getMember_id() {
@@ -371,10 +372,10 @@ public class UserPayVO {
 	public void setCalcu_date(String calcu_date) {
 		this.calcu_date = calcu_date;
 	}
-	public String getCharge() {
+	public int getCharge() {
 		return charge;
 	}
-	public void setCharge(String charge) {
+	public void setCharge(int charge) {
 		this.charge = charge;
 	}
 	public String getMerchant() {

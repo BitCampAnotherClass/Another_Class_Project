@@ -5,23 +5,26 @@
 	.card {
 	  display: grid;
 	  grid-template-columns: 270px;
-	  grid-template-rows: 150px 50px 62px;
+	  grid-template-rows: 184px 44px 62px;
 	  grid-template-areas: "image" "text" "stats";
 	  margin: 15px 14px 15px 14px;
 	  border-radius: 18px;
 	  background: white;
-	  box-shadow:0 0 8px rgba(0,0,0,0.3);
-	  /*border: 1px solid #f0f0f0; */
+	  box-shadow: 0 0 3px rgb(0 0 0 / 14%);
+	  /*border: 1px solid #f0f0f0; 
+	  0 0 8px rgba(0,0,0,0.3);*/
+	  
 	  float:left;
 	  text-align: center;
 	}
 	
-	/*
+	
 	.card-text {
-		  grid-area: text;
-		  margin: 25px;
+		  /*grid-area: text;
+		  margin: 25px;*/
+		  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 	}
-	*/
+	
 	.card-stats {
 	 	grid-area: stats; 
 	}
@@ -34,10 +37,11 @@
 	}	
 	.card-text label {
 	  display: inline-block;
-	  font-size:28px;
+	  font-size:20px;
 	  text-align:center;
 	  line-height:100%;
 	  padding-top:11px;
+	  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
 	}
 	.card-stats {
 	  grid-area: stats; 
@@ -73,15 +77,15 @@
 	    			var tag =""; 	
 					ll.each(function(idx,vo){	
 						tag +="<div class='card'>";
-						tag +="<div class='card-image'  style='width:150px;height:120px;margin:20px auto 0 auto;'>";
-						tag +="<img class='likeimgbox91' style='width:100%;height:100%;object-fit: cover;border-radius:100%;' src='/another/img/jisu/flower.png'/>";//vo.member_img
+						tag +="<div class='card-image'  style='width:248px;height:171px;margin:13px auto 0 auto;'>";
+						tag +="<img class='likeimgbox91' style='width:100%;height:100%;object-fit: cover;' src='/another/img/jisu/flower.png'/>";//vo.member_img//border-radius:100%;
 						tag +="</div>";
 						tag +="<div class='card-text'>";
-						tag +="<label style='color:#666;'>"+vo.nick+"</label>"; //강사아이디
+						tag +="<label style='color:#999;'>"+vo.nick+"</label>"; //강사아이디
 						tag +="</div>";
 						tag +="<div class='card-stats'>";
 						tag +="<div class='stat'>";
-						tag +="<div class='heartImg' id='"+vo.creator_like_no+"'><img class='likeimgbox91' style='width:48%;' src='/another/img/jisu/whiteheart.png'/></div>";//좋아요번호
+						tag +="<div class='heartImg' id='"+vo.creator_like_no+"'><img class='likeimgbox91' style='width:41%;' src='/another/img/jisu/whiteheart.png'/></div>";//좋아요번호
 						tag +="</div>";
 						tag +="<div class='stat border'>";
 						tag +="<div class='value' style='color:white;'>좋아요수</div>";

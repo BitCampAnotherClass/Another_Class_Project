@@ -14,4 +14,7 @@ public interface UserPayService {
 	public int testBasket(BasketVO vo);
 	public int delBasket(BasketVO vo);
 	public int delOneBasket(int no);
+	
+	public int oneClassOrder(UserPayVO vo);
+	public int addHeadCount(int no);
 }

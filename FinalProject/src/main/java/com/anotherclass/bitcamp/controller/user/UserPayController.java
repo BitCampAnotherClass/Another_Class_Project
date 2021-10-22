@@ -58,9 +58,7 @@ public class UserPayController {
 			sum2 += vo4.getSavePoint();
 		}
 		System.out.println(sum2);		
-		mav.addObject("sum2", sum2);
-		
-		
+		mav.addObject("sum2", sum2);	
 		
 		mav.setViewName("/user/pay/payPage_info");
 		return mav;
@@ -149,6 +147,7 @@ public class UserPayController {
 	public int DelOneClass(int no) {
 		int result =0;
 		result = userPayService.delOneBasket(no);
+		System.out.println("개별상품삭제"+result);
 		return result;
 	}
 	
@@ -161,4 +160,34 @@ public class UserPayController {
 		System.out.println(merchant_uid);
 		return result;
 	}
+	
+	//결제하고나서오는곳2 -> 상품한개//카드
+	@RequestMapping("/SaveOrder2")
+	@ResponseBody
+	public int saveOrder2(String imp_uid,String merchant_uid,String total_price,String card_num,int class_option_no,HttpSession session) {
+		String member_id = (String)session.getAttribute("userId"); 
+		int result = 0;
+		UserPayVO vo = new UserPayVO();
+		vo.setMember_id(member_id);
+		vo.setClass_option_no(class_option_no);
+		//headcount
+		//use_point
+		vo.setTotal_price(Integer.parseInt(total_price));
+		
+		double a = vo.getTotal_price()*0.01;
+		int b = (int)Math.round(a);
+		vo.setCharge(b);
+		
+		vo.setCard_num(card_num);
+		vo.setMerchant(merchant_uid);
+		
+		result = userPayService.oneClassOrder(vo);//오더테이블저장
+		int aaa =userPayService.addHeadCount(class_option_no);//옵션클래스신청인원 +1 
+		System.out.println("신청인원증가"+aaa);
+		//사용자포인트 증가,감소
+		
+		return result;
+	}
+	
+	
 }

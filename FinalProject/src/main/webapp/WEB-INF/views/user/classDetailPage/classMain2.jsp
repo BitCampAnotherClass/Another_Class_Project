@@ -92,9 +92,9 @@
 	#datepicker{padding-top:25px;}	
 	/*클래스옵션목록*/
 	#selectdateBB{width:350px;height:auto;border:1px solid #f0f0f0;}
-	#selectClassListd{width:300px;min-height:10px;height:auto;} /*border:1px solid #f0f0f0;*/
+	#selectClassListd{width:320px;min-height:10px;height:auto;} /*border:1px solid #f0f0f0;*/
 	
-	.oneclassdiv{width:300px;height:auto;border:1px solid #ff385c;padding:10px;border-radius: 14px;}/*border:1px solid #f0f0f0;*/
+	.oneclassdiv{width:320px;height:auto;border:1px solid #ff385c;padding:10px;border-radius: 14px;}/*border:1px solid #f0f0f0;*/
 	.startdiv{width:275px;font-size:22px;}
 	.enddiv{width:276px;}
 	.headcountdiv{width:276px;}
@@ -111,6 +111,7 @@
 	#gopayB{width:200px;height:50px;font-size:20px;margin:10px 0 0 0;boder:1px solid #ddd;background-color:#616060;color:#fff;}
 	
 	/*word-break:break-all;*/
+	
 </style>
 <script>
 $(function(){		
