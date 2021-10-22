@@ -46,7 +46,8 @@ $(()=>{
 	        	,contentType: false
 	        	,processData: false
 	        	,success: function(imageData) {
-	          		$(editor).summernote('insertImage', imageData);
+	        		console.log("img:"+ imageData.url);
+	          		$(editor).summernote('insertImage', imageData.url);
 	        	}
 	      		,error: function(error){
 	      			console.log(error);

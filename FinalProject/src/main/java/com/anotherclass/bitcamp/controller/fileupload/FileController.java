@@ -32,10 +32,10 @@ public class FileController {
 			FileUtils.copyInputStreamToFile(fileStream, targetFile);
 			jsonOb.addProperty("url", "/testing/"+saveFileName);
 			jsonOb.addProperty("responseCode", "success");
-			System.out.println("작동됨");
+			System.out.println("파일업로드 작동중");
 		}catch(Exception e){
 			FileUtils.deleteQuietly(targetFile);
-			System.out.println("작동안됨");
+			System.out.println("파일업로드 실패");
 			jsonOb.addProperty("responseCode", "error");
 			e.printStackTrace();
 		}
