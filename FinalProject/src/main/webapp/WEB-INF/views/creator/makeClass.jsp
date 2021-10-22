@@ -410,7 +410,7 @@ kimin2{font-size: 1.3em; color:gray; margin-left:5px;}
 	height:120px;
 	border-radius:8px;
 	padding:10px 0px 10px 20px;
-	margin-bottom:20px;
+	margin-bottom:60px;
 }
 .dsctitle{
 	color:gray;
@@ -420,7 +420,7 @@ kimin2{font-size: 1.3em; color:gray; margin-left:5px;}
 }
 .descriptionUl li:not(.dsctitle){
 	margin-left:15px;
-	font-weight:500;
+	font-weight:400;
 	color:gray;
 	list-style-type:circle;
 }
@@ -435,7 +435,7 @@ kimin2{font-size: 1.3em; color:gray; margin-left:5px;}
 }
 .container{
 	width:1200px;
-	height:5150px; 
+	height:5450px; 
 	margin:0 auto;
 	padding:0px;
 }
@@ -443,8 +443,8 @@ kimin2{font-size: 1.3em; color:gray; margin-left:5px;}
 	width:100%;
 	height:35px;
 	border-bottom:2px dotted lightgray;
-	margin-top:30px;
-	margin-bottom:30px;
+	margin-top:60px;
+	margin-bottom:70px;
 }
 .followDiv>ul>li{
 	float:left;
@@ -480,7 +480,7 @@ kimin2{font-size: 1.3em; color:gray; margin-left:5px;}
 	border:2px solid lightgray;
 	border-radius:8px;
 	margin-top:20px;
-	margin-bottom:20px;
+	margin-bottom:60px;
 	padding:15px 15px 15px 15px; 
 	font-size: 1.2em;
 }
@@ -633,10 +633,11 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	font-size: 1.2em;
 	border-radius:8px;
 	font-weight:500;
-	border:3px solid lightgray;
+	border:2px dotted lightgray;
 	text-align: center;
 }
 .classAddress input[type=button]{
+	border:2px dotted lightgray;
 	width:400px;
 	height:50px;
 }
@@ -653,7 +654,7 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	height:460px;
 }
 #serchOnGoogle{
-	border:3px solid lightgray;
+	border:2px dotted lightgray;
 	width:805px;
 	border-radius:8px;
 	height:35px;
@@ -857,9 +858,9 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	<div class="classImgDiv">
 			<div id="imgThumbDiv"><img src="<%=request.getContextPath()%>/img/kimin/uploadimg.jpg" id="previewImg" ></div>
 			<div class="filebox">
-				<input class="imgThumbFileName" placeholder="썸네일사진 파일명" name="class_thumb" id="class_thumb" readonly="readonly">
+				<input type="text" class="imgThumbFileName" placeholder="썸네일사진 파일명" name="class_thumb" id="class_thumb" readonly="readonly">
 				<label for="fileButton">업로드</label>
-				<input type="file" id="fileButton" accept="img/*" required>
+				<input type="file" id="fileButton" name="filename" accept="img/*"  required>
 			</div>
 	</div>
 	<div>
