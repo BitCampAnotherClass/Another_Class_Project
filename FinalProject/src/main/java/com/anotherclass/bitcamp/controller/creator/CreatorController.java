@@ -96,12 +96,28 @@ public class CreatorController {
 	}//ddd
 		System.out.println(path+fileList);
 		ModelAndView mav = new ModelAndView();
-		vo.setMember_id("test100");
+		vo.setMember_id("test100");///////////////////////아이디 세션
 		vo.setClass_thumb(path+fileList);
 		int result = makeClassApplyService.makeClassApply(vo);
-		vo2.setClass_no(vo.getClass_no()); 
-		vo2.setAll_headcount(vo.getMax_headcount());
-		int result_date = makeClassApplyService.makeClassApplyDateTime(vo2);
+		
+		String vo2GetStartDate = vo2.getStart_date();
+		String vo2GetEndDate = vo2.getEnd_date();
+		
+		String[] startTimeResult = vo2GetStartDate.split(",");
+		String[] endTimeResult = vo2GetEndDate.split(",");		
+		System.out.println(startTimeResult.length);
+		
+		int result_date=0;
+			for(int i=0; i < startTimeResult.length; i++) {
+				
+			vo2.setStart_date(startTimeResult[i]);
+			vo2.setEnd_date(endTimeResult[i]);
+			vo2.setClass_no(vo.getClass_no()); 
+			vo2.setAll_headcount(vo.getMax_headcount());
+			result_date = makeClassApplyService.makeClassApplyDateTime(vo2);
+			
+			};
+		
 		if(result == 1 && result_date ==1) {
 			System.out.println("등록성공");
 			mav.setViewName("/creator/makeClassOk");

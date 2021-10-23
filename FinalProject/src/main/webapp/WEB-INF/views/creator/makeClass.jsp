@@ -118,37 +118,44 @@ $(function(){
 		    }
 	});
 	//////////////////////////////////////////////////////달력
-	classDateDivCount = 1;
+	classDateDivCount = -1;
 	classDateCount=0;
+	
 	$(".flatpickrCalender").flatpickr({
 		inline : true,
 		mode: "single",
-		dateFormat: " Y - m - d '",
+		dateFormat: " Y - m - d ",
 		minDate:"today",
 		maxDate: new Date().fp_incr(180),
 		altInput: true,
-		altFormat: " Y - m - d '",
 		onChange(selectedDates, dateStr, instance) {
-			
-             DateArray += $(".flatpickr-day.selected").text()+",";
-              resultsArray=DateArray.match(/,/g);
-           
-           
-            if(classDateDivCount <= 10){
-            	$('#putDateTime').append("<div class='putDateTime2' id='dateTimeDivDel'><div title='cancel' class='dateCancelButton' onclick='deleteDivDate(this)'><img src='<%=request.getContextPath()%>/img/kimin/xbu.png'></div>"
-            				+((instance.altInput.value).replace(/'/g,"<input type='time' class='testtest' id='startTime' value='09:00:00' onchange='inputStartTime($(this).val())'><img  src='<%=request.getContextPath()%>/img/kimin/~.png'><input type='time' id='endTime' value='18:00:00' onchange='inputEndTime($(this).val())'></div>"))
-            				.replace(/,/g,""));
-            	inputStartTime($('#startTime').val());
-            	inputEndTime($('#startTime').val());
-            	 classDateDivCount++;	
+            var testing1;
+        	 	
+        	   classDateDivCount++;
+        	   
+            	testing1 = "<div class='putDateTime2' id='dateTimeDivDel'>";
+            	testing1 += "<div title='cancel' class='dateCancelButton' onclick='deleteDivDate(this, "+classDateDivCount+");'>";
+            	testing1 += "<div value='"+classDateDivCount+"'></div><img src='<%=request.getContextPath()%>/img/kimin/xbu.png'>"
+            	testing1 += "</div>";
+            	testing1 += ""+dateStr+"";
+				testing1 += "<input type='time' id='startTime' value='09:30' onchange='inputStartTime($(this).val())'>";
+				testing1 +=  "<img src='<%=request.getContextPath()%>/img/kimin/~.png'>"
+				testing1 += "<input type='time' id='endTime' value='17:30' onchange='inputEndTime($(this).val())'>";
+				testing1 += "</div>";
+				
+				
+            	$('#putDateTime').append(testing1);
             		
-            }else if(classDateDivCount >= 11){
+            	startTimeInput($('#startTime').val(),$('#endTime').val(),dateStr);
+            if(classDateDivCount >= 9){
             	//alert("선택"+count+"를 초과하였습니다\n"+count+"개를 취소해 주십시오.");
-            	
             	alert("10개를 모두 선택하였습니다\n");
             	$(".flatpickr-day.selected").css("background","#FF385C");
             }
+             
+             console.log(classDateDivCount)
        	}
+		
 	});
 	////////
 	
@@ -244,26 +251,51 @@ $(function(){
 	});
 });
 ////////////////////////////////////////////////
-var startTime = [];
-var endTime = [];
+//	<input type="text" id="classDateRealStart" name="start_date" >
+//	<input type="text" id="classDateRealEnd" name="end_date" >
+var clickCount;
+var arry = new Array();
+var arryStart = new Array();
+var arryEnd = new Array();
+
+var startTime;
+var endTime;
+var lastTime;
 function inputStartTime(time){
-	//for(time.length)	
-	startTime[0] = $('#putDateTime').text()+time;
-	$("#classDateRealStart").val(startTime);
+	//console.log('start : '+time);
+	
+	
 }
 function inputEndTime(time){
-	endTime[0] = $('#putDateTime').text()+time;
-	$("#classDateRealEnd").val(endTime);
+	//console.log('end : '+time);
+	
+}
+
+function startTimeInput(start, end, day){
+	startTime = (day + start);
+	endTime = (day + end);
+	lastTime = (startTime + endTime);
+	//arry[classDateDivCount] = lastTime;
+	arryStart[classDateDivCount] = startTime;
+	arryEnd[classDateDivCount] = endTime;
+	
+}
+function startTimeRealInput(){
+	$('#classDateRealStart').val(arryStart);
+	$('#classDateRealEnd').val(arryEnd);
 }
 
 //////////////////////////////////// 날짜 선택 지우기 div
-function deleteDivDate(del){
+function deleteDivDate(del, index){
 	$($(del).parents("#dateTimeDivDel")).remove();
-	$("#classDateRealStart").val("");
-	$("#classDateRealEnd").val("");
-	$(del).remove();
+	//delete arry[index];
+	delete arryStart[index];
+	delete arryEnd[index];
+	alert(arryStart)
 	classDateDivCount--;
 	console.log(classDateDivCount);
+	//$("#classDateRealStart").val(""); //네임안에 있는 값전체삭제
+	//$("#classDateRealEnd").val("");
 };
 /////////////////////////////// 태그에 빨간 div 삭제
 function deleteDiv(){
@@ -310,7 +342,6 @@ function execDaumPostcode() {
             // 우편번호와 주소 정보를 해당 필드에 넣는다.
             document.getElementById('postcode').value = data.zonecode;
             document.getElementById("roadAddress").value = roadAddr;
-            
             var guideTextBox = document.getElementById("guide");
             // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
             if(data.autoRoadAddress) {
@@ -899,6 +930,7 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 			<li><input class="flatpickrCalender"/></li>
 			<li><div  id="putDateTime"></div></li>
 			<li><div id="dateCount"></div></li>	
+			<li><input type="button" value="확인" onclick="startTimeRealInput()"></li>
 		</ul>
 	</div>
 	<div>
