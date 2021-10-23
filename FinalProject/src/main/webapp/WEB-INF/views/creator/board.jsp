@@ -13,21 +13,47 @@
 </div>
 
 <script>
+$(()=>{
 	$('.summernote').summernote({
 		// 에디터 높이
 		height: 200,
 		width: 800,
-		
 		lang:"ko-KR",
 		focus: true,
 		toolbar: [
 		    ['style', ['bold', 'italic', 'underline', 'clear']],
-		    ['font', ['strikethrough', 'superscript', 'subscript']],
+		    ['font', ['strikethrough']],
 		    ['fontsize', ['fontsize']],
 		    ['color', ['color']],
 		    ['para', ['ul', 'ol', 'paragraph']],
 		    ['insert',['picture']],
 		    ['height', ['height']]
-		  ]
+		  ],
+		callbacks: {
+			onImageUpload: function(files){
+				uploadFiles(files[0], this);
+			}
+		}
+	});
+	
+		function uploadFiles(file, editor){
+			var form_data = new FormData();
+	      	form_data.append('file', file);
+	      	$.ajax({
+	        	data: form_data
+	        	,type: "POST"
+	        	,url: 'imageUploadUrl'
+	        	,contentType: false
+	        	,processData: false
+	        	,success: function(imageData) {
+	        		console.log("img:"+ imageData.url);
+	          		$(editor).summernote('insertImage', imageData.url);
+	        	}
+	      		,error: function(error){
+	      			console.log(error);
+	      			console.log('파일업로드 실패');
+	      		}
+	      	});
+		}
 	});
 </script>
