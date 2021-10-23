@@ -24,16 +24,20 @@ public class UserClassController {
 	
 	@RequestMapping(value = "/classMap")
 	public String classMap() {
+		
 		return "user/class/class_map";
 	}
 	
 	// 지도 클래스 목록 가져오기
 	@RequestMapping(value = "/classMap/list", method = RequestMethod.GET)
 	@ResponseBody
-	public List<ClassVO> classMapList() {
-		System.out.println("컨트롤러 실행");
-		List<ClassVO> classMapList = userClassService.selectClassMapList();
-
+	public List<ClassVO> classMapList(ClassVO vo) {
+//		System.out.println(vo.getKeyword());
+//		System.out.println(vo.getLocal());
+//		System.out.println(vo.getCateL_name());
+//		System.out.println(vo.getCategory_name());
+		List<ClassVO> classMapList = userClassService.selectClassMapList(vo);
+		
     	return classMapList;
 	}
 	

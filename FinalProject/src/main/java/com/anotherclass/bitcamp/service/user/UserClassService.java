@@ -5,5 +5,5 @@ import java.util.List;
 import com.anotherclass.bitcamp.vo.user.ClassVO;
 
 public interface UserClassService {
-	public List<ClassVO> selectClassMapList();
+	public List<ClassVO> selectClassMapList(ClassVO vo);
 }

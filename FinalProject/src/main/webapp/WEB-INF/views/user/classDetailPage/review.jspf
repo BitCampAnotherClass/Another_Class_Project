@@ -209,13 +209,13 @@
 		</div> <!-- review-list -->
 		<div class="review-paging">
 			<ul>
-				<li class="page-num"><a href="#">◀</a></li>
+				<li class="page-num" id="prev-page"><a href="#">◀</a></li>
 				<li class="page-num"><a href="#">1</a></li>
-				<li class="page-num"><a href="#">2</a></li>
+				<li class="page-num active"><a href="#">2</a></li>
 				<li class="page-num"><a href="#">3</a></li>
 				<li class="page-num"><a href="#">4</a></li>
 				<li class="page-num"><a href="#">5</a></li>
-				<li class="page-num"><a href="#">▶</a></li>
+				<li class="page-num" id="next-page"><a href="#">▶</a></li>
 			</ul>
 		</div>
 	</div>

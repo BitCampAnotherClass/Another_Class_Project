@@ -23,7 +23,7 @@ public class UserReviewController {
 
 		System.out.println(vo.getStar());
 		System.out.println(vo.getContent());
-		vo.setOrder_no(10014); // 임시 주문 넘버
+		vo.setOrder_no(10018); // 임시 주문 넘버
 		
 		int result = userReviewService.insertReview(vo);
 		if(result>0) { // 등록 성공
