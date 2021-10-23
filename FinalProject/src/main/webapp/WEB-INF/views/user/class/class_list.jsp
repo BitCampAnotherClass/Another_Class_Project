@@ -100,6 +100,10 @@ $( function() {
 .info_div>ul>li:nth-child(4) {
 	font-weight: 400;
 }
+.info_div>ul>li:nth-child(5) {
+	color:red;
+	display: none;
+}
 </style>
 
 <div class="main_container">
@@ -135,6 +139,7 @@ $( function() {
 					<li>${vo.class_name }</li>
 					<li>${vo.class_addr1 }</li>
 					<li>${vo.class_price }</li>
+					<li>${vo.class_no }</li>
 				</ul>
 			</div>
 		</div>
