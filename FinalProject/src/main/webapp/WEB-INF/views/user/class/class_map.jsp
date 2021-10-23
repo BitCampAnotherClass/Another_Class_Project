@@ -152,63 +152,103 @@
 
 <script>
 
-$(function(){
+// 금액 숫자 3자리 단위마다 콤마(,) 찍기
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
-	initMap();
+
+$(document).ready(function(){
+
 	
-	var map;
-	var geocoder;
+	
+	let map;
+	let geocoder;
 	
 	// 마커를 담을 배열입니다
-	var markers = [];
+	let markers = [];
 	
-	var addr;
-	var className;
-	var classImg;
-	var classPrice;
+	// 클래스 목록 정보 담을 배열
+	let cateL_arr=[]; // 대분류 카테고리
+	let category_arr = []; // 중분류 카테고리
+	let className_arr = []; // 클래스 이름
+	let nick_arr = []; // 강사 닉네임
+	let likeCnt_arr = []; // 좋아요 수
+	let starAvg_arr = []; // 별점 평균
+	let classPrice_arr = []; // 클래스 가격
+	let addr_arr = []; // 주소
+	let classImg_arr = []; // 썸네일
+	
+	
+	let listCnt = 5; // 목록에서 한 번에 보여줄 클래스 개수
+	
+	
+	
+	initMap(); // 지도 생성
+	
 	
 	// 클래스 목록 가져오기
 	function setClassList(){
-		console.log('실행1');
-		var url = '<%=request.getContextPath()%>/classMap/list';
-		console.log('실행2');
-		// var params = 
+		let url = '<%=request.getContextPath()%>/classMap/list';
 		$.ajax({
 			url: url,
 			//data: ,
+			async:false,
 			success: function(result){
-				console.log('실행3');
-				var r = $(result);
+				let r = $(result);
 				console.log(r);
-				var tag='';
-				console.log('실행4');
+				let tag='';
+				
 				$('#placesList').html('');
 				r.each(function(idx){
-					tag = '<li>';
-					tag += '<div class="class-list-thumb"><img src="<%=request.getContextPath()%>/img/jisu/classimg3.png"/></div>';
-					tag += '<div class="class-list-info">';
-					tag += '<div class="class-category">핸드메이드</div>';
-					tag += '<div class="class-name">직접 만들고 선물하는 재미! 서진과 함께 뜨는 코바늘 수세미</div>';
-					tag += '<div class="class-creator">핸드메이드서진</div>';
-					tag += '<div class="class-point">★★★★★ 4.3</div>';
-					tag += '<div class="class-like">♥ 150</div>';
-					tag += '<div class="class-addr">경기도 고양시 덕양구 오부자로150</div>';
-					tag += '<div class="class-price">155,000원</div>';
-					tag += '</div>';
-					tag += '</li>';
+
+					cateL_arr[idx] = r[idx].category_name;
+					category_arr[idx] = r[idx].category_name;
+					className_arr[idx] = r[idx].class_name;
+					nick_arr[idx] = r[idx].nick;
+					likeCnt_arr[idx] = r[idx].like_cnt;
+					starAvg_arr[idx] = r[idx].star_avg;
+					classPrice_arr[idx] = numberWithCommas(r[idx].class_price);
+					addr_arr[idx] = r[idx].class_addr1;
+					classImg_arr[idx] = r[idx].class_thumb;
+
 					
-					var listCnt = 10; // 목록에서 한 번에 보여줄 클래스 개수
+					
 					
 					if( idx <= (listCnt-1) ){ // 처음 보여줄 클래스 목록
+						tag = '<li>';
+						tag += '<div class="class-list-thumb"><img src="' + r[idx].class_thumb + '"/></div>';
+						tag += '<div class="class-list-info">';
+						tag += '<div class="class-category">' + r[idx].cateL_name + ' > ' + r[idx].category_name + '</div>';
+						tag += '<div class="class-name">' + r[idx].class_name + '</div>';
+						tag += '<div class="class-creator">' + r[idx].nick + '</div>';
+						tag += '<div class="class-point">★★★★★ ' + r[idx].star_avg + '</div>';
+						tag += '<div class="class-like">♥ ' + r[idx].like_cnt + '</div>';
+						tag += '<div class="class-addr">' + r[idx].class_addr1 + '</div>';
+						tag += '<div class="class-price">' + numberWithCommas(r[idx].class_price) + '원</div>';
+						tag += '</div>';
+						tag += '</li>';	
 						$('#placesList').append(tag);
 						if(idx >= r.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
 							$('.more > button').hide();
 						}
 					}
-					var n=1;
+					let n=1;
 					$('.more > button').click(function(){ // more 버튼 클릭 시 보여줄 클래스 목록
 						n++;
 						if( idx >= listCnt*(n-1) && idx <= (listCnt*n-1) ){
+							tag = '<li>';
+							tag += '<div class="class-list-thumb"><img src="' + r[idx].class_thumb + '"/></div>';
+							tag += '<div class="class-list-info">';
+							tag += '<div class="class-category">' + r[idx].cateL_name + ' > ' + r[idx].category_name + '</div>';
+							tag += '<div class="class-name">' + r[idx].class_name + '</div>';
+							tag += '<div class="class-creator">' + r[idx].nick + '</div>';
+							tag += '<div class="class-point">★★★★★ ' + r[idx].star_avg + '</div>';
+							tag += '<div class="class-like">♥ ' + r[idx].like_cnt + '</div>';
+							tag += '<div class="class-addr">' + r[idx].class_addr1 + '</div>';
+							tag += '<div class="class-price">' + numberWithCommas(r[idx].class_price) + '원</div>';
+							tag += '</div>';
+							tag += '</li>';	
 							$('#placesList').append(tag);
 							if(idx >= r.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
 								$('.more > button').hide();
@@ -217,77 +257,71 @@ $(function(){
 					});
 					
 				});
-				console.log('실행5');
 			}, error: function(e){
 				console.log('리스트 불러오기 에러');
 			}
-		});
-		
-		addrArr = ['경기도 고양시 덕양구 오부자로150', '서울 서초구 서초동', '서울 마포구 백범로', '서울 마포구 양화로125', '서울 종로구 종로3가', '경기도 고양시 덕양구 지축동 490-61']; // 주소
-		classNameArr = ['1서울 선유도', '1서울 서초구 서초동', '1서울 마포구 백범로', '1서울 마포구 양화로125', '1서울 종로구 종로3가', '1경기도 고양시 덕양구 지축동 490-61'];
-		classImgArr = ['/img/jisu/img300.png', '/img/jisu/classimg3.png', '/img/jisu/classimg2.png', '/img/jisu/classimg5.png', '/img/jisu/classimg5.png', '/img/jisu/classimg5.png'];
-		classPriceArr = ['100000', '200000', '50000', '25000', '70000', '35000'];
+		}); // ajax
 	}
 	
 	// 지도 생성
 	function initMap(){
-		var latitude = 37.566826;
-		var longitude = 126.9786567;
+		console.log('실행2');
+		console.log(cateL_arr);
+		let latitude = 37.566826;
+		let longitude = 126.9786567;
 		
 		setClassList();
 
-		var mapContainer = document.getElementById('class-map-view'), // 지도를 표시할 div 
+		let mapContainer = document.getElementById('class-map-view'), // 지도를 표시할 div 
 		    mapOption = {
 		        center: new kakao.maps.LatLng(latitude, longitude), // 지도의 중심좌표
-		        level: 3 // 지도의 확대 레벨
+		        level: 4 // 지도의 확대 레벨
 		    };  
 	
 		// 지도를 생성합니다    
 		map = new kakao.maps.Map(mapContainer, mapOption); 
-	
+
 		geocoder = new kakao.maps.services.Geocoder();
-		for(var i=0; i<classNameArr.length; i++){
-			setMapPosition(addrArr[i], classNameArr[i], classImgArr[i], classPriceArr[i]);
+		for(let i=0; i < className_arr.length; i++){
+			console.log(i);
+			setMapPosition(cateL_arr[i], category_arr[i], className_arr[i], nick_arr[i], likeCnt_arr[i], starAvg_arr[i], classPrice_arr[i], addr_arr[i], classImg_arr[i]);
 		}
 		
 	}
 	
-	// 주소-좌표 변환 객체를 생성합니다
-	
-	
-	
-	var infoArr=[];
-	var j=0;
+
+	let infoArr=[]; // infoWindow 담을 배열
+	let j=0;
 	
 	// 주소 - 좌표 변환 + 마커 생성
-	function setMapPosition(addr, className, classImg, classPrice){
+	function setMapPosition(cateL, category, className, nick, likeCnt, starAvg, classPrice, addr, classImg){
 		// 주소로 좌표를 검색합니다
 		geocoder.addressSearch( addr , function(result, status) {
-		
+			
 		    // 정상적으로 검색이 완료됐으면 
 		     if (status === kakao.maps.services.Status.OK) {
-		
-		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+				
+		        let coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 		
 		        // 결과값으로 받은 위치를 마커로 표시합니다
-		        var marker = new kakao.maps.Marker({
+		        let marker = new kakao.maps.Marker({
 		            map: map,
 		            position: coords
 		        });
 				
-		        var markerInfo = '<div class="markerInfo">';
+		        let markerInfo = '<div class="markerInfo">';
 		        markerInfo += '<div class="marker-class-img"><img src="<%=request.getContextPath()%>' + classImg + '"/></div>';
 		        markerInfo += '<div class="marker-class-info">'
-		        markerInfo += '<div class="marker-class-category">' + '핸드메이드' + '</div>'
+		        markerInfo += '<div class="marker-class-category">' + cateL + ' > ' + category + '</div>'
 		        markerInfo += '<div class="marker-class-name">' + className + '</div>';
-		        markerInfo += '<div class="marker-class-creator">핸드메이드서진</div>';
-		       // markerInfo += '<div class="marker-class-like">' + '♥ 150' + '</div>';
+		        markerInfo += '<div class="marker-class-creator">' + nick + '</div>';
+		       // markerInfo += '<div class="marker-class-like">' + '♥ ' + likeCnt + ' + '</div>';
 		        markerInfo += '<div class="marker-class-addr">' + addr + '</div>';
-		       // markerInfo += '<div class="marker-class-point">' + '★★★★★ 5.0' + '</div>';
+		       // markerInfo += '<div class="marker-class-point">' + '★★★★★' + starAvg + '</div>';
 		        markerInfo += '<div class="marker-class-price">' + classPrice + '원</div>';
 		        markerInfo += '</div>';
 		        // 인포윈도우로 장소에 대한 설명 표시
-		        var infowindow = new kakao.maps.InfoWindow({
+		        let infowindow = new kakao.maps.InfoWindow({
 		            content: markerInfo
 		        });
 		        
@@ -295,7 +329,7 @@ $(function(){
 		        
 		        // 모든 인포윈도우 닫는 함수
 		        function closeInfoWindow() {
-		        	for(var z=0; z<infoArr.length; z++){
+		        	for(let z=0; z<infoArr.length; z++){
 	        			infoArr[z].close();
 	        	    }
 		        }
@@ -319,6 +353,29 @@ $(function(){
 		});   
 	
 	} //setMapPosition
+	
+	// 클래스목록 마우스오버 시 지도 중심 위치 이동시키기
+	function moveCenter(addr){
+		
+		geocoder.addressSearch( addr , function(result, status) {
+			
+		    // 정상적으로 검색이 완료됐으면 
+		     if (status === kakao.maps.services.Status.OK) {
+				
+		        let coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+		        
+		        map.setCenter(coords);
+		        
+		        infoArr[0].open();
+		     }
+		});
+	}
+	
+	
+	$(document).on('mouseenter', '#placesList > li', function(){
+		console.log('마우스오버');
+		moveCenter($(this).children('.class-list-info').children('.class-addr').text());
+	});
 	
 	
 	//function setClassList(addr, className, classImg, classPrice){

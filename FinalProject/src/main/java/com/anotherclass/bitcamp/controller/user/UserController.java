@@ -30,9 +30,10 @@ public class UserController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
+		// 인기있는 강사 top 8 가져오기
 		List<RegisterVO> creatorList = userHomeService.popularCreator();
-		
 		mav.addObject("creatorList", creatorList);
+		
     	mav.setViewName("/user/home");
     	return mav;
 	}
