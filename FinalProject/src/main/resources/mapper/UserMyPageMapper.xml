@@ -98,5 +98,9 @@
 			and a.class_no= #{param1}
 		]]>
   	</select>
-  	
+  	<select id="MemberInfo" resultType="com.anotherclass.bitcamp.register.RegisterVO" parameterType="String">
+  		<![CDATA[	
+		  	select member_id, member_name, member_tel, member_email, post_no, addr1, addr2, nick, member_img, sns_type from memberTbl where member_id = #{param1}
+		]]>
+  	</select>
   </mapper>

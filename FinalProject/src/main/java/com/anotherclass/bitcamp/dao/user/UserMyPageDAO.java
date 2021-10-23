@@ -2,6 +2,7 @@ package com.anotherclass.bitcamp.dao.user;
 
 import java.util.List;
 
+import com.anotherclass.bitcamp.register.RegisterVO;
 import com.anotherclass.bitcamp.vo.user.UserClassDetailVO;
 import com.anotherclass.bitcamp.vo.user.UserClassDetailVO2;
 import com.anotherclass.bitcamp.vo.user.UserHomeQnAVO;
@@ -22,6 +23,5 @@ public interface UserMyPageDAO {
 	public int getBasketNum(String logid);//회원장바구니에있는 상품갯수
 	public String getCreatorNick(int no);//강사닉네임가져오기 -> 클래스번호가지고가서
 	
-	
-	
+	public RegisterVO MemberInfo(String logid); // 회원정보
 }

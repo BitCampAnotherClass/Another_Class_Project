@@ -1,11 +1,8 @@
 @charset "UTF-8";
-.myPage-accountEdit-Edit{
+	.myPage-accountEdit-Edit{
 		margin: 0 auto;
 		width: 450px;
 		height: 1000px;
-	}
-	.account_edit_input-group{
-		margin: 30px;
 	}
 	.account_edit_button{
 		margin: 0 auto;
@@ -33,19 +30,16 @@
 	#account_edit_email{
 		height: 40px;
 	}
-	.account_edit_input_email{
-		width: 90%;
-	}
 	#account_edit_input_email{
-		width: 50%;
+		width: 250px;
 	}
 	#account_edit_input_email_addr{
-		width: 45%;
+		width: 300px;
 	}
 	#account_edit_input_email, #account_edit_input_email_addr{
 		float:left;
 	}
-	#account_edit_id_text, #account_edit_pwd_text, #account_edit_pwdCh_text, #account_edit_nick_text, #account_edit_emailCh_text, #account_edit_tel_text{
+	#account_edit_pwd_text, #account_edit_pwdCh_text, #account_edit_nick_text, #account_edit_emailCh_text, #account_edit_tel_text{
 		float: left;
 		font-size: 0.9em;
 		padding: 2px;

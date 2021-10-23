@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.anotherclass.bitcamp.dao.user.UserMyPageDAO;
+import com.anotherclass.bitcamp.register.RegisterVO;
 import com.anotherclass.bitcamp.vo.user.UserClassDetailVO;
 import com.anotherclass.bitcamp.vo.user.UserClassDetailVO2;
 import com.anotherclass.bitcamp.vo.user.UserHomeQnAVO;
@@ -75,5 +76,10 @@ public class UserMyPageServiceImp implements UserMyPageService {
 	public int getBasketNum(String logid) {
 		
 		return userMyPageDAO.getBasketNum(logid);
+	}
+	
+	@Override
+	public RegisterVO MemberInfo(String logid) {
+		return userMyPageDAO.MemberInfo(logid);
 	}
 }
