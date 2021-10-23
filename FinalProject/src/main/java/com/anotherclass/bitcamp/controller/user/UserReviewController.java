@@ -23,13 +23,13 @@ public class UserReviewController {
 
 		System.out.println(vo.getStar());
 		System.out.println(vo.getContent());
-		vo.setOrder_no(10009); // 임시 리뷰 넘버
+		vo.setOrder_no(10014); // 임시 주문 넘버
 		
 		int result = userReviewService.insertReview(vo);
-		if(result>0) {
-			mav.setViewName("redirect:/mypage/mypage1");
-		} else {
-			mav.setViewName("redirect:/writeReviewOK");
+		if(result>0) { // 등록 성공
+			mav.setViewName("redirect:/mypage/mypage1"); // 주문 내역 화면
+		} else { // 등록 실패
+			mav.setViewName("redirect:/writeReviewOK"); // 수정해야 함///////////////////////////
 		}
 		return mav;
 	}
