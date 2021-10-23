@@ -27,7 +27,7 @@
 				<div class="login-wrap">
 					<div class="input-login-wrap">
 						<div class="id-pw-wrap">
-							<form class="register_form" method="post" action="<%=request.getContextPath()%>/userJoin" autocomplete="off" >
+							<form class="register_form" method="post" action="<%=request.getContextPath()%>/creatorJoin" autocomplete="off" >
 								<div id="register_id" class="register_input-group">
 									<span class="register_input-outline">
 										<span class="register_input-box">

@@ -62,7 +62,7 @@
 						</form>
 					</div>
 					<ul class="gnb">
-						<li class="category"><a href="#">클래스 목록</a>
+						<li class="category"><a href="<%=request.getContextPath()%>/classList">클래스 목록</a>
 							<ul class="sub-menu1">
 							
 							</ul>

@@ -8,15 +8,8 @@ public class CreatorMakeClassDateTimeVO {
 	private int All_headcount;
 	private int cancel;
 	private String cancel_reason;
-	private String[] start_dateTime;
 	
 	
-	public String[] getStart_dateTime() {
-		return start_dateTime;
-	}
-	public void setStart_dateTime(String[] start_dateTime) {
-		this.start_dateTime = start_dateTime;
-	}
 	public int getClass_option_no() {
 		return class_option_no;
 	}

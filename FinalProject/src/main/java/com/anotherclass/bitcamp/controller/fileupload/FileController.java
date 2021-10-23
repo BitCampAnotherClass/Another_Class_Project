@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.InputStream;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,25 +17,29 @@ import com.google.gson.JsonObject;
 
 @Controller
 public class FileController {
-		
-	@PostMapping(value="/uploadImageFile" , produces="application/json")
+	
+	@PostMapping(value="creator/imageUploadUrl" , produces="application/json")
 	@ResponseBody
-	public JsonObject uploadFileUpload(@RequestParam("file") MultipartFile mulitpartFile) {
-		
+	public JsonObject uploadFileUpload(@RequestParam("file") MultipartFile mulitpartFile, HttpServletRequest req) {
+		UploadSetingTO uploadTo = new UploadSetingTO();
 		JsonObject jsonOb = new JsonObject();
-		String path ="C:\\imgimg\\test\\";
-		//String path = "https://sung3moon.synology.me:49583/";
-		String originFileName = mulitpartFile.getOriginalFilename();
-		String extension = originFileName.substring(originFileName.lastIndexOf("."));
-		String saveFileName = UUID.randomUUID() + extension;
+		//String path ="D:\\image\\test\\"; // 컴퓨터 절대경로설정
+		String path = uploadTo.getPathSeting(req); //이클립스 메타데이터 위치
+		System.out.println(path);
+		String originFileName = mulitpartFile.getOriginalFilename(); //파일이름
+		String extension = originFileName.substring(originFileName.lastIndexOf(".")); 
+		String saveFileName = UUID.randomUUID() + extension; // 저장되는 파일명  랜덤 + 파일명
 		File targetFile = new File(path+saveFileName);
+		System.out.println(targetFile);
 		try {
 			InputStream fileStream = mulitpartFile.getInputStream();
 			FileUtils.copyInputStreamToFile(fileStream, targetFile);
 			jsonOb.addProperty("url", "/testing/"+saveFileName);
 			jsonOb.addProperty("responseCode", "success");
+			System.out.println("파일업로드 작동중");
 		}catch(Exception e){
 			FileUtils.deleteQuietly(targetFile);
+			System.out.println("파일업로드 실패");
 			jsonOb.addProperty("responseCode", "error");
 			e.printStackTrace();
 		}

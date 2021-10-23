@@ -5,7 +5,25 @@
 <mapper namespace="com.anotherclass.bitcamp.dao.user.UserClassDAO">
 	<select id="selectClassMapList" resultType="com.anotherclass.bitcamp.vo.user.ClassVO">
 		<![CDATA[
-		select class_no, class_name, class_price, member_id, class_thumb, class_addr1, category_no, class_tag from classTbl
+		select cl.class_no, class_name, class_price, member_id, (select nick from memberTbl m where m.member_id=cl.member_id) as nick, 
+		class_thumb, class_addr1, class_tag, (select category_name from category where category_no=ct.category1_no) as cateL_name, category_name,
+
+		(select count(*) cnt
+		from classTbl c join classLike l
+		on c.class_no=l.class_no
+		group by c.class_no
+		having c.class_no=cl.class_no) as like_cnt,
+		
+		(select avg(star) star
+		from reviewTbl r join orderTbl o
+		on r.order_no = o.order_no
+		join classoption co on o.class_option_no = co.class_option_no
+		join classTbl cs on co.class_no = cs.class_no
+		group by cs.class_no
+		having cs.class_no=cl.class_no) as star_avg
+		
+		from classTbl cl join category ct
+		on cl.category_no = ct.category_no
 		]]>
 	</select>
 
