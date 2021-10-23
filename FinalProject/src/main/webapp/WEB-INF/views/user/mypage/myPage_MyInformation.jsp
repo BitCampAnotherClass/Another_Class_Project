@@ -31,6 +31,28 @@ $(()=>{
 		$('.myPage-information-popup').css('display','block');
 		$('.information-popup-ul').empty();
 		$('.popup-title').html('이미지 업로드');
+		var fileHtml = '';
+		var imageHtml = '';
+		let url= 'imageEdit';
+		$.ajax({
+			//url:url
+			type:'POST'
+			,success:function(result){
+				fileHtml+='<li class="myPage-accountView-picther">';
+				fileHtml+='<img src="${vo.member_img }">';
+				fileHtml+='</li>';
+				fileHtml+='<li class="information-box-img">';
+				fileHtml+='<input type="file" style="float:right" class="popup-input-img" id="member_file"/>';
+				fileHtml+='</li>';
+				fileHtml+='<li class="information-box-img">';
+				fileHtml+='<input type="button" value="파일전송" style="float:right" class="popup-input-button" id="button"/>';
+				fileHtml+='</li>';
+				$('.information-popup-ul').html(fileHtml);
+			} 
+			,error:function(error){
+				console.log(error);
+			}	
+		});
 	});
 	
 	$(document).on('click','.account_pwd_edit',function() {
@@ -40,7 +62,7 @@ $(()=>{
 		$('.information-popup-ul').empty();
 		$('.popup-title').html('비밀번호 수정');
 		var pwdHtml = '';
-		let url= 'imageEdit';
+		let url= 'pwdEdit';
 		$.ajax({
 			//url:url
 			type:'POST'
@@ -193,6 +215,7 @@ $(()=>{
 	}
 	.information-popup-ul{
 		margin-top:5px;
+		height:200px;		
 		padding:10px;
 	}
 	.popup-input-pwd{
@@ -202,11 +225,30 @@ $(()=>{
 		font-size: 16px;
 		width: 90%;	
 	}
+	.popup-input-img{
+		padding: 10px;
+		font-size: 16px;
+		width: 90%;	
+	}
+	.popup-input-button{
+		float: right;
+		width:200px;
+		height: 30px;
+		background-color: #fafafa;
+		border:1px solid #b0aeae;
+		border-radius: 4px;
+	}
 	.information-box-pwd{
 		border: 1px solid #e5e5e5;
 		margin:5px;
 		width: 350px;
-		height: 100%;
+		height: 42px;
+	}
+	.information-box-img{
+		float:left;
+		margin:5px;
+		width: 250px;
+		height: 50px;
 	}
 	.myPage-accountView-picther{
 		overflow: hidden;
