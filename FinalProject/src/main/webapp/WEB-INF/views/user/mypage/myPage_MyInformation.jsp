@@ -4,6 +4,32 @@
 <link href="<%=request.getContextPath()%>/css/user/accountEdit.css" rel="stylesheet" type="text/css"/>
 <script>
 $(()=>{
+	
+	function modelMenuSeting(){
+		var modal = '';
+		modal += '<div class="myPage-information-back" style="display:none">';
+		modal += '<div class="myPage-information-box" style="display:none">';
+		modal += '<div class="myPage-information-popup" style="display:none">';
+		modal += '<button class="myPage-popup-close-button">X</button>';
+		modal += '</div>';
+		modal += '</div>';
+		modal += '</div>';
+		$('body').prepend(modal);
+	}
+	modelMenuSeting();
+	
+	$(document).on('click','.myPage-popup-close-button',function() {
+		$('.myPage-information-back').css('display','none');
+		$('.myPage-information-box').css('display','none');
+		$('.myPage-information-popup').css('display','none');
+	});
+	
+	$(document).on('click','.account_pic_edit',function() {
+		$('.myPage-information-back').css('display','block');
+		$('.myPage-information-box').css('display','block');
+		$('.myPage-information-popup').css('display','block');
+	});
+	
 	var url = 'account_edit/check';
 	var checkEng = /[a-z|A-Z|0-9]/;
 	var checkKor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
@@ -126,6 +152,9 @@ $(()=>{
 	.myPage-accountView-title{
 		padding:10px;
 	}
+	.myPage-popup-close-button{
+		float: right;
+	}
 	.myPage-accountView-picther{
 		overflow: hidden;
 	}
@@ -145,9 +174,6 @@ $(()=>{
 		height: 150px;
 		padding:10px;		
 		float: left;
-	}
-	#myPage-accountView-id{
-		font-size: 2em;
 	}
 	.myPage-accountView-main{
 		width: 1000px;
@@ -191,7 +217,7 @@ $(()=>{
 	.account_edit_emailCh_text{
 		height: 30px;
 	}
-	.account_edit_addr_button, .account_edit_sending{
+	.account_edit_addr_button, .account_pic_edit, .account_edit_sending{
 		margin:5px;	
 		width:70px;
 		height:40px;	
@@ -199,6 +225,10 @@ $(()=>{
 		background-color: #fafafa;
 		border:1px solid #b0aeae;
 		border-radius: 4px;
+	}
+	.account_pic_edit{
+		width:120px;
+		height:30px;
 	}
 	.account_edit_addr_button:active {
 		background-color: #ededed;
@@ -249,11 +279,11 @@ $(()=>{
 						
 						<div class="myPage-accountView-main">
 							<div class="myPage-accountView-picther">
-								<img src="http://localhost:9090/testing/60bb6912-a300-4c3d-b4b4-611016087834.png">
+								<img src="${vo.member_img }">
 							</div>
 							<ul class="myPage-accountView-ul">
-								<li id="myPage-accountView-id" class="myPage-accountView-name">
-									<span  class="myPage-account-name">${vo.member_name } 님</span>
+								<li>
+									<button class="account_pic_edit">프로필 사진수정</button>
 								</li>
 							</ul>
 							
@@ -325,19 +355,6 @@ $(()=>{
 						</div>
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
-	
-	<script type="text/javascript">
-		function myPage-modal() {
-			document.
-		}
-	</script>
-	<div class="myPage-information-back">
-		<div class="myPage-information-box">
-			<div class="myPage-information-popup">
-			
 			</div>
 		</div>
 	</div>
