@@ -30,6 +30,12 @@ $(()=>{
 		$('.myPage-information-popup').css('display','block');
 	});
 	
+	$(document).on('click','.account_pwd_edit',function() {
+		$('.myPage-information-back').css('display','block');
+		$('.myPage-information-box').css('display','block');
+		$('.myPage-information-popup').css('display','block');
+	});
+	
 	var url = 'account_edit/check';
 	var checkEng = /[a-z|A-Z|0-9]/;
 	var checkKor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
@@ -154,6 +160,11 @@ $(()=>{
 	}
 	.myPage-popup-close-button{
 		float: right;
+		width:20px;
+		height: 30px;
+		background-color: #fafafa;
+		border:1px solid #b0aeae;
+		border-radius: 4px;
 	}
 	.myPage-accountView-picther{
 		overflow: hidden;
@@ -217,7 +228,7 @@ $(()=>{
 	.account_edit_emailCh_text{
 		height: 30px;
 	}
-	.account_edit_addr_button, .account_pic_edit, .account_edit_sending{
+	.account_edit_addr_button, .account_pic_edit, .account_edit_sending, .account_pwd_edit{
 		margin:5px;	
 		width:70px;
 		height:40px;	
@@ -230,7 +241,11 @@ $(()=>{
 		width:120px;
 		height:30px;
 	}
-	.account_edit_addr_button:active {
+	.account_pwd_edit{
+		width:120px;
+		height:30px;
+	}
+	.account_edit_addr_button:active, .account_pic_edit:active, .account_edit_sending:active, .myPage-popup-close-button:active , .account_pwd_edit:active{
 		background-color: #ededed;
 	}
 	.myPage-account-name{
@@ -284,6 +299,9 @@ $(()=>{
 							<ul class="myPage-accountView-ul">
 								<li>
 									<button class="account_pic_edit">프로필 사진수정</button>
+								</li>
+								<li>
+									<button class="account_pwd_edit">비밀번호 변경</button>
 								</li>
 							</ul>
 							
