@@ -220,11 +220,20 @@
 							</div>
 							<div class="main-review-content">
 								<div class="star">
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="fas fa-star"></i>
-									<i class="far fa-star"></i>
+									<div class="back-star">
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+									</div>
+									<div class="front-star">
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+									</div>
 								</div>
 								<div class="main-review-text">
 									카드 지갑이 필요해서 알아보고 있는 참에 디자인이 마음에 들어 수강했습니다. 

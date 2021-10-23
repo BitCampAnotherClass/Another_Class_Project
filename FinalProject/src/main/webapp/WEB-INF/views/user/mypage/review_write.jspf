@@ -54,7 +54,7 @@
 					<div class="review-write-img">
 						<h4>사진 첨부</h4>
 						<div class="file-wrap">
-							<input type="file" id="review-file" placeholder="+"/>
+							<input type="file" id="img1" name="img1" placeholder="+"/>
 						</div>
 					</div>
 					<div class="review-btn-wrap">

@@ -16,8 +16,8 @@ public class UserClassServiceImp implements UserClassService {
 	UserClassDAO userClassDao;
 	
 	@Override
-	public List<ClassVO> selectClassMapList() {
-		return userClassDao.selectClassMapList();
+	public List<ClassVO> selectClassMapList(ClassVO vo) {
+		return userClassDao.selectClassMapList(vo);
 	}
 	
 }
