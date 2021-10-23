@@ -162,25 +162,27 @@ $(document).ready(function(){
 
 	
 	
-	let map;
-	let geocoder;
+	var map;
+	var geocoder;
 	
 	// 마커를 담을 배열입니다
-	let markers = [];
+	var markers = [];
+	var infoArr=[]; // infoWindow 담을 배열
+	var j=0;
 	
 	// 클래스 목록 정보 담을 배열
-	let cateL_arr=[]; // 대분류 카테고리
-	let category_arr = []; // 중분류 카테고리
-	let className_arr = []; // 클래스 이름
-	let nick_arr = []; // 강사 닉네임
-	let likeCnt_arr = []; // 좋아요 수
-	let starAvg_arr = []; // 별점 평균
-	let classPrice_arr = []; // 클래스 가격
-	let addr_arr = []; // 주소
-	let classImg_arr = []; // 썸네일
+	var cateL_arr=[]; // 대분류 카테고리
+	var category_arr = []; // 중분류 카테고리
+	var className_arr = []; // 클래스 이름
+	var nick_arr = []; // 강사 닉네임
+	var likeCnt_arr = []; // 좋아요 수
+	var starAvg_arr = []; // 별점 평균
+	var classPrice_arr = []; // 클래스 가격
+	var addr_arr = []; // 주소
+	var classImg_arr = []; // 썸네일
 	
 	
-	let listCnt = 5; // 목록에서 한 번에 보여줄 클래스 개수
+	var listCnt = 5; // 목록에서 한 번에 보여줄 클래스 개수
 	
 	
 	
@@ -189,19 +191,19 @@ $(document).ready(function(){
 	
 	// 클래스 목록 가져오기
 	function setClassList(){
-		let url = '<%=request.getContextPath()%>/classMap/list';
+		var url = '<%=request.getContextPath()%>/classMap/list';
 		$.ajax({
 			url: url,
 			//data: ,
 			async:false,
 			success: function(result){
-				let r = $(result);
+				var r = $(result);
 				console.log(r);
-				let tag='';
+				var tag='';
 				
 				$('#placesList').html('');
 				r.each(function(idx){
-
+					// 전역변수 배열에 해당 값 담기
 					cateL_arr[idx] = r[idx].category_name;
 					category_arr[idx] = r[idx].category_name;
 					className_arr[idx] = r[idx].class_name;
@@ -212,8 +214,6 @@ $(document).ready(function(){
 					addr_arr[idx] = r[idx].class_addr1;
 					classImg_arr[idx] = r[idx].class_thumb;
 
-					
-					
 					
 					if( idx <= (listCnt-1) ){ // 처음 보여줄 클래스 목록
 						tag = '<li>';
@@ -233,7 +233,7 @@ $(document).ready(function(){
 							$('.more > button').hide();
 						}
 					}
-					let n=1;
+					var n=1;
 					$('.more > button').click(function(){ // more 버튼 클릭 시 보여줄 클래스 목록
 						n++;
 						if( idx >= listCnt*(n-1) && idx <= (listCnt*n-1) ){
@@ -255,8 +255,10 @@ $(document).ready(function(){
 							}
 						}
 					});
+					// 주소 - 좌표 변환 + 마커 + 인포윈도우 생성
+					setMapPosition(cateL_arr[idx], category_arr[idx], className_arr[idx], nick_arr[idx], likeCnt_arr[idx], starAvg_arr[idx], classPrice_arr[idx], addr_arr[idx], classImg_arr[idx], idx);
 					
-				});
+				}); //each
 			}, error: function(e){
 				console.log('리스트 불러오기 에러');
 			}
@@ -267,49 +269,50 @@ $(document).ready(function(){
 	function initMap(){
 		console.log('실행2');
 		console.log(cateL_arr);
-		let latitude = 37.566826;
-		let longitude = 126.9786567;
+		var latitude = 37.566826;
+		var longitude = 126.9786567;
 		
-		setClassList();
 
-		let mapContainer = document.getElementById('class-map-view'), // 지도를 표시할 div 
+		var mapContainer = document.getElementById('class-map-view'), // 지도를 표시할 div 
 		    mapOption = {
 		        center: new kakao.maps.LatLng(latitude, longitude), // 지도의 중심좌표
 		        level: 4 // 지도의 확대 레벨
 		    };  
 	
-		// 지도를 생성합니다    
+		// 지도 생성    
 		map = new kakao.maps.Map(mapContainer, mapOption); 
-
+		
 		geocoder = new kakao.maps.services.Geocoder();
-		for(let i=0; i < className_arr.length; i++){
+		// 클래스 목록 불러오기
+		setClassList();
+		
+		/*for(var i=0; i < className_arr.length; i++){
 			console.log(i);
 			setMapPosition(cateL_arr[i], category_arr[i], className_arr[i], nick_arr[i], likeCnt_arr[i], starAvg_arr[i], classPrice_arr[i], addr_arr[i], classImg_arr[i]);
-		}
+		}*/
 		
 	}
 	
 
-	let infoArr=[]; // infoWindow 담을 배열
-	let j=0;
 	
-	// 주소 - 좌표 변환 + 마커 생성
-	function setMapPosition(cateL, category, className, nick, likeCnt, starAvg, classPrice, addr, classImg){
+	
+	// 주소 - 좌표 변환 + 마커 + 인포윈도우 생성
+	function setMapPosition(cateL, category, className, nick, likeCnt, starAvg, classPrice, addr, classImg, idx){
 		// 주소로 좌표를 검색합니다
 		geocoder.addressSearch( addr , function(result, status) {
 			
 		    // 정상적으로 검색이 완료됐으면 
 		     if (status === kakao.maps.services.Status.OK) {
 				
-		        let coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 		
 		        // 결과값으로 받은 위치를 마커로 표시합니다
-		        let marker = new kakao.maps.Marker({
+		        var marker = new kakao.maps.Marker({
 		            map: map,
 		            position: coords
 		        });
 				
-		        let markerInfo = '<div class="markerInfo">';
+		        var markerInfo = '<div class="markerInfo">';
 		        markerInfo += '<div class="marker-class-img"><img src="<%=request.getContextPath()%>' + classImg + '"/></div>';
 		        markerInfo += '<div class="marker-class-info">'
 		        markerInfo += '<div class="marker-class-category">' + cateL + ' > ' + category + '</div>'
@@ -321,19 +324,13 @@ $(document).ready(function(){
 		        markerInfo += '<div class="marker-class-price">' + classPrice + '원</div>';
 		        markerInfo += '</div>';
 		        // 인포윈도우로 장소에 대한 설명 표시
-		        let infowindow = new kakao.maps.InfoWindow({
+		        var infowindow = new kakao.maps.InfoWindow({
 		            content: markerInfo
 		        });
 		        
-		        infoArr[j] = infowindow; // 인포윈도우 배열에 담기
-		        
-		        // 모든 인포윈도우 닫는 함수
-		        function closeInfoWindow() {
-		        	for(let z=0; z<infoArr.length; z++){
-	        			infoArr[z].close();
-	        	    }
-		        }
-		        
+		        markers[idx] = marker; // 마커 담기
+		        infoArr[idx] = infowindow; // 인포윈도우 배열에 담기
+		        		        
 		        kakao.maps.event.addListener(marker, 'click', function() {
 		        	closeInfoWindow(); // 모든 인포윈도우 닫기
 		        	infowindow.open(map, marker); // 마커 위에 현재 인포윈도우 표시
@@ -347,40 +344,39 @@ $(document).ready(function(){
 		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 		        map.setCenter(coords);
 		        
-		        j++;
-		        
 		    } //if
 		});   
 	
 	} //setMapPosition
 	
+	
+	// 모든 인포윈도우 닫는 함수
+    function closeInfoWindow() {
+    	for(var z=0; z<infoArr.length; z++){
+			infoArr[z].close();
+	    }
+    }
+	
+	
 	// 클래스목록 마우스오버 시 지도 중심 위치 이동시키기
 	function moveCenter(addr){
-		
 		geocoder.addressSearch( addr , function(result, status) {
-			
 		    // 정상적으로 검색이 완료됐으면 
 		     if (status === kakao.maps.services.Status.OK) {
-				
-		        let coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-		        
+		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 		        map.setCenter(coords);
-		        
-		        infoArr[0].open();
 		     }
 		});
 	}
 	
 	
+	// 클래스 목록 마우스오버 이벤트 - 해당 마커 중심 지도, 인포윈도우 열기
 	$(document).on('mouseenter', '#placesList > li', function(){
-		console.log('마우스오버');
-		moveCenter($(this).children('.class-list-info').children('.class-addr').text());
+		var li_idx = $(this).index();
+		moveCenter($(this).children('.class-list-info').children('.class-addr').text()); // 지도 중심 이동시키기
+		kakao.maps.event.trigger(markers[li_idx], 'click'); // 마커 클릭 이벤트 강제 실행 - 인포윈도우 열기
 	});
-	
-	
-	//function setClassList(addr, className, classImg, classPrice){
-		
-	//}
+
 
 });
 	
