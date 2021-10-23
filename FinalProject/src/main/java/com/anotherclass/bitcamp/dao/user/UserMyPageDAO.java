@@ -24,4 +24,5 @@ public interface UserMyPageDAO {
 	public String getCreatorNick(int no);//강사닉네임가져오기 -> 클래스번호가지고가서
 	
 	public RegisterVO MemberInfo(String logid); // 회원정보
+	public int MemberInfoEdit(RegisterVO vo); // 회원정보수정
 }

@@ -103,4 +103,10 @@
 		  	select member_id, member_name, member_tel, member_email, post_no, addr1, addr2, nick, member_img, sns_type from memberTbl where member_id = #{param1}
 		]]>
   	</select>
+  	<update id="MemberInfoEdit" parameterType="com.anotherclass.bitcamp.register.RegisterVO" >
+  		<![CDATA[
+  			update memberTbl set member_name = #{member_name}, member_tel = #{member_tel}, member_email = #{member_email}, post_no = trim(#{post_no}), addr1 = #{addr1} , addr2 = #{addr2}
+  			where member_id = #{member_id}
+  		]]>
+  	</update>
   </mapper>

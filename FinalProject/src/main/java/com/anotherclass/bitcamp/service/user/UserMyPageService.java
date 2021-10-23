@@ -21,4 +21,5 @@ public interface UserMyPageService {
 	public int getBasketNum(String logid);
 	public String getCreatorNick(int no); 
 	public RegisterVO MemberInfo(String logid); // 회원정보
+	public int MemberInfoEdit(RegisterVO vo); //회원정보수정
 }

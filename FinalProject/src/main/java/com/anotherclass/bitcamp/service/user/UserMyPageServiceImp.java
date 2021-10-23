@@ -82,4 +82,9 @@ public class UserMyPageServiceImp implements UserMyPageService {
 	public RegisterVO MemberInfo(String logid) {
 		return userMyPageDAO.MemberInfo(logid);
 	}
+	
+	@Override
+	public int MemberInfoEdit(RegisterVO vo) {
+		return userMyPageDAO.MemberInfoEdit(vo);
+	}
 }

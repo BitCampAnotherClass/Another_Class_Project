@@ -73,14 +73,18 @@ $(()=>{
 	});
 	
 	function email_Seting(){
-			var emailData;
-	    	email = '${vo.member_email}';
-	    	emailSplit =email.split('@');
-	    	document.getElementById('member_email_id').value = emailSplit[0];
-	    	document.getElementById('member_email_addr').value = emailSplit[1]; 
+		var emailData;
+	    email = '${vo.member_email}';
+	    emailSplit = email.split('@');
+	    document.getElementById('member_email_id').value = emailSplit[0];
+	    document.getElementById('member_email_addr').value = emailSplit[1]; 
 	}
 	email_Seting();
-});
+	});
+	function inputClick(data) {
+		data.readOnly = false;
+	}
+	
 </script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -110,9 +114,12 @@ $(()=>{
                 }
                 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
+                console.log(data.zonecode);
+                
                 document.getElementById('account_post_no').value = data.zonecode;
                 document.getElementById("account_addr1").value = roadAddr;
-                document.getElementById("account_addr2").value = data.jibunAddress;
+                document.getElementById('member_addr_Data').value = roadAddr;
+                
             }
         }).open();
     }
@@ -166,8 +173,8 @@ $(()=>{
 		margin-top:20px;
 		float: left;
 		border-top:1px solid #c2c2c2;
-		width: 900px;
-		height: 500px;
+		width: 1000px;
+		height: 400px;
 	}
 	.myPage-accountView-info{
 		padding:5px;
@@ -186,7 +193,7 @@ $(()=>{
 	.account_edit_emailCh_text{
 		height: 30px;
 	}
-	.account_edit_addr_button{
+	.account_edit_addr_button, .account_edit_sending{
 		margin:5px;	
 		width:70px;
 		height:40px;	
@@ -221,17 +228,19 @@ $(()=>{
 								<img src="http://localhost:9090/testing/60bb6912-a300-4c3d-b4b4-611016087834.png">
 							</div>
 							<ul class="myPage-accountView-ul">
-									<li id="myPage-accountView-id" class="myPage-accountView-name">
+								<li id="myPage-accountView-id" class="myPage-accountView-name">
 									<span  class="myPage-account-name">${vo.member_name } 님</span>
-									</li>
+								</li>
 							</ul>
+							
+							<form method="post" action="MyinformationEdit" >
 							<ul class="myPage-accountView-info-list">
 								<li class="myPage-accountView-info">
 								<span class="myPage-accountView-box-title">이름</span>
 									<span class="myPage-accountView-box">
 										<span class="account_edit_input-outline">
 											<span class="account_edit_input-box">
-												<input type="text" id="member_name" name="member_name" value="${vo.member_name }" class="account_edit_input" placeholder="이름" autocomplete=”off” maxlength="7"/>				
+												<input type="text" id="member_name" name="member_name" value="${vo.member_name }" onclick="inputClick(this)" class="account_edit_input" placeholder="이름" autocomplete=”off” maxlength="7"readonly/>				
 											</span>
 										</span>
 									</span>
@@ -241,7 +250,7 @@ $(()=>{
 									<span class="myPage-accountView-box">
 										<span class="account_edit_input-outline">
 											<span class="account_edit_input-box">
-												<input type="text" id="member_tel" name="member_tel" value="${vo.member_tel}"  class="account_edit_input" placeholder="-를 포함하여 입력해주세요" autocomplete=”off” maxlength="13"/>				
+												<input type="text" id="member_tel" name="member_tel" value="${vo.member_tel}" onclick="inputClick(this)" class="account_edit_input" placeholder="-를 포함하여 입력해주세요" autocomplete=”off” maxlength="13" readonly/>				
 											</span>
 												<label id="account_edit_tel_text"></label>	
 										</span>
@@ -253,13 +262,13 @@ $(()=>{
 									<span class="myPage-accountView-box-email">
 										<span class="account_edit_input-outline" id="account_edit_input_email">
 											<span class="account_edit_input-box">
-												<input type="text" id="member_email_id" name="member_email_id" class="account_edit_input_email" placeholder="이메일" autocomplete=”off” maxlength="15"/>
+												<input type="text" id="member_email_id" name="member_email_id" class="account_edit_input_email"  onclick="inputClick(this)" placeholder="이메일" autocomplete=”off” maxlength="15" readonly/>
 											</span>
 										</span>
 										<span class="member_email_AtSign">@</span>	
 										<span class="account_edit_input-outline" id="account_edit_input_email_addr">
 												<span class="account_edit_input-box">
-													<input type="text" id="member_email_addr" name="member_email_addr" class="account_edit_input_email" placeholder="직접입력" autocomplete=”off” maxlength="12"/>
+													<input type="text" id="member_email_addr" name="member_email_addr" class="account_edit_input_email" onclick="inputClick(this)" placeholder="직접입력" autocomplete=”off” maxlength="12" readonly/>
 												</span>
 										</span>
 										<label id="account_edit_emailCh_text"></label>	
@@ -277,40 +286,21 @@ $(()=>{
 									<span class="myPage-accountView-box-infoAddr">
 										<span class="account_edit_input-outline">
 											<span class="account_edit_input-box-addr">
-												<input type="text" id="member_addr" name="member_addr2" value="${vo.addr2}" class="account_edit_input" placeholder="상세주소"  autocomplete=”off” maxlength="30"/>				
+												<input type="text" id="member_addr" name="addr2" value="${vo.addr2}" class="account_edit_input" onclick="inputClick(this)"  placeholder="상세주소"  autocomplete=”off” maxlength="30" readonly/>				
 											</span>
 										</span>
 									</span>
 									<input type="button" class="account_edit_addr_button" value="주소검색" onclick="daumPostcode()" />
-									<input type="hidden" id="account_post_no" name="post_no"/>	
-									<input type="hidden" id="account_addr1" name="addr1"/>
+									<input type="hidden" id="member_email" name="member_email" value="${vo.member_email }"/>
+									<input type="hidden" id="account_post_no" name="post_no" value="${vo.post_no }"/>	
+									<input type="hidden" id="account_addr1" name="addr1" value="${vo.addr1 }"/>
 								</li>
 							</ul>
-								
+							<input type="submit" class="account_edit_sending" value="수정완료"/>
+							</form>	
 						</div>
 					</div>
 				</div>
-			<div class="myPage-accountEdit-Edit" style="display:none">
-				<div>
-					<h2>프로필 수정</h2>
-				</div>
-				<form class="account_edit_form" method="post" action="<%=request.getContextPath()%>/registerEdit" autocomplete="off" >
-						<div id="account_edit_id" class="account_edit_input-group">
-							</div>
-								<div id="account_edit_pwd" class="account_edit_input-group">
-									<span class="account_edit_input-outline">
-										<span class="account_edit_input-box">
-											<input type="password" id="member_pw" name="member_pw" class="account_edit_input" placeholder="비밀번호" autocomplete=”off” maxlength="16" autocomplete="new-password"/>
-										</span>
-											<label id="account_edit_pwd_text"></label>
-									</span>
-								</div>
-					<input type="hidden" id="member_email" name="member_email"/>
-					<input type="hidden" class="account_edit_pwd_check" value="N">
-					<input type="hidden" class="account_edit_email_check" value="N">
-					<input type="hidden" class="account_edit_tel_check" value="N">
-					</form>
-				</div>			
 			</div>
 		</div>
 	</div>
