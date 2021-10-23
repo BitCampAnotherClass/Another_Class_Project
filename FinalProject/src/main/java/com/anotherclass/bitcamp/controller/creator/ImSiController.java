@@ -43,9 +43,5 @@ public class ImSiController {
 		return "creator/question/creatorInquiry";
 	}
 	
-	@RequestMapping("/testingMenu3")
-	public String testing2() {
-		
-		return "creator/board";
-	}
+	
 }

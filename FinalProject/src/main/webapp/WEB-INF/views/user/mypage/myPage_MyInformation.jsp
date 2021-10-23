@@ -115,11 +115,9 @@ $(()=>{
                 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 console.log(data.zonecode);
-                
                 document.getElementById('account_post_no').value = data.zonecode;
                 document.getElementById("account_addr1").value = roadAddr;
                 document.getElementById('member_addr_Data').value = roadAddr;
-                
             }
         }).open();
     }
@@ -212,6 +210,32 @@ $(()=>{
 		height:100px;
 		line-height: 100px;
 	}
+	.myPage-information-back{
+		background-color: rgba(0, 0, 0, 0.3);
+		position: fixed;
+		width:100%;
+		height:100vh;
+		z-index:1000;
+	}
+	.myPage-information-box{
+  		position: relative;
+ 	 	width: 100%;
+ 	 	height: 100%;
+	}
+	.myPage-information-popup{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		background-color: #ffffff;
+		box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+		width: 500px;
+		height: 500px;
+	}
+	.myPage-information-popup{
+		padding:10px;
+		border-radius: 10px;
+	}
 </style>
 
 <div>
@@ -301,6 +325,19 @@ $(()=>{
 						</div>
 					</div>
 				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script type="text/javascript">
+		function myPage-modal() {
+			document.
+		}
+	</script>
+	<div class="myPage-information-back">
+		<div class="myPage-information-box">
+			<div class="myPage-information-popup">
+			
 			</div>
 		</div>
 	</div>

@@ -11,6 +11,39 @@
 <div>
 	<textarea class="summernote" name="editordata"></textarea>
 </div>
+<div>
+	<form method="POST" enctype="multipart/form-data" id="fileUpload">
+		<input type="file" id="imageFile" name="file" value="text"/>
+		<input type="button" id="fileTransfer" value="파일업로드 테스트" />
+	</form>
+</div>
+
+<script>
+$(()=>{
+	var fileList;
+	$('#fileTransfer').on('click', function uploadFiles(e){
+			var file = $('#imageFile')[0].files[0]
+			var form_data = new FormData();
+	      	form_data.append('file', file);
+	      	$.ajax({
+	        	data: form_data
+	        	,type: "POST"
+	        	,url: 'imageUploadUrl'
+	        	,contentType: false
+	        	,processData: false
+	        	,success: function(imageData) {
+	        		console.log("img:"+ imageData.url);
+	        		fileList = imageData.url;
+	        	}
+	      		,error: function(error){
+	      			console.log(error);
+	      			console.log('파일업로드 실패');
+	      		}
+	      	});
+		});
+	console.log(fileList);
+	});
+</script>
 
 <script>
 $(()=>{
