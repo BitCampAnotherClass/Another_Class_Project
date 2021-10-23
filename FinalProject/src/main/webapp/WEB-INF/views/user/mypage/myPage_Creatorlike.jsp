@@ -10,21 +10,18 @@
 	  margin: 15px 14px 15px 14px;
 	  border-radius: 18px;
 	  background: white;
-	  box-shadow: 0 0 3px rgb(0 0 0 / 14%);
+	  box-shadow: 0 0 4px rgb(0 0 0 / 24%);
 	  /*border: 1px solid #f0f0f0; 
 	  0 0 8px rgba(0,0,0,0.3);*/
 	  
 	  float:left;
 	  text-align: center;
-	}
-	
-	
+	}	
 	.card-text {
 		  /*grid-area: text;
 		  margin: 25px;*/
 		  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-	}
-	
+	}	
 	.card-stats {
 	 	grid-area: stats; 
 	}
@@ -78,22 +75,22 @@
 					ll.each(function(idx,vo){	
 						tag +="<div class='card'>";
 						tag +="<div class='card-image'  style='width:248px;height:171px;margin:13px auto 0 auto;'>";
-						tag +="<img class='likeimgbox91' style='width:100%;height:100%;object-fit: cover;' src='/another/img/jisu/flower.png'/>";//vo.member_img//border-radius:100%;
+						tag +="<img class='imgbox' style='width:100%;height:100%;object-fit: cover;' src='/another/img/jisu/flower.png'/>";//vo.member_img//border-radius:100%;
 						tag +="</div>";
 						tag +="<div class='card-text'>";
 						tag +="<label style='color:#999;'>"+vo.nick+"</label>"; //강사아이디
 						tag +="</div>";
 						tag +="<div class='card-stats'>";
 						tag +="<div class='stat'>";
-						tag +="<div class='heartImg' id='"+vo.creator_like_no+"'><img class='likeimgbox91' style='width:41%;' src='/another/img/jisu/whiteheart.png'/></div>";//좋아요번호
+						tag +="<div class='heartImg' id='"+vo.creator_like_no+"'><img class='likeimgbox91' style='width:127%;' src='/another/img/jisu/ff385bigcheart.png'/></div>";//좋아요번호
 						tag +="</div>";
 						tag +="<div class='stat border'>";
-						tag +="<div class='value' style='color:white;'>좋아요수</div>";
-						tag +="<div class='type' style='color:white;'>"+vo.creatorlikecount+"</div>";
+						tag +="<div class='value' style='color:#fff;font-weight:bold;font-size:1.1rem;'>좋아요수</div>";//color:white;
+						tag +="<div class='type' style='color:#fff;font-weight:bold;font-size:1.1rem;'>"+vo.creatorlikecount+"</div>";//color:white;
 						tag +="</div>";
 						tag +="<div class='stat'>";
-						tag +="<div class='value' style='color:white;'>클래스</div>";
-						tag +="<div class='type' style='color:white;'>"+vo.creatorclasscount+"</div>";
+						tag +="<div class='value' style='color:#fff;font-weight:bold;font-size:1.1rem;'>클래스</div>";//color:white;
+						tag +="<div class='type' style='color:#fff;font-weight:bold;font-size:1.1rem;'>"+vo.creatorclasscount+"</div>";//color:white;
 						tag +="</div></div></div>";
 						tag +="<input type='hidden'  value='"+vo.creator_like_no+"'>";//이걸로지울거임						
 					});
@@ -102,8 +99,7 @@
 			})			
 		}
 		
-		$(document).on('click','.likeimgbox91',function(){			
-			//$(this).attr('src','/another/img/jisu/whiteborderheart.png').css('width','38px');
+		$(document).on('click','.likeimgbox91',function(){					
 			var no = $(this).parent().attr('id');
 			console.log(no);
 			var cUrl ="/another/cancelLikedListCrea";
@@ -118,6 +114,16 @@
 			
 		});
 		//+++++++++++++++++++++마우스오버 아웃이벤트추가해야됨 ++++++++++++++마우스들어가면 빈하트 아니면 꽉찬하트
+		$(document).on('mouseenter','.likeimgbox91',function(){					
+			
+			$(this).attr("src", "/another/img/jisu/ff385bigborderheart.png");
+			console.log('들어옴');
+		});
+		$(document).on('mouseout','.likeimgbox91',function(){					
+			
+			$(this).attr("src", "/another/img/jisu/ff385bigcheart.png");
+			console.log('나감');
+		});
 		
 		getLikedListCrea();//
 		

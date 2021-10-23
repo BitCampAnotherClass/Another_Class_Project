@@ -6,16 +6,17 @@ import com.anotherclass.bitcamp.vo.user.BasketVO;
 import com.anotherclass.bitcamp.vo.user.UserPayVO;
 
 public interface UserPayDAO {
-	public List<UserPayVO> userPayAllselect(int[] classNoPayList );//결제페이지로이동 ->클래스옵션번호가지고 select
-	public List<UserPayVO> userPayoneSelect(int no);//장바구니에서 한개주문 -> 결제페이지로이동
+	public List<UserPayVO> userPayAllselect(int[] classNoPayList );
+	public List<UserPayVO> userPayoneSelect(int no);
 	public UserPayVO userInfo(String logid);
-	public int saveBasket(int[] classNoPayList);//장바구니에저장
+	public int saveBasket(int[] classNoPayList);
 	
-	public int testBasket(BasketVO vo);//장바구니저장
-	public int delBasket(BasketVO vo);//장바구니 선택삭제
-	public int delOneBasket(int no);//장바구니 한개삭제
+	public int testBasket(BasketVO vo);
+	public int delBasket(BasketVO vo);
+	public int delOneBasket(int no);
 	
-	public int oneClassOrder(UserPayVO vo);//상품한개 오더테이블에 insert
-	public int addHeadCount(int no);//상품한개결제후 신청한클래스 신청인원증가
+	public int oneClassOrder(UserPayVO vo);
+	public int addHeadCount(int no);
+	public int getClassNo(int no);
 	
 }

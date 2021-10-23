@@ -96,9 +96,7 @@
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 <script>
-//var member_id ="";
-//var member_email ="";
-//var member_tel ="";
+
 
 $(function(){
 	
@@ -271,9 +269,7 @@ $(function(){
 				alert("주문 상품정보(전자상거래법 제 8조 제 2항)에 대해 동의해 주세요.(필수)");
 				return;
 			}	    	
-        	
-        	
-        
+     
             var IMP = window.IMP;
             IMP.init('imp53433684');
             var money = ${sum };
@@ -284,6 +280,8 @@ $(function(){
             name = $("#member_name_val").val();
             tel = $("#member_tel_val").val();
             email = $("#member_email_val").val();
+          
+            //실패
            <c:forEach var='vo' items="${list}">
            	var classoptionno= Number(${vo.class_option_no});
            </c:forEach>
