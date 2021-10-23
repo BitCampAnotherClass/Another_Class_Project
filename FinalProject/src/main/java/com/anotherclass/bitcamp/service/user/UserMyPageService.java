@@ -5,6 +5,7 @@ import java.util.List;
 import com.anotherclass.bitcamp.vo.user.UserClassDetailVO;
 import com.anotherclass.bitcamp.vo.user.UserClassDetailVO2;
 import com.anotherclass.bitcamp.vo.user.UserHomeQnAVO;
+import com.anotherclass.bitcamp.vo.user.UserMyPageOrderVO;
 
 public interface UserMyPageService {
 	public List<UserHomeQnAVO> myPageHomePageAsk(String logid);
@@ -19,4 +20,12 @@ public interface UserMyPageService {
 	public List<UserClassDetailVO> BaskList(String logid);
 	public int getBasketNum(String logid);
 	public String getCreatorNick(int no); 	
+	public List<UserMyPageOrderVO> orderFinList(String logid);
+	public List<UserMyPageOrderVO> orderFinList2(String logid); 
+	public List<UserMyPageOrderVO> orderFinList3(String logid); 
+	public int userOrderCancleSub(int no);
+	public int UserMyPageHQnADel(int no);
+	public int UserMyPageHQnADel2(int no);
+	public int UserMyPageHQnAEdi(UserHomeQnAVO vo);
+	public int UserMypageCheckFrep(int no);
 }

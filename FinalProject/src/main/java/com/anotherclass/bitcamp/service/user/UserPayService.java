@@ -17,4 +17,5 @@ public interface UserPayService {
 	
 	public int oneClassOrder(UserPayVO vo);
 	public int addHeadCount(int no);
+	public int getClassNo(int no);
 }

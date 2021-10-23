@@ -10,6 +10,7 @@ import com.anotherclass.bitcamp.dao.user.UserMyPageDAO;
 import com.anotherclass.bitcamp.vo.user.UserClassDetailVO;
 import com.anotherclass.bitcamp.vo.user.UserClassDetailVO2;
 import com.anotherclass.bitcamp.vo.user.UserHomeQnAVO;
+import com.anotherclass.bitcamp.vo.user.UserMyPageOrderVO;
 
 @Service
 public class UserMyPageServiceImp implements UserMyPageService {
@@ -72,8 +73,48 @@ public class UserMyPageServiceImp implements UserMyPageService {
 	}
 
 	@Override
-	public int getBasketNum(String logid) {
-		
+	public int getBasketNum(String logid) {		
 		return userMyPageDAO.getBasketNum(logid);
+	}
+
+	@Override
+	public List<UserMyPageOrderVO> orderFinList(String logid) {		
+		return userMyPageDAO.orderFinList(logid);
+	}
+
+	@Override
+	public List<UserMyPageOrderVO> orderFinList2(String logid) {
+		return userMyPageDAO.orderFinList2(logid);
+	}
+
+	@Override
+	public List<UserMyPageOrderVO> orderFinList3(String logid) {
+		return userMyPageDAO.orderFinList3(logid);
+	}
+
+	@Override
+	public int userOrderCancleSub(int no) {
+		return  userMyPageDAO.userOrderCancleSub(no) ;
+	}
+
+	@Override
+	public int UserMyPageHQnADel(int no) {
+		return userMyPageDAO.UserMyPageHQnADel(no);
+	}
+
+	@Override
+	public int UserMyPageHQnAEdi(UserHomeQnAVO vo) {
+		return userMyPageDAO.UserMyPageHQnAEdi(vo);
+	}
+
+	@Override
+	public int UserMypageCheckFrep(int no) {		
+		return userMyPageDAO.UserMypageCheckFrep(no);
+	}
+
+	@Override
+	public int UserMyPageHQnADel2(int no) {
+		// TODO Auto-generated method stub
+		return userMyPageDAO.UserMyPageHQnADel2(no);
 	}
 }

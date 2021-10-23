@@ -59,4 +59,10 @@ public class UserPayServiceImp implements UserPayService {
 	public int addHeadCount(int no) {		
 		return userpaydao.addHeadCount(no);
 	}
+
+	@Override
+	public int getClassNo(int no) {
+		
+		return userpaydao.getClassNo(no);
+	}
 }

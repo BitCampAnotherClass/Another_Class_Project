@@ -12,6 +12,7 @@ import com.anotherclass.bitcamp.service.user.UserMyPageService;
 import com.anotherclass.bitcamp.vo.user.UserClassDetailVO;
 import com.anotherclass.bitcamp.vo.user.UserClassDetailVO2;
 import com.anotherclass.bitcamp.vo.user.UserHomeQnAVO;
+import com.anotherclass.bitcamp.vo.user.UserMyPageOrderVO;
 
 @Controller
 public class UserMyPageController {
@@ -63,9 +64,9 @@ public class UserMyPageController {
 	@RequestMapping("/ClassAskReplyList999")
 	@ResponseBody
 	public List<UserClassDetailVO2> ajaxClassAskList2(String logid){
-		System.out.println("클래스문의 컨트롤러들어옴");
+
 		List<UserClassDetailVO2> list = userMyPageService.myPageClassAskAll(logid); //회원이 문의한 클래스문의글정보 다 가져옴
-		System.out.println("클래스문의 리스트겟");
+	
 		//가져온문의글번호를 댓글테이블에 넣어서 댓글이있는지 여부확인 -> 있으면 댓글정보가져와서 저장
 		for(int i=0; i<list.size(); i++) {
 			UserClassDetailVO2 vo2 = list.get(i); // ->꺼내온한줄
@@ -93,31 +94,25 @@ public class UserMyPageController {
 	//강사좋아요목록
 	@RequestMapping("/LikedListCrea")
 	@ResponseBody
-	public List<UserClassDetailVO> ajaxLikedCreatorList(String logid){
-		System.out.println("강사좋아요컨트롤러들어옴");
-		List<UserClassDetailVO> list = userMyPageService.Likedcreator(logid);//좋아요번호,강사아이디,강사닉네임,강사프사
-		System.out.println("강사좋요아리스트겟");
+	public List<UserClassDetailVO> ajaxLikedCreatorList(String logid){	
+		List<UserClassDetailVO> list = userMyPageService.Likedcreator(logid);//좋아요번호,강사아이디,강사닉네임,강사프사	
 		for(int i=0; i<list.size(); i++) {
-			UserClassDetailVO vo = list.get(i);
-			System.out.println(vo.getCreator_id());
+			UserClassDetailVO vo = list.get(i);			
 			//강사좋아요수 셋팅
 			int creatorlikecount = userMyPageService.LikedcreatorCount(vo.getCreator_id());
-			vo.setCreatorlikecount(creatorlikecount);
-			System.out.println(creatorlikecount);
+			vo.setCreatorlikecount(creatorlikecount);		
 			//강사 개설강의수 셋팅
 			int creatorclasscount = userMyPageService.OpenClassCount(vo.getCreator_id());
 			vo.setCreatorclasscount(creatorclasscount);
-			System.out.println(creatorclasscount);
+		
 		}
 		return list;
 	}
 	//강사좋아요취소
 	@RequestMapping("/cancelLikedListCrea")
 	@ResponseBody
-	public int ajaxCancelCreatorLike(int no) {
-		System.out.println("강사좋아요취소컨트롤러들어옴");
-		int result= userMyPageService.CancelLikeCreator(no);
-		System.out.println("강사좋아요취소"+result);
+	public int ajaxCancelCreatorLike(int no) {	
+		int result= userMyPageService.CancelLikeCreator(no);		
 		return result;
 	}
 	
@@ -125,7 +120,7 @@ public class UserMyPageController {
 	@RequestMapping("/ShoppingBasket")
 	@ResponseBody
 	public List<UserClassDetailVO> ajaxgetBasketList(String logid){
-		System.out.println("컨트롤러들어옴");
+	
 		List<UserClassDetailVO> list = userMyPageService.BaskList(logid);//1차 : 장바구니테이블에서 아이디에해당하는정보담아옹ㄴ다 
 		for(int i=0; i<list.size(); i++) {
 			UserClassDetailVO vo = list.get(i);
@@ -143,4 +138,58 @@ public class UserMyPageController {
 		return basketCount;
 	}
 	
+	//마이페이지 주문조회
+	//주문내역
+	@RequestMapping("/UserOrderListFin")
+	@ResponseBody
+	public List<UserMyPageOrderVO> ajaxOrderListFin(String logid){		
+		List<UserMyPageOrderVO> list = userMyPageService.orderFinList(logid);		
+		return list;
+	}
+	//수강완료내역
+	@RequestMapping("/UserOrderListFin2")
+	@ResponseBody
+	public List<UserMyPageOrderVO> ajaxOrderListFin2(String logid){				
+		List<UserMyPageOrderVO> list = userMyPageService.orderFinList2(logid);		
+		return list;
+	}
+	//취소,환불내역
+	@RequestMapping("/UserOrderListFin3")
+	@ResponseBody
+	public List<UserMyPageOrderVO> ajaxOrderListFin3(String logid){		
+		
+		List<UserMyPageOrderVO> list = userMyPageService.orderFinList3(logid);	
+		System.out.println(list.size());
+		return list;
+	}
+	@RequestMapping("/UserOrderCancleSub")
+	@ResponseBody
+	public int ajaxUserOrderCancleSub(int no) {
+		int result = userMyPageService.userOrderCancleSub(no);
+		System.out.println(result);
+		return result;
+	}
+	//홈페이지문의글 삭제
+	@RequestMapping("/UserMyHQnADel")
+	@ResponseBody
+	public int ajaxUserMyHQnADel(int no) {
+		int result =0;
+		int a =  userMyPageService.UserMypageCheckFrep(no);//답글있으면 2 답글없으면1
+		if(a==1) {
+			result = userMyPageService.UserMyPageHQnADel(no);
+		}else {
+			result = userMyPageService. UserMyPageHQnADel2(no);
+		}
+		return result;
+		
+	}
+	//홈페이지문의글수정
+	
+	@RequestMapping("/UserMyHQnAEdit")
+	@ResponseBody
+	public int ajaxUserMyHQnAEdi(UserHomeQnAVO vo) {
+		int result =0;
+		result =userMyPageService.UserMyPageHQnAEdi	(vo);
+		return result;
+	}
 }
