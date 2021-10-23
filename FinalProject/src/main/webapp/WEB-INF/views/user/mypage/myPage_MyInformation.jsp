@@ -42,7 +42,8 @@ $(()=>{
 				fileHtml+='<img src="${vo.member_img }">';
 				fileHtml+='</li>';
 				fileHtml+='<li class="information-box-img">';
-				fileHtml+='<input type="file" style="float:right" class="popup-input-img" id="member_file"/>';
+				fileHtml+='<li class="information-box-img">';
+				fileHtml+='<input type="file" style="float:right" class="popup-input-img" id="member_file" />';
 				fileHtml+='</li>';
 				fileHtml+='<li class="information-box-img">';
 				fileHtml+='<input type="button" value="파일전송" style="float:right" class="popup-input-button" id="button"/>';
@@ -67,12 +68,17 @@ $(()=>{
 			//url:url
 			type:'POST'
 			,success:function(result){
-				
+				pwdHtml+='<li class="information-box-title">현재 비밀번호</li>';
 				pwdHtml+='<li class="information-box-pwd">';
-				pwdHtml+='<input type="text" class="popup-input-pwd" id="member_pw"/>';
+				pwdHtml+='<input type="text" class="popup-input-pwd" name="member_pw" id="member_pw" autocomplete=”off” maxlength="15" />';
 				pwdHtml+='</li>';
+				pwdHtml+='<li class="information-box-title">새 비밀번호</li>';
 				pwdHtml+='<li class="information-box-pwd">';
-				pwdHtml+='<input type="text" class="popup-input-pwd" id="member_pw_check"/>';
+				pwdHtml+='<input type="text" class="popup-input-pwd" id="member_pw" autocomplete=”off” maxlength="15" />';
+				pwdHtml+='</li>';
+				pwdHtml+='<li class="information-box-title">새 비밀번호 확인</li>';
+				pwdHtml+='<li class="information-box-pwd">';
+				pwdHtml+='<input type="text" class="popup-input-pwd"  id="member_pw_check" autocomplete=”off” maxlength="15" />';
 				pwdHtml+='</li>';
 				pwdHtml+='<input type="hidden" class="account_edit_pwd_check"/>';
 				$('.information-popup-ul').html(pwdHtml);
