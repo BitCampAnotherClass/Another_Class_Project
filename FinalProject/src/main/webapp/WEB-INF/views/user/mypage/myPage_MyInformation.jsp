@@ -4,13 +4,14 @@
 <link href="<%=request.getContextPath()%>/css/user/accountEdit.css" rel="stylesheet" type="text/css"/>
 <script>
 $(()=>{
-	
 	function modelMenuSeting(){
 		var modal = '';
 		modal += '<div class="myPage-information-back" style="display:none">';
 		modal += '<div class="myPage-information-box" style="display:none">';
 		modal += '<div class="myPage-information-popup" style="display:none">';
 		modal += '<button class="myPage-popup-close-button">X</button>';
+		modal += '<h2 class="popup-title"></h2>';
+		modal += '<ul class="information-popup-ul"></ul>';
 		modal += '</div>';
 		modal += '</div>';
 		modal += '</div>';
@@ -28,12 +29,36 @@ $(()=>{
 		$('.myPage-information-back').css('display','block');
 		$('.myPage-information-box').css('display','block');
 		$('.myPage-information-popup').css('display','block');
+		$('.information-popup-ul').empty();
+		$('.popup-title').html('이미지 업로드');
 	});
 	
 	$(document).on('click','.account_pwd_edit',function() {
 		$('.myPage-information-back').css('display','block');
 		$('.myPage-information-box').css('display','block');
 		$('.myPage-information-popup').css('display','block');
+		$('.information-popup-ul').empty();
+		$('.popup-title').html('비밀번호 수정');
+		var pwdHtml = '';
+		let url= 'imageEdit';
+		$.ajax({
+			//url:url
+			type:'POST'
+			,success:function(result){
+				
+				pwdHtml+='<li class="information-box-pwd">';
+				pwdHtml+='<input type="text" class="popup-input-pwd" id="member_pw"/>';
+				pwdHtml+='</li>';
+				pwdHtml+='<li class="information-box-pwd">';
+				pwdHtml+='<input type="text" class="popup-input-pwd" id="member_pw_check"/>';
+				pwdHtml+='</li>';
+				pwdHtml+='<input type="hidden" class="account_edit_pwd_check"/>';
+				$('.information-popup-ul').html(pwdHtml);
+			} 
+			,error:function(error){
+				console.log(error);
+			}	
+		});
 	});
 	
 	var url = 'account_edit/check';
@@ -166,6 +191,23 @@ $(()=>{
 		border:1px solid #b0aeae;
 		border-radius: 4px;
 	}
+	.information-popup-ul{
+		margin-top:5px;
+		padding:10px;
+	}
+	.popup-input-pwd{
+		outline: 0;
+		border: none;
+		padding: 10px;
+		font-size: 16px;
+		width: 90%;	
+	}
+	.information-box-pwd{
+		border: 1px solid #e5e5e5;
+		margin:5px;
+		width: 350px;
+		height: 100%;
+	}
 	.myPage-accountView-picther{
 		overflow: hidden;
 	}
@@ -275,7 +317,7 @@ $(()=>{
 		background-color: #ffffff;
 		box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
 		width: 500px;
-		height: 500px;
+		height: 300px;
 	}
 	.myPage-information-popup{
 		padding:10px;
