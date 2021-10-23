@@ -47,7 +47,7 @@
 <script>
 
 $(function(){ 
-	var logid = "${userId}"; // 세션에저장된아이디	
+	var logid = "${userId}"; 
 	console.log(logid);
 	
 	 // 전체 선택
@@ -55,26 +55,26 @@ $(function(){
        $("#payfrmm input").prop("checked", $(this).prop("checked"));
     });    
 	
-	
+   
 	
 	//장바구니 전체셋팅
 	function getBaList(){		
 		var bUrl = "/another/ShoppingBasket";
 		var bParam = {"logid":logid} 
-		$.ajax({// 회원아이디 가져감.....
+		$.ajax({
 			url:bUrl,
 			data :bParam,
 			success:function(b){
 				var bb = $(b)
     			var tag =""; 
-				bb.each(function(idx,vo){	//성공해서 정보담아옴
-					//vo.basket_no
+				bb.each(function(idx,vo){	
+					
 					tag += "<li>";
 					tag += "<div><input type='checkbox' class='checkbb' name='classNoPayList' value='"+vo.class_option_no +"' id='"+vo.class_option_no+"' ></div>";
 					tag += "<div>";
 					tag += "<div>";
 					//var a = vo.class_thumb;
-					//console.log(a);
+					
 					tag += "<div><a href='#'><img src='another/img/jisu/classimg4.png'/></a></div>"; 
 					tag += "<div>";
 					tag += "<a href='#'>"+vo.class_name+"</a>";
@@ -101,11 +101,11 @@ $(function(){
 			}
 		})
 	}
-	//장바구니 상품갯수 구해오는 함수
+	
 	function getBaCount(){
 		var dUrl = "/another/BasketCount";
 		var dParam = {"logid":logid} 
-		$.ajax({// 회원아이디 가져감.....
+		$.ajax({
 			url:dUrl,
 			data :dParam,
 			success:function(d){
@@ -115,7 +115,6 @@ $(function(){
 		})
 				
 	}
-	
 	
 	//삭제 -> 선택상품삭제 	
 	$(document).on('click','#selectdel',function(){//delete

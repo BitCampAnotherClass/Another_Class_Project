@@ -20,7 +20,8 @@ public class UserHomeQnAController {
 	@Inject
 	UserHomeQnAService userHomeQnAService;
 	
-	//고객지원 - 홈페이지문의->리스트목록보기
+
+
 	@RequestMapping("/HomeQnAAsk/list")
 	public ModelAndView HomeQnAAskList(int no) {
 		
@@ -38,11 +39,12 @@ public class UserHomeQnAController {
 		return mav;
 	}
 	
+	//페이징수
 	@RequestMapping(value="/HomeQnAAsk/buttonCnt", method = RequestMethod.GET)
 	@ResponseBody
 	public int buttonList() {
 		int boardListNumber = userHomeQnAService.userHomeQnAboardLimit(); // 게시글 수 조회
-		int memberListLimit = 10; // 한페이지에 보여줄 페이지수
+		int memberListLimit = 10; // 한페이지에 보여줄 게시글수
 		int listCalcul = (int) Math.ceil((double)boardListNumber/memberListLimit);		
 		return listCalcul;
 	}
@@ -101,8 +103,7 @@ public class UserHomeQnAController {
 	
 	//글삭제 -> 컬럼값 업데이트....답글이잇다면 답글 컬럼값도 업데이트
 	@RequestMapping(value="/HomeQnAAsk/del",method=RequestMethod.POST)
-	public ModelAndView HomeQnAAskDel(int no , HttpSession session) {
-		
+	public ModelAndView HomeQnAAskDel(int no , HttpSession session) {		
 		String member_id = (String)session.getAttribute("userId"); //이부분은 삭세해도될거같은데
 		int result = userHomeQnAService.userHomeQnADel(no);
 		ModelAndView mav = new ModelAndView();
