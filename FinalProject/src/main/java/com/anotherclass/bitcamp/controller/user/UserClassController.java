@@ -27,12 +27,6 @@ public class UserClassController {
 		return "user/class/class_map";
 	}
 	
-	@RequestMapping(value = "/classList")
-	public String classList() {
-		return "user/class/class_list";
-	}
-
-	
 	// 지도 클래스 목록 가져오기
 	@RequestMapping(value = "/classMap/list", method = RequestMethod.GET)
 	@ResponseBody
@@ -43,9 +37,6 @@ public class UserClassController {
     	return classMapList;
 	}
 	
-//	public List<ClassVO> classList(){
-//		
-//	}
 
 	
 }
