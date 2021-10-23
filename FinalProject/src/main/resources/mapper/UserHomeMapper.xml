@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anotherclass.bitcamp.dao.user.UserHomeDAO">
+	<select id="popularCreator" resultType="com.anotherclass.bitcamp.register.RegisterVO">
+		<![CDATA[
+		select member_id, nick, member_img, like_cnt 
+		from (select m.member_id, nick, member_img, like_cnt 
+		from (select creator_id, count(*) like_cnt from creatorlike 
+		group by creator_id) cl 
+		join memberTbl m on cl.creator_id = m.member_id) cls 
+		where rownum <= 8 
+		order by like_cnt desc
+		]]>
+	</select>
+
+</mapper>
