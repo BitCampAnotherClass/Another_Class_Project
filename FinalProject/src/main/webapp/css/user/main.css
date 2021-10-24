@@ -241,12 +241,15 @@ textarea:-ms-input-placeholder {color:#aaa;}
 }
 
 .main-review-content{
+	height:212px;
 	padding:14px 16px 18px;
 	color:#f5f5f5;
 }
 
 .main-review-content .star{
 	position:relative;
+	top:0; left:0;
+	height:20px;
 	text-align:left;
 	font-size:16px;
 	letter-spacing:-2px;
@@ -256,14 +259,14 @@ textarea:-ms-input-placeholder {color:#aaa;}
 .back-star{
 	position:absolute;
 	top:0; left:0;
-	width:348px;
+	width:100px;
 	color:#ccc;
 }
 
 .front-star{
 	position:absolute;
 	top:0; left:0;
-	width:348px;
+	width:100px;
 	color:#FFB300;
 }
 

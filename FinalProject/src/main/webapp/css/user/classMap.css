@@ -285,10 +285,41 @@ html, body {
 .class-point{
 	position:absolute;
 	bottom:56px; right:0;
+	width:104px;
+	height:20px;
+	text-align:right;
 	font-size:13px;
-	color:orange;
-	font-weight:500;
+	color:#FFB300;
+	font-weight: 600;
 }
+
+.class-back-star{
+	position:absolute;
+	top:0; left:0px;
+	width:80px;
+	letter-spacing:-2px;
+	white-space:nowrap;
+	overflow:hidden;
+	text-align:left;
+	color:#d3d3d3;
+}
+
+.class-front-star{
+	position:absolute;
+	top:0; left:0px;
+	width:80px;
+	letter-spacing:-2px;
+	white-space:nowrap;
+	overflow:hidden;
+	text-align:left;
+	color:#FFB300;
+}
+
+.class-point i{
+	width:14px;
+	height:auto;
+}
+
 
 .class-like{
 	position:absolute;

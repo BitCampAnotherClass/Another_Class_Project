@@ -48,8 +48,7 @@ public class ClassDetailPageController {
 	
 	@RequestMapping("/classDetailLikeCount")
 	@ResponseBody
-	public UserClassDetailVO ajaxLikeChechk(int no, HttpSession  ses){
-		System.out.println("좋아요수컨트롤러들어옴");
+	public UserClassDetailVO ajaxLikeChechk(int no, HttpSession  ses){		
 		UserClassDetailVO vo2= classDetailPageService.classLikeCount(no); 		
 		String logid= (String)ses.getAttribute("userId");
 		if(logid == null) {//|| logid.length() == 0 //로그인x
