@@ -86,18 +86,7 @@
 			
 			<div class="class-list1">
 				<ul id="placesList">
-				<!-- 
-					<li>
-						<div class="class-list-thumb"><img src="<%=request.getContextPath()%>/img/jisu/classimg3.png"/></div>
-						<div class="class-list-info">
-							<div class="class-category">핸드메이드</div>
-							<div class="class-name">직접 만들고 선물하는 재미! 서진과 함께 뜨는 코바늘 수세미</div>
-							<div class="class-point">★★★★★ 4.3</div>
-							<div class="class-like">♥ 150</div>
-							<div class="class-addr">경기도 고양시 덕양구 오부자로150</div>
-							<div class="class-price">155,000원</div>
-						</div>
-					</li>-->
+					<!-- 클래스 목록 -->
 				</ul>
 				<div class="more" style="display:none;">
 					<button type="button">+ more</button>
@@ -105,15 +94,6 @@
 				<div class="no-result-txt" style="display:none;">
 					검색 결과가 없습니다.
 				</div>
-				<!-- <div class="paging">
-					<ul>
-						<li class="page-item"><a href="#">1</a></li>
-						<li class="page-item"><a href="#">2</a></li>
-						<li class="page-item"><a href="#">3</a></li>
-						<li class="page-item"><a href="#">4</a></li>
-						<li class="page-item"><a href="#">5</a></li>
-					</ul>
-				</div>-->
 			</div>
 		</section>
 		
