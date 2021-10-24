@@ -2,29 +2,29 @@
 
 <style>
 	
-	#hQnAD{width:1200px;height:auto;margin:0 auto}/*;*/
-	.hQnAT{width:100%;text-align:left;font-size:32px;font-weight: bold;color:#333;margin-top:20px;}/*margin:40px 0 40px 0;*/
+	#cQnAD{width:1200px;height:auto;margin:0 auto}/*;*/
+	.cQnAT{width:100%;text-align:left;font-size:32px;font-weight: bold;color:#333;margin-top:20px;}/*margin:40px 0 40px 0;*/
 	
 	/*리스트*/
 
-	#hQnWrite{width:100%;margin:0 auto;}
-	#hQnAList{width:100%;height:auto;margin:0 auto;overflow:auto;}
-	#hQnAListUl{width:100%;text-align:center;height:auto;overflow:auto;}
+	#cQnWrite{width:100%;margin:0 auto;}
+	#cQnAList{width:100%;height:auto;margin:0 auto;overflow:auto;}
+	#cQnAListUl{width:100%;text-align:center;height:auto;overflow:auto;}
 	
-	.hQnAListFli10,.hQnAListFli{float:left;width:10%;height:60px;line-height:60px;border-bottom:1px solid #ddd;}
-	.hQnAListFli1,.hQnAListFli101{width:10%} /*클래스번호 넣을거면 7로변경*/
-	.hQnAListFli2,.hQnAListFli102{width:56%;white-space:nowrap;overflow:hidden;text-overflow: ellipsis;text-align:left;}
-	.hQnAListFli4,.hQnAListFli104{width:14%}/*클래스번호 넣을거면 14로변경*/
+	.cQnAListFli10,.cQnAListFli{float:left;width:10%;height:60px;line-height:60px;border-bottom:1px solid #ddd;}
+	.cQnAListFli1,.cQnAListFli101{width:10%} /*클래스번호 넣을거면 7로변경*/
+	.cQnAListFli2,.cQnAListFli102{width:56%;white-space:nowrap;overflow:hidden;text-overflow: ellipsis;text-align:left;}
+	.cQnAListFli4,.cQnAListFli104{width:14%}/*클래스번호 넣을거면 14로변경*/
 	
-	.hQnAListFli{border-bottom:1px solid black;margin-top:10px;background-color:#f0f0f0;font-weight:bold;font-size:1.1rem;} /*리스트타이틀*/	
+	.cQnAListFli{border-bottom:1px solid black;margin-top:10px;background-color:#f0f0f0;font-weight:bold;font-size:1.1rem;} /*리스트타이틀*/	
 
-	#hQnWrite{height:auto;text-align:right;margin-bottom:15px;margin-top:10px;padding-right:7px;}/*글쓰기 버튼div*/
-	#hQnWritelab{padding:7px 15px 7px 15px;background-color:#464646;font-size:18px;}/*글쓰기 버튼div*/
+	#cQnWrite{height:auto;text-align:right;margin-bottom:15px;margin-top:10px;padding-right:7px;}/*글쓰기 버튼div*/
+	#cQnWritelab{padding:7px 15px 7px 15px;background-color:#464646;font-size:18px;}/*글쓰기 버튼div*/
 
 	.replySubject{text-align:left;}	
 	
-	.hQnAList-button>a:hover{color:ff385c;}
-	.hQnAList-button>a:active{color:ff385c;}
+	.cQnAList-button>a:hover{color:ff385c;}
+	.cQnAList-button>a:active{color:ff385c;}
 	
 	
 	.paging{display:flex;justify-content:center;margin:30px 0;font-size:1.2em;}
@@ -43,40 +43,41 @@
 <!-- class_qna_no, class_no, classQna_member_id, classqna_content, to_char(a.classqna_writedate,'YY-MM-DD') classqna_writedate, class_name -->
 	
 	
-	<div id="hQnAD">
-	<div class="hQnAT">클래스문의</div> <!-- 페이지 타이틀 -->
-	<!-- <div id="hQnWrite"><label id="hQnWritelab"><a href="<%=request.getContextPath()%>/HomeQnAAsk/write" style="color:white;">문의하기</a></label></div> <!-- 글쓰기버튼 -->
+	<div id="cQnAD">
+	<div class="cQnAT">클래스문의</div> <!-- 페이지 타이틀 -->
 	
-	<div id="hQnWrite"><!-- 검색 -->
-		<div>         
-            <input type="text" id="searchKeyword" name="searchKeyword" placeholder="검색어를 입력해 주세요."/><button id="searchIcon"><i class="fas fa-search"></i></button>         
-         </div>	
-		<label id="hQnWritelab" style="color:white;">검색</label>
+	<div id="cQnWrite"><!-- 검색 -->
+		<form method="post" action="another/creator/classAskManage" id="listform">
+			<div>         
+	            <input type="text" id="searchWord" name="searchWord" placeholder="검색어를 입력해 주세요."/><button id="searchIcon"><i class="fas fa-search"></i></button>         
+	         </div>	
+			<button id="cQnWritelab" style="color:white;">검색</button>
+		</form> 
 	</div> 
 	
-	<div id="hQnAList"> <!-- 게시판리스트 -->
-		<ul id="hQnAListUl">
-			<li  class="hQnAListFli hQnAListFli1">No.</li>
+	<div id="cQnAList"> <!-- 게시판리스트 -->
+		<ul id="cQnAListUl">
+			<li  class="cQnAListFli cQnAListFli1">No.</li>
 			<!-- <li  class="hQnAListFli hQnAListFli1">클래스번호</li> -->
-			<li  class="hQnAListFli hQnAListFli2" style="text-align:center">클래스명</li>
-			<li  class="hQnAListFli hQnAListFli3">작성자</li>
-			<li  class="hQnAListFli hQnAListFli4">작성일자</li>
-			<li  class="hQnAListFli hQnAListFli5">답변여부</li>
+			<li  class="cQnAListFli cQnAListFli2" style="text-align:center">클래스명</li>
+			<li  class="cQnAListFli cQnAListFli3">작성자</li>
+			<li  class="cQnAListFli cQnAListFli4">작성일자</li>
+			<li  class="cQnAListFli cQnAListFli5">답변여부</li>
 		
 		<c:forEach var="vo" items="${list }">	
 		
 			<!-- 글번호 -->
 			
-			<li class="hQnAListFli10 hQnAListFli101">${vo.class_qna_no}</li>			
+			<li class="cQnAListFli10 cQnAListFli101">${vo.class_qna_no}</li>			
 			<!-- <li class="hQnAListFli10 hQnAListFli101">${vo.class_no}</li> -->
-			<li class="hQnAListFli10 hQnAListFli102" style='text-align:center;'><a href="<%=request.getContextPath()%>/HomeQnAAsk/view">${vo.class_name}</a><input type="hidden" value="${vo.class_no}"></li>
+			<li class="cQnAListFli10 cQnAListFli102" style='text-align:center;'><a href="<%=request.getContextPath()%>/creator/classAskManage2?no=${vo.class_qna_no}&nowPage=${pVo.nowPage}">${vo.class_name}</a><input type="hidden" value="${vo.class_no}"></li>
 	
 		
-			<li class="hQnAListFli10 hQnAListFli103">${vo.classqna_member_id }</li>
-			<li class="hQnAListFli10 hQnAListFli104">${vo.classqna_writedate}</li>
+			<li class="cQnAListFli10 cQnAListFli103">${vo.classqna_member_id }</li>
+			<li class="cQnAListFli10 cQnAListFli104">${vo.classqna_writedate}</li>
 			
 			
-			<li class="hQnAListFli10 hQnAListFli105">답변완료</li>
+			<li class="cQnAListFli10 cQnAListFli105">답변완료</li>
 		
 		
 			
@@ -89,7 +90,7 @@
 		<!-- 페이징 -->
 		<ul class="paging">
          <c:if test="${pVo.nowPage>1}">
-            <li><a href="creator/classAsk/creator_ClassQna_list?nowPage=${pVo.nowPage-1}<c:if test='${searchWord != null}'>&searchWord=${pVo.searchKeyword}</c:if>" class="fas fa-angle-left">Prev</a>
+            <li><a href="<%=request.getContextPath()%>creator/classAskManage?nowPage=${pVo.nowPage-1}<c:if test='${searchWord != null}'>&searchWord=${pVo.searchKeyword}</c:if>" class="fas fa-angle-left">Prev</a>
          </c:if>
          <c:if test="${pVo.nowPage==1}">
       		<li class='page-item'><a href="#" class='page-link'>Prev</a></li>
@@ -106,12 +107,12 @@
             <c:if test="${i!=pVo.nowPage }">
                <li>
             </c:if>
-            <a href="creator/classAsk/creator_ClassQna_list?nowPage=${i}<c:if test='${searchWord != null}'>&searchWord=${pVo.searchWord}</c:if>">${i}</a>
+            <a href="<%=request.getContextPath()%>creator/classAskManage=${i}<c:if test='${searchWord != null}'>&searchWord=${pVo.searchWord}</c:if>">${i}</a>
          </c:if>
          
          </c:forEach>
          <c:if test="${pVo.nowPage<pVo.totalPage}">
-            <li class='page-item'><a href="creator/classAsk/creator_ClassQna_list?nowPage=${pVo.nowPage+1 }<c:if test='${searchWord != null}'>&searchWord=${pVo.searchWord}</c:if>" class="fas fa-angle-right">Next</a></li>
+            <li class='page-item'><a href="<%=request.getContextPath()%>creator/classAskManage=${pVo.nowPage+1 }<c:if test='${searchWord != null}'>&searchWord=${pVo.searchWord}</c:if>" class="fas fa-angle-right">Next</a></li>
          </c:if>   
       </ul>
 
