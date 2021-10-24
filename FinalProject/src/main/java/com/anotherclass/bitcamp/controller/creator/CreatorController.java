@@ -144,7 +144,7 @@ public class CreatorController {
 	}
 	@RequestMapping(value="makeClass/ajaxList")
 	@ResponseBody
-	public List<CreatorClassCategoryVO> ajaxList(CreatorClassCategoryVO vo, int no) {
+	public List<CreatorClassCategoryVO> ajaxList(int no) {
 		List<CreatorClassCategoryVO> result = makeClassApplyService.makeClassCategoryS(no);
 		
 		System.out.println("카테고리 디비");

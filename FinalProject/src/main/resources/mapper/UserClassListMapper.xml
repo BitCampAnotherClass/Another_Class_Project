@@ -5,8 +5,28 @@
   <mapper namespace="com.anotherclass.bitcamp.dao.user.ClassListDAO">
 	<select id="ClassList" resultType="com.anotherclass.bitcamp.vo.user.ClassListVO">
 		<![CDATA[
-		select class_no, class_name, class_price, class_thumb, class_addr1, category_no, class_tag, class_content
-		 from classTbl
+		 select a.class_no, a.class_name, a.class_price, a.class_thumb, a.class_addr1, a.category_no, a.class_tag, a.class_content, b.category_name
+		 from classTbl a, category b
+         where a.category_no = b.category_no
 		]]>
 	</select>
+	<select id="sortByPrice" resultType="com.anotherclass.bitcamp.vo.user.ClassListVO">
+		<![CDATA[
+		  select a.class_no, a.class_name, a.class_price, a.class_thumb, a.class_addr1,a.class_tag, a.class_content, to_char(b.start_date,'yyyy-MM-DD') start_date, c.category_name
+          from classtbl a, classoption b, category c
+          where a.class_no = b.class_no
+          and a.category_no = c.category_no
+          order by class_price asc
+		]]>
+	</select>
+	<select id="sortByApplyDate" resultType="com.anotherclass.bitcamp.vo.user.ClassListVO">
+		<![CDATA[
+		  select a.class_no, a.class_name, a.class_price, a.class_thumb, a.class_addr1,a.class_tag, a.class_content, to_char(b.start_date,'yyyy-MM-DD') start_date, c.category_name
+          from classtbl a, classoption b, category c
+          where a.class_no = b.class_no
+          and a.category_no = c.category_no
+          order by start_date asc
+		]]>
+	</select>
+	
 </mapper>
