@@ -23,10 +23,12 @@
 	<div class="menutitle">
 		<span>후기</span><span>623</span>
 	</div>
-	
+	<!-- 
 	<div class="review-chart">
 		
 	</div>
+	 -->
+	
 	<div class="review-wrap">
 		<div class="review-top">
 			베스트순 | 최신순 | 사진리뷰 | 별점

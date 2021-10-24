@@ -104,13 +104,14 @@ textarea{
 	width:auto;
 	max-height:125px;
 	margin-left:10px;
+	
 	font-size:14px;
 	color:#666;
 	line-height:1.5;
 	white-space: normal;
 	overflow:hidden;
 	text-overflow:ellipsis;
-	
+
 	word-break: break-all;
 	word-wrap: break-word;
 	display: -webkit-box; 
@@ -120,6 +121,16 @@ textarea{
 
 .more-btn{
 	margin-left:150px;
+}
+
+.more-btn > input{
+	font-size:14px;
+	font-weight:500;
+	color:#aaa;
+	text-decoration: underline;
+	border:none;
+	background-color:#fff;
+	cursor:pointer;
 }
 
 
@@ -274,8 +285,33 @@ span.user-review-info{
 
 .my-review-content .review-info .star{
 	margin-top:10px;
-	font-size:18px;
-	letter-spacing:-2px;
+	position:relative;
+	top:0; left:0;
+	width:95px;
+	height:20px;
+	text-align:left;
+	font-size:16px;
+	letter-spacing:-3px;
+}
+
+.my-review-content .review-info .star .back-star{
+	position:absolute;
+	top:0; left:0;
+	width:95px;
+	white-space:nowrap;
+	overflow:hidden;
+	text-align:left;
+	color:#d3d3d3;
+}
+
+.my-review-content .review-info .star .front-star{
+	position:absolute;
+	top:0; left:0;
+	width:95px;
+	white-space:nowrap;
+	overflow:hidden;
+	text-align:left;
+	color:#FFB300;;
 }
 
 .my-review-content .review-content{
@@ -307,7 +343,7 @@ span.user-review-info{
 
 .review-modal-wrap{
 	position:relative;
-	width:670px;
+	width:650px;
 	margin:50px auto;
 	background-color:#fff;
 	border-radius: 15px;
@@ -351,12 +387,16 @@ span.user-review-info{
 .review-class{
 	display:flex;
 	justify-content: flex-start;
+	align-items: center;
+	height:110px;
 }
 
 .review-class-img{
 	width:110px;
 	height:110px;
 	background-color:#eee;
+	border-radius: 5px;
+	overflow:hidden;
 }
 
 .review-class-img > img{
@@ -370,15 +410,31 @@ span.user-review-info{
 	padding-left:20px;
 }
 
+.review-class-info > .class-name{
+	font-size:15px;
+	color:#333;
+}
+
+.review-class-info > .class-creator{
+	font-size:14px;
+	color:#999;
+}
+
+.review-class-info > .class-price{
+	font-weight:600;
+	margin-top:10px;
+}
+
+
 .star-point{
 	font-size:54px;
 	text-align:center;
-	color:#FFB300;
 	letter-spacing:-3px;
 }
 
-.fa-star{
+.star-point .fa-star{
 	cursor:pointer;
+	color:#d3d3d3;
 }
 
 
@@ -410,19 +466,53 @@ span.user-review-info{
 	outline: none;
 	border:1px solid #ddd;
 	padding:10px 10px;
+	border-radius: 6px;
 }
 
 
-.file-wrap{
-	width:100px;
-	height:100px;
-	border:1px solid #ccc;
+.file-view{
+	display:none;
+	position:relative;
+	top:0; left:0;
+	height:200px;
+	background-color:#eee;
+	border-radius: 6px;
+	margin-bottom:10px;
+	overflow:hidden;
+	text-align: center;
 }
 
-#review-file{
-	width:100%;
+.file-view > img{
+	width: auto;
+	max-width:100%;
 	height:100%;
-	opacity: 0;
+}
+
+.upload-delete{
+	position:absolute;
+	top:12px; right:12px;
+	width:70px;
+	line-height:33px;
+	border-radius: 4px;
+	border:none;
+	background-color:#ff385c;
+	color:#fff;
+	font-size:15px;
+	font-weight: 400;
+	cursor:pointer;
+}
+
+.upload-btn{
+	width:100%;
+	height:50px;
+	line-height:50px;
+	border-radius: 6px;
+	border:1px solid #ff385c;
+	background-color:#fff;
+	color:#ff385c;
+	font-size:16px;
+	font-weight: 500;
+	cursor:pointer;
 }
 
 
@@ -435,20 +525,28 @@ span.user-review-info{
 .review-btn{
 	width:49.5%;
 	line-height:50px;
-	border:1px solid #FF385C;
 	border-radius:6px;
+	border:none;
 	font-size:16px;
 	cursor:pointer;
 }
 
 #review-cancel-btn{
-	background-color:#fff;
-	color:#FF385C;
+	background-color:#bbb;
+	color:#fff;
+}
+
+#review-cancel-btn:hover{
+	background-color:#aaa;
 }
 
 #review-ok-btn{
 	background-color:#FF385C;
 	color:#fff;	
+}
+
+#review-ok-btn:hover{
+	background-color:#EC284C;
 }
 
 

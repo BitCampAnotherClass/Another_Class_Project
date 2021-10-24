@@ -65,18 +65,6 @@ public class UserController {
 	
 	// 임시 맵핑 --------------------------
 	
-	@RequestMapping(value = "/mypage/review")
-	public String mypageReview() {
-		return "/user/mypage/myPage_review";
-	}
-	
-	@RequestMapping(value = "/classReview")
-	public String classReview() {
-		return "/user/classDetailPage/test";
-	}
-
-	
-	
 	
 	
 //	@RequestMapping(value = "/classMainPage")

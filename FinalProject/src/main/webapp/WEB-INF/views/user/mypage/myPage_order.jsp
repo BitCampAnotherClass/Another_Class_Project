@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 
-
+<link href="<%=request.getContextPath()%>/css/user/review.css" rel="stylesheet" type="text/css"/>
 <style>
 	body{box-sizing:content;}
 	  
@@ -95,7 +95,7 @@ $(function(){
 	    				tag +="</div>";
 	    				tag +="<div>";
 	    				tag +="<div>";
-	    				tag +="<a href='#'><span>후기작성</span></a><input type='hidden' vlaue='"+vo2.order_no+"'></a>";
+	    				tag +="<a href='javascript:void(0);' class='write-review-btn'><span>후기작성</span></a><input type='hidden' value='"+vo2.order_no+"'></a>";
 	    				tag +="</div>";
 	    				tag +="</div>";
 	    				tag +="</li>";
@@ -203,3 +203,5 @@ $(function(){
 	</div>
 
 <%@ include file="myPageBottom.jspf" %>
+
+<%@ include file="review_write.jspf" %>
