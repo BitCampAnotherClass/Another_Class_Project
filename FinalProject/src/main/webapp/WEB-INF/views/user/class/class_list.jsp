@@ -349,7 +349,7 @@ input[type=submit]:hover{
 				<ul>
 					<li><div>${vo.category_name }</div></li>
 					<li>${vo.class_name }</li>
-					<li>${vo.class_addr1 }</li>
+					<li>${vo.class_tag }</li>
 					<li>${vo.class_price }원</li>
 					<li>${vo.class_no }</li> <!-- 클래스 넘버 숨겨둠 -->
 				</ul>
