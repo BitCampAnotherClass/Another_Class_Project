@@ -246,11 +246,25 @@ textarea:-ms-input-placeholder {color:#aaa;}
 }
 
 .main-review-content .star{
+	position:relative;
 	text-align:left;
-	color:#ff385c;
 	font-size:16px;
 	letter-spacing:-2px;
 	margin-bottom:12px;
+}
+
+.back-star{
+	position:absolute;
+	top:0; left:0;
+	width:348px;
+	color:#ccc;
+}
+
+.front-star{
+	position:absolute;
+	top:0; left:0;
+	width:348px;
+	color:#FFB300;
 }
 
 .main-review-text{
