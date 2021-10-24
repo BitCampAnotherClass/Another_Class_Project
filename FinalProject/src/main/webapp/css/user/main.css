@@ -252,22 +252,28 @@ textarea:-ms-input-placeholder {color:#aaa;}
 	height:20px;
 	text-align:left;
 	font-size:16px;
-	letter-spacing:-2px;
+	letter-spacing:-3px;
 	margin-bottom:12px;
 }
 
 .back-star{
 	position:absolute;
 	top:0; left:0;
-	width:100px;
-	color:#ccc;
+	width:95px;
+	white-space:nowrap;
+	overflow:hidden;
+	text-align:left;
+	color:#d3d3d3;
 }
 
 .front-star{
 	position:absolute;
 	top:0; left:0;
-	width:100px;
-	color:#FFB300;
+	width:95px;
+	white-space:nowrap;
+	overflow:hidden;
+	text-align:left;
+	color:#FFB300;;
 }
 
 .main-review-text{

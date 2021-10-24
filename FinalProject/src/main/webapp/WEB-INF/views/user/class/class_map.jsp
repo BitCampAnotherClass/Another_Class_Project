@@ -154,6 +154,7 @@ $(document).ready(function(){
 		}
 		if(cate_name == '전체 카테고리'){
 			cate_name = '';
+			cateL_name= '';
 		} else {
 			if(cate_name.indexOf('전체')!= -1){ // 중분류 전체 선택 시
 				cateL_name = cate_name.replace(' 전체', ''); // 대분류명만 저장

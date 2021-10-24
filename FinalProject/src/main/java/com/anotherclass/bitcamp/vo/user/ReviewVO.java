@@ -14,6 +14,7 @@ public class ReviewVO {
 	private int class_option_no;
 	
 	private int class_no;
+	private String member_img;
 	
 	
 	
@@ -82,6 +83,12 @@ public class ReviewVO {
 	}
 	public void setClass_no(int class_no) {
 		this.class_no = class_no;
+	}
+	public String getMember_img() {
+		return member_img;
+	}
+	public void setMember_img(String member_img) {
+		this.member_img = member_img;
 	}
 
 }
