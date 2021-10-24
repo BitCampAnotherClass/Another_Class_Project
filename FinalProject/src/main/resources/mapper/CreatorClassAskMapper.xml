@@ -20,7 +20,9 @@
 				(select a.class_qna_no, a.class_no, a.classqna_member_id, a.classqna_content, to_char(a.classqna_writedate,'YY-MM-DD') classqna_writedate, b.class_name
 				from classqna a  , classtbl b
 				where a.class_no = b.class_no
-				and b.class_name like  '%${searchWord}%'                 
+				<if test='searchWord !=null'>
+				and b.class_name LIKE ('%${searchWord}%')   
+				</if>               
 				order by a.class_qna_no desc)
 			where rownum<![CDATA[<=]]>#{nowPage}*#{pageRecord} order by class_qna_no asc)
 		where rownum<![CDATA[<=]]>#{pageRecord} order by class_qna_no desc 	

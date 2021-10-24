@@ -3,7 +3,7 @@ package com.anotherclass.bitcamp.vo.creator;
 public class CreatorCAskPagingVO {
 	private int nowPage=1;
 	   private int totalPage;
-	   private int pageRecord=15;
+	   private int pageRecord=10;
 	   private int onePageNumCount=5;
 	   private int startPage=1;
 	   private int totalRecord;

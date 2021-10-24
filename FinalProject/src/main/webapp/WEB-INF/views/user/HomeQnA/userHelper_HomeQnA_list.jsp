@@ -23,28 +23,7 @@
 	
 	/*답변
 	.replyNo,.replysort{visibility:hidden;} */
-	.replySubject{text-align:left;}
-	
-	/*리스트
-
-	#hQnWrite{width:100%;margin:0 auto;}
-	#hQnAList{width:100%;height:auto;margin:0 auto;overflow:auto;}
-	#hQnAListUl{width:100%;text-align:center;height:auto;overflow:auto;}
-	
-	#hQnAListUl>li{float:left;width:10%;height:60px;line-height:60px;border-bottom:1px solid #ddd;}
-	#hQnAListUl>li:nth-child(5n+1){width:10%}
-	#hQnAListUl>li:nth-child(5n+2){width:56%;white-space:nowrap;overflow:hidden;text-overflow: ellipsis;text-align:left;}
-	#hQnAListUl>li:nth-child(5n+4){width:14%}
-	
-	.hQnAListFli{border-bottom:1px solid black;margin-top:10px;background-color:#f0f0f0;font-weight:bold;font-size:1.1rem;} /*리스트타이틀*/	
-/*
-	#hQnWrite{height:auto;text-align:right;margin-bottom:15px;margin-top:10px;padding-right:7px;}/*글쓰기 버튼div*/
-/*	#hQnWritelab{padding:7px 15px 7px 15px;background-color:#464646;font-size:18px;}/*글쓰기 버튼div*/
-	
-	/*답변
-	
-	.replySubject{text-align:left;}*/
-	
+	.replySubject{text-align:left;}	
 	
 	.hQnAList-button>a:hover{color:ff385c;}
 	.hQnAList-button>a:active{color:ff385c;}
