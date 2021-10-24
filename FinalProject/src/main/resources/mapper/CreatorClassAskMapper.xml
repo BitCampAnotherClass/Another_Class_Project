@@ -4,25 +4,26 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.anotherclass.bitcamp.dao.creator.CreatorClassAskDAO">
 	<select id="totalRecordCount" resultType="int" >
-		<![CDATA[
-		 select count(class_qna_no) 
-		 from classqna ,classtbl
-		 where classqna.class_no = classtbl.class_no
-		<if test="#{searchkey}!= null and #{searchWord}!= null">
-           and ${searchkey} like ('%${searchWord}%') 
+
+		  select count(a.class_qna_no) cnt
+		 from classqna a ,classtbl b
+		 where a.class_no <![CDATA[=]]> b.class_no        
+		<if test='searchWord !=null'>
+           and b.class_name LIKE ('%${searchWord}%')  
         </if>
-		]]>	
+		
 	</select>
-	<select id="boardPageSelect" resultType="com.anotherclass.bitcamp.vo.creator.CreatorCAskVO">
+	
+	<select id="boardPageSelect" resultType="com.anotherclass.bitcamp.vo.creator.CreatorCAskVO" >
 		select * from  
 			(select * from  
-				(select a.class_qna_no, a.class_no, a.classQna_member_id, a.classqna_content, to_char(a.classqna_writedate,'YY-MM-DD') classqna_writedate, b.class_name
+				(select a.class_qna_no, a.class_no, a.classqna_member_id, a.classqna_content, to_char(a.classqna_writedate,'YY-MM-DD') classqna_writedate, b.class_name
 				from classqna a  , classtbl b
 				where a.class_no = b.class_no
-				and #{searchkey} like  '%${searchKeyword}%'                 
+				and b.class_name like  '%${searchWord}%'                 
 				order by a.class_qna_no desc)
-			where rownum<![CDATA[<=]]>#{nowPage}*#{pageRecord} order by no asc)
-		where rownum<![CDATA[<=]]>#{pageRecord} order by no desc 	
+			where rownum<![CDATA[<=]]>#{nowPage}*#{pageRecord} order by class_qna_no asc)
+		where rownum<![CDATA[<=]]>#{pageRecord} order by class_qna_no desc 	
 	</select>
 
   

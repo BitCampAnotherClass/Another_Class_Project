@@ -54,8 +54,12 @@ public class CreatorCAskVO {
 	
 	/*카테고리테이블*/
 	private String category_name;
+	
+
+	
 
 
+	
 	public String getClass_name() {
 		return class_name;
 	}
