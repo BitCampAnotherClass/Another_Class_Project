@@ -1,0 +1,76 @@
+package com.anotherclass.bitcamp.vo.user;
+
+public class ClassListVO {
+	private int class_no;
+	private String class_name;
+	private String class_addr1;
+	private int class_price;
+	private String class_thumb;
+	private String class_tag;
+	private String class_content;
+	private int class_min_price;
+	private int class_max_price;
+	private int category_no;
+	
+	public int getCategory_no() {
+		return category_no;
+	}
+	public void setCategory_no(int category_no) {
+		this.category_no = category_no;
+	}
+	public String getClass_content() {
+		return class_content;
+	}
+	public void setClass_content(String class_content) {
+		this.class_content = class_content;
+	}
+	public int getClass_min_price() {
+		return class_min_price;
+	}
+	public void setClass_min_price(int class_min_price) {
+		this.class_min_price = class_min_price;
+	}
+	public int getClass_max_price() {
+		return class_max_price;
+	}
+	public void setClass_max_price(int class_max_price) {
+		this.class_max_price = class_max_price;
+	}
+	public int getClass_no() {
+		return class_no;
+	}
+	public void setClass_no(int class_no) {
+		this.class_no = class_no;
+	}
+	public String getClass_name() {
+		return class_name;
+	}
+	public void setClass_name(String class_name) {
+		this.class_name = class_name;
+	}
+	public String getClass_addr1() {
+		return class_addr1;
+	}
+	public void setClass_addr1(String class_addr1) {
+		this.class_addr1 = class_addr1;
+	}
+	public int getClass_price() {
+		return class_price;
+	}
+	public void setClass_price(int class_price) {
+		this.class_price = class_price;
+	}
+	public String getClass_thumb() {
+		return class_thumb;
+	}
+	public void setClass_thumb(String class_thumb) {
+		this.class_thumb = class_thumb;
+	}
+	public String getClass_tag() {
+		return class_tag;
+	}
+	public void setClass_tag(String class_tag) {
+		this.class_tag = class_tag;
+	}
+	
+}

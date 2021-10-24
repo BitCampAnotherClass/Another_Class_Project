@@ -74,7 +74,7 @@ textarea{
 }
 
 .review-info .star{
-	color:#FFC400;
+	color:#FFB300;
 }
 
 
@@ -311,7 +311,7 @@ textarea{
 .star-point{
 	font-size:54px;
 	text-align:center;
-	color:#FFC400;
+	color:#FFB300;
 	letter-spacing:-3px;
 }
 
@@ -410,18 +410,38 @@ textarea{
 }
 
 .review-paging > ul > li{
-	margin-left:10px;
+	margin-left:5px;
 }
 
 .review-paging > ul > li:first-child{
 	margin-left:0px;
 }
 
+.page-num > a {
+	display:block;
+	width:26px;
+	height:26px;
+	line-height:26px;
+	border-radius: 5px;
+	text-align: center;
+	font-weight: 600;
+	color:#333;
+}
 
+.page-num.active > a{
+	background-color:#ff385c;
+	color:#fff;
+}
 
+#prev-page > a, #next-page > a{
+	border:1px solid #ddd;
+	background-color:#fff;
+}
 
-
-
+#prev-page > a:hover, #next-page > a:hover {
+	color:#333;
+	opacity: 0.6;
+}
 
 
 

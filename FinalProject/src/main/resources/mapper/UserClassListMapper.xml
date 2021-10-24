@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.anotherclass.bitcamp.dao.user.ClassListDAO">
+	<select id="ClassList" resultType="com.anotherclass.bitcamp.vo.user.ClassListVO">
+		<![CDATA[
+		select class_no, class_name, class_price, class_thumb, class_addr1, category_no, class_tag, class_content
+		 from classTbl
+		]]>
+	</select>
+</mapper>
