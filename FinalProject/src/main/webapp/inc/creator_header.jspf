@@ -219,7 +219,7 @@
 	         </li>
 	         <li class="menu_title"><a href="#">클래스 문의/후기</a>
 	            <ul>
-	               <li><a href="#" class="small-menu">클래스문의관리</a></li>
+	               <li><a href="<%=request.getContextPath()%>/creator/classAskManage" class="small-menu">클래스문의관리</a></li>
 	               <li><a href="#" class="small-menu">클래스후기관리</a></li>
 	            </ul>
 	         </li>
