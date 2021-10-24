@@ -17,5 +17,13 @@ public class ClassListPageServiceImp implements ClassListPageService {
 	public List<ClassListVO> ClassList() {
 		return classListDao.ClassList();
 	}
+	@Override
+	public List<ClassListVO> sortByPrice(ClassListVO vo) {
+		return classListDao.sortByPrice(vo);
+	}
+	@Override
+	public List<ClassListVO> sortByApplyDate(ClassListVO vo) {
+		return classListDao.sortByApplyDate(vo);
+	}
 
 }
