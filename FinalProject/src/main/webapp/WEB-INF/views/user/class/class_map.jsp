@@ -122,7 +122,6 @@
 
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=033542c9317694f8d1bb2f13c3b67a2a&libraries=services"></script>
-
 <script>
 
 // 금액 숫자 3자리 단위마다 콤마(,) 찍기
@@ -221,7 +220,6 @@ $(document).ready(function(){
 					addr_arr[idx] = r[idx].class_addr1;
 					classImg_arr[idx] = r[idx].class_thumb;
 
-					
 					if( idx <= (listCnt-1) ){ // 처음 보여줄 클래스 목록
 						tag = '<li>';
 						tag += '<div class="class-list-thumb"><img src="' + r[idx].class_thumb + '"/></div>';
@@ -229,15 +227,35 @@ $(document).ready(function(){
 						tag += '<div class="class-category">' + r[idx].cateL_name + ' > ' + r[idx].category_name + '</div>';
 						tag += '<div class="class-name">' + r[idx].class_name + '</div>';
 						tag += '<div class="class-creator">' + r[idx].nick + '</div>';
-						tag += '<div class="class-point">★★★★★ ' + r[idx].star_avg + '</div>';
+						tag += '<div class="class-point">';
+						tag += `<div class="class-back-star">
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+								</div>
+								<div class="class-front-star" style="width:` + (r[idx].star_avg/5) * 80 + `px">
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+								</div>`;
+						tag += r[idx].star_avg.toFixed(1) + '</div>';
 						tag += '<div class="class-like">♥ ' + r[idx].like_cnt + '</div>';
 						tag += '<div class="class-addr">' + r[idx].class_addr1 + '</div>';
 						tag += '<div class="class-price">' + numberWithCommas(r[idx].class_price) + '원</div>';
 						tag += '</div>';
 						tag += '</li>';	
-						$('#placesList').append(tag);
-						$('.no-result-txt').hide();
-						$('.more').show();
+						$('#placesList').append(tag); // 목록 추가
+						//if(r[idx].star_avg>0){ // 별점 비율 바꾸기
+						//	$('.class-front-star').css('width', ((r[idx].star_avg/5) * 80) + 'px');
+						//} else{
+						//	$('.class-front-star').css('width', '0px');
+						//}
+						$('.no-result-txt').hide(); // 결과 없음 내용 숨기기
+						$('.more').show(); // 더보기 버튼 보이기
 						if(idx >= r.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
 							$('.more').hide();
 						}
@@ -252,15 +270,35 @@ $(document).ready(function(){
 							tag += '<div class="class-category">' + r[idx].cateL_name + ' > ' + r[idx].category_name + '</div>';
 							tag += '<div class="class-name">' + r[idx].class_name + '</div>';
 							tag += '<div class="class-creator">' + r[idx].nick + '</div>';
-							tag += '<div class="class-point">★★★★★ ' + r[idx].star_avg + '</div>';
+							tag += '<div class="class-point">';
+							tag += `<div class="class-back-star">
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+									</div>
+									<div class="class-front-star" style="width:` + (r[idx].star_avg/5) * 80 + `px">
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+									</div>`;
+							tag += r[idx].star_avg.toFixed(1) + '</div>';
 							tag += '<div class="class-like">♥ ' + r[idx].like_cnt + '</div>';
 							tag += '<div class="class-addr">' + r[idx].class_addr1 + '</div>';
 							tag += '<div class="class-price">' + numberWithCommas(r[idx].class_price) + '원</div>';
 							tag += '</div>';
 							tag += '</li>';	
-							$('#placesList').append(tag);
-							$('.no-result-txt').hide();
-							$('.more').show();
+							//if(r[idx].star_avg>0){ // 별점 비율 바꾸기
+							//	$('.class-front-star').css('width', ((r[idx].star_avg/5) * 80) + 'px');
+							//} else{
+							//	$('.class-front-star').css('width', '0px');
+							//}
+							$('#placesList').append(tag); // 목록 추가
+							$('.no-result-txt').hide(); // 결과 없음 내용 숨기기
+							$('.more').show(); // 더보기 버튼 보이기
 							if(idx >= r.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
 								$('.more').hide();
 							}

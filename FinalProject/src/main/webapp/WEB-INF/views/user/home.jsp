@@ -365,7 +365,6 @@
 <!-- Swiper JS -->
 <script src="<%=request.getContextPath()%>/js/swiper.min.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 <script>
       var swiper = new Swiper(".mainSwiper", {
         slidesPerView: 1,
