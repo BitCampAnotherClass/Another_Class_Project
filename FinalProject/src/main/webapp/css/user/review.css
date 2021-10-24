@@ -123,40 +123,106 @@ textarea{
 }
 
 
-/* 댓글 */
+/**************** 댓글 ****************/
+
+.review-comment-list{
+	display:flex;
+	justify-content: flex-start;
+	flex-direction: column;
+	background-color:#fff;
+	padding:30px 40px 30px 40px;
+	border-radius: 5px;
+}
 
 .review-comment{
 	display:flex;
 	justify-content: flex-start;
-	flex-direction: column;
-	background-color:#f5f5f5;
-	margin-top:30px;
-	padding:20px 40px 20px 60px;
-	border-radius: 5px;
+	flex-direction:column;
 }
 
-.review-comment .comment-info {
-	width:100%;
+.comment-item{
 	display:flex;
 	justify-content: flex-start;
+	margin-bottom:20px;
 }
 
-.class-review-content .review-comment .user-img{
-	width:26px;
-	height:26px;
+.review-comment-list .comment-info {
+	width:30px;
+	margin-right:16px;
 }
 
-.class-review-content .review-comment .user-review-info {
-	width:100%;
-	display:flex;
-	justify-content: flex-start;
+.class-review-content .review-comment-list .user-img{
+	width:30px;
+	height:30px;
 }
 
-.comment-text{
+.class-review-content .review-comment-list .comment-text{
+	width:654px;
 	font-size:14px;
 	color:#666;
 }
 
+span.user-review-info{
+	display:inline-block;
+	margin-right:10px;
+	font-size:15px;
+	font-weight:700;
+	color:#444;
+}
+
+.review-comment-write{
+	display:flex;
+	justify-content: flex-start;
+	align-items: center;
+	width:700px;
+	margin-top:50px;
+	padding:0 40px 0 40px;
+}
+
+
+#reviewCommentFrm{
+	display:flex;
+	justify-content: flex-start;
+	align-items: center;
+	width:700px;
+}
+
+#review-reply{
+	width:590px;
+	min-height:50px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	padding:6px 10px;
+}
+
+#review-reply-btn{
+	width:50px;
+	height:36px;
+	margin-left:14px;
+	border: none;
+	background-color:#ff385c;
+	color:#fff;
+	border-radius: 5px;
+	cursor:pointer;
+}
+
+
+
+/*************** 대댓글 ***************/
+
+
+.comment-reply{
+	width:100%;
+	padding:20px 40px 0;
+	background-color:#f5f5f5;
+	border-radius: 7px;
+}
+
+.reply-text{
+	width:618px;
+	font-size:14px;
+	color:#666;
+}
 
 
 
@@ -174,15 +240,11 @@ textarea{
 }
 
 
-.class-review-content .user-review-info{
-	width:90px;
-}
-
 
 .class-review-content .review-info .star{
 	margin-top:10px;
 	font-size:18px;
-	letter-spacing:-2px;
+	letter-spacing:-3px;
 }
 
 .class-review-content .review-content, .class-review-content .comment-text{

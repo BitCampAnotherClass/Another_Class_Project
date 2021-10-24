@@ -15,5 +15,18 @@
 		where rownum <= 8
 		]]>
 	</select>
+	<select id="bestReview" resultType="com.anotherclass.bitcamp.vo.user.ReviewVO">
+		<![CDATA[
+		select review_no, order_no, content, img1, star, writedate, member_id, member_img
+		from (select review_no, r.order_no, content, img1, star, writedate, m.member_id, member_img
+		from reviewTbl r join orderTbl o
+		on r.order_no=o.order_no
+		join memberTbl m
+		on o.member_id=m.member_id
+		where img1 is not null
+		order by star desc) rTbl
+		where rownum <= 5
+		]]>
+	</select>
 
 </mapper>
