@@ -5,9 +5,11 @@
   <mapper namespace="com.anotherclass.bitcamp.dao.user.ClassListDAO">
 	<select id="ClassList" resultType="com.anotherclass.bitcamp.vo.user.ClassListVO">
 		<![CDATA[
-		 select a.class_no, a.class_name, a.class_price, a.class_thumb, a.class_addr1, a.category_no, a.class_tag, a.class_content, b.category_name
-		 from classTbl a, category b
+		 select a.class_no, a.class_name, a.class_price, a.class_thumb, a.class_addr1, a.category_no, a.class_tag, a.class_content, b.category_name, to_char(c.start_date,'yyyy-MM-DD') start_date
+		 from classTbl a, category b, classoption c
          where a.category_no = b.category_no
+         and a.class_no = c.class_no
+         order by a.class_writedate desc
 		]]>
 	</select>
 	<select id="sortByPrice" resultType="com.anotherclass.bitcamp.vo.user.ClassListVO">
