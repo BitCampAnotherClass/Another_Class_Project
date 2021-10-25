@@ -66,7 +66,7 @@
 	
 	#d5>div:nth-child(1)>span{display:inline-block;box-shadow:inset -11px #ff385c;}
 	#d5>div:nth-child(2){ white-space: pre-line;text-align:center;}/*클래스소개*/
-	#d5>div:nth-child(2) img{width:100%;height:100px;object-fit:fill;margin:20px 0 20px 0;}
+	#d5>div:nth-child(2) img{object-fit:fill;margin:20px 0 20px 0;}
 	
 	#d6>div:nth-child(2){white-space: pre-line}
 	#d6>div:nth-child(2)>img{max-width:100%;max-height:500px;margin:20px 0 20px 0;}
@@ -143,7 +143,7 @@
 	    
 	    }); 
 	    
-	    function LikeCount(){
+	    function LikeCount(){ //좋아요리스트 셋팅
 	    	console.log("좋아요수함수실행됨");
 	    	var lUrl ="/another/classDetailLikeCount";
 			var lParam ="no=${vo.class_no}";
@@ -151,45 +151,44 @@
 			$.ajax({
 				url : lUrl,
 				data : lParam,
-				success:function(t){//받아온 데이터를 r에 넣음
-	    			var tt = $(t)
-	    			console.log(tt);
-	    			tt.each(function(idx,vo){
-	    				
-	    				$("#likelikecount").html(vo.class_count);
-	    			
+				success:function(t){//받아온 데이터를 r에 넣음,,,
+	    			var tt = $(t)	    			
+	    			tt.each(function(idx,vo3){	    				
+	    				$("#likelikecount").html(vo3.class_count);	    				
+	    				if(vo3.class_like_check==0){
+	    					//빈하트 //likeimgbox2
+	    					$("#likeimgbox2").attr("src", "img/jisu/ff385bigborderheart.png");
+	    				}else if(vo3.class_like_check==1){
+	    					//꽉찬하트
+	    					$("#likeimgbox2").attr("src", "img/jisu/ff385bigcheart.png");
+	    				}	    			
 	    			});
-	    		}    		
-				
+	    		}			
 			})
-		}
-	    
-	  /*
-	  
-	  	⭐맨처음하트 +리스트  
-		-> 로그인 x -> 빈하트+ 갯수
-		-> 로그인 0 -> 좋아요있으면 빨강 없으면 빈하트 -> select()가져와서 프론트에서 해결 
-		 
-		⭐ 눌렀을때 
-		-> 로그인 x -> 알림창 or 로그인페이지 이동
-		
-		-> 로그인  0 -> 
-		     -> 좋아요o : 하트빈하트 + delete ->새로운리스트불러옴?
-		     -> 좋아요x : 빨강하트 + insert  ->새로운리스트불러옴
-		---------------------------------------------
-		문의글
-		
-		리스트 -> 글 다보이게
-		작성버튼클릭 ->
-			  
-	*/
-
-	   
-	LikeCount();
-	
-	   		
-	});
-	
+		}	    	    
+	    function like_func(){ //로그인상태 -> 좋아요 버튼 눌렀을때	    	
+	    	var hUrl ="/another/classDetailLikeFun";
+	    	var hParam ="no=${vo.class_no}";
+	    	$.ajax({
+	    		url : hUrl,
+				data : hParam,
+				success:function(){
+					LikeCount(); 
+				}
+	    	})	    	
+	    }	   	    
+	    function  login_need(){//로그인x상태 -> 좋아요 버튼 눌렀을때
+	    	alert("로그인 후 좋아요 가능합니다.");
+	    }	    	    
+	    $('#likeimgbox2').click(function(){
+	    	var logid = "${userId}";
+	    	console.log(logid);
+			if(logid=== null || logid=== ""){
+				alert("로그인후 좋아요 가능합니다");
+			}else{
+				like_func();
+			}	    	
+	    });
 
 </script>
 
@@ -200,15 +199,21 @@
 			<div id="d1"><img src="img/jisu/classimg.png"/></div> <!-- 클래스 이미지 -->
 			<div id="d2"> <!-- 클래스 소개 -->
 				<ul>
-					<li>${vo.category_name }</li> <!-- 위치?대분류? --> <!-- 왼쪽정렬 -->
-					<li>${vo.class_name }</li> <!-- 클래스 제목 -->
-					<li>${vo.class_info }</li> <!-- 짧은 소개글 *******************pre-wrap 아직 미설정-->
+					<li>${vo.community_tag }</li> <!-- 위치?대분류? --> <!-- 왼쪽정렬 -->
+					<li>${vo.img_con1 }</li> <!-- 짧은 소개글 *******************pre-wrap 아직 미설정-->
 				
 				</ul>
 			</div> 
 			
 			<div id="d5" class="menu"> <!-- 클래스소개 -->
-				<div class="menutitle"><span>내가 만든 예쁜 꽃다발</span></div>
+				<div class="menutitle"><span></span></div>
+						
+				<div id="d1"><img class= "subaa" src="img/jisu/flower2.png"/></div> 
+				<div>${vo.img_con2 }</div>		
+				<div id="d1"><img class= "subaa" src="img/jisu/flower4.png"/></div> 
+				<div>${vo.img_con3 }</div>
+				<div id="d1"><img class= "subaa" src="img/jisu/flower5.png"/></div> 
+				<div>${vo.img_con4 }</div>	
 			</div>
 
 			<div id="d9" class="menu"> <!-- 문의 -->
@@ -258,7 +263,7 @@
 					<form method="post" id="">
 						<div><textarea name="classMainAskTa" id="classMainAskTa" placeholder="자유롭게 작성해 주세요."></textarea></div>
 						<input type="button" id="" value="작성완료"/>
-						<input type="hidden" name="no" value="${vo.class_no }"/><!-- 클래스 번호 -->
+						<input type="hidden" name="no" value="${vo.community_no }"/><!-- 클래스 번호 -->
 					</form>
 				</div>
 			</div>
@@ -269,8 +274,8 @@
 				<div id="d3"> <!-- 강사프로필 + 강사명 -->
 				<div><img src="img/jisu/creatorprofile.png"/></div> <!-- 강사프로필이미지 -->	
 				<div> <!-- 강사닉네임 -->	
-					<a href="#">${vo.nick }</a>
-					<span>goguma 님</span>
+					<a href="#"></a>
+					<span>${vo.member_id } 님</span>
 					<li id="like">
 						
 						<div>

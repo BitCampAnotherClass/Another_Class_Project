@@ -8,17 +8,21 @@ public class CreatorCAskPagingVO {
 	   private int startPage=1;
 	   private int totalRecord;
 	   
-	   private int nowRecordMul = nowPage*pageRecord;
-	   
-
+	   private int nowRecordMul = nowPage*pageRecord;	   
 	   
 	   
-	   //占싯삼옙 
 	   private String searchWord;
 	      
 	   public String getSearchWord() {
 	      return searchWord;
 	   }
+	   
+	   
+	   
+	   public void setSearchWord(String searchWord) {
+		this.searchWord = searchWord;
+	   }
+
 	   public void setSearchKeyword(String searchKeyword) {
 	      this.searchWord = searchKeyword;
 	   }

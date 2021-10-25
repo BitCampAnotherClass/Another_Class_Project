@@ -69,9 +69,24 @@
 				
 				<li >
 					<div>답변</div><!-- hQnAWriteFileview -->
-					<div><textarea  id="cQnAWriteConviewReply" readonly disabled >${vo.content }</textarea></div>	
+					<div>
+						<textarea  id="cQnAWriteConviewReply" readonly disabled >${vo.content }</textarea>
+						<div style='text-align:right;width:90%;'>
+							<button style='background:#fff;border:none;border:1px solid #999;padding:3px 14px;margin:3px 7px 0 0;'>수정</button>	
+							<button style='background:#fff;border:none;border:1px solid #999;padding:3px 14px;margin-top:3px;'>삭제</button>								
+						</div>
+					</div>	
 				</li>
-				
+				<!-- 수정폼 -->
+				<li >
+					<div>답변</div><!-- hQnAWriteFileview -->
+					<div>
+						<textarea  id="cQnAWriteConviewReply" >${vo.content }</textarea>
+						<div style='text-align:right;width:90%;'>
+							<button style='background:#fff;border:none;border:1px solid #999;padding:3px 14px;margin-top:3px;'>수정완료</button>							
+						</div>
+					</div>	
+				</li>
 				
 				<!--  <li id="cQnAButview">				
 					<input type="button" name="cQnAWList" id="cQnAWList" value="목록"/>

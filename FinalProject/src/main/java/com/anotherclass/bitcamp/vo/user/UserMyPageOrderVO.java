@@ -31,7 +31,7 @@ public class UserMyPageOrderVO {
 	private String class_thumb;
 	private int class_price;
 	
-	
+	private int reviewChk;//후기유무
 	
 	public int getClass_price() {
 		return class_price;
@@ -170,6 +170,12 @@ public class UserMyPageOrderVO {
 	}
 	public void setRefund_date2(String refund_date2) {
 		this.refund_date2 = refund_date2;
+	}
+	public int getReviewChk() {
+		return reviewChk;
+	}
+	public void setReviewChk(int reviewChk) {
+		this.reviewChk = reviewChk;
 	}
 	
 	
