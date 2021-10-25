@@ -7,5 +7,6 @@ import com.anotherclass.bitcamp.vo.user.CommunityVO;
 
 public interface UserCommunityDAO {
 	public CommunityVO CommuDetailAllRecord(int community_no);
+	public List<CommunityVO> communityAllList(CommunityVO vo);
 }
 
