@@ -26,6 +26,42 @@ public class CreatorClassAskServiceImp implements CreatorClassAskService {
 		return creatorClassAskdao.boardPageSelect(pVo);
 	}
 
+	@Override
+	public int CAReplyCheck(int no) {
+		// TODO Auto-generated method stub
+		return creatorClassAskdao.CAReplyCheck(no);
+	}
+
+	@Override
+	public List<CreatorCAskVO> CAContent(int no) {
+		// TODO Auto-generated method stub
+		return creatorClassAskdao.CAContent(no);
+	}
+
+	@Override
+	public List<CreatorCAskVO> CAReplyContent(int no) {
+		// TODO Auto-generated method stub
+		return creatorClassAskdao.CAReplyContent(no);
+	}
+
+	@Override
+	public int CAReplyWrite(CreatorCAskVO vo) {
+		// TODO Auto-generated method stub
+		return creatorClassAskdao.CAReplyWrite(vo);
+	}
+
+	@Override
+	public int CAReplyEdit(CreatorCAskVO vo) {
+		// TODO Auto-generated method stub
+		return creatorClassAskdao.CAReplyEdit(vo);
+	}
+
+	@Override
+	public int CAReplyDel(int no) {
+		// TODO Auto-generated method stub
+		return creatorClassAskdao.CAReplyDel(no);
+	}
+
 
 	
 }

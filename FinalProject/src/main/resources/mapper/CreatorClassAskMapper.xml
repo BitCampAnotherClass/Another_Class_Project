@@ -27,7 +27,27 @@
 			where rownum<![CDATA[<=]]>#{nowPage}*#{pageRecord} order by class_qna_no asc)
 		where rownum<![CDATA[<=]]>#{pageRecord} order by class_qna_no desc 	
 	</select>
-
+ 	<select id="CAReplyCheck" resultType="int">
+  		<![CDATA[
+  			select count(*)
+			from classQnaCom
+			where class_qna_no = #{param1}
+  		]]> 
+  	</select>
+  		<select id="CAContent" resultType="com.anotherclass.bitcamp.vo.creator.CreatorCAskVO">
+  		<![CDATA[
+  			select class_qna_no, class_no, classQna_member_id, classqna_content,to_char( classqna_writedate,'yyyy-MM-DD HH:MM' ) classqna_writedate, classqna_com_sec 
+			from classQna 
+			where class_qna_no = #{param1}
+  		]]> 
+  	</select>
+  	<select id="CAReplyContent" resultType="com.anotherclass.bitcamp.vo.creator.CreatorCAskVO">
+  		<![CDATA[
+  		select class_qna_com_no , class_qna_no,classqnacom_member_id, com_no1, com_no2, classqnacom_reply,to_char ( classqnacom_writedate , 'yyyy-MM-DD HH:MM') classqnacom_writedate, classqnacom_com_sec, classqnacom_delete_sort
+		from classQnaCom
+		where class_qna_no =#{param1}
+		]]> 
+  	</select>
   
   
 </mapper>
