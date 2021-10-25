@@ -19,7 +19,7 @@
 	.cQnAListFli{border-bottom:1px solid black;margin-top:10px;background-color:#f0f0f0;font-weight:bold;font-size:1.1rem;} /*리스트타이틀*/	
 
 	#cQnWrite{height:auto;text-align:right;margin-bottom:15px;margin-top:10px;padding-right:7px;}/*글쓰기 버튼div*/
-	#cQnWritelab{padding:7px 15px 7px 15px;background-color:#464646;font-size:18px;}/*글쓰기 버튼div*/
+	#cQnWritelab{padding:5px 22px 5px 22px;background-color:#ff385c;font-size:18px;border-radius:5px;}/*글쓰기 버튼div*/
 
 	.replySubject{text-align:left;}	
 	
@@ -49,9 +49,9 @@
 	<div id="cQnWrite"><!-- 검색 -->
 		<form method="post" action="classAskManage" id="listform">
 			<div>         
-	            <input type="text" id="searchWord" name="searchWord" placeholder="검색어를 입력해 주세요."/><button id="searchIcon"><i class="fas fa-search"></i></button>         
+	            <input type="text" id="searchWord" name="searchWord" placeholder="클래스명을 입력해 주세요." style="padding-left: 16px;border-radius: 19px;height: 39px;margin-right: 24px;"/><button id="cQnWritelab" style="border:none;color:white;">검색</button>       
 	         </div>	
-			<button id="cQnWritelab" style="color:white;">검색</button>
+			
 		</form> 
 	</div> 
 	
