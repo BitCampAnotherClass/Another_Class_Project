@@ -46,7 +46,7 @@
 					<div class="review-write-img">
 						<h4>사진 첨부 (선택)</h4>
 						<div class="file-wrap">
-							<div class="file-view" id="">
+							<div class="file-view">
 								<img src='<%=request.getContextPath()%>/img/jisu/classimg2.png'/>
 								<button type="button" class="upload-delete">삭제</button>
 							</div>
@@ -184,51 +184,26 @@ $(document).ready(function(){
 	
 	
 	// 파일첨부 '삭제' 버튼 클릭 시 이미지뷰 없애기
-	$('.upload-delete').click(function(){
+	$(document).on('click', '.upload-delete', function(){
 		$('.file-view').hide(); // file-view 안 보이게 하기
 		$('.file-view').html(''); // img 없애기
 	});
 	
 	// 사진 첨부하기 버튼 클릭 시 이벤트
-	$('.upload-btn').click(function(){
+	$(document).on('click','.upload-btn',function(){
 		$('#img1').trigger('click'); // 파일 첨부 버튼 강제 실행
-		
-		console.log($('#img1').val());
-		
-		
-		/* 해당 주문 클래스 정보 가져오기
-		var url = '<%=request.getContextPath()%>/reviewFileUpload';
-		var params = {'order_no': orderNo };
-		$.ajax({
-			url: url,
-			data: params,
-			success: function(result){
-				var r = $(result);
-				console.log(r);
-				var tag = `<div class="review-class-img">
-								<img src="` + r[0].class_thumb + `"/>
-							</div>
-							<div class="review-class-info">
-								<div class="class-creator">` + r[0].nick + `</div>
-								<div class="class-name">` + r[0].class_name + `</div>
-								<div class="class-price">` + numberWithCommas(r[0].class_price) + `원</div>
-							</div>`;
-				
-				$('.review-class').html(tag);
-				
-			}, error: function(e){
-				console.log('클래스 정보 불러오기 에러');
-			}
-		}); */
-		
-		
-		
-		
-		
 	});
 	
 	
-	
+	// 파일 첨부 시
+	$(document).on('change', '#img1', function(){
+		var imgTag = '<img src="<%=request.getContextPath()%>/img/jisu/classimg2.png"/>';
+		imgTag += '<button type="button" class="upload-delete">삭제</button>';
+		$('.file-view').show();
+		$('.file-view').html(imgTag);
+		
+	});
+
 	
 	
 	// 금액 숫자 3자리 단위마다 콤마(,) 찍기
