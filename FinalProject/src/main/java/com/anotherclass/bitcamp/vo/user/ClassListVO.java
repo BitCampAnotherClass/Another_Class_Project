@@ -8,12 +8,24 @@ public class ClassListVO {
 	private String class_thumb;
 	private String class_tag;
 	private String class_content;
-	private int class_min_price;
-	private int class_max_price;
 	private int category_no;
 	private String category_name;
 	private String start_date;
+	private int class_min_price;
+	private int class_max_price;
 	
+	public int getClass_min_price() {
+		return class_min_price;
+	}
+	public void setClass_min_price(int class_min_price) {
+		this.class_min_price = class_min_price;
+	}
+	public int getClass_max_price() {
+		return class_max_price;
+	}
+	public void setClass_max_price(int class_max_price) {
+		this.class_max_price = class_max_price;
+	}
 	
 	public String getStart_date() {
 		return start_date;
@@ -38,18 +50,6 @@ public class ClassListVO {
 	}
 	public void setClass_content(String class_content) {
 		this.class_content = class_content;
-	}
-	public int getClass_min_price() {
-		return class_min_price;
-	}
-	public void setClass_min_price(int class_min_price) {
-		this.class_min_price = class_min_price;
-	}
-	public int getClass_max_price() {
-		return class_max_price;
-	}
-	public void setClass_max_price(int class_max_price) {
-		this.class_max_price = class_max_price;
 	}
 	public int getClass_no() {
 		return class_no;

@@ -39,4 +39,13 @@ public class UserClassListController {
 		List<ClassListVO> result = classListPageService.sortByApplyDate(vo);
 		return result;	
 	}
+	@RequestMapping(value = "classList/rangePrice")
+	@ResponseBody
+	public List<ClassListVO> rangePrice(int minp, int maxp){
+		
+		List<ClassListVO> result = classListPageService.rangePrice(minp,maxp);
+		
+		System.out.print(minp);
+		return result;
+	}
 }
