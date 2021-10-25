@@ -13,6 +13,17 @@
 		
 		]]>
   	</select>
+  	
+  	  	<select id="communityAllList" resultType="com.anotherclass.bitcamp.vo.user.CommunityVO">
+  	<![CDATA[
+		
+		select community_no, community_tag, img_con1, img_con2, img_con3, img_con4, member_id, writedate
+		from community
+		
+	
+		
+		]]>
+  	</select>
   
   </mapper>
   

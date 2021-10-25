@@ -71,7 +71,7 @@
 				<li >
 					<div>댓글</div><!-- hQnAWriteFileview -->
 					<div>
-						<textarea  id="cQnAWriteConviewReply" readonly disabled >${vo.content }</textarea>
+						<textarea  id="cQnAWriteConviewReply" readonly disabled >댓글</textarea>
 						<div style='text-align:right;width:90%;'>
 							<button style='background:#fff;border:none;border:1px solid #999;padding:3px 14px;margin:3px 7px 0 0;'>수정</button>	
 							<button style='background:#fff;border:none;border:1px solid #999;padding:3px 14px;margin-top:3px;'>삭제</button>								
@@ -80,9 +80,10 @@
 				</li>
 				<!-- 수정폼 -->
 				<li >
-					<div>댓글</div><!-- hQnAWriteFileview -->
-					<div>
-						<textarea  id="cQnAWriteConviewReply" >${vo.content }</textarea>
+					<!-- hQnAWriteFileview -->
+					<div style='width:100%;'>
+						<div>댓글</div>
+						<textarea  id="cQnAWriteConviewReply" >댓글수정</textarea>
 						<div style='text-align:right;width:90%;'>
 							<button style='background:#fff;border:none;border:1px solid #999;padding:3px 14px;margin-top:3px;'>수정완료</button>							
 						</div>
@@ -100,7 +101,7 @@
 			</div>
 			
 			<div id="cQnAButview">				
-					<button id="cQnAWList" onclick="location.href='classAskManage';" >목록</button>
+					<button id="cQnAWList" onclick="location.href='classAskManage';" style="background-color: #ff385c;border: none;border-radius: 5px;">목록</button>
 			</div>
 			<div style="display:none">${vo.class_qna_no }</div><!-- 글번호 -->
 			

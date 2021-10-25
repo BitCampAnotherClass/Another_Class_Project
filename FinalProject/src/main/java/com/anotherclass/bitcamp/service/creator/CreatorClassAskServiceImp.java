@@ -33,13 +33,13 @@ public class CreatorClassAskServiceImp implements CreatorClassAskService {
 	}
 
 	@Override
-	public List<CreatorCAskVO> CAContent(int no) {
+	public CreatorCAskVO CAContent(int no) {
 		// TODO Auto-generated method stub
 		return creatorClassAskdao.CAContent(no);
 	}
 
 	@Override
-	public List<CreatorCAskVO> CAReplyContent(int no) {
+	public CreatorCAskVO CAReplyContent(int no) {
 		// TODO Auto-generated method stub
 		return creatorClassAskdao.CAReplyContent(no);
 	}
