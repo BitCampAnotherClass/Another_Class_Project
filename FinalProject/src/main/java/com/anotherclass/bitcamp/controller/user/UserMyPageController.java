@@ -56,9 +56,8 @@ public class UserMyPageController {
 	@RequestMapping("/mypage/Myinformation")
 	public ModelAndView Myinformation(HttpSession ses) {
 		ModelAndView mav = new ModelAndView();
-		//String member_id = (String)ses.getAttribute("userId"); 
-		//System.out.println(member_id);
-		mav.addObject("vo", userMyPageService.MemberInfo("test103"));
+		String member_id = (String)ses.getAttribute("userId"); 
+		mav.addObject("vo", userMyPageService.MemberInfo(member_id));
 		mav.setViewName("user/mypage/myPage_MyInformation");
 		return mav;
 	}
@@ -66,9 +65,8 @@ public class UserMyPageController {
 	@RequestMapping(value ="/mypage/MyinformationEdit",method = RequestMethod.POST )
 	public ModelAndView MyinformationEdit(RegisterVO vo,HttpSession ses) {
 		ModelAndView mav = new ModelAndView();
-		//String member_id = (String)ses.getAttribute("userId"); 
-		//System.out.println(member_id);
-		vo.setMember_id("test103");
+		String member_id = (String)ses.getAttribute("userId"); 
+		vo.setMember_id(member_id );
 		int cnt = userMyPageService.MemberInfoEdit(vo);
 		System.out.println(cnt);
 		mav.setViewName("redirect:Myinformation");
