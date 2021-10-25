@@ -230,7 +230,7 @@ $(function(){
 	    					//문의글						
 							tag +="<li>";
 	    					tag +="<div class='askdiv909' id='a"+vo4.class_qna_no+"'>";
-	    					tag +="<div><img src='img/jisu/creatorprofile.png'/></div>"; //작성자이미지  vo4.member_img
+	    					tag +="<div><img src='"++"'/></div>"; //작성자이미지  vo4.member_img
 	    					tag +="<div>";
 	    					tag +="<div><label>"+ vo4.classqna_member_id+" | "+ vo4.classqna_writedate+" 작성</label></div>"; // 멤버아이디가 나일때 ->글 수정 삭제 버튼 보이게....    					
 	    					tag +="<div><label>"+ vo4.classqna_content+"</label>"; //내용	    					
@@ -260,7 +260,7 @@ $(function(){
 		    				//수정폼		    			
 		    				tag +="<li style='display:none' id='b"+vo4.class_qna_no+"'>";//style='display:none'
 	    					tag +="<div class='askdiv909 editaskdiv909'>";
-	    					tag +="<div><img src='img/jisu/creatorprofile.png'/></div>"; //작성자이미지  vo4.member_img
+	    					tag +="<div><img src='"+vo4.member_img+"'/></div>"; //작성자이미지  vo4.member_img
 	    					tag +="<div>";
 	    					tag +="<div><label>"+ vo4.classqna_member_id+" | "+ vo4.classqna_writedate+" 작성</label></div>"; // 멤버아이디가 나일때 ->글 수정 삭제 버튼 보이게....    					
 	    					tag += "<form method='post' >"
@@ -457,7 +457,7 @@ $(function(){
 	<!--  -->
 	<div id="leftdiv">
 		<div id="calssintro"> <!-- 클래스대표사진+소개글 , 강사프로필+강사닉네임 -->	
-			<div id="d1"><img src="img/jisu/classimg.png"/></div> <!-- 클래스 이미지 -->
+			<div id="d1"><img src="${vo.class_thumb}"/></div> <!-- 클래스 이미지 -->
 			<div id="d2"> <!-- 클래스 소개 -->
 				<ul>
 					<li>${vo.category_name }</li> <!-- 위치?대분류? --> <!-- 왼쪽정렬 -->
