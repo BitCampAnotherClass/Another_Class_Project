@@ -12,7 +12,7 @@ public class WebMvcConfig implements WebMvcConfigurer{
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
     	String testPath = this.getClass().getResource("/").getPath();
 		System.out.println(testPath);
-        registry.addResourceHandler("/testing/**")
+        registry.addResourceHandler("/anotherImage/**")
                 .addResourceLocations("/img/test");
     }
 }

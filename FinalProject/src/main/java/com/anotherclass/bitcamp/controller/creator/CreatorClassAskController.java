@@ -24,7 +24,8 @@ public class CreatorClassAskController {
     public ModelAndView boardList(CreatorCAskPagingVO pVo) {
     	System.out.println("클래스문의컨트롤러들어옴");
     	ModelAndView mav = new ModelAndView();
-    	System.out.println(pVo.getSearchWord());
+    	System.out.println("검색어:"+pVo.getSearchWord());
+    	//pVo.setSearchKeyword("가짜");
     	//총레코드수
     	pVo.setTotalRecord(creatorClassAskService.totalRecordCount(pVo)); //널값....
     	  System.out.println(pVo.getTotalRecord()); //15개
