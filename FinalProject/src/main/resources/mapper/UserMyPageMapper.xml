@@ -178,11 +178,7 @@
 			where user_qna_no=#{user_qna_no}
 	  	 ]]>
   	</update>
-  	<select id="userMyPageReviewCheck" resultType="int">
-  		<![CDATA[
-  			select count(*)
-			from reviewtbl
-			where order_no = #{param1}
-  		]]>   		
-  	</select>
+  	<select id="userMyPageReviewCheck" resultType="int">  		
+		select count(order_no) cnt from reviewtbl where order_no = #{param1}
+	</select>
   </mapper>
