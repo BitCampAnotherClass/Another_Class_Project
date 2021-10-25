@@ -26,8 +26,8 @@ public class ClassListPageServiceImp implements ClassListPageService {
 		return classListDao.sortByApplyDate(vo);
 	}
 	@Override
-	public List<ClassListVO> rangePrice(int minp, int maxp) {
-		return classListDao.rangePrice(minp, maxp);
+	public List<ClassListVO> rangePrice(int minp, int maxp, String sText) {
+		return classListDao.rangePrice(minp, maxp, sText);
 	}
 
 }

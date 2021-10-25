@@ -39,14 +39,13 @@ $(()=>{
 			type:'POST'
 			,success:function(result){
 				fileHtml+='<li class="myPage-accountView-picther">';
-				fileHtml+='<img src="${vo.member_img }">';
+				fileHtml+='<img id="image-account" src="${vo.member_img }">';
 				fileHtml+='</li>';
-				fileHtml+='<li class="information-box-img">';
 				fileHtml+='<li class="information-box-img">';
 				fileHtml+='<input type="file" style="float:right" class="popup-input-img" id="member_file" />';
 				fileHtml+='</li>';
 				fileHtml+='<li class="information-box-img">';
-				fileHtml+='<input type="button" value="파일전송" style="float:right" class="popup-input-button" id="button"/>';
+				fileHtml+='<input type="button" value="파일전송" style="float:right" class="popup-input-button" id="image-input-button"/>';
 				fileHtml+='</li>';
 				$('.information-popup-ul').html(fileHtml);
 			} 
@@ -72,6 +71,7 @@ $(()=>{
 				pwdHtml+='<li class="information-box-pwd">';
 				pwdHtml+='<input type="text" class="popup-input-pwd" name="member_pw" id="member_pw" autocomplete=”off” maxlength="15" />';
 				pwdHtml+='</li>';
+				pwdHtml+='<label id="register_pwd_text"></label>';
 				pwdHtml+='<li class="information-box-title">새 비밀번호</li>';
 				pwdHtml+='<li class="information-box-pwd">';
 				pwdHtml+='<input type="text" class="popup-input-pwd" id="member_pw" autocomplete=”off” maxlength="15" />';
@@ -80,7 +80,6 @@ $(()=>{
 				pwdHtml+='<li class="information-box-pwd">';
 				pwdHtml+='<input type="text" class="popup-input-pwd"  id="member_pw_check" autocomplete=”off” maxlength="15" />';
 				pwdHtml+='</li>';
-				pwdHtml+='<input type="hidden" class="account_edit_pwd_check"/>';
 				$('.information-popup-ul').html(pwdHtml);
 			} 
 			,error:function(error){
@@ -89,22 +88,48 @@ $(()=>{
 		});
 	});
 	
-	var url = 'account_edit/check';
+	var checkPath = 'account_edit/check';
 	var checkEng = /[a-z|A-Z|0-9]/;
 	var checkKor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
-
-	$('#member_pw_check, #member_pw').on('propertychange change keyup paste input',function passWordCheck(){
-		var checkPwd = $('#member_pw').val();
-		if(checkPwd.length < 8 || checkPwd.length > 20){
-			$('#account_edit_pwd_text').css("color","#ff0000");
-			$('#account_edit_pwd_text').html("비밀번호는 8자 이상 생성 가능합니다.");
-			$('.account_edit_pwd_check').val('N');
-		}else{
-			$('#account_edit_pwd_text').css("color","#22b14d");
-			$('#account_edit_pwd_text').html("사용가능한 비밀번호");
-			$('.account_edit_pwd_check').val('Y');
-		}
-	});
+	
+	/* $('#member_pw').on('propertychange change keyup paste input',function passWordCheck(){{
+		var pwd = $('#member_pw').val();
+		var data = {"pwd":pwd};
+		// 아이디 조회
+		$.ajax({
+			url: checkPath
+			, type: 'POST'
+			, data: data
+			, success:function(result){
+					
+					if(id.length< 5 || id.length > 15){
+						$('#register_id_text').css("color","#ff0000");
+						document.getElementById('register_id_text').innerHTML="아이디는 5~ 15자의 영문과 숫자로만 사용가능합니다.";
+						$('.register_id_check').val('N');
+					}else{
+						if(checkEng.test(id)){
+							if(result=='YES'){
+								$('#register_id_text').css("color","#22b14d");
+								document.getElementById('register_id_text').innerHTML="사용가능한 아이디입니다";
+								$('.register_id_check').val('Y');
+							}else{
+								$('#register_id_text').css("color","#ff0000");
+								document.getElementById('register_id_text').innerHTML="사용중이거나 삭제된 아이디 입니다.";
+								$('.register_id_check').val('N');
+							}
+						}else{
+							$('#register_id_text').css("color","#ff0000");
+							document.getElementById('register_id_text').innerHTML="아이디는 5~ 15자의 영문과 숫자로만 사용가능합니다.";
+							$('.register_id_check').val('N');
+						}
+					}
+				}
+			
+			, error:function(error){
+				console.log(error)
+			}
+		});
+	}); */
 	$('#member_pw_check').on('propertychange change keyup paste input',function passWordChecking(){
 		var check1 = $('#member_pw').val();
 		var check2 = $('#member_pw_check').val();
@@ -207,6 +232,38 @@ $(()=>{
         }).open();
     }
 </script>
+
+<script>
+var serverName = '<%=request.getServerName() %>';
+var serverPort = <%=request.getServerPort() %>;
+$(()=>{
+	var fileList;
+	$(document).on('click','#image-input-button', function uploadFiles(e){
+			var file = $('#member_file')[0].files[0]
+			var form_data = new FormData();
+	      	form_data.append('file', file);
+	      	$.ajax({
+	        	data: form_data
+	        	,type: "POST"
+	        	,url: '/another/FileUpload/imageUploadUrl'
+	        	,contentType: false
+	        	,processData: false
+	        	,success: function(imageData) {
+	        		console.log("img:"+ imageData.url);
+	        		fileList = imageData.url;
+	        		document.getElementById('image-account').src ='http://'+serverName+':'+serverPort+fileList;
+	        		document.getElementById('myPage-account-image').src ='http://'+serverName+':'+serverPort+fileList;
+	        		document.getElementById('image-file-path').value ='http://'+serverName+':'+serverPort+fileList;
+	        		document.getElementById('account_send').submit();
+	        	}
+	      		,error: function(error){
+	      			console.log(error);
+	      			console.log('파일업로드 실패');
+	      		}
+	      	});
+		});
+});
+</script>	
 <style>
 	.myPage-accountView-title{
 		padding:10px;
@@ -335,7 +392,7 @@ $(()=>{
 		width:120px;
 		height:30px;
 	}
-	.account_edit_addr_button:active, .account_pic_edit:active, .account_edit_sending:active, .myPage-popup-close-button:active , .account_pwd_edit:active{
+	.account_edit_addr_button:active, .popup-input-button:active, .account_pic_edit:active, .account_edit_sending:active, .myPage-popup-close-button:active , .account_pwd_edit:active{
 		background-color: #ededed;
 	}
 	.myPage-account-name{
@@ -384,7 +441,7 @@ $(()=>{
 						
 						<div class="myPage-accountView-main">
 							<div class="myPage-accountView-picther">
-								<img src="${vo.member_img }">
+								<img id="myPage-account-image" src="${vo.member_img }">
 							</div>
 							<ul class="myPage-accountView-ul">
 								<li>
@@ -395,7 +452,7 @@ $(()=>{
 								</li>
 							</ul>
 							
-							<form method="post" action="MyinformationEdit" >
+							<form method="post"  id="account_send"  action="MyinformationEdit" >
 							<ul class="myPage-accountView-info-list">
 								<li class="myPage-accountView-info">
 								<span class="myPage-accountView-box-title">이름</span>
@@ -456,6 +513,8 @@ $(()=>{
 									<input type="hidden" id="member_email" name="member_email" value="${vo.member_email }"/>
 									<input type="hidden" id="account_post_no" name="post_no" value="${vo.post_no }"/>	
 									<input type="hidden" id="account_addr1" name="addr1" value="${vo.addr1 }"/>
+									<input type="hidden" id="image-file-path" name="member_img" value="${vo.member_img}"/>
+									<input type="hidden" class="account_edit_pwd_check" value="Y"/>
 								</li>
 							</ul>
 							<input type="submit" class="account_edit_sending" value="수정완료"/>

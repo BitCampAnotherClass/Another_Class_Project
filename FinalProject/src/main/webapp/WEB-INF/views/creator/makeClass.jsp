@@ -325,10 +325,13 @@ function execDaumPostcode() {
 	
 	
 </script>
+
 <script>
+var serverName = '<%=request.getServerName() %>';
+var serverPort = <%=request.getServerPort() %>;
 $(()=>{
 	var fileList;
-	$('#class_thumb').on('propertychange change keyup paste input', function uploadFiles(e){
+	$('#class_thumb').on('propertychange change keyup paste input click', function uploadFiles(e){
 			var file = $('#fileButton')[0].files[0]
 			var form_data = new FormData();
 	      	form_data.append('file', file);
@@ -341,7 +344,8 @@ $(()=>{
 	        	,success: function(imageData) {
 	        		console.log("img:"+ imageData.url);
 	        		fileList = imageData.url;
-	        		document.getElementById('previewImg').src ='http://localhost:9090'+fileList;
+	        		document.getElementById('previewImg').src ='http://'+serverName+':'+serverPort+fileList;
+	        		document.getElementById('thumb_image').value ='http://'+serverName+':'+serverPort+fileList;
 	        	}
 	      		,error: function(error){
 	      			console.log(error);
@@ -862,9 +866,10 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	<div class="classImgDiv">
 			<div id="imgThumbDiv"><img src="<%=request.getContextPath()%>/img/kimin/uploadimg.jpg" id="previewImg" ></div>
 			<div class="filebox">
-				<input type="text" class="imgThumbFileName" placeholder="썸네일사진 파일명" name="class_thumb" id="class_thumb" readonly="readonly">
+				<input type="text" class="imgThumbFileName" placeholder="썸네일사진 파일명" id="class_thumb" readonly="readonly">
+				<input type="hidden" name="class_thumb" id="thumb_image">
 				<label for="fileButton">업로드</label>
-				<input type="file" id="fileButton" name="filename" accept="img/*"  required>
+				<input type="file" id="fileButton" name="filename" required>
 			</div>
 			
 	</div>

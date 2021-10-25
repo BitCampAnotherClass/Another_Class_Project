@@ -60,6 +60,11 @@
 	
 </style> 
 <script>
+
+
+	var list = 3;
+
+
 	$(()=>{//강사좋아요리스트
 		var logid = "${userId}"; // 세션에저장된아이디			
 		
@@ -73,6 +78,8 @@
 					var ll = $(l)
 	    			var tag =""; 	
 					ll.each(function(idx,vo){	
+						
+						
 						tag +="<div class='card'>";
 						tag +="<div class='card-image'  style='width:248px;height:171px;margin:13px auto 0 auto;'>";
 						tag +="<img class='imgbox' style='width:100%;height:100%;object-fit: cover;' src='/another/img/jisu/flower.png'/>";//vo.member_img//border-radius:100%;
