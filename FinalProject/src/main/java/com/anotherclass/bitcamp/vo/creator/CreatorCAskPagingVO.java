@@ -19,6 +19,13 @@ public class CreatorCAskPagingVO {
 	   public String getSearchWord() {
 	      return searchWord;
 	   }
+	   
+	   
+	   
+	   public void setSearchWord(String searchWord) {
+		this.searchWord = searchWord;
+	   }
+
 	   public void setSearchKeyword(String searchKeyword) {
 	      this.searchWord = searchKeyword;
 	   }

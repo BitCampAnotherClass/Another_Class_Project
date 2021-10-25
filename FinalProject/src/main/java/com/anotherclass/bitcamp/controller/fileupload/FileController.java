@@ -36,7 +36,7 @@ public class FileController {
 		try {
 			InputStream fileStream = mulitpartFile.getInputStream();
 			FileUtils.copyInputStreamToFile(fileStream, targetFile);
-			jsonOb.addProperty("url", "/testing/"+saveFileName);
+			jsonOb.addProperty("url", "/anotherImage/"+saveFileName);
 			jsonOb.addProperty("responseCode", "success");
 			System.out.println("파일업로드 작동중");
 		}catch(Exception e){
