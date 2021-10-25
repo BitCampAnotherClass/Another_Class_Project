@@ -23,6 +23,7 @@
 
 <!-- Script -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
 </head>
 <body>
@@ -62,7 +63,7 @@
 						</form>
 					</div>
 					<ul class="gnb">
-						<li class="category"><a href="#">클래스 목록</a>
+						<li class="category"><a href="<%=request.getContextPath()%>/classList">클래스 목록</a>
 							<ul class="sub-menu1">
 							
 							</ul>

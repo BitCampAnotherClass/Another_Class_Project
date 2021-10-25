@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anotherclass.bitcamp.dao.user.UserHomeDAO">
+	<select id="popularCreator" resultType="com.anotherclass.bitcamp.register.RegisterVO">
+		<![CDATA[
+		select member_id, nick, member_img, like_cnt
+		from (select member_id, nick, member_img, like_cnt
+		from (select m.member_id, nick, member_img, like_cnt
+		from (select creator_id, count(*) like_cnt from creatorlike
+		group by creator_id) cl 
+		join memberTbl m on cl.creator_id = m.member_id) cls
+		order by like_cnt desc)
+		where rownum <= 8
+		]]>
+	</select>
+	<select id="bestReview" resultType="com.anotherclass.bitcamp.vo.user.ReviewVO">
+		<![CDATA[
+		select review_no, order_no, content, img1, star, writedate, member_id, member_img
+		from (select review_no, r.order_no, content, img1, star, writedate, m.member_id, member_img
+		from reviewTbl r join orderTbl o
+		on r.order_no=o.order_no
+		join memberTbl m
+		on o.member_id=m.member_id
+		where img1 is not null
+		order by star desc) rTbl
+		where rownum <= 5
+		]]>
+	</select>
+
+</mapper>

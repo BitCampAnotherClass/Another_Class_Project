@@ -96,9 +96,7 @@
 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 
 <script>
-//var member_id ="";
-//var member_email ="";
-//var member_tel ="";
+
 
 $(function(){
 	
@@ -156,6 +154,9 @@ $(function(){
 						<div class="orderPP"><label style="display:inline-block;margin-top:4px;">${vo.savePoint }</label></div>						
 						<input type='hidden' value='${vo.class_option_no}' >
 					</div>
+					
+					
+					
 					<script type="text/javascript">
 						var testDa = ${vo.class_option_no};
 						arrayTest[${status.index}] = testDa;
@@ -165,6 +166,9 @@ $(function(){
 					</script>
 					
 				</c:forEach> 	
+		
+		
+		
 		</div>			
 		<div id="paydiscount"><!-- 할인받기 -->
 			<div class="secondTitleD">할인받기</div>			
@@ -265,9 +269,7 @@ $(function(){
 				alert("주문 상품정보(전자상거래법 제 8조 제 2항)에 대해 동의해 주세요.(필수)");
 				return;
 			}	    	
-        	
-        	
-        
+     
             var IMP = window.IMP;
             IMP.init('imp53433684');
             var money = ${sum };
@@ -278,6 +280,8 @@ $(function(){
             name = $("#member_name_val").val();
             tel = $("#member_tel_val").val();
             email = $("#member_email_val").val();
+          
+            //실패
            <c:forEach var='vo' items="${list}">
            	var classoptionno= Number(${vo.class_option_no});
            </c:forEach>
@@ -304,7 +308,9 @@ $(function(){
 	               	            	
 	            	console.log("결제에 성공하였습니다");
 	                console.log(arrayTest);
-	            if (rsp.success) { //결제성공시 로직
+	           
+	                
+	               if (rsp.success) { //결제성공시 로직
 	                    var msg = '결제가 완료되었습니다.';
 	                    msg += '고유ID : ' + rsp.imp_uid;
 	                    msg += '상점 거래ID : ' + rsp.merchant_uid;
@@ -312,8 +318,14 @@ $(function(){
 	                    msg += '카드 승인번호 : ' + rsp.apply_num;
 	                    msg += '결제방법 : ' + rsp.pay_method;
 	                    
-	                    var purl = "/another/SaveOrder2";
+	                    var purl = "/another/SaveOrder1";
 	                    console.log(arrayTest);
+	                    
+	                    var d = "";
+	                    for(var i=0; i<arrayTest.length; i++){
+	                    	d += arrayTest[i]+',';
+	                    }
+	                    console.log(d);
 	                    $.ajax({
 	                        type: "POST",
 	                        url: purl, //컨트롤러보낼 url 설정
@@ -323,9 +335,9 @@ $(function(){
 	                             merchant_uid: rsp.merchant_uid,
 	                             total_price: rsp.paid_amount,
 	                             card_num: rsp.apply_num,
-	                             class_option_no: classoptionno
+	                             //class_option_no: classoptionno
 	                            //+총용포인트
-	                            // test: arrayTest
+	                             test: d
 	                        },
 	                    });
 	                } else { //결제실패시 로직

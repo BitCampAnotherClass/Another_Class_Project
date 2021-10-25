@@ -25,12 +25,12 @@ public class UserPayController {
 	@Inject 
 	UserPayService userPayService;
 
-	//결제페이지
+	
 	@RequestMapping(value= "/PayPage", method = RequestMethod.POST)
-	public ModelAndView payPage(UserPayVO vo ) {//주문할 클래스옵션번호			
+	public ModelAndView payPage(UserPayVO vo ) {		
 		ModelAndView mav = new ModelAndView();
 		
-		//포인트셋팅해서 list 에넣기.......
+		
 		List<UserPayVO> list2 =  userPayService.userPayAllselect(vo.getClassNoPayList());
 		for(int i=0; i<list2.size(); i++) {
 			UserPayVO vo3=list2.get(i);
@@ -41,7 +41,7 @@ public class UserPayController {
 		}		
 		mav.addObject("list",list2); 				
 		
-		//총가격
+		
 		List<UserPayVO> list =  userPayService.userPayAllselect(vo.getClassNoPayList());		
 		int sum = 0;
 		for(int i=0; i<list.size(); i++) {
@@ -51,7 +51,7 @@ public class UserPayController {
 		System.out.println(sum);		
 		mav.addObject("sum", sum);				
 		
-		//총포인트	
+		
 		int sum2 = 0;
 		for(int i=0; i<list2.size(); i++) {
 			UserPayVO vo4=list2.get(i);
@@ -64,9 +64,9 @@ public class UserPayController {
 		return mav;
 	}
 	
-	//개별결제페이지
+	
 	@RequestMapping(value= "/PayPage2", method = RequestMethod.POST)
-	public ModelAndView payPage2(int no) {//주문할 클래스옵션번호		
+	public ModelAndView payPage2(int no) {
 		ModelAndView mav = new ModelAndView();
 		List<UserPayVO> list8=  userPayService.userPayoneSelect(no);
 		
@@ -74,13 +74,13 @@ public class UserPayController {
 			int a = vo2.getClass_price();
 			double b = a*0.01;
 			int c = (int)Math.round(b);
-			vo2.setSavePoint(c);//적립포인트
+			vo2.setSavePoint(c);
 			
 		mav.addObject("list",vo2); 			
 		mav.setViewName("/user/pay/payPage_info");
 		return mav;
 	}
-	//결제페이지정보
+	
 	@RequestMapping("/memInfo")
 	@ResponseBody
 	public UserPayVO ajaxMemInfo(String logid) {
@@ -88,15 +88,15 @@ public class UserPayController {
 		return vo;
 		
 	}
-	//장바구니저장후...
+
 	@RequestMapping(value="/basketResult")
 	public String basketResult() {
 		return "/result/BasketResult";
 	}
-	//정바구니버튼누르면 ....디비에저장하고 돌아감
+	
 	@RequestMapping("/InsertBasketDB")
 	@ResponseBody
-	public ModelAndView ajaxInsertBasket(UserPayVO vo, HttpSession session) {//장바구니 테이블에 insert 할클래스번호
+	public ModelAndView ajaxInsertBasket(UserPayVO vo, HttpSession session) {
 		
 		ModelAndView  mav = new ModelAndView();
 		
@@ -109,16 +109,16 @@ public class UserPayController {
 		int cnt = 0;
 		for(int i=0; i<te.length; i++) {
 			bvo.setClass_option_no(te[i]);
-			cnt = userPayService.testBasket(bvo);//디비에저장함
+			cnt = userPayService.testBasket(bvo);
 		}
 		
-		System.out.println(cnt);
+		
 		mav.addObject("cnt",cnt);
 		mav.setViewName("redirect:basketResult");
 		return mav;
 		
 	}
-	//선택상품삭제
+	
 	@RequestMapping("/DeleteBasketDB")
 	public ModelAndView basketDel(UserPayVO vo, HttpSession session) {
 		
@@ -126,45 +126,66 @@ public class UserPayController {
 		String member_id = (String)session.getAttribute("userId"); 
 		BasketVO bvo = new BasketVO();
 		int[]te= vo.getClassNoPayList();
-		bvo.setMember_id(member_id);
-		
-		
+		bvo.setMember_id(member_id);	
 		int cnt = 0;
 		for(int i=0; i<te.length; i++) {
 			bvo.setClass_option_no(te[i]);
 			cnt = userPayService.delBasket(bvo);//디비에서삭제
-		}
-		
-		System.out.println(cnt);
+		}			
 		mav.addObject("cnt",cnt);
 		mav.setViewName("redirect:basketResult");
-		return mav;
-		
+		return mav;		
 	}
-	//개별상품삭제 ///another/delOneClass
+	
+	
 	@RequestMapping("/delOneClass")
 	@ResponseBody
 	public int DelOneClass(int no) {
 		int result =0;
-		result = userPayService.delOneBasket(no);
-		System.out.println("개별상품삭제"+result);
+		result = userPayService.delOneBasket(no);		
 		return result;
 	}
 	
 	//결제하고나서오는곳
-	@RequestMapping("/SaveOrder")
+	@RequestMapping("/SaveOrder1")
 	@ResponseBody
-	public int saveOrder(String imp_uid, String merchant_uid) {
+	public int saveOrder(String imp_uid, String merchant_uid, String test,String total_price,String card_num,HttpSession session) {
+		String member_id = (String)session.getAttribute("userId");
 		int result = 0;
-		System.out.println(imp_uid);
-		System.out.println(merchant_uid);
+		
+		String str = test;
+		String[] str2 = str.split(",");
+		
+		for(int i=0; i<str2.length; i++) {
+			System.out.println(str2[i]);
+		}
+		
+		UserPayVO vo = new UserPayVO();
+		vo.setMember_id(member_id);
+		vo.setCard_num(card_num);
+		vo.setMerchant(merchant_uid);		
+		//headcount
+		//use_point
+		
+		for(int i=0; i<str2.length; i++) {
+			vo.setClass_option_no(Integer.parseInt(str2[i]));
+			
+			int classprice = userPayService.getClassNo(vo.getClass_option_no());
+			vo.setTotal_price(classprice);
+			double a = classprice*0.01;
+			int b = (int)Math.round(a);
+			vo.setCharge(b);
+			userPayService.oneClassOrder(vo);
+			userPayService.addHeadCount(Integer.parseInt(str2[i]));
+		}
 		return result;
 	}
 	
-	//결제하고나서오는곳2 -> 상품한개//카드
+	
+	
 	@RequestMapping("/SaveOrder2")
 	@ResponseBody
-	public int saveOrder2(String imp_uid,String merchant_uid,String total_price,String card_num,int class_option_no,HttpSession session) {
+	public int saveOrder2(String imp_uid,String merchant_uid,String total_price,String card_num,int class_option_no,String test ,HttpSession session) {
 		String member_id = (String)session.getAttribute("userId"); 
 		int result = 0;
 		UserPayVO vo = new UserPayVO();
@@ -181,10 +202,9 @@ public class UserPayController {
 		vo.setCard_num(card_num);
 		vo.setMerchant(merchant_uid);
 		
-		result = userPayService.oneClassOrder(vo);//오더테이블저장
-		int aaa =userPayService.addHeadCount(class_option_no);//옵션클래스신청인원 +1 
-		System.out.println("신청인원증가"+aaa);
-		//사용자포인트 증가,감소
+		result = userPayService.oneClassOrder(vo);
+		int aaa =userPayService.addHeadCount(class_option_no);
+		
 		
 		return result;
 	}

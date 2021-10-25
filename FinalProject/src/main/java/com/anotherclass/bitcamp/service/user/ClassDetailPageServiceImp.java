@@ -78,6 +78,10 @@ public class ClassDetailPageServiceImp implements ClassDetailPageService {
 	public int ClassASkCheckRepDelUp(int no) {		
 		return classDetailPageDAO.ClassASkCheckRepDelUp(no);
 	}
+	@Override
+	public int ClassAskReplyEdit(UserClassDetailVO2 vo) {
+		return classDetailPageDAO.ClassAskReplyEdit(vo);
+	}
 
 
 	

@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.anotherclass.bitcamp.register.RegisterVO;
 import com.anotherclass.bitcamp.service.creator.MakeClassApplyService;
+import com.anotherclass.bitcamp.service.user.UserHomeService;
 import com.anotherclass.bitcamp.vo.creator.CreatorClassCategoryVO;
+import com.anotherclass.bitcamp.vo.user.ReviewVO;
 
 
 @Controller
@@ -20,11 +23,22 @@ public class UserController {
 	
 	@Inject
 	MakeClassApplyService makeClassApplyService;
+	@Inject
+	UserHomeService userHomeService;
+	
+	
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
-
+		// 인기있는 강사 top 8 가져오기
+		List<RegisterVO> creatorList = userHomeService.popularCreator();
+		mav.addObject("creatorList", creatorList);
+		
+		// 베스트 후기 best 5 가져오기
+		List<ReviewVO> reviewList = userHomeService.bestReview();
+		mav.addObject("reviewList", reviewList);
+		
     	mav.setViewName("/user/home");
     	return mav;
 	}
@@ -50,18 +64,6 @@ public class UserController {
 	
 	
 	// 임시 맵핑 --------------------------
-	
-	@RequestMapping(value = "/mypage/review")
-	public String mypageReview() {
-		return "/user/mypage/myPage_review";
-	}
-	
-	@RequestMapping(value = "/classReview")
-	public String classReview() {
-		return "/user/classDetailPage/test";
-	}
-
-	
 	
 	
 	

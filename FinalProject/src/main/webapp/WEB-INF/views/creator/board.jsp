@@ -11,23 +11,82 @@
 <div>
 	<textarea class="summernote" name="editordata"></textarea>
 </div>
+<div>
+	<form method="POST" enctype="multipart/form-data" id="fileUpload">
+		<input type="file" id="imageFile" name="file" value="text"/>
+		<input type="button" id="fileTransfer" value="파일업로드 테스트" />
+	</form>
+</div>
 
 <script>
+$(()=>{
+	var fileList;
+	$('#fileTransfer').on('click', function uploadFiles(e){
+			var file = $('#imageFile')[0].files[0]
+			var form_data = new FormData();
+	      	form_data.append('file', file);
+	      	$.ajax({
+	        	data: form_data
+	        	,type: "POST"
+	        	,url: 'imageUploadUrl'
+	        	,contentType: false
+	        	,processData: false
+	        	,success: function(imageData) {
+	        		console.log("img:"+ imageData.url);
+	        		fileList = imageData.url;
+	        	}
+	      		,error: function(error){
+	      			console.log(error);
+	      			console.log('파일업로드 실패');
+	      		}
+	      	});
+		});
+	console.log(fileList);
+	});
+</script>
+
+<script>
+$(()=>{
 	$('.summernote').summernote({
 		// 에디터 높이
 		height: 200,
 		width: 800,
-		
 		lang:"ko-KR",
 		focus: true,
 		toolbar: [
 		    ['style', ['bold', 'italic', 'underline', 'clear']],
-		    ['font', ['strikethrough', 'superscript', 'subscript']],
+		    ['font', ['strikethrough']],
 		    ['fontsize', ['fontsize']],
 		    ['color', ['color']],
 		    ['para', ['ul', 'ol', 'paragraph']],
 		    ['insert',['picture']],
 		    ['height', ['height']]
-		  ]
+		  ],
+		callbacks: {
+			onImageUpload: function(files){
+				uploadFiles(files[0], this);
+			}
+		}
+	});
+	
+		function uploadFiles(file, editor){
+			var form_data = new FormData();
+	      	form_data.append('file', file);
+	      	$.ajax({
+	        	data: form_data
+	        	,type: "POST"
+	        	,url: 'imageUploadUrl'
+	        	,contentType: false
+	        	,processData: false
+	        	,success: function(imageData) {
+	        		console.log("img:"+ imageData.url);
+	          		$(editor).summernote('insertImage', imageData.url);
+	        	}
+	      		,error: function(error){
+	      			console.log(error);
+	      			console.log('파일업로드 실패');
+	      		}
+	      	});
+		}
 	});
 </script>

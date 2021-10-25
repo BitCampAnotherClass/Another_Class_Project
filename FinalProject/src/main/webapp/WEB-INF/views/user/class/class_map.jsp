@@ -53,94 +53,47 @@
 			<div class="class-list1-top">
 				<h3 class="text-h3">내 주변 클래스</h3>
 				<div class="class-search">
-					<input class="search-bar" type="text" placeholder="관심있는 취미를 찾아보세요." />
-					<button class="place-select select-btn" type="button">지역 선택</button>
-					<button class="category-select select-btn" type="button">카테고리 선택</button>
+					<input class="class-search-bar" type="text" placeholder="관심있는 취미를 찾아보세요." />
+					<div class="filter">
+						<!-- <input class="place-select select-btn" type="button" value="지역 선택" />-->
+						<select class="select-place select-menu">
+							<option>전체 지역</option>
+							<option>서울</option>
+							<option>부산</option>
+							<option>인천</option>
+							<option>대구</option>
+							<option>광주</option>
+							<option>울산</option>
+							<option>대전</option>
+							<option>세종</option>
+							<option>경기</option>
+							<option>강원</option>
+							<option>충북</option>
+							<option>충남</option>
+							<option>전북</option>
+							<option>전남</option>
+							<option>경북</option>
+							<option>경남</option>
+							<option>제주</option>
+						</select>
+						<select class="select-category select-menu">
+							<option>전체 카테고리</option>
+						</select>
+					</div>
+					<input class="class-search-btn" type="button" value="검색" />
 				</div>
 			</div>
 			
 			<div class="class-list1">
 				<ul id="placesList">
-				<!-- 
-					<li>
-						<div class="class-list-thumb"><img src="<%=request.getContextPath()%>/img/jisu/img300.png"/></div>
-						<div class="class-list-info">
-							<div class="class-category">핸드메이드</div>
-							<div class="class-name">직접 만들고 선물하는 재미! 서진과 함께 뜨는 코바늘 수세미</div>
-							<div class="class-like">♥ 150</div>
-							<div class="class-addr">경기도 고양시 덕양구 오부자로150</div>
-							<div class="class-point">★★★★★ 5.0</div>
-							<div class="class-price">55,000원</div>
-						</div>
-					</li>
-					<li>
-						<div class="class-list-thumb"><img src="<%=request.getContextPath()%>/img/jisu/classimg4.png"/></div>
-						<div class="class-list-info">
-							<div class="class-category">핸드메이드</div>
-							<div class="class-name">직접 만들고 선물하는 재미!</div>
-							<div class="class-point">★★★★★ 4.3</div>
-							<div class="class-like">♥ 150</div>
-							<div class="class-addr">경기도 고양시 덕양구 오부자로150</div>
-							<div class="class-price">6,255,000원</div>
-						</div>
-					</li>
-					<li>
-						<div class="class-list-thumb"><img src="<%=request.getContextPath()%>/img/jisu/classimg3.png"/></div>
-						<div class="class-list-info">
-							<div class="class-category">핸드메이드</div>
-							<div class="class-name">직접 만들고 선물하는 재미! 서진과 함께 뜨는 코바늘 수세미 직접 만들고 선물하는</div>
-							<div class="class-point">★★★★★ 4.3</div>
-							<div class="class-like">♥ 150</div>
-							<div class="class-addr">경기도 고양시 덕양구 오부자로150</div>
-							<div class="class-price">5,000원</div>
-						</div>
-					</li>
-					<li>
-						<div class="class-list-thumb"><img src="<%=request.getContextPath()%>/img/jisu/img300.png"/></div>
-						<div class="class-list-info">
-							<div class="class-category">핸드메이드</div>
-							<div class="class-name">직접 만들고 선물하는 재미! 서진과 함께 뜨는 코바늘 수세미</div>
-							<div class="class-point">★★★★★ 4.3</div>
-							<div class="class-like">♥ 150</div>
-							<div class="class-addr">경기도 고양시 덕양구 오부자로150</div>
-							<div class="class-price">55,000원</div>
-						</div>
-					</li>
-					<li>
-						<div class="class-list-thumb"><img src="<%=request.getContextPath()%>/img/jisu/classimg4.png"/></div>
-						<div class="class-list-info">
-							<div class="class-category">핸드메이드</div>
-							<div class="class-name">직접 만들고 선물하는 재미! 서진과 함께 뜨는 코바늘 수세미</div>
-							<div class="class-point">★★★★★ 4.3</div>
-							<div class="class-like">♥ 150</div>
-							<div class="class-addr">경기도 고양시 덕양구 오부자로150</div>
-							<div class="class-price">355,000원</div>
-						</div>
-					</li>
-					<li>
-						<div class="class-list-thumb"><img src="<%=request.getContextPath()%>/img/jisu/classimg3.png"/></div>
-						<div class="class-list-info">
-							<div class="class-category">핸드메이드</div>
-							<div class="class-name">직접 만들고 선물하는 재미! 서진과 함께 뜨는 코바늘 수세미</div>
-							<div class="class-point">★★★★★ 4.3</div>
-							<div class="class-like">♥ 150</div>
-							<div class="class-addr">경기도 고양시 덕양구 오부자로150</div>
-							<div class="class-price">155,000원</div>
-						</div>
-					</li>-->
+					<!-- 클래스 목록 -->
 				</ul>
-				<div class="more">
+				<div class="more" style="display:none;">
 					<button type="button">+ more</button>
 				</div>
-				<!-- <div class="paging">
-					<ul>
-						<li class="page-item"><a href="#">1</a></li>
-						<li class="page-item"><a href="#">2</a></li>
-						<li class="page-item"><a href="#">3</a></li>
-						<li class="page-item"><a href="#">4</a></li>
-						<li class="page-item"><a href="#">5</a></li>
-					</ul>
-				</div>-->
+				<div class="no-result-txt" style="display:none;">
+					검색 결과가 없습니다.
+				</div>
 			</div>
 		</section>
 		
@@ -149,84 +102,200 @@
 
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=033542c9317694f8d1bb2f13c3b67a2a&libraries=services"></script>
-
 <script>
 
-$(function(){
+// 금액 숫자 3자리 단위마다 콤마(,) 찍기
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
 
-	initMap();
+
+$(document).ready(function(){
+
 	
 	var map;
 	var geocoder;
 	
 	// 마커를 담을 배열입니다
 	var markers = [];
+	var infoArr=[]; // infoWindow 담을 배열
+	var j=0;
 	
-	var addr;
-	var className;
-	var classImg;
-	var classPrice;
+	// 클래스 목록 정보 담을 배열
+	var cateL_arr=[]; // 대분류 카테고리
+	var category_arr = []; // 중분류 카테고리
+	var classNo_arr = []; // 클래스 번호
+	var className_arr = []; // 클래스 이름
+	var nick_arr = []; // 강사 닉네임
+	var likeCnt_arr = []; // 좋아요 수
+	var starAvg_arr = []; // 별점 평균
+	var classPrice_arr = []; // 클래스 가격
+	var addr_arr = []; // 주소
+	var classImg_arr = []; // 썸네일
+	
+	var listCnt = 5; // 목록에서 한 번에 보여줄 클래스 개수
+	
+	// 검색 정보 보낼 변수
+	var keyword=''; // 검색어
+	var local=''; // 선택 지역
+	var cate_name=''; // 선택 카테고리
+	var cateL_name=''; // 선택 카테고리 대분류 (중분류 전체)
+	
+	
+	initMap(); // 지도 생성
+	
+	
+	// 검색 버튼 클릭 시
+	$('.class-search-btn').click(function(){
+		keyword = $('.class-search-bar').val();
+		local = $('.select-place').val();
+		cate_name = $('.select-category').val();
+		if(local == '전체 지역'){ 
+			local = ''; 
+		}
+		if(cate_name == '전체 카테고리'){
+			cate_name = '';
+			cateL_name= '';
+		} else {
+			if(cate_name.indexOf('전체')!= -1){ // 중분류 전체 선택 시
+				cateL_name = cate_name.replace(' 전체', ''); // 대분류명만 저장
+				cate_name = ''; // 중분류명 지우기
+			} else{
+				cateL_name = ''; // 대분류명 지우기
+			}
+		}
+		
+		setClassList(); // 목록과 지도 마커, 인포윈도우 세팅
+	});
+	
 	
 	// 클래스 목록 가져오기
 	function setClassList(){
-		console.log('실행1');
 		var url = '<%=request.getContextPath()%>/classMap/list';
-		console.log('실행2');
-		// var params = 
+		var params = 'keyword=' + keyword + '&local=' + local + '&cateL_name=' + cateL_name + '&category_name=' + cate_name;
 		$.ajax({
 			url: url,
-			//data: ,
+			data: params,
+			async:false,
 			success: function(result){
-				console.log('실행3');
 				var r = $(result);
-				console.log(r);
 				var tag='';
-				console.log('실행4');
-				$('#placesList').html('');
+				
+				$('#placesList').html(''); // 클래스 목록 지우기
+				deleteMarkers(); // 기존의 모든 마커 지우기
+				closeInfoWindow(); // 모든 인포윈도우 닫기
+				
+				if(r.length == 0){ // 검색 결과가 없으면
+					$('.more').hide();
+					$('.no-result-txt').show();
+				}
+				
 				r.each(function(idx){
-					tag = '<li>';
-					tag += '<div class="class-list-thumb"><img src="<%=request.getContextPath()%>/img/jisu/classimg3.png"/></div>';
-					tag += '<div class="class-list-info">';
-					tag += '<div class="class-category">핸드메이드</div>';
-					tag += '<div class="class-name">직접 만들고 선물하는 재미! 서진과 함께 뜨는 코바늘 수세미</div>';
-					tag += '<div class="class-creator">핸드메이드서진</div>';
-					tag += '<div class="class-point">★★★★★ 4.3</div>';
-					tag += '<div class="class-like">♥ 150</div>';
-					tag += '<div class="class-addr">경기도 고양시 덕양구 오부자로150</div>';
-					tag += '<div class="class-price">155,000원</div>';
-					tag += '</div>';
-					tag += '</li>';
-					
-					var listCnt = 10; // 목록에서 한 번에 보여줄 클래스 개수
-					
+					// 전역변수 배열에 해당 값 담기
+					cateL_arr[idx] = r[idx].cateL_name;
+					category_arr[idx] = r[idx].category_name;
+					classNo_arr[idx] = r[idx].class_no;
+					className_arr[idx] = r[idx].class_name;
+					nick_arr[idx] = r[idx].nick;
+					likeCnt_arr[idx] = r[idx].like_cnt;
+					starAvg_arr[idx] = r[idx].star_avg;
+					classPrice_arr[idx] = numberWithCommas(r[idx].class_price);
+					addr_arr[idx] = r[idx].class_addr1;
+					classImg_arr[idx] = r[idx].class_thumb;
+
 					if( idx <= (listCnt-1) ){ // 처음 보여줄 클래스 목록
-						$('#placesList').append(tag);
+						tag = '<li>';
+						tag += '<div class="class-list-thumb"><a href="<%=request.getContextPath()%>/classDetailView?no=' + r[idx].class_no + '" target="_blank"><img src="' + r[idx].class_thumb + '"/></a></div>';
+						tag += '<div class="class-list-info">';
+						tag += '<div class="class-category">' + r[idx].cateL_name + ' > ' + r[idx].category_name + '</div>';
+						tag += '<div class="class-name"><a href="<%=request.getContextPath()%>/classDetailView?no=' + r[idx].class_no + '" target="_blank">' + r[idx].class_name + '</a></div>';
+						tag += '<div class="class-creator">' + r[idx].nick + '</div>';
+						tag += '<div class="class-point">';
+						tag += `<div class="class-back-star">
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+								</div>
+								<div class="class-front-star" style="width:` + (r[idx].star_avg/5) * 80 + `px">
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+									<i class="fas fa-star"></i>
+								</div>`;
+						tag += r[idx].star_avg.toFixed(1) + '</div>';
+						tag += '<div class="class-like">♥ ' + r[idx].like_cnt + '</div>';
+						tag += '<div class="class-addr">' + r[idx].class_addr1 + '</div>';
+						tag += '<div class="class-price">' + numberWithCommas(r[idx].class_price) + '원</div>';
+						tag += '</div>';
+						tag += '</li>';	
+						$('#placesList').append(tag); // 목록 추가
+						//if(r[idx].star_avg>0){ // 별점 비율 바꾸기
+						//	$('.class-front-star').css('width', ((r[idx].star_avg/5) * 80) + 'px');
+						//} else{
+						//	$('.class-front-star').css('width', '0px');
+						//}
+						$('.no-result-txt').hide(); // 결과 없음 내용 숨기기
+						$('.more').show(); // 더보기 버튼 보이기
 						if(idx >= r.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
-							$('.more > button').hide();
+							$('.more').hide();
 						}
 					}
 					var n=1;
 					$('.more > button').click(function(){ // more 버튼 클릭 시 보여줄 클래스 목록
 						n++;
 						if( idx >= listCnt*(n-1) && idx <= (listCnt*n-1) ){
-							$('#placesList').append(tag);
+							tag = '<li>';
+							tag += '<div class="class-list-thumb"><a href="<%=request.getContextPath()%>/classDetailView?no=' + r[idx].class_no + '" target="_blank"><img src="' + r[idx].class_thumb + '"/></a></div>';
+							tag += '<div class="class-list-info">';
+							tag += '<div class="class-category">' + r[idx].cateL_name + ' > ' + r[idx].category_name + '</div>';
+							tag += '<div class="class-name"><a href="<%=request.getContextPath()%>/classDetailView?no=' + r[idx].class_no + '" target="_blank">' + r[idx].class_name + '</a></div>';
+							tag += '<div class="class-creator">' + r[idx].nick + '</div>';
+							tag += '<div class="class-point">';
+							tag += `<div class="class-back-star">
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+									</div>
+									<div class="class-front-star" style="width:` + (r[idx].star_avg/5) * 80 + `px">
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+										<i class="fas fa-star"></i>
+									</div>`;
+							tag += r[idx].star_avg.toFixed(1) + '</div>';
+							tag += '<div class="class-like">♥ ' + r[idx].like_cnt + '</div>';
+							tag += '<div class="class-addr">' + r[idx].class_addr1 + '</div>';
+							tag += '<div class="class-price">' + numberWithCommas(r[idx].class_price) + '원</div>';
+							tag += '</div>';
+							tag += '</li>';	
+							//if(r[idx].star_avg>0){ // 별점 비율 바꾸기
+							//	$('.class-front-star').css('width', ((r[idx].star_avg/5) * 80) + 'px');
+							//} else{
+							//	$('.class-front-star').css('width', '0px');
+							//}
+							$('#placesList').append(tag); // 목록 추가
+							$('.no-result-txt').hide(); // 결과 없음 내용 숨기기
+							$('.more').show(); // 더보기 버튼 보이기
 							if(idx >= r.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
-								$('.more > button').hide();
+								$('.more').hide();
 							}
 						}
 					});
 					
-				});
-				console.log('실행5');
+					// 주소 - 좌표 변환 + 마커 + 인포윈도우 생성
+					setMapPosition(cateL_arr[idx], category_arr[idx], classNo_arr[idx], className_arr[idx], nick_arr[idx], likeCnt_arr[idx], starAvg_arr[idx], classPrice_arr[idx], addr_arr[idx], classImg_arr[idx], idx);
+					
+				}); //each
 			}, error: function(e){
 				console.log('리스트 불러오기 에러');
 			}
-		});
-		
-		addrArr = ['경기도 고양시 덕양구 오부자로150', '서울 서초구 서초동', '서울 마포구 백범로', '서울 마포구 양화로125', '서울 종로구 종로3가', '경기도 고양시 덕양구 지축동 490-61']; // 주소
-		classNameArr = ['1서울 선유도', '1서울 서초구 서초동', '1서울 마포구 백범로', '1서울 마포구 양화로125', '1서울 종로구 종로3가', '1경기도 고양시 덕양구 지축동 490-61'];
-		classImgArr = ['/img/jisu/img300.png', '/img/jisu/classimg3.png', '/img/jisu/classimg2.png', '/img/jisu/classimg5.png', '/img/jisu/classimg5.png', '/img/jisu/classimg5.png'];
-		classPriceArr = ['100000', '200000', '50000', '25000', '70000', '35000'];
+		}); // ajax
 	}
 	
 	// 지도 생성
@@ -234,56 +303,53 @@ $(function(){
 		var latitude = 37.566826;
 		var longitude = 126.9786567;
 		
-		setClassList();
 
 		var mapContainer = document.getElementById('class-map-view'), // 지도를 표시할 div 
 		    mapOption = {
 		        center: new kakao.maps.LatLng(latitude, longitude), // 지도의 중심좌표
-		        level: 3 // 지도의 확대 레벨
+		        level: 4 // 지도의 확대 레벨
 		    };  
 	
-		// 지도를 생성합니다    
+		// 지도 생성    
 		map = new kakao.maps.Map(mapContainer, mapOption); 
-	
+		
 		geocoder = new kakao.maps.services.Geocoder();
-		for(var i=0; i<classNameArr.length; i++){
-			setMapPosition(addrArr[i], classNameArr[i], classImgArr[i], classPriceArr[i]);
-		}
+		// 클래스 목록 불러오기
+		setClassList();
 		
-	}
+	} // initMap
 	
-	// 주소-좌표 변환 객체를 생성합니다
+
 	
 	
-	
-	var infoArr=[];
-	var j=0;
-	
-	// 주소 - 좌표 변환 + 마커 생성
-	function setMapPosition(addr, className, classImg, classPrice){
-		// 주소로 좌표를 검색합니다
+	// 주소 - 좌표 변환 + 마커 + 인포윈도우 생성
+	function setMapPosition(cateL, category, classNo, className, nick, likeCnt, starAvg, classPrice, addr, classImg, idx){
+		// 주소로 좌표를 검색
 		geocoder.addressSearch( addr , function(result, status) {
-		
+			
 		    // 정상적으로 검색이 완료됐으면 
 		     if (status === kakao.maps.services.Status.OK) {
-		
+				
 		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-		
-		        // 결과값으로 받은 위치를 마커로 표시합니다
+				
+		        
+		        
+		        // 결과값으로 받은 위치를 마커로 표시
 		        var marker = new kakao.maps.Marker({
 		            map: map,
 		            position: coords
 		        });
 				
 		        var markerInfo = '<div class="markerInfo">';
+		        markerInfo += '<a class="marker-class-no" href="<%=request.getContextPath()%>/classDetailView?no=' + classNo + '" target="_blank"></a>'
 		        markerInfo += '<div class="marker-class-img"><img src="<%=request.getContextPath()%>' + classImg + '"/></div>';
 		        markerInfo += '<div class="marker-class-info">'
-		        markerInfo += '<div class="marker-class-category">' + '핸드메이드' + '</div>'
+		        markerInfo += '<div class="marker-class-category">' + cateL + ' > ' + category + '</div>'
 		        markerInfo += '<div class="marker-class-name">' + className + '</div>';
-		        markerInfo += '<div class="marker-class-creator">핸드메이드서진</div>';
-		       // markerInfo += '<div class="marker-class-like">' + '♥ 150' + '</div>';
+		        markerInfo += '<div class="marker-class-creator">' + nick + '</div>';
+		       // markerInfo += '<div class="marker-class-like">' + '♥ ' + likeCnt + ' + '</div>';
 		        markerInfo += '<div class="marker-class-addr">' + addr + '</div>';
-		       // markerInfo += '<div class="marker-class-point">' + '★★★★★ 5.0' + '</div>';
+		       // markerInfo += '<div class="marker-class-point">' + '★★★★★' + starAvg + '</div>';
 		        markerInfo += '<div class="marker-class-price">' + classPrice + '원</div>';
 		        markerInfo += '</div>';
 		        // 인포윈도우로 장소에 대한 설명 표시
@@ -291,15 +357,9 @@ $(function(){
 		            content: markerInfo
 		        });
 		        
-		        infoArr[j] = infowindow; // 인포윈도우 배열에 담기
-		        
-		        // 모든 인포윈도우 닫는 함수
-		        function closeInfoWindow() {
-		        	for(var z=0; z<infoArr.length; z++){
-	        			infoArr[z].close();
-	        	    }
-		        }
-		        
+		        markers[idx] = marker; // 마커 담기
+		        infoArr[idx] = infowindow; // 인포윈도우 배열에 담기
+		        		        
 		        kakao.maps.event.addListener(marker, 'click', function() {
 		        	closeInfoWindow(); // 모든 인포윈도우 닫기
 		        	infowindow.open(map, marker); // 마커 위에 현재 인포윈도우 표시
@@ -313,19 +373,99 @@ $(function(){
 		        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
 		        map.setCenter(coords);
 		        
-		        j++;
-		        
 		    } //if
 		});   
 	
 	} //setMapPosition
 	
 	
-	//function setClassList(addr, className, classImg, classPrice){
-		
-	//}
+	// 모든 인포윈도우 닫는 함수
+    function closeInfoWindow() {
+    	for(var z=0; z<infoArr.length; z++){
+			infoArr[z].close();
+	    }
+    }
+	
+ 	// 모든 마커를 지도에서 제거하는 함수
+    function deleteMarkers() {
+    	for(var z=0; z<markers.length; z++){
+			markers[z].setMap(null);
+	    }
+    }
+	
+	
+	// 클래스목록 마우스오버 시 지도 중심 위치 이동시키기
+	function moveCenter(addr){
+		geocoder.addressSearch( addr , function(result, status) {
+		    // 정상적으로 검색이 완료됐으면 
+		     if (status === kakao.maps.services.Status.OK) {
+		        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+		        map.setCenter(coords);
+		     }
+		});
+	}
+	
+	
+	// 클래스 목록 마우스오버 이벤트 - 해당 마커 중심 지도, 인포윈도우 열기
+	$(document).on('mouseenter', '#placesList > li', function(){
+		var li_idx = $(this).index();
+		moveCenter($(this).children('.class-list-info').children('.class-addr').text()); // 지도 중심 이동시키기
+		kakao.maps.event.trigger(markers[li_idx], 'click'); // 마커 클릭 이벤트 강제 실행 - 인포윈도우 열기
+	});
+	
+	
+	
+	
+	// 대분류 카테고리 세팅
+	var url = '<%=request.getContextPath()%>/cateL';
+	$.ajax({
+		url: url,
+		success: function(result){
+			var r = $(result);
+			var tag='';
+			if(r.length!=0){
+				r.each(function(idx){
+					tag = `<optgroup label="` + r[idx].category_name + `">`;
+					tag +=	`<option>` + r[idx].category_name + ` 전체</option>`;
+					tag += `</optgroup>`;
+					
+					$('.select-category').append(tag);
+					
+					
+					// 중분류 카테고리 세팅
+					var url2 = '<%=request.getContextPath()%>/cateS';
+					var params2 = 'category1_no='+ r[idx].category1_no;
+					$.ajax({
+						url: url2,
+						data: params2,
+						success: function(result2){
+							
+							
+							var rr = $(result2);
+							//var opt_idx; 
+							var optgroup = $('.select-category').children('optgroup');
+							if(rr.length!=0){
+								rr.each(function(idx2){
+									var opt_idx = Math.floor(rr[idx2].category_no / 100)-1;
+									optgroup.eq(opt_idx).append('<option>' + rr[idx2].category_name + '</option>');
+								});
+							}
+						}, error: function(e){
+							console.log('카테고리 불러오기 에러', e.responseText);
+						}
+					}); // 중분류 ajax
+					
+					
+				}); // 대분류 each
+			}
+		}, error: function(e){
+			console.log('카테고리 불러오기 에러', e.responseText);
+		}
+	}); // 대분류 ajax
 
-});
+	
+
+}); //
 	
 	
 </script>
