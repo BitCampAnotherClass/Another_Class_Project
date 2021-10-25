@@ -346,7 +346,8 @@ $(function(){
 	                }
 	               
 	          		//
-	          		location.href="/payEnd";
+	          		var a ="user/pay/payEnd"
+	          		location.href="/another/payEnd";
             });
             
             
