@@ -8,5 +8,5 @@ public interface ClassListDAO {
 	public List<ClassListVO> ClassList();
 	public List<ClassListVO> sortByPrice(ClassListVO vo);
 	public List<ClassListVO> sortByApplyDate(ClassListVO vo);
-	public List<ClassListVO> rangePrice(int minp, int maxp);
+	public List<ClassListVO> rangePrice(int minp, int maxp, String sText);
 }
