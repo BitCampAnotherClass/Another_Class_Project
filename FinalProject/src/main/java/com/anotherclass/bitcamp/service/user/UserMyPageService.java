@@ -31,4 +31,5 @@ public interface UserMyPageService {
 	public int UserMyPageHQnADel2(int no);
 	public int UserMyPageHQnAEdi(UserHomeQnAVO vo);
 	public int UserMypageCheckFrep(int no);
+	public int userMyPageReviewCheck(int no);
 }

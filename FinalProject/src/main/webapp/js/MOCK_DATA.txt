@@ -3,11 +3,10 @@
 "ended":"1968-03-14","officialSite":null,"schedule":{"time":"19:30","days":["Thursday"]},"rating":{"average":7.9},
 "weight":90,"network":{"id":3,"name":"ABC","country":{"name":"United States","code":"US","timezone":"America/New_York"}},
 "webChannel":"","dvdCountry":"","externals":{"tvrage":2719,"thetvdb":77871,"imdb":"tt0059968"},
-"image":{"medium":"img/jisu/classimg5.png",
+"image":{"medium":"img/jisu/classimg3.png",
 "original":"https://static.tvmaze.com/uploads/images/original_untouched/6/16463.jpg"},
 "summary":"<p>Riddler.</p>"
  ,"updated":1606623424,"_links":{"self":{"href":"https://api.tvmaze.com/shows/975"},
  "previousepisode":{"href":"https://api.tvmaze.com/episodes/95649"}}}}
- 
- 
+
  
