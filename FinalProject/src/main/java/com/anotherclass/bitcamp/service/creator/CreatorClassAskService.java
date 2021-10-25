@@ -11,7 +11,7 @@ public interface CreatorClassAskService {
 	 
 	 public int CAReplyCheck(int no);//게시글에댓글달렸는지 여부 - 클래스문의글번호넣어서
 	 
-	 public List<CreatorCAskVO> CAContent(int no);//클래스문의글 보기
+	 public CreatorCAskVO CAContent(int no);//클래스문의글 보기
 	 
 	 public List<CreatorCAskVO> CAReplyContent(int no);//클래스문의글에대한 댓글보기
 	 public int CAReplyWrite(CreatorCAskVO vo);//댓글쓰기
