@@ -80,7 +80,7 @@ textarea{
 
 .review-content{
 	display:flex;
-	justify-content:flex-end;
+	justify-content:flex-start;
 	align-items:flex-start;
 }
 
@@ -271,6 +271,15 @@ span.user-review-info{
 
 
 /********** 나의 후기 ***********/
+
+.my-review-content .class-name{
+	margin-bottom:22px;
+}
+
+.my-review-content .class-name > a{
+	font-weight:500;
+	font-size:17px;
+}
 
 
 .my-review-content .review-info{
