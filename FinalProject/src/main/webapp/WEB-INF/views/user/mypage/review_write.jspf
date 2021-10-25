@@ -47,10 +47,11 @@
 						<h4>사진 첨부 (선택)</h4>
 						<div class="file-wrap">
 							<div class="file-view">
-								<img src='<%=request.getContextPath()%>/img/jisu/classimg2.png'/>
-								<button type="button" class="upload-delete">삭제</button>
+								<!-- 업로드 이미지 화면 -->
+								<!-- 이미지 삭제 버튼 -->
 							</div>
-							<input type="file" id="img1" name="img1" style="display:none;"/>
+							<input type="file" id="file-upload" name="file-upload" style="display:none;"/>
+							<input type="hidden" id="image-file-path" name="img1" style="display:none;"/>
 							<button type="button" class="upload-btn">사진 첨부하기</button>
 						</div>
 					</div>
@@ -191,21 +192,49 @@ $(document).ready(function(){
 	
 	// 사진 첨부하기 버튼 클릭 시 이벤트
 	$(document).on('click','.upload-btn',function(){
-		$('#img1').trigger('click'); // 파일 첨부 버튼 강제 실행
+		$('#file-upload').trigger('click'); // 파일 첨부 버튼 강제 실행
 	});
 	
 	
-	// 파일 첨부 시
-	$(document).on('change', '#img1', function(){
-		var imgTag = '<img src="<%=request.getContextPath()%>/img/jisu/classimg2.png"/>';
-		imgTag += '<button type="button" class="upload-delete">삭제</button>';
-		$('.file-view').show();
-		$('.file-view').html(imgTag);
-		
-	});
+	var serverName = '<%=request.getServerName() %>';
+	var serverPort = <%=request.getServerPort() %>;
 
-	
-	
+	// 파일 첨부 시
+	var fileList;
+	$(document).on('change', '#file-upload', function uploadFiles(e){
+		
+		
+		// 파일 이미지 가져오기
+		var file = $('#file-upload')[0].files[0]
+		var form_data = new FormData();
+      	form_data.append('file', file);
+      	$.ajax({
+        	data: form_data
+        	,type: "POST"
+        	,url: '/another/FileUpload/imageUploadUrl'
+        	,contentType: false
+        	,processData: false
+        	,success: function(imageData) {
+        		console.log("img:"+ imageData.url);
+        		fileList = imageData.url;
+        		
+        		var imgTag = '<img src="http://' + serverName + ':' + serverPort+fileList + '"/>';
+        		imgTag += '<button type="button" class="upload-delete">삭제</button>';
+        		$('.file-view').show();
+        		$('.file-view').html(imgTag);
+
+        		document.getElementById('image-file-path').value ='http://'+serverName+':'+serverPort+fileList;
+
+        	}
+      		,error: function(error){
+      			console.log(error);
+      			console.log('파일업로드 실패');
+      		}
+      	}); // ajax 파일 업로드
+	}); // 파일 변경 이벤트
+
+
+
 	// 금액 숫자 3자리 단위마다 콤마(,) 찍기
 	function numberWithCommas(x) {
 	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
