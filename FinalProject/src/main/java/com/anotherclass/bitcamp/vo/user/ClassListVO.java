@@ -12,8 +12,15 @@ public class ClassListVO {
 	private int class_max_price;
 	private int category_no;
 	private String category_name;
+	private String start_date;
 	
 	
+	public String getStart_date() {
+		return start_date;
+	}
+	public void setStart_date(String start_date) {
+		this.start_date = start_date;
+	}
 	public String getCategory_name() {
 		return category_name;
 	}
