@@ -32,6 +32,7 @@ public class CreatorClassAskController {
     	mav.addObject("list",creatorClassAskService.boardPageSelect(pVo));
     	List<CreatorCAskVO> list = creatorClassAskService.boardPageSelect(pVo);
     	System.out.println(list.size());
+    	System.out.println(list);
     	mav.setViewName("creator/classAsk/creator_ClassQna_list");
     	return mav;      
    }

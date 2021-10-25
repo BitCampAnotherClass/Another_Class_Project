@@ -47,7 +47,7 @@
 	<div class="cQnAT">클래스문의</div> <!-- 페이지 타이틀 -->
 	
 	<div id="cQnWrite"><!-- 검색 -->
-		<form method="post" action="another/creator/classAskManage" id="listform">
+		<form method="post" action="classAskManage" id="listform">
 			<div>         
 	            <input type="text" id="searchWord" name="searchWord" placeholder="검색어를 입력해 주세요."/><button id="searchIcon"><i class="fas fa-search"></i></button>         
 	         </div>	
@@ -90,7 +90,7 @@
 		<!-- 페이징 -->
 		<ul class="paging">
          <c:if test="${pVo.nowPage>1}">
-            <li><a href="<%=request.getContextPath()%>creator/classAskManage?nowPage=${pVo.nowPage-1}<c:if test='${searchWord != null}'>&searchWord=${pVo.searchKeyword}</c:if>" class="fas fa-angle-left">Prev</a>
+            <li><a href="<%=request.getContextPath()%>/creator/classAskManage?nowPage=${pVo.nowPage-1}<c:if test='${searchWord != null}'>&searchWord=${pVo.searchKeyword}</c:if>" class="fas fa-angle-left">Prev</a>
          </c:if>
          <c:if test="${pVo.nowPage==1}">
       		<li class='page-item'><a href="#" class='page-link'>Prev</a></li>
@@ -107,12 +107,12 @@
             <c:if test="${i!=pVo.nowPage }">
                <li>
             </c:if>
-            <a href="<%=request.getContextPath()%>creator/classAskManage=${i}<c:if test='${searchWord != null}'>&searchWord=${pVo.searchWord}</c:if>">${i}</a>
+            <a href="<%=request.getContextPath()%>/creator/classAskManage?nowPage=${i}<c:if test='${searchWord != null}'>&searchWord=${pVo.searchWord}</c:if>">${i}</a>
          </c:if>
          
          </c:forEach>
          <c:if test="${pVo.nowPage<pVo.totalPage}">
-            <li class='page-item'><a href="<%=request.getContextPath()%>creator/classAskManage=${pVo.nowPage+1 }<c:if test='${searchWord != null}'>&searchWord=${pVo.searchWord}</c:if>" class="fas fa-angle-right">Next</a></li>
+            <li class='page-item'><a href="<%=request.getContextPath()%>/creator/classAskManage?nowPage=${pVo.nowPage+1 }<c:if test='${searchWord != null}'>&searchWord=${pVo.searchWord}</c:if>" class="fas fa-angle-right">Next</a></li>
          </c:if>   
       </ul>
 
