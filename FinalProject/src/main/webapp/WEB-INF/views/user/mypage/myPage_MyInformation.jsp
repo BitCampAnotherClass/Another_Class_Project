@@ -39,14 +39,13 @@ $(()=>{
 			type:'POST'
 			,success:function(result){
 				fileHtml+='<li class="myPage-accountView-picther">';
-				fileHtml+='<img src="${vo.member_img }">';
+				fileHtml+='<img id="image-account" src="${vo.member_img }">';
 				fileHtml+='</li>';
-				fileHtml+='<li class="information-box-img">';
 				fileHtml+='<li class="information-box-img">';
 				fileHtml+='<input type="file" style="float:right" class="popup-input-img" id="member_file" />';
 				fileHtml+='</li>';
 				fileHtml+='<li class="information-box-img">';
-				fileHtml+='<input type="button" value="파일전송" style="float:right" class="popup-input-button" id="button"/>';
+				fileHtml+='<input type="button" value="파일전송" style="float:right" class="popup-input-button" id="image-input-button"/>';
 				fileHtml+='</li>';
 				$('.information-popup-ul').html(fileHtml);
 			} 
@@ -207,6 +206,39 @@ $(()=>{
         }).open();
     }
 </script>
+
+<script>
+var serverName = '<%=request.getServerName() %>';
+var serverPort = <%=request.getServerPort() %>;
+console.log(serverName)
+$(()=>{
+	var fileList;
+	$(document).on('click','#image-input-button', function uploadFiles(e){
+			var file = $('#member_file')[0].files[0]
+			var form_data = new FormData();
+	      	form_data.append('file', file);
+	      	$.ajax({
+	        	data: form_data
+	        	,type: "POST"
+	        	,url: '/another/FileUpload/imageUploadUrl'
+	        	,contentType: false
+	        	,processData: false
+	        	,success: function(imageData) {
+	        		console.log("img:"+ imageData.url);
+	        		fileList = imageData.url;
+	        		document.getElementById('image-account').src ='http://'+serverName+':'+serverPort+fileList;
+	        		document.getElementById('myPage-account-image').src ='http://'+serverName+':'+serverPort+fileList;
+	        		document.getElementById('image-file-path').value ='http://'+serverName+':'+serverPort+fileList;
+	        		document.getElementById('account_send').submit();
+	        	}
+	      		,error: function(error){
+	      			console.log(error);
+	      			console.log('파일업로드 실패');
+	      		}
+	      	});
+		});
+});
+</script>	
 <style>
 	.myPage-accountView-title{
 		padding:10px;
@@ -335,7 +367,7 @@ $(()=>{
 		width:120px;
 		height:30px;
 	}
-	.account_edit_addr_button:active, .account_pic_edit:active, .account_edit_sending:active, .myPage-popup-close-button:active , .account_pwd_edit:active{
+	.account_edit_addr_button:active, .popup-input-button:active, .account_pic_edit:active, .account_edit_sending:active, .myPage-popup-close-button:active , .account_pwd_edit:active{
 		background-color: #ededed;
 	}
 	.myPage-account-name{
@@ -384,7 +416,7 @@ $(()=>{
 						
 						<div class="myPage-accountView-main">
 							<div class="myPage-accountView-picther">
-								<img src="${vo.member_img }">
+								<img id="myPage-account-image" src="${vo.member_img }">
 							</div>
 							<ul class="myPage-accountView-ul">
 								<li>
@@ -395,7 +427,7 @@ $(()=>{
 								</li>
 							</ul>
 							
-							<form method="post" action="MyinformationEdit" >
+							<form method="post"  id="account_send"  action="MyinformationEdit" >
 							<ul class="myPage-accountView-info-list">
 								<li class="myPage-accountView-info">
 								<span class="myPage-accountView-box-title">이름</span>
@@ -456,6 +488,7 @@ $(()=>{
 									<input type="hidden" id="member_email" name="member_email" value="${vo.member_email }"/>
 									<input type="hidden" id="account_post_no" name="post_no" value="${vo.post_no }"/>	
 									<input type="hidden" id="account_addr1" name="addr1" value="${vo.addr1 }"/>
+									<input type="hidden" id="image-file-path" name="member_img" value="${vo.member_img}"/>
 								</li>
 							</ul>
 							<input type="submit" class="account_edit_sending" value="수정완료"/>

@@ -27,21 +27,18 @@ public class FileController {
 		UploadSetingTO uploadTo = new UploadSetingTO();
 		JsonObject jsonOb = new JsonObject();
 		String path = uploadTo.getPathSeting(req); //이클립스: 메타데이터 위치 // 톰캣 : 톰캣 내부 위치 
-		System.out.println(path);
 		String originFileName = mulitpartFile.getOriginalFilename(); //파일이름
 		String extension = originFileName.substring(originFileName.lastIndexOf(".")); 
 		String saveFileName = UUID.randomUUID() + extension; // 저장되는 파일명  랜덤 + 파일명
 		File targetFile = new File(path+saveFileName);
-		System.out.println(targetFile);
 		try {
 			InputStream fileStream = mulitpartFile.getInputStream();
 			FileUtils.copyInputStreamToFile(fileStream, targetFile);
 			jsonOb.addProperty("url", "/anotherImage/"+saveFileName);
 			jsonOb.addProperty("responseCode", "success");
-			System.out.println("파일업로드 작동중");
 		}catch(Exception e){
 			FileUtils.deleteQuietly(targetFile);
-			System.out.println("파일업로드 실패");
+			System.out.println(e+"파일업로드 실패"+"|| File Upload Fail");
 			jsonOb.addProperty("responseCode", "error");
 			e.printStackTrace();
 		}
