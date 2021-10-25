@@ -118,7 +118,7 @@
 			and a.order_date IS NOT NULL
 			and a.cancel_date  IS NULL
 			and a.refund_date IS NULL
-			and to_char(sysdate, 'YYYYMMDD') < to_char(b.start_date, 'YYYYMMDD')
+			and to_char(sysdate, 'YYYYMMDD') < to_char(b.end_date, 'YYYYMMDD')
 			and a.member_id = #{param1}  		
   		]]>
   	</select>
@@ -131,7 +131,7 @@
 			and a.order_date IS NOT NULL
 			and a.cancel_date  IS NULL
 			and a.refund_date IS NULL
-			and to_char(sysdate, 'YYYYMMDD') > to_char(b.start_date, 'YYYYMMDD')
+			and to_char(sysdate, 'YYYYMMDD') > to_char(b.end_date, 'YYYYMMDD')
 			and a.member_id = #{param1}  
 		]]>
   	</select>

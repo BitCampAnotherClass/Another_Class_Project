@@ -36,7 +36,7 @@
   	</select>
   		<select id="CAContent" resultType="com.anotherclass.bitcamp.vo.creator.CreatorCAskVO">
   		<![CDATA[
-  			select class_qna_no, class_no, classQna_member_id, classqna_content,to_char( classqna_writedate,'yyyy-MM-DD HH:MM' ) classqna_writedate, classqna_com_sec 
+  			select class_qna_no, class_no, classqna_member_id, classqna_content,to_char( classqna_writedate,'yyyy-MM-DD HH:MM' ) classqna_writedate, classqna_com_sec 
 			from classQna 
 			where class_qna_no = #{param1}
   		]]> 
