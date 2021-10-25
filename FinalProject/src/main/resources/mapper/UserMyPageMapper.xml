@@ -181,4 +181,10 @@
   	<select id="userMyPageReviewCheck" resultType="int">  		
 		select count(order_no) cnt from reviewtbl where order_no = #{param1}
 	</select>
+	<select id="logIdCheck" parameterType="com.anotherclass.bitcamp.register.RegisterVO" resultType="com.anotherclass.bitcamp.register.RegisterVO" statementType="CALLABLE">
+		call id_check_in(
+			#{member_id, mode=IN, jdbcType=VARCHAR, javaType=String}, 
+			#{additional_information_one, mode=OUT, jdbcType=VARCHAR, javaType=String} 
+		)
+	</select>
   </mapper>

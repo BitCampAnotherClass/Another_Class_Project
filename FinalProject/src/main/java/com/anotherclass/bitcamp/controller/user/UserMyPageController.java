@@ -73,19 +73,14 @@ public class UserMyPageController {
 		return mav;
 	}
 	
-//	@RequestMapping(value="", method = RequestMethod.POST)
-//	@ResponseBody
-//	public String idCheck(RegisterVO vo, String pwd) {
-//		try {
-//			vo.setMember_pw(hashing.setEncryption(vo.getMember_pw(),vo.getMember_id()));
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		userMyPageService.pwdCheck(vo);
-//		String cnt =vo.getAdditional_information_one();
-//		return cnt;
-//	}
+	@RequestMapping(value="", method = RequestMethod.POST)
+	@ResponseBody
+	public String idCheck(RegisterVO vo, String pwd)throws Exception {
+		vo.setMember_pw(hashing.setEncryption(vo.getMember_pw(),vo.getMember_id()));
+		userMyPageService.pwdCheck(vo);
+		String cnt =vo.getAdditional_information_one();
+		return cnt;
+	}
 	
 	//	///HomeAskReplyList999 홈페이지문의 에이젝스로불러오기
 	@RequestMapping("/HomeAskReplyList999")

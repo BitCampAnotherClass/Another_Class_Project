@@ -176,10 +176,6 @@ $(function(){
 			$('#classTag').val("");
 	});
 /////////////////////////////////파일이름 넣기
-	$('#fileButton').on('change',function(){
-		var fileName = $('#fileButton').val().replace(/^c:\\fakepath\\/i, " ");///fakepath주소 없애기
-		$('.imgThumbFileName').val(fileName);
-	});
 ///////////////////////////////////////////////////////빈칸확인
 	$('#class_apply').click(function(){
 		if($('#class_name').val() == ""){
