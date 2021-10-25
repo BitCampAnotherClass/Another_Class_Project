@@ -32,4 +32,5 @@ public interface UserMyPageService {
 	public int UserMyPageHQnAEdi(UserHomeQnAVO vo);
 	public int UserMypageCheckFrep(int no);
 	public int userMyPageReviewCheck(int no);
+	public String pwdCheck(RegisterVO vo);
 }

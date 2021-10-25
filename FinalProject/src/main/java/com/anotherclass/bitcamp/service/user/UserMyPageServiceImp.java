@@ -134,4 +134,9 @@ public class UserMyPageServiceImp implements UserMyPageService {
 		// TODO Auto-generated method stub
 		return userMyPageDAO.UserMyPageHQnADel2(no);
 	}
+	
+	@Override
+	public String pwdCheck(RegisterVO vo) {
+		return userMyPageDAO.pwdCheck(vo);
+	}
 }

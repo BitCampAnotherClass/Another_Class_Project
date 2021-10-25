@@ -36,4 +36,5 @@ public interface UserMyPageDAO {
 	public int UserMyPageHQnADel2(int no);
 	public int UserMyPageHQnAEdi(UserHomeQnAVO vo);
 	public int userMyPageReviewCheck(int no);//후기작성유무
+	public String pwdCheck(RegisterVO vo);
 }

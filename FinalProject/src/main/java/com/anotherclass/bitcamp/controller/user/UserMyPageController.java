@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.anotherclass.bitcamp.register.HashingSeting;
 import com.anotherclass.bitcamp.register.RegisterVO;
 import com.anotherclass.bitcamp.service.user.UserMyPageService;
 import com.anotherclass.bitcamp.vo.user.UserClassDetailVO;
@@ -20,6 +21,9 @@ import com.anotherclass.bitcamp.vo.user.UserMyPageOrderVO;
 
 @Controller
 public class UserMyPageController {
+	
+	private HashingSeting hashing = new HashingSeting();
+	
 	@Inject
 	UserMyPageService userMyPageService;
 	
@@ -71,6 +75,19 @@ public class UserMyPageController {
 		return mav;
 	}
 	
+//	@RequestMapping(value="", method = RequestMethod.POST)
+//	@ResponseBody
+//	public String idCheck(RegisterVO vo, String pwd) {
+//		try {
+//			vo.setMember_pw(hashing.setEncryption(vo.getMember_pw(),vo.getMember_id()));
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//		userMyPageService.pwdCheck(vo);
+//		String cnt =vo.getAdditional_information_one();
+//		return cnt;
+//	}
 	
 	//	///HomeAskReplyList999 홈페이지문의 에이젝스로불러오기
 	@RequestMapping("/HomeAskReplyList999")
