@@ -84,10 +84,11 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-	var now_page=1;
-	var total_page=1;
 	
-	var logId = '${userId}';
+	var now_page=1; // 현재 페이지
+	var total_page=1; // 총 페이지 수
+	
+	var logId = '${userId}'; // 로그인 회원 아이디
 	function setPage(){
 		// 나의 후기 페이징 가져오기
 		var pageUrl = '<%=request.getContextPath()%>/myReviewPage';
@@ -111,7 +112,7 @@ $(document).ready(function(){
 				</ul>`;
 				
 				$('.review-paging').append(pageTag);
-				
+				$('.page-num').eq(1).addClass('active');
 				
 				
 			}, error: function(e){
@@ -192,9 +193,12 @@ $(document).ready(function(){
 		}); // ajax 나의 후기 목록
 	}
 	
-	setPage();
-	selectMyReview();
-	$(document).on('click','.page-num > a', function(){
+	setPage(); // 페이지 세팅하기
+	selectMyReview(); // 리뷰 목록 불러오기
+	
+	// 페이지 번호 클릭 이벤트
+	$(document).on('click','.page-num > a', function(e){
+		
 		if($(this).parent().attr('id')=='prev-page'){
 			if(now_page>1){
 				now_page = now_page-1;
@@ -210,8 +214,18 @@ $(document).ready(function(){
 			}
 		} else{
 			now_page = $(this).text();
+			
 		}
 		selectMyReview();
+		
+		$('.page-num').removeClass('active');
+		
+		$('.page-num > a').each(function(){
+			if($(this).text()==now_page){
+				$(this).addClass('active');
+			}
+			
+		});
 	});
 	
 	
