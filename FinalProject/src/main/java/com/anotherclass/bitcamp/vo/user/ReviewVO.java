@@ -14,6 +14,7 @@ public class ReviewVO {
 	private int class_option_no;
 	
 	private int class_no;
+	private String class_name;
 	private String member_img;
 	
 	// 페이징
@@ -139,6 +140,12 @@ public class ReviewVO {
 	}
 	public void setGroupStartPage(int groupStartPage) {
 		this.groupStartPage = groupStartPage;
+	}
+	public String getClass_name() {
+		return class_name;
+	}
+	public void setClass_name(String class_name) {
+		this.class_name = class_name;
 	}
 
 }

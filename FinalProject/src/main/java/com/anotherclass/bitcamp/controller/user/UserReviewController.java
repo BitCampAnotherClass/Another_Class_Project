@@ -53,14 +53,23 @@ public class UserReviewController {
 		return mav;
 	}
 	
+	
+	// 나의 후기 페이징 불러오기
+	@RequestMapping(value = "/myReviewPage")
+	@ResponseBody
+	public ReviewVO myReviewPage(ReviewVO vo) {
+		System.out.println("멤버아이디->"+vo.getMember_id());
+		ReviewVO page_vo = userReviewService.countTotalMyReview(vo);
+		System.out.println("총레코드수->"+page_vo.getTotalRecord());
+		return page_vo;
+	}
+	
 	// 나의 후기 불러오기
 	@RequestMapping(value = "/myReview")
 	@ResponseBody
-	public List<ReviewVO> myReview(ReviewVO vo, HttpSession session) {
-		ModelAndView mav = new ModelAndView();
-		vo.setMember_id((String)session.getAttribute("userId"));
+	public List<ReviewVO> myReview(ReviewVO vo) {
 		List<ReviewVO> reviewList = userReviewService.selectMyReview(vo);
-
+		
 		return reviewList;
 	}
 	
