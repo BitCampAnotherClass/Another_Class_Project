@@ -190,7 +190,7 @@ $(function(){
 			alert('클래스 카테고리를 선택하세요');
 			window.location.href="#f3";
 			return false;
-		}else if($('#class_thumb').val() == ""){		
+		}else if($('#thumb_image').val() == ""){		
 			alert('클래스 썸네 파일을 업로드하세요');
 			window.location.href="#f4";
 			return false;
