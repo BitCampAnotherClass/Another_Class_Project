@@ -322,10 +322,14 @@ function execDaumPostcode() {
     });
 };
 
-
+	
+	
+</script>
+<script>
+$(()=>{
 	var fileList;
 	$('#fileButton').on('click', function uploadFiles(e){
-			var file = $('#imageFile')[0].files[0]
+			var file = $('#fileButton')[0].files[0]
 			var form_data = new FormData();
 	      	form_data.append('file', file);
 	      	$.ajax({
@@ -337,6 +341,7 @@ function execDaumPostcode() {
 	        	,success: function(imageData) {
 	        		console.log("img:"+ imageData.url);
 	        		fileList = imageData.url;
+	        		document.getElementById('previewImg').src ='http://localhost:9090'+fileList;
 	        	}
 	      		,error: function(error){
 	      			console.log(error);
@@ -344,9 +349,7 @@ function execDaumPostcode() {
 	      		}
 	      	});
 		});
-</script>
-<script>
-$(()=>{
+	
 	$('#summernote').summernote({
 		// 에디터 높이
 		height: 200,
@@ -863,6 +866,7 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 				<label for="fileButton">업로드</label>
 				<input type="file" id="fileButton" name="filename" accept="img/*"  required>
 			</div>
+			
 	</div>
 	<div>
 		<ul class="descriptionUl">
