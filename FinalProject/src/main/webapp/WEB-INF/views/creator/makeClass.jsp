@@ -328,14 +328,14 @@ function execDaumPostcode() {
 <script>
 $(()=>{
 	var fileList;
-	$('#fileButton').on('click', function uploadFiles(e){
+	$('#class_thumb').on('propertychange change keyup paste input', function uploadFiles(e){
 			var file = $('#fileButton')[0].files[0]
 			var form_data = new FormData();
 	      	form_data.append('file', file);
 	      	$.ajax({
 	        	data: form_data
 	        	,type: "POST"
-	        	,url: 'imageUploadUrl'
+	        	,url: '/another/FileUpload/imageUploadUrl'
 	        	,contentType: false
 	        	,processData: false
 	        	,success: function(imageData) {
