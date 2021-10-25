@@ -64,7 +64,7 @@ $(function(){
 					classDiv += '<ul>';
 					classDiv += '<li><div>'+ category_name[idx]+'</div></li>';
 					classDiv += '<li>'+className_arry[idx]+'</li>';
-					classDiv +=	'<li>'+classAddr1_arry[idx]+'</li>'
+					classDiv +=	'<li>'+classTag_arry[idx]+'</li>'
 					classDiv +=	'<li>'+classPrice_arry[idx]+'원</li>';
 					classDiv += '</ul>';
 					classDiv +='</div>';
@@ -108,7 +108,7 @@ $(function(){
 					classDiv += '<ul>';
 					classDiv += '<li><div>'+ category_name[idx]+'</div></li>';
 					classDiv += '<li>'+className_arry[idx]+'</li>';
-					classDiv +=	'<li>'+classAddr1_arry[idx]+'</li>'
+					classDiv +=	'<li>'+classTag_arry[idx]+'</li>'
 					classDiv +=	'<li>'+classPrice_arry[idx]+'원</li>';
 					classDiv += '</ul>';
 					classDiv +='</div>';
@@ -127,7 +127,7 @@ $(function(){
 <style>
 .main_container{ background-color:;
 	width:1200px;
-	height:1200px;
+	height:1400px;
 	margin:0 auto;
 }
 .top_container{ background-color:;
@@ -135,7 +135,7 @@ $(function(){
 	height:130px;
 	margin-top:30px;
 }
-.page_name{
+.page_name a{
 	background-color:; 
 	border:1px dotted lightgray;
 	border-radius:8px;
@@ -146,7 +146,7 @@ $(function(){
 	color:#FF385C;
 	display: table-cell;
 	font-weight: 500;
-	font-size: 1.8em;
+	font-size: 2em;
 	line-height: 100px;
 }
 .select_boxes{background-color:;
@@ -235,14 +235,14 @@ input[type=submit]:hover{
 .class_div{ border:1px dotted lightgray;
 	float:left;
 	width:23%;
-	height:330px;
+	height:350px;
 	margin:1% 1% 1% 1%;
 	border-radius:8px;
 	padding:5px 5px 5px 5px;
 }
 .img_div{ border:1px dotted lightgray;
 	width:100%;
-	height:55%;
+	height:53%;
 	border-radius:8px;
 	margin:0 auto;
 	overflow:hidden;
@@ -255,7 +255,7 @@ input[type=submit]:hover{
 }
 .info_div{border:1px dotted lightgray;/* 정보 div */
 	width:100%;
-	height:40%;
+	height:42%;
 	padding:5px 5px 5px 5px;    
 	border-radius:8px;
 	margin-top:5%;
@@ -289,6 +289,8 @@ input[type=submit]:hover{
 	border:1px dotted #00B9B1;
 	color:#00B9B1;
 	border-radius:6px;
+	overflow: hidden;
+	height:28px;
 }
 .info_div>ul>li:nth-child(4) {
 	font-weight: 500;
@@ -306,7 +308,7 @@ input[type=submit]:hover{
 	<form action="">
 		<div class="top_container">
 			<div class="page_name">
-				<label>class list</label>
+				<label><a href="<%=request.getContextPath()%>/classList">Class list</a></label>
 			</div>
 			<div class="select_boxes">
 					<select>

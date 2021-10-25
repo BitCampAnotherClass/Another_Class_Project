@@ -104,13 +104,14 @@ textarea{
 	width:auto;
 	max-height:125px;
 	margin-left:10px;
+	
 	font-size:14px;
 	color:#666;
 	line-height:1.5;
 	white-space: normal;
 	overflow:hidden;
 	text-overflow:ellipsis;
-	
+
 	word-break: break-all;
 	word-wrap: break-word;
 	display: -webkit-box; 
@@ -122,41 +123,117 @@ textarea{
 	margin-left:150px;
 }
 
+.more-btn > input{
+	font-size:14px;
+	font-weight:500;
+	color:#aaa;
+	text-decoration: underline;
+	border:none;
+	background-color:#fff;
+	cursor:pointer;
+}
 
-/* 댓글 */
+
+/**************** 댓글 ****************/
+
+.review-comment-list{
+	display:flex;
+	justify-content: flex-start;
+	flex-direction: column;
+	background-color:#fff;
+	padding:30px 40px 30px 40px;
+	border-radius: 5px;
+}
 
 .review-comment{
 	display:flex;
 	justify-content: flex-start;
-	flex-direction: column;
-	background-color:#f5f5f5;
-	margin-top:30px;
-	padding:20px 40px 20px 60px;
-	border-radius: 5px;
+	flex-direction:column;
 }
 
-.review-comment .comment-info {
-	width:100%;
+.comment-item{
 	display:flex;
 	justify-content: flex-start;
+	margin-bottom:20px;
 }
 
-.class-review-content .review-comment .user-img{
-	width:26px;
-	height:26px;
+.review-comment-list .comment-info {
+	width:30px;
+	margin-right:16px;
 }
 
-.class-review-content .review-comment .user-review-info {
-	width:100%;
-	display:flex;
-	justify-content: flex-start;
+.class-review-content .review-comment-list .user-img{
+	width:30px;
+	height:30px;
 }
 
-.comment-text{
+.class-review-content .review-comment-list .comment-text{
+	width:654px;
 	font-size:14px;
 	color:#666;
 }
 
+span.user-review-info{
+	display:inline-block;
+	margin-right:10px;
+	font-size:15px;
+	font-weight:700;
+	color:#444;
+}
+
+.review-comment-write{
+	display:flex;
+	justify-content: flex-start;
+	align-items: center;
+	width:700px;
+	margin-top:50px;
+	padding:0 40px 0 40px;
+}
+
+
+#reviewCommentFrm{
+	display:flex;
+	justify-content: flex-start;
+	align-items: center;
+	width:700px;
+}
+
+#review-reply{
+	width:590px;
+	min-height:50px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	padding:6px 10px;
+}
+
+#review-reply-btn{
+	width:50px;
+	height:36px;
+	margin-left:14px;
+	border: none;
+	background-color:#ff385c;
+	color:#fff;
+	border-radius: 5px;
+	cursor:pointer;
+}
+
+
+
+/*************** 대댓글 ***************/
+
+
+.comment-reply{
+	width:100%;
+	padding:20px 40px 0;
+	background-color:#f5f5f5;
+	border-radius: 7px;
+}
+
+.reply-text{
+	width:618px;
+	font-size:14px;
+	color:#666;
+}
 
 
 
@@ -174,15 +251,11 @@ textarea{
 }
 
 
-.class-review-content .user-review-info{
-	width:90px;
-}
-
 
 .class-review-content .review-info .star{
 	margin-top:10px;
 	font-size:18px;
-	letter-spacing:-2px;
+	letter-spacing:-3px;
 }
 
 .class-review-content .review-content, .class-review-content .comment-text{
@@ -212,8 +285,33 @@ textarea{
 
 .my-review-content .review-info .star{
 	margin-top:10px;
-	font-size:18px;
-	letter-spacing:-2px;
+	position:relative;
+	top:0; left:0;
+	width:95px;
+	height:20px;
+	text-align:left;
+	font-size:16px;
+	letter-spacing:-3px;
+}
+
+.my-review-content .review-info .star .back-star{
+	position:absolute;
+	top:0; left:0;
+	width:95px;
+	white-space:nowrap;
+	overflow:hidden;
+	text-align:left;
+	color:#d3d3d3;
+}
+
+.my-review-content .review-info .star .front-star{
+	position:absolute;
+	top:0; left:0;
+	width:95px;
+	white-space:nowrap;
+	overflow:hidden;
+	text-align:left;
+	color:#FFB300;;
 }
 
 .my-review-content .review-content{
@@ -245,7 +343,7 @@ textarea{
 
 .review-modal-wrap{
 	position:relative;
-	width:670px;
+	width:650px;
 	margin:50px auto;
 	background-color:#fff;
 	border-radius: 15px;
@@ -289,12 +387,16 @@ textarea{
 .review-class{
 	display:flex;
 	justify-content: flex-start;
+	align-items: center;
+	height:110px;
 }
 
 .review-class-img{
 	width:110px;
 	height:110px;
 	background-color:#eee;
+	border-radius: 5px;
+	overflow:hidden;
 }
 
 .review-class-img > img{
@@ -308,15 +410,31 @@ textarea{
 	padding-left:20px;
 }
 
+.review-class-info > .class-name{
+	font-size:15px;
+	color:#333;
+}
+
+.review-class-info > .class-creator{
+	font-size:14px;
+	color:#999;
+}
+
+.review-class-info > .class-price{
+	font-weight:600;
+	margin-top:10px;
+}
+
+
 .star-point{
 	font-size:54px;
 	text-align:center;
-	color:#FFB300;
 	letter-spacing:-3px;
 }
 
-.fa-star{
+.star-point .fa-star{
 	cursor:pointer;
+	color:#d3d3d3;
 }
 
 
@@ -348,19 +466,53 @@ textarea{
 	outline: none;
 	border:1px solid #ddd;
 	padding:10px 10px;
+	border-radius: 6px;
 }
 
 
-.file-wrap{
-	width:100px;
-	height:100px;
-	border:1px solid #ccc;
+.file-view{
+	display:none;
+	position:relative;
+	top:0; left:0;
+	height:200px;
+	background-color:#eee;
+	border-radius: 6px;
+	margin-bottom:10px;
+	overflow:hidden;
+	text-align: center;
 }
 
-#review-file{
-	width:100%;
+.file-view > img{
+	width: auto;
+	max-width:100%;
 	height:100%;
-	opacity: 0;
+}
+
+.upload-delete{
+	position:absolute;
+	top:12px; right:12px;
+	width:70px;
+	line-height:33px;
+	border-radius: 4px;
+	border:none;
+	background-color:#ff385c;
+	color:#fff;
+	font-size:15px;
+	font-weight: 400;
+	cursor:pointer;
+}
+
+.upload-btn{
+	width:100%;
+	height:50px;
+	line-height:50px;
+	border-radius: 6px;
+	border:1px solid #ff385c;
+	background-color:#fff;
+	color:#ff385c;
+	font-size:16px;
+	font-weight: 500;
+	cursor:pointer;
 }
 
 
@@ -373,20 +525,28 @@ textarea{
 .review-btn{
 	width:49.5%;
 	line-height:50px;
-	border:1px solid #FF385C;
 	border-radius:6px;
+	border:none;
 	font-size:16px;
 	cursor:pointer;
 }
 
 #review-cancel-btn{
-	background-color:#fff;
-	color:#FF385C;
+	background-color:#bbb;
+	color:#fff;
+}
+
+#review-cancel-btn:hover{
+	background-color:#aaa;
 }
 
 #review-ok-btn{
 	background-color:#FF385C;
 	color:#fff;	
+}
+
+#review-ok-btn:hover{
+	background-color:#EC284C;
 }
 
 
