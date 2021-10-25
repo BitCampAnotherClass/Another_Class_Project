@@ -31,12 +31,13 @@
 	$(()=>{		
 		
 		//목록
+		/*
 		$("#cQnAWList").click(()=>{
 			console.log(${number});
 			$("#homeQnAVFrm").attr("action", "/another/HomeQnAAsk/list?no=1" );
 			$("#homeQnAVFrm").submit();
 		});
-		
+		*/
 		
 	});
 </script>
@@ -51,24 +52,24 @@
 			<ul id="cQnATul">
 				<li>
 					<div>작성자</div>
-					<div>${vo.member_id }</div>	
+					<div>${vo.classqna_member_id }</div>	
 				</li>
 				<li>
 					<div>작성일자</div>
-					<div>${vo.writedate }</div>	
+					<div>${vo. classqna_writedate }</div>	
 				</li>
 				<li>
 					<div>클래스명</div>
-					<div><input type="text"  id="cQnAWriteSubview" readonly disabled value="${vo.title }"></div>	
+					<div><input type="text"  id="cQnAWriteSubview" readonly disabled value="${vo.class_name }"></div>	
 				</li>
 				
 				<li>
 					<div>문의내용</div>
-					<div><textarea  id="cQnAWriteConview" readonly disabled >${vo.content }</textarea></div>	
+					<div><textarea  id="cQnAWriteConview" readonly disabled >${vo.classqna_content }</textarea></div>	
 				</li>
 				
 				<li >
-					<div>답변</div><!-- hQnAWriteFileview -->
+					<div>댓글</div><!-- hQnAWriteFileview -->
 					<div>
 						<textarea  id="cQnAWriteConviewReply" readonly disabled >${vo.content }</textarea>
 						<div style='text-align:right;width:90%;'>
@@ -79,7 +80,7 @@
 				</li>
 				<!-- 수정폼 -->
 				<li >
-					<div>답변</div><!-- hQnAWriteFileview -->
+					<div>댓글</div><!-- hQnAWriteFileview -->
 					<div>
 						<textarea  id="cQnAWriteConviewReply" >${vo.content }</textarea>
 						<div style='text-align:right;width:90%;'>
@@ -87,13 +88,10 @@
 						</div>
 					</div>	
 				</li>
-				
-				<!--  <li id="cQnAButview">				
-					<input type="button" name="cQnAWList" id="cQnAWList" value="목록"/>
-				</li>		-->		
+
 			</ul>
 			<div style='border:1px solid #ddd;margin-top:100px;'> <!-- 댓글작성 -->
-					<span style='display: inline-block;margin: 18px 20px 15px 43px;'>문의 내용 답변작성</span>
+					<span style='display: inline-block;margin: 18px 20px 15px 43px;'>문의 내용 댓글작성</span>
 					<form method="post" id="replyFrm">
 						<div style='text-align:center;'><textarea name="classqna_content" id="classMainAskTa" placeholder="궁금하신 점 또는 클래스문의등을 자유롭게 작성해 주세요."></textarea></div><!-- classMainAskTa -->
 						<input type="button" id="replysub" value="작성완료"/>
@@ -102,8 +100,8 @@
 			</div>
 			
 			<div id="cQnAButview">				
-					<input type="button" name="cQnAWList" id="cQnAWList" value="목록"/>
+					<button id="cQnAWList" onclick="location.href='classAskManage';" >목록</button>
 			</div>
-			<div style="display:none">${vo.class_no }</div><!-- 글번호 -->
+			<div style="display:none">${vo.class_qna_no }</div><!-- 글번호 -->
 			
 </div>
