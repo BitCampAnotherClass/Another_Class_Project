@@ -128,4 +128,10 @@ public class UserMyPageServiceImp implements UserMyPageService {
 		// TODO Auto-generated method stub
 		return userMyPageDAO.UserMyPageHQnADel2(no);
 	}
+
+	@Override
+	public int userMyPageReviewCheck(int no) {
+		// TODO Auto-generated method stub
+		return userMyPageDAO.userMyPageReviewCheck(no);
+	}
 }

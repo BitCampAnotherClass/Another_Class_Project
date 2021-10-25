@@ -150,7 +150,13 @@ public class UserMyPageController {
 	@RequestMapping("/UserOrderListFin2")
 	@ResponseBody
 	public List<UserMyPageOrderVO> ajaxOrderListFin2(String logid){				
-		List<UserMyPageOrderVO> list = userMyPageService.orderFinList2(logid);		
+		List<UserMyPageOrderVO> list = userMyPageService.orderFinList2(logid);	
+	
+		for(int i=0; i<list.size(); i++) {
+			UserMyPageOrderVO vo = list.get(i);				
+			vo.setReviewChk(userMyPageService.userMyPageReviewCheck(vo.getOrder_no()));
+			
+		}
 		return list;
 	}
 	//취소,환불내역

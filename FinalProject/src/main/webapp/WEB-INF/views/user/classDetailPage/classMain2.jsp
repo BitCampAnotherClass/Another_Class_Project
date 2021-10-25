@@ -80,7 +80,7 @@
 	#d9>div:nth-child(3)>span{display:block;margin:0 0 10px 36px;font-size:0.9rem;color:#333;}
 	#d9>div:nth-child(3)>form>div{text-align:center;}/*padding-left:26px;*/
 	#classMainAskTa{width:90%;height:100px;resize:none;overflow:auto;border-color:#ddd;}/*댓글작성하는부분*/
-	#d9>div:nth-child(3)>form>input[type=button]{margin: 10px 0 0 656px;background-color:white;border:none;border:1px solid #999;width:100px;padding-top:5px;padding-bottom:5px;}
+	#d9>div:nth-child(3)>form>input[type=button]{margin: 10px 0 0 656px;background-color:#ff385c;border:none;border-radius:5px;color:white;width:100px;padding-top:5px;padding-bottom:5px;}
 	textarea::placeholder {color:#999;}	
 	.askdiv909{border:1px solid #f0f0f0;padding:10px;}/*회원배경:회색*/
 	.askdiv808{background-color: #f0f0f0;padding:10px;}/*강사배경 : 연핑크 or 연하늘*/
@@ -112,7 +112,7 @@
 	
 	/*word-break:break-all;*/
 	
-	.menu_title_container{z-index:8;}/*메뉴바*/
+	.menu_title_container{z-index:1000;}/*메뉴바*/
 	
 </style>
 <script>
@@ -245,9 +245,9 @@ $(function(){
 	    					}
 	    					
 	    					if(vo4.replycheck==1){
-	    						tag +=	"<label><input type='button' value='답변확인' style='float: right;font-size: 0.7rem;background-color: white;border: none;border: 1px solid #666; padding: 2px 5px 2px 5px;' class='"+vo4.class_qna_no+"' id='replyshow' ></label>";
+	    						tag +=	"<label><input type='button' value='답변확인' style='float: right;font-size: 0.8rem;background-color:#ff385c;border: none;border-radius:5px;color:white; padding: 2px 5px 2px 5px;' class='"+vo4.class_qna_no+"' id='replyshow' ></label>";
 	    					}else{
-	    						tag += "<label><input type='button' value='미답변' style='float: right;font-size: 0.7rem;background-color: white;border: none;border: 1px solid #666; padding: 2px 5px 2px 5px;' ></label>";
+	    						tag += "<label><input type='button' value='미답변' style='float: right;font-size: 0.8rem;background-color:#ff385c;border: none;border-radius:5px;color:white; padding: 2px 5px 2px 5px;' ></label>";
 	    					}	    						    					
 	    					
 	    					tag += "</div></div> ";

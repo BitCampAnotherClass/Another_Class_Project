@@ -28,9 +28,10 @@
 			<ul>
 				<!-- 
 				<li class="my-review-content">
+					<div class="className"><a href="/classDetailView?no=">직접 만들고 선물하는 재미! 서진과 함께 뜨는 코바늘 수세미</a></div>
 					<div class="user-review">
 						<div class="review-info">
-							<div class="user-img"><img src="<%=request.getContextPath()%>/img/test/creator_01.PNG"/></div>
+							<div class="user-img"><img src="/img/test/creator_01.PNG"/></div>
 							<div class="user-review-info">
 								<p>USERID</p>
 								<p>2021.10.05</p>
@@ -51,7 +52,7 @@
 								언젠가 제가 연기한 캐릭터 목소리를 들으실 날이 오겠죠?ㅎㅎ<br/>
 							</div>
 							<div class="review-img">
-								<img src="<%=request.getContextPath()%>/img/test/06.jpg"/>
+								<img src="/img/test/06.jpg"/>
 							</div>
 						</div>
 						<div class="more-btn">
@@ -64,7 +65,7 @@
 		</div> <!-- review-list -->
 		
 		<div class="review-paging">
-			<ul>
+			<!-- <ul>
 				<li class="page-num" id="prev-page"><a href="#">◀</a></li>
 				<li class="page-num"><a href="#">1</a></li>
 				<li class="page-num active"><a href="#">2</a></li>
@@ -72,7 +73,7 @@
 				<li class="page-num"><a href="#">4</a></li>
 				<li class="page-num"><a href="#">5</a></li>
 				<li class="page-num" id="next-page"><a href="#">▶</a></li>
-			</ul>
+			</ul> -->
 		</div>
 	</div>
 	
@@ -82,71 +83,137 @@
 
 <script type="text/javascript">
 
-$(function(){
-	var url = '<%=request.getContextPath()%>/myReview';
-	//var params = {'order_no': orderNo };
-	$.ajax({
-		url: url,
-		//data: params,
-		success: function(result){
-			var r = $(result);
-			console.log(r);
-			var tag = '';
-			r.each(function(idx, vo){
+$(document).ready(function(){
+	var now_page=1;
+	var total_page=1;
+	
+	var logId = '${userId}';
+	function setPage(){
+		// 나의 후기 페이징 가져오기
+		var pageUrl = '<%=request.getContextPath()%>/myReviewPage';
+		var params = {'member_id': logId };
+		$.ajax({
+			url: pageUrl,
+			data: params,
+			success: function(result){
+				var rr = $(result);
+				total_page = rr[0].totalPage;
+				console.log(rr);
+				console.log('rr.nowPage'+ rr[0].nowPage);
+				var pageTag = `<ul>
+					<li class="page-num" id="prev-page"><a href="javascript:void(0);">◀</a></li>`;
+					for(var i=rr[0].groupStartPage; i<=(rr[0].groupStartPage + rr[0].oneGroupPage-1); i++){
+						if(i <= rr[0].totalPage){
+							pageTag += `<li class="page-num"><a href="javascript:void(0);">` + i + `</a></li>`;
+						} //if
+					} // for
+					pageTag += `<li class="page-num" id="next-page"><a href="javascript:void(0);">▶</a></li>
+				</ul>`;
 				
-				tag = `<li class="my-review-content">
-							<div class="user-review">
-							<div class="review-info">
-							<div class="user-img"><img src="` + vo.member_img + `"/></div>
-								<div class="user-review-info">
-									<p>` + vo.member_id + `</p>
-									<p>` + vo.writedate + `</p>
-								</div>
-								<div class="star">
-									<div class="back-star">
-										<i class="fas fa-star"></i>
-										<i class="fas fa-star"></i>
-										<i class="fas fa-star"></i>
-										<i class="fas fa-star"></i>
-										<i class="fas fa-star"></i>
-									</div>
-									<div class="front-star" style="width:` + (vo.star/5) * 95 + `px">
-										<i class="fas fa-star"></i>
-										<i class="fas fa-star"></i>
-										<i class="fas fa-star"></i>
-										<i class="fas fa-star"></i>
-										<i class="fas fa-star"></i>
-									</div>
-								</div>
-							</div>
-							<div class="review-content">
-								<div class="review-text">
-									` + vo.content + `
-								</div>`;
-								if(vo.img1 != ''){
-									tag += `<div class="review-img">
-												<img src="` + vo.img1 + `"/>
-											</div>`;
-								}
-						tag += `</div>
-							</div>
-						</li>`;
-					console.log('별점'+vo.star)
-				$('.review-list > ul').append(tag);
-				if($('.my-review-content').eq(idx).children().children().children('.review-text').height() > 120){
-					var more = `<div class="more-btn">
-									<input type="button" value="더 보기" />
-								</div>`;
-				}
-				$('.my-review-content').eq(idx).children($('.user-review')).append(more);
-				console.log('높이' + $('.my-review-content').eq(idx).children().children().children('.review-text').height());
+				$('.review-paging').append(pageTag);
 				
-			});
-			
-		}, error: function(e){
-			console.log('나의 후기 불러오기 에러');
+				
+				
+			}, error: function(e){
+				console.log('나의 후기 페이지 불러오기 에러');
+			}
+		}); // ajax 나의 후기 페이징
+	
+	}
+	
+	function selectMyReview(){
+		// 나의 후기 목록 가져오기
+		var url = '<%=request.getContextPath()%>/myReview';
+		var data = {'nowPage': now_page, 'member_id': logId };
+		$.ajax({
+			url: url,
+			data: data,
+			success: function(result2){
+				var r = $(result2);
+				console.log(r);
+				var tag = '';
+				$('.review-list > ul').html('');
+				r.each(function(idx, vo){
+					
+					tag = `<li class="my-review-content">
+								<div class="class-name"><a href="<%=request.getContextPath()%>/classDetailView?no=` + vo.class_no + `" target="_blank">` + vo.class_name + `</a></div>
+								<div class="user-review">
+								<div class="review-info">
+								<div class="user-img"><img src="` + vo.member_img + `"/></div>
+									<div class="user-review-info">
+										<p>` + vo.member_id + `</p>
+										<p>` + vo.writedate + `</p>
+									</div>
+									<div class="star">
+										<div class="back-star">
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+										</div>
+										<div class="front-star" style="width:` + (vo.star/5) * 95 + `px">
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+										</div>
+									</div>
+								</div>
+								<div class="review-content">
+									<div class="review-text">
+										` + vo.content + `
+									</div>`;
+									if(vo.img1 != ''){
+										tag += `<div class="review-img">
+													<img src="` + vo.img1 + `"/>
+												</div>`;
+									}
+							tag += `</div>
+								</div>
+							</li>`;
+						console.log('별점'+vo.star)
+					
+					$('.review-list > ul').append(tag);
+					if($('.my-review-content').eq(idx).children().children().children('.review-text').height() > 120){
+						var more = `<div class="more-btn">
+										<input type="button" value="더 보기" />
+									</div>`;
+					}
+					$('.my-review-content').eq(idx).children('.user-review').append(more);
+					console.log('높이' + $('.my-review-content').eq(idx).children().children().children('.review-text').height());
+					
+				}); // each
+				
+			}, error: function(e){
+				console.log('나의 후기 불러오기 에러');
+			}
+		}); // ajax 나의 후기 목록
+	}
+	
+	setPage();
+	selectMyReview();
+	$(document).on('click','.page-num > a', function(){
+		if($(this).parent().attr('id')=='prev-page'){
+			if(now_page>1){
+				now_page = now_page-1;
+			} else{
+				return false;
+			}
+		} else if($(this).parent().attr('id')=='next-page'){
+			console.log('총페이지' + total_page);
+			if(now_page<total_page){
+				now_page = now_page+1;
+			} else{
+				return false;
+			}
+		} else{
+			now_page = $(this).text();
 		}
+		selectMyReview();
 	});
+	
 	
 	
 	$(document).on('click', '.more-btn > input', function(){
