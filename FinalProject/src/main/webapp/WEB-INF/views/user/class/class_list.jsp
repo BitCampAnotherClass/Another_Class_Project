@@ -33,6 +33,7 @@ $(function(){
  	var class_content_arry = new Array();
  	var category_no = new Array();
 	var category_name = new Array();
+	var startDate_arry = new Array();
 //////////////////////////////////// 낮은 가격순	
  function sortByPrice(){
 	  var url = '<%=request.getContextPath()%>/classList/sortPrice';
@@ -55,6 +56,7 @@ $(function(){
 	 			 	classTag_arry[idx]= rr[idx]. class_tag;
 	 			 	class_content_arry[idx]= rr[idx].class_content;
 					category_name[idx]= rr[idx].category_name;
+					startDate_arry[idx]=rr[idx].start_date;
 					
 					classDiv  = '<div class="class_div">';
 					classDiv += '<div class="img_div">';
@@ -65,6 +67,7 @@ $(function(){
 					classDiv += '<li><div>'+ category_name[idx]+'</div></li>';
 					classDiv += '<li>'+className_arry[idx]+'</li>';
 					classDiv +=	'<li>'+classTag_arry[idx]+'</li>'
+					classDiv +=	'<li>'+startDate_arry[idx]+'</li>';
 					classDiv +=	'<li>'+classPrice_arry[idx]+'원</li>';
 					classDiv += '</ul>';
 					classDiv +='</div>';
@@ -99,6 +102,7 @@ $(function(){
 	 			 	classTag_arry[idx]= rr[idx]. class_tag;
 	 			 	class_content_arry[idx]= rr[idx].class_content;
 	 			 	category_name[idx]= rr[idx].category_name;
+	 			 	startDate_arry[idx]=rr[idx].start_date;
 	 			 	
 					classDiv  = '<div class="class_div">';
 					classDiv += '<div class="img_div">';
@@ -109,6 +113,7 @@ $(function(){
 					classDiv += '<li><div>'+ category_name[idx]+'</div></li>';
 					classDiv += '<li>'+className_arry[idx]+'</li>';
 					classDiv +=	'<li>'+classTag_arry[idx]+'</li>'
+					classDiv +=	'<li>'+startDate_arry[idx]+'</li>';
 					classDiv +=	'<li>'+classPrice_arry[idx]+'원</li>';
 					classDiv += '</ul>';
 					classDiv +='</div>';
@@ -280,7 +285,7 @@ input[type=submit]:hover{
 	font-weight: 500;
 	overflow: hidden;
 	display:inline-block;
-	max-height: 48px;
+	max-height: 24px;
 	color:gray;
 }
 .info_div>ul>li:nth-child(3) {
@@ -295,8 +300,13 @@ input[type=submit]:hover{
 .info_div>ul>li:nth-child(4) {
 	font-weight: 500;
 	color:gray;
+	color:#FF385C;
 }
-.info_div>ul>li:nth-child(5) { /* 클래스 넘버 숨겨둠*/
+.info_div>ul>li:nth-child(5) {
+	font-weight: 500;
+	color:gray;
+}
+.info_div>ul>li:nth-child(6) { /* 클래스 넘버 숨겨둠*/
 	display: none;
 }
 .price_sort, .apply_sort{
@@ -353,6 +363,7 @@ input[type=submit]:hover{
 					<li>${vo.class_name }</li>
 					<li>${vo.class_tag }</li>
 					<li>${vo.class_price }원</li>
+					<li>${vo.start_date }</li>
 					<li>${vo.class_no }</li> <!-- 클래스 넘버 숨겨둠 -->
 				</ul>
 			</div>

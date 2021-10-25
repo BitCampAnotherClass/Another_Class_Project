@@ -2,7 +2,9 @@ package com.anotherclass.bitcamp.controller.user;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.util.List;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 import org.json.simple.parser.JSONParser;
@@ -10,8 +12,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.anotherclass.bitcamp.service.user.UserCommunityService;
+import com.anotherclass.bitcamp.vo.user.CommunityVO;
+
 @Controller
 public class UserCommunityController {
+	
+	@Inject
+	UserCommunityService userCommunityService;
+	
 	
 	@RequestMapping(value = "/CommunityMain")
 	public ModelAndView CommunityMain(HttpServletRequest request) {
@@ -43,9 +52,14 @@ public class UserCommunityController {
 	}
 
 	@RequestMapping(value = "/CommunityContentDetail")
-	public String CommunityContentDetail() {
+	public ModelAndView CommunityContentDetail(int community_no) {
+		ModelAndView mav = new ModelAndView();
 		
-		return "/user/community/commu_content_detail";
+		CommunityVO vo = userCommunityService.CommuDetailAllRecord(community_no);
+		
+		mav.addObject("vo",vo);
+		mav.setViewName("/user/community/commu_content_detail");
+		return mav;
 	}
 	
 	@RequestMapping(value = "/CommunityNewContent")
