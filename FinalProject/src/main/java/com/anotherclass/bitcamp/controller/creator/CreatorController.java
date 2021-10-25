@@ -1,18 +1,15 @@
 package com.anotherclass.bitcamp.controller.creator;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -147,7 +144,7 @@ public class CreatorController {
 	}
 	@RequestMapping(value="makeClass/ajaxList")
 	@ResponseBody
-	public List<CreatorClassCategoryVO> ajaxList(CreatorClassCategoryVO vo, int no) {
+	public List<CreatorClassCategoryVO> ajaxList(int no) {
 		List<CreatorClassCategoryVO> result = makeClassApplyService.makeClassCategoryS(no);
 		
 		System.out.println("카테고리 디비");

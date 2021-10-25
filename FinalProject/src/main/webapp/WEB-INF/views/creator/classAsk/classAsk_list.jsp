@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<!DOCTYPE HTML>
-<html>
-<head>
+
    
 <style>
 .faqWrap {
@@ -186,7 +184,7 @@ $(function(){
 	
 });
 </script>
-</head>
+
 <body class="bgNone">
 <div id="wrapper">
 	    
@@ -241,55 +239,7 @@ $(function(){
 							</div>
 						</li>
 					</ul>
-					
-					<ul class="listStyleD">
-						<li><a href="#" class="answer"><span class="q">Q</span>커피 메뉴를 디카페인 옵션으로 변경 시 카페인 함량은 어떻게 되나요?</a>
-							<div class="answerCont">
-								<span class="answer">A</span><p><span style="font-family: 나눔고딕, NanumGothic;">현재 폴 바셋 일부 매장에서 디카페인 옵션 변경이 가능하며,&nbsp;</span></p><p><span style="font-family: 나눔고딕, NanumGothic;">룽고를 제외한 커피 메뉴를 디카페인 옵션 변경 시 카페인 함량은 아래와 같습니다.</span></p><p><br></p><p><span style="font-family: 나눔고딕, NanumGothic;">- Standard 사이즈 1잔 기준 약 5~10mg</span></p><p><span style="font-family: 나눔고딕, NanumGothic;">- Grand 사이즈 1잔 기준 약 10~15mg</span></p>
-							</div>
-						</li>
-					</ul>
-					
-					<ul class="listStyleD">
-						<li><a href="#" class="answer"><span class="q">Q</span>첫 구매 쿠폰은 언제 발행 되나요?</a>
-							<div class="answerCont">
-								<span class="answer">A</span><p>멤버십 카드로 첫 구매 시 다음 날 첫 구매 무료음료쿠폰이 발행 됩니다.</p><p><br></p><p>- 신규회원에게만 1회 발행되며 탈퇴 후 재가입시에는 발행되지 않습니다.</p><p>- 미등록 멤버십 카드로 처음 구매한 경우, 7일 내에 회원계정에 카드를 등록하시면 다음 날 쿠폰이 발행 됩니다.</p><p>- 회원계정에 멤버십 카드로 구매 이력이 있는 경우 발행되지 않습니다.</p><p><br></p>
-							</div>
-						</li>
-					</ul>
-					
-					<ul class="listStyleD">
-						<li><a href="#" class="answer"><span class="q">Q</span>크라운 적립 기준은 무엇인가요?</a>
-							<div class="answerCont">
-								<span class="answer">A</span><p>멤버십 카드의 충전금액으로 제조음료 (커피,음료)를 전액 결제 하는 경우, 메뉴 당 크라운이 1개 적립 됩니다.<br></p><p><br></p><p>-푸드, 상품, 아이스크림 구매 시 크라운이 적립되지 않습니다.</p><p>-쿠폰, 할인, 포인트적용 시, 세트메뉴 구매 시 크라운이 적립되지 않습니다.</p><p><br></p><p>&nbsp;</p>
-							</div>
-						</li>
-					</ul>
-
-					<ul class="listStyleD">
-						<li><a href="#" class="answer"><span class="q">Q</span>회원가입 시 본인인증 문자가 오지 않습니다.</a>
-							<div class="answerCont">
-								<span class="answer">A</span><p>본인인증 시도 시 문자가 오지 않는 경우, 아래를 확인 해주세요.</p><p><br></p><p>1) 입력한 정보가 정확한 지 확인</p><p>&nbsp; - 통신사에 가입된 정보와 일치한 정보 (법정생년월일, 회원 이름, 휴대폰 명의자가 일치해야 함) 를 입력 했는 지 확인 하세요.</p><p><br></p><p>2) 스팸번호 등록 확인</p><p>&nbsp; - 본인인증기관인 KCB 발송번호 (02-708-1000)가 수신 차단 , 스팸번호로 등록 되어 있는 지 확인 하세요.<br></p><p>&nbsp; - 스팸번호 등록은 본인이 직접 할 수도 있고, 스팸방지 프로그램에서 자동으로 등록하는 경우도 있습니다.</p><p><br></p><p>3) 통신사 부가 서비스 가입 여부 확인</p><p>&nbsp; - 번호도용 문자차단 / 휴대폰번호 도용 방지 서비스에 가입된 휴대폰은 발송 또는 수신이 불가능 합니다.</p><p>&nbsp; - 통신사 고객센터에 연락하여 서비스에 가입되어 있는 경우, 해지 후 다시 시도해 주세요.</p><p>&nbsp; &nbsp; (부가 서비스 해지 후 반영까지 약 24시간 소요 됩니다.)</p><p><br></p><p>4) 알뜰폰 가입 여부 확인</p><p>&nbsp; - 알뜰폰 사용자의 경우 본인인증 단계에서 이용중인 통신사 선택 시 '통신 3사'를 선택하지 마시고, '알뜰폰'을 선택하고 본인인증을 시도해야 합니다.</p>
-							</div>
-						</li>
-					</ul>
-					
-					<ul class="listStyleD">
-						<li><a href="#" class="answer"><span class="q">Q</span>스틱커피의 카페인 함량은 어떻게 되나요?</a>
-							<div class="answerCont">
-								<span class="answer">A</span><p>폴 바셋은 언제 어디서나 즐길 수 있는 '시그니처 블렌드 스틱커피'가 있으며,</p><p>스틱커피 1개(2g) 이용에 따른 카페인 함량은 아래와 같습니다.</p><p><br></p><p>- 적정 용량의 물(150ml)에 스틱커피 1개(2g) 용해하여 음용한 기준: 약 98mg</p>
-							</div>
-						</li>
-					</ul>
-					
-					<ul class="listStyleD">
-						<li><a href="#" class="answer"><span class="q">Q</span>캡슐 커피의 카페인 함량은 어떻게 되나요? (네스프레소 호환 캡슐)</a>
-							<div class="answerCont">
-								<span class="answer">A</span><p class="" align="left" style="margin: 0cm 0cm 0.0001pt; line-height: 1.5;" 맑은="" 고딕";"=""><span style="font-family: 나눔고딕, NanumGothic;"><span style="font-size: 14px;">폴 바셋은 네스프레소 호환 가능한 다섯 가지 종류의 캡슐 커피가 있으며,</span></span></p><p class="" align="left" style="margin: 0cm 0cm 0.0001pt; line-height: 1.5;" 맑은="" 고딕";"=""><span style="font-family: 나눔고딕, NanumGothic;"><span style="font-size: 14px;">캡슐 1개 추출에 따른 카페인 함량은 아래와 같습니다.</span></span></p><p class="" align="left" style="margin: 0cm 0cm 0.0001pt; line-height: 1.5;" 맑은="" 고딕";"=""><span style="font-family: 나눔고딕, NanumGothic;"><span style="font-size: 14px;"><br></span></span></p><p class="" align="left" style="margin: 0cm 0cm 0.0001pt; line-height: 1.5;" 맑은="" 고딕";"=""><span style="font-family: 나눔고딕, NanumGothic;"><span style="font-size: 14px;">- 에스프레소(40ml) 추출/ 시그니처 블렌드 1회 기준: 약 69mg, 싱글 오리진(브라질, 에티오피아, 과테말라, 콜롬비아) 1회 기준: 약 46~54mg</span></span></p>
-							</div>
-						</li>
-					</ul>
-					
+				
 			
 			</div>
 	 		<!-- paging -->
@@ -304,5 +254,3 @@ $(function(){
 
 </div>     
 
-</body>
-</html>

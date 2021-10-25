@@ -545,9 +545,9 @@ $(function(){
 					</script>
 				</div>
 			</div>
-			<div id="d8" class="menu"> <!-- 후기 -->
-				<div class="menutitle"><span>후기</span></div>
-			</div>			
+			<!-- 후기 -->
+			<%@ include file="review.jspf" %>	
+				
 			<div id="d9" class="menu"> <!-- 문의 -->
 				<div class="menutitle"><span>문의</span></div>
 				<div id="d9_2"><!-- 댓글내용 -->

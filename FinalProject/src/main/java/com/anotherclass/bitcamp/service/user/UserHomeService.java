@@ -4,8 +4,10 @@ import java.util.List;
 
 import com.anotherclass.bitcamp.register.RegisterVO;
 import com.anotherclass.bitcamp.vo.user.ClassVO;
+import com.anotherclass.bitcamp.vo.user.ReviewVO;
 
 public interface UserHomeService {
 	
+	public List<ReviewVO> bestReview();// 대표 후기 조회
 	public List<RegisterVO> popularCreator(); // 인기 크리에이터 조회
 }
