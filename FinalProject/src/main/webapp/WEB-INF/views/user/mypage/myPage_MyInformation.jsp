@@ -92,7 +92,7 @@ $(()=>{
 	var checkEng = /[a-z|A-Z|0-9]/;
 	var checkKor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
 	
-	$('#member_pw').on('propertychange change keyup paste input',function passWordCheck(){{
+	/* $('#member_pw').on('propertychange change keyup paste input',function passWordCheck(){{
 		var pwd = $('#member_pw').val();
 		var data = {"pwd":pwd};
 		// 아이디 조회
@@ -129,18 +129,7 @@ $(()=>{
 				console.log(error)
 			}
 		});
-	
-		var checkPwd = $('#member_pw').val();
-		if(checkPwd.length < 8 || checkPwd.length > 20){
-			$('#account_edit_pwd_text').css("color","#ff0000");
-			$('#account_edit_pwd_text').html("비밀번호는 8자 이상 생성 가능합니다.");
-			$('.account_edit_pwd_check').val('N');
-		}else{
-			$('#account_edit_pwd_text').css("color","#22b14d");
-			$('#account_edit_pwd_text').html("사용가능한 비밀번호");
-			$('.account_edit_pwd_check').val('Y');
-		}
-	});
+	}); */
 	$('#member_pw_check').on('propertychange change keyup paste input',function passWordChecking(){
 		var check1 = $('#member_pw').val();
 		var check2 = $('#member_pw_check').val();
