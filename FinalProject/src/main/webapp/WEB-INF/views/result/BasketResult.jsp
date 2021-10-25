@@ -11,7 +11,7 @@
 
 
 
-var result = confirm("장바구니에 저장되었습니다. \n장바구니로 이동하시겠습니까?");
+var result = confirm("장바구니로 이동하시겠습니까?");
 if(result){
 	 location.href = "mypage/mypage2";
 }else{

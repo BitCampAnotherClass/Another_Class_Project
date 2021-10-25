@@ -11,66 +11,59 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.anotherclass.bitcamp.register.RegisterVO;
 import com.anotherclass.bitcamp.service.creator.MakeClassApplyService;
+import com.anotherclass.bitcamp.service.user.UserHomeService;
 import com.anotherclass.bitcamp.vo.creator.CreatorClassCategoryVO;
+import com.anotherclass.bitcamp.vo.user.ReviewVO;
 
-/**
- * Handles requests for the application home page.
- */
+
 @Controller
 public class UserController {
 	
 	@Inject
 	MakeClassApplyService makeClassApplyService;
+	@Inject
+	UserHomeService userHomeService;
+	
+	
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
-    	// 카테고리 가져오기
-    	List<CreatorClassCategoryVO> cateL = makeClassApplyService.makeClassCategoryL();
-//    	System.out.println(req.getParameter("category1_no"));
-//    	int cateL_str = Integer.parseInt(req.getParameter("category1_no"));
-    	//List<CreatorClassCategoryVO> cateS = makeClassApplyService.makeClassCategoryS(cateL_str);
-
-    	mav.addObject("cateL", cateL);
-    	//mav.addObject("cateS", cateS);
-
+		// 인기있는 강사 top 8 가져오기
+		List<RegisterVO> creatorList = userHomeService.popularCreator();
+		mav.addObject("creatorList", creatorList);
+		
+		// 베스트 후기 best 5 가져오기
+		List<ReviewVO> reviewList = userHomeService.bestReview();
+		mav.addObject("reviewList", reviewList);
+		
     	mav.setViewName("/user/home");
     	return mav;
 	}
 	
-	@RequestMapping(value = "/home/", method = RequestMethod.GET)
+	@RequestMapping(value = "/cateL", method = RequestMethod.GET)
 	@ResponseBody
-	public List<CreatorClassCategoryVO> homeCategory(CreatorClassCategoryVO vo, HttpServletRequest req) {
-		ModelAndView mav = new ModelAndView();
-    	// 카테고리 가져오기
-		System.out.println(req.getParameter("category1_no"));
-    	//int cateL_str = Integer.parseInt(req.getParameter("category1_no"));
+	public List<CreatorClassCategoryVO> cateL() {
+    	// 대분류 카테고리 가져오기
+    	List<CreatorClassCategoryVO> cateL = makeClassApplyService.makeClassCategoryL();
+
+    	return cateL;
+	}
+	
+	
+	@RequestMapping(value = "/cateS", method = RequestMethod.GET)
+	@ResponseBody
+	public List<CreatorClassCategoryVO> cateS(CreatorClassCategoryVO vo) {
+    	// 중분류 카테고리 가져오기
     	List<CreatorClassCategoryVO> cateS = makeClassApplyService.makeClassCategoryS(vo.getCategory1_no());
-    	System.out.println("실행2");
 
     	return cateS;
 	}
 	
 	
 	// 임시 맵핑 --------------------------
-	
-	@RequestMapping(value = "/classMap")
-	public String classMap() {
-		return "user/class/class_map";
-	}
-	
-	@RequestMapping(value = "/mypage/review")
-	public String mypageReview() {
-		return "/user/mypage/myPage_review";
-	}
-	
-	@RequestMapping(value = "/classReview")
-	public String classReview() {
-		return "/user/classDetailPage/test";
-	}
-
-	
 	
 	
 	

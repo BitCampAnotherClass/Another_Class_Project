@@ -42,4 +42,6 @@ public class ImSiController {
 		
 		return "creator/question/creatorInquiry";
 	}
+	
+	
 }

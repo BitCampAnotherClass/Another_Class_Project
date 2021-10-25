@@ -31,7 +31,7 @@
 		//목록
 		$("#hQnAWList").click(()=>{
 			console.log(${number});
-			$("#homeQnAVFrm").attr("action", "/another/HomeQnAAsk/list?no=?${number}" );
+			$("#homeQnAVFrm").attr("action", "/another/HomeQnAAsk/list?no=1" );
 			$("#homeQnAVFrm").submit();
 		});
 		

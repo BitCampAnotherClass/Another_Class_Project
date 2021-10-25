@@ -205,77 +205,10 @@ li{list-style: none;}
 
 <div class="wrap">
   <ul class="listWrap"></ul>
+  
 </div>
 
 <script>
-var dataURL = 'https://api.tvmaze.com/search/shows?q=batman';
-var _WRAP = document.querySelector('.wrap');
-var _UL = document.querySelector('.listWrap');
-
-var list = {
-    init:function(){
-        list.ajax();
-    },
-    listView:function(data){
-        let _LI = document.createElement('li');
-        _LI.className = 'list';
-        _LI.innerHTML = `<a href="CommunityContentDetail"><div class="list-thum">
-                            <img src="${data.show.image.medium}" 
-                                 alt="img-${data.show.id}">
-                         </div>
-                         <div class="list-user">
-                            <span>${data.show.name}</span>
-                            <span>${data.show.premiered}</span>
-                         </div>
-                         <div class="list-email">${data.score}</div></a>`;
-        return _LI;
-    },
-    more:function(length){
-        //more button
-        let _BTN = document.createElement('button');
-        _BTN.className = 'btn-more';
-        _BTN.innerText = '+ more';
-        return length > 4 && _WRAP.appendChild( _BTN ); 
-    },
-    ajax:function(){
-        $.ajax ({
-            type : 'get',
-            url: dataURL,
-            datatype : 'json',
-            success : function(data){    
-            	var max = 4;
-                let maxList = data.length / max;
-                let start = 0;
-
-                for(let i=start;i<max;i++){
-                    _UL.appendChild( list.listView( data[i] ) );
-                }
-
-                var _P = document.createElement('p');
-                _P.innerText='...List END'
-
-                let cnt = 1;
-                list.more(data.length).addEventListener('click',function(e){
-                    cnt++;
-                    if( Math.round(data.length / max) < cnt ){
-                    	var target = e.target;
-                        target.after(_P);
-                        return false
-                    };
-
-                    for(let i=max*(cnt-1);i<max*cnt;i++){
-                        _UL.appendChild( list.listView( data[i] ) );
-                    }
-                });
-            },
-            error : function(err){
-                 console.log('err : ',err)
-            }
-        })
-    },
-}
-        
-list.init();
 
 
 </script>

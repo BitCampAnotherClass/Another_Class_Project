@@ -19,6 +19,16 @@ public class ClassVO {
 	private String class_writedate;
 	private String class_tag;
 	
+	// 클래스 목록 추가 변수
+	private String nick; // 강사 닉네임
+	private int like_cnt; // 좋아요 수
+	private double star_avg; // 별점 평균
+	private String cateL_name=""; // 대분류 카테고리명
+	private String category_name=""; // 중분류 카테고리명
+	
+	private String keyword=""; // 검색어
+	private String local=""; // 지역 검색
+	
 	public int getClass_no() {
 		return class_no;
 	}
@@ -121,7 +131,47 @@ public class ClassVO {
 	public void setClass_tag(String class_tag) {
 		this.class_tag = class_tag;
 	}
-	
-	
+	public String getNick() {
+		return nick;
+	}
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
+	public int getLike_cnt() {
+		return like_cnt;
+	}
+	public void setLike_cnt(int like_cnt) {
+		this.like_cnt = like_cnt;
+	}
+	public double getStar_avg() {
+		return star_avg;
+	}
+	public void setStar_avg(double star_avg) {
+		this.star_avg = star_avg;
+	}
+	public String getCateL_name() {
+		return cateL_name;
+	}
+	public void setCateL_name(String cateL_name) {
+		this.cateL_name = cateL_name;
+	}
+	public String getCategory_name() {
+		return category_name;
+	}
+	public void setCategory_name(String category_name) {
+		this.category_name = category_name;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	public String getLocal() {
+		return local;
+	}
+	public void setLocal(String local) {
+		this.local = local;
+	}
 
 }

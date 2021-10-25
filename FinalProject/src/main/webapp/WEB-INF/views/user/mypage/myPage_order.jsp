@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 
-
+<link href="<%=request.getContextPath()%>/css/user/review.css" rel="stylesheet" type="text/css"/>
 <style>
 	body{box-sizing:content;}
 	  
@@ -13,160 +13,199 @@
 					padding-left:20px;border-bottom:2px solid #333;}
 	/*주문내역 리스트*/
 	.orderDiv>ul{width:100%;height:auto;}
-	.orderDiv>ul>li{width:100%;height:150px;position:flex;margin-top:30px;} /*주문한줄*/
+	.orderDiv>ul>li{width:100%;height:165px;position:flex;margin-top:30px;} /*주문한줄*/
 	.orderDiv>ul>li>div{float:left;height:100%;border-bottom:1px solid #ddd;} /*주문이미지+주문내역+주문상태에따른버튼들자리*/
 	
 	.orderDiv>ul>li>div:nth-child(3n+1){width:20%;}/*이미지*/
-	.orderDiv>ul>li>div:nth-child(3n+1) img{width:90%;height:90%;object-fit:cover;text-align:center;}/*주문이미지*/
+	.orderDiv>ul>li>div:nth-child(3n+1) img{width:97%;height:94%;object-fit:cover;text-align:center;}/*주문이미지*/
 	.orderDiv>ul>li>div:nth-child(3n+2){width:65%;padding-left:15px;}/*주문상세내역정보*/
-	.orderDiv>ul>li>div:nth-child(3n+2)>*{display:block;width:100%;margin-bottom:7px;} 
+	.orderDiv>ul>li>div:nth-child(3n+2)>*{display:block;width:100%;margin-bottom:3px;} 
 	.orderDiv>ul>li>div:nth-child(3n+2)>a:nth-child(1){font-size:1.3rem;font-weight:bold;padding-bottom:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}/*주문상세내역정보-클래스명*/
 	.orderDiv>ul>li>div:nth-child(3n+2)>span{color:#999;}
 	.orderDiv>ul>li>div:nth-child(3n+3){width:15%;height:100%;display:flex;align-items:center;}/*각종버튼자리*/
 	.orderDiv>ul>li>div:nth-child(3n+3)>div{width:100%;}/*버튼div 안에서 버튼을감싸고있는작은div*/
 	.orderDiv>ul>li>div:nth-child(3n+3)>div>a{display:block;width:100%;padding:20px 0 20px 0;text-align:center;}/*버튼*/
 	.orderDiv>ul>li>div:nth-child(3n+3)>div>a span{background-color:#666;padding:5px 13px 5px 13px;text-align:center;color:white;} /*이벤트줘야함 -> 이벤트오버시 글자색바뀌게*/
-	
-	
-	
-	
-	
+	.orderDiv>ul>li>div:nth-child(3n+3)>div>button{border:none;background-color:#fff;display:block;width:100%;padding:20px 0 20px 0;text-align:center;}/*버튼*/
+	.orderDiv>ul>li>div:nth-child(3n+3)>div>button span{background-color:#666;padding:5px 13px 5px 13px;text-align:center;color:white;} /*이벤트줘야함 -> 이벤트오버시 글자색바뀌게*/
 	/*h초기화 하고 수정되는 요소들*/
-	#reserveListTitle,#finishListTitle,#cancleRefund{margin-block-start: 0;}
-	
+	#reserveListTitle,#finishListTitle,#cancleRefund{margin-block-start: 0;}	
 </style>
+<script>
+$(function(){	
+	var logid = "${userId}";
+
+	//주문결제내역
+	function OrderFin(){	
+		var aUrl ="/another/UserOrderListFin";
+		var aParam = {"logid":logid};
+		 $.ajax({
+	    		url:aUrl,
+	    		data:aParam,
+	    		success:function(a){
+	    			var aa = $(a)
+	    			var tag ="";	    			
+	    			//order_no,order_date, merchant,class_option_no,start_date,end_date ,class_no, class_name,class_thumb ,class_price			
+	    			aa.each(function(idx,vo){	    	
+	    				tag +="<li>";
+	    				tag +="<div>";
+	    				tag +="<a href='#'><img src='img/jisu/classimg2.png'/></a>"; //vo.class_thumb
+	    				tag +="</div>";
+	    				tag +="<div>"
+	    				tag +="<a href='#'>"+vo.class_name+"</a>";
+	    				tag +="<span>주문번호 : "+vo.order_no+"</span>";
+	    				tag +="<span>상품금액 : "+vo.class_price+"원</span>";
+	    				tag +="<span>주문일자 : "+vo.order_date2+"</span>";
+	    				tag +="<span>진행상태 : 결제완료</span>"; //order_date,payment_date 로 구분
+	    				tag +="</div>";
+	    				tag +="<div>";
+	    				tag +="<div>";
+	    				tag +="<button class='CancelBtn' id='"+vo.order_no+"'><span style='font-size:16px;' >환불신청</span><input type='hidden' vlaue='"+vo.order_no+"'></button>";
+	    				console.log(vo.order_no);
+	    				tag +="</div>";
+	    				tag +="</div>";
+	    				tag +="</li>";
+	    				$("#orderDivUl").html(tag);
+					});	 	    			
+	    		}	    		
+	    	})			
+	}
+	//수강완료내역
+	function OrderFin2(){			
+		var bUrl ="/another/UserOrderListFin2";
+		var bParam = {"logid":logid};
+		 $.ajax({
+	    		url:bUrl,
+	    		data:bParam,
+	    		success:function(b){
+	    			var bb = $(b)
+	    			var tag ="";	    			
+	    			//order_no,order_date, merchant,class_option_no,start_date,end_date ,class_no, class_name,class_thumb ,class_price			
+	    			bb.each(function(idx,vo2){	    	
+	    				tag +="<li>";
+	    				tag +="<div>";
+	    				tag +="<a href='#'><img src='img/jisu/classimg2.png'/></a>"; //vo2.class_thumb
+	    				tag +="</div>";
+	    				tag +="<div>"
+	    				tag +="<a href='#'>"+vo2.class_name+"</a>";
+	    				tag +="<span>주문번호 : "+vo2.order_no+"</span>";
+	    				tag +="<span>상품금액 : "+vo2.class_price+"원</span>";
+	    				tag +="<span>주문일자 : "+vo2.order_date2+"</span>";
+	    				tag +="<span>진행상태 : 수강완료</span>";
+	    				tag +="</div>";
+	    				tag +="<div>";
+	    				tag +="<div>";
+	    				if(vo2.reviewChk==0){
+	    					tag +="<a href='javascript:void(0);' class='write-review-btn'><span>후기작성</span></a><input type='hidden' value='"+vo2.order_no+"'></a>";
+	    				}else{
+	    					tag +="<span>후기보기</span>"
+	    				}
+	    				tag +="</div>";
+	    				tag +="</div>";
+	    				tag +="</li>";
+	    				$("#orderDivUl2").html(tag);
+					});	 	    			
+	    		}	    		
+	    	})			
+	}	
+	//취소,환불내역
+	function OrderFin3(){				
+			var cUrl ="/another/UserOrderListFin3";
+			var cParam = {"logid":logid};
+			 $.ajax({
+		    		url:cUrl,
+		    		data:cParam,
+		    		success:function(c){
+		    			var cc = $(c)
+		    			var tag ="";	    			
+		    			//order_no,order_date, merchant,class_option_no,start_date,end_date ,class_no, class_name,class_thumb ,class_price			
+		    			cc.each(function(idx,vo3){	    	
+		    				tag +="<li>";
+		    				tag +="<div>";
+		    				tag +="<a href='#'><img src='img/jisu/classimg2.png'/></a>"; //vo3.class_thumb
+		    				tag +="</div>";
+		    				tag +="<div>"
+		    				tag +="<a href='#'>"+vo3.class_name+"</a>";
+		    				tag +="<span>주문번호 : "+vo3.order_no+"</span>";
+		    				tag +="<span>상품금액 : "+vo3.class_price+"원</span>";
+		    				tag +="<span>취소일자 : "+vo3.cancel_date2+"</span>";
+		    				if(vo3.refund==null){
+		    					tag +="<span>진행상태 : 취소완료</span>";
+		    				}else{
+		    					tag +="<span>진행상태 : 취소완료</span>";
+		    				}
+		    				tag +="</div>";
+		    				tag +="<div>";
+		    				tag +="<div>";
+		    				//버튼자리
+		    				tag +="</div>";
+		    				tag +="</div>";
+		    				tag +="</li>";
+		    				$("#orderDivUl3").html(tag);
+						});	 	    			
+		    		}	    		
+		    	})			
+		}
+	
+	//환불신청버튼
+	$(document).on('click','.CancelBtn',function(){
+		console.log('환불버튼클릭');
+		
+		var dUrl ="/another/UserOrderCancleSub";
+		var a = Number($(this).attr('id'));
+		 var dParam = "no="+a;
+		 console.log(dParam)
+		 $.ajax({
+	            url : dUrl,
+	            data :dParam,
+	           // type : "POST",
+	            success : function(result){
+	            	alert("환불 신청 접수되었습니다");
+	            	 OrderFin();
+	            	 OrderFin2();
+	            	 OrderFin3();
+	            }
+	         });
+	         //return false; //submit은 action으로 이동하여 페이지가 실행되는 것을 차단한다.
+	  });
+	
+	
+	
+	
+	 OrderFin();
+	 OrderFin2();
+	 OrderFin3();
+	 
+	
+});	
+
+</script>
+
+
 
 <%@ include file="myPageTop.jspf" %>
 	
-	<div id="orderPageTitle" class="bigTitle"><span class="h1style">주문조회</span></div>
-	
+	<div id="orderPageTitle" class="bigTitle"><span class="h1style">주문조회</span></div>	
 	
 	<!-- 예약내역 -->
 	<div class="orderDiv">
 		<span id="reserveListTitle" class="orderListTitle h3style">주문내역</span>		
-		<ul>
-			<li>
-				<div><!-- 이미지 -->
-					<a href="#"><img src="img/jisu/classimg2.png"/></a><!-- 이미지 -->
-				</div>
-					
-				<div><!-- 구매정보 -->
-					<a href="#">프랑스 자수에 펀치니들을 더해요! 수노리의 보송보송 질감이 살아있는 자수</a><!-- 클래스명 : -->
-					<!--<span>옵션날짜 : 2021.09.02 14:00</span><!-- 옵션 --> 
-					<span>상품금액 : 44000원</span><!-- 상품금액?결제금액? -->
-					<span>주문일자 : 2021.08.29</span><!-- 주문일자 -->
-					<span>진행상태 : 주문완료</span>
-				</div>
-					
-				<div><!-- 환불취소버튼 -->
-					<div>
-						<a href="#"><span>취소신청</span></a><!-- ?무통장입금 -->
-						<a href="#"><span>환불신청</span></a><!-- ?결제 -->		
-						
-						<!-- 아임포트 환불  -->
-						<script src="https://code.jquery.com/jquery-3.3.1.min.js"  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="  crossorigin="anonymous"></script><!-- jQuery CDN --->
-						
-						
-					</div>
-				</div>
-			</li>
+		<ul id="orderDivUl">		
 		</ul>
-	</div>
-	
-	
+	</div>	
 	<!-- 수강완료 -->
 	<div class="orderDiv">
 		<span id="finishListTitle" class="orderListTitle h3style">수강완료</span>	
-		<ul>
-			<li>
-				<div><!-- 이미지 -->
-					<a href="#"><img src="img/jisu/classimg6.png"/></a><!-- 이미지 -->
-				</div>
-					
-				<div><!-- 구매정보 -->
-					<a href="#">베이킹 초보자를 위한 레트로 빈티지 케이크 - 동화 속 한순간을 담은 홈카페 만들기</a><!-- 클래스명 : -->
-					<!--<span>옵션날짜 : 2021.09.02 14:00</span><!-- 옵션 --> 
-					<span>상품금액 : 44000원</span><!-- 상품금액?결제금액? -->
-					<span>주문일자 : 2021.06.15</span><!-- 주문일자 -->
-					<span>진행상태 : 결제완료</span>
-				</div>
-					
-				<div><!-- 환불취소버튼 -->
-					<div>
-						<a href="#"><span>후기작성</span></a>							
-					</div>
-				</div>
-			</li>
-			
-			<li>
-				<div><!-- 이미지 -->
-					<a href="#"><img src="img/jisu/classimg5.png"/></a><!-- 이미지 -->
-				</div>
-					
-				<div><!-- 구매정보 -->
-					<a href="#">늘 예쁜 꽃, 디자인을 잘 하면 더 예뻐져요. 쉐이드그린의 감각적인 생화 디자인</a><!-- 클래스명 : -->
-					<!--<span>옵션날짜 : 2021.09.02 14:00</span><!-- 옵션 --> 
-					<span>상품금액 : 44000원</span><!-- 상품금액?결제금액? -->
-					<span>주문일자 : 2021.05.19</span><!-- 주문일자 -->
-					<span>진행상태 : 결제완료</span>
-				</div>
-					
-				<div><!-- 환불취소버튼 -->
-					<div>
-										
-					</div>
-				</div>
-			</li>
+		<ul id="orderDivUl2">			
 		</ul>
-	</div>
-	
-	
+	</div>	
 	<!-- 취소,환불 -->
 	<div class="orderDiv">
 		<span id="cancleRefund" class="orderListTitle h3style">취소/환불내역</span>	
-		<ul>
-			<li>
-				<div><!-- 이미지 -->
-					<a href="#"><img src="img/jisu/classimg7.png"/></a><!-- 이미지 -->
-				</div>
-					
-				<div><!-- 구매정보 -->
-					<a href="#">누구나 손쉽게 따라 하는 재즈피아노 입문 클래스</a><!-- 클래스명 : -->
-					<!--<span>옵션날짜 : 2021.09.02 14:00</span><!-- 옵션 --> 
-					<span>상품금액 : 44000원</span><!-- 상품금액?결제금액? -->
-					<span>주문일자 : 2021.08.21</span><!-- 주문일자 -->
-					<span>진행상태 : 취소완료</span>
-				</div>
-					
-				<div><!-- 환불취소버튼 -->
-					<div style="visibility:hidden;">
-						
-						<a href="#"><span>XXX</span></a>		
-					</div>
-				</div>
-			</li>
-			
-			<li>
-				<div><!-- 이미지 -->
-					<a href="#"><img src="img/jisu/classimg4.png"/></a><!-- 이미지 -->
-				</div>
-					
-				<div><!-- 구매정보 -->
-					<a href="#">프로서퍼 김지나의 서핑 A to Z</a><!-- 클래스명 : -->
-					<!--<span>옵션날짜 : 2021.09.02 14:00</span><!-- 옵션 --> 
-					<span>상품금액 : 65000원</span><!-- 상품금액?결제금액? -->
-					<span>주문일자 : 2021.05.04</span><!-- 주문일자 -->
-					<span>진행상태 : 환불완료</span>
-				</div>
-					
-				<div><!-- 환불취소버튼 -->
-					<div style="visibility:hidden;">
-						
-						<a href="#"><span>XXX</span></a>		
-					</div>
-				</div>
-			</li>
+		<ul id="orderDivUl3">			
 		</ul>
 	</div>
 
 <%@ include file="myPageBottom.jspf" %>
+
+<%@ include file="review_write.jspf" %>

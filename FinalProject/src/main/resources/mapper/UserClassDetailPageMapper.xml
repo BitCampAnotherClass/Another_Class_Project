@@ -81,8 +81,27 @@
   		]]> 
   	</insert>
   	
-  	
-  	
+  	<delete  id="ClassAskDDel">
+  		<![CDATA[
+  			delete classqna where class_qna_no=#{param1}
+  		]]> 
+  	</delete>
+  	<select id="ClassASkCheckRep" resultType="int">
+  		<![CDATA[
+  			select count(*) from classqnacom where class_qna_no = #{param1}
+  		]]> 
+  	</select>
+  	<update id="ClassASkCheckRepDelUp" parameterType="com.anotherclass.bitcamp.vo.user.UserClassDetailVO">
+  		<![CDATA[
+  			update classqnacom set classqnacom_delete_sort = 0 
+			where class_qna_no=#{param1}
+		]]> 
+  	</update>
+  	<update id="ClassAskReplyEdit" parameterType="com.anotherclass.bitcamp.vo.user.UserClassDetailVO2">
+  		<![CDATA[
+  			update classqna set classqna_content =#{classqna_content} where class_qna_no = #{class_qna_no}
+  		]]> 
+  	</update>
   	
   	
   	

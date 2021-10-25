@@ -34,4 +34,35 @@ public class UserPayServiceImp implements UserPayService {
 	public int testBasket(BasketVO vo) {
 		return userpaydao.testBasket(vo);
 	}
+
+	@Override
+	public int delBasket(BasketVO vo) {		
+		return userpaydao.delBasket(vo);
+	}
+
+	@Override
+	public int delOneBasket(int no) {	
+		return userpaydao.delOneBasket(no);
+	}
+
+	@Override
+	public List<UserPayVO> userPayoneSelect(int no) {		
+		return userpaydao.userPayoneSelect(no);
+	}
+
+	@Override
+	public int oneClassOrder(UserPayVO vo) {		
+		return userpaydao.oneClassOrder(vo);
+	}
+
+	@Override
+	public int addHeadCount(int no) {		
+		return userpaydao.addHeadCount(no);
+	}
+
+	@Override
+	public int getClassNo(int no) {
+		
+		return userpaydao.getClassNo(no);
+	}
 }

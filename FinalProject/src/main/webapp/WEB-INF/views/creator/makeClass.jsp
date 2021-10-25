@@ -3,8 +3,12 @@
 
 <!-- summernote -->
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/summernote/summernote-ko-KR.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
 <!-- 데이트픽커 -->
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -14,30 +18,58 @@
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9551f210d2bfdcde36af42fb1ccab895&libraries=services"></script>
 <script>
-var categoryS;
+var categoryNumL;
+var categoryNumS;
 var count=0;
 var iitest=0;
+var start_date;
+var start_str;
+var DateArray = [];
+var classDateDivCount;
+var  resultsArray;
+var startTimeArray =[];
 $(function(){
+	//////////////////////////////////////////////////////날짜 선택 모달
+	 $(".modal").css({
+         "top": (($(window).height()-$(".modal").outerHeight())/2+$(window).scrollTop())+"px",
+         "left": (($(window).width()-$(".modal").outerWidth())/2+$(window).scrollLeft())+"px"
+     }); 
+	
+	$("#modalButton").click(function(){
+		$(".modal").fadeIn(); 
+	}); 
+	
+	$(".modal").click(function(){
+			$(".modal").fadeOut();
+	});
 	//////////////////////////////////////// 대분류 카테고리 눌렀을시 소분류 불러오기
 	$('.categoryL').on('click',function(){
-		categoryS = $(this).val();
-		alert($(this).val());
 		
+		$("#classCategorySUL").html("");
+		categoryNumL = $(this).val();
+		var category_no;
 		var url = "makeClass/ajaxList" 
-			var params = {"no":categoryS};
+			var params = {"no":categoryNumL};
 			$.ajax({
 				url : url,
 				data : params,
 				success:function(r){
 					var rr = $(r);
 					rr.each(function(idx, vo){
-						$("#test1").append("<li><input type='checkbox' name='categoryS'>"+vo.category_name+"</li>"); 
+						category_no = vo.category_no;
+						$("#classCategorySUL").append("<li><input type='checkbox' value='"+vo.category_no+"' name='"+vo.category_no+"' class='categoryS'>"+vo.category_name+"</li>"); 
 					});
-					
+						$('.categoryS').on('click',function(){
+							$(".categoryS").prop("checked",false);
+							$(this).prop('checked',true);
+							var dsds = $(this).attr('value');
+							$("#categoryReal").val(dsds);
+						});
 				},error:function(e){
 					console.log("List전송 에러발생함",e.responseText)
 				}
 			});
+			$("input:checkbox[name='NAME']").is(":checked")
 	});
 	/////////////////////////////////////////////////////////숫자만 입력
 	
@@ -54,47 +86,78 @@ $(function(){
      		 alert('숫자만 입력할수 있습니다');
   		};
 	});
+	
 	$("#classTag").on("keyup", function() {
 		$(this).val($(this).val().replace(/ /g,""))
 	});
 	
 	
 	////////////////////////////////////////////////////////// 카테고리 
-	$('input[type="checkbox"][name="categoryL"]').click(function(){
-		 
-		  if($(this).prop('checked')){
-			  
-			$('#smallCategoryDiv').css("display","block");
-		 	$("input[type='checkbox'][name='categoryL']").prop("checked",false);
+	$('.categoryL').click(function(){
+		if($(this).prop('checked') &&  categoryNumL == 800){
+			alert("자기계발 카테고리(대)는 하위 카테고리가 없습니다")
+			$("#categoryReal").val(800);
+			$(".categoryL").prop("checked",false);
 			$(this).prop('checked',true);
+			$('#smallCategoryDiv').css("display","none");
+		}else if($(this).prop('checked') &&  categoryNumL == 900){	
+			$("#categoryReal").val(900);
+			alert("기타 카테고리(대)는 하위 카테고리가 없습니다")
+			$(".categoryL").prop("checked",false);
+			$(this).prop('checked',true);
+			$('#smallCategoryDiv').css("display","none");
+		}else if($(this).prop('checked') && categoryNumL != 800){
+				$('#smallCategoryDiv').css("display","block");
+			 	$(".categoryL").prop("checked",false);
+				$(this).prop('checked',true);
 		 
-		  }else if($("input[type='checkbox'][name='categoryL']").is("checked") == false) {
+		}else if($(".categoryL").is("checked") == false) {
 		   	$('#smallCategoryDiv').css("display","none");
 		   	$("input[type='checkbox'][name='categoryS']").prop("checked",false);
 		    }
 	});
 	//////////////////////////////////////////////////////달력
+	classDateDivCount = -1;
+	classDateCount=0;
+	
 	$(".flatpickrCalender").flatpickr({
 		inline : true,
-		mode: "multiple",
-		dateFormat: " Y - m - d , H : i ",
+		mode: "single",
+		dateFormat: " Y - m - d ",
 		minDate:"today",
 		maxDate: new Date().fp_incr(180),
-		enableTime: true,
 		altInput: true,
-		altFormat: " Y - m - d , H : i ",
 		onChange(selectedDates, dateStr, instance) {
-            var array=selectedDates;
-            if(array.length <= 10){
-            	$('#putDateTime').html(instance.altInput.value);
-            }else if(array.length >= 11){
-            	var count = array.length - 10;
-            	alert("선택"+count+"를 초과하였습니다\n"+count+"개를 취소해 주십시오.");
+            var testing1;
+        	 	
+        	   classDateDivCount++;
+        	   
+            	testing1 = "<div class='putDateTime2' id='dateTimeDivDel'>";
+            	testing1 += "<div title='cancel' class='dateCancelButton' onclick='deleteDivDate(this, "+classDateDivCount+");'>";
+            	testing1 += "<div value='"+classDateDivCount+"'></div><img src='<%=request.getContextPath()%>/img/kimin/xbu.png'>"
+            	testing1 += "</div>";
+            	testing1 += ""+dateStr+"";
+				testing1 += "<input type='time' id='startTime' value='09:30' onchange='inputStartTime($(this).val())'>";
+				testing1 +=  "<img src='<%=request.getContextPath()%>/img/kimin/~.png'>"
+				testing1 += "<input type='time' id='endTime' value='17:30' onchange='inputEndTime($(this).val())'>";
+				testing1 += "</div>";
+				
+				
+            	$('#putDateTime').append(testing1);
+            		
+            	startTimeInput($('#startTime').val(),$('#endTime').val(),dateStr);
+            if(classDateDivCount >= 9){
+            	//alert("선택"+count+"를 초과하였습니다\n"+count+"개를 취소해 주십시오.");
+            	alert("10개를 모두 선택하였습니다\n");
             	$(".flatpickr-day.selected").css("background","#FF385C");
-            	//$(".flatpickr-day").css("pointer-events","none");*/ 캘린더 클릭못하게 막을수있음
             }
-       }
-	});	
+             
+             console.log(classDateDivCount)
+       	}
+		
+	});
+	////////
+	
 	//////////////////////////////////////////////////////테그 변환
 	$("#class_tagButton").click(function(){
 			if(count < 5){
@@ -127,7 +190,11 @@ $(function(){
 			alert('클래스 간단 소개를 입력하세요');
 			window.location.href="#f2";
 			return false;
-		}else if($('#class_thumb').val() == ""){		//카테고리 빠져있음
+		}else if($("#categoryReal").val() == ""){		
+			alert('클래스 카테고리를 선택하세요');
+			window.location.href="#f3";
+			return false;
+		}else if($('#class_thumb').val() == ""){		
 			alert('클래스 썸네 파일을 업로드하세요');
 			window.location.href="#f4";
 			return false;
@@ -155,63 +222,54 @@ $(function(){
 			return false;
 		}
 	});
-/////////////////////////////////////////////  썸머노트
-	$(document).ready(function() {
-		  $('#summernote').summernote({
-  				height:800,
-  				placeholder:'클래스 소개글과 이미지를 넣어 작성하세요 ',
-  				lang: "ko-KR",	
-  				minHeight: 800, 
-  				maxHeight:800,
-  				callbacks: {	//여기 부분이 이미지를 첨부하는 부분
-					onImageUpload : function(files) {
-						uploadImageFile(files[0],this);
-					}
-		  			/* ,
-					onPaste: function (e) {
-						var clipboardData = e.originalEvent.clipboardData;
-						if (clipboardData && clipboardData.items && clipboardData.items.length) {
-							var item = clipboardData.items[0];
-							if (item.kind === 'file' && item.type.indexOf('image/') !== -1) {
-								console.log('if문 작동');
-								e.preventDefault();
-							}
-						}
-					} */
-				}
-  			});
-	});
-
-	});
-/////////////////////////////// 태그에 빨간 div 삭제
-function deleteDiv(){
-	var div = document.getElementById('tagInsertInner'+iitest);
-	div.remove();
-	count--;
-	iitest--;
-	console.log(count);
-};
-//////////////////////////// 
-function uploadImageFile(file, editor) {
-	data = new FormData();
-	data.append("file", file);
-	$.ajax({
-		data : data,
-		type : "POST",
-		url : "/another/uploadImageFile",
-		contentType : false,
-		processData : false,
-		success : function(data) {
-			$(editor).summernote('insertImage', data.url);
-		},error : function(){
-			alert("업로드 실패");
+});
+		var clickCount;
+		var arry = new Array();
+		var arryStart = new Array();
+		var arryEnd = new Array();
+		
+		var startTime;
+		var endTime;
+		var lastTime;
+		
+		function startTimeInput(start, end, day){
+			startTime = (day + start);
+			endTime = (day + end);
+			lastTime = (startTime + endTime);
+			//arry[classDateDivCount] = lastTime;
+			arryStart[classDateDivCount] = startTime;
+			arryEnd[classDateDivCount] = endTime;
+			
 		}
-	});
-};
-////////////////////////////////////////////// 주소 검색 지도
- 	
+		
+		function startTimeRealInput(){
+			$('#classDateRealStart').val(arryStart);
+			$('#classDateRealEnd').val(arryEnd);
+		}
 
+//////////////////////////////////// 날짜 선택 지우기 div
+		function deleteDivDate(del, index){
+			$($(del).parents("#dateTimeDivDel")).remove();
+			//delete arry[index];
+			delete arryStart[index];
+			delete arryEnd[index];
+			alert(arryStart)
+			classDateDivCount--;
+			console.log(classDateDivCount);
+			//$("#classDateRealStart").val(""); //네임안에 있는 값전체삭제
+			//$("#classDateRealEnd").val("");
+		}
+/////////////////////////////// 태그에 빨간 div 삭제
+		function deleteDiv(){
+			var div = document.getElementById('tagInsertInner'+iitest);
+			div.remove();
+			count--;
+			iitest--;
+			console.log(count);
+		}
+//////////////////////////// 
 
+/* 주소 검색 */
 function execDaumPostcode() {
    	var width = 500;
   	var height = 300;
@@ -228,7 +286,6 @@ function execDaumPostcode() {
             // 우편번호와 주소 정보를 해당 필드에 넣는다.
             document.getElementById('postcode').value = data.zonecode;
             document.getElementById("roadAddress").value = roadAddr;
-            
             var guideTextBox = document.getElementById("guide");
             // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
             if(data.autoRoadAddress) {
@@ -255,7 +312,7 @@ function execDaumPostcode() {
                     // 지도 중심을 변경한다.
                     map.setCenter(coords);
                     // 마커를 결과값으로 받은 위치로 옮긴다.
-                    marker.setPosition(coords)
+                    marker.setPosition(coords);
                 }
             });
         }
@@ -265,51 +322,83 @@ function execDaumPostcode() {
     });
 };
 
-///////////////////////////////// 주소를 지도로 옮김 구글지도만 해당
-/* function mapSearch(){
-	var searchName = document.getElementById("roadAddress").value;
-	if(searchName==""){
-		alert("주소검색을 먼저 진행해 주세요");
-	return; //리턴은 중단 명령어
-	}
-	setMapPosition(searchName,"","");
-}*/
-///////////////////////////////////////////이미지 바꾸기 
-var sel_file;
-$(document).ready(function(){
-	$('#fileButton').on("change", handleImgFileSelect);
-});
-function handleImgFileSelect(e){
-	var files = e.target.files;
-	var filesArr = Array.prototype.slice.call(files);
 	
-	filesArr.forEach(function(f){
-		if(!f.type.match("image.*")){
-			alert("확장자는 이미지 확장자만 가능");
-			document.getElementById("class_thumb").value="";
-			$("#previewImg").attr("src", "<%=request.getContextPath()%>/img/kimin/uploadimg.jpg");
-			return;
+	
+</script>
+<script>
+$(()=>{
+	var fileList;
+	$('#class_thumb').on('propertychange change keyup paste input', function uploadFiles(e){
+			var file = $('#fileButton')[0].files[0]
+			var form_data = new FormData();
+	      	form_data.append('file', file);
+	      	$.ajax({
+	        	data: form_data
+	        	,type: "POST"
+	        	,url: '/another/FileUpload/imageUploadUrl'
+	        	,contentType: false
+	        	,processData: false
+	        	,success: function(imageData) {
+	        		console.log("img:"+ imageData.url);
+	        		fileList = imageData.url;
+	        		document.getElementById('previewImg').src ='http://localhost:9090'+fileList;
+	        	}
+	      		,error: function(error){
+	      			console.log(error);
+	      			console.log('파일업로드 실패');
+	      		}
+	      	});
+		});
+	
+	$('#summernote').summernote({
+		// 에디터 높이
+		height: 200,
+		width: 1200,
+		lang:"ko-KR",
+		focus: true,
+		toolbar: [
+		    ['style', ['bold', 'italic', 'underline', 'clear']],
+		    ['font', ['strikethrough']],
+		    ['fontsize', ['fontsize']],
+		    ['color', ['color']],
+		    ['para', ['ul', 'ol', 'paragraph']],
+		    ['insert',['picture']],
+		    ['height', ['height']]
+		  ],
+		callbacks: {
+			onImageUpload: function(files){
+				uploadFiles(files[0], this);
+			}
 		}
-		sel_file=f;
-		
-		var reader = new FileReader();
-		reader.onload = function(e){
-			$("#previewImg").attr("src",e.target.result);
-		}
-		reader.readAsDataURL(f);
 	});
-};
-//////////////////////////////////////////
-
-	
+		function uploadFiles(file, editor){
+			var form_data = new FormData();
+	      	form_data.append('file', file);
+	      	$.ajax({
+	        	data: form_data
+	        	,type: "POST"
+	        	,url: '/another/FileUpload/imageUploadUrl'
+	        	,contentType: false
+	        	,processData: false
+	        	,success: function(imageData) {
+	        		console.log("img:"+ imageData.url);
+	          		$(editor).summernote('insertImage', imageData.url);
+	        	}
+	      		,error: function(error){
+	      			console.log(error);
+	      			console.log('파일업로드 실패');
+	      		}
+	      	});
+		}
+});
 </script>	
+	
 <style>
 .container h1{color:gray; margin-bottom:20px; font-weight:600;}
 .container span{font-size:1.2em; font-weight:600; }
 /* body{ background-color:#FFF5F5;} */
 kimin{ color:#FF385C; }
 kimin2{font-size: 1.3em; color:gray; margin-left:5px;}
-
 #class_name{
 	height:50px; width:100%;
 }
@@ -329,7 +418,7 @@ kimin2{font-size: 1.3em; color:gray; margin-left:5px;}
 	height:120px;
 	border-radius:8px;
 	padding:10px 0px 10px 20px;
-	margin-bottom:20px;
+	margin-bottom:60px;
 }
 .dsctitle{
 	color:gray;
@@ -339,7 +428,7 @@ kimin2{font-size: 1.3em; color:gray; margin-left:5px;}
 }
 .descriptionUl li:not(.dsctitle){
 	margin-left:15px;
-	font-weight:500;
+	font-weight:400;
 	color:gray;
 	list-style-type:circle;
 }
@@ -354,16 +443,16 @@ kimin2{font-size: 1.3em; color:gray; margin-left:5px;}
 }
 .container{
 	width:1200px;
-	height:5150px; 
+	height:5450px; 
 	margin:0 auto;
 	padding:0px;
 }
 .followDiv{background-color:;
 	width:100%;
 	height:35px;
-	border-bottom:3px solid lightgray;
-	margin-top:30px;
-	margin-bottom:30px;
+	border-bottom:2px dotted lightgray;
+	margin-top:60px;
+	margin-bottom:70px;
 }
 .followDiv>ul>li{
 	float:left;
@@ -389,7 +478,7 @@ kimin2{font-size: 1.3em; color:gray; margin-left:5px;}
 .classCommonDiv{
 	width:100%; 
 	height:50px;
-	border-bottom:3px solid lightgray;
+	border-bottom:2px dotted lightgray;
 	text-align:left;
 	line-height:50px;
 }
@@ -399,7 +488,7 @@ kimin2{font-size: 1.3em; color:gray; margin-left:5px;}
 	border:2px solid lightgray;
 	border-radius:8px;
 	margin-top:20px;
-	margin-bottom:20px;
+	margin-bottom:60px;
 	padding:15px 15px 15px 15px; 
 	font-size: 1.2em;
 }
@@ -439,11 +528,9 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	border-radius:8px;
 	display:inline-block;
 	height:430px;
-	
 	margin:0 auto;
 }
 #imgThumbDiv img{
-	
 	height:100%;
 }
 .buttonClass{
@@ -481,30 +568,58 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	font-size: 1.2em;
 	line-height: 30px;
 }
-.classDate>ul{background-color:;
-	width:610px;
+.classDate>ul{border:;background-color:;
+	width:830px;
 	height:340px;
 	margin:0 auto;
+	margin-top:20px;
 	padding:0, 0, 0, 0;
+	
 }
 .classDate li{
 	float:left;
 }
-#putDateTime{background-color:;
+.simg{
+	margin-top:0px;
+}
+#putDateTime{display:;border:;background-color:;
 	border:2px dotted lightgray;
-	width:240px;
-	height:340px;
+	width:500px;
+	height:360px;
+	text-align: center;
+	margin:-30px 0 0 20px;
+	line-height: 34px;
+	border-radius:8px;
+	padding-top:10px;
+}
+.dateCancelButton{
+	width:25px;
+	height:25px;
+	background-color: #FF385C; 
+	border-radius:8px;
+	margin:5px 0 0 0;
+	color: white;
+	font-weight: 600;
+	line-height: 25px;
+	margin-left: 5px;
+	cursor: pointer;
+}
+.putDateTime2{
 	color:#FF385C; 
 	font-weight:600;
 	font-size:1em;
-	text-align: center;
-	margin-left: 50px;
-	line-height: 34px;
-	border-radius:8px;
 }
-#putDateTime>div{
-	color:#FF385C;
-	margin-top:150px;
+.putDateTime2>div{
+	float:left;
+}
+#putDateTime input[type="time"]{
+	margin-left:10px;
+	width:140px;
+	height:30px;
+	border-radius:8px;
+	text-align: center;
+	border:1px solid lightgray;
+	font-size: 1em;
 }
 .flatpickrCalender{
 	display: none;
@@ -526,10 +641,11 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	font-size: 1.2em;
 	border-radius:8px;
 	font-weight:500;
-	border:3px solid lightgray;
+	border:2px dotted lightgray;
 	text-align: center;
 }
 .classAddress input[type=button]{
+	border:2px dotted lightgray;
 	width:400px;
 	height:50px;
 }
@@ -546,7 +662,7 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	height:460px;
 }
 #serchOnGoogle{
-	border:3px solid lightgray;
+	border:2px dotted lightgray;
 	width:805px;
 	border-radius:8px;
 	height:35px;
@@ -651,6 +767,30 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 .filebox input[type="file"]{
 	display: none;
 }
+#categoryReal{
+	color:black; 
+	display: none;
+}
+#classCategorySUL>li{
+	width:20%; 
+	line-height: 35px;
+}
+#classCategorySUL input{
+	margin:0px 5px 0px -80px;
+}
+#classCategorySUL{ background-color:;
+	padding:0;
+	width:100%;
+}
+#classDateRealStart{border:1px dotted lightgray;
+	display:;
+	width:400px;
+}
+#classDateRealEnd{border:1px dotted lightgray;
+	display:;
+	width:400px;
+}
+
 </style>
 <form method="post" action="<%=request.getContextPath()%>/creator/makeClassOk" enctype="multipart/form-data">
 <div class="container">
@@ -699,17 +839,20 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	<div class="classCategoryDiv" id="forEach">
 		<ul>
 			<c:forEach var="vo" items="${cate }">
-			<li ><input type="checkbox" name="categoryL" value=" ${vo.category1_no }" class="categoryL" > ${vo.category_name }</li> <!-- 반복문 -->
+			<li ><input type="checkbox"  value=" ${vo.category1_no }" class="categoryL" > ${vo.category_name }</li> <!-- 반복문 -->
 			</c:forEach>
 		</ul>
 	
 	</div>
+	<input type="text" name="category_no" class="categoryPutInput" id="categoryReal" >
 	<div id="smallCategoryDiv">
 		<div class="classCommonDiv">
 			<span><kimin>*</kimin> 3-1) 클래스 서브 카테고리 <kimin>(필수)</kimin></span>
+			
 		</div>
 		<div class="classCategoryDiv">
-			<ul id="test1">
+			<ul id="classCategorySUL">
+				
 			</ul>
 		</div>
 	</div>
@@ -719,10 +862,11 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	<div class="classImgDiv">
 			<div id="imgThumbDiv"><img src="<%=request.getContextPath()%>/img/kimin/uploadimg.jpg" id="previewImg" ></div>
 			<div class="filebox">
-				<input class="imgThumbFileName" placeholder="썸네일사진 파일명" name="class_thumb" id="class_thumb" readonly="readonly">
+				<input type="text" class="imgThumbFileName" placeholder="썸네일사진 파일명" name="class_thumb" id="class_thumb" readonly="readonly">
 				<label for="fileButton">업로드</label>
-				<input type="file" id="fileButton" accept="img/*" required>
+				<input type="file" id="fileButton" name="filename" accept="img/*"  required>
 			</div>
+			
 	</div>
 	<div>
 		<ul class="descriptionUl">
@@ -749,14 +893,18 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 			<li>사진을 첨부 할 수 있습니다</li>
 		</ul>
 	</div>
+	<input type="text" id="classDateRealStart" name="start_date" >
+	<input type="text" id="classDateRealEnd" name="end_date" >
 	<!-- ////////////////////// -->
 	<div class="classCommonDiv" id="f6">
-		<span><kimin>*</kimin> 6) 클래스 일정 <kimin>(필수)</kimin></span>
+		<span><kimin>*</kimin> 6) 클래스 일정 <kimin>(필수)</kimin></span> 	
 	</div>
 	<div class="classDate">
 		<ul>
 			<li><input class="flatpickrCalender"/></li>
-			<li id="putDateTime"><div>선택하신 날짜가 표시됩니다</div></li>	
+			<li><div  id="putDateTime"></div></li>
+			<li><div id="dateCount"></div></li>	
+			<li><input type="button" value="확인" onclick="startTimeRealInput()"></li>
 		</ul>
 	</div>
 	<div>
@@ -845,6 +993,8 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 		<input type="submit" value="클래스 등록신청" name="class_apply" id="class_apply" class="buttonClass">
 	</div>
 </div>
-
 </form>
-
+<button id="modalButton">모달창</button> 
+<div class="modal"> 
+	<div class="modal_content" title="클릭하면 창이 닫힙니다."> 여기에 모달창 내용을 적어줍니다.<br> 이미지여도 좋고 글이어도 좋습니다. </div>
+</div>

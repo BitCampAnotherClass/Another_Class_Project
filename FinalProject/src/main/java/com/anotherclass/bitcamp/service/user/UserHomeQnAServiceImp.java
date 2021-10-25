@@ -49,4 +49,10 @@ public class UserHomeQnAServiceImp implements UserHomeQnAService {
 	public int userHomeOnABoardCnt() {
 		return userHomeQnADAO.userHomeOnABoardCnt();
 	}
+	
+	@Override
+	public int userHomeQnAboardLimit() {
+		return userHomeQnADAO.userHomeQnAboardLimit();
+	}
+	
 }

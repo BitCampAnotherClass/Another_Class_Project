@@ -76,9 +76,16 @@
 					</div>
 					
 					<div class="btn-signup-wrap">
-						<a href="<%=request.getContextPath()%>/register" id="basicSignup" class="btn-login">
-							<span>회원가입</span>
-						</a>
+						<c:if test="${logType=='1'}">
+							<a href="<%=request.getContextPath()%>/register" id="basicSignup" class="btn-login">
+								<span>회원가입</span>
+							</a>
+						</c:if>
+						<c:if test="${logType=='2'}">
+							<a href="<%=request.getContextPath()%>/registerCreator" id="basicSignup" class="btn-login">
+								<span>크리에이터 가입</span>
+							</a>
+						</c:if>
 					</div>
 				</div>
 				<!-- // 로그인 입력 공간 -->

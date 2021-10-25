@@ -16,10 +16,14 @@ public class RegisterVO {
 	private String signupdate;
 	private String out_date;
 	
+	private int type_user;
 	private String additional_information_one; // 추가 정보  --  프로시저 용도
 	private String additional_information_two; // 추가 정보 2 -- 프로시저 용도
 	private String additional_information_the; // 추가 정보 3 -- 프로시저 용도
 	private String logType; // 로그인 타입 - 회원:1 / 강사:2
+	
+	private int like_cnt; // 강사의 좋아요 수
+	private String creator_id; // 좋아요 받은 강사 아이디
 	
 	
 	public String getMember_id() {
@@ -100,6 +104,12 @@ public class RegisterVO {
 	public void setOut_date(String out_date) {
 		this.out_date = out_date;
 	}
+	public int getType_user() {
+		return type_user;
+	}
+	public void setType_user(int type_user) {
+		this.type_user = type_user;
+	}
 	public String getAdditional_information_one() {
 		return additional_information_one;
 	}
@@ -112,7 +122,6 @@ public class RegisterVO {
 	public void setAdditional_information_two(String additional_information_two) {
 		this.additional_information_two = additional_information_two;
 	}
-	
 	public String getAdditional_information_the() {
 		return additional_information_the;
 	}
@@ -124,6 +133,18 @@ public class RegisterVO {
 	}
 	public void setLogType(String logType) {
 		this.logType = logType;
+	}
+	public int getLike_cnt() {
+		return like_cnt;
+	}
+	public void setLike_cnt(int like_cnt) {
+		this.like_cnt = like_cnt;
+	}
+	public String getCreator_id() {
+		return creator_id;
+	}
+	public void setCreator_id(String creator_id) {
+		this.creator_id = creator_id;
 	}
 	
 }

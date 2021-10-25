@@ -98,5 +98,91 @@
 			and a.class_no= #{param1}
 		]]>
   	</select>
+  	<select id="MemberInfo" resultType="com.anotherclass.bitcamp.register.RegisterVO" parameterType="String">
+  		<![CDATA[	
+		  	select member_id, member_name, member_tel, member_email, post_no, addr1, addr2, nick, member_img, sns_type from memberTbl where member_id = #{param1}
+		]]>
+  	</select>
+  	<update id="MemberInfoEdit" parameterType="com.anotherclass.bitcamp.register.RegisterVO" >
+  		<![CDATA[
+  			update memberTbl set member_name = #{member_name}, member_tel = #{member_tel}, member_email = #{member_email}, post_no = trim(#{post_no}), addr1 = #{addr1} , addr2 = #{addr2}
+  			where member_id = #{member_id}
+  		]]>
+  	</update>
+  	<select id="orderFinList" resultType="com.anotherclass.bitcamp.vo.user.UserMyPageOrderVO">
+  		<![CDATA[
+	  		select a.order_no, a.order_date,to_char(a.order_date, 'YYYY.MM.DD') order_date2, a.merchant,b.class_option_no ,to_char(b.start_date, 'YYYY.MM.DD HH:MI') start_date,  to_char(b.end_date, 'YYYY.MM.DD HH:MI') end_date ,c.class_no, c.class_name,c.class_thumb ,c.class_price
+			from ordertbl a, classoption b, classtbl c
+			where a.class_option_no = b.class_option_no
+			and b.class_no = c.class_no
+			and a.order_date IS NOT NULL
+			and a.cancel_date  IS NULL
+			and a.refund_date IS NULL
+			and to_char(sysdate, 'YYYYMMDD') < to_char(b.start_date, 'YYYYMMDD')
+			and a.member_id = #{param1}  		
+  		]]>
+  	</select>
+  	<select id="orderFinList2" resultType="com.anotherclass.bitcamp.vo.user.UserMyPageOrderVO">
+		 <![CDATA[
+		 	select a.order_no, a.order_date, to_char(a.order_date, 'YYYY.MM.DD') order_date2, a.merchant,b.class_option_no ,to_char(b.start_date, 'YYYY.MM.DD HH:MI') start_date,  to_char(b.end_date, 'YYYY.MM.DD HH:MI') end_date ,c.class_no, c.class_name,c.class_thumb ,c.class_price
+			from ordertbl a, classoption b, classtbl c
+			where a.class_option_no = b.class_option_no
+			and b.class_no = c.class_no
+			and a.order_date IS NOT NULL
+			and a.cancel_date  IS NULL
+			and a.refund_date IS NULL
+			and to_char(sysdate, 'YYYYMMDD') > to_char(b.start_date, 'YYYYMMDD')
+			and a.member_id = #{param1}  
+		]]>
+  	</select>
+  	<select id="orderFinList3" resultType="com.anotherclass.bitcamp.vo.user.UserMyPageOrderVO">
+		  <![CDATA[
+		  	select a.order_no, a.order_date, to_char(a.order_date, 'YYYY.MM.DD') order_date2, a.cancel_date, to_char(a.cancel_date, 'YYYY.MM.DD') cancel_date2 ,a.refund_date ,a.merchant,b.class_option_no ,to_char(b.start_date, 'YYYY.MM.DD HH:MI') start_date,  to_char(b.end_date, 'YYYY.MM.DD HH:MI') end_date ,c.class_no, c.class_name,c.class_thumb ,c.class_price
+			from ordertbl a, classoption b, classtbl c
+			where a.class_option_no = b.class_option_no
+			and b.class_no = c.class_no
+			and a.order_date IS NOT NULL
+			and a.cancel_date  IS NOT NULL		
+			and a.member_id = #{param1}  
+		  ]]>
+  	</select>
+  	<update id="userOrderCancleSub">
+	  	 <![CDATA[
+	  	 	update ordertbl  set cancel_date = sysdate 
+			where order_no=#{param1}  
+	  	 ]]>
+  	</update>
+  	<select id="UserMypageCheckFrep" resultType="int">
+	  	 <![CDATA[
+	  	 	select count(board_no1)over(partition by board_no1) as replycount 
+			from homeQnaUser 
+			where board_no2 = 0 
+			and user_qna_no = #{param1} 
+	  	 ]]>
+  	</select>
+  	<delete id="UserMyPageHQnADel" >
+	  	 <![CDATA[
+	  	 	delete homeqnauser where user_qna_no=#{param1} 
+	  	  ]]>
+  	</delete>
+  	<update id="UserMyPageHQnADel2" >
+	  	 <![CDATA[
+		  	 update homeQnaUser set delete_sort  =   1 
+	 		 where board_no1=#{param1}
+	  	 ]]>
+  	</update>
   	
+  	<update id="UserMyPageHQnAEdi" parameterType="com.anotherclass.bitcamp.vo.user.UserHomeQnAVO">
+	  	<![CDATA[
+	  		update homeQnaUser set  content=#{content} 
+			where user_qna_no=#{user_qna_no}
+	  	 ]]>
+  	</update>
+  	<select id="userMyPageReviewCheck" resultType="int">
+  		<![CDATA[
+  			select count(*)
+			from reviewtbl
+			where order_no = #{param1}
+  		]]>   		
+  	</select>
   </mapper>

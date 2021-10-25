@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.anotherclass.bitcamp.dao.creator.MakeClassDAO;
 import com.anotherclass.bitcamp.vo.creator.CreatorClassCategoryVO;
+import com.anotherclass.bitcamp.vo.creator.CreatorMakeClassDateTimeVO;
 import com.anotherclass.bitcamp.vo.creator.CreatorMakeClassVO;
 
 @Service
@@ -26,6 +27,10 @@ public class MakeClassApplyServiceImp implements MakeClassApplyService {
 	@Override
 	public List<CreatorClassCategoryVO> makeClassCategoryS(int no) {
 		return makeClassDao.makeClassCategoryS(no);
+	}
+	@Override
+	public int makeClassApplyDateTime(CreatorMakeClassDateTimeVO vo) {
+		return makeClassDao.makeClassApplyDateTime(vo);
 	}
 	
 

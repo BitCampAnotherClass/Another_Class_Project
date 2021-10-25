@@ -30,50 +30,40 @@ public class ClassDetailPageController {
 		return mav;		
 	}
 	
-	//클래스상세페이지로이동
+	
 	@RequestMapping("/classDetailView")
-	public ModelAndView classMainPage(int no) {//클래스 리스트에서 클래스명누르면 클레스상세페이지로이동
+	public ModelAndView classMainPage(int no) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("vo",classDetailPageService.userClassDetailAllSelect(no));
 		mav.setViewName("/user/classDetailPage/classMain2");
 		return mav;
-	}
+	}	
 	
-	
-	
-	//달력에서 날짜선택 -> 클래스옵션리스트
-	@RequestMapping("/classDetailDatePick")  //  /teamproject/classDetailDatePick
+	@RequestMapping("/classDetailDatePick")  
 	@ResponseBody		
-	public List<UserClassDetailVO> ajaxDatePick(String datedate, int no){	
-		System.out.println("컨트롤러 들어옴"+datedate+no);
-		List<UserClassDetailVO> list = classDetailPageService.userSelectOptionAllSelect(datedate,no);
-		//System.out.print(list.size());
+	public List<UserClassDetailVO> ajaxDatePick(String datedate, int no){			
+		List<UserClassDetailVO> list = classDetailPageService.userSelectOptionAllSelect(datedate,no);		
 		return list;
 	}
 	
-	//클래스를 좋아요한 목록중에서 세션에 저장된 로그인 아이디가 있는 경우
 	@RequestMapping("/classDetailLikeCount")
 	@ResponseBody
-	public UserClassDetailVO ajaxLikeChechk(int no, HttpSession  ses){
-		System.out.println("좋아요수컨트롤러들어옴");
-		UserClassDetailVO vo2= classDetailPageService.classLikeCount(no); //좋아요수 구함
-		 //List<UserClassDetailVO> list = classDetailPageDAO.userSelectOptionAllSelect(datedate,no);		  
-		// UserClassDetailVO vo2 = list.get(0);
-		// System.out.println(vo2.getStart_date());
-		
+	public UserClassDetailVO ajaxLikeChechk(int no, HttpSession  ses){		
+		UserClassDetailVO vo2= classDetailPageService.classLikeCount(no); 		
 		String logid= (String)ses.getAttribute("userId");
 		if(logid == null) {//|| logid.length() == 0 //로그인x
 			vo2.setClass_like_check(0);
-		}else {//로그인			
+		}else {	
 			int likecheck = classDetailPageService.classLikeCheck(no,logid);			
 			if(likecheck == 0) {
-				vo2.setClass_like_check(0); //좋아요x				
+				vo2.setClass_like_check(0); 			
 			}else {
-				vo2.setClass_like_check(1);//좋아요ㅇ				
+				vo2.setClass_like_check(1);			
 			}			
 		}		
 		return vo2;
 	}
+	
 	@RequestMapping("/classDetailLikeFun")
 	@ResponseBody
 	public int ajaxLikeFunc(int no,HttpSession  sess) {			
@@ -81,25 +71,23 @@ public class ClassDetailPageController {
 		int result;
 		System.out.println(no);
 		System.out.println(logid);
-		int likecheck = classDetailPageService.classLikeCheck(no,logid); //좋아요여부 -> 좋아요눌렀음 :1 , 좋아요안눌렀음:0
+		int likecheck = classDetailPageService.classLikeCheck(no,logid); 
 		System.out.println(likecheck);		
-		if(likecheck == 0) {//좋아요 안눌럿음 -> 좋아요 테이블에 insert
-			result = classDetailPageService.classLikeInsert(no,logid); //1가 같거나 1보다 크면 인서트			
-		}else {//좋아요 눌럿음 -> 좋아요 테이블에 delete
-			result = classDetailPageService.classLikeDelete(no,logid);//1가 같거나 1보다 크면 삭제
+		if(likecheck == 0) {
+			result = classDetailPageService.classLikeInsert(no,logid); 		
+		}else {
+			result = classDetailPageService.classLikeDelete(no,logid);
 		}			
 		return result;
-	}
+	}	
 	
 	@RequestMapping("/classDetailAskList")
 	@ResponseBody
-	public List<UserClassDetailVO2> ajaxAskList(int no) {//클래스번호가 가지고 들어온다
-		System.out.println("문의리스트컨트롤러들어옴");
-		List<UserClassDetailVO2> list = classDetailPageService.userClassDetailAskAllSelect(no); //클래스번호 넣어서 그 클래스번호의 문의글들 list에 넣음		
+	public List<UserClassDetailVO2> ajaxAskList(int no) {		
+		List<UserClassDetailVO2> list = classDetailPageService.userClassDetailAskAllSelect(no); 
 			for (int i=0; i<list.size(); i++) {
-				UserClassDetailVO2 vo2 = list.get(i);
-				
-				int replyChek = classDetailPageService.AskReplyCheck(vo2.getClass_qna_no());//문의번호를 댓글테이블에 넣어서 문의번호에 대한 댓글들이 있는지 확인
+				UserClassDetailVO2 vo2 = list.get(i);				
+				int replyChek = classDetailPageService.AskReplyCheck(vo2.getClass_qna_no());
 					if(replyChek==0) {
 						vo2.setReplycheck(0);
 					}else {
@@ -107,20 +95,40 @@ public class ClassDetailPageController {
 					}
 			}		
 		return list;			
-	}
+	}	
 	
 	@RequestMapping("/classDetailAskReplyList")
 	@ResponseBody
 	public List<UserClassDetailVO2> ajaxAskReply(int no){		
-		List<UserClassDetailVO2> list = classDetailPageService.userClassDetailAskReplySelect(no); //문의글에대한 댓글리스트 담아옴
+		List<UserClassDetailVO2> list = classDetailPageService.userClassDetailAskReplySelect(no); 
 		return list;
-	}
+	}	
 	
 	@RequestMapping(value="/classDetailAskWritee")
 	@ResponseBody
 	public int AskWritee(UserClassDetailVO2 askVo ,HttpSession  ses) {
-		askVo.setClassqna_member_id((String)ses.getAttribute("userId")); //세션에저장된 로그인한사람의 id를 작성자에 넣음
-		return classDetailPageService.classAskWritee(askVo); // return값이 0보다크면 글등록된거
+		askVo.setClassqna_member_id((String)ses.getAttribute("userId"));
+		return classDetailPageService.classAskWritee(askVo); 
+	}	
+	
+	@RequestMapping(value="/classAskDD")
+	@ResponseBody
+	public int ajaxClassAskDD(int no) {
+		
+		int result=0;
+		result = classDetailPageService.ClassAskDDel(no);
+		//ClassASkCheckRep(no);//문의글에 댓글달렸는지 여부
+		//ClassAskDDel(no) ->없으면 바로삭제
+		//ClassASkCheckRepDelUp(no) ->있으면 댓글 달렸을 경우 문의글 삭제->classqnacom_delete_sort 컬럼 업데이트 : 1
+		return result;
+	}		
+	
+	@RequestMapping(value="/classAskConEdit")
+	@ResponseBody
+	public int ClassAskConEdit(UserClassDetailVO2 vo) {
+		int result =0;
+		result = classDetailPageService.ClassAskReplyEdit(vo);	
+		return result;
 	}
 	
 

@@ -4,10 +4,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.anotherclass.bitcamp.dao.creator.MakeClassDAO">
 	<insert id="makeClassApply" parameterType="com.anotherclass.bitcamp.vo.creator.CreatorMakeClassVO" >
-	<![CDATA[
 		insert into classTbl(class_no, class_name, class_info, class_price, member_id, class_thumb, class_content, class_img_file, class_post_no, class_addr1, class_addr2, max_headcount, category_no, request, progress, class_writedate, class_tag)
-		values(class_sq.nextval, #{class_name}, #{class_info}, #{class_price}, #{member_id}, #{class_thumb}, #{class_content}, 'ddd.jpg', #{class_post_no}, #{class_addr1}, #{class_addr2}, #{max_headcount}, 100, 0, 0, sysdate, #{class_tag})
-	]]>
+		values(class_sq.nextval, #{class_name}, #{class_info}, #{class_price}, #{member_id}, #{class_thumb}, #{class_content}, 'ddd.jpg', #{class_post_no}, #{class_addr1}, #{class_addr2}, #{max_headcount}, #{category_no}, 0, 0, sysdate, #{class_tag})
+		<selectKey keyProperty="class_no" resultType="int" order="AFTER">
+			select class_sq.currval from dual
+		</selectKey>
+		
 	</insert>
 	<select id="makeClassCategoryL" resultType="com.anotherclass.bitcamp.vo.creator.CreatorClassCategoryVO">
 	<![CDATA[
@@ -19,5 +21,9 @@
 		select category_name, category_no from category where category_sort=1 and category1_no=#{category1_no} order by category_no asc
 	]]>
 	</select>
-	
+	<insert id="makeClassApplyDateTime" parameterType="com.anotherclass.bitcamp.vo.creator.CreatorMakeClassDateTimeVO">
+	<![CDATA[
+		insert into classoption(class_option_no, class_no, start_date, end_date, all_headcount, cancel, cancel_reason) values(class_option_sq.nextval, #{class_no}, to_date(#{start_date},'yyyy-MM-DD HH24:mi'), to_date(#{end_date},'yyyy-MM-DD HH24:mi'), #{All_headcount}, 0, null)
+	]]>
+	</insert>
 </mapper>

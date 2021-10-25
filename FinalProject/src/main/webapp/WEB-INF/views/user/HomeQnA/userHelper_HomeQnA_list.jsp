@@ -23,27 +23,10 @@
 	
 	/*답변
 	.replyNo,.replysort{visibility:hidden;} */
-	.replySubject{text-align:left;}
+	.replySubject{text-align:left;}	
 	
-	/*리스트
-
-	#hQnWrite{width:100%;margin:0 auto;}
-	#hQnAList{width:100%;height:auto;margin:0 auto;overflow:auto;}
-	#hQnAListUl{width:100%;text-align:center;height:auto;overflow:auto;}
-	
-	#hQnAListUl>li{float:left;width:10%;height:60px;line-height:60px;border-bottom:1px solid #ddd;}
-	#hQnAListUl>li:nth-child(5n+1){width:10%}
-	#hQnAListUl>li:nth-child(5n+2){width:56%;white-space:nowrap;overflow:hidden;text-overflow: ellipsis;text-align:left;}
-	#hQnAListUl>li:nth-child(5n+4){width:14%}
-	
-	.hQnAListFli{border-bottom:1px solid black;margin-top:10px;background-color:#f0f0f0;font-weight:bold;font-size:1.1rem;} /*리스트타이틀*/	
-/*
-	#hQnWrite{height:auto;text-align:right;margin-bottom:15px;margin-top:10px;padding-right:7px;}/*글쓰기 버튼div*/
-/*	#hQnWritelab{padding:7px 15px 7px 15px;background-color:#464646;font-size:18px;}/*글쓰기 버튼div*/
-	
-	/*답변
-	
-	.replySubject{text-align:left;}*/
+	.hQnAList-button>a:hover{color:ff385c;}
+	.hQnAList-button>a:active{color:ff385c;}
 	
 </style>
 <script>
@@ -66,6 +49,32 @@
 			}	    	
 		});
 		
+		function btnList(){
+			//페이징 버튼 출력
+			var btnList = "";
+			$.ajax({
+				url : 'buttonCnt'
+				, type : 'GET'
+				, success:function(res){
+					btnList += '<&nbsp;&nbsp; '
+					for(var i=1; i<=res; i++){
+						btnList +='<a style="margin: 0 20px 0 20px;" href="list?no='+i+'"';
+						if(i>=10){
+						btnList +=' style="display:none" ';
+						}
+						btnList += '>'+i+'<a>';
+					}
+					btnList += ' &nbsp;&nbsp;>'
+					$('.hQnAList-button').html(btnList);
+				}
+				, error: function(error){
+					console.log(error);
+					console.log('btn 목록 불러오기 실패');
+				}
+				
+			});
+		}
+		btnList();
 	});
 	</script>
 
@@ -117,8 +126,10 @@
 			
 			<input type="hidden" value="${vo.board_no2 }"/>
 		</c:forEach>
-			
 		</ul>
-	
+			<div class="hQnAList-button" style='text-align:center;margin-top:50px;'>
+				<!-- 페이징 -->
+			</div>
+			
 	</div>
 </div>
