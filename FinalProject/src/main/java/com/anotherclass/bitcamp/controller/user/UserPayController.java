@@ -210,4 +210,9 @@ public class UserPayController {
 	}
 	
 	
+	@RequestMapping(value = "/payEnd")//주문내역
+	public String payEnd() {
+		return "/user/pay/payEnd";
+	}
+	
 }

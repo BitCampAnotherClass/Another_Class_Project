@@ -179,7 +179,7 @@ $(function(){
 			<div class="secondTitleD">결제수단</div>
 			<div id="paymethodselect">
 				<span><input type="radio" name="paymentmethod" value="paycard"/>신용카드</span>
-				<span><input type="radio" name="paymentmethod" value="paybank"/>무통장입금</span>
+				<!--<span><input type="radio" name="paymentmethod" value="paybank"/>무통장입금</span>  -->
 				<span><input type="radio" name="paymentmethod" value="paysimple"/>간편결제</span>
 			</div>			
 			<div id="paycardbox" style="height:120px;">
@@ -344,8 +344,9 @@ $(function(){
 	                    var msg = '결제에 실패하였습니다.';
 	                    msg += '에러내용 : ' + rsp.error_msg;
 	                }
-	                alert(msg);
-	          		
+	               
+	          		//
+	          		location.href="/payEnd";
             });
             
             
