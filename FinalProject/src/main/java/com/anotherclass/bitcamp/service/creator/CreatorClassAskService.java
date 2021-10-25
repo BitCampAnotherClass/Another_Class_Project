@@ -13,7 +13,7 @@ public interface CreatorClassAskService {
 	 
 	 public CreatorCAskVO CAContent(int no);//클래스문의글 보기
 	 
-	 public List<CreatorCAskVO> CAReplyContent(int no);//클래스문의글에대한 댓글보기
+	 public CreatorCAskVO CAReplyContent(int no);//클래스문의글에대한 댓글보기
 	 public int CAReplyWrite(CreatorCAskVO vo);//댓글쓰기
 	 public int CAReplyEdit(CreatorCAskVO vo);//댓글수정
 	 public int CAReplyDel(int no);//댓글삭제

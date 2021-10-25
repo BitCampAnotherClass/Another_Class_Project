@@ -24,7 +24,8 @@ public class UserReviewController {
 	@RequestMapping("/writeReviewOK")
 	public ModelAndView writeReviewOK(ReviewVO vo, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		
+		System.out.println("클래스번호->"+vo.getOrder_no());
+		System.out.println("내용>"+vo.getContent());
 		int result = userReviewService.insertReview(vo);
 		if(result>0) { // 등록 성공
 			mav.setViewName("redirect:/mypage/mypage1"); // 주문 내역 화면

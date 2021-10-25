@@ -41,11 +41,11 @@ public class UserClassListController {
 	}
 	@RequestMapping(value = "classList/rangePrice")
 	@ResponseBody
-	public List<ClassListVO> rangePrice(int minp, int maxp){
+	public List<ClassListVO> rangePrice(int minp, int maxp,String sText){
 		
-		List<ClassListVO> result = classListPageService.rangePrice(minp,maxp);
+		List<ClassListVO> result = classListPageService.rangePrice(minp,maxp,sText);
 		
-		System.out.print(minp);
+		System.out.print(sText);
 		return result;
 	}
 }

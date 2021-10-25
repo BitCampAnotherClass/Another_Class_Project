@@ -59,22 +59,60 @@ $(function(){
 					category_name[idx]= rr[idx].category_name;
 					startDate_arry[idx]=rr[idx].start_date;
 					
-					classDiv  = '<div class="class_div">';
-					classDiv += '<div class="img_div">';
-					classDiv +=	'<img class="img_size" src="<%=request.getContextPath()%>/img/kimin/maca.png">';
-					classDiv += '</div>';
-					classDiv +=	'<div class="info_div">';
-					classDiv += '<ul>';
-					classDiv += '<li><div>'+ category_name[idx]+'</div></li>';
-					classDiv += '<li>'+className_arry[idx]+'</li>';
-					classDiv +=	'<li>'+classTag_arry[idx]+'</li>'
-					classDiv +=	'<li>'+startDate_arry[idx]+'</li>';
-					classDiv +=	'<li>'+classPrice_arry[idx]+'원</li>';
-					classDiv += '</ul>';
-					classDiv +='</div>';
-					classDiv +='</div>';
-					$('.middle_container').append(classDiv);
+					if( idx <= (listCnt-1) ){	
+						
+		 			 	classDiv  = '<div class="class_div">';
+						classDiv += '<div class="img_div">';
+						classDiv += '<a href="<%=request.getContextPath()%>/classDetailView?no=' + r[idx].class_no + '" target="">'
+						classDiv +=	'<img class="img_size" src="<%=request.getContextPath()%>/img/kimin/maca.png">';
+						classDiv += '</a>'
+						classDiv += '</div>';
+						classDiv +=	'<div class="info_div">';
+						classDiv += '<ul>';
+						classDiv += '<li><div>'+ category_name[idx]+'</div></li>';
+						classDiv += '<li>'+className_arry[idx]+'</li>';
+						classDiv +=	'<li>'+classTag_arry[idx]+'</li>'
+						classDiv +=	'<li>'+startDate_arry[idx]+'</li>';
+						classDiv +=	'<li>'+classPrice_arry[idx]+'원</li>';
+						classDiv += '</ul>';
+						classDiv +='</div>';
+						classDiv +='</div>';
+						$('.middle_container').append(classDiv);
+						$('.no-result-txt').hide(); // 결과 없음 내용 숨기기
+						$('.more').show(); // 더보기 버튼 보이기
+						if(idx >= r.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
+							$('.more').hide();
+						}
+					}
+					var n=1;
+					$('.more > button').click(function(){
+						n++;
+						if( idx >= listCnt*(n-1) && idx <= (listCnt*n-1) ){
+							classDiv  = '<div class="class_div">';
+							classDiv += '<div class="img_div">';
+							classDiv += '<a href="<%=request.getContextPath()%>/classDetailView?no=' + r[idx].class_no + '" target="">'
+							classDiv +=	'<img class="img_size" src="<%=request.getContextPath()%>/img/kimin/maca.png">';
+							classDiv += '</a>'
+							classDiv += '</div>';
+							classDiv +=	'<div class="info_div">';
+							classDiv += '<ul>';
+							classDiv += '<li><div>'+ category_name[idx]+'</div></li>';
+							classDiv += '<li>'+className_arry[idx]+'</li>';
+							classDiv +=	'<li>'+classTag_arry[idx]+'</li>'
+							classDiv +=	'<li>'+startDate_arry[idx]+'</li>';
+							classDiv +=	'<li>'+classPrice_arry[idx]+'원</li>';
+							classDiv += '</ul>';
+							classDiv +='</div>';
+							classDiv +='</div>';
+							$('.middle_container').append(classDiv);
+							$('.no-result-txt').hide(); // 결과 없음 내용 숨기기
+							$('.more').show();
+						if(idx >= r.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
+								$('.more').hide();
+							}
+						}
 					});
+						});
 			},error:function(e){
 				console.log("ajax 에러")
 			}
@@ -104,22 +142,60 @@ $(function(){
 	 			 	category_name[idx]= rr[idx].category_name;
 	 			 	startDate_arry[idx]=rr[idx].start_date;
 	 			 	
-					classDiv  = '<div class="class_div">';
-					classDiv += '<div class="img_div">';
-					classDiv +=	'<img class="img_size" src="<%=request.getContextPath()%>/img/kimin/maca.png">';
-					classDiv += '</div>';
-					classDiv +=	'<div class="info_div">';
-					classDiv += '<ul>';
-					classDiv += '<li><div>'+ category_name[idx]+'</div></li>';
-					classDiv += '<li>'+className_arry[idx]+'</li>';
-					classDiv +=	'<li>'+classTag_arry[idx]+'</li>'
-					classDiv +=	'<li>'+startDate_arry[idx]+'</li>';
-					classDiv +=	'<li>'+classPrice_arry[idx]+'원</li>';
-					classDiv += '</ul>';
-					classDiv +='</div>';
-					classDiv +='</div>';
-					$('.middle_container').append(classDiv);
+	 				if( idx <= (listCnt-1) ){	
+						
+		 			 	classDiv  = '<div class="class_div">';
+		 			 	classDiv += '<div class="img_div">';
+						classDiv += '<a href="<%=request.getContextPath()%>/classDetailView?no=' + r[idx].class_no + '" target="">'
+						classDiv +=	'<img class="img_size" src="<%=request.getContextPath()%>/img/kimin/maca.png">';
+						classDiv += '</a>'
+						classDiv += '</div>';
+						classDiv +=	'<div class="info_div">';
+						classDiv += '<ul>';
+						classDiv += '<li><div>'+ category_name[idx]+'</div></li>';
+						classDiv += '<li>'+className_arry[idx]+'</li>';
+						classDiv +=	'<li>'+classTag_arry[idx]+'</li>'
+						classDiv +=	'<li>'+startDate_arry[idx]+'</li>';
+						classDiv +=	'<li>'+classPrice_arry[idx]+'원</li>';
+						classDiv += '</ul>';
+						classDiv +='</div>';
+						classDiv +='</div>';
+						$('.middle_container').append(classDiv);
+						$('.no-result-txt').hide(); // 결과 없음 내용 숨기기
+						$('.more').show(); // 더보기 버튼 보이기
+						if(idx >= r.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
+							$('.more').hide();
+						}
+					}
+					var n=1;
+					$('.more > button').click(function(){
+						n++;
+						if( idx >= listCnt*(n-1) && idx <= (listCnt*n-1) ){
+							classDiv  = '<div class="class_div">';
+							classDiv += '<div class="img_div">';
+							classDiv += '<a href="<%=request.getContextPath()%>/classDetailView?no=' + r[idx].class_no + '" target="">'
+							classDiv +=	'<img class="img_size" src="<%=request.getContextPath()%>/img/kimin/maca.png">';
+							classDiv += '</a>'
+							classDiv += '</div>';
+							classDiv +=	'<div class="info_div">';
+							classDiv += '<ul>';
+							classDiv += '<li><div>'+ category_name[idx]+'</div></li>';
+							classDiv += '<li>'+className_arry[idx]+'</li>';
+							classDiv +=	'<li>'+classTag_arry[idx]+'</li>'
+							classDiv +=	'<li>'+startDate_arry[idx]+'</li>';
+							classDiv +=	'<li>'+classPrice_arry[idx]+'원</li>';
+							classDiv += '</ul>';
+							classDiv +='</div>';
+							classDiv +='</div>';
+							$('.middle_container').append(classDiv);
+							$('.no-result-txt').hide(); // 결과 없음 내용 숨기기
+							$('.more').show();
+						if(idx >= r.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
+								$('.more').hide();
+							}
+						}
 					});
+						});
 			},error:function(e){
 				console.log("ajax 에러")
 			}
@@ -129,13 +205,14 @@ $(function(){
   /////////////////////////////////// rangePrice
   var min_price ;
   var max_price ;
+  var search_text;
   function rangePrice(){
 	  min_price = $('#min_price_show').val();
 	  max_price = $('#max_price_show').val();
-	  console.log(min_price)
-	  console.log(max_price)
+	  search_text = $('#search_text').val();
+	  		console.log(search_text);
 	  var url = '<%=request.getContextPath()%>/classList/rangePrice';
-	  var params = {"minp":min_price, "maxp" :max_price}; 
+	  var params = {"minp":min_price, "maxp" :max_price, "sText":search_text}; 
 	  $.ajax({
 		 	url : url,
 			data : params,
@@ -153,11 +230,15 @@ $(function(){
 	 			 	class_content_arry[idx]= rr[idx].class_content;
 	 			 	category_name[idx]= rr[idx].category_name;
 	 			 	startDate_arry[idx]=rr[idx].start_date;
+	 			 	
+	 			 	
 				if( idx <= (listCnt-1) ){	
 					
 	 			 	classDiv  = '<div class="class_div">';
-					classDiv += '<div class="img_div">';
+	 			 	classDiv += '<div class="img_div">';
+					classDiv += '<a href="<%=request.getContextPath()%>/classDetailView?no=' + r[idx].class_no + '" target="">'
 					classDiv +=	'<img class="img_size" src="<%=request.getContextPath()%>/img/kimin/maca.png">';
+					classDiv += '</a>'
 					classDiv += '</div>';
 					classDiv +=	'<div class="info_div">';
 					classDiv += '<ul>';
@@ -182,7 +263,9 @@ $(function(){
 					if( idx >= listCnt*(n-1) && idx <= (listCnt*n-1) ){
 						classDiv  = '<div class="class_div">';
 						classDiv += '<div class="img_div">';
+						classDiv += '<a href="<%=request.getContextPath()%>/classDetailView?no=' + r[idx].class_no + '" target="">'
 						classDiv +=	'<img class="img_size" src="<%=request.getContextPath()%>/img/kimin/maca.png">';
+						classDiv += '</a>'
 						classDiv += '</div>';
 						classDiv +=	'<div class="info_div">';
 						classDiv += '<ul>';
@@ -211,12 +294,14 @@ $(function(){
   };
  
 </script>
-
+<!--  <a href="<%=request.getContextPath()%>/classDetailView?no='  + r[idx].class_no + '" >-->
+<!-- <a href="<%=request.getContextPath()%>/classDetailView?no=' + r[idx].class_no + '" target=""> -->
 <style>
 .main_container{ background-color:;
 	width:1200px;
-	height:1400px;
+	height:auto;
 	margin:0 auto;
+	overflow:hidden;
 }
 .top_container{ background-color:;
 	width:100%;
@@ -243,20 +328,22 @@ $(function(){
 	margin:0px 10px 0px 0;
 	float: right;
 }
-.select_boxes>select{background-color:white;
+.select_boxes>input[type=text]{background-color:white;
  	border:1px dotted gray;
 	height:30px;
-	width:49.5%;
+	width:100%;
 	border-radius:8px;
 	font-weight: 500;
 	color:gray;
+	text-align: center;
 }
-.select_boxes>select>option:nth-child(1){
+/*.select_boxes>select>option:nth-child(1){
 	text-align: center;
 }
 .select_boxes>select>option{
 	background-color: white;
 }
+*/
 .select_range{background-color:;
  	width:420px;
  	height:30px;
@@ -415,18 +502,19 @@ input[type=button]:hover{
 				<label><a href="<%=request.getContextPath()%>/classList">클래스 리스트</a></label>
 			</div>
 			<div class="select_boxes">
-					<select>
+			<!--  	   <select>
 						<option>카테고리</option>
 						<c:forEach var="cate" items="${cla }">
-							<option >${cate.category_name }</option>  <!-- 디비 반복 -->
+							<option >${cate.category_name }</option>  
 						</c:forEach>
 					</select>
 					<select>
 						<option>지역</option>
 						<c:forEach var="loca" items="${cla }">
-							<option >${loca.class_addr1 }</option>  <!-- 디비 반복 -->
+							<option >${loca.class_addr1 }</option>  
 						</c:forEach>
-					</select>
+					</select> -->
+					<input type="text" id="search_text" placeholder="검색어를 입력하세요">
 					<div class="select_range">	
 						<ul>
 							<li><input class="priceRangeBox" type="text" id="min_price_show" readonly name="min_price_show"></li>

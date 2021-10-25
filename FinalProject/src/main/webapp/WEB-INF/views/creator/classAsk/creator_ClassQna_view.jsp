@@ -80,8 +80,9 @@
 				</li>
 				<!-- 수정폼 -->
 				<li >
-					<div>댓글</div><!-- hQnAWriteFileview -->
-					<div>
+					<!-- hQnAWriteFileview -->
+					<div style='width:100%;'>
+						<div>댓글</div>
 						<textarea  id="cQnAWriteConviewReply" >댓글수정</textarea>
 						<div style='text-align:right;width:90%;'>
 							<button style='background:#fff;border:none;border:1px solid #999;padding:3px 14px;margin-top:3px;'>수정완료</button>							

@@ -7,6 +7,7 @@
 "original":"https://static.tvmaze.com/uploads/images/original_untouched/6/16463.jpg"},
 "summary":"<p>Riddler.</p>"
  ,"updated":1606623424,"_links":{"self":{"href":"https://api.tvmaze.com/shows/975"},
- "previousepisode":{"href":"https://api.tvmaze.com/episodes/95649"}}}}
+ "previousepisode":{"href":"https://api.tvmaze.com/episodes/95649"}}}} 
+ 
 
  
