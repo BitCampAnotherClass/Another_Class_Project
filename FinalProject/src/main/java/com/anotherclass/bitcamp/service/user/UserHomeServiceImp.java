@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.anotherclass.bitcamp.dao.user.UserHomeDAO;
 import com.anotherclass.bitcamp.register.RegisterVO;
+import com.anotherclass.bitcamp.vo.user.ReviewVO;
 
 @Service
 public class UserHomeServiceImp implements UserHomeService {
@@ -18,6 +19,11 @@ public class UserHomeServiceImp implements UserHomeService {
 	@Override
 	public List<RegisterVO> popularCreator() {
 		return userHomeDao.popularCreator();
+	}
+
+	@Override
+	public List<ReviewVO> bestReview() {
+		return userHomeDao.bestReview();
 	}
 	
 }

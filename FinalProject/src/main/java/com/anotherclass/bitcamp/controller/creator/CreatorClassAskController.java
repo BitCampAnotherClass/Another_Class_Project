@@ -31,8 +31,19 @@ public class CreatorClassAskController {
     	mav.addObject("pVo",pVo);   
     	mav.addObject("list",creatorClassAskService.boardPageSelect(pVo));
     	List<CreatorCAskVO> list = creatorClassAskService.boardPageSelect(pVo);
-    	 System.out.println(list.size());
+    	System.out.println(list.size());
     	mav.setViewName("creator/classAsk/creator_ClassQna_list");
     	return mav;      
    }
+    
+    
+	//제목누르면 글보기
+	@RequestMapping("creator/classAskManage2")
+	public ModelAndView HomeQnAAskView(int no) {
+		ModelAndView mav = new ModelAndView();
+		//mav.addObject("vo",creatorClassAskService.userHomeQnAView(no));
+		mav.setViewName("creator/classAsk/creator_ClassQna_view");
+		return mav;
+	}
+	
 }

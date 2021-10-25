@@ -124,6 +124,7 @@ $(document).ready(function(){
 	// 클래스 목록 정보 담을 배열
 	var cateL_arr=[]; // 대분류 카테고리
 	var category_arr = []; // 중분류 카테고리
+	var classNo_arr = []; // 클래스 번호
 	var className_arr = []; // 클래스 이름
 	var nick_arr = []; // 강사 닉네임
 	var likeCnt_arr = []; // 좋아요 수
@@ -154,6 +155,7 @@ $(document).ready(function(){
 		}
 		if(cate_name == '전체 카테고리'){
 			cate_name = '';
+			cateL_name= '';
 		} else {
 			if(cate_name.indexOf('전체')!= -1){ // 중분류 전체 선택 시
 				cateL_name = cate_name.replace(' 전체', ''); // 대분류명만 저장
@@ -190,8 +192,9 @@ $(document).ready(function(){
 				
 				r.each(function(idx){
 					// 전역변수 배열에 해당 값 담기
-					cateL_arr[idx] = r[idx].category_name;
+					cateL_arr[idx] = r[idx].cateL_name;
 					category_arr[idx] = r[idx].category_name;
+					classNo_arr[idx] = r[idx].class_no;
 					className_arr[idx] = r[idx].class_name;
 					nick_arr[idx] = r[idx].nick;
 					likeCnt_arr[idx] = r[idx].like_cnt;
@@ -202,10 +205,10 @@ $(document).ready(function(){
 
 					if( idx <= (listCnt-1) ){ // 처음 보여줄 클래스 목록
 						tag = '<li>';
-						tag += '<div class="class-list-thumb"><img src="' + r[idx].class_thumb + '"/></div>';
+						tag += '<div class="class-list-thumb"><a href="<%=request.getContextPath()%>/classDetailView?no=' + r[idx].class_no + '" target="_blank"><img src="' + r[idx].class_thumb + '"/></a></div>';
 						tag += '<div class="class-list-info">';
 						tag += '<div class="class-category">' + r[idx].cateL_name + ' > ' + r[idx].category_name + '</div>';
-						tag += '<div class="class-name">' + r[idx].class_name + '</div>';
+						tag += '<div class="class-name"><a href="<%=request.getContextPath()%>/classDetailView?no=' + r[idx].class_no + '" target="_blank">' + r[idx].class_name + '</a></div>';
 						tag += '<div class="class-creator">' + r[idx].nick + '</div>';
 						tag += '<div class="class-point">';
 						tag += `<div class="class-back-star">
@@ -245,10 +248,10 @@ $(document).ready(function(){
 						n++;
 						if( idx >= listCnt*(n-1) && idx <= (listCnt*n-1) ){
 							tag = '<li>';
-							tag += '<div class="class-list-thumb"><img src="' + r[idx].class_thumb + '"/></div>';
+							tag += '<div class="class-list-thumb"><a href="<%=request.getContextPath()%>/classDetailView?no=' + r[idx].class_no + '" target="_blank"><img src="' + r[idx].class_thumb + '"/></a></div>';
 							tag += '<div class="class-list-info">';
 							tag += '<div class="class-category">' + r[idx].cateL_name + ' > ' + r[idx].category_name + '</div>';
-							tag += '<div class="class-name">' + r[idx].class_name + '</div>';
+							tag += '<div class="class-name"><a href="<%=request.getContextPath()%>/classDetailView?no=' + r[idx].class_no + '" target="_blank">' + r[idx].class_name + '</a></div>';
 							tag += '<div class="class-creator">' + r[idx].nick + '</div>';
 							tag += '<div class="class-point">';
 							tag += `<div class="class-back-star">
@@ -286,7 +289,7 @@ $(document).ready(function(){
 					});
 					
 					// 주소 - 좌표 변환 + 마커 + 인포윈도우 생성
-					setMapPosition(cateL_arr[idx], category_arr[idx], className_arr[idx], nick_arr[idx], likeCnt_arr[idx], starAvg_arr[idx], classPrice_arr[idx], addr_arr[idx], classImg_arr[idx], idx);
+					setMapPosition(cateL_arr[idx], category_arr[idx], classNo_arr[idx], className_arr[idx], nick_arr[idx], likeCnt_arr[idx], starAvg_arr[idx], classPrice_arr[idx], addr_arr[idx], classImg_arr[idx], idx);
 					
 				}); //each
 			}, error: function(e){
@@ -320,7 +323,7 @@ $(document).ready(function(){
 	
 	
 	// 주소 - 좌표 변환 + 마커 + 인포윈도우 생성
-	function setMapPosition(cateL, category, className, nick, likeCnt, starAvg, classPrice, addr, classImg, idx){
+	function setMapPosition(cateL, category, classNo, className, nick, likeCnt, starAvg, classPrice, addr, classImg, idx){
 		// 주소로 좌표를 검색
 		geocoder.addressSearch( addr , function(result, status) {
 			
@@ -338,6 +341,7 @@ $(document).ready(function(){
 		        });
 				
 		        var markerInfo = '<div class="markerInfo">';
+		        markerInfo += '<a class="marker-class-no" href="<%=request.getContextPath()%>/classDetailView?no=' + classNo + '" target="_blank"></a>'
 		        markerInfo += '<div class="marker-class-img"><img src="<%=request.getContextPath()%>' + classImg + '"/></div>';
 		        markerInfo += '<div class="marker-class-info">'
 		        markerInfo += '<div class="marker-class-category">' + cateL + ' > ' + category + '</div>'
