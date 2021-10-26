@@ -52,8 +52,23 @@ public class UserReviewServiceImp implements UserReviewService {
 	}
 
 	@Override
-	public List<ReviewComVO> selectReviewComment(int review_no) {
-		return userReviewDAO.selectReviewComment(review_no);
+	public List<ReviewComVO> selectReviewComment(ReviewComVO vo) {
+		return userReviewDAO.selectReviewComment(vo);
+	}
+
+	@Override
+	public int deleteReviewComment(ReviewComVO vo) {
+		return userReviewDAO.deleteReviewComment(vo);
+	}
+
+	@Override
+	public int countReplyCheck(int review_com_no) {
+		return userReviewDAO.countReplyCheck(review_com_no);
+	}
+
+	@Override
+	public int updateDelReviewComment(ReviewComVO vo) {
+		return userReviewDAO.updateDelReviewComment(vo);
 	}
 	
 }
