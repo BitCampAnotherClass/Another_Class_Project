@@ -152,14 +152,25 @@ public class UserMyPageController {
 		int result= userMyPageService.CancelLikeCreator(no);		
 		return result;
 	}
-	//클래스좋아요목록
-//	
-//	@RequestMapping("/LikedListClass")
-//	@ResponseBody
-//	public List<UserClassDetailVO> ajaxLikedClassList(String logid){	
-//		List<UserClassDetailVO> list = 
-//	}
-//	
+	//클래스좋아요목록	
+	@RequestMapping("/LikedListClass")
+	@ResponseBody
+	public List<UserClassDetailVO> ajaxLikedClassList(String logid){	
+		
+		List<UserClassDetailVO> list = userMyPageService.Likedclass(logid);
+		
+		return list;
+	}
+	//클래스좋아요취소
+	@RequestMapping("/cancelLikedListClass")
+	@ResponseBody
+	public int ajaxCancelClassLike(int no) {	
+		System.out.println(no);
+		int result= userMyPageService.CancelLikeClass(no);
+		System.out.println(result);
+		return result;
+	}
+	
 	
 	//장바구니목록 ajax
 	@RequestMapping("/ShoppingBasket")

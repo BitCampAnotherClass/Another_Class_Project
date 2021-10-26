@@ -72,13 +72,15 @@ public class UserClassDetailVO {
 	/*만든부분*/
 	private int creatorclasscount;//강사가 개설한클래스개수 -> 클래스테이블에 있는 강사아이디갯수
 	private int creatorlikecount;//강사좋아요테이블에 강사아이디가 몇개있는지...
+	
+	
+	
 	public String creator_nick2; //멤버테이블의 닉네임 -> 강사로만원함
 	
 	public int basketCount;//장바구니테이블에서 어이디갯수 -> 흠 리스트사이즈로 셋팅?...
 	/*장바구니테이블*/
 	private int basket_no;
 	private int headcount;
-	
 	
 	
 	public int getBasket_no() {

@@ -34,4 +34,5 @@ public interface UserMyPageService {
 	public int userMyPageReviewCheck(int no);
 	public String pwdCheck(RegisterVO vo);
 	public  List<UserClassDetailVO> Likedclass(String logid);
+	public int CancelLikeClass(int no);
 }

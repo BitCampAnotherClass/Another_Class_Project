@@ -69,13 +69,9 @@
 	#creatormemberoneask>li>div>div:nth-child(2n+2)>div{width:100%;}	
 	#creatormemberoneask>li>div>div>div{width:100%;height:auto;}
 	#creatormemberoneask>li>div>div>div:nth-child(2){overflow:auto;word-break:break-all;}/*텍스트줄바굼*/
-	#creatormemberoneask>li>div>div>div:nth-child(1)>label{display:inline-block;margin:5px 0 10px 15px;font-size:0.8rem;color:#666;word-break:break-all;}
-	
-	#creatormemberoneask>li>div>div>div:nth-child(2)>label{display:inline-block;margin-left:15px;width:96%;color:#333;font-size:0.9rem;margin-bottom: 5px;}
-	
+	#creatormemberoneask>li>div>div>div:nth-child(1)>label{display:inline-block;margin:5px 0 10px 15px;font-size:0.8rem;color:#666;word-break:break-all;}	
+	#creatormemberoneask>li>div>div>div:nth-child(2)>label{display:inline-block;margin-left:15px;width:96%;color:#333;font-size:0.9rem;margin-bottom: 5px;}	
 	#creatormemberoneask>li>div>div>div:nth-child(3)>label{display:inline-block;margin-left:15px;width:96%;color:#333;font-size:0.9rem;}
-
-
 	#d9>div:nth-child(3){width:100%;height:100%;border:2px solid #ddd;margin:20px 0 20px 0;padding:10px 0 10px 0; }
 	#d9>div:nth-child(3)>span{display:block;margin:0 0 10px 36px;font-size:0.9rem;color:#333;}
 	#d9>div:nth-child(3)>form>div{text-align:center;}/*padding-left:26px;*/
@@ -92,18 +88,14 @@
 	#datepicker{padding-top:25px;}	
 	/*클래스옵션목록*/
 	#selectdateBB{width:350px;height:auto;border:1px solid #f0f0f0;}
-	#selectClassListd{width:320px;min-height:10px;height:auto;} /*border:1px solid #f0f0f0;*/
-	
+	#selectClassListd{width:320px;min-height:10px;height:auto;} /*border:1px solid #f0f0f0;*/	
 	.oneclassdiv{width:320px;height:auto;border:1px solid #ff385c;padding:10px;border-radius: 14px;}/*border:1px solid #f0f0f0;*/
 	.startdiv{width:275px;font-size:22px;}
 	.enddiv{width:276px;}
 	.headcountdiv{width:276px;}
 	.classoptionno{display:none;}
 	.ckdiv{width:276px;}
-	.inend{color:#ff385c;}
-	
-
-	
+	.inend{color:#ff385c;}	
 	/*버튼감싸고 있는div*/
 	#buttonhomec{width:350px;display:flex;width:350px;}
 	#buttonhomec input[type=button]{border:none;}
@@ -114,13 +106,20 @@
 	
 	.menu_title_container{z-index:1000;}/*메뉴바*/
 	
+	.morebtn{
+		background: #ff385c;
+	    font-size: 16px;
+	    border: none;
+	    color: white;
+	    padding: 3px 7px;
+	    border-radius: 5px;
+    }
+	
 </style>
 <script>
-$(function(){		
-	
+$(function(){			
 		var logid = "${userId}"; 
-		var maxheadcount = "${vo.max_headcount}"; //이 클래스의 최대인원
-				
+		var maxheadcount = "${vo.max_headcount}"; //이 클래스의 최대인원				
 
 	    $(function(){//달력
 	         $('.datepicker').datepicker({
@@ -153,9 +152,7 @@ $(function(){
 	    				
 	    				if(maxheadcount != vo4.all_headcount){//name변경 checkedclassoption
 	    					tag +="<div class='ckdiv'><label style='color:#ff385c;'>클래스선택</label>&nbsp;&nbsp;<input type='checkbox' class='checkbb' name='classNoPayList' value='"+vo4.class_option_no +"'  /></div>";
-	    					var a = vo4.class_option_no;	 
-	    					console.log("드러왓따");
-	    					console.log(a+"a");
+	    					var a = vo4.class_option_no;	 	    					
 	    				   }else{
 	    					tag +="<div class='inend'>신청마감</div>";  
 	    				}	    				
@@ -215,28 +212,26 @@ $(function(){
 				like_func();
 			}	    	
 	    });
-	    function AskList(){ //문의글 다 가져오는 리스트함수
-	    	
+	    function AskList(){ //문의글 다 가져오는 리스트함수	    	
 	    	var aUrl ="/another/classDetailAskList";
-	    	var aParam = {"no":${vo.class_no }}
-	    	
+	    	var aParam = {"no":${vo.class_no }}	    	
 	    	$.ajax({
 	    		url:aUrl,
 	    		data:aParam,
 	    		success:function(a){
+	    			var listCnt = 5;
 	    			var aa = $(a)
+	    			$('#creatormemberoneask').html('');
 	    			var tag =""; 	    			
-					aa.each(function(idx,vo4){							
-	    					//문의글			
-	    				
-	    					
-							tag +="<li>";
+					aa.each(function(idx,vo4){
+	    					//문의글	
+						if( idx <= (listCnt-1)){
+	    					tag ="<li>";
 	    					tag +="<div class='askdiv909' id='a"+vo4.class_qna_no+"'>";
-	    					//tag +="<div><img src='"++"'/></div>"; //작성자이미지  vo4.member_img
+	    					tag +="<div><img src='"+vo4.member_img+"'/></div>"; //작성자이미지  member_img
 	    					tag +="<div>";
 	    					tag +="<div><label>"+ vo4.classqna_member_id+" | "+ vo4.classqna_writedate+" 작성</label></div>"; // 멤버아이디가 나일때 ->글 수정 삭제 버튼 보이게....    					
-	    					tag +="<div><label>"+ vo4.classqna_content+"</label>"; //내용	    					
-	    					
+	    					tag +="<div><label>"+ vo4.classqna_content+"</label>"; //내용	  
 	    					if(logid == vo4.classqna_member_id){	    						
 	    						tag +="<label><button class='ediBtn' style='float:right;border-radius:7px;margin-left: 8px;float: right;font-size: 0.7rem;background-color: white;border: none;border: 1px solid #666; padding: 2px 5px 2px 5px;'>수정";
 	    						tag +="<input type='hidden' value='"+vo4.class_qna_no+"'></button>";
@@ -245,20 +240,17 @@ $(function(){
 	    					}else{
 	    						tag+="<label></label>";
 	    					}
-	    					
 	    					if(vo4.replycheck==1){
 	    						tag +=	"<label><input type='button' value='답변확인' style='float: right;font-size: 0.8rem;background-color:#ff385c;border: none;border-radius:5px;color:white; padding: 2px 5px 2px 5px;' class='"+vo4.class_qna_no+"' id='replyshow' ></label>";
 	    					}else{
 	    						tag += "<label><input type='button' value='미답변' style='float: right;font-size: 0.8rem;background-color:#ff385c;border: none;border-radius:5px;color:white; padding: 2px 5px 2px 5px;' ></label>";
-	    					}	    						    					
-	    					
+	    					}	
 	    					tag += "</div></div> ";
 	    					tag += "</div> ";    			    					
 	    					if(vo4.replycheck==1){
 	    						tag +="<div class='askdiv808' id='"+vo4.class_qna_no+"' style='display:none;'></div>";	    					 					
 	    					}    				
-		    				tag +="</li>";	    				
-		    				
+		    				tag +="</li>";	 
 		    				//수정폼		    			
 		    				tag +="<li style='display:none' id='b"+vo4.class_qna_no+"'>";//style='display:none'
 	    					tag +="<div class='askdiv909 editaskdiv909'>";
@@ -272,32 +264,106 @@ $(function(){
 	    					tag +="</form>";
 	    					tag +="<button  class='cancel' style='float:right;border-radius: 7px;float: right;font-size: 0.7rem;background-color: white;border: none;border: 1px solid #666; padding: 2px 5px 2px 5px;display:none;'>취소"; //display:none;
 	    					tag +="<input type='hidden' value='"+vo4.class_qna_no+"'></button></label>";
-	    					
 	    					tag +="<label></label>";
 	    					tag += "</div></div> ";
 	    					tag += "</div> ";
 		    				tag +="</li>";
-		    				$("#creatormemberoneask").html(tag);    				
-	    			});
-					
-					
+		    				$("#creatormemberoneask").append(tag);    
+		    				
+		    				$('.more').show(); // 더보기 버튼 보이기
+			                 if(idx >= aa.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
+			                    $('.more').hide();
+			                }
+						
+						
+						}//idx if문
+						var n=1;
+						$('.more > button').click(function(){
+							n++; 
+							if( idx >= listCnt*(n-1) && idx <= (listCnt*n-1) ){
+								
+								tag ="<li>";
+		    					tag +="<div class='askdiv909' id='a"+vo4.class_qna_no+"'>";
+		    					tag +="<div><img src='"+vo4.member_img+"'/></div>"; //작성자이미지  member_img
+		    					tag +="<div>";
+		    					tag +="<div><label>"+ vo4.classqna_member_id+" | "+ vo4.classqna_writedate+" 작성</label></div>"; // 멤버아이디가 나일때 ->글 수정 삭제 버튼 보이게....    					
+		    					tag +="<div><label>"+ vo4.classqna_content+"</label>"; //내용	  
+		    					if(logid == vo4.classqna_member_id){	    						
+		    						tag +="<label><button class='ediBtn' style='float:right;border-radius:7px;margin-left: 8px;float: right;font-size: 0.7rem;background-color: white;border: none;border: 1px solid #666; padding: 2px 5px 2px 5px;'>수정";
+		    						tag +="<input type='hidden' value='"+vo4.class_qna_no+"'></button>";
+		    						tag +="<button class='delBtn' style='float:right;border-radius: 7px;float: right;font-size: 0.7rem;background-color: white;border: none;border: 1px solid #666; padding: 2px 5px 2px 5px;'>삭제";
+		    						tag +="<input type='hidden' value='"+vo4.class_qna_no+"'></button></label>";	    								
+		    					}else{
+		    						tag+="<label></label>";
+		    					}
+		    					if(vo4.replycheck==1){
+		    						tag +=	"<label><input type='button' value='답변확인' style='float: right;font-size: 0.8rem;background-color:#ff385c;border: none;border-radius:5px;color:white; padding: 2px 5px 2px 5px;' class='"+vo4.class_qna_no+"' id='replyshow' ></label>";
+		    					}else{
+		    						tag += "<label><input type='button' value='미답변' style='float: right;font-size: 0.8rem;background-color:#ff385c;border: none;border-radius:5px;color:white; padding: 2px 5px 2px 5px;' ></label>";
+		    					}	
+		    					tag += "</div></div> ";
+		    					tag += "</div> ";    			    					
+		    					if(vo4.replycheck==1){
+		    						tag +="<div class='askdiv808' id='"+vo4.class_qna_no+"' style='display:none;'></div>";	    					 					
+		    					}    				
+			    				tag +="</li>";	 
+			    				//수정폼		    			
+			    				tag +="<li style='display:none' id='b"+vo4.class_qna_no+"'>";//style='display:none'
+		    					tag +="<div class='askdiv909 editaskdiv909'>";
+		    					tag +="<div><img src='"+vo4.member_img+"'/></div>"; //작성자이미지  vo4.member_img
+		    					tag +="<div>";
+		    					tag +="<div><label>"+ vo4.classqna_member_id+" | "+ vo4.classqna_writedate+" 작성</label></div>"; // 멤버아이디가 나일때 ->글 수정 삭제 버튼 보이게....    					
+		    					tag += "<form method='post' >"
+		    					tag +="<div><textarea name='classqna_content' style='width:640px;height:50px;resize:none;margin-left: 13px;'>"+ vo4.classqna_content+"</textarea>"; //내용	    					
+		    					tag +="<label style='display:block;'><input type='submit' id='c"+vo4.class_qna_no+"' value='수정완료' class='edit' style='float:right;border-radius:7px;margin-left: 8px;float: right;font-size: 0.7rem;background-color: white;border: none;border: 1px solid #666; padding: 2px 5px 2px 5px;'>";
+		    					tag +="<input type='hidden' name='class_qna_no' value='"+vo4.class_qna_no+"'>";
+		    					tag +="</form>";
+		    					tag +="<button  class='cancel' style='float:right;border-radius: 7px;float: right;font-size: 0.7rem;background-color: white;border: none;border: 1px solid #666; padding: 2px 5px 2px 5px;display:none;'>취소"; //display:none;
+		    					tag +="<input type='hidden' value='"+vo4.class_qna_no+"'></button></label>";
+		    					tag +="<label></label>";
+		    					tag += "</div></div> ";
+		    					tag += "</div> ";
+			    				tag +="</li>";
+			    				$("#creatormemberoneask").append(tag);    
+			    				
+			    				$('.more').show(); // 더보기 버튼 보이기
+				                 if(idx >= aa.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
+				                    $('.more').hide();
+				                }
+								
+								
+							}
+							 
+							 
+							 
+						 });
+						
+						
+						
+						
+						
+	    			});//each문
 	    		}	    		
-	    	})	    	
-	    }	   
-	  function AskReply(no){
-		   console.log("댓글 세팅");		  	  
+	    	});	    	
+	    };	   
+	  
+	   function AskReply(no){
+		  
+		   
+		   //var creimg = ${vo.member_img }; //강사이미지
 		   var rUrl ="/another/classDetailAskReplyList";
 	       var rParam = {"no":no}  
+	       
 	       $.ajax({
 	    		url:rUrl,
 	    		data:rParam,
 	    		success:function(b){
 	    			var bb = $(b)
 	    			var tag ="";	    			
-	    			console.log("댓글함수 데이터success");					
+	    							
 	    			bb.each(function(idx,vo5){	    	
 	    				//tag +="<div class='askdiv808'>";
-	    				tag += "<div style='display:flex;width:12%;'><label style='display:block;width:20%;height:100%;vertical-align:middle;font-size:2rem;color:#666;'>↳</label><img src='img/jisu/creatorprofile.png' style='width:80%'/></div> ";
+	    				tag += "<div style='display:flex;width:12%;'><label style='display:block;width:20%;height:100%;vertical-align:middle;font-size:2rem;color:#666;'>↳</label><img src='creimg' style='width:80%'/></div> ";
 	    				tag +="<div style='width:87%;'>";
 	    				tag +="<div><label> "+ vo5.classqnacom_member_id +" | "+vo5.classqnacom_writedate +" 작성</label></div>";
 	    				tag +="<div><label>"+vo5.classqnacom_reply +"</label></div>"; 
@@ -359,6 +425,7 @@ $(function(){
 		     $("#payfrm").submit();
 		}	 
 	});	
+	
 	//장바구니
 	$(document).on('click','#gobasketB',function(){//insert
 		var logid = "${userId}";    	
@@ -372,8 +439,7 @@ $(function(){
 			 $("#payfrm").attr("action", "/another/InsertBasketDB");			
 		     $("#payfrm").submit();
 		}		
-	});	
-	
+	});		
 	
 	//delBtn 문의글삭제
 	$(document).on('click','.delBtn',function(){	
@@ -417,6 +483,8 @@ $(function(){
          });
          return false; 
       });
+	
+	
 	
 	$(document).on('click','#classcontent',function(){
 		var offset = $("#d5").offset().top;	
@@ -478,10 +546,10 @@ $(function(){
 				</ul>
 			</div> 
 			<div id="d3"> <!-- 강사프로필 + 강사명 -->
-				<div><img src="img/jisu/creatorprofile.png"/></div> <!-- 강사프로필이미지 -->	
+				<div><img src="${vo.member_img}"/></div> <!-- 강사프로필이미지 -->	
 				<div> <!-- 강사닉네임 -->	
 					<a href="#">${vo.nick }</a>
-					<span>클래스 3개 | 좋아요 19개</span>
+					<span>클래스 ${vo.creatorclasscount}개 | 좋아요 ${vo.creatorlikecount }개</span>
 				</div>
 			</div>
 			<div id="d4"> <!-- 메뉴 -->					
@@ -502,14 +570,18 @@ $(function(){
 			<div id="d6" class="menu"> <!-- 강사소개 -->
 				<div class="menutitle"><span>강사소개</span></div>
 				<div>
+					<c:set var="creatorimg" value="${vo.creator_content_img }" />	
+					<c:if test="${!empty  creatorimg }"> <!-- 널값이아니면 셋팅 -->
+						<div style='max-width:400px;max-height: 300px;'><img src="${vo.creator_content_img }" style='width:100%;height:100%;object-fit:cover;'/></div>
+					</c:if>
 					${vo.creator_content }
 				</div>
 			</div>
-			<div id="d7" class="menu"> <!-- 위치 -->
+			<div id="d7" class="menu" style='border:none;'> <!-- 위치 -->
 				<div class="menutitle"><span>위치</span></div>
 				<div>${vo.class_addr1 }</div>
 				<div style="width:100%;height:100%;">
-					<div id="map" style="width:90%;height:400px;"></div>
+					<div id="map" style="width:99%;height:400px;"></div>
 					<!--
 					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=af2fbed4f8b6d0f0e4535ecf4e023244"></script><!-- 카카오지도api 
 					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=APIKEY&libraries=LIBRARY"></script>
@@ -518,31 +590,24 @@ $(function(){
 					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=af2fbed4f8b6d0f0e4535ecf4e023244&libraries=services"></script> 
 					<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=af2fbed4f8b6d0f0e4535ecf4e023244"></script>
 					<script>
-							var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-							var options = { //지도를 생성할 때 필요한 기본 옵션
-								center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
-								level: 4 //지도의 레벨(확대, 축소 정도)
+							var container = document.getElementById('map'); 
+							var options = { 
+								center: new kakao.maps.LatLng(33.450701, 126.570667), 
+								level: 4 
 							};
-							var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴	
-							var geocoder = new kakao.maps.services.Geocoder();// 주소-좌표 변환 객체를 생성합니다
-							
-							// 주소로 좌표를 검색합니다
-							geocoder.addressSearch( '${vo.class_addr1 }', function(result, status) {
-						
-							    // 정상적으로 검색이 완료됐으면 
+							var map = new kakao.maps.Map(container, options); 
+							var geocoder = new kakao.maps.services.Geocoder();							
+							geocoder.addressSearch( '${vo.class_addr1 }', function(result, status) {							    
 							     if (status === kakao.maps.services.Status.OK) {						
-							        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);						
-							        // 결과값으로 받은 위치를 마커로 표시합니다
+							        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);							       
 							        var marker = new kakao.maps.Marker({
 							            map: map,
 							            position: coords
-							        });						
-							        // 인포윈도우로 장소에 대한 설명을 표시합니다
+							        });											       
 							        var infowindow = new kakao.maps.InfoWindow({
 							            content: '<div style="width:150px;text-align:center;padding:6px 0;">버드세이지 플라워</div>'
 							        });
-							        infowindow.open(map, marker);						
-							        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+							        infowindow.open(map, marker);							       
 							        map.setCenter(coords);
 							    } 
 							});  	
@@ -552,11 +617,15 @@ $(function(){
 			<!-- 후기 -->
 			<%@ include file="review.jspf" %>	
 				
-			<div id="d9" class="menu"> <!-- 문의 -->
+			<div id="d9" class="menu" style='min-height:360px;'> <!-- 문의 -->
 				<div class="menutitle"><span>문의</span></div>
 				<div id="d9_2"><!-- 댓글내용 -->
 					<ul id="creatormemberoneask">			
-					</ul>							
+					</ul>	
+					<!-- 더보기 버튼 -->
+					<div class="more" style="display:none;text-align:center;">
+      					<button type="button" id="morebtn">+ more</button>
+   					</div>						
 				</div>
 				<div><!-- 댓글작성 -->
 					<span>문의 내용 작성</span>
