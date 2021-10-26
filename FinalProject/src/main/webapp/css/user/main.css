@@ -199,17 +199,12 @@ textarea:-ms-input-placeholder {color:#aaa;}
 /* 인기 클래스 / 신규 클래스 */
 
 
-.main-class-best .classSwiper1 .swiper-slide{
+.main-class-best .classSwiper1 .swiper-slide, .main-class-new .classSwiper2 .swiper-slide{
 	flex-direction: column;
 	justify-content: flex-start;
 	background-color:#fff;
 }
 
-.main-class-new .classSwiper2 .swiper-slide{
-	flex-direction: column;
-	justify-content: flex-start;
-	background-color:#fff;
-}
 
 .class-list-thumb{
 	width:100%;
@@ -224,7 +219,7 @@ textarea:-ms-input-placeholder {color:#aaa;}
 	object-fit:cover;
 }
 
-.class-list-info{
+.swiper-slide .class-list-info{
 	position:relative;
 	top:0; left:0;
 	width: 100%;
