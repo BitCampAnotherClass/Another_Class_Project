@@ -38,4 +38,6 @@ public interface UserMyPageDAO {
 	
 	public int userMyPageReviewCheck(int no);//후기작성유무
 	public String pwdCheck(RegisterVO vo);
+	
+	public  List<UserClassDetailVO> Likedclass(String logid);// 아직매퍼미작성
 }

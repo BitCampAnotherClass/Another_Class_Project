@@ -46,7 +46,7 @@ public class UserMyPageController {
 	}	
 	@RequestMapping(value = "/mypage/mypage5") //좋아요목록
 	public String mypage5() {
-		return "/user/mypage/myPage_Classlike";
+		return "/user/mypage/myPage_Classlike2";
 	}	
 	@RequestMapping(value = "/mypage/mypage6") //나의게시물
 	public String mypage6() {
@@ -159,6 +159,14 @@ public class UserMyPageController {
 		int result= userMyPageService.CancelLikeCreator(no);		
 		return result;
 	}
+	//클래스좋아요목록
+//	
+//	@RequestMapping("/LikedListClass")
+//	@ResponseBody
+//	public List<UserClassDetailVO> ajaxLikedClassList(String logid){	
+//		List<UserClassDetailVO> list = 
+//	}
+//	
 	
 	//장바구니목록 ajax
 	@RequestMapping("/ShoppingBasket")

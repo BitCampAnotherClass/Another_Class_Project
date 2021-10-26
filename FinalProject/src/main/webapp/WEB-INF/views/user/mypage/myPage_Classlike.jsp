@@ -66,7 +66,7 @@
 <%@ include file="myPageTop.jspf" %>
 
 	<div id="likedClassList" class="bigTitle"><span class="h1style">♥ 클래스</span></div>
-	<div id="likedClassList">
+	<div >
 				<div class="card">
 				  <div class="card-image"></div>
 				  <div class="card-text">

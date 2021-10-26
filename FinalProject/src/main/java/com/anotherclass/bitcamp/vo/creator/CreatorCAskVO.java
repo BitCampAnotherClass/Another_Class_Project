@@ -55,6 +55,7 @@ public class CreatorCAskVO {
 	/*카테고리테이블*/
 	private String category_name;
 
+	/*댓글유뮤*/
 
 	
 	public String getClass_name() {

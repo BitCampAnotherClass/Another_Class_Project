@@ -52,13 +52,13 @@
 
   	<insert id="CAReplyWrite" parameterType="com.anotherclass.bitcamp.vo.creator.CreatorCAskVO">
 	  	<![CDATA[
-	  		insert into  classqnacom values(class_qna_com_sq.nextval, #{class_qna_no}, #{classqnacom_member_id},class_qna_com_sq.nextval,0,#{classqnacom_reply},sysdate,0,0);
+	  		insert into  classqnacom values(class_qna_com_sq.nextval, #{class_qna_no}, #{classqnacom_member_id},class_qna_com_sq.nextval,0,#{classqnacom_reply},sysdate,0,0)
 	  	]]> 
   	</insert>
   	<update id="CAReplyEdit" parameterType="com.anotherclass.bitcamp.vo.creator.CreatorCAskVO">
 	  	<![CDATA[
 	  		update  classqnacom  set classqnacom_reply  = #{classqnacom_reply}, classqnacom_writedate = sysdate 
-			where class_qna_com_no = #{param1}
+			where class_qna_no = #{class_qna_no}
 	  	]]> 
   	</update>
   	<delete id="CAReplyDel">

@@ -124,19 +124,22 @@ public class UserMyPageServiceImp implements UserMyPageService {
 	}
 
 	@Override
-	public int UserMyPageHQnADel2(int no) {
-		// TODO Auto-generated method stub
+	public int UserMyPageHQnADel2(int no) {		
 		return userMyPageDAO.UserMyPageHQnADel2(no);
 	}
 
 	@Override
-	public int userMyPageReviewCheck(int no) {
-		// TODO Auto-generated method stub
+	public int userMyPageReviewCheck(int no) {	
 		return userMyPageDAO.userMyPageReviewCheck(no);
 	}
 	
 	@Override
 	public String pwdCheck(RegisterVO vo) {
 		return userMyPageDAO.pwdCheck(vo);
+	}
+
+	@Override
+	public List<UserClassDetailVO> Likedclass(String logid) {
+		return userMyPageDAO.Likedclass(logid);
 	}
 }
