@@ -23,7 +23,7 @@ public class CreatorQuestionController {
 	
 	@RequestMapping("CreatorQuestion/list")
 	public ModelAndView HomeQnAAskList(int no) {
-		
+		// 연결시 http://localhost:9090/another/creator/CreatorQuestion/list?no=1# 중요
 		ModelAndView mav = new ModelAndView();	
 		int boardLimit = 10; // 한페이지에 보여줄 페이지수
 		int listFirst = ((no-1)*boardLimit); // 하단 버튼숫자에 따른 페이징 시작번호
