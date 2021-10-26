@@ -6,7 +6,7 @@
  --%>
 <script type="text/javascript">
 $(function(){
-	let url="MemberMangement/userAccountList";
+	let url="MemberMangement/creatorAccountList";
 	function replaceAt(indata){
 		/* 전화번호 변경  */
 		if(indata != null) {
@@ -61,7 +61,7 @@ $(function(){
 		//페이징 버튼 출력
 		var btnList = "";
 		$.ajax({
-			url : 'MemberMangement/btnList'
+			url : 'MemberMangement/creatorbtnList'
 			, type : 'POST'
 			, success:function(res){
 				for(var i=1; i<=res; i++){
@@ -77,7 +77,6 @@ $(function(){
 				console.log(error);
 				console.log('btn 목록 불러오기 실패');
 			}
-			
 		});
 	}
 	
@@ -101,17 +100,15 @@ $(function(){
 	}
 	
 	$(document).on('click',"#account_information_btn",function(){
-		let infoAccount="MemberMangement/AccountInformation";
-		let idData = $(this).next().val();
-		let data = {"idData":idData};
+		let infoAccount="MemberMangement/creatorInformation";
+		const idData = $(this).next().val();
+		var data = {"idData":idData};
 		var member_information = '';
 		$.ajax({
 			url : infoAccount,
 			type : "POST",
 			data : data,
-			success:function(result){
-				var infor= $(result);
-				infor.each(function(idx,vo){
+			success:function(vo){
 					const addr = addrSeting(vo.addr1,vo.addr2);
 					const accountType = snsType(vo.sns_type);
 					member_information += '<div class="userMg-information-back">';
@@ -131,7 +128,7 @@ $(function(){
 					member_information += '<li>계정 타입</li>';
 					member_information += '<div class="userMg-information-popup-div">';
 					member_information += '<li><input type="text" class="userMg-information-popup-input"  value="'+accountType+'" readonly="true"></li>';
-					member_information += '</div>';
+					member_information += '</div>';	
 					member_information += '<li>가입날짜</li>';
 					member_information += '<div class="userMg-information-popup-div">';
 					member_information += '<li><input type="text" class="userMg-information-popup-input-sing"  value="'+vo.signupdate+'" readonly="true"></li>';
@@ -141,7 +138,6 @@ $(function(){
 					member_information += '</div>';
 					member_information += '</div>';
 					member_information += '</div>';
-				});
 					// 회원 상세정보 버튼 클릭시 출력되는 창
 					$('.container').before(member_information);
 			},error: function(error){
