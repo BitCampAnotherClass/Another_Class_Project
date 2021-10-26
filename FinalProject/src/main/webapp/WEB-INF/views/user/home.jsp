@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 
 
@@ -118,16 +119,36 @@
 				<!-- Swiper -->
 				<div class="swiper classSwiper1">
 					<div class="swiper-wrapper">
-						<div class="swiper-slide">
+						<c:forEach var="pclass" items="${popularClassList}">	
+							<div class="swiper-slide">
+								<div class="class-list-thumb"><a href="<%=request.getContextPath()%>/classDetailView?no=${pclass.class_no}"><img src="${pclass.class_thumb}"/></a></div>
+								<div class="class-list-info">
+									<div class="class-category">${pclass.cateL_name} > ${pclass.category_name}</div>
+									<div class="class-name"><a href="<%=request.getContextPath()%>/classDetailView?no=${pclass.class_no}">${pclass.class_name}</a></div>
+									<div class="class-creator">${pclass.nick}</div>
+									<div class="class-point">
+										<div class="class-back-star">
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+										</div>
+										<div class="class-front-star" style="width:${(pclass.star_avg/5)*80}px">
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+										</div>
+										<fmt:formatNumber value="${pclass.star_avg}" pattern="0.0"/>
+									</div>
+									<div class="class-like">♥ ${pclass.like_cnt}</div>
+									<div class="class-price"><fmt:formatNumber value="${pclass.class_price}" type="number"/>원</div>
+								</div>
+							</div>
 							
-						</div>
-						<div class="swiper-slide"></div>
-						<div class="swiper-slide"></div>
-						<div class="swiper-slide"></div>
-						<div class="swiper-slide"></div>
-						<div class="swiper-slide"></div>
-						<div class="swiper-slide"></div>
-						<div class="swiper-slide"></div>
+						</c:forEach>
 					</div>
 					<div id="class1-slide-prev" class="swiper-button-prev"></div>
 					<div id="class1-slide-prev" class="swiper-button-next"></div>
@@ -140,14 +161,36 @@
 				<h3 class="main-h3 text-h3">NEW CLASS</h3>
 				<div class="swiper classSwiper2">
 					<div class="swiper-wrapper">
-						<div class="swiper-slide"></div>
-						<div class="swiper-slide"></div>
-						<div class="swiper-slide"></div>
-						<div class="swiper-slide"></div>
-						<div class="swiper-slide"></div>
-						<div class="swiper-slide"></div>
-						<div class="swiper-slide"></div>
-						<div class="swiper-slide"></div>
+						<c:forEach var="nclass" items="${newClassList}">	
+							<div class="swiper-slide">
+								<div class="class-list-thumb"><a href="<%=request.getContextPath()%>/classDetailView?no=${nclass.class_no}"><img src="${nclass.class_thumb}"/></a></div>
+								<div class="class-list-info">
+									<div class="class-category">${nclass.cateL_name} > ${nclass.category_name}</div>
+									<div class="class-name"><a href="<%=request.getContextPath()%>/classDetailView?no=${nclass.class_no}">${nclass.class_name}</a></div>
+									<div class="class-creator">${nclass.nick}</div>
+									<div class="class-point">
+										<div class="class-back-star">
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+										</div>
+										<div class="class-front-star" style="width:${(nclass.star_avg/5)*80}px">
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+											<i class="fas fa-star"></i>
+										</div>
+										<fmt:formatNumber value="${nclass.star_avg}" pattern="0.0"/>
+									</div>
+									<div class="class-like">♥ ${nclass.like_cnt}</div>
+									<div class="class-price">${nclass.class_price}원</div>
+								</div>
+							</div>
+							
+						</c:forEach>
 					</div>
 					<div id="class2-slide-prev" class="swiper-button-prev"></div>
 					<div id="class2-slide-prev" class="swiper-button-next"></div>

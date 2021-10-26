@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,7 +37,7 @@ public class CreatorController {
 	}
 	
 	@RequestMapping("/makeClass")
-	public ModelAndView makeClass() {
+	public ModelAndView makeClass(HttpSession ses) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("cate", makeClassApplyService.makeClassCategoryL());
 		mav.setViewName("/creator/makeClass");
@@ -45,12 +46,12 @@ public class CreatorController {
 	
 	
 	@RequestMapping(value="/makeClassOk", method=RequestMethod.POST)
-	public ModelAndView creatClass(CreatorMakeClassVO vo,CreatorMakeClassDateTimeVO vo2, HttpServletRequest req) {
+	public ModelAndView creatClass(CreatorMakeClassVO vo,CreatorMakeClassDateTimeVO vo2, HttpServletRequest req,HttpSession ses) {
 		
 		ModelAndView mav = new ModelAndView();
 		vo.setMember_id("test100");///////////////////////아이디 세션
-		int result = makeClassApplyService.makeClassApply(vo);
 		
+		int result = makeClassApplyService.makeClassApply(vo);
 		String vo2GetStartDate = vo2.getStart_date();
 		String vo2GetEndDate = vo2.getEnd_date();
 		

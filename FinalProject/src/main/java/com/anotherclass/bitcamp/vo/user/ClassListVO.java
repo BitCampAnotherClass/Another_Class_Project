@@ -13,7 +13,15 @@ public class ClassListVO {
 	private String start_date;
 	private int class_min_price;
 	private int class_max_price;
+	private String nick;
 	
+	
+	public String getNick() {
+		return nick;
+	}
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
 	public int getClass_min_price() {
 		return class_min_price;
 	}

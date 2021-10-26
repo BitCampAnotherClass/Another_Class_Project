@@ -137,7 +137,11 @@ public class UserMyPageServiceImp implements UserMyPageService {
 	public String pwdCheck(RegisterVO vo) {
 		return userMyPageDAO.pwdCheck(vo);
 	}
-
+	
+	@Override
+	public int passwordChange(RegisterVO vo) {
+		return userMyPageDAO.passwordChange(vo);
+	}
 	@Override
 	public List<UserClassDetailVO> Likedclass(String logid) {
 		return userMyPageDAO.Likedclass(logid);

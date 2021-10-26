@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.anotherclass.bitcamp.register.HashingSeting;
 import com.anotherclass.bitcamp.register.RegisterVO;
 import com.anotherclass.bitcamp.service.admin.AdminService;
+import com.anotherclass.bitcamp.service.vo.admin.MemberMangementVO;
 
 @Controller
 @RequestMapping("/admin")
@@ -25,13 +27,26 @@ public class MemberMangementController {
 	
 	@RequestMapping(value="/MemberMangement/userAccountList",method = RequestMethod.POST)
 	@ResponseBody
-	public List<RegisterVO> userList(int no){
+	public List<MemberMangementVO> userList(int number, String searchWord, String dateSearchFirst, String dateSearchLast){
+		MemberMangementVO vo = new MemberMangementVO();
+		if(searchWord != null) {
+			vo.setSearchWord(searchWord);
+		}
+		if(dateSearchFirst != null && dateSearchLast != null) {
+			vo.setDateSearchFirst(dateSearchFirst);
+			vo.setDateSearchLast(dateSearchLast);
+		}
+		vo.setPageNumber(number);
 		int memberListLimit = 10; // 한페이지에 보여줄 페이지수
-		int num =no;
-		int numberList = ((num-1)*memberListLimit); // 페이징 시작 계산식
-		int numberLimitCal = (memberListLimit*num);
-		int numberListLast = (numberList+1);
-		List<RegisterVO> list = adminService.MemberList(numberListLast, numberLimitCal);
+		int numberList = ((vo.getPageNumber()-1)*memberListLimit); // 페이징 시작 계산식
+		
+		int pageStartNumber = (numberList+1);
+		int pageEndNumber = (memberListLimit*vo.getPageNumber());
+		
+		vo.setPageStartNumber(pageStartNumber);
+		vo.setPageEndNumber(pageEndNumber);
+		
+		List<MemberMangementVO> list = adminService.MemberList(vo);
 		return list;
 	}
 	
@@ -46,9 +61,8 @@ public class MemberMangementController {
 	
 	@RequestMapping(value="/MemberMangement/AccountInformation", method= RequestMethod.POST)
 	@ResponseBody
-	public List<RegisterVO> memberAccountInfo(String idData){
-		List<RegisterVO> list = adminService.MemberAccountInfo(idData);
-		return list;
+	public MemberMangementVO memberAccountInfo(String idData){
+		return adminService.MemberAccountInfo(idData);
 	}
 	
 	@RequestMapping(value="/userManagement")
@@ -57,9 +71,50 @@ public class MemberMangementController {
 	}
 	
 	
-	@RequestMapping(value="/adminTest")
-	public String adminTest() {
-		return "admin/adminTest";
+	// 크리에이터 페이징
+	@RequestMapping(value="/MemberMangement/creatorAccountList",method = RequestMethod.POST)
+	@ResponseBody
+	public List<MemberMangementVO> creatorList(int number, String searchWord, String dateSearchFirst, String dateSearchLast){
+		MemberMangementVO vo = new MemberMangementVO();
+		if(searchWord != null) {
+			vo.setSearchWord(searchWord);
+		}
+		if(dateSearchFirst != null && dateSearchLast != null) {
+			vo.setDateSearchFirst(dateSearchFirst);
+			vo.setDateSearchLast(dateSearchLast);
+		}
+		vo.setPageNumber(number);
+		int memberListLimit = 10; // 한페이지에 보여줄 페이지수
+		int numberList = ((vo.getPageNumber()-1)*memberListLimit); // 페이징 시작 계산식
+		
+		int pageStartNumber = (numberList+1);
+		int pageEndNumber = (memberListLimit*vo.getPageNumber());
+		
+		vo.setPageStartNumber(pageStartNumber);
+		vo.setPageEndNumber(pageEndNumber);
+		
+		List<MemberMangementVO> list = adminService.creatorList(vo);
+		return list;
+	}
+	
+	@RequestMapping(value="/MemberMangement/creatorbtnList", method = RequestMethod.POST)
+	@ResponseBody
+	public int creatorbuttonList() {
+		int boardListNumber = adminService.creatorBoardLimit(); // 게시글 수 조회
+		int memberListLimit = 10; // 한페이지에 보여줄 페이지수
+		int listCalcul = (int) Math.ceil((double)boardListNumber/memberListLimit);		
+		return listCalcul;
+	}
+	
+	@RequestMapping(value="/MemberMangement/creatorInformation", method= RequestMethod.POST)
+	@ResponseBody
+	public MemberMangementVO creatorAccountInfo(String idData){
+		return adminService.creatorAccountInfo(idData);
+	}
+	
+	@RequestMapping(value="/creatorManagement")
+	public String creatorManagement() {
+		return "admin/MemberManagement/creatorManagement";
 	}
 	
 	@RequestMapping(value="/adminAccountMake", method = RequestMethod.POST)
@@ -69,14 +124,11 @@ public class MemberMangementController {
 		vo.setAdditional_information_one("admin1");
 		String s = adminService.adminAccountCreate(vo);
 		String check =vo.getAdditional_information_two();
-		System.out.println(check);
-		System.out.println("테스트"+s);
 		if(check=="NOT") {
 			mav.setViewName("redirect:/");
 		}else {
 			
 		}
-		
 		mav.setViewName("redirect:/");
 		return mav;
 	}

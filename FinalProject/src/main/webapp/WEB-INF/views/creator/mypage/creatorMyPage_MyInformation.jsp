@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ include file="myPageTop.jspf" %>
 <link href="<%=request.getContextPath()%>/css/user/accountEdit.css" rel="stylesheet" type="text/css"/>
 <script>
 $(()=>{
@@ -279,11 +278,18 @@ $(()=>{
 });
 </script>	
 <style>
+	.myPage-accountEdit-main{
+		height: 1000px;
+	}
 	.myPage-accountView-title{
 		padding:10px;
 	}
 	.myPage-accountView-View{
-		margin-top:70px;
+		box-shadow: 15px 15px 15px 15px #f2f2f2;
+		height: 700px;
+		margin:70px;
+		border: 1px solid #333;
+		border-radius: 10px;
 	}
 	.myPage-popup-close-button{
 		float: right;
@@ -555,4 +561,3 @@ $(()=>{
 			</div>
 		</div>
 	</div>
-<%@ include file="myPageBottom.jspf" %>

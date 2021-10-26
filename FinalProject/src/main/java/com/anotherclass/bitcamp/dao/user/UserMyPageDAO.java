@@ -38,6 +38,7 @@ public interface UserMyPageDAO {
 	
 	public int userMyPageReviewCheck(int no);//후기작성유무
 	public String pwdCheck(RegisterVO vo);
+	public int passwordChange(RegisterVO vo);
 	
 	public  List<UserClassDetailVO> Likedclass(String logid);
 	public int CancelLikeClass(int no);
