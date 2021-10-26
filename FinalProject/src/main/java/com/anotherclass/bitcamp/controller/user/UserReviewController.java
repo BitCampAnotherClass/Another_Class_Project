@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.anotherclass.bitcamp.service.user.UserReviewService;
 import com.anotherclass.bitcamp.vo.user.ClassVO;
+import com.anotherclass.bitcamp.vo.user.ReviewComVO;
 import com.anotherclass.bitcamp.vo.user.ReviewVO;
 
 @Controller
@@ -90,27 +91,44 @@ public class UserReviewController {
 	@RequestMapping(value = "/classReviewList")
 	@ResponseBody
 	public List<ReviewVO> classReviewList(ReviewVO vo) {
-		
-		System.out.println("총레코드수->"+vo.getTotalRecord());
-		System.out.println("그룹첫페이지->"+vo.getGroupStartPage());
-		System.out.println("현재페이지->"+vo.getNowPage());
-		System.out.println("현재레코드수->"+vo.getNowPageRecord());
 		List<ReviewVO> reviewList = userReviewService.selectClassReview(vo);
 		return reviewList;
 	}
 	
 	
+	// 후기 댓글 등록
+	@RequestMapping(value = "/writeReviewComment")
+	@ResponseBody
+	public int writeReviewComment(ReviewComVO vo) {
+		System.out.println(vo.getCom_no1());
+		System.out.println(vo.getCom_no2());
+		System.out.println(vo.getReview_no());
+		int result = userReviewService.insertReviewComment(vo);
+		System.out.println("후기댓글등록->" + result);
+		return result;
+	}
 	
-	// 임시 맵핑
 	
-	@RequestMapping(value = "/classReview")
-	public String classReview() {
-		return "/user/classDetailPage/test";
+	// 후기 댓글 조회
+	@RequestMapping(value = "/selectReviewComment")
+	@ResponseBody
+	public List<ReviewComVO> selectReviewComment(int review_no) {
+		List<ReviewComVO> reviewComList = userReviewService.selectReviewComment(review_no);
+		return reviewComList;
 	}
 	
 	
 
-	
-	
+
 	
 }
+
+
+
+
+
+
+
+
+
+

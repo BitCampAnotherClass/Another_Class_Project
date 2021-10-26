@@ -186,7 +186,7 @@
 										<fmt:formatNumber value="${nclass.star_avg}" pattern="0.0"/>
 									</div>
 									<div class="class-like">♥ ${nclass.like_cnt}</div>
-									<div class="class-price">${nclass.class_price}원</div>
+									<div class="class-price"><fmt:formatNumber value="${nclass.class_price}" type="number"/>원</div>
 								</div>
 							</div>
 							
