@@ -54,4 +54,9 @@ public class AdminServiceImp implements AdminService {
 	public int creatorBoardLimit() {
 		return memberMangementDao.creatorBoardLimit();
 	}
+	
+	@Override
+	public int deleteAccount(MemberMangementVO vo) {
+		return memberMangementDao.deleteAccount(vo);
+	}
 }

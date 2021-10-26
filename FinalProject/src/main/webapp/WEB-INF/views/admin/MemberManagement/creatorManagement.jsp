@@ -45,7 +45,7 @@ $(function(){
 					board +='<li class="userMg-chart-boardlist">'+vo.signupdate+'</li>';
 					board +='<li class="userMg-chart-boardlist"></li>';
 					board +='<li class="userMg-chart-boardlist">';
-					board +='<input type="button" value="관리메뉴" id="account_information_btn"/>';
+					board +='<input type="button" value="상세정보" id="account_information_btn"/>';
 					board +='<input type="hidden" value="'+vo.member_id+'" id="userMg-chart-id"/>';
 					board +='</li>';
 				});
@@ -98,7 +98,7 @@ $(function(){
 		}
 		return data;
 	}
-	
+	let delectidInfo ='';
 	$(document).on('click',"#account_information_btn",function(){
 		let infoAccount="MemberMangement/creatorInformation";
 		const idData = $(this).next().val();
@@ -138,6 +138,7 @@ $(function(){
 					member_information += '</div>';
 					member_information += '</div>';
 					member_information += '</div>';
+					delectidInfo= vo.member_id;
 					// 회원 상세정보 버튼 클릭시 출력되는 창
 					$('.container').before(member_information);
 			},error: function(error){
@@ -148,6 +149,25 @@ $(function(){
 		});
 		
 	});
+	
+	$(document).on('click','#userMg-information-popup-button-del',function(){
+		var deleteId = delectidInfo;
+		let deleteAccount = "MemberMangement/MemberAccountDelete";
+		const accountData = {"data":deleteId};
+		$.ajax({
+			url : deleteAccount
+			,type : "POST"
+			,data : accountData
+			,success:function(success){
+				alert('삭제되었습니다.');
+				location.reload();
+			}
+			,error:function(error){
+				location.reload();
+			}
+		});
+	});
+	
 	
 	$(document).on('click','.userMg-info-closeButton',function(){
 		$('.userMg-information-box').remove();
