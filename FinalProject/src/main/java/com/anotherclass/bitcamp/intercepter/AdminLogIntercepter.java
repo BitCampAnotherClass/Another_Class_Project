@@ -15,10 +15,10 @@ public class AdminLogIntercepter extends HandlerInterceptorAdapter {
 		
 		//로그인된 아이디구하기
 		HttpSession session = request.getSession();
-		int adminLog= (Integer)session.getAttribute("adminLog");
+		String adminLog= (String)session.getAttribute("adminLog");
 		
 		//로그인이 안된경우
-		if(adminLog!=1) {
+		if(adminLog==null || !adminLog.equals("Y")) {
 			response.sendRedirect(request.getContextPath()+"/adminLogin");
 			return false;
 		}

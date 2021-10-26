@@ -148,7 +148,7 @@ public class RegisterController {
 				session.setAttribute("userId", logvo.getMember_id());
 				session.setAttribute("userNick", logvo.getNick());
 				session.setAttribute("userImg", logvo.getMember_img());
-				session.setAttribute("userLog", 1);
+				session.setAttribute("userLog", "Y");
 				if(vo.getSns_type()!=null) {
 					session.setAttribute("userSnsType", vo.getSns_type());
 				};
@@ -158,7 +158,7 @@ public class RegisterController {
 				session.setAttribute("creatorId", logvo.getMember_id());
 				session.setAttribute("creatorNick", logvo.getNick());
 				session.setAttribute("creatorImg", logvo.getMember_img());
-				session.setAttribute("creatorLog", 1);
+				session.setAttribute("creatorLog", "Y");
 				if(vo.getSns_type()!=null) {
 					session.setAttribute("creatorSnsType", vo.getSns_type());
 				}
@@ -173,7 +173,7 @@ public class RegisterController {
 						session.setAttribute("userId", vo.getMember_id());
 						session.setAttribute("userNick",vo.getNick());
 						session.setAttribute("userImg", vo.getMember_img());
-						session.setAttribute("userLog", 1);
+						session.setAttribute("userLog", "Y");
 						session.setAttribute("userSnsType", vo.getSns_type());
 						mav.addObject("msgType", "1"); // 회원가입 완료 메세지
 					} else {
@@ -185,7 +185,7 @@ public class RegisterController {
 						session.setAttribute("creatorId", vo.getMember_id());
 						session.setAttribute("creatorNick", vo.getNick());
 						session.setAttribute("creatorImg", vo.getMember_img());
-						session.setAttribute("creatorLog", 1);
+						session.setAttribute("creatorLog", "Y");
 						session.setAttribute("creatorSnsType", vo.getSns_type());
 						mav.addObject("msgType", "1"); // 회원가입 완료 메세지
 					} else {
@@ -216,7 +216,7 @@ public class RegisterController {
 		logvo = registerService.loginAdmin(vo); // 관리자 로그인 계정 조회
 		if(logvo!=null) {
 			session.setAttribute("adminId", logvo.getMember_id());
-			session.setAttribute("adminLog", 1);
+			session.setAttribute("adminLog", "Y");
 			mav.setViewName("redirect:/admin/");		
 		} else {
 			mav.addObject("logTypeStr", "관리자");
@@ -246,7 +246,7 @@ public class RegisterController {
 	}
 	
 	// 강사 로그아웃
-	@RequestMapping(value = "/creatorlogout")
+	@RequestMapping(value = "/creatorLogout")
 	public String creatorLogout(HttpSession session) {
 		session.removeAttribute("creatorId");
 		session.removeAttribute("creatorNick");
@@ -257,7 +257,7 @@ public class RegisterController {
 	}
 	
 	// 로그아웃
-	@RequestMapping(value = "/adminlogout")
+	@RequestMapping(value = "/adminLogout")
 	public String adminLogout(HttpSession session) {
 		session.removeAttribute("adminId");
 		session.removeAttribute("adminLog");
