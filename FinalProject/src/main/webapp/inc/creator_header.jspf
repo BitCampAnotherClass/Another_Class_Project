@@ -219,8 +219,8 @@
 	         </li>
 	         <li class="menu_title"><a href="#">클래스 문의/후기</a>
 	            <ul>
-	               <li><a href="<%=request.getContextPath()%>/creator/classAskManage" class="small-menu">클래스문의관리</a></li>
-	               <li><a href="#" class="small-menu">클래스후기관리</a></li>
+	               <li><a href="<%=request.getContextPath()%>/creator/classAskManage" class="small-menu">클래스 문의관리</a></li>
+	               <li><a href="<%=request.getContextPath()%>/creator/review" class="small-menu">클래스 후기관리</a></li>
 	            </ul>
 	         </li>
 	         <li class="menu_title"><a href="#">수익관리</a>
@@ -242,6 +242,12 @@
 		<a href="#" class="close">╂</a>
 	</div>
 	<div class="logout_menu">
-		<a href="#" class="logout_a">로그아웃</a>
+		<c:if test="${creatorLog==null || creatorLog!='Y' }">
+			<a href="<%=request.getContextPath()%>/creatorLogin" class="logout_a">로그인</a>
+		</c:if>
+		<c:if test="${creatorLog=='Y' }">
+			${creatorNick } 
+			<a href="<%=request.getContextPath()%>/creatorLogout" class="logout_a">로그아웃</a>
+		</c:if>
 	</div>
 	<div id="contents-wrap">

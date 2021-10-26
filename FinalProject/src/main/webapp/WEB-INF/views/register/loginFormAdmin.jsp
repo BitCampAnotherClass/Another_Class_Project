@@ -21,7 +21,7 @@
 						<input type="hidden" id="RSAExponent" value="${RSAExponent }"/>
 					</div>
 					<!-------- 실제 넘어가는 로그인 폼 --------->
-					<form id="frmLogin" name="frmLogin" method="post" action="adminLoginOk">
+					<form id="frmLogin" name="frmLogin" method="post" action="<%=request.getContextPath()%>/adminLoginOk">
 						<div class="secret-id-pw-wrap">
 							<input type="hidden" id="member_id" name="member_id"/>
 							<input type="hidden" id="member_pw" name="member_pw"/>
