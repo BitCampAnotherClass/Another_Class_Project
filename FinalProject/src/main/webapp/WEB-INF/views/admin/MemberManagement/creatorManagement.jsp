@@ -36,7 +36,7 @@ $(function(){
 				var listData = $(result);
 				listData.each(function(idx,vo){
 					var tel = replaceAt(vo.member_tel);
-					board +='<li class="userMg-chart-boardlist"><input type="checkbox" id="allcheck"/>';
+					board +='<li class="userMg-chart-boardlist">'+'크리에이터';
 					board +='</li>';
 					board +='<li class="userMg-chart-boardlist" id="userMg-chart-id">'+vo.member_id+'</li>';
 					board +='<li class="userMg-chart-boardlist">'+vo.member_name+'</li>';
@@ -244,7 +244,7 @@ $(function(){
 	}
 	
 	.userMg-chart-boardlist:nth-child(8n+1){
-		width: 5%;
+		width: 10%;
 	}
 	
 	.userMg-chart-boardlist:nth-child(8n+2){
@@ -258,7 +258,7 @@ $(function(){
 		width: 20%;
 	}
 	.userMg-chart-boardlist:nth-child(8n+7){
-		width: 10%;
+		width: 5%;
 	}
 	
 	.userMg-chart-boardlist:nth-child(n+9){
@@ -353,8 +353,11 @@ $(function(){
 		margin-top:100px;
 	}
 	.search-box{
-		width:1200px;
-		padding:5px;
+		padding:10px;
+		margin: 10px;
+		border: 1px solid #333;
+		width:fit-content;
+		margin-left:655px;
 	}
 </style>
 </head>
@@ -366,15 +369,15 @@ $(function(){
 		
 		<div class="userMg-bottom">
 			<div class="search-box">
-				<input type="text" id="searchWord"/>
+				<input type="text" id="searchWord" placeholder="이름검색" />
 				<input type="date" id="dateSearchFirst" value="2020-10-01"/>
 				<label>~</label>
 				<input type="date" id="dateSearchLast" value="2021-12-01"/>
-				<input type="button" id="serahButton" value="검색"/>
+				<input type="button" id="serahButton"   value="검색"/>
 			</div>
 			<input type="hidden" value="1" class="paging-number"/>
 			<ul class="userMg-chart-box">
-				<li class="userMg-chart-boardlist"><input type="checkbox" id="allcheck"/></li>
+				<li class="userMg-chart-boardlist">개요</li>
 				<li class="userMg-chart-boardlist">아이디</li>
 				<li class="userMg-chart-boardlist">성명</li>
 				<li class="userMg-chart-boardlist">이메일</li>
