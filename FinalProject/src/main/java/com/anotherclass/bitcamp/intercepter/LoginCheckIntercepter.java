@@ -15,10 +15,10 @@ public class LoginCheckIntercepter extends HandlerInterceptorAdapter {
 		
 		//로그인된 아이디구하기
 		HttpSession session = request.getSession();
-		int userLog= (Integer)session.getAttribute("userLog");
+		String userLog= (String)session.getAttribute("userLog");
 		
 		//로그인이 안된경우
-		if(userLog!=1) {
+		if(userLog==null || !userLog.equals("Y")) {
 			response.sendRedirect(request.getContextPath()+"/login");
 			return false;
 		}

@@ -15,10 +15,10 @@ public class CreatorLogIntercepter extends HandlerInterceptorAdapter {
 		
 		//로그인된 아이디구하기
 		HttpSession session = request.getSession();
-		int creatorLog= (Integer)session.getAttribute("creatorLog");
+		String creatorLog= (String)session.getAttribute("creatorLog");
 		
 		//로그인이 안된경우
-		if(creatorLog!=1) {
+		if(creatorLog==null || !creatorLog.equals("Y")) {
 			response.sendRedirect(request.getContextPath()+"/creatorLogin");
 			return false;
 		}
