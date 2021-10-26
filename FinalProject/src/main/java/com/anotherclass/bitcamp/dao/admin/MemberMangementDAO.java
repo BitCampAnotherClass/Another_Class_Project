@@ -3,12 +3,13 @@ package com.anotherclass.bitcamp.dao.admin;
 import java.util.List;
 
 import com.anotherclass.bitcamp.register.RegisterVO;
+import com.anotherclass.bitcamp.service.vo.admin.MemberMangementVO;
 
 public interface MemberMangementDAO {
 	
-	public List<RegisterVO> MemberList(int numberList, int numberLimitCal);
+	public List<MemberMangementVO> MemberList(MemberMangementVO vo);
 	
 	public int boardLimit();
 	
-	public List<RegisterVO> MemberAccountInfo(String idCheck);
+	public List<MemberMangementVO> MemberAccountInfo(String idCheck);
 }

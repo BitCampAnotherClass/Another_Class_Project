@@ -33,4 +33,5 @@ public interface UserMyPageService {
 	public int UserMypageCheckFrep(int no);
 	public int userMyPageReviewCheck(int no);
 	public String pwdCheck(RegisterVO vo);
+	public int passwordChange(RegisterVO vo);
 }
