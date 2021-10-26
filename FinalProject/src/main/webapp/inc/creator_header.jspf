@@ -242,6 +242,12 @@
 		<a href="#" class="close">╂</a>
 	</div>
 	<div class="logout_menu">
-		<a href="#" class="logout_a">로그아웃</a>
+		<c:if test="${creatorLog==null || creatorLog!='Y' }">
+			<a href="<%=request.getContextPath()%>/creatorLogin" class="logout_a">로그인</a>
+		</c:if>
+		<c:if test="${creatorLog=='Y' }">
+			${creatorNick } 
+			<a href="<%=request.getContextPath()%>/creatorLogout" class="logout_a">로그아웃</a>
+		</c:if>
 	</div>
 	<div id="contents-wrap">

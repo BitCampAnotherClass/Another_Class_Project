@@ -46,7 +46,7 @@ public class UserMyPageController {
 	}	
 	@RequestMapping(value = "/mypage/mypage5") //좋아요목록
 	public String mypage5() {
-		return "/user/mypage/myPage_Classlike";
+		return "/user/mypage/myPage_Classlike2";
 	}	
 	@RequestMapping(value = "/mypage/mypage6") //나의게시물
 	public String mypage6() {
@@ -68,21 +68,33 @@ public class UserMyPageController {
 		String member_id = (String)ses.getAttribute("userId"); 
 		vo.setMember_id(member_id );
 		int cnt = userMyPageService.MemberInfoEdit(vo);
-		System.out.println(cnt);
 		mav.setViewName("redirect:Myinformation");
 		return mav;
 	}
 	
-	@RequestMapping(value="", method = RequestMethod.POST)
+	@RequestMapping(value="mypage/accountCheck", method = RequestMethod.POST)
 	@ResponseBody
-	public String idCheck(RegisterVO vo, String pwd)throws Exception {
-		vo.setMember_pw(hashing.setEncryption(vo.getMember_pw(),vo.getMember_id()));
+	public String pwordCheck(RegisterVO vo, String pwd, HttpSession ses)throws Exception {
+		String idch= (String)ses.getAttribute("userId");
+		vo.setMember_id(idch);
+		vo.setMember_pw(hashing.setEncryption(pwd,(String)ses.getAttribute("userId")));
 		userMyPageService.pwdCheck(vo);
 		String cnt =vo.getAdditional_information_one();
 		return cnt;
 	}
 	
-	//	///HomeAskReplyList999 홈페이지문의 에이젝스로불러오기
+	
+	@RequestMapping(value="mypage/pwordChain", method = RequestMethod.POST)
+	@ResponseBody
+	public int passwordChange(RegisterVO vo, String pwd, HttpSession ses)throws Exception {
+		String userId= (String)ses.getAttribute("userId");
+		vo.setMember_id(userId);
+		vo.setMember_pw(hashing.setEncryption(pwd,userId));
+		int cnt = userMyPageService.passwordChange(vo);
+		return cnt;
+	}
+	
+	//HomeAskReplyList999 홈페이지문의 에이젝스로불러오기
 	@RequestMapping("/HomeAskReplyList999")
 	@ResponseBody
 	public List<UserHomeQnAVO> ajaxHomeAskList2(String logid){			
@@ -152,6 +164,14 @@ public class UserMyPageController {
 		int result= userMyPageService.CancelLikeCreator(no);		
 		return result;
 	}
+	//클래스좋아요목록
+//	
+//	@RequestMapping("/LikedListClass")
+//	@ResponseBody
+//	public List<UserClassDetailVO> ajaxLikedClassList(String logid){	
+//		List<UserClassDetailVO> list = 
+//	}
+//	
 	
 	//장바구니목록 ajax
 	@RequestMapping("/ShoppingBasket")

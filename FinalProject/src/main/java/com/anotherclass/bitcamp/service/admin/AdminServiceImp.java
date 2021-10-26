@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.anotherclass.bitcamp.dao.admin.MemberMangementDAO;
 import com.anotherclass.bitcamp.dao.register.RegisterDAO;
 import com.anotherclass.bitcamp.register.RegisterVO;
+import com.anotherclass.bitcamp.service.vo.admin.MemberMangementVO;
 
 @Service
 public class AdminServiceImp implements AdminService {
@@ -25,8 +26,8 @@ public class AdminServiceImp implements AdminService {
 	}
 
 	@Override
-	public List<RegisterVO> MemberList(int numberList, int numberLimitCal){
-		return memberMangementDao.MemberList(numberList, numberLimitCal);
+	public List<MemberMangementVO> MemberList(MemberMangementVO vo){
+		return memberMangementDao.MemberList(vo);
 	}
 	
 	@Override
@@ -35,7 +36,7 @@ public class AdminServiceImp implements AdminService {
 	}
 	
 	@Override
-	public List<RegisterVO> MemberAccountInfo(String idCheck) {
+	public List<MemberMangementVO> MemberAccountInfo(String idCheck) {
 		return memberMangementDao.MemberAccountInfo(idCheck);
 	}
 }

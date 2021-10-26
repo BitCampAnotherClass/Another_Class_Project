@@ -116,7 +116,7 @@
 	
 </style>
 <script>
-$(document).ready(function(){		
+$(function(){		
 	
 		var logid = "${userId}"; 
 		var maxheadcount = "${vo.max_headcount}"; //이 클래스의 최대인원
@@ -147,7 +147,7 @@ $(document).ready(function(){
 	    			rr.each(function(idx,vo4){	 	    				 
 	    				tag += "<div class='oneclassdiv' style='margin-bottom:10px;'>";	    				
 	    				tag +="<div class='startdiv'>"+vo4.start_date+ "</div>";
-	    				//tag +="<div class='enddㅓㅓㅓiv'>"+vo4.end_date+ "</div>"; //vo에서 셀렉트할때 데이트형식 -> 종료시간만 꺼내게 가져왓음
+	    				//tag +="<div class='enddiv'>"+vo4.end_date+ "</div>"; //vo에서 셀렉트할때 데이트형식 -> 종료시간만 꺼내게 가져왓음
 	    				tag +="<div class='headcountdiv'> 최대인원 : "+maxheadcount+"&nbsp;&nbsp;&nbsp;신청인원 : "+vo4.all_headcount+"</div>";
 	    				tag +="<div class='classoptionno'>"+vo4.class_option_no+"</div>";
 	    				
@@ -227,12 +227,10 @@ $(document).ready(function(){
 	    			var aa = $(a)
 	    			var tag =""; 	    			
 					aa.each(function(idx,vo4){							
-	    					//문의글			
-	    				
-	    					
+	    					//문의글						
 							tag +="<li>";
 	    					tag +="<div class='askdiv909' id='a"+vo4.class_qna_no+"'>";
-	    					//tag +="<div><img src='"++"'/></div>"; //작성자이미지  vo4.member_img
+	    					tag +="<div><img src='"++"'/></div>"; //작성자이미지  vo4.member_img
 	    					tag +="<div>";
 	    					tag +="<div><label>"+ vo4.classqna_member_id+" | "+ vo4.classqna_writedate+" 작성</label></div>"; // 멤버아이디가 나일때 ->글 수정 삭제 버튼 보이게....    					
 	    					tag +="<div><label>"+ vo4.classqna_content+"</label>"; //내용	    					
@@ -278,9 +276,7 @@ $(document).ready(function(){
 	    					tag += "</div> ";
 		    				tag +="</li>";
 		    				$("#creatormemberoneask").html(tag);    				
-	    			});
-					
-					
+	    			});	    			
 	    		}	    		
 	    	})	    	
 	    }	   

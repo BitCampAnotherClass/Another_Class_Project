@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.anotherclass.bitcamp.register.HashingSeting;
 import com.anotherclass.bitcamp.register.RegisterVO;
 import com.anotherclass.bitcamp.service.admin.AdminService;
+import com.anotherclass.bitcamp.service.vo.admin.MemberMangementVO;
 
 @Controller
 @RequestMapping("/admin")
@@ -25,13 +27,28 @@ public class MemberMangementController {
 	
 	@RequestMapping(value="/MemberMangement/userAccountList",method = RequestMethod.POST)
 	@ResponseBody
-	public List<RegisterVO> userList(int no){
+	public List<MemberMangementVO> userList(int number, String searchWord, String dateSearchFirst, String dateSearchLast){
+		MemberMangementVO vo = new MemberMangementVO();
+		System.out.println(dateSearchFirst);
+		if(searchWord != null) {
+			vo.setSearchWord(searchWord);
+		}
+		if(dateSearchFirst != null && dateSearchLast != null) {
+			vo.setDateSearchFirst(dateSearchFirst);
+			vo.setDateSearchLast(dateSearchLast);
+		}
+		vo.setPageNumber(number);
 		int memberListLimit = 10; // 한페이지에 보여줄 페이지수
-		int num =no;
-		int numberList = ((num-1)*memberListLimit); // 페이징 시작 계산식
-		int numberLimitCal = (memberListLimit*num);
-		int numberListLast = (numberList+1);
-		List<RegisterVO> list = adminService.MemberList(numberListLast, numberLimitCal);
+		int numberList = ((vo.getPageNumber()-1)*memberListLimit); // 페이징 시작 계산식
+		
+		int pageStartNumber = (numberList+1);
+		int pageEndNumber = (memberListLimit*vo.getPageNumber());
+		
+		vo.setPageStartNumber(pageStartNumber);
+		vo.setPageEndNumber(pageEndNumber);
+		
+		List<MemberMangementVO> list = adminService.MemberList(vo);
+		System.out.println(list);
 		return list;
 	}
 	
@@ -46,8 +63,8 @@ public class MemberMangementController {
 	
 	@RequestMapping(value="/MemberMangement/AccountInformation", method= RequestMethod.POST)
 	@ResponseBody
-	public List<RegisterVO> memberAccountInfo(String idData){
-		List<RegisterVO> list = adminService.MemberAccountInfo(idData);
+	public List<MemberMangementVO> memberAccountInfo(String idData){
+		List<MemberMangementVO> list = adminService.MemberAccountInfo(idData);
 		return list;
 	}
 	
