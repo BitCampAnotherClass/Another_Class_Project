@@ -191,14 +191,14 @@ span.user-review-info{
 }
 
 
-#reviewCommentFrm{
+.reviewCommentFrm{
 	display:flex;
 	justify-content: flex-start;
 	align-items: center;
 	width:700px;
 }
 
-#review-reply{
+.review-reply{
 	width:590px;
 	min-height:50px;
 	border: 1px solid #ddd;
@@ -206,7 +206,7 @@ span.user-review-info{
 	padding:6px 10px;
 }
 
-#review-reply-btn{
+.review-reply-btn{
 	width:50px;
 	height:36px;
 	margin-left:14px;

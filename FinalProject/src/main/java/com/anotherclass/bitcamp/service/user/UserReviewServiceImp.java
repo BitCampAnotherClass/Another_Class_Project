@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.anotherclass.bitcamp.dao.user.UserReviewDAO;
 import com.anotherclass.bitcamp.vo.user.ClassVO;
+import com.anotherclass.bitcamp.vo.user.ReviewComVO;
 import com.anotherclass.bitcamp.vo.user.ReviewVO;
 
 @Service
@@ -43,6 +44,16 @@ public class UserReviewServiceImp implements UserReviewService {
 	@Override
 	public List<ReviewVO> selectClassReview(ReviewVO vo) {
 		return userReviewDAO.selectClassReview(vo);
+	}
+
+	@Override
+	public int insertReviewComment(ReviewComVO vo) {
+		return userReviewDAO.insertReviewComment(vo);
+	}
+
+	@Override
+	public List<ReviewComVO> selectReviewComment(int review_no) {
+		return userReviewDAO.selectReviewComment(review_no);
 	}
 	
 }
