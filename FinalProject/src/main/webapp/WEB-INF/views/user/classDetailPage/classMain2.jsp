@@ -116,7 +116,7 @@
 	
 </style>
 <script>
-$(function(){		
+$(document).ready(function(){		
 	
 		var logid = "${userId}"; 
 		var maxheadcount = "${vo.max_headcount}"; //이 클래스의 최대인원
