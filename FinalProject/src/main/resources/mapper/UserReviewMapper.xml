@@ -76,4 +76,20 @@
 			where co.class_no=#{param1}
 		]]>
 	</select>
+	<insert id="insertReviewComment" parameterType="com.anotherclass.bitcamp.vo.user.ReviewComVO">
+		insert into reviewCom values(review_com_sq.nextval, #{review_no}, #{member_id, jdbcType=VARCHAR}, 
+		<choose>
+			<when test='com_no1==null'>review_com_sq.nextval, </when>
+			<when test='com_no1!=null'>#{com_no1}, </when>
+		</choose>
+		#{com_no2}, #{reply, jdbcType=VARCHAR}, sysdate, 0, 0)
+	</insert>
+	<select id="selectReviewComment" resultType="com.anotherclass.bitcamp.vo.user.ReviewComVO">
+		select review_com_no, review_no, rc.member_id, member_img, com_no1, com_no2, reply, to_char(writedate, 'YY/MM/DD') writedate
+		from reviewCom rc
+		join memberTbl m
+		on m.member_id=rc.member_id
+		where delete_sort=0 and review_no=#{param1}
+	</select>
+	
 </mapper>

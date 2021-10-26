@@ -3,6 +3,7 @@ package com.anotherclass.bitcamp.service.user;
 import java.util.List;
 
 import com.anotherclass.bitcamp.vo.user.ClassVO;
+import com.anotherclass.bitcamp.vo.user.ReviewComVO;
 import com.anotherclass.bitcamp.vo.user.ReviewVO;
 
 public interface UserReviewService {
@@ -13,4 +14,7 @@ public interface UserReviewService {
 	public List<ReviewVO> selectMyReview(ReviewVO vo); // 나의 후기 조회
 	public ReviewVO countTotalClassReview(int class_no); // 클래스 후기 총 레코드 수
 	public List<ReviewVO> selectClassReview(ReviewVO vo); // 클래스 후기 조회
+	
+	public int insertReviewComment(ReviewComVO vo); // 후기 댓글 등록
+	public List<ReviewComVO> selectReviewComment(int review_no); // 후기 댓글 조회
 }
