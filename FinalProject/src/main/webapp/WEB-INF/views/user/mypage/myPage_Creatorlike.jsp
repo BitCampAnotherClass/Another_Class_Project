@@ -86,7 +86,8 @@
 				async:false,
 				success:function(l){
 					var ll = $(l)
-					console.log(ll);
+				
+					$('#likedCreatiorList').html('');
 	    			var tag =""; 	
 					ll.each(function(idx,vo){	
 						
@@ -159,6 +160,8 @@
 		                     }
 	                  }
 	               }); ////////클릭이벤트
+	               
+	               
 				});//each
 			}//success
 		});//ajax	

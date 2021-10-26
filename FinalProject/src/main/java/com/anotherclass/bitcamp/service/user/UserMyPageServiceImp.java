@@ -146,4 +146,9 @@ public class UserMyPageServiceImp implements UserMyPageService {
 	public List<UserClassDetailVO> Likedclass(String logid) {
 		return userMyPageDAO.Likedclass(logid);
 	}
+
+	@Override
+	public int CancelLikeClass(int no) {	
+		return  userMyPageDAO.CancelLikeClass(no);
+	}
 }
