@@ -317,14 +317,13 @@ $(function(){
 		width: 90%;
 	}
 	.userMg-boardList-btn-outbox{
-		margin:0 auto;
+		width:fit-content;
+		margin:auto;
 		height:50px;
-		width:500px;
 	}
 	.userMg-boardList-btn-box{
 		height:50px;
-		box-sizing:border-box;
-		margin: 0 auto;
+		margin:auto;
 	}
 	.userMg-information-button{
 		margin-top:100px;
