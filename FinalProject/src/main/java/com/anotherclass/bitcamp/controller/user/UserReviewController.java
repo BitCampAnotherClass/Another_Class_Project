@@ -24,7 +24,8 @@ public class UserReviewController {
 	@RequestMapping("/writeReviewOK")
 	public ModelAndView writeReviewOK(ReviewVO vo, HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		
+		System.out.println("클래스번호->"+vo.getOrder_no());
+		System.out.println("내용>"+vo.getContent());
 		int result = userReviewService.insertReview(vo);
 		if(result>0) { // 등록 성공
 			mav.setViewName("redirect:/mypage/mypage1"); // 주문 내역 화면
@@ -53,19 +54,54 @@ public class UserReviewController {
 		return mav;
 	}
 	
+	
+	// 나의 후기 페이징 불러오기
+	@RequestMapping(value = "/myReviewPage")
+	@ResponseBody
+	public ReviewVO myReviewPage(int nowPage, HttpSession session) {
+		String member_id = (String)session.getAttribute("userId");
+		ReviewVO vo = userReviewService.countTotalMyReview(member_id);
+		vo.setNowPage(nowPage);
+
+		return vo;
+	}
+	
 	// 나의 후기 불러오기
 	@RequestMapping(value = "/myReview")
 	@ResponseBody
-	public List<ReviewVO> myReview(ReviewVO vo, HttpSession session) {
-		ModelAndView mav = new ModelAndView();
-		vo.setMember_id((String)session.getAttribute("userId"));
+	public List<ReviewVO> myReview(ReviewVO vo) {
 		List<ReviewVO> reviewList = userReviewService.selectMyReview(vo);
-
+		return reviewList;
+	}	
+	
+	
+	
+	// 클래스 후기 페이징 불러오기
+	@RequestMapping(value = "/classReviewPage")
+	@ResponseBody
+	public ReviewVO classReviewPage(int nowPage, int class_no) {
+		ReviewVO vo = userReviewService.countTotalClassReview(class_no);
+		vo.setNowPage(nowPage);
+		
+		return vo;
+	}
+	
+	// 클래스 후기 불러오기
+	@RequestMapping(value = "/classReviewList")
+	@ResponseBody
+	public List<ReviewVO> classReviewList(ReviewVO vo) {
+		
+		System.out.println("총레코드수->"+vo.getTotalRecord());
+		System.out.println("그룹첫페이지->"+vo.getGroupStartPage());
+		System.out.println("현재페이지->"+vo.getNowPage());
+		System.out.println("현재레코드수->"+vo.getNowPageRecord());
+		List<ReviewVO> reviewList = userReviewService.selectClassReview(vo);
 		return reviewList;
 	}
 	
 	
 	
+	// 임시 맵핑
 	
 	@RequestMapping(value = "/classReview")
 	public String classReview() {
@@ -73,15 +109,7 @@ public class UserReviewController {
 	}
 	
 	
-//	// 사진 첨부 
-//	@RequestMapping("/reviewFileUpload")
-//	@ResponseBody
-//	public String reviewFileUpload(int order_no, HttpSession session) {
-//		String member_id = (String)session.getAttribute("userId");
-//		ClassVO vo = userReviewService.selectReviewClass(order_no, member_id);
-//
-//		return "";
-//	}
+
 	
 	
 	

@@ -34,7 +34,11 @@ public class ClassDetailPageController {
 	@RequestMapping("/classDetailView")
 	public ModelAndView classMainPage(int no) {
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("vo",classDetailPageService.userClassDetailAllSelect(no));
+		UserClassDetailVO vo = classDetailPageService.userClassDetailAllSelect(no);
+		System.out.println(vo.getMember_id());
+		vo.setCreatorlikecount(classDetailPageService.LikedcreatorCount(vo.getMember_id()));//클래스좋아요수 LikedcreatorCount(String logid) - int
+		vo.setCreatorclasscount(classDetailPageService.OpenClassCount(vo.getMember_id()));  
+		mav.addObject("vo",vo);
 		mav.setViewName("/user/classDetailPage/classMain2");
 		return mav;
 	}	

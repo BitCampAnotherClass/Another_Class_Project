@@ -34,11 +34,7 @@
 </style>
 <script>
 
-	$(()=>{
 
-		
-		
-	});
 </script>
 <!-- class_qna_no, class_no, classQna_member_id, classqna_content, to_char(a.classqna_writedate,'YY-MM-DD') classqna_writedate, class_name -->
 	
@@ -69,16 +65,26 @@
 			<!-- 글번호 -->
 			
 			<li class="cQnAListFli10 cQnAListFli101">${vo.class_qna_no}</li>			
-			<!-- <li class="hQnAListFli10 hQnAListFli101">${vo.class_no}</li> -->
-			<li class="cQnAListFli10 cQnAListFli102" style='text-align:center;'><a href="<%=request.getContextPath()%>/creator/classAskManage2?no=${vo.class_qna_no}&nowPage=${pVo.nowPage}">${vo.class_name}</a><input type="hidden" value="${vo.class_no}"></li>
+			
+			<li class="cQnAListFli10 cQnAListFli102" style='text-align:center;'>
+				<a href="<%=request.getContextPath()%>/creator/classAskManage2?no=${vo.class_qna_no}" style='cursor:pointer;'>${vo.class_name}</a>
+				<input type="hidden" value="${vo.class_no}">
+			</li>
 	
 		
 			<li class="cQnAListFli10 cQnAListFli103">${vo.classqna_member_id }</li>
 			<li class="cQnAListFli10 cQnAListFli104">${vo.classqna_writedate}</li>
 			
 			
-			<li class="cQnAListFli10 cQnAListFli105">답변완료</li>
-		
+			
+			
+			<c:set var="replycount" value="${vo.replycheck}" />							
+			<c:if test="${replycount eq 0 }"> 
+				<li class="cQnAListFli10 cQnAListFli105">미답변</li>
+			</c:if>
+			<c:if test="${replycount ne 0 }"> 
+				<li class="cQnAListFli10 cQnAListFli105">답변</li>
+			</c:if>
 		
 			
 		</c:forEach>

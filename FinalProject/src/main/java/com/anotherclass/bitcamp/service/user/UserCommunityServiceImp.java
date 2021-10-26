@@ -21,4 +21,9 @@ public class UserCommunityServiceImp implements UserCommunityService {
 		return userCommunityDAO.CommuDetailAllRecord(community_no);
 	}
 	
+	@Override
+	public List<CommunityVO> communityAllList(CommunityVO vo){
+		return userCommunityDAO.communityAllList(vo);
+	}
+	
 }

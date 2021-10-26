@@ -3,11 +3,16 @@ package com.anotherclass.bitcamp.controller.user;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.anotherclass.bitcamp.register.HashingSeting;
+import com.anotherclass.bitcamp.register.RegisterVO;
 import com.anotherclass.bitcamp.service.user.UserMyPageService;
 import com.anotherclass.bitcamp.vo.user.UserClassDetailVO;
 import com.anotherclass.bitcamp.vo.user.UserClassDetailVO2;
@@ -16,6 +21,9 @@ import com.anotherclass.bitcamp.vo.user.UserMyPageOrderVO;
 
 @Controller
 public class UserMyPageController {
+	
+	private HashingSeting hashing = new HashingSeting();
+	
 	@Inject
 	UserMyPageService userMyPageService;
 	
@@ -38,14 +46,55 @@ public class UserMyPageController {
 	}	
 	@RequestMapping(value = "/mypage/mypage5") //좋아요목록
 	public String mypage5() {
-		return "/user/mypage/myPage_Classlike";
+		return "/user/mypage/myPage_Classlike2";
 	}	
 	@RequestMapping(value = "/mypage/mypage6") //나의게시물
 	public String mypage6() {
 		return "/user/mypage/myPage_post";
 	}	
 	
-	//	///HomeAskReplyList999 홈페이지문의 에이젝스로불러오기
+	@RequestMapping("/mypage/Myinformation")
+	public ModelAndView Myinformation(HttpSession ses) {
+		ModelAndView mav = new ModelAndView();
+		String member_id = (String)ses.getAttribute("userId"); 
+		mav.addObject("vo", userMyPageService.MemberInfo(member_id));
+		mav.setViewName("user/mypage/myPage_MyInformation");
+		return mav;
+	}
+	
+	@RequestMapping(value ="/mypage/MyinformationEdit",method = RequestMethod.POST )
+	public ModelAndView MyinformationEdit(RegisterVO vo,HttpSession ses) {
+		ModelAndView mav = new ModelAndView();
+		String member_id = (String)ses.getAttribute("userId"); 
+		vo.setMember_id(member_id );
+		int cnt = userMyPageService.MemberInfoEdit(vo);
+		mav.setViewName("redirect:Myinformation");
+		return mav;
+	}
+	
+	@RequestMapping(value="mypage/accountCheck", method = RequestMethod.POST)
+	@ResponseBody
+	public String pwordCheck(RegisterVO vo, String pwd, HttpSession ses)throws Exception {
+		String idch= (String)ses.getAttribute("userId");
+		vo.setMember_id(idch);
+		vo.setMember_pw(hashing.setEncryption(pwd,(String)ses.getAttribute("userId")));
+		userMyPageService.pwdCheck(vo);
+		String cnt =vo.getAdditional_information_one();
+		return cnt;
+	}
+	
+	
+	@RequestMapping(value="mypage/pwordChain", method = RequestMethod.POST)
+	@ResponseBody
+	public int passwordChange(RegisterVO vo, String pwd, HttpSession ses)throws Exception {
+		String userId= (String)ses.getAttribute("userId");
+		vo.setMember_id(userId);
+		vo.setMember_pw(hashing.setEncryption(pwd,userId));
+		int cnt = userMyPageService.passwordChange(vo);
+		return cnt;
+	}
+	
+	//HomeAskReplyList999 홈페이지문의 에이젝스로불러오기
 	@RequestMapping("/HomeAskReplyList999")
 	@ResponseBody
 	public List<UserHomeQnAVO> ajaxHomeAskList2(String logid){			
@@ -115,6 +164,25 @@ public class UserMyPageController {
 		int result= userMyPageService.CancelLikeCreator(no);		
 		return result;
 	}
+	//클래스좋아요목록	
+	@RequestMapping("/LikedListClass")
+	@ResponseBody
+	public List<UserClassDetailVO> ajaxLikedClassList(String logid){	
+		
+		List<UserClassDetailVO> list = userMyPageService.Likedclass(logid);
+		
+		return list;
+	}
+	//클래스좋아요취소
+	@RequestMapping("/cancelLikedListClass")
+	@ResponseBody
+	public int ajaxCancelClassLike(int no) {	
+		System.out.println(no);
+		int result= userMyPageService.CancelLikeClass(no);
+		System.out.println(result);
+		return result;
+	}
+	
 	
 	//장바구니목록 ajax
 	@RequestMapping("/ShoppingBasket")
@@ -151,10 +219,11 @@ public class UserMyPageController {
 	@ResponseBody
 	public List<UserMyPageOrderVO> ajaxOrderListFin2(String logid){				
 		List<UserMyPageOrderVO> list = userMyPageService.orderFinList2(logid);	
+	
 		for(int i=0; i<list.size(); i++) {
-			UserMyPageOrderVO vo = list.get(i);
-			int a =userMyPageService.userMyPageReviewCheck(vo.getOrder_no()); //리뷰유무확인
-			vo.setReviewChk(a);
+			UserMyPageOrderVO vo = list.get(i);				
+			vo.setReviewChk(userMyPageService.userMyPageReviewCheck(vo.getOrder_no()));
+			
 		}
 		return list;
 	}
@@ -197,4 +266,6 @@ public class UserMyPageController {
 		result =userMyPageService.UserMyPageHQnAEdi	(vo);
 		return result;
 	}
+	
+	
 }

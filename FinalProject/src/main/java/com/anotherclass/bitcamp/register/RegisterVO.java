@@ -25,6 +25,8 @@ public class RegisterVO {
 	private int like_cnt; // 강사의 좋아요 수
 	private String creator_id; // 좋아요 받은 강사 아이디
 	
+	private String searchWord;
+	private String dateSearch;
 	
 	public String getMember_id() {
 		return member_id;
@@ -146,5 +148,18 @@ public class RegisterVO {
 	public void setCreator_id(String creator_id) {
 		this.creator_id = creator_id;
 	}
+	public String getSearchWord() {
+		return searchWord;
+	}
+	public void setSearchWord(String searchWord) {
+		this.searchWord = searchWord;
+	}
+	public String getDateSearch() {
+		return dateSearch;
+	}
+	public void setDateSearch(String dateSearch) {
+		this.dateSearch = dateSearch;
+	}
+	
 	
 }

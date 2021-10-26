@@ -8,7 +8,7 @@ $(()=>{
 		var modal = '';
 		modal += '<div class="myPage-information-back" style="display:none">';
 		modal += '<div class="myPage-information-box" style="display:none">';
-		modal += '<div class="myPage-information-popup" style="display:none">';
+		modal += '<div class="myPage-information-popup" id="myPage-popup-view" style="display:none">';
 		modal += '<button class="myPage-popup-close-button">X</button>';
 		modal += '<h2 class="popup-title"></h2>';
 		modal += '<ul class="information-popup-ul"></ul>';
@@ -22,13 +22,14 @@ $(()=>{
 	$(document).on('click','.myPage-popup-close-button',function() {
 		$('.myPage-information-back').css('display','none');
 		$('.myPage-information-box').css('display','none');
-		$('.myPage-information-popup').css('display','none');
+		$('#myPage-popup-view').css('display','none');
 	});
 	
 	$(document).on('click','.account_pic_edit',function() {
+		document.getElementById('myPage-popup-view').className = "myPage-information-popup";
 		$('.myPage-information-back').css('display','block');
 		$('.myPage-information-box').css('display','block');
-		$('.myPage-information-popup').css('display','block');
+		$('#myPage-popup-view').css('display','block');
 		$('.information-popup-ul').empty();
 		$('.popup-title').html('이미지 업로드');
 		var fileHtml = '';
@@ -39,14 +40,13 @@ $(()=>{
 			type:'POST'
 			,success:function(result){
 				fileHtml+='<li class="myPage-accountView-picther">';
-				fileHtml+='<img src="${vo.member_img }">';
+				fileHtml+='<img id="image-account" src="${vo.member_img }">';
 				fileHtml+='</li>';
-				fileHtml+='<li class="information-box-img">';
 				fileHtml+='<li class="information-box-img">';
 				fileHtml+='<input type="file" style="float:right" class="popup-input-img" id="member_file" />';
 				fileHtml+='</li>';
 				fileHtml+='<li class="information-box-img">';
-				fileHtml+='<input type="button" value="파일전송" style="float:right" class="popup-input-button" id="button"/>';
+				fileHtml+='<input type="button" value="파일전송" style="float:right" class="popup-input-button" id="image-input-button"/>';
 				fileHtml+='</li>';
 				$('.information-popup-ul').html(fileHtml);
 			} 
@@ -57,9 +57,10 @@ $(()=>{
 	});
 	
 	$(document).on('click','.account_pwd_edit',function() {
+		document.getElementById('myPage-popup-view').className = "myPage-information-popup-long";
 		$('.myPage-information-back').css('display','block');
 		$('.myPage-information-box').css('display','block');
-		$('.myPage-information-popup').css('display','block');
+		$('#myPage-popup-view').css('display','block');
 		$('.information-popup-ul').empty();
 		$('.popup-title').html('비밀번호 수정');
 		var pwdHtml = '';
@@ -70,17 +71,20 @@ $(()=>{
 			,success:function(result){
 				pwdHtml+='<li class="information-box-title">현재 비밀번호</li>';
 				pwdHtml+='<li class="information-box-pwd">';
-				pwdHtml+='<input type="text" class="popup-input-pwd" name="member_pw" id="member_pw" autocomplete=”off” maxlength="15" />';
+				pwdHtml+='<input type="password" class="popup-input-pwd"  id="member_pw" autocomplete=”off” maxlength="15" />';
 				pwdHtml+='</li>';
+				pwdHtml+='<label id="info-pword"></label>';
 				pwdHtml+='<li class="information-box-title">새 비밀번호</li>';
 				pwdHtml+='<li class="information-box-pwd">';
-				pwdHtml+='<input type="text" class="popup-input-pwd" id="member_pw" autocomplete=”off” maxlength="15" />';
+				pwdHtml+='<input type="password" class="popup-input-pwd" name="member_pw" id="new_member_pw" autocomplete=”off” maxlength="15" />';
 				pwdHtml+='</li>';
+				pwdHtml+='<label id="info-pword-format"></label>';
 				pwdHtml+='<li class="information-box-title">새 비밀번호 확인</li>';
 				pwdHtml+='<li class="information-box-pwd">';
-				pwdHtml+='<input type="text" class="popup-input-pwd"  id="member_pw_check" autocomplete=”off” maxlength="15" />';
+				pwdHtml+='<input type="password" class="popup-input-pwd"  id="member_pw_check" autocomplete=”off” maxlength="15" />';
 				pwdHtml+='</li>';
-				pwdHtml+='<input type="hidden" class="account_edit_pwd_check"/>';
+				pwdHtml+='<label id="info-pword-check"></label>';
+				pwdHtml+='<button id="pword-button">버튼</button>';
 				$('.information-popup-ul').html(pwdHtml);
 			} 
 			,error:function(error){
@@ -89,35 +93,71 @@ $(()=>{
 		});
 	});
 	
-	var url = 'account_edit/check';
-	var checkEng = /[a-z|A-Z|0-9]/;
-	var checkKor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
-
-	$('#member_pw_check, #member_pw').on('propertychange change keyup paste input',function passWordCheck(){
-		var checkPwd = $('#member_pw').val();
-		if(checkPwd.length < 8 || checkPwd.length > 20){
-			$('#account_edit_pwd_text').css("color","#ff0000");
-			$('#account_edit_pwd_text').html("비밀번호는 8자 이상 생성 가능합니다.");
-			$('.account_edit_pwd_check').val('N');
+	$(document).on('propertychange change keyup paste input','#member_pw ',function passWordCheck(){
+		const checkPath = 'accountCheck';
+		var pwd = $('#member_pw').val();
+		var data = {"pwd":pwd};
+			$.ajax({
+				url: checkPath
+				, type: 'POST'
+				, data: data
+				, success:function(result){
+					if(result!='YES'){
+						document.querySelector('#info-pword').style.color = "#22b14d"
+						document.getElementById('info-pword').innerHTML="일치한 비밀번호";
+						$('#account_edit_pwd_check').val('Y');
+					}else{
+						$('#info-pword').css("color","#ff0000");
+						document.getElementById('info-pword').innerHTML="비밀번호가 맞지 않습니다.";
+						$('#account_edit_pwd_check').val('N');
+					}
+				}
+				, error:function(error){
+					console.log(error)
+				}
+			});
+		});
+	$(document).on('propertychange change keyup paste input','#new_member_pw ,#member_pw_check',function passWordChecking(){
+		const check1 = $('#new_member_pw').val();
+		const check2 = $('#member_pw_check').val();
+		const checking = document.querySelector('#new_member_pw').value;
+		if(checking.length < 8 || checking.length > 20){
+			$('#info-pword-format').css("color","#ff0000");
+			document.getElementById('info-pword-format').innerHTML="비밀번호는 8자 이상 생성 가능합니다.";
+			$('#account_edit_pwd_check').val('N');
 		}else{
-			$('#account_edit_pwd_text').css("color","#22b14d");
-			$('#account_edit_pwd_text').html("사용가능한 비밀번호");
-			$('.account_edit_pwd_check').val('Y');
-		}
-	});
-	$('#member_pw_check').on('propertychange change keyup paste input',function passWordChecking(){
-		var check1 = $('#member_pw').val();
-		var check2 = $('#member_pw_check').val();
-		if(check1 != "" || check2 != ""){
-			$('#account_edit_pwdCh_text').css("color","#ff0000");
-			$('#account_edit_pwdCh_text').html("비밀번호가 일치하지 않습니다.");
-			$('.account_edit_pwd_check').val('N');
-			if(check1 == check2){
-				$('#account_edit_pwdCh_text').css("color","#22b14d");
-				$('#account_edit_pwdCh_text').html("비밀번호가 일치합니다.");
-				$('.account_edit_pwd_check').val('Y');
+			if(check1 != "" || check2 != ""){
+				$('#info-pword-check').css("color","#ff0000");
+				$('#info-pword-check').html("비밀번호가 일치하지 않습니다.");
+				$('#account_edit_pwd_check').val('N');
+				if(check1 == check2){
+					$('#info-pword-check').css("color","#22b14d");
+					$('#info-pword-check').html("비밀번호가 일치합니다.");
+					$('#account_edit_pwd_check').val('Y');
+				}
 			}
 		}
+		
+	});
+	
+	$(document).on('propertychange click','#pword-button',function passWordRun(){
+		const mapingPath = 'pwordChain';
+		const pass = $('#new_member_pw').val();
+		const passData = {"pwd":pass};
+			$.ajax({
+				url: mapingPath
+				, type: 'POST'
+				, data: passData
+				, success:function(result){
+					alert('비밀번호가 변경되었습니다.');
+					location.reload();
+				}
+				, error:function(error){
+					console.log(error)
+				}
+			});
+		
+		
 	});
 	
 	$('#member_email_id, #member_email_addr').on('propertychange change keyup paste input',function emailSeting(){
@@ -207,9 +247,43 @@ $(()=>{
         }).open();
     }
 </script>
+<script>
+var serverName = '<%=request.getServerName() %>';
+var serverPort = <%=request.getServerPort() %>;
+$(()=>{
+	var fileList;
+	$(document).on('click','#image-input-button', function uploadFiles(e){
+			var file = $('#member_file')[0].files[0]
+			var form_data = new FormData();
+	      	form_data.append('file', file);
+	      	$.ajax({
+	        	data: form_data
+	        	,type: "POST"
+	        	,url: '/another/FileUpload/imageUploadUrl'
+	        	,contentType: false
+	        	,processData: false
+	        	,success: function(imageData) {
+	        		console.log("img:"+ imageData.url);
+	        		fileList = imageData.url;
+	        		document.getElementById('image-account').src ='http://'+serverName+':'+serverPort+fileList;
+	        		document.getElementById('myPage-account-image').src ='http://'+serverName+':'+serverPort+fileList;
+	        		document.getElementById('image-file-path').value ='http://'+serverName+':'+serverPort+fileList;
+	        		document.getElementById('account_send').submit();
+	        	}
+	      		,error: function(error){
+	      			console.log(error);
+	      			console.log('파일업로드 실패');
+	      		}
+	      	});
+		});
+});
+</script>	
 <style>
 	.myPage-accountView-title{
 		padding:10px;
+	}
+	.myPage-accountView-View{
+		margin-top:70px;
 	}
 	.myPage-popup-close-button{
 		float: right;
@@ -256,8 +330,10 @@ $(()=>{
 		width: 250px;
 		height: 50px;
 	}
-	.myPage-accountView-picther{
-		overflow: hidden;
+	#myPage-account-image, #image-account{
+		max-height:100%;
+		height: auto;
+		display:block;
 	}
 	.myPage-accountView-menu{
 		margin-left: 20px;
@@ -269,6 +345,7 @@ $(()=>{
 		border-radius: 10px;
 		width: 150px;
 		height: 150px;
+		overflow: hidden;
 	}
 	.myPage-accountView-ul{
 		width: 700px;
@@ -335,7 +412,7 @@ $(()=>{
 		width:120px;
 		height:30px;
 	}
-	.account_edit_addr_button:active, .account_pic_edit:active, .account_edit_sending:active, .myPage-popup-close-button:active , .account_pwd_edit:active{
+	.account_edit_addr_button:active, .popup-input-button:active, .account_pic_edit:active, .account_edit_sending:active, .myPage-popup-close-button:active , .account_pwd_edit:active{
 		background-color: #ededed;
 	}
 	.myPage-account-name{
@@ -366,8 +443,18 @@ $(()=>{
 		box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
 		width: 500px;
 		height: 300px;
+		padding:10px;
+		border-radius: 10px;
 	}
-	.myPage-information-popup{
+	.myPage-information-popup-long{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		background-color: #ffffff;
+		box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+		width: 500px;
+		height: 400px;
 		padding:10px;
 		border-radius: 10px;
 	}
@@ -384,7 +471,7 @@ $(()=>{
 						
 						<div class="myPage-accountView-main">
 							<div class="myPage-accountView-picther">
-								<img src="${vo.member_img }">
+								<img id="myPage-account-image" src="${vo.member_img }">
 							</div>
 							<ul class="myPage-accountView-ul">
 								<li>
@@ -395,7 +482,7 @@ $(()=>{
 								</li>
 							</ul>
 							
-							<form method="post" action="MyinformationEdit" >
+							<form method="post"  id="account_send"  action="MyinformationEdit" >
 							<ul class="myPage-accountView-info-list">
 								<li class="myPage-accountView-info">
 								<span class="myPage-accountView-box-title">이름</span>
@@ -456,6 +543,8 @@ $(()=>{
 									<input type="hidden" id="member_email" name="member_email" value="${vo.member_email }"/>
 									<input type="hidden" id="account_post_no" name="post_no" value="${vo.post_no }"/>	
 									<input type="hidden" id="account_addr1" name="addr1" value="${vo.addr1 }"/>
+									<input type="hidden" id="image-file-path" name="member_img" value="${vo.member_img}"/>
+									<input type="hidden" id="account_edit_pwd_check" value="Y"/>
 								</li>
 							</ul>
 							<input type="submit" class="account_edit_sending" value="수정완료"/>

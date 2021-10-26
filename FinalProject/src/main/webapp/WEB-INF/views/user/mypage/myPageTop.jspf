@@ -55,7 +55,7 @@
 						<li class="m1"><a href="<%=request.getContextPath()%>/mypage/mypage5">클래스</a></li>
 						<li class="m1"><a href="<%=request.getContextPath()%>/mypage/mypage4">크리에이터</a></li>
 					</ul>		
-				<span class="h3style"><a>회원정보수정</a></span>	
+				<span class="h3style"><a href="<%=request.getContextPath()%>/mypage/Myinformation">회원정보수정</a></span>	
 		</div>
 	</div>
 	<!-- 오른쪽 : 본문 -->

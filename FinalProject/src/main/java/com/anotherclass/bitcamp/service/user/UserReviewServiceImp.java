@@ -29,5 +29,20 @@ public class UserReviewServiceImp implements UserReviewService {
 	public List<ReviewVO> selectMyReview(ReviewVO vo) {
 		return userReviewDAO.selectMyReview(vo);
 	}
+
+	@Override
+	public ReviewVO countTotalMyReview(String member_id) {
+		return userReviewDAO.countTotalMyReview(member_id);
+	}
+
+	@Override
+	public ReviewVO countTotalClassReview(int class_no) {
+		return userReviewDAO.countTotalClassReview(class_no);
+	}
+
+	@Override
+	public List<ReviewVO> selectClassReview(ReviewVO vo) {
+		return userReviewDAO.selectClassReview(vo);
+	}
 	
 }

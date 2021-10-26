@@ -12,7 +12,7 @@
      </select>  
   	<select id="userClassDetailAllSelect" resultType="com.anotherclass.bitcamp.vo.user.UserClassDetailVO">
   		<![CDATA[
-  		select b.class_no , a.category_name, b.class_name, b.max_headcount , b.class_info, d.member_img, b.class_addr1 , d.nick, b.class_content ,c.creator_content, c.creator_content_img
+  		select b.class_no , a.category_name, b.member_id ,b.class_name, b.max_headcount , b.class_info, d.member_img, b.class_addr1 , d.nick, b.class_content,b.class_thumb ,c.creator_content, c.creator_content_img
 		from category a, classtbl b, creator c, membertbl d
 		where a.category_no = b.category_no
 		and    b.member_id = c.member_id
@@ -55,9 +55,10 @@
   	</delete>
   	<select id="userClassDetailAskAllSelect" resultType="com.anotherclass.bitcamp.vo.user.UserClassDetailVO2">
   		<![CDATA[
-  			select class_qna_no, class_no, classQna_member_id, classqna_content,to_char( classqna_writedate,'yyyy-MM-DD HH:MM' ) classqna_writedate, classqna_com_sec 
-			from classQna 
-			where class_no = #{param1}
+  			select a.class_qna_no, a.class_no, a.classQna_member_id, a.classqna_content,to_char( a.classqna_writedate,'yyyy-MM-DD HH:MM' ) classqna_writedate, a.classqna_com_sec ,b.member_img
+			from classQna a ,membertbl b
+			where  a.classqna_member_id = b.member_id
+			and a.class_no =  #{param1}
   		]]> 
   	</select>  	
   	<select id="AskReplyCheck" resultType="int">
@@ -102,7 +103,20 @@
   			update classqna set classqna_content =#{classqna_content} where class_qna_no = #{class_qna_no}
   		]]> 
   	</update>
-  	
+  	<select id="LikedcreatorCount" resultType="int">
+  		<![CDATA[
+	  		SELECT COUNT(*) AS creatorlikecount
+			FROM creatorlike 
+			where creator_id = #{param1}
+  		]]> 
+  	</select>
+  	<select id="OpenClassCount" resultType="int">
+	  	<![CDATA[
+		  	SELECT  COUNT(*) AS creatorclasscount
+			FROM classtbl
+			where member_id  = #{param1}
+	  		]]> 
+  	</select>
   	
   	
   </mapper>

@@ -14,6 +14,7 @@ public class ReviewVO {
 	private int class_option_no;
 	
 	private int class_no;
+	private String class_name;
 	private String member_img;
 	
 	// 페이징
@@ -23,6 +24,7 @@ public class ReviewVO {
 	private int nowPage=1; // 현재 페이지
 	private int oneGroupPage=5; // 한 번에 보일 페이지 수
 	private int groupStartPage=1; // 한 페이지 그룹의 첫 페이지
+	private int nowPageRecord; // 현재 페이지의 레코드 수 // 마지막 때 달라짐
 	
 	
 	public int getReview_no() {
@@ -140,5 +142,18 @@ public class ReviewVO {
 	public void setGroupStartPage(int groupStartPage) {
 		this.groupStartPage = groupStartPage;
 	}
+	public String getClass_name() {
+		return class_name;
+	}
+	public void setClass_name(String class_name) {
+		this.class_name = class_name;
+	}
+	public int getNowPageRecord() {
+		return nowPageRecord;
+	}
+	public void setNowPageRecord(int nowPageRecord) {
+		this.nowPageRecord = nowPageRecord;
+	}
+
 
 }

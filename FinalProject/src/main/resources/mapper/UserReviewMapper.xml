@@ -22,18 +22,58 @@
 	</select>
 	<select id="selectMyReview" resultType="com.anotherclass.bitcamp.vo.user.ReviewVO">
 		<![CDATA[
-			select review_no, order_no, content, img1, star, to_char(writedate, 'YYYY.MM.DD') writedate, member_id, member_img
-			from (select review_no, order_no, content, img1, star, writedate, member_id, member_img
-			from (select review_no, r.order_no, content, img1, star, writedate, m.member_id, member_img
+			select *
+			from (select *
+			from (select review_no, r.order_no, content, img1, star, to_char(writedate, 'YYYY.MM.DD') writedate, m.member_id, member_img, c.class_no, c.class_name
 			from reviewTbl r join orderTbl o
 			on r.order_no=o.order_no
 			join memberTbl m
 			on o.member_id=m.member_id
+			join classoption co
+			on o.class_option_no=co.class_option_no
+			join classTbl c
+			on co.class_no = c.class_no
 			where o.member_id=#{member_id, jdbcType=VARCHAR}
 			order by review_no desc) rTbl
-			where rownum <= 5 order by review_no asc)
-			where rownum <= #{oneGroupPage} order by review_no desc
+			where rownum <= (#{onePageRecord} * #{nowPage}) order by review_no asc)
+			where rownum <= #{nowPageRecord} order by review_no desc
 		]]>
 	</select>
-
+	<select id="countTotalMyReview" resultType="com.anotherclass.bitcamp.vo.user.ReviewVO">
+		<![CDATA[
+			select count(review_no) totalRecord
+			from reviewTbl r
+			join orderTbl o
+			on r.order_no=o.order_no
+			where o.member_id=#{member_id}
+		]]>
+	</select>
+	<select id="selectClassReview" resultType="com.anotherclass.bitcamp.vo.user.ReviewVO">
+		<![CDATA[
+			select *
+			from (select *
+			from (select review_no, r.order_no, content, r.img1, star, to_char(writedate, 'YYYY.MM.DD') writedate, m.member_id, member_img, co.class_no
+			from reviewTbl r join orderTbl o
+			on r.order_no=o.order_no
+			join memberTbl m
+			on o.member_id=m.member_id
+			join classoption co
+			on o.class_option_no=co.class_option_no
+			where co.class_no=#{class_no}
+			order by review_no desc) rTbl
+			where rownum <= (#{onePageRecord} * #{nowPage}) order by review_no asc)
+			where rownum <= #{nowPageRecord} order by review_no desc
+		]]>
+	</select>
+	<select id="countTotalClassReview" resultType="com.anotherclass.bitcamp.vo.user.ReviewVO">
+		<![CDATA[
+			select count(review_no) totalRecord
+			from reviewTbl r
+			join orderTbl o
+			on r.order_no=o.order_no
+			join classoption co
+			on o.class_option_no=co.class_option_no
+			where co.class_no=#{param1}
+		]]>
+	</select>
 </mapper>

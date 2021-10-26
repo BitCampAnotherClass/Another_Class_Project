@@ -80,7 +80,7 @@ textarea{
 
 .review-content{
 	display:flex;
-	justify-content:flex-end;
+	justify-content:flex-start;
 	align-items:flex-start;
 }
 
@@ -246,17 +246,18 @@ span.user-review-info{
 /********* 클래스 상세페이지 - 후기 **********/
 
 
+.class-review-cnt{
+	display:inline-block;
+	margin-left:10px;
+	color:#ff385c;
+	font-weight: 700;
+}
+
+
 .class-review-content .review-info{
 	width:140px;
 }
 
-
-
-.class-review-content .review-info .star{
-	margin-top:10px;
-	font-size:18px;
-	letter-spacing:-3px;
-}
 
 .class-review-content .review-content, .class-review-content .comment-text{
 	width:640px;
@@ -267,10 +268,51 @@ span.user-review-info{
 }
 
 
+.class-review-content .star{
+	margin-top:10px;
+	position:relative;
+	top:0; left:0;
+	width:108px;
+	height:20px;
+	text-align:left;
+	font-size:18px;
+	letter-spacing:-3px;
+}
+
+.class-review-content .star .back-star{
+	position:absolute;
+	top:0; left:0;
+	width:108px;
+	white-space:nowrap;
+	overflow:hidden;
+	text-align:left;
+	color:#d3d3d3;
+}
+
+.class-review-content .star .front-star{
+	position:absolute;
+	top:0; left:0;
+	width:108px;
+	white-space:nowrap;
+	overflow:hidden;
+	text-align:left;
+	color:#FFB300;;
+}
+
+
 
 
 
 /********** 나의 후기 ***********/
+
+.my-review-content .class-name{
+	margin-bottom:22px;
+}
+
+.my-review-content .class-name > a{
+	font-weight:500;
+	font-size:17px;
+}
 
 
 .my-review-content .review-info{
@@ -323,7 +365,11 @@ span.user-review-info{
 }
 
 
-/******** 후기 작성 모달 *********/
+
+
+
+
+/****************** 후기 작성 모달 *******************/
 
 /* 후기 타이틀 */
 .review-modal{

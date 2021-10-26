@@ -105,7 +105,7 @@
   	</select>
   	<update id="MemberInfoEdit" parameterType="com.anotherclass.bitcamp.register.RegisterVO" >
   		<![CDATA[
-  			update memberTbl set member_name = #{member_name}, member_tel = #{member_tel}, member_email = #{member_email}, post_no = trim(#{post_no}), addr1 = #{addr1} , addr2 = #{addr2}
+  			update memberTbl set member_name = #{member_name}, member_tel = #{member_tel}, member_email = #{member_email}, post_no = trim(#{post_no}), addr1 = #{addr1} , addr2 = #{addr2}, member_img = #{member_img}
   			where member_id = #{member_id}
   		]]>
   	</update>
@@ -118,7 +118,7 @@
 			and a.order_date IS NOT NULL
 			and a.cancel_date  IS NULL
 			and a.refund_date IS NULL
-			and to_char(sysdate, 'YYYYMMDD') < to_char(b.start_date, 'YYYYMMDD')
+			and to_char(sysdate, 'YYYYMMDD') < to_char(b.end_date, 'YYYYMMDD')
 			and a.member_id = #{param1}  		
   		]]>
   	</select>
@@ -131,7 +131,7 @@
 			and a.order_date IS NOT NULL
 			and a.cancel_date  IS NULL
 			and a.refund_date IS NULL
-			and to_char(sysdate, 'YYYYMMDD') > to_char(b.start_date, 'YYYYMMDD')
+			and to_char(sysdate, 'YYYYMMDD') > to_char(b.end_date, 'YYYYMMDD')
 			and a.member_id = #{param1}  
 		]]>
   	</select>
@@ -178,11 +178,34 @@
 			where user_qna_no=#{user_qna_no}
 	  	 ]]>
   	</update>
-  	<select id="userMyPageReviewCheck" resultType="int">
-  		<![CDATA[
-  			select count(*)
-			from reviewtbl
-			where order_no = #{param1}
-  		]]>   		
-  	</select>
+  	<select id="userMyPageReviewCheck" resultType="int">  		
+		select count(order_no) cnt from reviewtbl where order_no = #{param1}
+	</select>
+	<select id="pwdCheck" parameterType="com.anotherclass.bitcamp.register.RegisterVO" resultType="com.anotherclass.bitcamp.register.RegisterVO" statementType="CALLABLE">
+		call pw_check_in(
+			#{member_pw, mode=IN, jdbcType=VARCHAR, javaType=String},
+			#{member_id, mode=IN, jdbcType=VARCHAR, javaType=String},
+			#{additional_information_one, mode=OUT, jdbcType=VARCHAR, javaType=String} 
+		)
+	</select>
+
+	<select id="Likedclass"  resultType="com.anotherclass.bitcamp.vo.user.UserClassDetailVO">
+		select a.class_like_no ,b.class_no, b.class_name, b.class_thumb, c.category_name
+		from classlike a,classtbl  b,category  c
+		where a.class_no = b.class_no
+		and b.category_no = c.category_no
+		and a.member_id =#{param1}	
+	</select>
+	<delete id="CancelLikeClass">
+	  	<![CDATA[	  	
+			delete classlike where class_like_no = #{param1}
+	  	]]> 
+  	</delete>
+
+	<update id="passwordChange" parameterType="com.anotherclass.bitcamp.register.RegisterVO" >
+		<![CDATA[
+			update membertbl set member_pw = #{member_pw} where member_id = #{member_id}
+		]]>
+	</update>
+
   </mapper>
