@@ -181,12 +181,14 @@
   	<select id="userMyPageReviewCheck" resultType="int">  		
 		select count(order_no) cnt from reviewtbl where order_no = #{param1}
 	</select>
-	<select id="logIdCheck" parameterType="com.anotherclass.bitcamp.register.RegisterVO" resultType="com.anotherclass.bitcamp.register.RegisterVO" statementType="CALLABLE">
-		call id_check_in(
-			#{member_id, mode=IN, jdbcType=VARCHAR, javaType=String}, 
+	<select id="pwdCheck" parameterType="com.anotherclass.bitcamp.register.RegisterVO" resultType="com.anotherclass.bitcamp.register.RegisterVO" statementType="CALLABLE">
+		call pw_check_in(
+			#{member_pw, mode=IN, jdbcType=VARCHAR, javaType=String},
+			#{member_id, mode=IN, jdbcType=VARCHAR, javaType=String},
 			#{additional_information_one, mode=OUT, jdbcType=VARCHAR, javaType=String} 
 		)
 	</select>
+
 	<select id="Likedclass"  resultType="com.anotherclass.bitcamp.vo.user.UserClassDetailVO">
 		select a.class_like_no ,b.class_no, b.class_name, b.class_thumb, c.category_name
 		from classlike a,classtbl  b,category  c
@@ -199,4 +201,11 @@
 			delete classlike where class_like_no = #{param1}
 	  	]]> 
   	</delete>
+
+	<update id="passwordChange" parameterType="com.anotherclass.bitcamp.register.RegisterVO" >
+		<![CDATA[
+			update membertbl set member_pw = #{member_pw} where member_id = #{member_id}
+		]]>
+	</update>
+
   </mapper>
