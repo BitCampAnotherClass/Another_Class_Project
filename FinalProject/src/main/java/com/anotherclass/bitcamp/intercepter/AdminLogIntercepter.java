@@ -8,18 +8,18 @@ import org.springframework.lang.Nullable;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-public class LoginCheckIntercepter extends HandlerInterceptorAdapter {
+public class AdminLogIntercepter extends HandlerInterceptorAdapter {
 	
 	// 컨트롤러가 호출되기전에 호출되는 메소드
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception{
 		
 		//로그인된 아이디구하기
 		HttpSession session = request.getSession();
-		String userLog= (String)session.getAttribute("userLog");
+		String adminLog= (String)session.getAttribute("adminLog");
 		
 		//로그인이 안된경우
-		if(userLog==null || !userLog.equals("Y")) {
-			response.sendRedirect(request.getContextPath()+"/login");
+		if(adminLog==null || !adminLog.equals("Y")) {
+			response.sendRedirect(request.getContextPath()+"/adminLogin");
 			return false;
 		}
 		//로그인이 된 경우

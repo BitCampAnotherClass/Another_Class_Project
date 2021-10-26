@@ -230,14 +230,15 @@
 	      </ul>
 	</div>
 	<div class="menubar-btn">
-		<a href="#" class="close">╂</a>
+		<a href="#" class="close">╉</a>
 	</div>
 	<div class="logout_menu">
-		<c:if test="${userLog==null || userLog!=1 }">
-			<a href="#" class="logout_a">로그인</a>
+		<c:if test="${adminLog==null || adminLog!='Y' }">
+			<a href="<%=request.getContextPath()%>/adminLogin" class="logout_a">로그인</a>
 		</c:if>
-		<c:if test="${userLog==1 }">
-			<a href="#" class="logout_a">로그아웃</a>
+		<c:if test="${adminLog=='Y' }">
+			${adminId } 
+			<a href="<%=request.getContextPath()%>/adminLogout" class="logout_a">로그아웃</a>
 		</c:if>
 	</div>
 	<div id="contents-wrap">

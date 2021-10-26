@@ -47,54 +47,8 @@ public class CreatorController {
 	@RequestMapping(value="/makeClassOk", method=RequestMethod.POST)
 	public ModelAndView creatClass(CreatorMakeClassVO vo,CreatorMakeClassDateTimeVO vo2, HttpServletRequest req) {
 		
-		String path = req.getSession().getServletContext().getRealPath("/upload");
-		System.out.println(path);
-		//파일업로드를 위해서는  HttpSerHttpServletRequest 객체를 이용하여 MultipartHttpSerHttpServletRequest 객체를 구하여야한다.
-		MultipartHttpServletRequest mr = (MultipartHttpServletRequest)req;
-		
-		//mr에서 MultipartFile객체를 얻어와야 한다.
-		List<MultipartFile> files = mr.getFiles("filename");
-		List<String> fileList = new ArrayList<String>();//업로드된 파일명들을 저장할 곳
-		//업로드한 파일이 있으면
-		if(files!=null) {//ddd
-			//업로드 구현
-			for(int i=0; i<files.size(); i++) { //CCC
-				//업로드 할 multipartFile 객체를 얻어오기
-				MultipartFile mf = files.get(i);
-				
-				//원래 파일명
-				String fname = mf.getOriginalFilename(); //cccc.jpg
-				if(fname!=null && !fname.equals("")) {
-				//같은파일명이 서버에 있는 지 확인
-				File fileObj = new File(path, fname);	
-				File newFileObj= new File(path, fname);
-				if(fileObj.exists()) {//파일존재여부확인 --> 있으면 true, 업으면 false//BBBB
-					//파일명 변경
-					for(int num=1; ; num++) {//1,2,3,4.....
-						int point = fname.lastIndexOf(".");
-						String orgFileName = fname.substring(0, point);//파일명
-						String orgFileExt = fname.substring(point+1);//확장자
-						String newFileName = orgFileName+"("+num+")."+orgFileExt; // cccc(1).jpg
-						newFileObj = new File(path, newFileName);
-						if(!newFileObj.exists()) {
-							break;
-						}
-					}//for AAAA
-					
-					
-				}//if BBBB
-				try {////업로드실행
-					mf.transferTo(newFileObj);
-				}catch(Exception e) {}
-					fileList.add(newFileObj.getName());
-			}
-		}//for문 CCCC
-		
-	}//ddd
-		System.out.println(path+fileList);
 		ModelAndView mav = new ModelAndView();
 		vo.setMember_id("test100");///////////////////////아이디 세션
-		vo.setClass_thumb(path+fileList);
 		int result = makeClassApplyService.makeClassApply(vo);
 		
 		String vo2GetStartDate = vo2.getStart_date();

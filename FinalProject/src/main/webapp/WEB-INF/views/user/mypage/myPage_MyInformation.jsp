@@ -95,7 +95,6 @@ $(()=>{
 	/* $('#member_pw').on('propertychange change keyup paste input',function passWordCheck(){{
 		var pwd = $('#member_pw').val();
 		var data = {"pwd":pwd};
-		// 아이디 조회
 		$.ajax({
 			url: checkPath
 			, type: 'POST'
@@ -104,7 +103,7 @@ $(()=>{
 					
 					if(id.length< 5 || id.length > 15){
 						$('#register_id_text').css("color","#ff0000");
-						document.getElementById('register_id_text').innerHTML="아이디는 5~ 15자의 영문과 숫자로만 사용가능합니다.";
+						document.getElementById('popup-input-pwd').innerHTML="비밀번호는 8자 이상 생성 가능합니다.";
 						$('.register_id_check').val('N');
 					}else{
 						if(checkEng.test(id)){

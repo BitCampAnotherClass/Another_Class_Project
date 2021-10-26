@@ -59,6 +59,26 @@
     color: #fff;
     cursor: pointer;
 }
+
+.creator-homeee{
+	float:right;
+	margin : -700px 540px 20px 0;
+	background: #FF385C;
+	text-align: center;
+	
+	border: 0;
+    box-shadow: 0;
+    display: block;
+
+    padding: 1% 2.5%;
+    font-size: 15px;
+    text-transform: uppercase;
+    text-transform: capitalize;
+    font-weight: bold;
+    background: #FF385C;
+    color: #fff;
+    cursor: pointer;
+}
 </style>
 
 
@@ -147,7 +167,7 @@ $(()=>{
 			                  if( idx >= listCnt*(n-1) && idx <= (listCnt*n-1) ){
 			                     classDiv  = '<div class="class_div">';
 			                     classDiv += '<div class="img_div">';
-			                     classDiv += '<a href="<%=request.getContextPath()%>/classDetailView?no=' + r[idx].class_no + '" target="_blank">'
+			                     classDiv += '<a href="<%=request.getContextPath()%>/CommunityContentDetail?community_no=' + classNo_arry[idx] + '" target="">'
 			                     classDiv +=   '<img class="img_size" src="<%=request.getContextPath()%>/img/kimin/maca.png">';
 			                     classDiv += '</a>'
 			                     classDiv += '</div>';
@@ -323,7 +343,11 @@ input[type=submit]:hover{
 	<div class="middle_top_select"> <!--  -->
 		
 	</div>
+	
 	<div class="middle_container">
+		   <div class="more" style="display:none;">
+      <button type="button" class="creator-homeee">+ more</button>
+   </div>
 		<c:forEach var="vo" items="${cla }">
 
 		<div class="class_div">
@@ -351,7 +375,7 @@ input[type=submit]:hover{
 		</c:forEach>
 	</div>
 		   <div class="more" style="display:none;">
-      <button type="button">+ more</button>
+      <button type="button" class="creator-homeee">+ more</button>
    </div>
 </div>
 	  

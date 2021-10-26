@@ -176,10 +176,6 @@ $(function(){
 			$('#classTag').val("");
 	});
 /////////////////////////////////파일이름 넣기
-	$('#fileButton').on('change',function(){
-		var fileName = $('#fileButton').val().replace(/^c:\\fakepath\\/i, " ");///fakepath주소 없애기
-		$('.imgThumbFileName').val(fileName);
-	});
 ///////////////////////////////////////////////////////빈칸확인
 	$('#class_apply').click(function(){
 		if($('#class_name').val() == ""){
@@ -194,7 +190,7 @@ $(function(){
 			alert('클래스 카테고리를 선택하세요');
 			window.location.href="#f3";
 			return false;
-		}else if($('#class_thumb').val() == ""){		
+		}else if($('#thumb_image').val() == ""){		
 			alert('클래스 썸네 파일을 업로드하세요');
 			window.location.href="#f4";
 			return false;

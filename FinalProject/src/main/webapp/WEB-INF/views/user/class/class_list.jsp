@@ -7,6 +7,11 @@
 
 <script>
 $(function(){
+	////////////////시작화면
+	
+	
+	
+	
 ////////////////////범위 바	
     $( "#slider-range" ).slider({
       range: true,
@@ -61,15 +66,15 @@ $(function(){
 					
 					if( idx <= (listCnt-1) ){	
 						
-		 			 	classDiv  = '<div class="class_div">';
-						classDiv += '<div class="img_div">';
-						classDiv += '<a href="<%=request.getContextPath()%>/classDetailView?no=' + r[idx].class_no + '" target="">'
-						classDiv +=	'<img class="img_size" src="<%=request.getContextPath()%>/img/kimin/maca.png">';
+						classDiv  = '<div class="class_div">';
+		 			 	classDiv += '<div class="img_div">';
+						classDiv += '<a href="<%=request.getContextPath()%>/classDetailView?no=' + classNo_arry[idx] + '" target="">'
+						classDiv +=	'<img class="img_size" src="'+classThumb_arry[idx]+'">';
 						classDiv += '</a>'
 						classDiv += '</div>';
 						classDiv +=	'<div class="info_div">';
 						classDiv += '<ul>';
-						classDiv += '<li><div>'+ category_name[idx]+'</div></li>';
+						classDiv += '<li><div>'+category_name[idx]+'</div></li>';
 						classDiv += '<li>'+className_arry[idx]+'</li>';
 						classDiv +=	'<li>'+classTag_arry[idx]+'</li>'
 						classDiv +=	'<li>'+startDate_arry[idx]+'</li>';
@@ -89,14 +94,14 @@ $(function(){
 						n++;
 						if( idx >= listCnt*(n-1) && idx <= (listCnt*n-1) ){
 							classDiv  = '<div class="class_div">';
-							classDiv += '<div class="img_div">';
-							classDiv += '<a href="<%=request.getContextPath()%>/classDetailView?no=' + r[idx].class_no + '" target="">'
-							classDiv +=	'<img class="img_size" src="<%=request.getContextPath()%>/img/kimin/maca.png">';
+			 			 	classDiv += '<div class="img_div">';
+							classDiv += '<a href="<%=request.getContextPath()%>/classDetailView?no=' + classNo_arry[idx] + '" target="">'
+							classDiv +=	'<img class="img_size" src="'+classThumb_arry[idx]+'">';
 							classDiv += '</a>'
 							classDiv += '</div>';
 							classDiv +=	'<div class="info_div">';
 							classDiv += '<ul>';
-							classDiv += '<li><div>'+ category_name[idx]+'</div></li>';
+							classDiv += '<li><div>'+category_name[idx]+'</div></li>';
 							classDiv += '<li>'+className_arry[idx]+'</li>';
 							classDiv +=	'<li>'+classTag_arry[idx]+'</li>'
 							classDiv +=	'<li>'+startDate_arry[idx]+'</li>';
@@ -106,8 +111,8 @@ $(function(){
 							classDiv +='</div>';
 							$('.middle_container').append(classDiv);
 							$('.no-result-txt').hide(); // 결과 없음 내용 숨기기
-							$('.more').show();
-						if(idx >= r.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
+							$('.more').show(); // 더보기 버튼 보이기
+							if(idx >= r.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
 								$('.more').hide();
 							}
 						}
@@ -146,13 +151,13 @@ $(function(){
 						
 		 			 	classDiv  = '<div class="class_div">';
 		 			 	classDiv += '<div class="img_div">';
-						classDiv += '<a href="<%=request.getContextPath()%>/classDetailView?no=' + r[idx].class_no + '" target="">'
-						classDiv +=	'<img class="img_size" src="<%=request.getContextPath()%>/img/kimin/maca.png">';
+						classDiv += '<a href="<%=request.getContextPath()%>/classDetailView?no=' + classNo_arry[idx] + '" target="">'
+						classDiv +=	'<img class="img_size" src="'+classThumb_arry[idx]+'">';
 						classDiv += '</a>'
 						classDiv += '</div>';
 						classDiv +=	'<div class="info_div">';
 						classDiv += '<ul>';
-						classDiv += '<li><div>'+ category_name[idx]+'</div></li>';
+						classDiv += '<li><div>'+category_name[idx]+'</div></li>';
 						classDiv += '<li>'+className_arry[idx]+'</li>';
 						classDiv +=	'<li>'+classTag_arry[idx]+'</li>'
 						classDiv +=	'<li>'+startDate_arry[idx]+'</li>';
@@ -173,13 +178,13 @@ $(function(){
 						if( idx >= listCnt*(n-1) && idx <= (listCnt*n-1) ){
 							classDiv  = '<div class="class_div">';
 							classDiv += '<div class="img_div">';
-							classDiv += '<a href="<%=request.getContextPath()%>/classDetailView?no=' + r[idx].class_no + '" target="">'
-							classDiv +=	'<img class="img_size" src="<%=request.getContextPath()%>/img/kimin/maca.png">';
+							classDiv += '<a href="<%=request.getContextPath()%>/classDetailView?no=' + classNo_arry[idx] + '" target="">'
+							classDiv +=	'<img class="img_size" src="'+classThumb_arry[idx]+'">';
 							classDiv += '</a>'
 							classDiv += '</div>';
 							classDiv +=	'<div class="info_div">';
 							classDiv += '<ul>';
-							classDiv += '<li><div>'+ category_name[idx]+'</div></li>';
+							classDiv += '<li><div>'+classThumb_arry[idx]+'</div></li>';
 							classDiv += '<li>'+className_arry[idx]+'</li>';
 							classDiv +=	'<li>'+classTag_arry[idx]+'</li>'
 							classDiv +=	'<li>'+startDate_arry[idx]+'</li>';
@@ -234,15 +239,15 @@ $(function(){
 	 			 	
 				if( idx <= (listCnt-1) ){	
 					
-	 			 	classDiv  = '<div class="class_div">';
+					classDiv  = '<div class="class_div">';
 	 			 	classDiv += '<div class="img_div">';
-					classDiv += '<a href="<%=request.getContextPath()%>/classDetailView?no=' + r[idx].class_no + '" target="">'
-					classDiv +=	'<img class="img_size" src="<%=request.getContextPath()%>/img/kimin/maca.png">';
+					classDiv += '<a href="<%=request.getContextPath()%>/classDetailView?no=' + classNo_arry[idx] + '" target="">'
+					classDiv +=	'<img class="img_size" src="'+classThumb_arry[idx]+'">';
 					classDiv += '</a>'
 					classDiv += '</div>';
 					classDiv +=	'<div class="info_div">';
 					classDiv += '<ul>';
-					classDiv += '<li><div>'+ category_name[idx]+'</div></li>';
+					classDiv += '<li><div>'+category_name[idx]+'</div></li>';
 					classDiv += '<li>'+className_arry[idx]+'</li>';
 					classDiv +=	'<li>'+classTag_arry[idx]+'</li>'
 					classDiv +=	'<li>'+startDate_arry[idx]+'</li>';
@@ -262,14 +267,14 @@ $(function(){
 					n++;
 					if( idx >= listCnt*(n-1) && idx <= (listCnt*n-1) ){
 						classDiv  = '<div class="class_div">';
-						classDiv += '<div class="img_div">';
-						classDiv += '<a href="<%=request.getContextPath()%>/classDetailView?no=' + r[idx].class_no + '" target="">'
-						classDiv +=	'<img class="img_size" src="<%=request.getContextPath()%>/img/kimin/maca.png">';
+		 			 	classDiv += '<div class="img_div">';
+						classDiv += '<a href="<%=request.getContextPath()%>/classDetailView?no=' + classNo_arry[idx] + '" target="">'
+						classDiv +=	'<img class="img_size" src="'+classThumb_arry[idx]+'">';
 						classDiv += '</a>'
 						classDiv += '</div>';
 						classDiv +=	'<div class="info_div">';
 						classDiv += '<ul>';
-						classDiv += '<li><div>'+ category_name[idx]+'</div></li>';
+						classDiv += '<li><div>'+category_name[idx]+'</div></li>';
 						classDiv += '<li>'+className_arry[idx]+'</li>';
 						classDiv +=	'<li>'+classTag_arry[idx]+'</li>'
 						classDiv +=	'<li>'+startDate_arry[idx]+'</li>';
@@ -279,8 +284,8 @@ $(function(){
 						classDiv +='</div>';
 						$('.middle_container').append(classDiv);
 						$('.no-result-txt').hide(); // 결과 없음 내용 숨기기
-						$('.more').show();
-					if(idx >= r.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
+						$('.more').show(); // 더보기 버튼 보이기
+						if(idx >= r.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
 							$('.more').hide();
 						}
 					}
@@ -536,7 +541,7 @@ input[type=button]:hover{
 		<c:forEach var="vo" items="${cla }">
 		<div class="class_div">
 			<div class="img_div">
-				<img class="img_size" src="<%=request.getContextPath()%>/img/kimin/maca.png">
+				<img class="img_size" src="${vo.class_thumb}">
 			</div>
 			<div class="info_div">
 				<ul>

@@ -1,24 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
-<style>
-
-#d8{
-	width:800px;
-	margin:0 auto 50px;
-}
-
-
-
-
-</style>
 
 <link href="<%=request.getContextPath()%>/css/user/review.css" rel="stylesheet" type="text/css"/>
 <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
 <!-- ${vo.class_no } -->
 
-<div id="d8" class="menu"> <!-- 후기 -->
+<div> <!-- 후기 -->
 
 	<div class="menutitle">
 		<span>후기</span><span class="class-review-cnt"></span>
@@ -161,7 +150,7 @@ $(document).ready(function(){
 	
 	var userId = '${userId}'; // 로그인 회원 아이디
 	var userImg = '${userImg}'; // 로그인 회원 이미지
-	var class_no = '${vo.class_no }'; // 해당 클래스 번호
+	var class_no = 1000;//'${vo.class_no }'; // 해당 클래스 번호 임시./.......,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
 	
 	// 페이지 세팅 + 리뷰 목록 불러오기
 	function setClassReviewPage(){
@@ -323,14 +312,5 @@ $(document).ready(function(){
 
 
 </script>
-
-
-
-
-
-
-
-
-
 
 

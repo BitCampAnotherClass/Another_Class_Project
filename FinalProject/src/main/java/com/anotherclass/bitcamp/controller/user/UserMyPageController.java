@@ -56,9 +56,8 @@ public class UserMyPageController {
 	@RequestMapping("/mypage/Myinformation")
 	public ModelAndView Myinformation(HttpSession ses) {
 		ModelAndView mav = new ModelAndView();
-		//String member_id = (String)ses.getAttribute("userId"); 
-		//System.out.println(member_id);
-		mav.addObject("vo", userMyPageService.MemberInfo("test103"));
+		String member_id = (String)ses.getAttribute("userId"); 
+		mav.addObject("vo", userMyPageService.MemberInfo(member_id));
 		mav.setViewName("user/mypage/myPage_MyInformation");
 		return mav;
 	}
@@ -66,28 +65,22 @@ public class UserMyPageController {
 	@RequestMapping(value ="/mypage/MyinformationEdit",method = RequestMethod.POST )
 	public ModelAndView MyinformationEdit(RegisterVO vo,HttpSession ses) {
 		ModelAndView mav = new ModelAndView();
-		//String member_id = (String)ses.getAttribute("userId"); 
-		//System.out.println(member_id);
-		vo.setMember_id("test103");
+		String member_id = (String)ses.getAttribute("userId"); 
+		vo.setMember_id(member_id );
 		int cnt = userMyPageService.MemberInfoEdit(vo);
 		System.out.println(cnt);
 		mav.setViewName("redirect:Myinformation");
 		return mav;
 	}
 	
-//	@RequestMapping(value="", method = RequestMethod.POST)
-//	@ResponseBody
-//	public String idCheck(RegisterVO vo, String pwd) {
-//		try {
-//			vo.setMember_pw(hashing.setEncryption(vo.getMember_pw(),vo.getMember_id()));
-//		} catch (Exception e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		userMyPageService.pwdCheck(vo);
-//		String cnt =vo.getAdditional_information_one();
-//		return cnt;
-//	}
+	@RequestMapping(value="", method = RequestMethod.POST)
+	@ResponseBody
+	public String idCheck(RegisterVO vo, String pwd)throws Exception {
+		vo.setMember_pw(hashing.setEncryption(vo.getMember_pw(),vo.getMember_id()));
+		userMyPageService.pwdCheck(vo);
+		String cnt =vo.getAdditional_information_one();
+		return cnt;
+	}
 	
 	//	///HomeAskReplyList999 홈페이지문의 에이젝스로불러오기
 	@RequestMapping("/HomeAskReplyList999")
