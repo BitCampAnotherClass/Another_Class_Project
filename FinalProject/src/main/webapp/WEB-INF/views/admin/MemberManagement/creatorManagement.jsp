@@ -315,9 +315,17 @@ $(function(){
 	}
 	
 	.userMg-boardList-btn{
+		background-color: rgb(248,248,248);
+		border:none;
+		font-size:1.7em;
 		width: 50px;
 		padding: 10px;
 	}
+	
+	.userMg-boardList-btn:active{
+		background-color: rgb(242,242,242);
+	}
+	
 	.userMg-info-closeButton{
 		float: right;
 	}
