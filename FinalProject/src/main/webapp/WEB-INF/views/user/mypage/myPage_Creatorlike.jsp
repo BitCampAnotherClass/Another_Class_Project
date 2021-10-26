@@ -57,12 +57,21 @@
 	  color: white;
 	  padding:10px;
 	}
+	#morebtn{
+	font-size: 24px;
+    padding: 5px 12px;
+    border: none;
+    color: #fff;
+    background-color: #ff385c;
+    border-radius: 10px;
+    margin-top: 22px;
 	
+	}
 </style> 
 <script>
 
 
-	var list = 3;
+	var listCnt = 3;
 
 
 	$(()=>{//강사좋아요리스트
@@ -74,15 +83,20 @@
 			$.ajax({
 				url :lUrl ,
 				data : lParam ,
+				async:false,
 				success:function(l){
 					var ll = $(l)
+					console.log(ll);
 	    			var tag =""; 	
 					ll.each(function(idx,vo){	
 						
+					if( idx <= (listCnt-1)){
 						
-						tag +="<div class='card'>";
+						console.log(idx);
+						tag ="<div class='card'>";
 						tag +="<div class='card-image'  style='width:248px;height:171px;margin:13px auto 0 auto;'>";
-						tag +="<img class='imgbox' style='width:100%;height:100%;object-fit: cover;' src='/another/img/jisu/flower.png'/>";//vo.member_img//border-radius:100%;
+						tag +="<img class='imgbox' style='width:100%;height:100%;object-fit: cover;' src='"+vo.member_img+"'/>";//vo.member_img//border-radius:100%;
+						console.log(vo.member_img);
 						tag +="</div>";
 						tag +="<div class='card-text'>";
 						tag +="<label style='color:#999;'>"+vo.nick+"</label>"; //강사아이디
@@ -100,11 +114,56 @@
 						tag +="<div class='type' style='color:#fff;font-weight:bold;font-size:1.1rem;'>"+vo.creatorclasscount+"</div>";//color:white;
 						tag +="</div></div></div>";
 						tag +="<input type='hidden'  value='"+vo.creator_like_no+"'>";//이걸로지울거임						
-					});
-					$("#likedCreatiorList").html(tag);
-				}
-			})			
-		}
+				
+						$("#likedCreatiorList").append(tag);
+						 // 결과 없음 내용 숨기기
+		                  $('.more').show(); // 더보기 버튼 보이기
+		                  if(idx >= ll.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
+		                     $('.more').hide();
+		                  }
+	               }/////listcnt 닫음
+	               
+	               
+	               var n=1;
+	               $('.more > button').click(function(){
+	                  n++;
+	                  if( idx >= listCnt*(n-1) && idx <= (listCnt*n-1) ){
+	               		//////////////////
+	               		console.log(idx);
+	                	  	tag ="<div class='card'>";
+							tag +="<div class='card-image'  style='width:248px;height:171px;margin:13px auto 0 auto;'>";
+							tag +="<img class='imgbox' style='width:100%;height:100%;object-fit: cover;' src='"+vo.member_img+"'/>";//vo.member_img//border-radius:100%;
+							tag +="</div>";
+							tag +="<div class='card-text'>";
+							tag +="<label style='color:#999;'>"+vo.nick+"</label>"; //강사아이디
+							tag +="</div>";
+							tag +="<div class='card-stats'>";
+							tag +="<div class='stat'>";
+							tag +="<div class='heartImg' id='"+vo.creator_like_no+"'><img class='likeimgbox91' style='width:127%;' src='/another/img/jisu/ff385bigcheart.png'/></div>";//좋아요번호
+							tag +="</div>";
+							tag +="<div class='stat border'>";
+							tag +="<div class='value' style='color:#fff;font-weight:bold;font-size:1.1rem;'>좋아요수</div>";//color:white;
+							tag +="<div class='type' style='color:#fff;font-weight:bold;font-size:1.1rem;'>"+vo.creatorlikecount+"</div>";//color:white;
+							tag +="</div>";
+							tag +="<div class='stat'>";
+							tag +="<div class='value' style='color:#fff;font-weight:bold;font-size:1.1rem;'>클래스</div>";//color:white;
+							tag +="<div class='type' style='color:#fff;font-weight:bold;font-size:1.1rem;'>"+vo.creatorclasscount+"</div>";//color:white;
+							tag +="</div></div></div>";
+							tag +="<input type='hidden'  value='"+vo.creator_like_no+"'>";//이걸로지울거임						
+						
+							$("#likedCreatiorList").append(tag);
+							 // 결과 없음 내용 숨기기
+		                     $('.more').show();
+		                 	 if(idx >= ll.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
+		                        $('.more').hide();
+		                     }
+	                  }
+	               }); ////////클릭이벤트
+				});//each
+			}//success
+		});//ajax	
+			
+	};//function
 		
 		$(document).on('click','.likeimgbox91',function(){					
 			var no = $(this).parent().attr('id');
@@ -120,16 +179,16 @@
 			})
 			
 		});
-		//+++++++++++++++++++++마우스오버 아웃이벤트추가해야됨 ++++++++++++++마우스들어가면 빈하트 아니면 꽉찬하트
+		
 		$(document).on('mouseenter','.likeimgbox91',function(){					
 			
 			$(this).attr("src", "/another/img/jisu/ff385bigborderheart.png");
-			console.log('들어옴');
+			;
 		});
 		$(document).on('mouseout','.likeimgbox91',function(){					
 			
 			$(this).attr("src", "/another/img/jisu/ff385bigcheart.png");
-			console.log('나감');
+			
 		});
 		
 		getLikedListCrea();//
@@ -142,5 +201,8 @@
 	<div id="likedCreatiorList">	
 	</div>
 	
+	<div class="more" style="display:none;text-align:center;">
+      <button type="button" id="morebtn">+ more</button>
+   </div>
 	
 <%@ include file="myPageBottom.jspf" %>

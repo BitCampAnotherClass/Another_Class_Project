@@ -34,11 +34,7 @@
 </style>
 <script>
 
-	$(()=>{
 
-		
-		
-	});
 </script>
 <!-- class_qna_no, class_no, classQna_member_id, classqna_content, to_char(a.classqna_writedate,'YY-MM-DD') classqna_writedate, class_name -->
 	
@@ -86,7 +82,7 @@
 			<c:if test="${replycount eq 0 }"> 
 				<li class="cQnAListFli10 cQnAListFli105">미답변</li>
 			</c:if>
-			<c:if test="${replycount eq 1 }"> 
+			<c:if test="${replycount ne 0 }"> 
 				<li class="cQnAListFli10 cQnAListFli105">답변</li>
 			</c:if>
 		
