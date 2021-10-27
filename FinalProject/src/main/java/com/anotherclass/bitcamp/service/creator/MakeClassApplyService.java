@@ -14,4 +14,6 @@ public interface MakeClassApplyService {
 	public List<CreatorClassCategoryVO> makeClassCategoryS(int no);
 	public int makeClassApplyDateTime(CreatorMakeClassDateTimeVO vo);
 	public ClassListVO  creatorChannel(ClassListVO vo);
+	public int modifyClass(CreatorMakeClassVO vo);
+	public CreatorMakeClassVO modifyClassInfo(CreatorMakeClassVO vo);
 }

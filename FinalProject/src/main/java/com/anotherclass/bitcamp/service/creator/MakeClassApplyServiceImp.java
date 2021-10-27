@@ -37,6 +37,14 @@ public class MakeClassApplyServiceImp implements MakeClassApplyService {
 	public ClassListVO  creatorChannel(ClassListVO vo) {
 		return makeClassDao.creatorChannel(vo);
 	}
+	@Override
+	public int modifyClass(CreatorMakeClassVO vo) {
+		return makeClassDao.modifyClass(vo);
+	}
+	@Override
+	public CreatorMakeClassVO modifyClassInfo(CreatorMakeClassVO vo) {
+		return makeClassDao.modifyClassInfo(vo);
+	}
 	
 
 //	@Override
