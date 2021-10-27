@@ -25,25 +25,19 @@
 </style>
 <script>
 	$(()=>{
-		
-		
-		
 		//목록
 		$("#hQnAWList").click(()=>{
 			console.log(${number});
 			$("#homeQnAVFrm").attr("action", "/another/HomeQnAAsk/list?no=1" );
 			$("#homeQnAVFrm").submit();
-		});
-		
+		});		
 		//삭제 hQnAWDel
 		$("#hQnAWDel").click(()=>{
 			if(confirm('글을 삭제하시겠습니까??')){			
 				$("#homeQnAVFrm").attr("action", "/another/HomeQnAAsk/del?no=${vo.user_qna_no}" );
 				$("#homeQnAVFrm").submit();
 			}			
-		});
-		
-		
+		});		
 	});
 </script>
 

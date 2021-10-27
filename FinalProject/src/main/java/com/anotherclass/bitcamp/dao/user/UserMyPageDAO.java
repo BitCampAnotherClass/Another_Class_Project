@@ -40,5 +40,7 @@ public interface UserMyPageDAO {
 	public String pwdCheck(RegisterVO vo);
 	public int passwordChange(RegisterVO vo);
 	
-	public  List<UserClassDetailVO> Likedclass(String logid);// 아직매퍼미작성
+	public  List<UserClassDetailVO> Likedclass(String logid);
+	public int CancelLikeClass(int no);
+	
 }

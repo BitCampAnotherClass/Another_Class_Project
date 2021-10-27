@@ -164,14 +164,30 @@ public class UserMyPageController {
 		int result= userMyPageService.CancelLikeCreator(no);		
 		return result;
 	}
-	//클래스좋아요목록
-//	
-//	@RequestMapping("/LikedListClass")
-//	@ResponseBody
-//	public List<UserClassDetailVO> ajaxLikedClassList(String logid){	
-//		List<UserClassDetailVO> list = 
-//	}
-//	
+	//클래스좋아요목록	
+	@RequestMapping("/LikedListClass")
+	@ResponseBody
+	public List<UserClassDetailVO> ajaxLikedClassList(String logid){	
+		//String getCreatorNick 클래스번호넣어서 강사닉네임
+		List<UserClassDetailVO> list = userMyPageService.Likedclass(logid);
+		for(int i=0; i<list.size(); i++) {
+			UserClassDetailVO vo = list.get(i);
+			String creatorNick = userMyPageService.getCreatorNick(vo.getClass_no());//클래스번호가지고 강사명구함
+			vo.setCreator_nick2(creatorNick);
+		}
+		
+		return list;
+	}
+	//클래스좋아요취소
+	@RequestMapping("/cancelLikedListClass")
+	@ResponseBody
+	public int ajaxCancelClassLike(int no) {	
+		System.out.println(no);
+		int result= userMyPageService.CancelLikeClass(no);
+		System.out.println(result);
+		return result;
+	}
+	
 	
 	//장바구니목록 ajax
 	@RequestMapping("/ShoppingBasket")
