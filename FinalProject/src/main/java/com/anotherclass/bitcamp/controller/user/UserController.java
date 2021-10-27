@@ -33,8 +33,9 @@ public class UserController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
-		
-		session.setAttribute("userImg", "/another/img/etc/basic_profile.png");
+		if(session.getAttribute("userImg")==null || session.getAttribute("userImg").equals("")) {
+			session.setAttribute("userImg", "/another/img/etc/basic_profile.png");
+		}
 		
 		// 인기있는 강사 top 8 가져오기
 		List<RegisterVO> creatorList = userHomeService.popularCreator();
