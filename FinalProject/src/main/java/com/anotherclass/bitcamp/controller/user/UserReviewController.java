@@ -83,7 +83,7 @@ public class UserReviewController {
 	public ReviewVO classReviewPage(int nowPage, int class_no) {
 		ReviewVO vo = userReviewService.countTotalClassReview(class_no);
 		vo.setNowPage(nowPage);
-		
+		System.out.println("ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ");
 		return vo;
 	}
 	
