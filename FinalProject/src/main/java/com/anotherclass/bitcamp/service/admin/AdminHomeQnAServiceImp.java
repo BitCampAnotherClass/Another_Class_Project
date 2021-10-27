@@ -24,5 +24,15 @@ public class AdminHomeQnAServiceImp implements AdminHomeQnAService {
 	public List<AdminHomeQnAVO> boardPageSelect(AdminHomeQnAPagingVO pVo) {
 		return adminHomeQnAdao.boardPageSelect(pVo);
 	}
+
+	@Override
+	public AdminHomeQnAVO adminHomeQnAView(int no) {
+		return adminHomeQnAdao.adminHomeQnAView(no);
+	}
+
+	@Override
+	public String adminHomeQnAView2(int no) {
+		return adminHomeQnAdao.adminHomeQnAView2(no);
+	}
 	
 }

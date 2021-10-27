@@ -15,7 +15,7 @@
 	.adminQnAListli{border-bottom:1px solid black;margin-top:10px;padding:8px 0 8px 0;background-color:#ddd;font-weight:bold;} /*리스트타이틀*/	
 	.replySubject{text-align:left;}/*답글 제목*/
 	
-	.paging{margin:30px 0;font-size:1.2em;}
+	.paging{display:flex;justify-content:center;margin:30px 0;font-size:1.2em;}
     .paging>li{margin:0 10px;}
     .now>a{font-weight:bold;text-decoration:underline solid  2px #ff385c;color:#382E2C;font-size:1.1em}
 	
@@ -25,16 +25,17 @@
 	
 	
 	<div id="adminQnAList"> <!-- 게시판리스트 -->
+			<div id='bbTitle' style='font-size:28px;'>홈페이지 고객 문의</div>
 		
-			<div>
-				<form method="get" id="searchFrm" action="<%=request.getContextPath()%>/admin/HomeQnA">
-				   <select name="searchKey">
+			<div style='height:40px;text-align: right;'>
+				<form method="get" id="searchFrm" action="<%=request.getContextPath()%>/admin/HomeQnA" style='height:30px;'>
+				   <select name="searchKey" style='height:30px;'>
 				      <option value="title">제목</option>
 				      <option value="content">글내용</option>
 				      <option value="member_id">작성자</option>
 				   </select>
-				   <input type="text" name="searchWord" id="searchWord"/>
-				   <input type="submit" value="Search"/>
+				   <input type="text" name="searchWord" id="searchWord" style='height:30px;margin: 0 5px;'/>
+				   <input type="submit" value="Search" style='height:30px;background: #ff385c;border: none;color: white;padding: 0 8px;border-radius: 7px;'/>
 				</form>
 			</div>
 		
@@ -49,26 +50,50 @@
 				<li  class="adminQnAListli">답변여부</li>
 				
 			<c:forEach var="vo" items="${list}">	
-				<li>${vo.user_qna_no }</li>
-				<li>
-					<a href="<%=request.getContextPath()%>/admin/HomeQnA2?no=${vo.user_qna_no}" style='cursor:pointer;'>${vo.title }</a>
-					<input type="hidden" value="${vo.user_qna_no}">		
-				</li>
-				<li>${vo.member_id }</li>
-				<li>${vo.writedate }</li>
-				
-				<c:set var="replycount" value="${vo.replycount}" />	
-				<c:if test="${replycount eq 2  }"> 
-					<li>답변완료</li>
-				</c:if>
-				<c:if test="${replycount eq 1  }"> 
-					<li>미답변</li>
-				</c:if>
+			
+					<!-- 글번호 -->
+					<c:set var="board_no2" value="${vo.board_no2}" />	
+					<c:if test="${board_no2 eq 0 }"> 
+						<li class="hQnAListFli10 hQnAListFli101">${vo.user_qna_no}</li>
+					</c:if>
+					<c:if test="${board_no2 eq 1 }"> 
+						<li class="hQnAListFli10 hQnAListFli101"><label style="visibility:hidden;">${vo.user_qna_no}</label></li>
+					</c:if>
+					<c:if test="${board_no2 eq 0 }">
+						<li>
+							<a href="<%=request.getContextPath()%>/admin/HomeQnA2?no=${vo.user_qna_no}" style='cursor:pointer;'>${vo.title }</a>
+							<input type="hidden" value="${vo.user_qna_no}">	
+						</li>
+					</c:if>
+					<c:if test="${board_no2 eq 1 }">
+						<li>
+							<a href="<%=request.getContextPath()%>/admin/HomeQnA2?no=${vo.user_qna_no}" style='cursor:pointer;'>&ensp;&ensp;&ensp;<label style="color:blue;">[Re]</label>답변입니다</a>
+							<input type="hidden" value="${vo.user_qna_no}">	
+						</li>
+					</c:if>
+					<li>${vo.member_id }</li>
+					<li>${vo.writedate }</li>
+					
+					
+					<c:set var="replycount" value="${vo.replycount}" />							
+					<c:if test="${replycount eq 2 && board_no2 eq 0 }"> 
+						<li>답변완료</li>
+					</c:if>
+					<c:if test="${replycount eq 2 && board_no2 eq 1 }"> 
+						<li></li>
+					</c:if>
+					<c:if test="${replycount eq 1}"> 
+						<li>미답변</li>
+					</c:if>
+					
 			</c:forEach> 	
 		
 			</ul>
 		
-			<!-- 페이징 -->
+			
+	
+	</div>
+<!-- 페이징 -->
 			<div style='height:auto;'>
 			<ul class="paging">
 			         <c:if test="${pVo.nowPage>1}">
@@ -98,8 +123,5 @@
 			         </c:if>   
 		      </ul>
 			</div>
-	
-	</div>
-
 
 </div>

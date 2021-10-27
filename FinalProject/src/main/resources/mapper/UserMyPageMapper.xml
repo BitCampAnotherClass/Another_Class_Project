@@ -143,7 +143,8 @@
 			and b.class_no = c.class_no
 			and a.order_date IS NOT NULL
 			and a.cancel_date  IS NOT NULL		
-			and a.member_id = #{param1}  
+			and a.member_id = #{param1}
+			order by a.cancel_date
 		  ]]>
   	</select>
   	<update id="userOrderCancleSub">

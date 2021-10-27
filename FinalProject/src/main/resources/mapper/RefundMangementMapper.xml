@@ -22,6 +22,6 @@
 		]]>
 	</select>
 	<update id="refundDelete" parameterType="com.anotherclass.bitcamp.service.vo.admin.ExpectedRefundListMangementVO">
-		<![CDATA[update ordelTbl set refund_date = sysdate where member_id = #{member_id} and order_no = #{order_no}]]>
+		<![CDATA[update orderTbl set refund_date = sysdate where order_no = #{order_no}]]>
 	</update>
 </mapper>

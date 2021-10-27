@@ -25,21 +25,13 @@ public class AdminHomeQnAController {
 	
 	@RequestMapping(value="/HomeQnA")
 	public ModelAndView AdminHomeQnA(AdminHomeQnAPagingVO pVo) {
-		System.out.println(pVo.getSearchKey());
-		System.out.println(pVo.getSearchWord());
+		
 		ModelAndView mav = new ModelAndView();
 		pVo.setTotalRecord(adminHomeQnAService.totalRecordCount(pVo));  
-		System.out.println(pVo.getTotalRecord());
+	
     	mav.addObject("pVo",pVo);       
     	List<AdminHomeQnAVO> list = adminHomeQnAService.boardPageSelect(pVo);
-    	///////////////////////////////////////
-    	System.out.println(list.size());
-    	//////////////////////////////////
-    	for(int i=0; i<list.size(); i++) {
-    		AdminHomeQnAVO vo = list.get(i);
-    		System.out.println(vo.getUser_qna_no());
-    	}    
-    	/////////////////////////////////////////////
+    	
     	mav.addObject("list",list);	
 		mav.setViewName("admin/HomeQnA/admin_HomeQnA_list");		
 		return mav;
@@ -51,11 +43,13 @@ public class AdminHomeQnAController {
 		//제목누르면 글보기
 		@RequestMapping("/HomeQnA2")
 		public ModelAndView CreatorQnAAskView(int no) {		
-			ModelAndView mav = new ModelAndView();			
-//			AdminHomeQnAVO vo = creatorClassAskService.CAContent(no);
-//			int a = creatorClassAskService.CAReplyCheck(no);		
-//			vo.setReplycheck(a);		
-//			mav.addObject("vo",vo);
+			ModelAndView mav = new ModelAndView();	
+			AdminHomeQnAVO vo = adminHomeQnAService.adminHomeQnAView(no); 
+			if(vo.getReplycount()==2) {//답변일때 원래 문의글보기
+				String a = adminHomeQnAService.adminHomeQnAView2(no);
+				vo.setReplyContent(a);
+			}
+			mav.addObject("vo",vo);
 			mav.setViewName("admin/HomeQnA/admin_HomeQnA_view");
 			return mav;
 		}

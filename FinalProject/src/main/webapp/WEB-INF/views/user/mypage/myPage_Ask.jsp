@@ -155,7 +155,7 @@ $(function(){
 					
 					if( idx <= (listCnt-1) ){	
 						tag ="<li>";
-						tag +="<a href='#'>[ "+vo.category_name +" ] "+vo.class_name+"</a>";
+						tag +="<a href='<%=request.getContextPath()%>/classDetailView?no="+vo.class_no+"'>[ "+vo.category_name +" ] "+vo.class_name+"</a>";
 						
 						if(vo.replycheck == 0){
 							tag +="<span>미답변</span>";
@@ -396,7 +396,7 @@ $(function(){
 		<div id="classAsk"class="askDiv">
 			<ul id="classAskcontent">		
 			</ul>
-			<div class="more" style="display:none;text-align:center;">
+			<div class="more" style="display:block;text-align:center;">
 			<button type="button" class="morebtn">+ more</button>
 			</div>
 		</div>

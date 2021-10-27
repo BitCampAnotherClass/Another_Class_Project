@@ -161,6 +161,7 @@ $(function(){
 	           // type : "POST",
 	            success : function(result){
 	            	alert("환불 신청 접수되었습니다");
+	            	$("#orderDivUl").empty();
 	            	 OrderFin();
 	            	 OrderFin2();
 	            	 OrderFin3();
