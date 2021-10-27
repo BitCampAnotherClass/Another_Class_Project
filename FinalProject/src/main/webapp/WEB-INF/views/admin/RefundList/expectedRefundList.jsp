@@ -33,6 +33,7 @@ $(function(){
 					board +='<li class="userMg-chart-boardlist">'+vo.order_no+'';
 					board +='</li>';
 					board +='<li class="userMg-chart-boardlist" id="userMg-chart-id">'+vo.member_id+'</li>';
+					board +='<li class="userMg-chart-boardlist">'+vo.member_name+'</li>';
 					board +='<li class="userMg-chart-boardlist">'+vo.class_option_no+'</li>';
 					board +='<li class="userMg-chart-boardlist">'+vo.pay_company+'</li>';
 					board +='<li class="userMg-chart-boardlist">'+vo.order_date+'</li>';
@@ -40,12 +41,8 @@ $(function(){
 					board +='<li class="userMg-chart-boardlist">'+refund+'</li>';
 					board +='<li class="userMg-chart-boardlist">';
 					<c:set var="refundDate" value="vo.refund_date" />
-					<c:if test="${refundDate == null}">
 						board +='<input type="button" value="환불" class="account_information_button" id="account_information_btn"/>';
-					</c:if>
-					<c:if test="${refundDate != null}">
-						board +='<input type="button" value="환불완료" class="account_information_button"/>';
-					</c:if>
+					
 					board +='<input type="hidden" value="'+vo.order_no+'" id="userMg-chart-id"/>';
 					board +='</li>';
 				});
@@ -315,6 +312,7 @@ $(function(){
 			<ul class="userMg-chart-box">
 				<li class="userMg-chart-boardlist">주문번호</li>
 				<li class="userMg-chart-boardlist">아이디</li>
+				<li class="userMg-chart-boardlist">이름</li>
 				<li class="userMg-chart-boardlist">옵션번호</li>
 				<li class="userMg-chart-boardlist">은행사</li>
 				<li class="userMg-chart-boardlist">환불신청일</li>
