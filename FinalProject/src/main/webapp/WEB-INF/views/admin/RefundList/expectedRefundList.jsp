@@ -10,7 +10,6 @@ $(function(){
 		}
 		return data;
 	}
-	
 	let url="RefundMangement/RefundList";
 	function memberListAjax(){
 		var number = $('.paging-number').val();
@@ -37,7 +36,7 @@ $(function(){
 					board +='<li class="userMg-chart-boardlist">'+refund+'</li>';
 					board +='<li class="userMg-chart-boardlist">';
 					board +='<input type="button" value="환불" id="account_information_btn"/>';
-					board +='<input type="hidden" value="'+vo.member_id+'" id="userMg-chart-id"/>';
+					board +='<input type="hidden" value="'+vo.order_no+'" id="userMg-chart-id"/>';
 					board +='</li>';
 				});
 				$(".userMg-chart-box").append(board);
@@ -79,22 +78,23 @@ $(function(){
 		memberListAjax();
 	});
 
-	$(document).on('click','#userMg-information-popup-button-del',function(){
-		var deleteId = delectidInfo;
-		let deleteAccount = "MemberMangement/MemberAccountDelete";
-		const accountData = {"data":deleteId};
+	$(document).on('click','#account_information_btn',function(){
+		let delectidInfo = $('#account_information_btn').next().val();
+		const deleteNumber = delectidInfo;
+		const deleteAccount = "RefundMangement/RefundDelete";
+		const accountData = {"no":deleteNumber};
 		$.ajax({
 			url : deleteAccount
 			,type : "POST"
 			,data : accountData
 			,success:function(success){
-				alert('삭제되었습니다.');
+				alert('환불처리완료');
 				location.reload();
 			}
 			,error:function(error){
 				location.reload();
 			}
-		});
+		}); 
 	});
 	
 	$(document).on('click','.userMg-info-closeButton',function(){
