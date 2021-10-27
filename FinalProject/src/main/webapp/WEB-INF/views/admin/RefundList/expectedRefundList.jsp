@@ -5,9 +5,13 @@
 $(function(){
 	
 	function refundSeting(data){
+		console.log(data);
 		if(data == null){
 			data = '환불대기중'
+		}else{
+			data = '환불완료'
 		}
+		console.log(data);
 		return data;
 	}
 	let url="RefundMangement/RefundList";
@@ -30,12 +34,18 @@ $(function(){
 					board +='</li>';
 					board +='<li class="userMg-chart-boardlist" id="userMg-chart-id">'+vo.member_id+'</li>';
 					board +='<li class="userMg-chart-boardlist">'+vo.class_option_no+'</li>';
-					board +='<li class="userMg-chart-boardlist">'+vo.total_price+'</li>';
 					board +='<li class="userMg-chart-boardlist">'+vo.pay_company+'</li>';
 					board +='<li class="userMg-chart-boardlist">'+vo.order_date+'</li>';
+					board +='<li class="userMg-chart-boardlist">'+vo.refund_date+'</li>';
 					board +='<li class="userMg-chart-boardlist">'+refund+'</li>';
 					board +='<li class="userMg-chart-boardlist">';
-					board +='<input type="button" value="환불" id="account_information_btn"/>';
+					<c:set var="refundDate" value="vo.refund_date" />
+					<c:if test="${refundDate == null}">
+						board +='<input type="button" value="환불" class="account_information_button" id="account_information_btn"/>';
+					</c:if>
+					<c:if test="${refundDate != null}">
+						board +='<input type="button" value="환불완료" class="account_information_button"/>';
+					</c:if>
 					board +='<input type="hidden" value="'+vo.order_no+'" id="userMg-chart-id"/>';
 					board +='</li>';
 				});
@@ -153,7 +163,7 @@ $(function(){
 		height:500px;
 	}
 	
-	#account_information_btn{
+	.account_information_button{
 		padding: 3px 10px 3px 10px;
 		border: 1px solid #464646;
 	    background-color: #f0f0f0;
@@ -183,10 +193,10 @@ $(function(){
 		width: 10%;
 	}
 	.userMg-chart-boardlist:nth-child(8n+4){
-		width: 15%;
+		width: 10%;
 	}
 	.userMg-chart-boardlist:nth-child(8n+7){
-		width: 10%;
+		width: 15%;
 	}
 	
 	.userMg-chart-boardlist:nth-child(n+9){
@@ -295,7 +305,7 @@ $(function(){
 		
 		<div class="userMg-bottom">
 			<div class="search-box">
-				<input type="text" id="searchWord"  placeholder="이름검색"/>
+				<input type="text" id="searchWord"  placeholder="아이디검색"/>
 				<input type="date" id="dateSearchFirst" value="2020-10-01"/>
 				<label>~</label>
 				<input type="date" id="dateSearchLast" value="2021-12-01"/>
@@ -306,10 +316,10 @@ $(function(){
 				<li class="userMg-chart-boardlist">주문번호</li>
 				<li class="userMg-chart-boardlist">아이디</li>
 				<li class="userMg-chart-boardlist">옵션번호</li>
-				<li class="userMg-chart-boardlist">가격</li>
 				<li class="userMg-chart-boardlist">은행사</li>
-				<li class="userMg-chart-boardlist">가입일</li>
-				<li class="userMg-chart-boardlist">기타</li>
+				<li class="userMg-chart-boardlist">환불신청일</li>
+				<li class="userMg-chart-boardlist">환불완료일</li>
+				<li class="userMg-chart-boardlist">상태</li>
 				<li class="userMg-chart-boardlist">관리</li>
 			</ul>
 				<div class="userMg-board-margin">
