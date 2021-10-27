@@ -523,6 +523,9 @@ span.user-review-info{
 .review-class-info > .class-price{
 	font-weight:600;
 	margin-top:10px;
+	position:relative;
+	top:0; left:0;
+	text-align:left;
 }
 
 
