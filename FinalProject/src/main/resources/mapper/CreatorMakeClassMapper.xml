@@ -31,4 +31,12 @@
 		select creator_content from creator where member_id = #{member_id}
 	]]>
 	</select>
+	<select id="modifyClassInfo" resultType="com.anotherclass.bitcamp.vo.creator.CreatorMakeClassVO">
+	<![CDATA[
+		select class_no, class_name, class_info, class_price, member_id, class_thumb,
+		 class_content, class_img_file, class_post_no, class_addr1, class_addr2,
+		  max_headcount, category_no, request, progress, class_writedate, class_tag
+		  from classtbl where member_id = #{member_id}
+	]]>
+	</select>
 </mapper>

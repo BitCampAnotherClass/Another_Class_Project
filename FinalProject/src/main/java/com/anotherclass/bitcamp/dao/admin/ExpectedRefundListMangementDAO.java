@@ -9,5 +9,5 @@ public interface ExpectedRefundListMangementDAO {
 	public List<ExpectedRefundListMangementVO> refundList(ExpectedRefundListMangementVO vo);
 	public int refundDelete(int no);
 	public int boardLimit();
-	public int refundMangement();
+	public int addHeadCount(int no);
 }

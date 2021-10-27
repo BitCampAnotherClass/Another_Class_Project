@@ -8,4 +8,5 @@ public interface AdminRefundService {
 	public List<ExpectedRefundListMangementVO> refundList(ExpectedRefundListMangementVO vo);
 	public int refundDelete(int no);
 	public int boardLimit();
+	public int addHeadCount(int no);
 }

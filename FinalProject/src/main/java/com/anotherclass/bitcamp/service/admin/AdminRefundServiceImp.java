@@ -32,4 +32,9 @@ public class AdminRefundServiceImp implements AdminRefundService{
 		// TODO Auto-generated method stub
 		return expectedRefundListMangementDAO.boardLimit();
 	}
+	
+	@Override
+	public int addHeadCount(int no) {
+		return expectedRefundListMangementDAO.addHeadCount(no);
+	}
 }

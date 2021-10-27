@@ -75,8 +75,15 @@ public class CreatorController {
 	}
 	   
 	@RequestMapping("/modifyClass")
-	public String modifyClass() {
-	    return "creator/modifyClass";
+	public ModelAndView modifyClass(HttpSession ses,CreatorMakeClassVO vo,CreatorMakeClassDateTimeVO vo2) {
+		ModelAndView mav = new ModelAndView();
+		String id = (String)ses.getAttribute("creatorId");
+		vo.setMember_id(id);
+	//	int result = makeClassApplyService.modifyClass(vo);
+		mav.addObject("cate", makeClassApplyService.makeClassCategoryL());
+		mav.addObject("modify", makeClassApplyService.modifyClassInfo(vo));
+		mav.setViewName("/creator/modifyClass");
+	    return mav;
 	}
 	   
 	@RequestMapping("/creatorChannel")

@@ -34,7 +34,6 @@ $(function(){
 					board +='</li>';
 					board +='<li class="userMg-chart-boardlist" id="userMg-chart-id">'+vo.member_id+'</li>';
 					board +='<li class="userMg-chart-boardlist">'+vo.member_name+'</li>';
-					board +='<li class="userMg-chart-boardlist">'+vo.class_option_no+'</li>';
 					board +='<li class="userMg-chart-boardlist">'+vo.pay_company+'</li>';
 					board +='<li class="userMg-chart-boardlist">'+vo.order_date+'</li>';
 					board +='<li class="userMg-chart-boardlist">'+vo.refund_date+'</li>';
@@ -44,6 +43,7 @@ $(function(){
 						board +='<input type="button" value="환불" class="account_information_button" id="account_information_btn"/>';
 					
 					board +='<input type="hidden" value="'+vo.order_no+'" id="userMg-chart-id"/>';
+					board +='<input type="hidden" value="'+vo.class_option_no+'" id="userMg-chart-id"/>';
 					board +='</li>';
 				});
 				$(".userMg-chart-box").append(board);
@@ -87,6 +87,8 @@ $(function(){
 
 	$(document).on('click','#account_information_btn',function(){
 		let delectidInfo = $('#account_information_btn').next().val();
+		let deleteOrder = $('#account_information_btn').next().next().val();
+		console.log(deleteOrder);
 		const deleteNumber = delectidInfo;
 		const deleteAccount = "RefundMangement/RefundDelete";
 		const accountData = {"no":deleteNumber};
@@ -170,7 +172,7 @@ $(function(){
 	.userMg-chart-boardlist{
 		color: #000000;
 		float: left;
-		width:15%;
+		width:10%;
 		height: 40px;
 		line-height: 40px;
 		text-align:center;
@@ -192,10 +194,18 @@ $(function(){
 	.userMg-chart-boardlist:nth-child(8n+4){
 		width: 10%;
 	}
-	.userMg-chart-boardlist:nth-child(8n+7){
-		width: 15%;
+	.userMg-chart-boardlist:nth-child(8n+5){
+		width: 20%;
 	}
-	
+	.userMg-chart-boardlist:nth-child(8n+6){
+		width: 20%;
+	}
+	.userMg-chart-boardlist:nth-child(8n+7){
+		width: 10%;
+	}
+	.userMg-chart-boardlist:nth-child(8n+8){
+		width: 10%;
+	}
 	.userMg-chart-boardlist:nth-child(n+9){
 		background:white;
 		font-size: 0.9rem;
@@ -313,7 +323,6 @@ $(function(){
 				<li class="userMg-chart-boardlist">주문번호</li>
 				<li class="userMg-chart-boardlist">아이디</li>
 				<li class="userMg-chart-boardlist">이름</li>
-				<li class="userMg-chart-boardlist">옵션번호</li>
 				<li class="userMg-chart-boardlist">은행사</li>
 				<li class="userMg-chart-boardlist">환불신청일</li>
 				<li class="userMg-chart-boardlist">환불완료일</li>
