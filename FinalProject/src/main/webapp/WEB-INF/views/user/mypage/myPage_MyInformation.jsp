@@ -252,7 +252,7 @@ var serverName = '<%=request.getServerName() %>';
 var serverPort = <%=request.getServerPort() %>;
 $(()=>{
 	var fileList;
-	$(document).on('change','#member_file', function uploadFiles(e){
+	$(document).on('click','#image-input-button', function uploadFiles(e){
 			var file = $('#member_file')[0].files[0]
 			var form_data = new FormData();
 	      	form_data.append('file', file);

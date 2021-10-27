@@ -22,9 +22,9 @@ public class AdminRefundServiceImp implements AdminRefundService{
 	}
 	
 	@Override
-	public ExpectedRefundListMangementVO refundInfo(String idCheck) {
+	public int refundDelete(int no) {
 		// TODO Auto-generated method stub
-		return expectedRefundListMangementDAO.refundInfo(idCheck);
+		return expectedRefundListMangementDAO.refundDelete(no);
 	}
 	
 	@Override

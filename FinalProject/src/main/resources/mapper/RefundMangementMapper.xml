@@ -14,11 +14,14 @@
 	    <if test="dateSearchFirst != null">
 	     	<![CDATA[and (cancel_date >= to_date(#{dateSearchFirst},'YY-MM-DD') and cancel_date <= to_date(#{dateSearchLast},'YY-MM-DD'))]]>
 	    </if>
-	    	<![CDATA[and payment_date in null]]>
+	    	<![CDATA[and cancel_date is not null]]>
 	</select>
 	<select id="boardLimit" resultType="int" >
 		<![CDATA[
-		SELECT COUNT(member_id) FROM orderTbl where payment_date  in null
+		SELECT COUNT(member_id) FROM orderTbl where cancel_date is not null
 		]]>
-	</select>		
+	</select>
+	<update id="refundDelete" parameterType="com.anotherclass.bitcamp.service.vo.admin.ExpectedRefundListMangementVO">
+		<![CDATA[update orderTbl set refund_date = sysdate where order_no = #{order_no}]]>
+	</update>
 </mapper>

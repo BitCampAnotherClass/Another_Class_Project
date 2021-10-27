@@ -7,6 +7,7 @@ import com.anotherclass.bitcamp.service.vo.admin.ExpectedRefundListMangementVO;
 public interface ExpectedRefundListMangementDAO {
 	
 	public List<ExpectedRefundListMangementVO> refundList(ExpectedRefundListMangementVO vo);
-	public ExpectedRefundListMangementVO refundInfo(String idCheck);
+	public int refundDelete(int no);
 	public int boardLimit();
+	public int refundMangement();
 }

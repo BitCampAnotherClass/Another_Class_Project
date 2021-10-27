@@ -53,10 +53,11 @@ public class RefundMangementController {
 		return listCalcul;
 	}
 	
-	@RequestMapping(value="/RefundMangement/RefundInformation", method= RequestMethod.POST)
+	@RequestMapping(value="/RefundMangement/RefundDelete", method= RequestMethod.POST)
 	@ResponseBody
-	public ExpectedRefundListMangementVO memberAccountInfo(String idData){
-		return adminRefundService.refundInfo(idData);
+	public int memberAccountInfo(int no){
+		Integer cnt = adminRefundService.refundDelete(no);
+		return cnt;
 	}
 	
 	@RequestMapping(value="/RefundMangement")
