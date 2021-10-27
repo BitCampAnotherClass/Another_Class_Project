@@ -202,10 +202,10 @@ $(function(){
 		width: 20%;
 	}
 	.userMg-chart-boardlist:nth-child(7n+6){
-		width: 10%;
+		width: 20%;
 	}
 	.userMg-chart-boardlist:nth-child(7n+7){
-		width: 20%;
+		width: 10%;
 	}
 	.userMg-chart-boardlist:nth-child(n+8){
 		background:white;
