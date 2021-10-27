@@ -5,7 +5,8 @@
 </script>
 
 <div>
-	<a href="<%=request.getContextPath()%>/creator/makeClass">등록완료</a>
+	<a href="<%=request.getContextPath()%>/creator/makeClass">
+	<input type=button>등록완료</a>
 	
 
 </div>

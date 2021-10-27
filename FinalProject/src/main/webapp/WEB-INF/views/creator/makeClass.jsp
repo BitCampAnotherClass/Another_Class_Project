@@ -198,6 +198,10 @@ $(function(){
 			alert('클래스 소개를 입력하세요');
 			window.location.href="#f5";
 			return false;
+		}else if($('#classDateRealStart').val() == ""){
+			alert('날짜를 선택후 확인을 눌러주세요');
+			window.location.href="#f6";
+			return false;
 		}else if($('#roadAddress').val() == ""){
 			alert('도로명 주소 검색하세요');
 			window.location.href="#f7";
@@ -249,7 +253,6 @@ $(function(){
 			//delete arry[index];
 			delete arryStart[index];
 			delete arryEnd[index];
-			alert(arryStart)
 			classDateDivCount--;
 			console.log(classDateDivCount);
 			//$("#classDateRealStart").val(""); //네임안에 있는 값전체삭제
@@ -352,7 +355,7 @@ $(()=>{
 	
 	$('#summernote').summernote({
 		// 에디터 높이
-		height: 200,
+		height: 300,
 		width: 1200,
 		lang:"ko-KR",
 		focus: true,
@@ -399,6 +402,7 @@ $(()=>{
 /* body{ background-color:#FFF5F5;} */
 kimin{ color:#FF385C; }
 kimin2{font-size: 1.3em; color:gray; margin-left:5px;}
+
 #class_name{
 	height:50px; width:100%;
 }
@@ -443,7 +447,7 @@ kimin2{font-size: 1.3em; color:gray; margin-left:5px;}
 }
 .container{
 	width:1200px;
-	height:5450px; 
+	height:5100px; 
 	margin:0 auto;
 	padding:0px;
 }
@@ -456,13 +460,13 @@ kimin2{font-size: 1.3em; color:gray; margin-left:5px;}
 }
 .followDiv>ul>li{
 	float:left;
-	width:10%;
+	width:11.1%;
+	line-height: 32px;
 }
-.followDiv>ul>li:nth-child(1){
-	margin-left:30px;
-}
-.followDiv>ul>li:nth-child(8){
-	width:17%;
+.followDiv>ul{
+	padding-left:40px;
+	width:100%;
+	height:40px;
 }
 .followButton{
 	margin-right:5px;
@@ -569,12 +573,23 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	line-height: 30px;
 }
 .classDate>ul{border:;background-color:;
-	width:830px;
+	width:880px;
 	height:340px;
 	margin:0 auto;
 	margin-top:20px;
 	padding:0, 0, 0, 0;
 	
+}
+#dateConfirmButton{
+	height:300px;
+	border-radius:8px;
+	background-color: white;
+	border:1px solid lightgray;
+	margin-left:5px;
+}
+#dateConfirmButton:hover{
+	background-color:  #FF385C; 
+	color:white;
 }
 .classDate li{
 	float:left;
@@ -782,12 +797,8 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	padding:0;
 	width:100%;
 }
-#classDateRealStart{border:1px dotted lightgray;
-	display:;
-	width:400px;
-}
-#classDateRealEnd{border:1px dotted lightgray;
-	display:;
+#classDateRealStart, #classDateRealEnd{
+	display:none;
 	width:400px;
 }
 
@@ -804,7 +815,7 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 			<li><div class="followButton" style="color:white">5</div><a href="#f5"> 소개</a></li>
 			<li><div class="followButton" style="color:white">6</div><a href="#f6"> 일정</a></li>
 			<li><div class="followButton" style="color:white">7</div><a href="#f7"> 상세</a> 주소</li>
-			<li><div class="followButton" style="color:white">8</div><a href="#f8"> 수강료 및 최대인원</a></li>
+			<li><div class="followButton" style="color:white">8</div><a href="#f8"> 수강료,인원</a></li>
 			<li><div class="followButton" style="color:white">9</div><a href="#f9"> #태그</a></li>
 		</ul>
 	</div>
@@ -905,7 +916,7 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 			<li><input class="flatpickrCalender"/></li>
 			<li><div  id="putDateTime"></div></li>
 			<li><div id="dateCount"></div></li>	
-			<li><input type="button" value="확인" onclick="startTimeRealInput()"></li>
+			<li><input id="dateConfirmButton" type="button" value="확인" onclick="startTimeRealInput()"></li>
 		</ul>
 	</div>
 	<div>
