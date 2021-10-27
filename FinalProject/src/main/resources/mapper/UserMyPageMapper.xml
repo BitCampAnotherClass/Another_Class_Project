@@ -143,7 +143,8 @@
 			and b.class_no = c.class_no
 			and a.order_date IS NOT NULL
 			and a.cancel_date  IS NOT NULL		
-			and a.member_id = #{param1}  
+			and a.member_id = #{param1}
+			order by a.cancel_date
 		  ]]>
   	</select>
   	<update id="userOrderCancleSub">
@@ -188,9 +189,24 @@
 			#{additional_information_one, mode=OUT, jdbcType=VARCHAR, javaType=String} 
 		)
 	</select>
+
+	<select id="Likedclass"  resultType="com.anotherclass.bitcamp.vo.user.UserClassDetailVO">
+		select a.class_like_no ,b.class_no, b.class_name, b.class_thumb, c.category_name
+		from classlike a,classtbl  b,category  c
+		where a.class_no = b.class_no
+		and b.category_no = c.category_no
+		and a.member_id =#{param1}	
+	</select>
+	<delete id="CancelLikeClass">
+	  	<![CDATA[	  	
+			delete classlike where class_like_no = #{param1}
+	  	]]> 
+  	</delete>
+
 	<update id="passwordChange" parameterType="com.anotherclass.bitcamp.register.RegisterVO" >
 		<![CDATA[
 			update membertbl set member_pw = #{member_pw} where member_id = #{member_id}
 		]]>
 	</update>
+
   </mapper>

@@ -47,7 +47,7 @@
 	  grid-template-rows: 1fr;	
 	  border-bottom-left-radius: 15px;
 	  border-bottom-right-radius: 15px;
-	  background: #FDD7E4; /*#FDD7E4; rgb(255, 7, 110)*/
+	  background: #F5F5F5; /*#FDD7E4; rgb(255, 7, 110)*/
 	}
 	.card-stats .stat {
 	  display: flex;
@@ -86,7 +86,8 @@
 				async:false,
 				success:function(l){
 					var ll = $(l)
-					console.log(ll);
+				
+					$('#likedCreatiorList').html('');
 	    			var tag =""; 	
 					ll.each(function(idx,vo){	
 						
@@ -106,12 +107,12 @@
 						tag +="<div class='heartImg' id='"+vo.creator_like_no+"'><img class='likeimgbox91' style='width:127%;' src='/another/img/jisu/ff385bigcheart.png'/></div>";//좋아요번호
 						tag +="</div>";
 						tag +="<div class='stat border'>";
-						tag +="<div class='value' style='color:#fff;font-weight:bold;font-size:1.1rem;'>좋아요수</div>";//color:white;
-						tag +="<div class='type' style='color:#fff;font-weight:bold;font-size:1.1rem;'>"+vo.creatorlikecount+"</div>";//color:white;
+						tag +="<div class='value' style='color:#333;font-size:1rem;'>좋아요수</div>";//color:white;
+						tag +="<div class='type' style='color:#333c;font-size:1.2rem;'>"+vo.creatorlikecount+"</div>";//color:white;
 						tag +="</div>";
 						tag +="<div class='stat'>";
-						tag +="<div class='value' style='color:#fff;font-weight:bold;font-size:1.1rem;'>클래스</div>";//color:white;
-						tag +="<div class='type' style='color:#fff;font-weight:bold;font-size:1.1rem;'>"+vo.creatorclasscount+"</div>";//color:white;
+						tag +="<div class='value' style='color:#333;font-size:1rem;'>클래스</div>";//color:white;
+						tag +="<div class='type' style='color:#333;font-size:1.2rem;'>"+vo.creatorclasscount+"</div>";//color:white;
 						tag +="</div></div></div>";
 						tag +="<input type='hidden'  value='"+vo.creator_like_no+"'>";//이걸로지울거임						
 				
@@ -159,6 +160,8 @@
 		                     }
 	                  }
 	               }); ////////클릭이벤트
+	               
+	               
 				});//each
 			}//success
 		});//ajax	

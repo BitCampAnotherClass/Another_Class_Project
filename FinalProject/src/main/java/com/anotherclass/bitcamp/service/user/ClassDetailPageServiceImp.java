@@ -82,6 +82,15 @@ public class ClassDetailPageServiceImp implements ClassDetailPageService {
 	public int ClassAskReplyEdit(UserClassDetailVO2 vo) {
 		return classDetailPageDAO.ClassAskReplyEdit(vo);
 	}
+	@Override
+	public int LikedcreatorCount(String logid) {		
+		return classDetailPageDAO.LikedcreatorCount(logid);
+	}
+	@Override
+	public int OpenClassCount(String logid) {		
+		return classDetailPageDAO.OpenClassCount(logid);
+	}
+	
 
 
 	

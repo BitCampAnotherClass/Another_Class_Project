@@ -23,7 +23,21 @@
 	</select>
 	<insert id="makeClassApplyDateTime" parameterType="com.anotherclass.bitcamp.vo.creator.CreatorMakeClassDateTimeVO">
 	<![CDATA[
-		insert into classoption(class_option_no, class_no, start_date, end_date, all_headcount, cancel, cancel_reason) values(class_option_sq.nextval, #{class_no}, to_date(#{start_date},'yyyy-MM-DD HH24:mi'), to_date(#{end_date},'yyyy-MM-DD HH24:mi'), #{All_headcount}, 0, null)
+		insert into classoption(class_option_no, class_no, start_date, end_date, all_headcount, cancel, cancel_reason) values(class_option_sq.nextval, #{class_no}, to_date(#{start_date},'yyyy-MM-DD HH24:mi'), to_date(#{end_date},'yyyy-MM-DD HH24:mi'), 0, 0, null)
 	]]>
 	</insert>
+	<select id="creatorChannel" resultType="com.anotherclass.bitcamp.vo.user.ClassListVO">
+	<![CDATA[
+		select creator_content from creator where member_id = #{member_id}
+	]]>
+	</select>
+	<select id="modifyClassInfo" resultType="com.anotherclass.bitcamp.vo.creator.CreatorMakeClassVO">
+	<![CDATA[
+		select class_no, class_name, class_info, class_price, member_id, class_thumb,
+		 class_content, class_img_file, class_post_no, class_addr1, class_addr2,
+		  max_headcount, category_no, request, progress, class_writedate, class_tag
+		  from classtbl where member_id = #{member_id}
+	]]>
+	</select>
+	
 </mapper>

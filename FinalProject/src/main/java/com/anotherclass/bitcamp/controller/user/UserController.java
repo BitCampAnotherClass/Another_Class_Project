@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import com.anotherclass.bitcamp.register.RegisterVO;
 import com.anotherclass.bitcamp.service.creator.MakeClassApplyService;
 import com.anotherclass.bitcamp.service.user.UserHomeService;
 import com.anotherclass.bitcamp.vo.creator.CreatorClassCategoryVO;
+import com.anotherclass.bitcamp.vo.user.ClassVO;
 import com.anotherclass.bitcamp.vo.user.ReviewVO;
 
 
@@ -29,8 +31,12 @@ public class UserController {
 	
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView home(HttpServletRequest req) {
+	public ModelAndView home(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
+		if(session.getAttribute("userImg")==null || session.getAttribute("userImg").equals("")) {
+			session.setAttribute("userImg", "/another/img/etc/basic_profile.png");
+		}
+		
 		// 인기있는 강사 top 8 가져오기
 		List<RegisterVO> creatorList = userHomeService.popularCreator();
 		mav.addObject("creatorList", creatorList);
@@ -38,6 +44,15 @@ public class UserController {
 		// 베스트 후기 best 5 가져오기
 		List<ReviewVO> reviewList = userHomeService.bestReview();
 		mav.addObject("reviewList", reviewList);
+		
+		// 인기있는 클래스 top 8 가져오기
+		List<ClassVO> popularClassList = userHomeService.popularClass();
+		mav.addObject("popularClassList", popularClassList);
+		
+		// 신규 클래스 8개 가져오기
+		List<ClassVO> newClassList = userHomeService.newClass();
+		mav.addObject("newClassList", newClassList);
+
 		
     	mav.setViewName("/user/home");
     	return mav;

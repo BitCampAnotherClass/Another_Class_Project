@@ -36,7 +36,27 @@ public class AdminServiceImp implements AdminService {
 	}
 	
 	@Override
-	public List<MemberMangementVO> MemberAccountInfo(String idCheck) {
+	public  MemberMangementVO MemberAccountInfo(String idCheck) {
 		return memberMangementDao.MemberAccountInfo(idCheck);
+	}
+	
+	@Override
+	public List<MemberMangementVO> creatorList(MemberMangementVO vo) {
+		return memberMangementDao.creatorList(vo);
+	}
+	
+	@Override
+	public MemberMangementVO creatorAccountInfo(String idCheck) {
+		return memberMangementDao.creatorAccountInfo(idCheck);
+	}
+	
+	@Override
+	public int creatorBoardLimit() {
+		return memberMangementDao.creatorBoardLimit();
+	}
+	
+	@Override
+	public int deleteAccount(MemberMangementVO vo) {
+		return memberMangementDao.deleteAccount(vo);
 	}
 }

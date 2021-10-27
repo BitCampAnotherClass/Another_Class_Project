@@ -30,12 +30,7 @@
 <script>
 	$(()=>{		
 		
-		//목록
-		$("#cQnAWList").click(()=>{
-			console.log(${number});
-			$("#homeQnAVFrm").attr("action", "/another/HomeQnAAsk/list?no=1" );
-			$("#homeQnAVFrm").submit();
-		});
+		
 		
 		
 	});
@@ -46,7 +41,7 @@
 	<!-- <div class="hQnAT">클래스문의</div> <!-- 페이지 타이틀 -->
 	
 		<div class="cQnATWT20" >클래스문의글보기</div>
-		
+		<c:set var="board_no2" value="${vo.board_no2}" />
 		
 			<ul id="cQnATul">
 				<li>
@@ -57,53 +52,70 @@
 					<div>작성일자</div>
 					<div>${vo.writedate }</div>	
 				</li>
+				<c:if test="${board_no2 eq 0 }">
 				<li>
-					<div>클래스명</div>
+					<div>제목</div>
 					<div><input type="text"  id="cQnAWriteSubview" readonly disabled value="${vo.title }"></div>	
 				</li>
-				
+				</c:if>
+				<c:if test="${board_no2 eq 1 }">
+				<li>
+					<div>제목</div>
+					<div><input type="text"  id="cQnAWriteSubview" readonly disabled value="답변입니다"></div>	
+				</li>
+				</c:if>
+				<c:if test="${board_no2 eq 0 }">
 				<li>
 					<div>문의내용</div>
 					<div><textarea  id="cQnAWriteConview" readonly disabled >${vo.content }</textarea></div>	
 				</li>
-				
-				<li >
-					<div>답변</div><!-- hQnAWriteFileview -->
-					<div>
-						<textarea  id="cQnAWriteConviewReply" readonly disabled >${vo.content }</textarea>
-						<div style='text-align:right;width:90%;'>
-							<button style='background:#fff;border:none;border:1px solid #999;padding:3px 14px;margin:3px 7px 0 0;'>수정</button>	
-							<button style='background:#fff;border:none;border:1px solid #999;padding:3px 14px;margin-top:3px;'>삭제</button>								
-						</div>
-					</div>	
+				</c:if>
+				<c:if test="${board_no2 eq 1 }">
+				<li>
+					<div>답변내용</div>
+					<div><textarea  id="cQnAWriteConview" readonly disabled >${vo.content }</textarea></div>	
 				</li>
-				<!-- 수정폼 -->
-				<li >
-					<div>답변</div><!-- hQnAWriteFileview -->
-					<div>
-						<textarea  id="cQnAWriteConviewReply" >${vo.content }</textarea>
-						<div style='text-align:right;width:90%;'>
-							<button style='background:#fff;border:none;border:1px solid #999;padding:3px 14px;margin-top:3px;'>수정완료</button>							
-						</div>
-					</div>	
-				</li>
+				</c:if>
 				
-				<!--  <li id="cQnAButview">				
-					<input type="button" name="cQnAWList" id="cQnAWList" value="목록"/>
-				</li>		-->		
-			</ul>
-			<div style='border:1px solid #ddd;margin-top:100px;'> <!-- 댓글작성 -->
-					<span style='display: inline-block;margin: 18px 20px 15px 43px;'>문의 내용 답변작성</span>
-					<form method="post" id="replyFrm">
-						<div style='text-align:center;'><textarea name="classqna_content" id="classMainAskTa" placeholder="궁금하신 점 또는 클래스문의등을 자유롭게 작성해 주세요."></textarea></div><!-- classMainAskTa -->
-						<input type="button" id="replysub" value="작성완료"/>
-						<input type="hidden" name="class_no" value="${vo.class_no }"/><!-- 클래스 번호 --><!-- no -->
-					</form>
-			</div>
-			
+				<!-- 답변 -->
+					
+				<c:if test="${board_no2 eq 0 }"> 
+					<li >
+						<div>답변</div><!-- hQnAWriteFileview -->
+						<div>
+							<textarea  id="cQnAWriteConviewReply" readonly disabled >${vo.replyContent }</textarea>
+							<div style='text-align:right;width:90%;'>
+								<button style='background:#fff;border:none;border:1px solid #999;padding:3px 14px;margin:3px 7px 0 0;'>수정</button>	
+								<button style='background:#fff;border:none;border:1px solid #999;padding:3px 14px;margin-top:3px;'>삭제</button>								
+							</div>
+						</div>	
+					</li>
+					<!-- 수정폼 -->
+					<li >
+						<div style='color:blue'>답변</div><!-- hQnAWriteFileview -->
+						<div>
+							<textarea  id="cQnAWriteConviewReply" >${vo.replyContent }</textarea>
+							<div style='text-align:right;width:90%;'>
+								<button style='background:#fff;border:none;border:1px solid #999;padding:3px 14px;margin-top:3px;'>수정완료</button>							
+							</div>
+						</div>	
+					</li>
+				
+				
+					</ul>
+					<div style='border:1px solid #ddd;margin-top:100px;'> <!-- 댓글작성 -->
+							<span style='display: inline-block;margin: 18px 20px 15px 43px;'>문의 내용 답변작성</span>
+							<form method="post" id="replyFrm">
+								<div style='text-align:center;'><textarea name="classqna_content" id="classMainAskTa" placeholder="궁금하신 점 또는 클래스문의등을 자유롭게 작성해 주세요."></textarea></div><!-- classMainAskTa -->
+								<input type="button" id="replysub" value="작성완료"/>
+								<input type="hidden" name="class_no" value="${vo.user_qna_no}"/><!-- 클래스 번호 --><!-- no -->
+							</form>
+					</div>
+			</c:if>
 			<div id="cQnAButview">				
-					<input type="button" name="cQnAWList" id="cQnAWList" value="목록"/>
+			<!-- onclick="location.href='/HomeQnA';" -->
+					<input type="button" name="cQnAWList" id="cQnAWList"  onclick="location.href='<%=request.getContextPath()%>/admin/HomeQnA';" value="목록"/>
 			</div>
-			<div style="display:none">${vo.class_no }</div><!-- 글번호 -->
+			<div style="display:none">${vo.user_qna_no }</div><!-- 글번호 -->
 			
 </div>

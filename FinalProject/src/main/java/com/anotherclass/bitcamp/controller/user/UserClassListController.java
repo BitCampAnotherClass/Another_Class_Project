@@ -3,6 +3,8 @@ package com.anotherclass.bitcamp.controller.user;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,5 +49,14 @@ public class UserClassListController {
 		
 		System.out.print(sText);
 		return result;
+	}
+	@RequestMapping(value = "classList/findCreatorClass")
+	@ResponseBody
+	public List<ClassListVO> findCreatorClass(ClassListVO vo,String CCls, HttpServletRequest req, HttpSession ses){
+		String logid= (String)req.getSession().getAttribute("creatorId");
+		
+	
+		List<ClassListVO> result = classListPageService.findCreatorClass(vo);
+		return result;	
 	}
 }

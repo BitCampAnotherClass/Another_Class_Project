@@ -39,6 +39,7 @@ $(function(){
  	var category_no = new Array();
 	var category_name = new Array();
 	var startDate_arry = new Array();
+	var nick_array = new Array();
 	var listCnt = 12; // 목록에서 한 번에 보여줄 클래스 개수
 //////////////////////////////////// 낮은 가격순	
  function sortByPrice(){
@@ -63,7 +64,7 @@ $(function(){
 	 			 	class_content_arry[idx]= rr[idx].class_content;
 					category_name[idx]= rr[idx].category_name;
 					startDate_arry[idx]=rr[idx].start_date;
-					
+					nick_array[idx]=rr[idx].nick;
 					if( idx <= (listCnt-1) ){	
 						
 						classDiv  = '<div class="class_div">';
@@ -76,8 +77,8 @@ $(function(){
 						classDiv += '<ul>';
 						classDiv += '<li><div>'+category_name[idx]+'</div></li>';
 						classDiv += '<li>'+className_arry[idx]+'</li>';
-						classDiv +=	'<li>'+classTag_arry[idx]+'</li>'
-						classDiv +=	'<li>'+startDate_arry[idx]+'</li>';
+						classDiv +=	'<li>'+classTag_arry[idx]+'</li>';
+						classDiv +=	'<li>'+nick_array[idx]+'</li>';
 						classDiv +=	'<li>'+classPrice_arry[idx]+'원</li>';
 						classDiv += '</ul>';
 						classDiv +='</div>';
@@ -103,8 +104,8 @@ $(function(){
 							classDiv += '<ul>';
 							classDiv += '<li><div>'+category_name[idx]+'</div></li>';
 							classDiv += '<li>'+className_arry[idx]+'</li>';
-							classDiv +=	'<li>'+classTag_arry[idx]+'</li>'
-							classDiv +=	'<li>'+startDate_arry[idx]+'</li>';
+							classDiv +=	'<li>'+classTag_arry[idx]+'</li>';
+							classDiv +=	'<li>'+nick_array[idx]+'</li>';
 							classDiv +=	'<li>'+classPrice_arry[idx]+'원</li>';
 							classDiv += '</ul>';
 							classDiv +='</div>';
@@ -146,7 +147,7 @@ $(function(){
 	 			 	class_content_arry[idx]= rr[idx].class_content;
 	 			 	category_name[idx]= rr[idx].category_name;
 	 			 	startDate_arry[idx]=rr[idx].start_date;
-	 			 	
+	 			 	nick_array[idx]=rr[idx].nick;
 	 				if( idx <= (listCnt-1) ){	
 						
 		 			 	classDiv  = '<div class="class_div">';
@@ -160,7 +161,7 @@ $(function(){
 						classDiv += '<li><div>'+category_name[idx]+'</div></li>';
 						classDiv += '<li>'+className_arry[idx]+'</li>';
 						classDiv +=	'<li>'+classTag_arry[idx]+'</li>'
-						classDiv +=	'<li>'+startDate_arry[idx]+'</li>';
+						classDiv +=	'<li>'+nick_array[idx]+'</li>';
 						classDiv +=	'<li>'+classPrice_arry[idx]+'원</li>';
 						classDiv += '</ul>';
 						classDiv +='</div>';
@@ -184,10 +185,11 @@ $(function(){
 							classDiv += '</div>';
 							classDiv +=	'<div class="info_div">';
 							classDiv += '<ul>';
-							classDiv += '<li><div>'+classThumb_arry[idx]+'</div></li>';
+							classDiv += '<li><div>'+category_name[idx]+'</div></li>';
 							classDiv += '<li>'+className_arry[idx]+'</li>';
 							classDiv +=	'<li>'+classTag_arry[idx]+'</li>'
 							classDiv +=	'<li>'+startDate_arry[idx]+'</li>';
+							classDiv +=	'<li>'+nick_array[idx]+'</li>';
 							classDiv +=	'<li>'+classPrice_arry[idx]+'원</li>';
 							classDiv += '</ul>';
 							classDiv +='</div>';
@@ -235,7 +237,7 @@ $(function(){
 	 			 	class_content_arry[idx]= rr[idx].class_content;
 	 			 	category_name[idx]= rr[idx].category_name;
 	 			 	startDate_arry[idx]=rr[idx].start_date;
-	 			 	
+	 			 	nick_array[idx]=rr[idx].nick;
 	 			 	
 				if( idx <= (listCnt-1) ){	
 					
@@ -250,7 +252,7 @@ $(function(){
 					classDiv += '<li><div>'+category_name[idx]+'</div></li>';
 					classDiv += '<li>'+className_arry[idx]+'</li>';
 					classDiv +=	'<li>'+classTag_arry[idx]+'</li>'
-					classDiv +=	'<li>'+startDate_arry[idx]+'</li>';
+					classDiv +=	'<li>'+nick_array[idx]+'</li>';
 					classDiv +=	'<li>'+classPrice_arry[idx]+'원</li>';
 					classDiv += '</ul>';
 					classDiv +='</div>';
@@ -277,7 +279,7 @@ $(function(){
 						classDiv += '<li><div>'+category_name[idx]+'</div></li>';
 						classDiv += '<li>'+className_arry[idx]+'</li>';
 						classDiv +=	'<li>'+classTag_arry[idx]+'</li>'
-						classDiv +=	'<li>'+startDate_arry[idx]+'</li>';
+						classDiv +=	'<li>'+nick_array[idx]+'</li>';
 						classDiv +=	'<li>'+classPrice_arry[idx]+'원</li>';
 						classDiv += '</ul>';
 						classDiv +='</div>';
@@ -313,28 +315,14 @@ $(function(){
 	height:130px;
 	margin-top:30px;
 }
-.page_name a{
-	background-color:; 
-	border:1px dotted lightgray;
-	border-radius:8px;
-	width:64%;
-	height:100px;
-	float: left;
-	text-align: center;
-	color:#333;
-	display: table-cell;
-	font-weight: 500;
-	font-size: 1.6em;
-	line-height: 100px;
-}
 .select_boxes{background-color:;
 	width:35%;
 	height:100px;
-	margin:0px 10px 0px 0;
+	margin:-20px 10px 0px 0;
 	float: right;
 }
 .select_boxes>input[type=text]{background-color:white;
- 	border:1px dotted gray;
+ 	border:1px solid lightgray;
 	height:30px;
 	width:100%;
 	border-radius:8px;
@@ -357,7 +345,7 @@ $(function(){
 	float:left;
 }
 .priceRangeBox{ 
-	border:1px dotted gray;
+	border:1px solid lightgray;
 	width:100px;
 	height:30px;
 	text-align: center;
@@ -380,6 +368,7 @@ $(function(){
 	color:white;
 }
 input[type=button]{
+border:1px solid lightgray;
 	color:#FF385C;
 	cursor: pointer;
 	float: right;
@@ -424,7 +413,7 @@ input[type=button]:hover{
 .middle_top_select>ul>li:not(:nth-child(2)){
 	width:100px;
 }
-.class_div{ border:1px dotted lightgray;
+.class_div{ 
 	float:left;
 	width:23%;
 	height:350px;
@@ -432,7 +421,7 @@ input[type=button]:hover{
 	border-radius:8px;
 	padding:5px 5px 5px 5px;
 }
-.img_div{ border:1px dotted lightgray;
+.img_div{ border:;
 	width:100%;
 	height:53%;
 	border-radius:8px;
@@ -445,7 +434,7 @@ input[type=button]:hover{
 	heigth:100%;
 	object-fit:cover;
 }
-.info_div{border:1px dotted lightgray;/* 정보 div */
+.info_div{border:;/* 정보 div */
 	width:100%;
 	height:42%;
 	padding:5px 5px 5px 5px;    
@@ -462,11 +451,11 @@ input[type=button]:hover{
 	
 }
 .info_div>ul>li:nth-child(1)>div {
-	background-color:#FF385C; /* 카테고리 정보 div */
+	 /* 카테고리 정보 div */
 	border-radius:8px;
 	display:inline-block;
-	padding:0 10px 0 10px;
-	color:white;
+	padding:0 0px 0 0px;
+	color:#FF385C;
 }
 .info_div>ul>li:nth-child(2) {
 	font-weight: 500;
@@ -478,7 +467,6 @@ input[type=button]:hover{
 .info_div>ul>li:nth-child(3) {
 	font-weight: 400;
 	color:gray;
-	border:1px dotted #00B9B1;
 	color:#00B9B1;
 	border-radius:6px;
 	overflow: hidden;
@@ -494,7 +482,8 @@ input[type=button]:hover{
 	color:gray;
 }
 .info_div>ul>li:nth-child(6) { /* 클래스 넘버 숨겨둠*/
-	display: none;
+	font-weight: 500;
+	color:gray;
 }
 .price_sort, .apply_sort{
 	cursor: pointer;
@@ -504,21 +493,9 @@ input[type=button]:hover{
 <div class="main_container">
 		<div class="top_container">
 			<div class="page_name">
-				<label><a href="<%=request.getContextPath()%>/classList">클래스 리스트</a></label>
+				<h3 class="main-ah3">클래스 리스트</h3>
 			</div>
 			<div class="select_boxes">
-			<!--  	   <select>
-						<option>카테고리</option>
-						<c:forEach var="cate" items="${cla }">
-							<option >${cate.category_name }</option>  
-						</c:forEach>
-					</select>
-					<select>
-						<option>지역</option>
-						<c:forEach var="loca" items="${cla }">
-							<option >${loca.class_addr1 }</option>  
-						</c:forEach>
-					</select> -->
 					<input type="text" id="search_text" placeholder="검색어를 입력하세요">
 					<div class="select_range">	
 						<ul>
@@ -541,7 +518,9 @@ input[type=button]:hover{
 		<c:forEach var="vo" items="${cla }">
 		<div class="class_div">
 			<div class="img_div">
+				<a href="<%=request.getContextPath()%>/classDetailView?no= ${vo.class_no }"  target="">	
 				<img class="img_size" src="${vo.class_thumb}">
+				</a>
 			</div>
 			<div class="info_div">
 				<ul>
@@ -549,10 +528,11 @@ input[type=button]:hover{
 					<li>${vo.class_name }</li>
 					<li>${vo.class_tag }</li>
 					<li>${vo.class_price }원</li>
-					<li>${vo.start_date }</li>
-					<li>${vo.class_no }</li> <!-- 클래스 넘버 숨겨둠 -->
+					<li>${vo.nick }</li>
+					<li style="display:none">${vo.class_no }</li> <!-- 클래스 넘버 숨겨둠 -->
 				</ul>
 			</div>
+		
 		</div>
 		</c:forEach>
 	</div>

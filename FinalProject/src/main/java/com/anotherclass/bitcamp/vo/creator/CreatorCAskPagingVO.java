@@ -31,7 +31,7 @@ public class CreatorCAskPagingVO {
 	   }
 	   public void setNowPage(int nowPage) {
 	      this.nowPage = nowPage;
-	      System.out.println(totalPage);
+	    
 	      
 	      if(nowPage!=0) {
 	         startPage = (nowPage-1)/onePageNumCount*onePageNumCount+1;

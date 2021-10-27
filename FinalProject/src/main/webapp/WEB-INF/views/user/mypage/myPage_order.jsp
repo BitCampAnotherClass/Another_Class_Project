@@ -49,10 +49,10 @@ $(function(){
 	    			aa.each(function(idx,vo){	    	
 	    				tag +="<li>";
 	    				tag +="<div>";
-	    				tag +="<a href='#'><img src='img/jisu/classimg2.png'/></a>"; //vo.class_thumb
+	    				tag +="<img src='"+vo.class_thumb+"'/>"; 
 	    				tag +="</div>";
 	    				tag +="<div>"
-	    				tag +="<a href='#'>"+vo.class_name+"</a>";
+	    				tag +="<a href='<%=request.getContextPath()%>/classDetailView?no=" + vo.class_no + "' target=''>"+vo.class_name+"</a>";
 	    				tag +="<span>주문번호 : "+vo.order_no+"</span>";
 	    				tag +="<span>상품금액 : "+vo.class_price+"원</span>";
 	    				tag +="<span>주문일자 : "+vo.order_date2+"</span>";
@@ -84,10 +84,10 @@ $(function(){
 	    			bb.each(function(idx,vo2){	    	
 	    				tag +="<li>";
 	    				tag +="<div>";
-	    				tag +="<a href='#'><img src='img/jisu/classimg2.png'/></a>"; //vo2.class_thumb
+	    				tag +="<img src='"+vo2.class_thumb+"'/>"; 
 	    				tag +="</div>";
 	    				tag +="<div>"
-	    				tag +="<a href='#'>"+vo2.class_name+"</a>";
+	    				tag +="<a href='<%=request.getContextPath()%>/classDetailView?no=" + vo2.class_no + "' target=''>"+vo2.class_name+"</a>";
 	    				tag +="<span>주문번호 : "+vo2.order_no+"</span>";
 	    				tag +="<span>상품금액 : "+vo2.class_price+"원</span>";
 	    				tag +="<span>주문일자 : "+vo2.order_date2+"</span>";
@@ -122,10 +122,10 @@ $(function(){
 		    			cc.each(function(idx,vo3){	    	
 		    				tag +="<li>";
 		    				tag +="<div>";
-		    				tag +="<a href='#'><img src='img/jisu/classimg2.png'/></a>"; //vo3.class_thumb
+		    				tag +="<img src='"+vo3.class_thumb+"'/>"; 
 		    				tag +="</div>";
 		    				tag +="<div>"
-		    				tag +="<a href='#'>"+vo3.class_name+"</a>";
+		    				tag +="<a href='<%=request.getContextPath()%>/classDetailView?no=" + vo3.class_no + "' target=''>"+vo3.class_name+"</a>";
 		    				tag +="<span>주문번호 : "+vo3.order_no+"</span>";
 		    				tag +="<span>상품금액 : "+vo3.class_price+"원</span>";
 		    				tag +="<span>취소일자 : "+vo3.cancel_date2+"</span>";
@@ -161,6 +161,7 @@ $(function(){
 	           // type : "POST",
 	            success : function(result){
 	            	alert("환불 신청 접수되었습니다");
+	            	$("#orderDivUl").empty();
 	            	 OrderFin();
 	            	 OrderFin2();
 	            	 OrderFin3();

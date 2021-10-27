@@ -203,7 +203,7 @@ $(document).ready(function(){
 					addr_arr[idx] = r[idx].class_addr1;
 					classImg_arr[idx] = r[idx].class_thumb;
 
-					if( idx <= (listCnt-1) ){ // 처음 보여줄 클래스 목록
+					if( idx < listCnt ){ // 처음 보여줄 클래스 목록
 						tag = '<li>';
 						tag += '<div class="class-list-thumb"><a href="<%=request.getContextPath()%>/classDetailView?no=' + r[idx].class_no + '" target="_blank"><img src="' + r[idx].class_thumb + '"/></a></div>';
 						tag += '<div class="class-list-info">';
@@ -342,7 +342,7 @@ $(document).ready(function(){
 				
 		        var markerInfo = '<div class="markerInfo">';
 		        markerInfo += '<a class="marker-class-no" href="<%=request.getContextPath()%>/classDetailView?no=' + classNo + '" target="_blank"></a>'
-		        markerInfo += '<div class="marker-class-img"><img src="<%=request.getContextPath()%>' + classImg + '"/></div>';
+		        markerInfo += '<div class="marker-class-img"><img src="' + classImg + '"/></div>';
 		        markerInfo += '<div class="marker-class-info">'
 		        markerInfo += '<div class="marker-class-category">' + cateL + ' > ' + category + '</div>'
 		        markerInfo += '<div class="marker-class-name">' + className + '</div>';

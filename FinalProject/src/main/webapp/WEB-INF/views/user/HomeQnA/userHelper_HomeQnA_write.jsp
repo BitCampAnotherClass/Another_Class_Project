@@ -23,6 +23,9 @@
 	
 </style>
 <script>
+var serverName = '<%=request.getServerName() %>';
+var serverPort = <%=request.getServerPort() %>;
+
 	$(()=>{
 		
 	    $("#hQnAWriteFile").change(function(event){
@@ -66,6 +69,33 @@
 			$("#hQnAWriteD33ulFrm").attr("action", "/another/HomeQnAAsk/writeOk" );
 			$("#hQnAWriteD33ulFrm").submit();			
 		});
+		
+		/////////////사진첨부
+		var fileList;
+		$(document).on('click','#bbbb', function uploadFiles(e){
+				var file = $('#hQnAWriteFile')[0].files[0]
+				var form_data = new FormData();
+		      	form_data.append('file', file);
+		      	$.ajax({
+		        	data: form_data
+		        	,type: "POST"
+		        	,url: '/another/FileUpload/imageUploadUrl'
+		        	,contentType: false
+		        	,processData: false
+		        	,success: function(imageData) {
+		        		console.log("img:"+ imageData.url);
+		        		fileList = imageData.url;
+		        		document.getElementById('aaaa').src ='http://'+serverName+':'+serverPort+fileList;
+		        		document.getElementById('myPage-account-image').src ='http://'+serverName+':'+serverPort+fileList;
+		        		document.getElementById('uploaded').value ='http://'+serverName+':'+serverPort+fileList;
+		        		//document.getElementById('account_send').submit();
+		        	}
+		      		,error: function(error){
+		      			console.log(error);
+		      			console.log('파일업로드 실패');
+		      		}
+		      	});
+			});
 	});
 	
 
@@ -93,20 +123,28 @@
 					<div>파일첨부</div>
 					<div><input type="file" name="file1" id="hQnAWriteFile">
 					<label for="hQnAWriteFile" id="labelfor1">파일선택</label><span id="uploaded"></span></div>	
+					
 				</li>
 				<li id="fu2">
 					<div>파일첨부</div>
 					<div><input type="file" name="file2" id="hQnAWriteFile2">
 					<label for="hQnAWriteFile2" id="labelfor2">파일선택</label><span id="uploaded2"></span></div>	
+					
 				</li>
 				<li id="fu3">
 					<div>파일첨부</div>
 					<div><input type="file" name="file3" id="hQnAWriteFile3">
 					<label for="hQnAWriteFile3" id="labelfor3">파일선택</label><span id="uploaded3"></span></div>	
 				</li>
+				<li>
+					<div><img src="" id="aaaa"></div>
+				</li>		
+				
 				<li id="hQnABut">
 				<input type="button" name="hQnAWCan6" id="hQnAWCan6" value="취소"/><input type="button" name="hQnAWSubmit9" id="hQnAWSubmit9" value="등록"/>
-				</li>				
+				
+				</li>	
+					
 			</ul>
 			
 			

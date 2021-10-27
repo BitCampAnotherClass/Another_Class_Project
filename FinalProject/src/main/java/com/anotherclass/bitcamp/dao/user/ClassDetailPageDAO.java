@@ -31,4 +31,9 @@ public interface ClassDetailPageDAO {
 	public int ClassASkCheckRepDelUp(int no);
 	
 	public int ClassAskReplyEdit(UserClassDetailVO2 vo);
+	
+	
+	public int LikedcreatorCount(String logid);
+	public int OpenClassCount(String logid);
+	
 }
