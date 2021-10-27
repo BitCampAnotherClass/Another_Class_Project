@@ -106,7 +106,7 @@
 	
 	.menu_title_container{z-index:1000;}/*메뉴바*/
 	
-	.morebtn{
+	#morebtn{
 		background: #ff385c;
 	    font-size: 16px;
 	    border: none;
@@ -118,7 +118,7 @@
 </style>
 <script>
 
-$(function(){			
+		
 
 $(document).ready(function(){		
 	
