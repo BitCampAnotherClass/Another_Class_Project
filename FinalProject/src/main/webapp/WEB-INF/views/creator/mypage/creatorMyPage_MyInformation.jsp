@@ -491,11 +491,11 @@ $(()=>{
 							<form method="post"  id="account_send"  action="MyinformationEdit" >
 							<ul class="myPage-accountView-info-list">
 								<li class="myPage-accountView-info">
-								<span class="myPage-accountView-box-title">이름</span>
+								<span class="myPage-accountView-box-title">닉네임</span>
 									<span class="myPage-accountView-box">
 										<span class="account_edit_input-outline">
 											<span class="account_edit_input-box">
-												<input type="text" id="member_name" name="member_name" value="${vo.member_name }" onclick="inputClick(this)" class="account_edit_input" placeholder="이름" autocomplete=”off” maxlength="7"readonly/>				
+												<input type="text" id="member_nick" name="nick" value="${vo.nick }" onclick="inputClick(this)" class="account_edit_input" placeholder="이름" autocomplete=”off” maxlength="7"readonly/>				
 											</span>
 										</span>
 									</span>
