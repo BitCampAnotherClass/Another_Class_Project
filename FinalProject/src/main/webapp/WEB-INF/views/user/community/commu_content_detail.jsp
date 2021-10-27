@@ -124,6 +124,8 @@
 	#gobasketB{width:119px;height:38px;font-size:18px;margin:10px 30px 15px 0;boder:1px solid #ddd;background-color:#616060;color:#fff;}
 	#gopayB{width:200px;height:38px;font-size:18px;margin:10px 0 15px 0;boder:1px solid #ddd;background-color:#616060;color:#fff;}
 	
+	#replysub{margin: 10px 0 15px 1040px;background-color:white;border:none;border:1px solid #999;width:100px;padding-top:5px;padding-bottom:5px;}
+	
 </style>
 <script>
 	$(function(){		
@@ -189,7 +191,78 @@
 				like_func();
 			}	    	
 	    });
-
+	  //댓글작성 ajax
+		  $(document).on('click','#replysub',function(){
+		
+					var params = $("#replyFrm").serialize();
+					$.ajax({
+						url:"/another/creatorAskReplyWritee",					
+						data:params, 
+						success:function(result){ 
+						
+								$("#classMainAskTa").val("");
+								alert("댓글 등록 되었습니다");
+								a = 1;
+								AskReply();
+							
+						},error:function(){
+							
+						}
+					});
+				
+		  });
+	
+		
+		AskReply();
+			
+	});
+	
+	$(()=>{		
+		
+		
+		var a = ${vo.replycheck}
+		
+		function AskReply(){
+			console.log('이잉잉');
+			
+			var rUrl ="/another/communityAskReplyList";
+			var rParam = "no=${vo.community_no}";
+				$.ajax({
+					
+			    	url:rUrl,
+			    	data:rParam,
+			    	success:function(b){
+			    	var bb = $(b)
+			    	var tag ="";	    		    								
+			    	bb.each(function(idx,vo2){
+			    		tag +="<div id='aa'>";
+			    		tag +="<div style='width:100%;'>";
+						tag +="<div style='margin-bottom:10px;'>댓글</div>";	  
+						tag +="	<textarea  id='cQnAWriteConviewReply' readonly disabled style='width:91%;padding-left: 20px;padding-top:14px;'>"+vo2.community_com_reply+"</textarea>";
+						tag +="<div style='text-align:right;width:90%;'>"
+						tag +="<button id='ediBtn' style='background:#ff385c;color:#fff;border:none;border-radius:5px;padding:3px 14px;margin:3px 7px 0 0;font-size:15px;'>수정</button>	";
+			    		tag +="<button id='delBtn' style='background:#ff385c;color:#fff;border:none;border-radius:5px;padding:3px 14px;margin-top:3px;font-size:15px;'>삭제";
+			    		tag +="<input type='hidden' value='"+vo2.community_com_no+"'></button>	"
+			    		tag +="</div></div></div>";
+			    		
+			    		//수정폼
+			    		tag +="<li id='bb' style='display:none'>";
+			    		tag +="<div style='width:100%;'>";
+			    		tag +="<div style='margin-bottom:10px;'>댓글수정</div>";
+			    		tag +="<form id='bbFrm'>";
+			    		tag +="<textarea  id='cQnAWriteConviewReply' style='width:91%;padding-left: 20px;padding-top:14px;' name='community_com_reply'>"+vo2.community_com_reply+"</textarea>";
+			    		tag +="<div style='text-align:right;width:90%;'>";
+			    		tag +="<button style='height:auto;background:#ff385c;color:#fff;border:none;border-radius:5px;padding:3px 14px;margin-top:3px;font-size:15px;'>수정완료</button>";
+			    		tag +="<input type='hidden' name='community_no' value='"+vo2.community_no+"'>"
+			    		tag +="</div></form></div></div>";	
+			    		
+			    		if(a>=1){//답변이있을때
+			    			$("#replyDivv").html(tag);  
+			    		}
+			    	});	    			
+			    }	    		
+			})	 	    	
+		} 
 </script>
 
 <div id="Bcotainer">
@@ -218,53 +291,30 @@
 
 			<div id="d9" class="menu"> <!-- 문의 -->
 				<div class="menutitle"><span>댓글</span></div>
+				
+				<div id="replyDivv">					
+			</div>			
+			
+			<div style='border:1px solid #ddd;margin-top:100px;width:100%;'> <!-- 댓글작성 -->
+					<span style='display: inline-block;margin: 18px 20px 15px 43px;'>댓글작성</span>
+					<form method="post" id="replyFrm">
+						<div style='text-align:center;'><textarea name="community_com_reply" id="classMainAskTa" placeholder="자유롭게 작성해 주세요."></textarea></div><!-- classMainAskTa -->
+						<input type="button" id="replysub" value="작성완료"/>
+						<input type="hidden" name="community_no" value="${vo.community_no }"/><!-- 클래스 번호 --><!-- no -->
+						<input type="hidden" name="community_com_member_id" value="${member_id}"/>
+					</form>
+			</div>		
 				<div id="d9_2"><!-- 댓글내용 -->
-					<ul id="creatormemberoneask">
-						<li> <!-- **문의댓글한줄 -->
-							<div class="askdiv909"><!-- 이미지 + 닉네임 + 작성날짜-->
-								<div><img src="img/jisu/basic.png"/></div> <!-- 이미지 -->
-								<div>
-									<div><label>an** | 2021년 6월 6일 20:26 작성</label></div>
-									<div><label>꽃다발이 예뻐요</label></div>
-								</div> 						
-							</div>							
-							
-							 
-							<!-- -------------------------------------------------- -->
-							
-							<div class="askdiv808" > <!-- 강사답댓글 -->
-								<div style="display:flex;width:20%;"><label style="display:block;width:20%;height:100%;vertical-align:middle;font-size:2rem;color:#666;">↳</label><img src="img/jisu/creatorprofile.png" style="width:80%"/></div> <!-- 이미지 -->
-								<div style="width:80%;">
-									<div><label> goguma | 2021년 6월 7일 12:00 작성</label></div>
-									<div><label>감사합니다 :)</label></div>
-								</div> <!-- 아이디 -->		
-							</div>							
-						</li>
-						
-						
-						<li> <!-- **문의댓글한줄 -->
-							<div class="askdiv909"><!-- 이미지 + 닉네임 + 작성날짜-->
-								<div><img src="img/jisu/dog.png"/></div> <!-- 이미지 -->
-								<div>
-									<div><label>tr2** | 2021년 6월 21일 12:41 작성</label></div>
-									<div><label>어떤 클래스 이용하셨나요?</label></div>
-								</div> 							
-							</div>							
-							
-							<div style="display:none;"> 
-								
-							</div><!-- 답댓글--> 
-					  </li>
+					<ul id="communitymemberoneask">
+					
 						
 					</ul>					
 				</div>
-				<div><!-- 댓글작성 -->
-					<span>댓글 작성</span>
-					<form method="post" id="">
-						<div><textarea name="classMainAskTa" id="classMainAskTa" placeholder="자유롭게 작성해 주세요."></textarea></div>
-						<input type="button" id="" value="작성완료"/>
-						<input type="hidden" name="no" value="${vo.community_no }"/><!-- 클래스 번호 -->
-					</form>
+				<div id="replyDivv">					
+			</div>			
+			
+			<div style='border:1px solid #ddd;margin-top:100px;width:100%;'> <!-- 댓글작성 -->
+				
 				</div>
 			</div>
 		</div>		

@@ -5,31 +5,18 @@
   <mapper namespace="com.anotherclass.bitcamp.dao.user.UserCommunityDAO">
   	<select id="CommuDetailAllRecord" resultType="com.anotherclass.bitcamp.vo.user.CommunityVO">
   	<![CDATA[
-		
-		select community_no, community_tag, img_con1, img_con2, img_con3, img_con4, member_id
+		select community_no, community_tag, img1,  img_con1, img_con2, img_con3, img_con4, member_id
 		from community
 		where community_no = #{param1}
-	
-		
 		]]>
   	</select>
   	
   	  	<select id="communityAllList" resultType="com.anotherclass.bitcamp.vo.user.CommunityVO">
   	<![CDATA[
-		
-		select community_no, community_tag, img_con1, img_con2, img_con3, img_con4, member_id, writedate
+		select community_no, community_tag, img1, img_con1, img_con2, img_con3, img_con4, member_id, writedate
 		from community
-		
-	
-		
 		]]>
   	</select>
   
   </mapper>
   
-  <!-- 	select a.category_name, b.img_con1, b.img_con2, b.img_con3, b.img_con4
-		from category a, community b, classTbl c
-		where a.category_no = c.category_no
-		and c.member_id = b.member_id
-		
-		where community_no = #{param1} -->

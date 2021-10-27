@@ -15,9 +15,6 @@ import com.anotherclass.bitcamp.service.admin.AdminService;
 @RequestMapping("/admin")
 public class NoticeManagementController {
 
-	
-
-	
 	@RequestMapping(value="/noticeManagement")
 	public String noticeManagement() {
 		return "admin/BoardManagement/noticeManagement";

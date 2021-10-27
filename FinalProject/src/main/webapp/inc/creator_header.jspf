@@ -232,8 +232,8 @@
 	         <li class="menu_title"><a href="#">문의(Q&A)</a>
 	            <ul>
 	               <li><a href="#" class="small-menu">관리자문의</a></li>
-	               <li><a href="<%=request.getContextPath()%>/CreatorNotice" class="small-menu">공지사항</a></li>
-	               <li><a href="<%=request.getContextPath()%>/CreatorFaq" class="small-menu">자주묻는질문</a></li>
+	               <li><a href="<%=request.getContextPath()%>/creator/CreatorNotice" class="small-menu">공지사항</a></li>
+	               <li><a href="<%=request.getContextPath()%>/creator/CreatorFaq" class="small-menu">자주묻는질문</a></li>
 	            </ul>
 	         </li>   
 	      </ul>

@@ -36,7 +36,7 @@
 	margin : 65px 30px 20px 0;
 	background: #FF385C;
 	text-align: center;
-	
+	border-radius: 40px;
 	border: 0;
     box-shadow: 0;
     display: block;
@@ -90,8 +90,7 @@
 		<li class="creator-homee"><a href="CommunityNewContent">게시글 작성</a></li>
 		
 					<input class="search-bbar" type="text" placeholder="#태그를 이용하여 검색하세요" />
-					
-				</div>	
+
 		</section>
 		</div>
 
@@ -130,7 +129,7 @@ $(()=>{
 						
 						classNo_arry[idx] = rr[idx].community_no;
 		 				className_arry[idx]= rr[idx].img_con1;
-		 			 	//classAddr1_arry[idx]= rr[idx].class_addr1;
+		 			 	classAddr1_arry[idx]= rr[idx].img1;
 		 			 	//classPrice_arry[idx]= rr[idx].class_price;
 		 			 	classThumb_arry[idx]= rr[idx].class_thumb;
 		 			 	classTag_arry[idx]= rr[idx].community_tag;
@@ -142,7 +141,7 @@ $(()=>{
 	
 						classDiv = '<div class="class_div"><a href="<%=request.getContextPath()%>/CommunityContentDetail?community_no=' + classNo_arry[idx] + '" target="">'
 						classDiv += '<div class="img_div">';
-						classDiv +=	'<img class="img_size" src="<%=request.getContextPath()%>/img/kimin/maca.png">';
+					    classDiv += '<img class="img_size" src="'+classAddr1_arry[idx]+'">';
 						classDiv += '</div>';
 						classDiv +=	'<div class="info_div">';
 						classDiv += '<ul>';
@@ -168,7 +167,7 @@ $(()=>{
 			                     classDiv  = '<div class="class_div">';
 			                     classDiv += '<div class="img_div">';
 			                     classDiv += '<a href="<%=request.getContextPath()%>/CommunityContentDetail?community_no=' + classNo_arry[idx] + '" target="">'
-			                     classDiv +=   '<img class="img_size" src="<%=request.getContextPath()%>/img/kimin/maca.png">';
+			                     classDiv +=   '<img class="img_size" src="'+classAddr1_arry[idx]+'">';
 			                     classDiv += '</a>'
 			                     classDiv += '</div>';
 			                     classDiv +=   '<div class="info_div">';
