@@ -88,20 +88,20 @@
 		</selectKey>
 	</insert>
 	<select id="selectReviewComment" resultType="com.anotherclass.bitcamp.vo.user.ReviewComVO">
-		select review_com_no, review_no, rc.member_id, member_img, com_no1, com_no2, reply, to_char(writedate, 'YY/MM/DD HH24:MI') writedate
+		select review_com_no, review_no, rc.member_id, member_img, com_no1, com_no2, reply, to_char(writedate, 'YY/MM/DD HH24:MI') writedate, delete_sort
 		from reviewCom rc
 		join memberTbl m
 		on m.member_id=rc.member_id
-		where delete_sort=0 and review_no=#{review_no}
+		where review_no=#{review_no}
 		<if test='review_com_no!=0'>and review_com_no=#{review_com_no}</if>
 		order by review_no desc, com_no1 asc, review_com_no asc
 	</select>
-	<select id="countReplyCheck" parameterType="int">
-		select count(review_com_no)
+	<select id="countReplyCheck" resultType="int">
+		select NVL(sum(count(review_com_no)), 0) cnt
 		from reviewCom
 		where com_no2=1
 		group by com_no1
-		having review_com_no=#{param1}
+		having com_no1=#{param1}
 	</select>
 	<delete id="deleteReviewComment" parameterType="com.anotherclass.bitcamp.vo.user.ReviewComVO">
 		delete from reviewCom
@@ -111,4 +111,10 @@
 		update reviewCom set delete_sort=1 
 		where delete_sort=0 and review_com_no=#{review_com_no} and member_id=#{member_id}
 	</update>
+	<select id="selectCreatorClass" resultType="com.anotherclass.bitcamp.vo.user.ClassVO">
+		select member_id, class_no, class_name 
+		from classTbl
+		where member_id=#{param1}
+		order by class_no asc
+	</select>
 </mapper>

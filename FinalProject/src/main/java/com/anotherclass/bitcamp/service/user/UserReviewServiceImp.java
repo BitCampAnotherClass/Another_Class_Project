@@ -70,5 +70,10 @@ public class UserReviewServiceImp implements UserReviewService {
 	public int updateDelReviewComment(ReviewComVO vo) {
 		return userReviewDAO.updateDelReviewComment(vo);
 	}
+
+	@Override
+	public List<ClassVO> selectCreatorClass(String member_id) {
+		return userReviewDAO.selectCreatorClass(member_id);
+	}
 	
 }

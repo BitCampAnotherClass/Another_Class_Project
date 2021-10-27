@@ -3,140 +3,33 @@
 
 
 <link href="<%=request.getContextPath()%>/css/user/review.css" rel="stylesheet" type="text/css"/>
-<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 
-<!-- ${vo.class_no } -->
+<div class="select-class" style="width:800px">
+	<select class="select-class-list">
+		<c:forEach var="vo" items="${vo}">	
+			<option value="${vo.class_no}">[${vo.class_no}] ${vo.class_name} </option>
+		</c:forEach>
+	</select>
 
-<div> <!-- 후기 -->
-
-	<div class="menutitle">
-		<span>후기</span><span class="class-review-cnt"></span>
-	</div>
-	<!-- 
-	<div class="review-chart">
-		
-	</div>
-	 -->
-	
-	<div class="review-wrap">
-		<div class="review-top">
-			베스트순 | 최신순 | 사진리뷰 | 별점
-		</div>
-		<div class="review-list">
-			<ul>
-			
-				<li class="class-review-content">
-					<div class="user-review">
-						<div class="review-info">
-							<div class="user-img"><img src="img/test/creator_01.PNG"/></div>
-							<div class="user-review-info">
-								<p>USERIDUSERID</p>
-								<p>2021.10.05</p>
-							</div>
-							<div class="star">
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="far fa-star"></i>
-							</div>
-						</div>
-						<div class="review-content">
-							
-							<div class="review-text">
-								미션과 강의만 꾸준히 보고 배우면서 노력하다보면 제가 원하는 캐릭터들의 맛을 살릴 수 
-								있을거 같아요 선생님의 열정 넘치시는 연기와 몰입도로 너무 재밌게 배우고 있습니다 
-								언젠가 제가 연기한 캐릭터 목소리를 들으실 날이 오겠죠?ㅎㅎ
-							</div>
-						</div>
-					</div> <!-- //user-review 리뷰 내용 -->
-					
-					<div class="review-comment-write">
-						<div class="comment-info">
-							<div class="user-img"><img src="img/test/creator_02.jpg"/></div>
-						</div>
-						<form id="reviewCommentFrm" method="post" action="<%=request.getContextPath()%>/reviewCommentOk">
-							<textarea id="review-reply" name="reply" placeholder="댓글을 입력해주세요."></textarea>
-							<input id="review-reply-btn" type="submit" value="등록"/>
-						</form>
-					</div> <!-- // review-comment-write 댓글 작성 폼 -->
-					
-					<div class="review-comment-list">
-					
-						<div class="review-comment">
-							<div class="comment-item">
-								<div class="comment-info">
-									<div class="user-img"><img src="img/test/creator_02.jpg"/></div>
-								</div>
-								
-								<div class="comment-text">
-									<span class="user-review-info">creatorID</span>
-									감사합니다. 저는 크리에이터입니다. 제 강의를 잘 들어주셔서 감사합니다.
-									저는 크리에이터입니다. 제 강의를 잘 들어주셔서 감사합니다.
-									저는 크리에이터입니다. 제 강의를 잘 들어주셔서 감사합니다.
-									저는 크리에이터입니다. 제 강의를 잘 들어주셔서 감사합니다.
-									
-								</div>
-							</div>
-						</div> <!-- //review-comment 댓글 1개 -->
-						
-						
-						<div class="review-comment">
-							<div class="comment-item">
-								<div class="comment-info">
-									<div class="user-img"><img src="img/test/creator_02.jpg"/></div>
-								</div>
-								
-								<div class="comment-text">
-									<span class="user-review-info">creatorID</span>
-									감사합니다. 저는 크리에이터입니다. 제 강의를 잘 들어주셔서 감사합니다.
-									저는 크리에이터입니다. 제 강의를 잘 들어주셔서 감사합니다.
-									저는 크리에이터입니다. 제 강의를 잘 들어주셔서 감사합니다.
-									저는 크리에이터입니다. 제 강의를 잘 들어주셔서 감사합니다.
-									
-								</div>
-							</div>
-							
-							<div class="comment-reply">
-								<div class="comment-item">
-									<div class="comment-info">
-										<div class="user-img"><img src="img/test/creator_02.jpg"/></div>
-									</div> <!-- 대댓글 프로필 이미지 -->
-									
-									<div class="reply-text">
-										<span class="user-review-info">creatorID</span>
-										완전 제 취향이에요 저도 그린벽지인지 페인트인지 정보 부탁 드려도 될까요? 색이 너무 예쁘네요 ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ
-										
-									</div>
-								</div> <!-- //comment-reply 대댓글 1개 -->
-							</div> <!-- //comment-item 대댓글 목록 영역 -->
-							
-						</div> <!-- //review-comment 댓글 1개 -->
-
-
-					</div> <!-- //review-comment-list 댓글 목록 영역 -->
-				</li> <!-- 후기 1개 -->
-				
-			</ul>
-		</div> <!-- review-list -->
-		<div class="review-paging">
-		<!-- 
-			<ul>
-				<li class="page-num" id="prev-page"><a href="#">◀</a></li>
-				<li class="page-num"><a href="#">1</a></li>
-				<li class="page-num active"><a href="#">2</a></li>
-				<li class="page-num"><a href="#">3</a></li>
-				<li class="page-num"><a href="#">4</a></li>
-				<li class="page-num"><a href="#">5</a></li>
-				<li class="page-num" id="next-page"><a href="#">▶</a></li>
-			</ul>
-			 -->
-		</div>
-	</div>
-	
 </div>
 
+<div class="review-wrap" style="width:800px">
+	<div class="review-top">
+		최신순 | 별점순 | 사진리뷰
+	</div>
+	<div class="review-list">
+		<ul>
+		<!-- 후기 목록 -->
 
+		</ul>
+	</div> <!-- review-list -->
+	<div class="review-paging">
+	<!-- 페이징 -->
+	</div>
+</div>
+	
+
+<!-- 후기 -->
 
 
 <script type="text/javascript">
@@ -148,12 +41,22 @@ $(document).ready(function(){
 	var onePageRecord=5; // 한 페이지당 레코드 수
 	var nowPageRecord = onePageRecord; // 현재 페이지 레코드 수
 	
-	var userId = '${userId}'; // 로그인 회원 아이디
-	var userImg = '${userImg}'; // 로그인 회원 이미지
-	var class_no = 1000;//'${vo.class_no }'; // 해당 클래스 번호 임시./.......,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
+	var memberId = '${creatorId}'; // 로그인 회원 아이디
+	var memberImg = '${creatorImg}'; // 로그인 회원 이미지
+	var class_no = $('.select-class-list').val(); // 해당 클래스 번호
+	
+	$(document).on('change','.select-class-list', function(){
+		console.log('v체[인지');
+		class_no = $(this).val();
+		console.log(class_no);
+		setClassReviewPage();
+	});
+	
+	console.log(class_no);
 	
 	// 페이지 세팅 + 리뷰 목록 불러오기
 	function setClassReviewPage(){
+		console.log('qmnffkdjrlrlrl');
 		// 클래스 후기 페이징 가져오기
 		var pageUrl = '<%=request.getContextPath()%>/classReviewPage';
 		var params = {'nowPage': now_page, 'class_no': class_no};
@@ -165,17 +68,17 @@ $(document).ready(function(){
 				total_page = r[0].totalPage;
 
 				var pageTag = '<ul>';
-				pageTag += '<li class="page-num" id="prev-page"><a href="javascript:void(0);">◀</a></li>';
+				pageTag += '<li class="page-num" id="prev-page"><a href="#">◀</a></li>';
 				for(var i=r[0].groupStartPage; i<=(r[0].groupStartPage + r[0].oneGroupPage-1); i++){
 					if(i <= r[0].totalPage){
 						pageTag += '<li class="page-num';
 						if(now_page==i){ // 현재 페이지 active 클래스 주기
 							pageTag += ' active';
 						}
-						pageTag += '"><a href="javascript:void(0);">' + i + '</a></li>';
+						pageTag += '"><a href="#">' + i + '</a></li>';
 					} //if
 				} // for
-				pageTag += '<li class="page-num" id="next-page"><a href="javascript:void(0);">▶</a></li></ul>';
+				pageTag += '<li class="page-num" id="next-page"><a href="#">▶</a></li></ul>';
 				
 				$('.review-paging').html(pageTag);
 				$('.class-review-cnt').text(r[0].totalRecord);
@@ -201,6 +104,7 @@ $(document).ready(function(){
 						$('.review-list > ul').html('');
 						rr.each(function(idx, rvo){
 							tag = `<li class="class-review-content">
+							<input type="hidden" class="review_no" name="review_no" value="` + rvo.review_no + `"/>
 							<div class="user-review">
 							<div class="review-info">
 								<div class="user-img"><img src="` + rvo.member_img + `"/></div>
@@ -235,13 +139,18 @@ $(document).ready(function(){
 						
 						<div class="review-comment-write">
 							<div class="comment-info">
-								<div class="user-img"><img src="` + userImg + `"/></div>
+								<div class="user-img"><img src="` + memberImg + `"/></div>
 							</div>
-							<form id="reviewCommentFrm" method="post" action="<%=request.getContextPath()%>/reviewCommentOk">
-								<textarea id="review-reply" name="reply" placeholder="댓글을 입력해주세요."></textarea>
-								<input id="review-reply-btn" type="submit" value="등록"/>
+							<form class="reviewCommentFrm">
+								<input type="hidden" class="review_no" name="review_no" value="` + rvo.review_no + `"/>
+								<input type="hidden" class="review_com_no2" name="com_no2" value="0"/>
+								<textarea class="review-reply" name="reply" placeholder="댓글을 입력해주세요."></textarea>
+								<input class="review-reply-btn" type="button" value="등록"/>
 							</form>
 						</div> <!-- // review-comment-write 댓글 작성 폼 -->
+						<ul class="review-comment-list" style="display:none;"> <!-- 댓글 목록 영역-->
+						
+						</ul>
 					</li>`;
 							
 							$('.review-list > ul').append(tag);
@@ -250,6 +159,9 @@ $(document).ready(function(){
 								var more = `<div class="more-btn"><input type="button" value="더 보기" /></div>`;
 							}
 							$('.class-review-content').eq(idx).children('.user-review').append(more);
+							
+							// 후기 댓글 조회
+							selectReviewComment(rvo.review_no, 0);
 							
 						}); // each
 						
@@ -265,13 +177,13 @@ $(document).ready(function(){
 			}
 		}); // ajax 나의 후기 페이징
 	
-	}
+	} // setClassReviewPage() // 페이지 세팅 + 리뷰 목록 불러오기
 
 	
-	setClassReviewPage(); // 페이지 세팅 + 리뷰 목록 불러오기
+	setClassReviewPage(); // 페이지 세팅 + 리뷰 목록 불러오기------------------
 	
 	// 페이지 번호 클릭 이벤트
-	$(document).on('click','.page-num > a', function(e){
+	$(document).on('click','.page-num > a', function(){
 	
 		if($(this).parent().attr('id')=='prev-page'){
 			if(now_page>1){
@@ -293,6 +205,214 @@ $(document).ready(function(){
 	
 	
 	
+	
+	
+	// 후기 댓글 조회
+	function selectReviewComment(review_num, review_com_num){
+		
+		var url = '<%=request.getContextPath()%>/selectReviewComment';
+		var data = {'review_no': review_num, 'review_com_no': review_com_num };
+		$.ajax({
+			url: url,
+			data: data,
+			success: function(result){
+				var re = $(result);
+				console.log(re);
+				var comTag = '';
+				
+				re.each(function(idx, com){
+					if(com.com_no2 == 0){ // 원댓글이면
+						comTag = `<li class="review-comment">
+						<input type="hidden" class="review_com_no" name="review_com_no" value="` + com.review_com_no + `" />
+							<div class="comment-item">
+								<div class="comment-info">
+									<div class="user-img"><img src="` + com.member_img + `"/></div>
+								</div>
+								
+								<div class="comment-text">
+									<span class="user-review-info">` + com.member_id + `</span>`;
+									if(com.delete_sort==0){
+										comTag += com.reply;
+									} else{
+										comTag += `<span class="delete-comment">삭제된 댓글입니다.</span>`;
+									}
+									
+									comTag += `<div class="comment-menu">
+										<span class="write-date">` + com.writedate + `</span>
+										<a class="write-re-comment-btn" href="javascript:void(0);">답글 쓰기</a>`;
+										if(com.member_id == memberId){
+											comTag += `<a class="comment-delete" href="javascript:void(0);">삭제</a>`;
+										}
+									comTag += `</div>
+								</div>
+							</div>
+							<ul class="comment-reply" style="display:none;">
+							
+							</ul> <!-- // comment-reply 대댓글 목록 영역 -->
+						</li> <!-- //review-comment 댓글 1개 -->`;
+						
+						
+						$('.class-review-content').each(function(){
+							if($(this).children('.review_no').val()==com.review_no){
+								$(this).children('.review-comment-list').append(comTag);
+								$(this).children('.review-comment-list').show();
+							}
+						});
+					} else if(com.com_no2 == 1){ // 대댓글이면
+						comTag = `<li class="reply-item comment-item">
+							<input type="hidden" class="review_com_no" name="review_com_no" value="` + com.review_com_no + `" />
+							<div class="comment-info">
+								<div class="user-img"><img src="` + com.member_img + `"/></div>
+							</div> <!-- 대댓글 프로필 이미지 -->
+							
+							<div class="reply-text" >
+								<span class="user-review-info">` + com.member_id + `</span>`
+								+ com.reply +
+								`<div class="comment-menu">
+								<span class="write-date">` + com.writedate + `</span>`;
+								if(com.member_id == memberId){
+									comTag += `<a class="comment-delete" href="javascript:void(0);">삭제</a>`;
+								}
+							comTag += `</div>
+							</div>
+						</li> <!-- //comment-reply 대댓글 1개 -->`;
+						
+						
+						$('.review-comment').each(function(){
+							console.log('dd');
+							if($(this).children('.review_com_no').val() == com.com_no1){
+								console.log('ddddd');
+								$(this).children('.comment-reply').append(comTag);
+								$(this).children('.comment-reply').show();
+							}
+						});
+
+					} // if
+					
+				}); // each
+			}, error: function(e){
+				console.log('클래스 후기 댓글 조회 에러');
+			}
+		});
+
+	}
+	
+	
+	
+	// 댓글 등록 버튼 클릭 시
+	$(document).on('click', '.review-reply-btn', function(){
+		var review_no = $(this).parent().children('.review_no').val(); // 후기 번호
+		var com_no1; // 원댓글 번호
+		var com_no2 = $(this).parent().children('.review_com_no2').val(); // 원댓 대댓 구분 번호
+		var review_reply = $(this).parent().children('.review-reply').val(); // 댓글 내용
+		var review_comment_write = $(this).parent().parent(); // 대댓글 작성창
+		
+		if(memberId==null || memberId==''){
+			alert('댓글 작성은 로그인 후 이용하실 수 있습니다.');
+			return false;
+		} else if(review_reply == ''){
+			alert('댓글 내용을 입력해 주세요.');
+			return false;
+		}
+		
+		if(com_no2 == 1){ // 대댓글 등록 시
+			com_no1 = $(this).parent().parent().parent().children('.review_com_no').val();
+			review_no = $(this).parent().parent().parent().parent().parent().children('.review_no').val();
+		}
+		
+		// 후기 댓글 등록	
+		var url = '<%=request.getContextPath()%>/writeReviewComment';
+		var data = {'review_no': review_no, 'com_no1':com_no1, 'com_no2':com_no2, 'member_id': memberId, 'reply': review_reply };
+		$.ajax({
+			url: url,
+			data: data,
+			success: function(result){
+				var review_com_no = parseInt($(result)[0]); // 방금 등록한 댓글 번호 가져오기
+				if(review_com_no > 0){ //  댓글 등록 성공 시
+					// alert('댓 등록 성공');
+					selectReviewComment(review_no, review_com_no); // 후기 댓글 조회 - 방금 등록한 댓글만 추가됨
+				} else{
+					alert('댓글 등록에 실패하였습니다. 잠시 후 다시 시도해주세요.');
+				}
+			}, error: function(e){
+				console.log('클래스 후기 댓글 등록 에러');
+			}
+		}); // ajax 후기 댓글 등록
+		
+		if(com_no2 == 0){ // 원댓글 등록 시
+			$(this).parent().children('.review-reply').val(''); // review_reply 댓글 내용 지우기
+		} else if(com_no2 == 1){ // 대댓글 등록 시
+			review_comment_write.prev().children('.comment-text').children('.comment-menu').children('.write-re-comment-btn').text('답글 쓰기');
+			review_comment_write.remove(); // 대댓글 작성창 제거
+		}
+		
+	}); // -- 댓글 등록 버튼 클릭 이벤트
+
+	
+	
+	// 삭제 버튼 클릭 시
+	$(document).on('click', '.comment-delete', function(){
+		if($(this).parent().parent().children('.delete-comment').text()!=''){ // 삭제된 댓글인지 확인
+			alert('이미 삭제된 댓글입니다.');
+			return false;
+		}
+		
+		var delCheck = confirm("댓글을 정말 삭제하시겠습니까?");
+		if(delCheck == true){
+			var review_no = $(this).parents('.class-review-content').children('.review_no').val();
+			var review_com_no = $(this).parents('.reply-item').children('.review_com_no').val(); // 대댓글 번호 담기
+			if(typeof review_com_no == "undefined" || review_com_no == "" || review_com_no == null){ // 원댓글 번호 담기
+				review_com_no = $(this).parents('.review-comment').children('.review_com_no').val();
+			}
+			var review_com = $(this).parents('.review-comment-list');
+			// 해당 댓글에 대댓글 있나 확인하고 삭제하기
+			var url = '<%=request.getContextPath()%>/deleteReviewComment';
+			var data = {'review_com_no': review_com_no, 'member_id': memberId };
+			$.ajax({
+				url: url,
+				data: data,
+				success: function(result){
+					var result = $(result);
+					review_com.html('');
+					selectReviewComment(review_no, 0); 
+				}, error: function(e){
+					console.log('클래스 후기 댓글 삭제 에러');
+				}
+			}); // ajax 후기 댓글 삭제
+		
+		} // confirm
+	
+	});
+	
+	
+	
+	
+	
+	// 답댓글 쓰기 폼
+	var writeTag = `<div class="review-comment-write">
+						<div class="comment-info">
+							<div class="user-img"><img src="` + memberImg + `"/></div>
+						</div>
+						<form class="replyFrm">
+							<input type="hidden" class="review_com_no2" name="com_no2" value="1"/>
+							<textarea class="review-reply" name="reply" placeholder="댓글을 입력해주세요."></textarea>
+							<input class="review-reply-btn" type="button" value="등록"/>
+						</form>
+					</div> <!-- // review-comment-write 댓글 작성 폼 // 답글쓰기 클릭 시 -->`;
+	// 답글 쓰기 버튼 클릭 시
+	$(document).on('click', '.write-re-comment-btn', function(){
+		if($(this).text() == '답글 쓰기'){
+			$(this).parent().parent().parent().after(writeTag);
+			$(this).text('답글 쓰기 취소');
+		} else{
+			$(this).parent().parent().parent().next('.review-comment-write').remove();
+			$(this).text('답글 쓰기');
+		}
+	});
+	
+	
+	
+	// 댓글 텍스트 '더 보기' 버튼 클릭 시
 	$(document).on('click', '.more-btn > input', function(){
 		if($(this).val()=='더 보기'){
 			$(this).parent().prev().children('.review-text').css({'max-height': '1000px', 'display': 'block', 'overflow': 'visible', 'text-overflow': 'inherit'});
@@ -312,5 +432,3 @@ $(document).ready(function(){
 
 
 </script>
-
-

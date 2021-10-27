@@ -32,7 +32,7 @@
 	
 	<div class="review-wrap">
 		<div class="review-top">
-			베스트순 | 최신순 | 사진리뷰 | 별점
+			최신순 | 별점순 | 사진리뷰
 		</div>
 		<div class="review-list">
 			<ul>
@@ -43,7 +43,7 @@
 						<div class="review-info">
 							<div class="user-img"><img src="img/test/creator_01.PNG"/></div>
 							<div class="user-review-info">
-								<p>USERIDUSERID</p>
+								<p>memberIdmemberId</p>
 								<p>2021.10.05</p>
 							</div>
 							<div class="star">
@@ -190,8 +190,8 @@ $(document).ready(function(){
 	var onePageRecord=5; // 한 페이지당 레코드 수
 	var nowPageRecord = onePageRecord; // 현재 페이지 레코드 수
 	
-	var userId = '${userId}'; // 로그인 회원 아이디
-	var userImg = '${userImg}'; // 로그인 회원 이미지
+	var memberId = '${userId}'; // 로그인 회원 아이디
+	var memberImg = '${userImg}'; // 로그인 회원 이미지
 	var class_no = '${vo.class_no }'; // 해당 클래스 번호
 	
 	// 페이지 세팅 + 리뷰 목록 불러오기
@@ -278,7 +278,7 @@ $(document).ready(function(){
 						
 						<div class="review-comment-write">
 							<div class="comment-info">
-								<div class="user-img"><img src="` + userImg + `"/></div>
+								<div class="user-img"><img src="` + memberImg + `"/></div>
 							</div>
 							<form class="reviewCommentFrm">
 								<input type="hidden" class="review_no" name="review_no" value="` + rvo.review_no + `"/>
@@ -369,12 +369,17 @@ $(document).ready(function(){
 								</div>
 								
 								<div class="comment-text">
-									<span class="user-review-info">` + com.member_id + `</span>`
-									+ com.reply +
-									`<div class="comment-menu">
+									<span class="user-review-info">` + com.member_id + `</span>`;
+									if(com.delete_sort==0){
+										comTag += com.reply;
+									} else{
+										comTag += `<span class="delete-comment">삭제된 댓글입니다.</span>`;
+									}
+									
+									comTag += `<div class="comment-menu">
 										<span class="write-date">` + com.writedate + `</span>
 										<a class="write-re-comment-btn" href="javascript:void(0);">답글 쓰기</a>`;
-										if(com.member_id == userId){
+										if(com.member_id == memberId){
 											comTag += `<a class="comment-delete" href="javascript:void(0);">삭제</a>`;
 										}
 									comTag += `</div>
@@ -404,7 +409,7 @@ $(document).ready(function(){
 								+ com.reply +
 								`<div class="comment-menu">
 								<span class="write-date">` + com.writedate + `</span>`;
-								if(com.member_id == userId){
+								if(com.member_id == memberId){
 									comTag += `<a class="comment-delete" href="javascript:void(0);">삭제</a>`;
 								}
 							comTag += `</div>
@@ -441,7 +446,7 @@ $(document).ready(function(){
 		var review_reply = $(this).parent().children('.review-reply').val(); // 댓글 내용
 		var review_comment_write = $(this).parent().parent(); // 대댓글 작성창
 		
-		if(userId==null || userId==''){
+		if(memberId==null || memberId==''){
 			alert('댓글 작성은 로그인 후 이용하실 수 있습니다.');
 			return false;
 		} else if(review_reply == ''){
@@ -456,14 +461,14 @@ $(document).ready(function(){
 		
 		// 후기 댓글 등록	
 		var url = '<%=request.getContextPath()%>/writeReviewComment';
-		var data = {'review_no': review_no, 'com_no1':com_no1, 'com_no2':com_no2, 'member_id': userId, 'reply': review_reply };
+		var data = {'review_no': review_no, 'com_no1':com_no1, 'com_no2':com_no2, 'member_id': memberId, 'reply': review_reply };
 		$.ajax({
 			url: url,
 			data: data,
 			success: function(result){
 				var review_com_no = parseInt($(result)[0]); // 방금 등록한 댓글 번호 가져오기
 				if(review_com_no > 0){ //  댓글 등록 성공 시
-					alert('댓 등록 성공');
+					// alert('댓 등록 성공');
 					selectReviewComment(review_no, review_com_no); // 후기 댓글 조회 - 방금 등록한 댓글만 추가됨
 				} else{
 					alert('댓글 등록에 실패하였습니다. 잠시 후 다시 시도해주세요.');
@@ -483,25 +488,32 @@ $(document).ready(function(){
 	}); // -- 댓글 등록 버튼 클릭 이벤트
 
 	
-	// 삭제 버튼 클릭 시/*
+	
+	// 삭제 버튼 클릭 시
 	$(document).on('click', '.comment-delete', function(){
+		if($(this).parent().parent().children('.delete-comment').text()!=''){ // 삭제된 댓글인지 확인
+			alert('이미 삭제된 댓글입니다.');
+			return false;
+		}
+		
 		var delCheck = confirm("댓글을 정말 삭제하시겠습니까?");
 		if(delCheck == true){
-			var review_com_no = $(this).parent().parent().parent().children('.review_com_no').val(); // 대댓글 번호 담기
+			var review_no = $(this).parents('.class-review-content').children('.review_no').val();
+			var review_com_no = $(this).parents('.reply-item').children('.review_com_no').val(); // 대댓글 번호 담기
 			if(typeof review_com_no == "undefined" || review_com_no == "" || review_com_no == null){ // 원댓글 번호 담기
-				review_com_no = $(this).parent().parent().parent().parent().children('.review_com_no').val();
+				review_com_no = $(this).parents('.review-comment').children('.review_com_no').val();
 			}
-			console.log(review_com_no);
+			var review_com = $(this).parents('.review-comment-list');
 			// 해당 댓글에 대댓글 있나 확인하고 삭제하기
 			var url = '<%=request.getContextPath()%>/deleteReviewComment';
-			var data = {'review_com_no': review_com_no, 'member_id': userId };
+			var data = {'review_com_no': review_com_no, 'member_id': memberId };
 			$.ajax({
 				url: url,
 				data: data,
 				success: function(result){
 					var result = $(result);
-					/////////////////////////////////////////////////////////////
-					selectReviewComment(review_no, review_com_no); 
+					review_com.html('');
+					selectReviewComment(review_no, 0); 
 				}, error: function(e){
 					console.log('클래스 후기 댓글 삭제 에러');
 				}
@@ -518,7 +530,7 @@ $(document).ready(function(){
 	// 답댓글 쓰기 폼
 	var writeTag = `<div class="review-comment-write">
 						<div class="comment-info">
-							<div class="user-img"><img src="` + userImg + `"/></div>
+							<div class="user-img"><img src="` + memberImg + `"/></div>
 						</div>
 						<form class="replyFrm">
 							<input type="hidden" class="review_com_no2" name="com_no2" value="1"/>

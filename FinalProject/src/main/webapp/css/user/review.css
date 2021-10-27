@@ -183,6 +183,11 @@ span.user-review-info{
 	color:#444;
 }
 
+
+.comment-delete{
+	color:#999;
+}
+
 .comment-menu{
 	margin-top:5px;
 }
@@ -701,7 +706,12 @@ span.user-review-info{
 
 
 
-
+.select-class-list{
+	width:100%;
+	height:45px;
+	font-size:15px;
+	padding:0 10px;
+}
 
 
 
