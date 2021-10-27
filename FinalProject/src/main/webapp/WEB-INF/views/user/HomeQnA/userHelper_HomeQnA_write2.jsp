@@ -72,7 +72,7 @@ var serverPort = <%=request.getServerPort() %>;
 		
 		/////////////사진첨부
 		var fileList;
-		$(document).on('click','#bbbb', function uploadFiles(e){
+		$(document).on('change','#hQnAWriteFile', function uploadFiles(e){
 				var file = $('#hQnAWriteFile')[0].files[0]
 				var form_data = new FormData();
 		      	form_data.append('file', file);
@@ -123,7 +123,7 @@ var serverPort = <%=request.getServerPort() %>;
 					<div>파일첨부</div>
 					<div><input type="file" name="file1" id="hQnAWriteFile">
 					<label for="hQnAWriteFile" id="labelfor1">파일선택</label><span id="uploaded"></span></div>	
-					
+					<button id="bbbb">사진보기</button>
 				</li>
 				<li id="fu2">
 					<div>파일첨부</div>
@@ -137,7 +137,7 @@ var serverPort = <%=request.getServerPort() %>;
 					<label for="hQnAWriteFile3" id="labelfor3">파일선택</label><span id="uploaded3"></span></div>	
 				</li>
 				<li>
-					<div><img src="" id="aaaa"></div>
+					<div><img src="basic.jpg" id="aaaa"></div>
 				</li>		
 				
 				<li id="hQnABut">

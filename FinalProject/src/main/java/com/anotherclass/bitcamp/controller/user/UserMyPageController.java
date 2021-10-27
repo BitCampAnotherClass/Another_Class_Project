@@ -98,7 +98,8 @@ public class UserMyPageController {
 	@RequestMapping("/HomeAskReplyList999")
 	@ResponseBody
 	public List<UserHomeQnAVO> ajaxHomeAskList2(String logid){			
-		List<UserHomeQnAVO> list = userMyPageService.myPageHomePageAsk(logid);			
+		List<UserHomeQnAVO> list = userMyPageService.myPageHomePageAsk(logid);	
+		
 			for(int i=0; i<list.size(); i++) {//답변이있으면 답변내용 저장해줌 -> replyContent
 				UserHomeQnAVO vo = list.get(i);				
 				int replycheck = vo.getReplycount();//1이면 미답변 2이면 답변달림				

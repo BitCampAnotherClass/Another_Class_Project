@@ -43,7 +43,7 @@
 	#d3 div:nth-child(2)>a{font-size:1.2rem;padding-top:25px;font-weight:bold;}
 	#d3 div:nth-child(2)>span{padding-top:5px;padding-left:1px;color:#666;font-size:0.9rem;}	
 	/* 메뉴바 */
-	#d4{width:100%;height:auto;overflow:auto;position:sticky;top:78px;background-color:white;}
+	#d4{width:100%;height:auto;overflow:auto;position:sticky;top:78px;background-color:white;z-index:500;}
 	#d4>ul{width:100%;height:auto;overflow:auto;}
 	#d4 li{float:left; width:20%;height:50px;line-height:50px; text-align:center;border-bottom:1px solid #ddd;}		
 	/*클레스 상세페이지 메뉴*/
