@@ -44,5 +44,13 @@
           order by class_price asc
 		]]>
 	</select>
-	
+	<select id="findCreatorClass"  parameterType="com.anotherclass.bitcamp.vo.user.ClassListVO" resultType="com.anotherclass.bitcamp.vo.user.ClassListVO">
+		<![CDATA[
+		 select a.class_no, a.class_name, a.class_price, a.class_thumb, a.class_tag, c.nick,c.member_name
+		 from classTbl a, membertbl c 
+         where c.member_id = a.member_id
+         and c.member_id = '${param1}'
+         order by class_writedate desc
+		]]>
+	</select>
 </mapper>

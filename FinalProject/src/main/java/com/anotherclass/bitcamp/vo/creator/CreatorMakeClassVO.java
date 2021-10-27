@@ -21,6 +21,7 @@ public class CreatorMakeClassVO {
 	private String class_writedate; //등록일시
 	private String class_tag; //태그
 	
+	
 	public int getClass_no() {
 		return class_no;
 	}

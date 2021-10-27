@@ -11,6 +11,8 @@ public class ReviewComVO {
 	private int com_sec=0; // 비밀여부
 	private int delete_sort=0; // 삭제여부
 	
+	private int cnt;
+	
 	
 	public int getReview_com_no() {
 		return review_com_no;
@@ -65,6 +67,12 @@ public class ReviewComVO {
 	}
 	public void setDelete_sort(int delete_sort) {
 		this.delete_sort = delete_sort;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
 	}
 	
 	

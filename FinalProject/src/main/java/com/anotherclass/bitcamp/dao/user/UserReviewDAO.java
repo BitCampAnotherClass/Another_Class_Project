@@ -14,9 +14,10 @@ public interface UserReviewDAO {
 	public List<ReviewVO> selectMyReview(ReviewVO vo); // 나의 후기 조회
 	public ReviewVO countTotalClassReview(int class_no); // 클래스 후기 총 레코드 수
 	public List<ReviewVO> selectClassReview(ReviewVO vo); // 클래스 후기 조회
+	
+	public List<ClassVO> selectCreatorClass(String member_id); // 해당 강사의 클래스 목록 조회
 	// 후기 수정
 	// 후기 삭제
-	// 강사 후기 조회
 	
 	public int insertReviewComment(ReviewComVO vo); // 후기 댓글 등록
 	public List<ReviewComVO> selectReviewComment(ReviewComVO vo); // 후기 댓글 조회

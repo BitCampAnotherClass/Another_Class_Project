@@ -1,7 +1,5 @@
 package com.anotherclass.bitcamp.controller.creator;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -12,14 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.anotherclass.bitcamp.service.creator.MakeClassApplyService;
 import com.anotherclass.bitcamp.vo.creator.CreatorClassCategoryVO;
 import com.anotherclass.bitcamp.vo.creator.CreatorMakeClassDateTimeVO;
 import com.anotherclass.bitcamp.vo.creator.CreatorMakeClassVO;
+import com.anotherclass.bitcamp.vo.user.ClassListVO;
 
 @Controller
 @RequestMapping("/creator")
@@ -37,7 +34,7 @@ public class CreatorController {
 	}
 	
 	@RequestMapping("/makeClass")
-	public ModelAndView makeClass(HttpSession ses) {
+	public ModelAndView makeClass(HttpServletRequest req) {
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("cate", makeClassApplyService.makeClassCategoryL());
 		mav.setViewName("/creator/makeClass");
@@ -49,7 +46,8 @@ public class CreatorController {
 	public ModelAndView creatClass(CreatorMakeClassVO vo,CreatorMakeClassDateTimeVO vo2, HttpServletRequest req,HttpSession ses) {
 		
 		ModelAndView mav = new ModelAndView();
-		vo.setMember_id("test100");///////////////////////아이디 세션
+		String id = (String)req.getSession().getAttribute("creatorId");
+		vo.setMember_id(id);///////////////////////아이디 세션
 		
 		int result = makeClassApplyService.makeClassApply(vo);
 		String vo2GetStartDate = vo2.getStart_date();
@@ -65,7 +63,6 @@ public class CreatorController {
 			vo2.setStart_date(startTimeResult[i]);
 			vo2.setEnd_date(endTimeResult[i]);
 			vo2.setClass_no(vo.getClass_no()); 
-			vo2.setAll_headcount(vo.getMax_headcount());
 			result_date = makeClassApplyService.makeClassApplyDateTime(vo2);
 			
 			};
@@ -83,8 +80,14 @@ public class CreatorController {
 	}
 	   
 	@RequestMapping("/creatorChannel")
-	public String creatorChannel() {
-	    return "creator/creatorChannel";
+	public ModelAndView creatorChannel(HttpSession ses) {
+		ModelAndView mav = new ModelAndView();
+		ClassListVO vo = new ClassListVO();
+		String id = (String)ses.getAttribute("creatorId");
+		vo.setMember_id(id);
+		mav.addObject("channel", makeClassApplyService.creatorChannel(vo));
+		mav.setViewName("/creator/creatorChannel");
+		return mav;
 	}
 	
 	@RequestMapping("/classMain")
