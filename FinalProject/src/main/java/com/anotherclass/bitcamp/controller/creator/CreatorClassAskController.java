@@ -3,6 +3,7 @@ package com.anotherclass.bitcamp.controller.creator;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.anotherclass.bitcamp.service.creator.CreatorClassAskService;
+import com.anotherclass.bitcamp.vo.creator.ClassListVO;
 import com.anotherclass.bitcamp.vo.creator.CreatorCAskPagingVO;
 import com.anotherclass.bitcamp.vo.creator.CreatorCAskVO;
 
@@ -87,5 +89,27 @@ public class CreatorClassAskController {
 		
 		creatorClassAskService.CAReplyWrite(vo);
 		return result;
+	}
+	
+	//클래스리스트!!!!
+	@RequestMapping("creator/classList")
+	public ModelAndView ClassList(HttpSession  sess) {	
+		String logid= (String)sess.getAttribute("creatorId");
+		ModelAndView mav = new ModelAndView();			
+		List<ClassListVO>  list = creatorClassAskService.classlist2(logid);
+		for(int i=0; i<list.size(); i++) {
+			ClassListVO vo = list.get(i);
+			System.out.println(vo.getClass_no());
+			int a = creatorClassAskService.ClasslikeCC(vo.getClass_no());
+			int b = creatorClassAskService.ClassAskCC(vo.getClass_no());
+			vo.setClasslikecount(a);
+			System.out.println(a);
+			vo.setClassclasscount(b);
+			System.out.println(b);
+		}
+
+		mav.addObject("list",list);
+		mav.setViewName("creator/optionList/classList");
+		return mav;
 	}
 }

@@ -66,5 +66,26 @@
 	  		delete from classqnacom where  class_qna_com_no = #{param1}
 	  	]]>  	
   	</delete>
+  	<select id="classlist2"  parameterType="com.anotherclass.bitcamp.vo.creator.ClassListVO" resultType="com.anotherclass.bitcamp.vo.creator.ClassListVO">
+  		  <![CDATA[
+  		  select class_no, class_name ,request, class_thumb
+		  from classtbl
+		  where member_id =#{param1}
+  		  ]]> 
+  	</select>
+  	  	<select id="ClasslikeCC" resultType="int">
+  		  <![CDATA[
+  		  SELECT COUNT(*) AS classlikecount
+		  FROM classlike 
+		  where class_no = #{param1}
+  		  ]]> 
+  	</select>
+  	  	<select id="ClassAskCC" resultType="int">
+  		  <![CDATA[
+  		    SELECT COUNT(*) AS classclasscount
+			FROM classqna 
+			where class_no =#{param1}
+  		  ]]> 
+  	</select>
   
 </mapper>
