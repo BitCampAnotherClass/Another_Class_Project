@@ -87,6 +87,8 @@ $(function(){
 
 	$(document).on('click','#account_information_btn',function(){
 		let delectidInfo = $('#account_information_btn').next().val();
+		let deleteOrder = $('#account_information_btn').next().next().val();
+		console.log(deleteOrder);
 		const deleteNumber = delectidInfo;
 		const deleteAccount = "RefundMangement/RefundDelete";
 		const accountData = {"no":deleteNumber};

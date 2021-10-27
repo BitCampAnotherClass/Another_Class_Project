@@ -5,9 +5,8 @@
 <mapper namespace="com.anotherclass.bitcamp.dao.admin.ExpectedRefundListMangementDAO">
 	<select id="refundList" parameterType="com.anotherclass.bitcamp.service.vo.admin.ExpectedRefundListMangementVO" resultType="com.anotherclass.bitcamp.service.vo.admin.ExpectedRefundListMangementVO" >
 		<![CDATA[
-		SELECT or.order_no, or.member_id, or.member_name, or.class_option_no, or.headcount, or.use_point, or.total_price, or.payment_sort , or.pay_company, or.card_num , or.account, or.order_date, or.payment_date, or.cancel_date, or.refund_date from (select a.*, ROWNUM as num FROM
+		SELECT order_no, member_id, member_name, class_option_no, headcount, use_point, total_price, payment_sort , pay_company, card_num , account, order_date, payment_date, cancel_date, refund_date from (select a.*, ROWNUM as num FROM
 	    (SELECT a.order_no, a.member_id, a.class_option_no, a.headcount, a.use_point, a.total_price, a.payment_sort , a.pay_company, a.card_num , a.account, a.order_date, a.payment_date, a.cancel_date, a.refund_date FROM orderTbl a , membertbl as m order by a.order_no desc) a)
-	    as or , membertbl as m
 	    where num >= #{pageStartNumber} and num<= #{pageEndNumber}]]>
 	    <if test="searchWord != null">
 	    	 and (member_id LIKE '%'||#{searchWord}||'%' or member_id LIKE '%'||#{searchWord} or member_id LIKE #{searchWord}||'%')
@@ -27,7 +26,7 @@
 	</update>
 	<update id="addHeadCount">
   		<![CDATA[
-  			UPDATE classoption SET all_headcount =  all_headcount + 1 WHERE class_option_no =#{param1}
+  			UPDATE classoption SET all_headcount =  all_headcount - 1 WHERE class_option_no =#{param1}
   		]]>   		
   	</update>
 </mapper>

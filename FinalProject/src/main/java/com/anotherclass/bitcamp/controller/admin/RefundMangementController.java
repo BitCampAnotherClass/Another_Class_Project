@@ -57,6 +57,7 @@ public class RefundMangementController {
 	@ResponseBody
 	public int memberAccountInfo(int no){
 		Integer cnt = adminRefundService.refundDelete(no);
+		adminRefundService.addHeadCount(no);
 		return cnt;
 	}
 	
