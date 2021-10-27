@@ -141,7 +141,7 @@ textarea{
 	justify-content: flex-start;
 	flex-direction: column;
 	background-color:#fff;
-	padding:30px 40px 30px 40px;
+	padding:15px 40px 15px 40px;
 	border-radius: 5px;
 }
 
@@ -149,12 +149,14 @@ textarea{
 	display:flex;
 	justify-content: flex-start;
 	flex-direction:column;
+	align-items: flex-end;
 }
 
 .comment-item{
 	display:flex;
 	justify-content: flex-start;
-	margin-bottom:20px;
+	align-items: center;
+	margin:10px 0 15px;
 }
 
 .review-comment-list .comment-info {
@@ -181,24 +183,63 @@ span.user-review-info{
 	color:#444;
 }
 
+.comment-menu{
+	margin-top:5px;
+}
+
+.comment-menu > span, .comment-menu > a{
+	display:inline-block;
+	margin-right:10px;
+	font-size:13px;
+	color:#777;
+}
+
+.comment-menu > span{
+	font-weight: 500;
+}
+
+.comment-menu > a{
+	font-weight: 600;
+}
+
+.comment-menu > .write-re-comment-btn{
+	color:#ff385c;
+}
+
+.comment-menu > a.comment-delete{
+	font-weight: 500;
+	color:#aaa;
+}
+
+
 .review-comment-write{
 	display:flex;
 	justify-content: flex-start;
 	align-items: center;
 	width:700px;
-	margin-top:50px;
-	padding:0 40px 0 40px;
+	padding:0 40px 0 0px;
 }
 
 
-#reviewCommentFrm{
+.reviewCommentFrm, .replyFrm{
 	display:flex;
 	justify-content: flex-start;
 	align-items: center;
 	width:700px;
 }
 
-#review-reply{
+.reviewCommentFrm{
+	width:700px;
+	margin-top:25px;
+}
+
+.replyFrm{
+	margin-bottom:20px;
+	margin-top:5px;
+}
+
+
+.review-reply{
 	width:590px;
 	min-height:50px;
 	border: 1px solid #ddd;
@@ -206,7 +247,15 @@ span.user-review-info{
 	padding:6px 10px;
 }
 
-#review-reply-btn{
+.replyFrm > .review-reply{
+	width:545px;
+	min-height:50px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	padding:6px 10px;
+}
+
+.review-reply-btn{
 	width:50px;
 	height:36px;
 	margin-left:14px;
@@ -223,8 +272,8 @@ span.user-review-info{
 
 
 .comment-reply{
-	width:100%;
-	padding:20px 40px 0;
+	width:660px;
+	padding:0px 20px 0;
 	background-color:#f5f5f5;
 	border-radius: 7px;
 }

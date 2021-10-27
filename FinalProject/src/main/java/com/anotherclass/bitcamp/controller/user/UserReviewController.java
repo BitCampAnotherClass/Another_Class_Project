@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.anotherclass.bitcamp.service.user.UserReviewService;
 import com.anotherclass.bitcamp.vo.user.ClassVO;
+import com.anotherclass.bitcamp.vo.user.ReviewComVO;
 import com.anotherclass.bitcamp.vo.user.ReviewVO;
 
 @Controller
@@ -90,27 +91,61 @@ public class UserReviewController {
 	@RequestMapping(value = "/classReviewList")
 	@ResponseBody
 	public List<ReviewVO> classReviewList(ReviewVO vo) {
-		
-		System.out.println("총레코드수->"+vo.getTotalRecord());
-		System.out.println("그룹첫페이지->"+vo.getGroupStartPage());
-		System.out.println("현재페이지->"+vo.getNowPage());
-		System.out.println("현재레코드수->"+vo.getNowPageRecord());
 		List<ReviewVO> reviewList = userReviewService.selectClassReview(vo);
 		return reviewList;
 	}
 	
 	
-	
-	// 임시 맵핑
-	
-	@RequestMapping(value = "/classReview")
-	public String classReview() {
-		return "/user/classDetailPage/test";
+	// 후기 댓글 등록
+	@RequestMapping(value = "/writeReviewComment")
+	@ResponseBody
+	public int writeReviewComment(ReviewComVO vo) {
+		System.out.println(vo.getCom_no1());
+		System.out.println(vo.getCom_no2());
+		System.out.println(vo.getReview_no());
+		int review_com_no = 0;
+		int cnt = userReviewService.insertReviewComment(vo);
+		if(cnt > 0) {
+			review_com_no = vo.getReview_com_no();
+		}
+		System.out.println("후기댓글등록->" + review_com_no);
+		System.out.println("후기댓글번호->" + vo.getReview_com_no());
+		return review_com_no;
 	}
 	
 	
+	// 후기 댓글 조회
+	@RequestMapping(value = "/selectReviewComment")
+	@ResponseBody
+	public List<ReviewComVO> selectReviewComment(ReviewComVO vo) {
+		List<ReviewComVO> reviewComList = userReviewService.selectReviewComment(vo);
+		return reviewComList;
+	}
+	
+	
+	// 후기 댓글 삭제
+	@RequestMapping(value = "/deleteReviewComment")
+	@ResponseBody
+	public int deleteReviewComment(ReviewComVO vo) {
+		// 대댓글 있나 조회
+		int cnt = userReviewService.countReplyCheck(vo.getReview_com_no());
+		
+		if(cnt>0) { // 대댓글이 있으면 삭제 여부 수정
+			return userReviewService.updateDelReviewComment(vo);
+		} else { // 대댓글이 없으면 진짜 삭제
+			return userReviewService.deleteReviewComment(vo);
+		}
+	}
 
 	
-	
-	
 }
+
+
+
+
+
+
+
+
+
+

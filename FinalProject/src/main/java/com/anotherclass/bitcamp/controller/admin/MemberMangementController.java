@@ -117,6 +117,18 @@ public class MemberMangementController {
 		return "admin/MemberManagement/creatorManagement";
 	}
 	
+	@RequestMapping(value="/MemberMangement/MemberAccountDelete", method = RequestMethod.POST)
+	@ResponseBody
+	public int accountDelete(String data) {
+		MemberMangementVO vo = new MemberMangementVO();
+		vo.setMember_id(data);
+		Integer cnt1 =adminService.deleteAccount(vo);
+		int cnt = 0;
+		System.out.println(cnt1);
+		return cnt;
+	}
+	
+	// 관리자 계정생성
 	@RequestMapping(value="/adminAccountMake", method = RequestMethod.POST)
 	public ModelAndView adminAccountMake(RegisterVO vo)throws Exception {
 		ModelAndView mav = new ModelAndView();

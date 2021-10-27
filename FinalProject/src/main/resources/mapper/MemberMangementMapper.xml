@@ -48,4 +48,10 @@
 		and a.member_id  = #{param1}
 	 ]]>	
 	</select>
+	<delete id="deleteAccount"  parameterType="com.anotherclass.bitcamp.service.vo.admin.MemberMangementVO">
+		<![CDATA[
+			DELETE from idAll where member_id =#{member_id}
+		]]>
+	</delete>
+		
 </mapper>

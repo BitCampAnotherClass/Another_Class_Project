@@ -15,4 +15,6 @@ public interface AdminService {
 	public MemberMangementVO creatorAccountInfo(String idCheck);
 	public int creatorBoardLimit();
 	
+	public int deleteAccount(MemberMangementVO vo);
+	
 }

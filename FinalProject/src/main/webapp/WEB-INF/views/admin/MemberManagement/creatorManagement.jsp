@@ -36,7 +36,7 @@ $(function(){
 				var listData = $(result);
 				listData.each(function(idx,vo){
 					var tel = replaceAt(vo.member_tel);
-					board +='<li class="userMg-chart-boardlist"><input type="checkbox" id="allcheck"/>';
+					board +='<li class="userMg-chart-boardlist">'+'크리에이터';
 					board +='</li>';
 					board +='<li class="userMg-chart-boardlist" id="userMg-chart-id">'+vo.member_id+'</li>';
 					board +='<li class="userMg-chart-boardlist">'+vo.member_name+'</li>';
@@ -45,7 +45,7 @@ $(function(){
 					board +='<li class="userMg-chart-boardlist">'+vo.signupdate+'</li>';
 					board +='<li class="userMg-chart-boardlist"></li>';
 					board +='<li class="userMg-chart-boardlist">';
-					board +='<input type="button" value="관리메뉴" id="account_information_btn"/>';
+					board +='<input type="button" value="상세정보" id="account_information_btn"/>';
 					board +='<input type="hidden" value="'+vo.member_id+'" id="userMg-chart-id"/>';
 					board +='</li>';
 				});
@@ -98,7 +98,7 @@ $(function(){
 		}
 		return data;
 	}
-	
+	let delectidInfo ='';
 	$(document).on('click',"#account_information_btn",function(){
 		let infoAccount="MemberMangement/creatorInformation";
 		const idData = $(this).next().val();
@@ -138,6 +138,7 @@ $(function(){
 					member_information += '</div>';
 					member_information += '</div>';
 					member_information += '</div>';
+					delectidInfo= vo.member_id;
 					// 회원 상세정보 버튼 클릭시 출력되는 창
 					$('.container').before(member_information);
 			},error: function(error){
@@ -148,6 +149,25 @@ $(function(){
 		});
 		
 	});
+	
+	$(document).on('click','#userMg-information-popup-button-del',function(){
+		var deleteId = delectidInfo;
+		let deleteAccount = "MemberMangement/MemberAccountDelete";
+		const accountData = {"data":deleteId};
+		$.ajax({
+			url : deleteAccount
+			,type : "POST"
+			,data : accountData
+			,success:function(success){
+				alert('삭제되었습니다.');
+				location.reload();
+			}
+			,error:function(error){
+				location.reload();
+			}
+		});
+	});
+	
 	
 	$(document).on('click','.userMg-info-closeButton',function(){
 		$('.userMg-information-box').remove();
@@ -224,7 +244,7 @@ $(function(){
 	}
 	
 	.userMg-chart-boardlist:nth-child(8n+1){
-		width: 5%;
+		width: 10%;
 	}
 	
 	.userMg-chart-boardlist:nth-child(8n+2){
@@ -238,7 +258,7 @@ $(function(){
 		width: 20%;
 	}
 	.userMg-chart-boardlist:nth-child(8n+7){
-		width: 10%;
+		width: 5%;
 	}
 	
 	.userMg-chart-boardlist:nth-child(n+9){
@@ -295,9 +315,17 @@ $(function(){
 	}
 	
 	.userMg-boardList-btn{
+		background-color: rgb(248,248,248);
+		border:none;
+		font-size:1.7em;
 		width: 50px;
 		padding: 10px;
 	}
+	
+	.userMg-boardList-btn:active{
+		background-color: rgb(242,242,242);
+	}
+	
 	.userMg-info-closeButton{
 		float: right;
 	}
@@ -313,21 +341,23 @@ $(function(){
 		width: 90%;
 	}
 	.userMg-boardList-btn-outbox{
-		margin:0 auto;
+		width:fit-content;
+		margin:auto;
 		height:50px;
-		width:500px;
 	}
 	.userMg-boardList-btn-box{
 		height:50px;
-		box-sizing:border-box;
-		margin: 0 auto;
+		margin:auto;
 	}
 	.userMg-information-button{
 		margin-top:100px;
 	}
 	.search-box{
-		width:1200px;
-		padding:5px;
+		padding:10px;
+		margin: 10px;
+		border: 1px solid #333;
+		width:fit-content;
+		margin-left:655px;
 	}
 </style>
 </head>
@@ -339,15 +369,15 @@ $(function(){
 		
 		<div class="userMg-bottom">
 			<div class="search-box">
-				<input type="text" id="searchWord"/>
+				<input type="text" id="searchWord" placeholder="이름검색" />
 				<input type="date" id="dateSearchFirst" value="2020-10-01"/>
 				<label>~</label>
 				<input type="date" id="dateSearchLast" value="2021-12-01"/>
-				<input type="button" id="serahButton" value="검색"/>
+				<input type="button" id="serahButton"   value="검색"/>
 			</div>
 			<input type="hidden" value="1" class="paging-number"/>
 			<ul class="userMg-chart-box">
-				<li class="userMg-chart-boardlist"><input type="checkbox" id="allcheck"/></li>
+				<li class="userMg-chart-boardlist">개요</li>
 				<li class="userMg-chart-boardlist">아이디</li>
 				<li class="userMg-chart-boardlist">성명</li>
 				<li class="userMg-chart-boardlist">이메일</li>

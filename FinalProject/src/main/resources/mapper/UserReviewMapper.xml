@@ -24,7 +24,7 @@
 		<![CDATA[
 			select *
 			from (select *
-			from (select review_no, r.order_no, content, img1, star, to_char(writedate, 'YYYY.MM.DD') writedate, m.member_id, member_img, c.class_no, c.class_name
+			from (select review_no, r.order_no, content, img1, star, to_char(writedate, 'YYYY/MM/DD') writedate, m.member_id, member_img, c.class_no, c.class_name
 			from reviewTbl r join orderTbl o
 			on r.order_no=o.order_no
 			join memberTbl m
@@ -52,7 +52,7 @@
 		<![CDATA[
 			select *
 			from (select *
-			from (select review_no, r.order_no, content, r.img1, star, to_char(writedate, 'YYYY.MM.DD') writedate, m.member_id, member_img, co.class_no
+			from (select review_no, r.order_no, content, r.img1, star, to_char(writedate, 'YYYY/MM/DD') writedate, m.member_id, member_img, co.class_no
 			from reviewTbl r join orderTbl o
 			on r.order_no=o.order_no
 			join memberTbl m
@@ -76,4 +76,39 @@
 			where co.class_no=#{param1}
 		]]>
 	</select>
+	<insert id="insertReviewComment" parameterType="com.anotherclass.bitcamp.vo.user.ReviewComVO" useGeneratedKeys="false">
+		insert into reviewCom values(review_com_sq.nextval, #{review_no}, #{member_id, jdbcType=VARCHAR}, 
+		<choose>
+			<when test='com_no1==0'>review_com_sq.nextval, </when>
+			<when test='com_no1!=0'>#{com_no1}, </when>
+		</choose>
+		#{com_no2}, #{reply, jdbcType=VARCHAR}, sysdate, 0, 0)
+		<selectKey keyProperty="review_com_no" resultType="int" order="AFTER">
+			select review_com_sq.currval from dual
+		</selectKey>
+	</insert>
+	<select id="selectReviewComment" resultType="com.anotherclass.bitcamp.vo.user.ReviewComVO">
+		select review_com_no, review_no, rc.member_id, member_img, com_no1, com_no2, reply, to_char(writedate, 'YY/MM/DD HH24:MI') writedate
+		from reviewCom rc
+		join memberTbl m
+		on m.member_id=rc.member_id
+		where delete_sort=0 and review_no=#{review_no}
+		<if test='review_com_no!=0'>and review_com_no=#{review_com_no}</if>
+		order by review_no desc, com_no1 asc, review_com_no asc
+	</select>
+	<select id="countReplyCheck" parameterType="int">
+		select count(review_com_no)
+		from reviewCom
+		where com_no2=1
+		group by com_no1
+		having review_com_no=#{param1}
+	</select>
+	<delete id="deleteReviewComment" parameterType="com.anotherclass.bitcamp.vo.user.ReviewComVO">
+		delete from reviewCom
+		where review_com_no=#{review_com_no} and member_id=#{member_id}
+	</delete>
+	<update id="updateDelReviewComment" parameterType="com.anotherclass.bitcamp.vo.user.ReviewComVO">
+		update reviewCom set delete_sort=1 
+		where delete_sort=0 and review_com_no=#{review_com_no} and member_id=#{member_id}
+	</update>
 </mapper>

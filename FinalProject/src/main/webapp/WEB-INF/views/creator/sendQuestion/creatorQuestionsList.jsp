@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <style>
-	a:link, a:visited{text-decoration:none;color:#333;}
+	.atag_seting:link, .atag_seting:visited{text-decoration:none;color:#333;}
 	#hQnAD{width:1200px;height:auto;margin:0 auto;}
 	.hQnAT{width:100%;text-align:center;font-size:32px;font-weight: bold;color:#333;margin:40px 0 40px 0;}
 	
@@ -32,20 +32,14 @@
 <script>
 
 	$(()=>{
-		//셋팅된리스트에 답변부분 설정
-//		if($("#hQnAListUl>li:nth-child(5n+5)") == 2){
-//			$("#hQnAListUl>li:nth-child(5n+5)").html("답변완료");
-//		}else if($("#hQnAListUl>li:nth-child(5n+5)") == 1){
-//			$("#hQnAListUl>li:nth-child(5n+5)").html("미답변");
-//		}
 		
 		$("#hQnWritelab").click(function(){
-			var logid = "${userId}";
+			var logid = "${creatorId}";
 	    	console.log(logid);
 			if(logid=== null || logid=== ""){
 				alert("로그인 후 문의작성 가능합니다");
 			}else{
-				location.href="/another//HomeQnAAsk/write"
+				location.href="/another/creator/CreatorQuestion/write"
 			}	    	
 		});
 		
@@ -79,18 +73,21 @@
 	</script>
 
 	<div id="hQnAD">
-	<div class="hQnAT">홈페이지문의</div> <!-- 페이지 타이틀 -->
-	<!-- <div id="hQnWrite"><label id="hQnWritelab"><a href="<%=request.getContextPath()%>/HomeQnAAsk/write" style="color:white;">문의하기</a></label></div> <!-- 글쓰기버튼 -->
-	<div id="hQnWrite"><label id="hQnWritelab" style="color:white;">문의하기</label></div> <!-- 글쓰기버튼 -->
-	<div id="hQnAList"> <!-- 게시판리스트 -->
-		<ul id="hQnAListUl">
-			<li  class="hQnAListFli hQnAListFli1">No.</li>
-			<li  class="hQnAListFli hQnAListFli2" style="text-align:center">글제목</li>
-			<li  class="hQnAListFli hQnAListFli3">작성자</li>
-			<li  class="hQnAListFli hQnAListFli4">작성일자</li>
-			<li  class="hQnAListFli hQnAListFli5">답변여부</li>
-		
-		<c:forEach var="vo" items="${list }">	
+		<div class="hQnAT">
+			홈페이지 문의
+		</div>
+		<div id="hQnWrite">
+			<label id="hQnWritelab" style="color:white;">문의하기</label>
+		</div> 
+		<div id="hQnAList"> <!-- 게시판리스트 -->
+			<ul id="hQnAListUl">
+				<li  class="hQnAListFli hQnAListFli1">No.</li>
+				<li  class="hQnAListFli hQnAListFli2" style="text-align:center">글제목</li>
+				<li  class="hQnAListFli hQnAListFli3">작성자</li>
+				<li  class="hQnAListFli hQnAListFli4">작성일자</li>
+				<li  class="hQnAListFli hQnAListFli5">답변여부</li>
+			
+			<c:forEach var="vo" items="${list }">	
 		
 			<!-- 글번호 -->
 			<c:set var="board_no2" value="${vo.board_no2}" />	
@@ -102,10 +99,10 @@
 			</c:if>
 			<!-- 글제목 -->
 			<c:if test="${board_no2 eq 0 }">
-				<li class="hQnAListFli10 hQnAListFli102"><a href="<%=request.getContextPath()%>/HomeQnAAsk/view?no=${vo.user_qna_no}">${vo.title }</a></li>
+				<li class="hQnAListFli10 hQnAListFli102"><a class="atag_seting" href="<%=request.getContextPath()%>/creator/CreatorQuestion/view?no=${vo.user_qna_no}">${vo.title }</a></li>
 			</c:if>
 			<c:if test="${board_no2 eq 1 }">
-				<li class="hQnAListFli10 hQnAListFli102"><a href="<%=request.getContextPath()%>/HomeQnAAsk/view?no=${vo.user_qna_no}">&ensp;&ensp;&ensp;<label style="color:blue;">[Re]</label> ${vo.title }</a></li>
+				<li class="hQnAListFli10 hQnAListFli102"><a class="atag_seting" href="<%=request.getContextPath()%>/creator/CreatorQuestion/view?no=${vo.user_qna_no}">&ensp;&ensp;&ensp;<label style="color:blue;">[Re]</label> ${vo.title }</a></li>
 			</c:if>
 			
 			<li class="hQnAListFli10 hQnAListFli103">${vo.member_id }</li>
