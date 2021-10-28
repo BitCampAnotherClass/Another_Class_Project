@@ -3,6 +3,20 @@
 
 <%@ include file="/inc/register_header.jspf" %>
 
+
+<style>
+
+
+#wrap{
+	margin-top:150px;
+}
+
+.login-wrap .input-login-wrap{
+	padding-bottom:0px;
+}
+
+
+</style>
 		<div class="contents">
 			<!-- 로그인 박스 -->
 			<div class="login-wrap">
@@ -44,12 +58,13 @@
 						<span> | </span>
 						<a href="#">비밀번호 찾기</a>
 					</div>
-					
+					<!-- 
 					<div class="btn-signup-wrap">
 						<a href="<%=request.getContextPath()%>/register" id="basicSignup" class="btn-login">
 							<span>회원가입</span>
 						</a>
 					</div>
+					-->
 				</div>
 				<!-- // 로그인 입력 공간 -->
 			</div>

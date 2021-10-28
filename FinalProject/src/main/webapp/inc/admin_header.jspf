@@ -222,7 +222,7 @@
 	         <li class="menu_title"><a href="#">결제관리</a></li>
 	         <li class="menu_title"><a href="#">정산관리</a>
 	            <ul>
-	               <li><a href="#" class="small-menu">정산하기</a></li>
+	               <li><a href="<%=request.getContextPath()%>/admin/calcuList" class="small-menu">정산하기</a></li>
 	               <li><a href="#" class="small-menu">지난 정산목록 조회</a></li>             
 	            </ul>
 	         </li>
