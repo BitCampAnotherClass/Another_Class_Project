@@ -214,7 +214,6 @@
 	            <ul>
 	               <li><a href="<%=request.getContextPath()%>/admin/basicClassManagement" class="small-menu">기본 클래스 관리</a></li>
 	               <li><a href="<%=request.getContextPath()%>/admin/optionClassManagement" class="small-menu">옵션별 클래스 관리</a></li>
-	               <li><a href="#" class="small-menu">클래스 취소 관리</a></li>
 	            </ul>
 	         </li>
 	         <li class="menu_title"><a href="<%=request.getContextPath()%>/admin/userManagement">회원관리</a></li>
@@ -226,13 +225,7 @@
 	               <li><a href="#" class="small-menu">지난 정산목록 조회</a></li>             
 	            </ul>
 	         </li>
-	         <li class="menu_title"><a href="#">게시판 관리</a>
-	            <ul>
-	               <li><a href="<%=request.getContextPath()%>/admin/inquiryManagement" class="small-menu">강사문의 관리</a></li>
-	               <li><a href="<%=request.getContextPath()%>/admin/HomeQnA" class="small-menu">고객문의 관리</a></li>
-	               <li><a href="<%=request.getContextPath()%>/admin/noticeManagement" class="small-menu">공지사항 관리</a></li>
-	               <li><a href="<%=request.getContextPath()%>/admin/faqManagement" class="small-menu">자주묻는질문 관리</a></li>
-	            </ul>
+	         <li class="menu_title"><a href="<%=request.getContextPath()%>/admin/HomeQnA">고객문의 관리</a>
 	         </li>
 	         <li class="menu_title"><a href="#">수익관리</a></li>
 	      </ul>
