@@ -206,7 +206,7 @@
 		        labels: months({count: 12}),
 		        datasets: [{
 		            label: '만원',
-		            data: [12, 19, 3.5, 15.7, 7.8, 30.3, 52, 40, 22, 34, 10, 20],
+		            data: [12, 19, 3.5, 15.7, 7.8, 30.3, 52, 40, 54, 22, 0, 0],
 		            backgroundColor: 'rgba(255, 99, 132, 0.3)',
 		            borderColor: 'rgba(255, 99, 132, 0.1)',
 		            borderWidth: 1
