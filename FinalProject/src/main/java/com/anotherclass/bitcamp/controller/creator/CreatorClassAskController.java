@@ -97,14 +97,14 @@ public class CreatorClassAskController {
 		String logid= (String)sess.getAttribute("creatorId");
 		ModelAndView mav = new ModelAndView();			
 		List<ClassListVO>  list = creatorClassAskService.classlist2(logid);
-		ClassListVO vo = new ClassListVO();
+		
 		for(int i=0; i<list.size(); i++) {
-<<<<<<< HEAD
 			ClassListVO vo = list.get(i);			
-=======
 			vo = list.get(i);
 			System.out.println(vo.getClass_no());
->>>>>>> kimin
+
+			vo = list.get(i);			
+
 			int a = creatorClassAskService.ClasslikeCC(vo.getClass_no());
 			int b = creatorClassAskService.ClassAskCC(vo.getClass_no());
 		
