@@ -159,6 +159,13 @@ $(()=>{
 		
 		
 	});
+	function email_Seting(){
+		var emailSet;
+		document.getElementById('member_email-chan').value = document.getElementById('member_email_id').value + '@' +document.getElementById('member_email_addr').value;
+		emailSet = document.getElementById('member_email-chan').value;
+		console.log(emailSet);
+		return emailSet;
+	}
 	
 	$('#member_email_id, #member_email_addr').on('propertychange change keyup paste input',function emailSeting(){
 		var eID = $('#member_email_id').val();
@@ -175,6 +182,7 @@ $(()=>{
 			var emailVal = eID+'@'+addrEmail;
 			$('#member_email').attr('value',emailVal);
 			$('.account_edit_email_check').val('Y');
+			email_Seting();
 		}
 	});
 	
@@ -540,7 +548,8 @@ $(()=>{
 										</span>
 									</span>
 									<input type="button" class="account_edit_addr_button" value="주소검색" onclick="daumPostcode()" />
-									<input type="hidden" id="member_email" name="member_email" value="${vo.member_email }"/>
+									<input type="hidden" id="member_email" value="${vo.member_email }"/>
+									<input type="hidden" id="member_email-chan" name="member_email"/>
 									<input type="hidden" id="account_post_no" name="post_no" value="${vo.post_no }"/>	
 									<input type="hidden" id="account_addr1" name="addr1" value="${vo.addr1 }"/>
 									<input type="hidden" id="image-file-path" name="member_img" value="${vo.member_img}"/>
