@@ -98,7 +98,7 @@ $(function(){
 	    				if(vo2.reviewChk==0){
 	    					tag +="<a href='javascript:void(0);' class='write-review-btn'><span>후기작성</span></a><input type='hidden' value='"+vo2.order_no+"'></a>";
 	    				}else{
-	    					tag +="<span></span>"
+	    					tag +="<span>후기작성완료</span>"
 	    				}
 	    				tag +="</div>";
 	    				tag +="</div>";
