@@ -256,7 +256,7 @@
 					<div class="swiper-wrapper">
 						<c:forEach var="creator" items="${creatorList}">
 							<div class="swiper-slide">
-								<div class="creator-list-img"><img src="<%=request.getContextPath()%>${creator.member_img}"/></div>
+								<div class="creator-list-img"><img src="${creator.member_img}"/></div>
 								<div class="creator-nick">${creator.nick}</div>
 							</div>
 						</c:forEach>
