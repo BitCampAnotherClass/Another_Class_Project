@@ -16,8 +16,22 @@ public class ClassListVO {
 	private String nick;
 	private String member_name;
 	private String member_id;
+	private String creator_content;
+	private String creator_content_img;
 	
 	
+	public String getCreator_content_img() {
+		return creator_content_img;
+	}
+	public void setCreator_content_img(String creator_content_img) {
+		this.creator_content_img = creator_content_img;
+	}
+	public String getCreator_content() {
+		return creator_content;
+	}
+	public void setCreator_content(String creator_content) {
+		this.creator_content = creator_content;
+	}
 	public String getMember_id() {
 		return member_id;
 	}

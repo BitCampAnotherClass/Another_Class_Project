@@ -45,6 +45,10 @@ public class MakeClassApplyServiceImp implements MakeClassApplyService {
 	public CreatorMakeClassVO modifyClassInfo(CreatorMakeClassVO vo) {
 		return makeClassDao.modifyClassInfo(vo);
 	}
+	@Override
+	public int putCreatorProfile(CreatorMakeClassVO vo) {
+		return makeClassDao.putCreatorProfile(vo);
+	}
 	
 
 //	@Override

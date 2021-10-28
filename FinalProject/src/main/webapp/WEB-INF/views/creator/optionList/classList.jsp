@@ -54,7 +54,6 @@
 				$(this).css('color','#333');
 			}			
 		});
-	});
 </script>
 
 
@@ -90,7 +89,7 @@
 		<ul class="classListUl2"><!--  리스트 -->			
 			<c:forEach var="vo" items="${list}">	
 			<li> <!-- ***클래스한줄*** -->
-				<span>${vo.class_no}</span><!-- 클래스번호 -->
+				<span id="classno">${vo.class_no}</span><!-- 클래스번호 -->
 				<span><!-- 클래스명 + 상세정보-->
 					<span><img src="${vo.class_thumb}"/></span><!-- 클래스명 -->
 					<span><!-- 상세정보 -->
@@ -101,8 +100,8 @@
 					</span>					
 				</span>
 				<span>진행중</span><!-- 진행상황 -->
-				<span><!-- 선택 -->
-					<span><a href="">클래스 수정</a></span>
+				<span><!-- ?no=$-->
+					<span><a href="<%=request.getContextPath()%>/creator/modifyClass?no=${vo.class_no}">클래스 수정</a></span>
 					<span><a href="">클래스 삭제</a></span>
 				</span>
 			
