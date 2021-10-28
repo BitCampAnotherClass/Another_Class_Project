@@ -8,6 +8,8 @@ public class ClassOptionDumyVO {
 	private String pay_company;
 	private String order_date;
 	private String buyNumber;
+	private String headcount;
+	
 	
 	public String getOrderNumber() {
 		return orderNumber;
@@ -50,6 +52,12 @@ public class ClassOptionDumyVO {
 	}
 	public void setBuyNumber(String buyNumber) {
 		this.buyNumber = buyNumber;
+	}
+	public String getHeadcount() {
+		return headcount;
+	}
+	public void setHeadcount(String headcount) {
+		this.headcount = headcount;
 	}
 	
 	
