@@ -69,6 +69,9 @@ public class AdminCalcuVO {
 		this.totalRecord = totalRecord;
 		// 총 페이지 수
 		this.totalPage = totalRecord / onePageRecord;
+		if(this.totalPage==0) {
+			this.totalPage=1;
+		}
 		if(totalRecord % onePageRecord != 0) { totalPage += 1; }
 	}
 	public int getTotalPage() {
