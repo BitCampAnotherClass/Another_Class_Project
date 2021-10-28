@@ -340,14 +340,18 @@ $(function(){
 	                             test: d
 	                        },
 	                    });
+	                    
+	                    //
+		          		var a ="user/pay/payEnd"
+		          		location.href="/another/payEnd";
+	                    
 	                } else { //결제실패시 로직
 	                    var msg = '결제에 실패하였습니다.';
+	                	alert(msg);
 	                    msg += '에러내용 : ' + rsp.error_msg;
 	                }
 	               
-	          		//
-	          		var a ="user/pay/payEnd"
-	          		location.href="/another/payEnd";
+	          		
             });
             
             
