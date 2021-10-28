@@ -29,7 +29,7 @@ $(()=>{
 	var a = ${vo.replycheck}
 	
 	function AskReply(){
-		console.log('이잉잉');
+		
 		
 		var rUrl ="/another/creatorAskReplyList";
 		var rParam = "no=${vo.class_qna_no}";
@@ -39,6 +39,7 @@ $(()=>{
 		    	data:rParam,
 		    	success:function(b){
 		    	var bb = $(b)
+		    	
 		    	var tag ="";	    		    								
 		    	bb.each(function(idx,vo2){
 		    		tag +="<div id='aa'>";
@@ -82,7 +83,7 @@ $(()=>{
     $(document).on('submit','#bbFrm',function(){ 
        var url ="/another/creatorAskReplyListEdit";
        var params = $(this).serialize(); 
-       console.log('수정완료버튼클릭');
+     
        $.ajax({
           url : url,
           data :params,
@@ -100,15 +101,15 @@ $(()=>{
 		if(confirm('댓글을 삭제하시겠습니까?')){
 			 //class_qna_com_no
              var params = "no="+$(this).children("input").val();
-			 console.log($(this).children("input").val());
+			
              $.ajax({
                url : "/another/creatorAskReplyDel", 
                data : params,
                success : function(result){
             	  
             		   alert('삭제되었습니다');
-            		  
-	           		   AskReply();         	 
+            		   $( "#replyDivv" ).empty();	
+	           		   	 
             		  
             	  
                }

@@ -5,13 +5,17 @@
 $(function(){
 	
 	function refundSeting(data){
-		console.log(data);
 		if(data == null){
 			data = '환불대기중'
 		}else{
 			data = '환불완료'
 		}
-		console.log(data);
+		return data;
+	}
+	function refundnullSeting(data){
+		if(data == null){
+			data = '';
+		}
 		return data;
 	}
 	let url="RefundMangement/RefundList";
@@ -30,18 +34,18 @@ $(function(){
 				var listData = $(result);
 				listData.each(function(idx,vo){
 					let refund= refundSeting(vo.refund_date);
+					let refundSet= refundnullSeting(vo.refund_date);
 					board +='<li class="userMg-chart-boardlist">'+vo.order_no+'';
 					board +='</li>';
 					board +='<li class="userMg-chart-boardlist" id="userMg-chart-id">'+vo.member_id+'</li>';
-					board +='<li class="userMg-chart-boardlist">'+vo.member_name+'</li>';
 					board +='<li class="userMg-chart-boardlist">'+vo.pay_company+'</li>';
 					board +='<li class="userMg-chart-boardlist">'+vo.order_date+'</li>';
-					board +='<li class="userMg-chart-boardlist">'+vo.refund_date+'</li>';
+					board +='<li class="userMg-chart-boardlist">'+refundSet+'</li>';
 					board +='<li class="userMg-chart-boardlist">'+refund+'</li>';
 					board +='<li class="userMg-chart-boardlist">';
-					<c:set var="refundDate" value="vo.refund_date" />
+					if(refund == '환불대기중'){
 						board +='<input type="button" value="환불" class="account_information_button" id="account_information_btn"/>';
-					
+					}
 					board +='<input type="hidden" value="'+vo.order_no+'" id="userMg-chart-id"/>';
 					board +='<input type="hidden" value="'+vo.class_option_no+'" id="userMg-chart-id"/>';
 					board +='</li>';
@@ -180,33 +184,30 @@ $(function(){
 		border:1px solid #f0f0f0;
 	}
 	
-	.userMg-chart-boardlist:nth-child(8n+1){
+	.userMg-chart-boardlist:nth-child(7n+1){
 		width: 10%;
 	}
 	
-	.userMg-chart-boardlist:nth-child(8n+2){
+	.userMg-chart-boardlist:nth-child(7n+2){
 		width: 10%;
 	}
 	
-	.userMg-chart-boardlist:nth-child(8n+3){
+	.userMg-chart-boardlist:nth-child(7n+3){
 		width: 10%;
 	}
-	.userMg-chart-boardlist:nth-child(8n+4){
-		width: 10%;
-	}
-	.userMg-chart-boardlist:nth-child(8n+5){
+	.userMg-chart-boardlist:nth-child(7n+4){
 		width: 20%;
 	}
-	.userMg-chart-boardlist:nth-child(8n+6){
+	.userMg-chart-boardlist:nth-child(7n+5){
 		width: 20%;
 	}
-	.userMg-chart-boardlist:nth-child(8n+7){
+	.userMg-chart-boardlist:nth-child(7n+6){
+		width: 20%;
+	}
+	.userMg-chart-boardlist:nth-child(7n+7){
 		width: 10%;
 	}
-	.userMg-chart-boardlist:nth-child(8n+8){
-		width: 10%;
-	}
-	.userMg-chart-boardlist:nth-child(n+9){
+	.userMg-chart-boardlist:nth-child(n+8){
 		background:white;
 		font-size: 0.9rem;
 	}
@@ -322,7 +323,6 @@ $(function(){
 			<ul class="userMg-chart-box">
 				<li class="userMg-chart-boardlist">주문번호</li>
 				<li class="userMg-chart-boardlist">아이디</li>
-				<li class="userMg-chart-boardlist">이름</li>
 				<li class="userMg-chart-boardlist">은행사</li>
 				<li class="userMg-chart-boardlist">환불신청일</li>
 				<li class="userMg-chart-boardlist">환불완료일</li>

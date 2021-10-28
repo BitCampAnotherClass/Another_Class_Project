@@ -117,7 +117,7 @@ input[type=button]:hover{
 .class_div{ border:1px solid lightgray;
 	float:left;
 	width:30%;
-	height:400px;
+	height:440px;
 	margin:1% 1% 1% 1%;
 	border-radius:8px;
 	padding:5px 5px 5px 5px;
@@ -138,7 +138,7 @@ input[type=button]:hover{
 .info_div{/* 정보 div */
 	width:100%;
 	height:30%;
-	padding:5px 5px 5px 5px;    
+	/*padding:5px 5px 5px 5px;    */
 	border-radius:8px;
 	
 }
@@ -164,7 +164,7 @@ input[type=button]:hover{
 	word-break:break-all;
 	text-align:left;
 	display:inline-block;
-	padding:3px 5px 3px 5px;
+	padding:0 3px 0px 3px;
 	max-height: 24px;
 	color:#333;
 }
@@ -212,7 +212,7 @@ $(function(){
 	
 		//vo.creator_nick2 : 강사명
 		function getLikedListClass(){
-			console.log("강의좋아요함수들어옴");
+			
 			var url = "/another/LikedListClass";
 			var params = {"logid":logid}
 			$.ajax({
@@ -232,9 +232,9 @@ $(function(){
 					classDiv += '<div class="img_div">';
 					
 					classDiv +=	'<img style="height:100%;" class="img_size" src="'+vo.class_thumb+'">';
-					classDiv +=	'<div class="heartImg" id="'+vo.class_like_no+'"><img class="likeimgbox91" style="width:8%;margin-right:8px;" src="/another/img/jisu/ff385bigcheart.png"/></div>';
+				
 					classDiv += '</div>';
-					
+					classDiv +=	'<div style="margin-top:3px;" class="heartImg" id="'+vo.class_like_no+'"><img class="likeimgbox91" style="width:8%;margin-right:8px;" src="/another/img/jisu/ff385bigcheart.png"/></div>';
 					classDiv +=	'<div class="info_div">';
 					classDiv += '<ul>';
 					classDiv += '<li><div>['+ vo.category_name+']</div></li>';
@@ -249,7 +249,7 @@ $(function(){
 					$('.middle_container').append(classDiv);
 					$('.no-result-txt').hide(); // 결과 없음 내용 숨기기
 					$('.more').show(); // 더보기 버튼 보이기
-					if(idx >= r.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
+					if(idx >= rr.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
 						$('.more').hide();
 					}
 				}
@@ -263,12 +263,13 @@ $(function(){
 						classDiv +=	'<img style="height:100%;" class="img_size" src="'+vo.class_thumb+'">';
 						
 						classDiv += '</div>';
+						classDiv +=	'<div style="margin-top:3px;" class="heartImg" id="'+vo.class_like_no+'"><img class="likeimgbox91" style="width:8%;margin-right:8px;" src="/another/img/jisu/ff385bigcheart.png"/></div>';
 						classDiv +=	'<div class="info_div">';
 						classDiv += '<ul>';
 						classDiv += '<li><div>['+ vo.category_name+']</div></li>';
 						classDiv += '<li><a href="<%=request.getContextPath()%>/classDetailView?no=' + vo.class_no + '" target="">'+vo.class_name+'</a></li>';
 						classDiv +=	'<li>'+vo.creator_nick2+'</li>';
-						classDiv +=	'<li  style="border:none;"><div class="heartImg" id="'+vo.class_like_no+'"><img class="likeimgbox91" style="width:8%;margin-right:8px;" src="/another/img/jisu/ff385bigcheart.png"/></div></li>';
+						//classDiv +=	'<li  style="border:none;"><div class="heartImg" id="'+vo.class_like_no+'"><img class="likeimgbox91" style="width:8%;margin-right:8px;" src="/another/img/jisu/ff385bigcheart.png"/></div></li>';
 						
 						//classDiv +=	'<li>'+하트+'</li>';
 						//classDiv +=	'<li>'+하트+'원</li>';
@@ -278,7 +279,7 @@ $(function(){
 						$('.middle_container').append(classDiv);
 						$('.no-result-txt').hide(); // 결과 없음 내용 숨기기
 						 $('.more').show();
-	                 	 if(idx >= ll.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
+	                 	 if(idx >= rr.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
 	                        $('.more').hide();
 		                     }
 		              }

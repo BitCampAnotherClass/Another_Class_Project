@@ -298,7 +298,7 @@ $(function(){
                 pay_method: 'card',  // 지불 수단
                 merchant_uid: ${vo.class_name} + new Date().getTime(),
                 name: name,
-                amount: '100',
+                amount: money,
                 buyer_email: email,
                 buyer_name: name,
                 buyer_tel: tel,

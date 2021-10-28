@@ -239,7 +239,14 @@ public class UserMyPageController {
 	public List<UserMyPageOrderVO> ajaxOrderListFin3(String logid){		
 		
 		List<UserMyPageOrderVO> list = userMyPageService.orderFinList3(logid);	
-		System.out.println(list.size());
+		
+		for(int i=0; i<list.size(); i++) {
+			UserMyPageOrderVO vo = list.get(i);	
+			String a = vo.getRefund_date();
+			if(a==null) {//환불날짜없음 -> 취소신청만
+				vo.setRefund_date("1");				
+			}
+		}
 		return list;
 	}
 	@RequestMapping("/UserOrderCancleSub")
@@ -263,8 +270,7 @@ public class UserMyPageController {
 		return result;
 		
 	}
-	//홈페이지문의글수정
-	
+	//홈페이지문의글수정	
 	@RequestMapping("/UserMyHQnAEdit")
 	@ResponseBody
 	public int ajaxUserMyHQnAEdi(UserHomeQnAVO vo) {

@@ -205,7 +205,7 @@ input[type=button]:hover{
 <script>
 $(function(){
 		var logid = "${userId}";		
-		var listCnt = 3; // 목록에서 한 번에 보여줄 클래스 개수	
+		 // 목록에서 한 번에 보여줄 클래스 개수	
 		//vo.creator_nick2 : 강사명
 		function getLikedListClass(){
 			console.log("강의좋아요함수들어옴");
@@ -216,6 +216,8 @@ $(function(){
 			data : params,
 			async:false,
 			success:function(r){
+				
+			var listCnt = 3;
 			var rr=$(r);		
 			console.log(rr);
 			var classDiv = '';
@@ -239,7 +241,7 @@ $(function(){
 					$('.middle_container').append(classDiv);
 					$('.no-result-txt').hide(); // 결과 없음 내용 숨기기
 					$('.more').show(); // 더보기 버튼 보이기
-					if(idx >= r.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
+					if(idx >= rr.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
 						$('.more').hide();
 					}
 				}
@@ -267,7 +269,7 @@ $(function(){
 						$('.middle_container').append(classDiv);
 						$('.no-result-txt').hide(); // 결과 없음 내용 숨기기
 						 $('.more').show();
-	                 	 if(idx >= ll.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
+	                 	 if(idx >= rr.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
 	                        $('.more').hide();
 		                     }
 		              }

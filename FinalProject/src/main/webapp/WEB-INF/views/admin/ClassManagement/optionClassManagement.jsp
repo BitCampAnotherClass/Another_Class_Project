@@ -32,9 +32,11 @@
 	.userMg-chart-boardlist:nth-child(8n+1){
 		width: 5%;
 	}
-	.userMg-chart-boardlist:nth-child(8n+3){
+
+	.userMg-chart-boardlist:nth-child(8n+4){
 		width: 20%;
 	}
+
 	.userMg-chart-boardlist:nth-child(n+9){
 		background:white;
 	}
@@ -108,11 +110,44 @@
 				<li class="userMg-chart-boardlist">클래스번호</li>
 				<li class="userMg-chart-boardlist">카테고리</li>
 				<li class="userMg-chart-boardlist">클래스명</li>
-				<li class="userMg-chart-boardlist">신청인원/수강인원</li>
-				<li class="userMg-chart-boardlist">수강생목록</li>
+				<li class="userMg-chart-boardlist">신청인원</li>
+				<li class="userMg-chart-boardlist">수강인원</li>
 				<li class="userMg-chart-boardlist">대기현황</li>
 				<li class="userMg-chart-boardlist">진행현황</li>
 				
+				<c:forEach var="vo" items="${list }">	
+					<li class="userMg-chart-boardlist"><input type="checkbox" id="allcheck"/></li>
+					<li class="userMg-chart-boardlist">${vo.class_no}</li>
+					<li class="userMg-chart-boardlist">${vo.category_name}</li>
+					<li class="userMg-chart-boardlist">${vo.class_name}</li>
+					<li class="userMg-chart-boardlist">${vo.all_headcount}</li>
+					<li class="userMg-chart-boardlist">${vo.max_headcount}</li>
+					<c:set var="request" value="${vo.request}" />							
+						<c:if test="${request eq 0 }"> 
+							<li class="userMg-chart-boardlist">신청대기</li>
+						</c:if>
+						<c:if test="${request eq 1 }"> 
+							<li class="userMg-chart-boardlist">신청수락</li>
+						</c:if>
+						<c:if test="${request eq 2 }"> 
+							<li class="userMg-chart-boardlist">신청취소</li>
+						</c:if>
+						<c:if test="${request eq 3 }"> 
+							<li class="userMg-chart-boardlist">반려</li>
+						</c:if>
+					<c:set var="progress" value="${vo.progress}" />							
+						<c:if test="${progress eq 0 }"> 
+							<li class="userMg-chart-boardlist">진행대기</li>
+						</c:if>
+						<c:if test="${progress eq 1 }"> 
+							<li class="userMg-chart-boardlist">진행중</li>
+						</c:if>
+						<c:if test="${progress eq 2 }"> 
+							<li class="userMg-chart-boardlist">진행종료</li>
+						</c:if>
+					
+				
+				</c:forEach>
 				
 			</ul>
 		</div>

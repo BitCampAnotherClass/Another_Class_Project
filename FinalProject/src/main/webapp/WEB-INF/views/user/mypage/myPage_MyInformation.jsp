@@ -489,7 +489,7 @@ $(()=>{
 									<span class="myPage-accountView-box">
 										<span class="account_edit_input-outline">
 											<span class="account_edit_input-box">
-												<input type="text" id="member_name" name="member_name" value="${vo.member_name }" onclick="inputClick(this)" class="account_edit_input" placeholder="이름" autocomplete=”off” maxlength="7"readonly/>				
+												<input type="text" id="member_name" value="${vo.member_name }" class="account_edit_input" readonly/>				
 											</span>
 										</span>
 									</span>

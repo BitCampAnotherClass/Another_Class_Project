@@ -37,7 +37,7 @@
 	.classAskcontenttextreplydiv>div:nth-child(2)>span:nth-child(2){font-size:0.8rem;color:#666;}
 	
 	/*홈페이지문의내용*/
-	#homepageAsk{position:absolute;display:none;}
+	#homepageAsk{display:none;}/*position:absolute;*/
 	.homeAskcontent{width:100%;}
 	.homeAskcontent>li{width:20%;float:left;border-bottom:1px solid #ddd;height:50px;padding:10px 0 10px 0;text-align:center;}
 	.homeAskcontent>.homeAskTli{border-bottom:2px solid #999;}
@@ -54,6 +54,7 @@
 	    color: white;
 	    padding: 3px 9px;
 	    border-radius: 5px;
+	        margin-top: 20px;
     }
 	
 </style>
@@ -89,14 +90,14 @@ $(function(){
 			var hUrl ="/another/HomeAskReplyList999";
 			var hParam = {"logid":logid} 
 			var tag =""; 	
-			var listCnt = 5;
-			$('#homeAskcontent').html(''); //위치 상관잇나
+			
+			//$('#homeAskcontent').html(''); //위치 상관잇나
 			$.ajax({
 				url:hUrl,
 				data :hParam,
 				success:function(h){
 					
-					
+					var listCnt = 5;
 					
 					var hh = $(h)
 	    			
@@ -104,10 +105,12 @@ $(function(){
 						tag +="<li class='homeAskTli' style='width:60%;white-space:nowrap;overflow:hidden;text-overflow: ellipsis;background-color:#f0f0f0;'>제목</li>";
 						tag +="<li class='homeAskTli' style='width:15%;background-color:#f0f0f0;'>작성일자</li>";
 						tag +="<li class='homeAskTli'  style='width:15%;background-color:#f0f0f0;'>답변여부</li>";
+					
+					//$('#homeAskcontent').html('');//원래있던거지우고새로
 					hh.each(function(idx,vo){		
 						
-						
-						tag +="<li style='width:10%;padding-top:17px;'>"+vo.user_qna_no+"</li>";	
+					if( idx <= (listCnt-1) ){			
+						tag ="<li style='width:10%;padding-top:17px;'>"+vo.user_qna_no+"</li>";	
 						tag +="<li class='title' style='width:60%;white-space:nowrap;overflow:hidden;text-overflow: ellipsis;padding-top: 14px;'>"+vo.title+"<input type='hidden' value='"+vo.user_qna_no+"' ></li>"; //제목
 						tag +="<li style='width:15%;padding-top:17px;'>"+vo.writedate+"</li>";
 						if(vo.replycount == 1){
@@ -134,8 +137,56 @@ $(function(){
 							tag +="<div  style='width:100%;word-break:break-all;padding-left:62px;text-align:left;'>[<label style='color:blue;'>Re</label>]&nbsp;"+vo.replyContent+"</div>";
 							tag +="</li>"
 						}					
-						$("#homeAskcontent").html(tag);  
-					});	
+						$("#homeAskcontent").append(tag);  
+						$('.no-result-txt').hide(); // 결과 없음 내용 숨기기
+						$('.more').show(); // 더보기 버튼 보이기
+						if(idx >= hh.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
+							$('.more').hide();
+						}
+					}//if문종료
+					var n=1;
+					$('.more > button').click(function(){
+						n++;
+					if( idx >= listCnt*(n-1) && idx <= (listCnt*n-1) ){
+						tag ="<li style='width:10%;padding-top:17px;'>"+vo.user_qna_no+"</li>";	
+						tag +="<li class='title' style='width:60%;white-space:nowrap;overflow:hidden;text-overflow: ellipsis;padding-top: 14px;'>"+vo.title+"<input type='hidden' value='"+vo.user_qna_no+"' ></li>"; //제목
+						tag +="<li style='width:15%;padding-top:17px;'>"+vo.writedate+"</li>";
+						if(vo.replycount == 1){
+							tag +="<li style='width:15%;padding-top: 14px;'>미답변</li>";
+						}else{
+							tag +="<li style='width:15%;padding-top: 14px;'>답변완료</li>";
+						}
+						tag+="<li  id='a"+vo.user_qna_no+"' class='conconli' style='border: none;width:100%;min-height:100px;height:auto;background-color:#f0f0f0;display:none;'>";//id값,안보이게........display:none;						
+						tag +="<div  id='aa"+vo.user_qna_no+"' style='width:100%;word-break:break-all;padding-left:62px;text-align:left;min-height:57px;height:auto;'>"+vo.content+"</div>";// ->토글로						
+						tag +="<div  style='width:100%;text-align:right;'><a href='#' style='margin-right:25px;border: 1px solid #999;padding: 5px 10px 5px 10px;color: #666;font-size:0.8rem;' class='hediBtn'>수정<input type='hidden' value='"+vo.user_qna_no+"'></a>";
+						tag += "<a  style='margin-right:25px;border: 1px solid #999;padding: 5px 10px 5px 10px;color: #666;font-size:0.8rem;' class='hdelBtn'>삭제<input type='hidden' value='"+vo.user_qna_no+"'></a></div>";// ->토글로						
+						tag +="</li>"						
+						//수정폼
+						tag +="<form id='MyPagehomeqnaEdiF'>"
+						tag +="<li id='b"+vo.user_qna_no+"' class='conconli' style='display:none;border: none;width:100%;min-height:100px;height:auto;background-color:#f0f0f0;'>";//id값,안보이게........display:none;						
+						tag +="<textarea  style='width:100%;word-break:break-all;padding-left:62px;text-align:left;min-height:57px;height:auto;resize:none;background-color:#f0f0f0;border:none;' name='content'>"+vo.content+"</textarea>";// ->토글로						
+						tag +="<div  style='width:100%;text-align:right;'><button style='margin-right:25px;border: 1px solid #999;padding: 5px 10px 5px 10px;color: #666;font-size:0.8rem;' >수정완료<input type='hidden' value='"+vo.user_qna_no+"' name='user_qna_no'></button>";
+						tag += "</div>";					
+						tag +="</li>"
+						tag +="</form>"					
+						if(vo.replycount ==2){
+								//답글
+							tag+="<li id='bb"+vo.user_qna_no+"' class='reprepli' style='width:100%;min-height:100px;height:auto;display:none;'>";//display:none;
+							tag +="<div  style='width:100%;word-break:break-all;padding-left:62px;text-align:left;'>[<label style='color:blue;'>Re</label>]&nbsp;"+vo.replyContent+"</div>";
+							tag +="</li>"
+						}					
+						$("#homeAskcontent").append(tag);  
+						$('.no-result-txt').hide(); // 결과 없음 내용 숨기기
+						$('.more').show(); // 더보기 버튼 보이기
+						if(idx >= hh.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
+							$('.more').hide();
+						}
+					 
+					}
+					 }); ////////클릭이벤트
+					
+					
+					});	//each
 				}
 			})
 	  }
@@ -328,6 +379,7 @@ $(function(){
                success : function(result){
             	   if(result>0){
             		   alert('삭제되었습니다');
+            		   $('#homeAskcontent').empty();
             		   getHomeAsk();
             	   }else{
             		   alert("글삭제 실패하였습니다.");
@@ -356,6 +408,7 @@ $(function(){
           type : "POST",
           success : function(result){
           	alert('수정되었습니다');
+          	$('#homeAskcontent').empty();
           	getHomeAsk();
           }
        });

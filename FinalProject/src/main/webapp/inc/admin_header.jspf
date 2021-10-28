@@ -219,7 +219,7 @@
 	         </li>
 	         <li class="menu_title"><a href="<%=request.getContextPath()%>/admin/userManagement">회원관리</a></li>
 	         <li class="menu_title"><a href="<%=request.getContextPath()%>/admin/creatorManagement">크리에이터관리</a></li>
-	         <li class="menu_title"><a href="#">결제관리</a></li>
+	         <li class="menu_title"><a href="<%=request.getContextPath()%>/admin/RefundMangement">결제관리</a></li>
 	         <li class="menu_title"><a href="#">정산관리</a>
 	            <ul>
 	               <li><a href="#" class="small-menu">정산하기</a></li>
