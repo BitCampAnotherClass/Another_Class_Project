@@ -57,6 +57,10 @@ public class MakeClassApplyServiceImp implements MakeClassApplyService {
 	public List<CreatorMakeClassDateTimeVO> putDate(CreatorMakeClassDateTimeVO vo) {
 		return makeClassDao.putDate(vo);
 	}
+	@Override
+	public int deleteClass(CreatorMakeClassVO vo) {
+		return makeClassDao.deleteClass(vo);
+	}
 	
 
 //	@Override

@@ -40,28 +40,48 @@ $(function(){
 		});
 	
 	
-	
 	$('#summernote').summernote({
-		height:size,
-		placeholder:content,
-	  	lang:"ko-KR",	
-	  	minHeight: size, 
-	  	maxHeight:size,
-	  	callbacks: {	//여기 부분이 이미지를 첨부하는 부분
-		onImageUpload : function(files) {
-		uploadSummernoteImageFile(files[0],this);
-		},
-			onPaste: function (e) {
-				var clipboardData = e.originalEvent.clipboardData;
-				if (clipboardData && clipboardData.items && clipboardData.items.length) {
-					var item = clipboardData.items[0];
-					if (item.kind === 'file' && item.type.indexOf('image/') !== -1) {
-						e.preventDefault();
-					}
-				}
-		 	}
-	  	}
+		// 에디터 높이
+		height: 300,
+		width: 1200,
+		minHeight: 300, 
+	  	maxHeight: 300,
+		lang:"ko-KR",
+		focus: true,
+		toolbar: [
+		    ['style', ['bold', 'italic', 'underline', 'clear']],
+		    ['font', ['strikethrough']],
+		    ['fontsize', ['fontsize']],
+		    ['color', ['color']],
+		    ['para', ['ul', 'ol', 'paragraph']],
+		    ['insert',['picture']],
+		    ['height', ['height']]
+		  ],
+		callbacks: {
+			onImageUpload: function(files){
+				uploadFiles(files[0], this);
+			}
+		}
 	});
+		function uploadFiles(file, editor){
+			var form_data = new FormData();
+	      	form_data.append('file', file);
+	      	$.ajax({
+	        	data: form_data
+	        	,type: "POST"
+	        	,url: '/another/FileUpload/imageUploadUrl'
+	        	,contentType: false
+	        	,processData: false
+	        	,success: function(imageData) {
+	        		console.log("img:"+ imageData.url);
+	          		$(editor).summernote('insertImage', imageData.url);
+	        	}
+	      		,error: function(error){
+	      			console.log(error);
+	      			console.log('파일업로드 실패');
+	      		}
+	      	});
+		}
 });
 
 var tbu = "등록";
@@ -192,11 +212,10 @@ function summernote(){
 .filebox>ul>li{
 	float:left;
 }
-</style>
-<script>
-	
-</script>
+#class_thumb, #fileButton{
 
+}
+</style>
 
 <div id="myChannelMainDiv">
 		<form  method="post" action="<%=request.getContextPath()%>/creator/creatorProfileOk" >
@@ -208,8 +227,8 @@ function summernote(){
 				<div class="filebox">
 					<ul>
 						<li><input type="button" class="button" value="확인" id="class_thumb" ></li>
-						<li><input type="hidden" name="creator_content_img" id="thumb_image"></li>
-						<li><input type="file" id="fileButton" required></li>
+						<li><input type="hidden" name="creator_content_img" id="thumb_image" value="${channel.creator_content_img}"></li>
+						<li><input type="file" id="fileButton"  required ></li>
 					</ul>
 				</div>
 		</div>
