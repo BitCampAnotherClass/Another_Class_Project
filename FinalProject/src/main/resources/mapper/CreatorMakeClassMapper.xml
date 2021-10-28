@@ -42,7 +42,8 @@
 	</select>
 	<update id="putCreatorProfile" parameterType="com.anotherclass.bitcamp.vo.creator.CreatorMakeClassVO" >
 	<![CDATA[
-		update creator set creator_content = '${creator_content}',creator_content_img='${creator_content_img}' where member_id = '${member_id}'
+		update creator set creator_content = #{creator_content},creator_content_img=#{creator_content_img}
+		 where member_id = #{member_id}
 	]]>
 	</update>
 	

@@ -574,14 +574,14 @@ $(document).ready(function(){
 			</div>
 			<div id="d6" class="menu"> <!-- 강사소개 -->
 				<div class="menutitle"><span>강사소개</span></div>
-				<div>
+				
 					<c:set var="creatorimg" value="${vo.creator_content_img }" />	
 					<c:if test="${!empty  creatorimg }"> <!-- 널값이아니면 셋팅 -->
 					
-						<div style='max-width:400px;max-height: 300px;'><img src="${vo.creator_content_img }" style='width:100%;height:100%;object-fit:cover;'/></div>
+						<div style='max-width:300px;max-height:300px;'><img src="${vo.creator_content_img }" style='max-width:300px;max-height:300px;object-fit:cover;'/></div>
 					</c:if>
-					${vo.creator_content }
-				</div>
+					<div>${vo.creator_content }</div>
+				
 			</div>
 			<div id="d7" class="menu" style='border:none;'> <!-- 위치 -->
 				<div class="menutitle"><span>위치</span></div>

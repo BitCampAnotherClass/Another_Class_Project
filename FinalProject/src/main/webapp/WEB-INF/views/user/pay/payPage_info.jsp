@@ -142,7 +142,7 @@ $(function(){
 				<c:forEach var="vo" items="${list}" varStatus="status">
 					<div class="payclassinfoorder " style="height:150px;"><!-- 주문한줄.... -->
 						<div><!-- 이미지+제목 -->
-							<div><img src="img/jisu/classimg5.png"></div> <!-- 이미지  vo.class_thumb --> 						
+							<div><img src="${vo.class_thumb }"></div> <!-- 이미지  vo.class_thumb --> 						
 							<div><!-- 제목+강사 -->
 								<div>${vo.class_name }</div>
 								<div>${vo.nick }</div>
