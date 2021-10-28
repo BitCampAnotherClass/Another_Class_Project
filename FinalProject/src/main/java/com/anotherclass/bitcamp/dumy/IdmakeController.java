@@ -1,4 +1,4 @@
-package com.anotherclass.bitcamp.controller.admin;
+package com.anotherclass.bitcamp.dumy;
 
 
 
@@ -17,12 +17,34 @@ import com.anotherclass.bitcamp.service.register.RegisterService;
 
 @Controller
 @RequestMapping("/admin")
-public class idmake {
+public class IdmakeController {
 	
 	private HashingSeting hashing = new HashingSeting();
 	
 	@Inject
 	RegisterService registerService;
+	
+	@Inject
+	DumyService dumyService;
+	
+	@RequestMapping("/ClassOptionSeting")
+	public String classNumberList() {
+		
+		List<String> option= dumyService.optionNumber();
+		for(int i=0; i<option.size(); i++) {
+			System.out.println(option.get(i));
+			
+			
+		}
+		//List<String> list = dumyService.classNumberList();	
+		//Collections.shuffle(list);
+//		for(int i=0; i<list.size(); i++) {
+//			System.out.println(list.get(i));
+//			int cnt = dumyService.classOptionSeting(list.get(i));
+//			System.out.println(cnt);
+//		}
+		return "test";
+		}
 	
 	@RequestMapping("/makeIdcheck")
 	public String testing(RegisterVO vo)throws Exception  {
