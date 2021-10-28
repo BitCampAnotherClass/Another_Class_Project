@@ -1,0 +1,84 @@
+@charset "UTF-8";
+
+
+
+
+
+.list-wrap{
+	margin-top:30px;
+}
+
+.calcu-list{
+
+}
+
+#calcuList{
+	clear:both;
+}
+
+.calcu-list li{
+	width:13%;
+	float:left;
+	border-bottom:1px solid #ddd;
+	height:45px;
+	line-height:45px;
+}
+
+.c-col{
+	border-top:1px solid #ddd;
+	text-align: center;
+	font-weight: 500;
+	background-color:#eee;
+}
+
+.c-item{
+	text-align: center;
+}
+
+.calcu-list li.col-check{
+	width:6%;
+}
+
+.col-check{
+	clear:both;
+}
+
+.col-creator-id{
+	width:15%;
+}
+
+.calcu-list li.col-end-date, .calcu-list li.col-calcu-dday, .calcu-list li.col-calcu-date{
+	width:13%;
+}
+
+.c-item.col-calcu-price, .c-item.col-sum-price, .c-item.col-sum-charge{
+	text-align: right;
+	padding-right:3%;
+}
+
+.calcu-paging{
+	clear:both;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

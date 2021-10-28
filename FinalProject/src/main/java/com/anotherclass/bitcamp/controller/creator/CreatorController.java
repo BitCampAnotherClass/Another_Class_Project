@@ -116,4 +116,9 @@ public class CreatorController {
 		
 		return result;
 	}
+	@RequestMapping("/creatorClassList")
+	public String creatorClassList() {
+	    return "/creator/creatorClassList";
+	}
+	
 }

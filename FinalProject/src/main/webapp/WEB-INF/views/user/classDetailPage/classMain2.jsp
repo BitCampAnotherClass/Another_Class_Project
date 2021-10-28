@@ -577,6 +577,7 @@ $(document).ready(function(){
 				<div>
 					<c:set var="creatorimg" value="${vo.creator_content_img }" />	
 					<c:if test="${!empty  creatorimg }"> <!-- 널값이아니면 셋팅 -->
+					
 						<div style='max-width:400px;max-height: 300px;'><img src="${vo.creator_content_img }" style='width:100%;height:100%;object-fit:cover;'/></div>
 					</c:if>
 					${vo.creator_content }
@@ -610,7 +611,7 @@ $(document).ready(function(){
 							            position: coords
 							        });											       
 							        var infowindow = new kakao.maps.InfoWindow({
-							            content: '<div style="width:150px;text-align:center;padding:6px 0;">버드세이지 플라워</div>'
+							            content: '<div style="width:150px;text-align:center;padding:6px 0;">${vo.nick}</div>'
 							        });
 							        infowindow.open(map, marker);							       
 							        map.setCenter(coords);

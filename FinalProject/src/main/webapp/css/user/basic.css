@@ -56,6 +56,13 @@ body{
 	margin-left:20px;
 }
 
+
+
+li.basket-btn a img{
+	width:20px;
+	height:20px;
+}
+
 .user-profile{
 	width:30px;
 	height:30px;
