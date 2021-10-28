@@ -59,7 +59,11 @@ $(function(){
 	
 	function buttonNumber(){
 		//페이징 버튼 출력
+		let searchWord = document.querySelector('#searchWord').value;
+		let dateSearchFirst = document.querySelector('#dateSearchFirst').value;
+		let dateSearchLast = document.querySelector('#dateSearchLast').value;
 		var btnList = "";
+		const data = {"searchWord":searchWord , "dateSearchFirst":dateSearchFirst ,"dateSearchLast":dateSearchLast};
 		$.ajax({
 			url : 'MemberMangement/btnList'
 			, type : 'POST'
@@ -85,6 +89,7 @@ $(function(){
 		// 페이징 하단 버튼 숫자설정
 		$('.paging-number').val($(this).val());
 		$('.userMg-chart-boardlist:nth-child(n+9)').remove();
+		
 		memberListAjax();
 	});
 	
@@ -179,6 +184,7 @@ $(function(){
 	});
 	$(document).on('click','#serahButton', function(){
 		$('.userMg-chart-boardlist:nth-child(n+9)').remove();
+		$('.userMg-boardList-btn-box').empty();
 		buttonNumber();
 		memberListAjax();
 	});
