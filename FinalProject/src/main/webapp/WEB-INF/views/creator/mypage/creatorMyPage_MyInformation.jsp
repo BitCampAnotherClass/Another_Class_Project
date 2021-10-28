@@ -3,6 +3,9 @@
 <link href="<%=request.getContextPath()%>/css/user/accountEdit.css" rel="stylesheet" type="text/css"/>
 <script>
 $(()=>{
+	const checkEng = /[a-z|A-Z|0-9]/;
+	const checkKor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/;
+	
 	function modelMenuSeting(){
 		var modal = '';
 		modal += '<div class="myPage-information-back" style="display:none">';
@@ -158,6 +161,14 @@ $(()=>{
 		
 		
 	});
+	function email_Set(){
+		var emailSet;
+		document.getElementById('member_email-chan').value = document.getElementById('member_email_id').value + '@' +document.getElementById('member_email_addr').value;
+		emailSet = document.getElementById('member_email-chan').value;
+		console.log(emailSet);
+		return emailSet;
+	}
+	
 	
 	$('#member_email_id, #member_email_addr').on('propertychange change keyup paste input',function emailSeting(){
 		var eID = $('#member_email_id').val();
@@ -174,6 +185,7 @@ $(()=>{
 			var emailVal = eID+'@'+addrEmail;
 			$('#member_email').attr('value',emailVal);
 			$('.account_edit_email_check').val('Y');
+			email_Set();
 		}
 	});
 	
@@ -196,19 +208,20 @@ $(()=>{
 		}
 	});
 	
-	function email_Seting(){
+	
+	$(document).ready(function(){
 		var emailData;
 	    email = '${vo.member_email}';
 	    emailSplit = email.split('@');
 	    document.getElementById('member_email_id').value = emailSplit[0];
 	    document.getElementById('member_email_addr').value = emailSplit[1]; 
-	}
-	email_Seting();
 	});
-	function inputClick(data) {
-		data.readOnly = false;
-	}
 	
+	
+});
+function inputClick(data) {
+	data.readOnly = false;
+}
 </script>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -517,13 +530,13 @@ $(()=>{
 									<span class="myPage-accountView-box-email">
 										<span class="account_edit_input-outline" id="account_edit_input_email">
 											<span class="account_edit_input-box">
-												<input type="text" id="member_email_id" name="member_email_id" class="account_edit_input_email"  onclick="inputClick(this)" placeholder="이메일" autocomplete=”off” maxlength="15" readonly/>
+												<input type="text" id="member_email_id" name="member_email_id" class="account_edit_input_email" placeholder="이메일" autocomplete=”off” maxlength="15" />
 											</span>
 										</span>
 										<span class="member_email_AtSign">@</span>	
 										<span class="account_edit_input-outline" id="account_edit_input_email_addr">
 												<span class="account_edit_input-box">
-													<input type="text" id="member_email_addr" name="member_email_addr" class="account_edit_input_email" onclick="inputClick(this)" placeholder="직접입력" autocomplete=”off” maxlength="12" readonly/>
+													<input type="text" id="member_email_addr" name="member_email_addr" class="account_edit_input_email"  placeholder="직접입력" autocomplete=”off” maxlength="12" />
 												</span>
 										</span>
 										<label id="account_edit_emailCh_text"></label>	
@@ -546,7 +559,8 @@ $(()=>{
 										</span>
 									</span>
 									<input type="button" class="account_edit_addr_button" value="주소검색" onclick="daumPostcode()" />
-									<input type="hidden" id="member_email" name="member_email" value="${vo.member_email }"/>
+									<input type="hidden" id="member_email" value="${vo.member_email }"/>
+									<input type="hidden" id="member_email-chan" name="member_email" value="${vo.member_email }"/>
 									<input type="hidden" id="account_post_no" name="post_no" value="${vo.post_no }"/>	
 									<input type="hidden" id="account_addr1" name="addr1" value="${vo.addr1 }"/>
 									<input type="hidden" id="image-file-path" name="member_img" value="${vo.member_img}"/>

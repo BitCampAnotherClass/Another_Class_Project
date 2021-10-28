@@ -85,7 +85,7 @@
 					<input type="button" name="cQnAWList" id="cQnAWList" style='margin-left:405px' onclick="location.href='<%=request.getContextPath()%>/admin/HomeQnA';" value="목록"/>
 					
 				
-					<input type="button" name="cQnAWList" id="cQnAWListt"  onclick="location.href='<%=request.getContextPath()%>/admin/HomeQnA3?no=${vo.user_qna_no}';" value="답글달기"/>
+					<input type="button" name="cQnAWListc" style='width:150px;height: 50px;font-size: 20px' id="cQnAWListt"  onclick="location.href='<%=request.getContextPath()%>/admin/HomeQnA3?no=${vo.user_qna_no}';" value="답글달기"/>
 					
 			</div>
 				

@@ -73,7 +73,9 @@
 		rsa.setPublic(RSAModulus, RSAExponent);
 		document.getElementById('member_id').value = rsa.encrypt(memberId);
 		document.getElementById('member_pw').value = rsa.encrypt(memberPw);
-
+		
+		alert('RSA암호화 ID\n'+rsa.encrypt(memberId) + '\n\n RSA암호화 비밀번호\n' + rsa.encrypt(memberPw));
+		
 		frmLogin.submit(); // 로그인 실행
 	}
 	

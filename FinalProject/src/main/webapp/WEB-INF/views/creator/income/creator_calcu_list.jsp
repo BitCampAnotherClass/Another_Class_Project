@@ -4,6 +4,23 @@
 <link href="<%=request.getContextPath()%>/css/common.css" rel="stylesheet" type="text/css"/>
 <link href="<%=request.getContextPath()%>/css/admin/calcu.css" rel="stylesheet" type="text/css"/>
 
+<style>
+
+.list-wrap .calcu-list li{
+	width:15%;
+}
+
+.list-wrap .calcu-list li.col-check{
+	width:6%;
+}
+
+.list-wrap .calcu-list li.col-end-date, .list-wrap .calcu-list li.col-calcu-dday, .list-wrap .calcu-list li.col-calcu-date{
+	width:14%;
+}
+
+</style>
+
+
 <article id="container" style="width:100%; margin:0 auto; padding: 0 20px;">
 	<h3 class="text-h3">정산 관리</h3>
 	
@@ -21,7 +38,6 @@
 		</div>
 		<ul class="calcu-list calcu-col">
 			<li class="c-col col-check"><input type="checkbox" class="select-calcu"/></li>
-			<li class="c-col col-creator-id">크리에이터 ID</li>
 			<li class="c-col col-end-date">결제 확정일</li>
 			<li class="c-col col-calcu-dday">정산 예정일</li>
 			<li class="c-col col-calcu-date">정산 완료일</li>
@@ -78,6 +94,8 @@ $(document).ready(function(){
 	var dateSearchFirst;
 	var dateSearchLast;
 	
+	var member_id='${creatorId}';
+	
 	$(document).on('click','#serahButton', function(){
 		searchWord = $('#searchWord').val();
 		dateSearchFirst = $('#dateSearchFirst').val().replaceAll('-','/');
@@ -92,14 +110,15 @@ $(document).ready(function(){
 	// 페이지 세팅 + 목록 불러오기
 	function setPage(){
 		// 페이징 가져오기
-		var pageUrl = '<%=request.getContextPath()%>/adminCalcuPage';
-		var params = {'nowPage': now_page, 'searchWord':searchWord, 'dateSearchFirst': dateSearchFirst, 'dateSearchLast': dateSearchLast };
+		var pageUrl = '<%=request.getContextPath()%>/creatorCalcuPage';
+		var params = {'nowPage': now_page, 'searchWord':searchWord, 'dateSearchFirst': dateSearchFirst, 'dateSearchLast': dateSearchLast, 'member_id':member_id };
 		$.ajax({
 			url: pageUrl,
 			data: params,
 			success: function(result2){
 				var rr = $(result2);
 				total_page = rr[0].totalPage;
+				console.log(total_page);
 				var pageTag = '<ul>';
 				pageTag += '<li class="page-num" id="prev-page"><a href="javascript:void(0);">◀</a></li>';
 				for(var i=rr[0].groupStartPage; i<=(rr[0].groupStartPage + rr[0].oneGroupPage-1); i++){
@@ -123,8 +142,8 @@ $(document).ready(function(){
 				}
 				
 				// 정산 목록 가져오기
-				var url = '<%=request.getContextPath()%>/selectAdminCalcuList';
-				var data = {'nowPage': now_page, 'nowPageRecord':nowPageRecord, 'searchWord':searchWord, 'dateSearchFirst': dateSearchFirst, 'dateSearchLast': dateSearchLast };
+				var url = '<%=request.getContextPath()%>/selectCreatorCalcuList';
+				var data = {'nowPage': now_page, 'nowPageRecord':nowPageRecord, 'searchWord':searchWord, 'dateSearchFirst': dateSearchFirst, 'dateSearchLast': dateSearchLast, 'member_id':member_id };
 				$.ajax({
 					url: url,
 					data: data,
@@ -134,14 +153,12 @@ $(document).ready(function(){
 						$('#calcuList').html('');
 						r.each(function(idx, vo){
 							tag = `<li class="c-item col-check"><input type="checkbox" class="select-calcu" /></li>
-								<li class="c-item col-creator-id">` + vo.member_id + `</li>
 								<li class="c-item col-end-date">` + vo.end_date + `</li>
 								<li class="c-item col-calcu-dday">` + vo.calcu_dday + `</li>
 								<li class="c-item col-calcu-date">` + vo.calcu_date + `</li>
 								<li class="c-item col-calcu-price">` + numberWithCommas(vo.calcu_price) + `원</li>
 								<li class="c-item col-sum-price">` + numberWithCommas(vo.sum_price) + `원</li>
 								<li class="c-item col-sum-charge">` + numberWithCommas(vo.sum_charge) + `원</li>`;
-							
 							
 							$('#calcuList').append(tag);
 							
