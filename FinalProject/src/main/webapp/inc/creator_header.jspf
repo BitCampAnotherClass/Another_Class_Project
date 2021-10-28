@@ -111,14 +111,14 @@
    		font-size: 1em;
    	}
    	
-   	.logout_menu creator-profile{
+   	.logout_menu .creator-profile{
    		width:30px;
    		height:30px;
    		overflow:hidden;
    		border-radius: 30px;
    	}
    	
-   	.logout_menu creator-profile img{
+   	.logout_menu .creator-profile img{
    		width:100%;
    		height:100%;
    		object-fit: cover;
@@ -132,6 +132,7 @@
    	#contents-wrap{
    		width:1200px;
    	}
+   	
    	
    	@media only screen and (min-width: 1800px){
    		#contents-wrap{
