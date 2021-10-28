@@ -40,7 +40,7 @@
           and a.member_id = b.member_id
           and a.class_price >= #{param1}
           and a.class_price <= #{param2}
-          and (class_tag || category_name || class_addr1 || class_name ) like '%${param3}%'
+          and (class_tag || category_name || class_addr1 || class_name || nick) like '%${param3}%'
           order by class_price asc
 		]]>
 	</select>

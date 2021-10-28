@@ -29,7 +29,6 @@ var classDateDivCount;
 var  resultsArray;
 var startTimeArray =[];
 $(function(){
-	putRedDiv();
 	classInfoPut();
 	putTagClass();
 	//////////////////////////////////////////////////////날짜 선택 모달
@@ -357,25 +356,7 @@ function putTagClass(){
 				$('#class_tag').val(tagInsert);
 				count++;
 		}
-	}
-////////////////////////////////////////////////////////////
-function putRedDiv(){
-	var testing1;
-	classDateDivCount++;
-	   
-  	testing1 = "<div class='putDateTime2' id='dateTimeDivDel'>";
-  	testing1 += "<div title='cancel' class='dateCancelButton' onclick='deleteDivDate(this, "+classDateDivCount+");'>";
-  	testing1 += "<div value='"+classDateDivCount+"'></div><img src='<%=request.getContextPath()%>/img/kimin/xbu.png'>"
-  	testing1 += "</div>";
-  	testing1 += "2021 - 10 - 34";
-	testing1 += "<input type='time' id='startTime' value='09:30' onchange='inputStartTime($(this).val())'>";
-	testing1 +=  "<img src='<%=request.getContextPath()%>/img/kimin/~.png'>"
-	testing1 += "<input type='time' id='endTime' value='17:30' onchange='inputEndTime($(this).val())'>";
-	testing1 += "</div>";
-	
-	$('#putDateTime').append(testing1);
-	
-}
+	}	
 </script>
 
 <script>

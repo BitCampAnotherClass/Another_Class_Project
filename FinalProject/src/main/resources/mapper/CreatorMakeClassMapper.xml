@@ -53,11 +53,5 @@
 		 category_no=#{category_no}, request=0, progress=0, class_writedate=sysdate, class_tag=#{class_tag} where class_no = #{class_no}
 	]]>
 	</update>
-	
-	<select id="putDate" resultType="com.anotherclass.bitcamp.vo.creator.CreatorMakeClassDateTimeVO">
-	<![CDATA[
-		select start_date, end_date from classOption where class_no = #{class_no}
-	]]>
-	</select>
-	
+
 </mapper>

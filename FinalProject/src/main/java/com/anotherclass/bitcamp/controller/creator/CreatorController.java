@@ -79,9 +79,7 @@ public class CreatorController {
 		ModelAndView mav = new ModelAndView();
 	//	String id = (String)ses.getAttribute("creatorId");
 		vo.setClass_no(no);
-		vo2.setClass_no(no);
 	//	int result = makeClassApplyService.modifyClass(vo);
-	//	mav.addObject("date", makeClassApplyService.putDate(vo2));
 		mav.addObject("cate", makeClassApplyService.makeClassCategoryL());
 		mav.addObject("modify", makeClassApplyService.modifyClassInfo(vo));
 		mav.setViewName("/creator/modifyClass");
@@ -139,6 +137,10 @@ public class CreatorController {
 	}
 	@RequestMapping(value="/modifyClassOk", method=RequestMethod.POST)
 	public String modifyClassOk(CreatorMakeClassVO vo,CreatorMakeClassDateTimeVO vo2,HttpSession ses) {
+		CreatorMakeClassVO classno = makeClassApplyService.modifyClassInfo(vo);
+		
+		vo.setClass_no(classno.getClass_no());
+		System.out.println(classno.getClass_no());
 		int result = makeClassApplyService.modifyClassOk(vo);
 		if(result == 1) {
 			System.out.println("클래스 메이크 업데이트등록완료");
