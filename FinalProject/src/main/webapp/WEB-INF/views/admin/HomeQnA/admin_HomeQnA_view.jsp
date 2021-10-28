@@ -79,42 +79,17 @@
 				
 				<!-- 답변 -->
 					
-				<c:if test="${board_no2 eq 0 }"> 
-					<li >
-						<div>답변</div><!-- hQnAWriteFileview -->
-						<div>
-							<textarea  id="cQnAWriteConviewReply" readonly disabled >${vo.replyContent }</textarea>
-							<div style='text-align:right;width:90%;'>
-								<button style='background:#fff;border:none;border:1px solid #999;padding:3px 14px;margin:3px 7px 0 0;'>수정</button>	
-								<button style='background:#fff;border:none;border:1px solid #999;padding:3px 14px;margin-top:3px;'>삭제</button>								
-							</div>
-						</div>	
-					</li>
-					<!-- 수정폼 -->
-					<li >
-						<div style='color:blue'>답변</div><!-- hQnAWriteFileview -->
-						<div>
-							<textarea  id="cQnAWriteConviewReply" >${vo.replyContent }</textarea>
-							<div style='text-align:right;width:90%;'>
-								<button style='background:#fff;border:none;border:1px solid #999;padding:3px 14px;margin-top:3px;'>수정완료</button>							
-							</div>
-						</div>	
-					</li>
 				
-				
-					</ul>
-					<div style='border:1px solid #ddd;margin-top:100px;'> <!-- 댓글작성 -->
-							<span style='display: inline-block;margin: 18px 20px 15px 43px;'>문의 내용 답변작성</span>
-							<form method="post" id="replyFrm">
-								<div style='text-align:center;'><textarea name="classqna_content" id="classMainAskTa" placeholder="궁금하신 점 또는 클래스문의등을 자유롭게 작성해 주세요."></textarea></div><!-- classMainAskTa -->
-								<input type="button" id="replysub" value="작성완료"/>
-								<input type="hidden" name="class_no" value="${vo.user_qna_no}"/><!-- 클래스 번호 --><!-- no -->
-							</form>
-					</div>
-			</c:if>
 			<div id="cQnAButview">				
 			<!-- onclick="location.href='/HomeQnA';" -->
 					<input type="button" name="cQnAWList" id="cQnAWList"  onclick="location.href='<%=request.getContextPath()%>/admin/HomeQnA';" value="목록"/>
+					
+			</div>
+				
+			<div id="cQnAButview">				
+			<!-- onclick="location.href='/HomeQnA';" -->
+					<input type="button" name="cQnAWList" id="cQnAWList"  onclick="location.href='<%=request.getContextPath()%>/admin/HomeQnA';" value="답글달기"/>
+					
 			</div>
 			<div style="display:none">${vo.user_qna_no }</div><!-- 글번호 -->
 			
