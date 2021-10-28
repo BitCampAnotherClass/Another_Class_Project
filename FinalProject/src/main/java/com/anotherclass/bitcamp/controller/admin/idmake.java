@@ -2,12 +2,22 @@ package com.anotherclass.bitcamp.controller.admin;
 
 
 
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.anotherclass.bitcamp.register.HashingSeting;
+import com.anotherclass.bitcamp.service.register.RegisterService;
 
 @Controller
 @RequestMapping("/admin")
 public class idmake {
+	
+	private HashingSeting hashing = new HashingSeting();
+	
+	@Inject
+	RegisterService registerService;
 	
 	@RequestMapping("/makeIdcheck")
 	public String testing() {
@@ -26,7 +36,7 @@ public class idmake {
 	
 	public static String text() {
 		String text = ""; 
-		String ran = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+		String ran = "abcdefghijklmnopqrstuvwxyz";
 		for(int i = 0; i < 6; i++) { 
 			text += ran.charAt((int)(Math.random() * ran.length())); 
 		} 
