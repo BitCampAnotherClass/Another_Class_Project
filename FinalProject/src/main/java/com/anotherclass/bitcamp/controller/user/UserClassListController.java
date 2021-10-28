@@ -53,10 +53,10 @@ public class UserClassListController {
 	@RequestMapping(value = "classList/findCreatorClass")
 	@ResponseBody
 	public List<ClassListVO> findCreatorClass(ClassListVO vo,String CCls, HttpServletRequest req, HttpSession ses){
-		String logid= (String)req.getSession().getAttribute("userid");
+		String logid= (String)req.getSession().getAttribute("creatorId");
 		
 	
-		List<ClassListVO> result = classListPageService.findCreatorClass(vo, CCls);
+		List<ClassListVO> result = classListPageService.findCreatorClass(vo);
 		return result;	
 	}
 }

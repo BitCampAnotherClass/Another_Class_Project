@@ -59,13 +59,7 @@ function myClassChange(){
 	$('.divideDivProfile').css('display','none');
 	$('.divideDivClass').css('display','block');
 	$('#modifyButton').css('display','none');
-};	
-function resultChange(){
-	$('.divideDivProfile').css('display','none');
-	$('.divideDivClass').css('display','none');
-	$('.divideDivResult').css('display','block');
-	$('#modifyButton').css('display','none');
-};	
+};
 ///////////////////////////////////////////////
 //vo, dao, controller service  userclasslistcontroller로 씀
 	var classNo_arry = new Array();
@@ -81,11 +75,11 @@ function resultChange(){
 	var nick_array = new Array();
 	var listCnt = 12;
 	var creator_class; 
+	
 function creatorClass(){
-	var  search_text = $('#search_text').val();
 	  var url = '<%=request.getContextPath()%>/classList/findCreatorClass'; 
 	  var cid = ""
-	  var params = {"CCls":'test100'}; 
+	  var params = {"id":'${creatorId}'}; 
 	  $.ajax({
 		 	url : url,
 			data : params,
@@ -275,7 +269,7 @@ function creatorClass(){
 </script>
 <div id="myChannelMainDiv">
 	<div class="divideDiv">
-		<div class="creatorImgDiv"><img src="https://sung3moon.synology.me:49583/aa.png"></div>
+		<div class="creatorImgDiv"><img src=""></div>
 		<div id="creatorNameDiv">
 			<ul>
 				<li>${creatorId}님 </li>
@@ -287,8 +281,7 @@ function creatorClass(){
 	<div id="myChannelMenuDiv">
 		<ul>
 			<li id="summerNote" onclick="summernote()">크리에이터 프로필</li>
-			<li id="creatorsClass" onclick="creatorClass()">개설 클래스</li>
-			<li id="ClassResult" onclick="resultChange()">클래스 결과물</li>
+			<li id="creatorsClass" onclick="myClassChange();creatorClass(); ">개설 클래스</li>
 		</ul>
 	</div>
 	<div class="divideDivProfile">

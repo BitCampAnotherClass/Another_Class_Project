@@ -357,6 +357,8 @@ $(()=>{
 		// 에디터 높이
 		height: 300,
 		width: 1200,
+		minHeight: 300, 
+	  	maxHeight: 300,
 		lang:"ko-KR",
 		focus: true,
 		toolbar: [
@@ -397,6 +399,7 @@ $(()=>{
 </script>	
 	
 <style>
+
 .container h1{color:gray; margin-bottom:20px; font-weight:600;}
 .container span{font-size:1.2em; font-weight:600; }
 /* body{ background-color:#FFF5F5;} */
@@ -1006,7 +1009,7 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	</div>
 </div>
 </form>
-<button id="modalButton">모달창</button> 
+<!--  <button id="modalButton">모달창</button> 
 <div class="modal"> 
 	<div class="modal_content" title="클릭하면 창이 닫힙니다."> 여기에 모달창 내용을 적어줍니다.<br> 이미지여도 좋고 글이어도 좋습니다. </div>
-</div>
+</div>-->

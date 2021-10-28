@@ -29,8 +29,8 @@ var classDateDivCount;
 var  resultsArray;
 var startTimeArray =[];
 $(function(){
-	
 	classInfoPut();
+	putTagClass();
 	//////////////////////////////////////////////////////날짜 선택 모달
 	 $(".modal").css({
          "top": (($(window).height()-$(".modal").outerHeight())/2+$(window).scrollTop())+"px",
@@ -169,8 +169,6 @@ $(function(){
 					var tagInsert = $("#tagInsert").text();
 					$('#class_tag').val(tagInsert);
 					count++;
-				}else{
-					alert("태그로 사용할 문구를 입력해주세요")
 				}
 			}else{
 				alert("5개 태그 모두 선택하였습니다.")
@@ -328,9 +326,37 @@ function classInfoPut(){
 	$('#class_info').val("${modify.class_info}");
 	//$('#summernote').summernote('code', '<p>sdfkljsddl;fkjsd;kfj;lsjdf</p>')
 	
-
+$("#class_tagButton").click(function(){
+			if(count < 5){
+				if($('#classTag').val() !== ""){
+					iitest++;
+					$("#tagInsert").append("<div style='float:left' id='tagInsertInner"+iitest+"'>"+"#"+$('#classTag').val()+"<input type='button' value='x' id='divdel' onclick='deleteDiv()'>"+"</div>");
+					var tagInsert = $("#tagInsert").text();
+					$('#class_tag').val(tagInsert);
+					count++;
+				}else{
+					alert("태그로 사용할 문구를 입력해주세요")
+				}
+			}else{
+				alert("5개 태그 모두 선택하였습니다.")
+			}
+			$('#classTag').val("");
+	});
+/////////
 }	
-	
+var tags = new Array();
+var taggg = '${modify.class_tag}';
+function putTagClass(){
+	tags = taggg.split("#")
+		for(var i=1; i<tags.length; i++){
+				
+				iitest++;
+				$("#tagInsert").append("<div style='float:left' id='tagInsertInner"+iitest+"'>"+"#"+tags[i]+"<input type='button' value='x' id='divdel' onclick='deleteDiv()'>"+"</div>");
+				var tagInsert = $("#tagInsert").text();
+				$('#class_tag').val(tagInsert);
+				count++;
+		}
+	}	
 </script>
 
 <script>
@@ -1000,7 +1026,7 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	<div id="classFee">
 		<input type="text"  class="inputCommonClass" placeholder="#없이 태그를 입력하세요" id="classTag">
 		<input type="button" value="추가" id="class_tagButton" class="buttonClass"><br/>
-		<div id="tagInsert"></div>
+		<div id="tagInsert" ></div>
 		<input type="text" name="class_tag" id="class_tag" >
 	</div>
 	<div>
@@ -1012,11 +1038,7 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 		</ul>
 	</div>
 	<div class="classApplyDiv">
-		<input type="submit" value="클래스 등록신청" name="class_apply" id="class_apply" class="buttonClass">
+		<input type="submit" value="클래스 수정신청" name="class_apply" id="class_apply" class="buttonClass">
 	</div>
 </div>
 </form>
-<button id="modalButton">모달창</button> 
-<div class="modal"> 
-	<div class="modal_content" title="클릭하면 창이 닫힙니다."> 여기에 모달창 내용을 적어줍니다.<br> 이미지여도 좋고 글이어도 좋습니다. </div>
-</div>

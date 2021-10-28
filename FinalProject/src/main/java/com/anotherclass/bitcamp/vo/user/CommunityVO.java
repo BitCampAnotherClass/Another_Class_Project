@@ -17,6 +17,85 @@ public class CommunityVO {
 	private String category_name;
 	private int class_no;
 	
+
+	/*클래스문의댓글테이블*/
+	private  int community_com_no;
+									//클래스문의번호
+	private String community_com_member_id;
+	private int community_com_no1;
+	private int community_com_no2;
+	private String community_com_reply;
+	private String community_com_writedate;
+	private int community_com_sec;
+	private int community_com_delete_sort;
+	
+	/*문의글에대해 댓글이 달렸는지 알려줌 0:댓글없은 1:댓글있음*/
+	private int replycheck;
+	
+	/*list size*/
+	public int listSize;
+	
+	
+	public int getCommunity_com_no() {
+		return community_com_no;
+	}
+	public void setCommunity_com_no(int community_com_no) {
+		this.community_com_no = community_com_no;
+	}
+	public String getCommunity_com_member_id() {
+		return community_com_member_id;
+	}
+	public void setCommunity_com_member_id(String community_com_member_id) {
+		this.community_com_member_id = community_com_member_id;
+	}
+	public int getCommunity_com_no1() {
+		return community_com_no1;
+	}
+	public void setCommunity_com_no1(int community_com_no1) {
+		this.community_com_no1 = community_com_no1;
+	}
+	public int getCommunity_com_no2() {
+		return community_com_no2;
+	}
+	public void setCommunity_com_no2(int community_com_no2) {
+		this.community_com_no2 = community_com_no2;
+	}
+	public String getCommunity_com_reply() {
+		return community_com_reply;
+	}
+	public void setCommunity_com_reply(String community_com_reply) {
+		this.community_com_reply = community_com_reply;
+	}
+	public String getCommunity_com_writedate() {
+		return community_com_writedate;
+	}
+	public void setCommunity_com_writedate(String community_com_writedate) {
+		this.community_com_writedate = community_com_writedate;
+	}
+	public int getCommunity_com_sec() {
+		return community_com_sec;
+	}
+	public void setCommunity_com_sec(int community_com_sec) {
+		this.community_com_sec = community_com_sec;
+	}
+	public int getCommunity_com_delete_sort() {
+		return community_com_delete_sort;
+	}
+	public void setCommunity_com_delete_sort(int community_com_delete_sort) {
+		this.community_com_delete_sort = community_com_delete_sort;
+	}
+	public int getReplycheck() {
+		return replycheck;
+	}
+	public void setReplycheck(int replycheck) {
+		this.replycheck = replycheck;
+	}
+	public int getListSize() {
+		return listSize;
+	}
+	public void setListSize(int listSize) {
+		this.listSize = listSize;
+	}
 	public int getClass_no() {
 		return class_no;
 	}

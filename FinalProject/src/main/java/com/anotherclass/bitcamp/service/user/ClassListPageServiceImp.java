@@ -30,8 +30,8 @@ public class ClassListPageServiceImp implements ClassListPageService {
 		return classListDao.rangePrice(minp, maxp, sText);
 	}
 	@Override
-	public List<ClassListVO> findCreatorClass(ClassListVO vo, String CCls) {
-		return classListDao.findCreatorClass(vo, CCls);
+	public List<ClassListVO> findCreatorClass(ClassListVO vo) {
+		return classListDao.findCreatorClass(vo);
 	}
 
 }

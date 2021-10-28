@@ -7,4 +7,5 @@ import com.anotherclass.bitcamp.service.vo.admin.BasicClassVO;
 public interface basicClassManagementDAO {
 	
 	public List<BasicClassVO> basicClassAllRecord ();
+	public List<BasicClassVO> optionClassAllRecord ();
 }

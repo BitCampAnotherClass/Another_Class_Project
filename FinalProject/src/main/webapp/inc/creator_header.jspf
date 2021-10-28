@@ -103,7 +103,7 @@
 		justify-content: flex-end;
 		align-items: center;
    	}
-   	
+
    	.logout_menu div{
    		margin-right:20px;
    		float:right;
@@ -132,7 +132,6 @@
    	#contents-wrap{
    		width:1200px;
    	}
-   	
    	
    	@media only screen and (min-width: 1800px){
    		#contents-wrap{
@@ -233,7 +232,7 @@
 	         <li class="menu_title"><a href="<%=request.getContextPath()%>/creator/makeClass">클래스개설</a></li>
 	         <li class="menu_title"><a href="#">클래스관리</a>
 	            <ul>
-	               <li><a href="<%=request.getContextPath()%>/creator/classList" class="small-menu">클래스리스트</a></li>
+	               <li><a href="#" class="small-menu">클래스리스트</a></li>
 	               <li><a href="#" class="small-menu">클래스 취소</a></li>
 	               <li><a href="<%=request.getContextPath()%>/creator/modifyClass" class="small-menu">클래스 수정</a></li>               
 	            </ul>
@@ -253,8 +252,8 @@
 	         <li class="menu_title"><a href="#">문의(Q&A)</a>
 	            <ul>
 	               <li><a href="#" class="small-menu">관리자문의</a></li>
-	               <li><a href="<%=request.getContextPath()%>/CreatorNotice" class="small-menu">공지사항</a></li>
-	               <li><a href="<%=request.getContextPath()%>/CreatorFaq" class="small-menu">자주묻는질문</a></li>
+	               <li><a href="<%=request.getContextPath()%>/creator/CreatorNotice" class="small-menu">공지사항</a></li>
+	               <li><a href="<%=request.getContextPath()%>/creator/CreatorFaq" class="small-menu">자주묻는질문</a></li>
 	            </ul>
 	         </li>   
 	      </ul>
@@ -273,40 +272,42 @@
 		</c:if>
 	</div>
 	<div id="contents-wrap">
-	
-	
-	
-	
-	<!-- 카카오 스크립트 -->
-	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-	<script>
-	Kakao.init('033542c9317694f8d1bb2f13c3b67a2a'); //발급받은 키 중 javascript키를 사용해준다.
-	console.log(Kakao.isInitialized()); // sdk초기화여부판단
-	
-	//카카오로그아웃  
-	function kakaoLogout() {
-	    if (Kakao.Auth.getAccessToken()) {
-	      Kakao.API.request({
-	        url: '/v1/user/unlink',
-	        success: function (response) {
-	        	console.log(response);
-	        },
-	        fail: function (error) {
-	          console.log(error);
-	        },
-	      });
 
-	      Kakao.Auth.setAccessToken(undefined);
-	    }
-	    setTimeout(function(){
-		    logout();	    	
-	    }, 500);
-	}
 	
-	// 로그아웃
-	function logout(){
-		location.href='<%=request.getContextPath()%>/creatorLogout';
-	}
-	  
-	  
-	</script>
+		
+	
+
+
+<!-- 카카오 스크립트 -->
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script>
+Kakao.init('033542c9317694f8d1bb2f13c3b67a2a'); //발급받은 키 중 javascript키를 사용해준다.
+console.log(Kakao.isInitialized()); // sdk초기화여부판단
+
+//카카오로그아웃  
+function kakaoLogout() {
+    if (Kakao.Auth.getAccessToken()) {
+      Kakao.API.request({
+        url: '/v1/user/unlink',
+        success: function (response) {
+        	console.log(response);
+        },
+        fail: function (error) {
+          console.log(error);
+        },
+      });
+
+      Kakao.Auth.setAccessToken(undefined);
+    }
+    setTimeout(function(){
+	    logout();	    	
+    }, 500);
+}
+
+// 로그아웃
+function logout(){
+	location.href='<%=request.getContextPath()%>/creatorLogout';
+}
+  
+  
+</script>

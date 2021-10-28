@@ -224,7 +224,16 @@ $(function(){
 <div id="fag">
 			<div class="fagCont">
 			
-							
+				<c:forEach var="vo" items="${list }">	
+				<ul class="listStyleD">
+						<li><a href="#" class="answer"><span class="q">Q</span>${vo.title}</a>
+							<div class="answerCont">
+								<span class="answer">A</span><p><span style="font-family: 나눔고딕, NanumGothic;">${vo.content}</span></p>
+							</div>
+						</li>
+					</ul>
+				</c:forEach>
+					
 					
 					<ul class="listStyleD">
 						<li><a href="#" class="answer"><span class="q">Q</span>캡슐 커피의 카페인 함량은 어떻게 되나요? (돌체구스토 호환 캡슐)</a>

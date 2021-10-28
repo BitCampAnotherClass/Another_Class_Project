@@ -9,5 +9,5 @@ public interface ClassListDAO {
 	public List<ClassListVO> sortByPrice(ClassListVO vo);
 	public List<ClassListVO> sortByApplyDate(ClassListVO vo);
 	public List<ClassListVO> rangePrice(int minp, int maxp, String sText);
-	public List<ClassListVO> findCreatorClass(ClassListVO vo, String CCls);
+	public List<ClassListVO> findCreatorClass(ClassListVO vo);
 }

@@ -39,4 +39,5 @@
 		  from classtbl where member_id = #{member_id}
 	]]>
 	</select>
+	
 </mapper>

@@ -6,7 +6,36 @@ public class BasicClassVO {
 	private String class_name;
 	private String member_name;
 	private String class_writedate;
+	private String max_headcount;
+	private String all_headcount;
+	private int request;
+	private int progress;
+
 	
+	public int getRequest() {
+		return request;
+	}
+	public void setRequest(int request) {
+		this.request = request;
+	}
+	public int getProgress() {
+		return progress;
+	}
+	public void setProgress(int progress) {
+		this.progress = progress;
+	}
+	public String getAll_headcount() {
+		return all_headcount;
+	}
+	public void setAll_headcount(String all_headcount) {
+		this.all_headcount = all_headcount;
+	}
+	public String getMax_headcount() {
+		return max_headcount;
+	}
+	public void setMax_headcount(String max_headcount) {
+		this.max_headcount = max_headcount;
+	}
 	public int getClass_no() {
 		return class_no;
 	}

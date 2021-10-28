@@ -41,7 +41,7 @@
 				</c:if>
 				<c:if test="${userLog=='Y' }">
 					<ul class="tnb login-menu">
-						<li class="user-profile"><img src="<%=request.getContextPath()%>${userImg }"/></li>
+						<li class="user-profile"><img src="${userImg }"/></li>
 						<li>${userId }</li>
 						<li><a href="javascript:void(0);" onclick="kakaoLogout();">로그아웃</a></li>
 						<li><a href="<%=request.getContextPath()%>/mypage/mypage1">마이페이지</a></li>
