@@ -354,7 +354,7 @@ $(document).ready(function(){
 	  
 	   function AskReply(no){
 		  
-		   
+		  	let imgSeting = document.querySelector('#creator-image-112').src;
 		   //var creimg = ${vo.member_img }; //강사이미지
 		   var rUrl ="/another/classDetailAskReplyList";
 	       var rParam = {"no":no}  
@@ -368,7 +368,7 @@ $(document).ready(function(){
 	    							
 	    			bb.each(function(idx,vo5){	    	
 	    				//tag +="<div class='askdiv808'>";
-	    				tag += "<div style='display:flex;width:12%;'><label style='display:block;width:20%;height:100%;vertical-align:middle;font-size:2rem;color:#666;'>↳</label><img src='<%=request.getContextPath()%>/img/jisu/basic.png' style='width:80%'/></div> ";
+	    				tag += "<div style='display:flex;width:12%;'><label style='display:block;width:20%;height:100%;vertical-align:middle;font-size:2rem;color:#666;'>↳</label><img src='"+imgSeting+"' style='width:80%'/></div> ";
 	    				tag +="<div style='width:87%;'>";
 	    				tag +="<div><label> "+ vo5.classqnacom_member_id +" | "+vo5.classqnacom_writedate +" 작성</label></div>";
 	    				tag +="<div><label>"+vo5.classqnacom_reply +"</label></div>"; 
@@ -551,7 +551,7 @@ $(document).ready(function(){
 				</ul>
 			</div> 
 			<div id="d3"> <!-- 강사프로필 + 강사명 -->
-				<div><img src="${vo.member_img}"/></div> <!-- 강사프로필이미지 -->	
+				<div><img src="${vo.member_img}" id="creator-image-112"/></div> <!-- 강사프로필이미지 -->	
 				<div> <!-- 강사닉네임 -->	
 					<a href="#">${vo.nick }</a>
 					<span>클래스 ${vo.creatorclasscount}개 | 좋아요 ${vo.creatorlikecount }개</span>

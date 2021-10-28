@@ -379,6 +379,7 @@ $(function(){
                success : function(result){
             	   if(result>0){
             		   alert('삭제되었습니다');
+            		   $('#homeAskcontent').empty();
             		   getHomeAsk();
             	   }else{
             		   alert("글삭제 실패하였습니다.");
@@ -407,6 +408,7 @@ $(function(){
           type : "POST",
           success : function(result){
           	alert('수정되었습니다');
+          	$('#homeAskcontent').empty();
           	getHomeAsk();
           }
        });
