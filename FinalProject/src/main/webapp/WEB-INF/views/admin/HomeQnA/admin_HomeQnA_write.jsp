@@ -23,44 +23,27 @@
 
 <div id="adminQnAWriteContainter">
 		
-		
-		<form>
+		<div id='bbTitle' style='font-size:39px;margin-bottom:35px;'>클래스 고객문의 답변작성</div>
+		<form action='<%=request.getContextPath()%>/admin/HomeQnA4'>
 			<ul id="adminQnAWriteul">
 				<li>
-					<div>회원정보</div>
-					<div>김비트[asd*******]</div>	
+					<div style='height:62px;'>클래스문의 작성아이디</div>
+					<div style='line-height:62px;'>${vo.member_id}</div>	
 				</li>
 				<li>
 					<div>제목</div>
-					<div><input type="text" name="adminQnAWriteSub" id="adminQnAWriteSub" ></div>	
+					<div><input type="text" name="title" id="adminQnAWriteSub" ></div>	
 				</li>
 				<li>
 					<div>문의내용</div>
-					<div><textarea name="adminQnAWriteCon" id="adminQnAWriteCon"></textarea></div>	
+					<div><textarea name="content" id="adminQnAWriteCon"></textarea></div>	
 				</li>
-				<li>
-					<div>파일첨부</div>
-					<div><input type="file" name="adminQnAWriteFile" id="adminQnAWriteFile">
-					<label for="adminQnAWriteFile">파일선택</label></div><span id="uploaded"></span>	
-				</li>
-				<li>
-					<div>파일첨부</div>
-					<div id="fu3">
-						<input type="file" name="adminQnAWriteFile2" id="adminQnAWriteFile2">
-						<label for="adminQnAWriteFile2">파일선택</label><span id="uploaded2"></span>
-					</div>	
-				</li>
-				<li>
-					<div>파일첨부</div>
-					<div id="fu3">
-						<input type="file" name="adminQnAWriteFile3" id="adminQnAWriteFile3">
-						<label for="adminQnAWriteFile3">파일선택</label><span id="uploaded3"></span>
-					</div>	
-				</li>
+			
 				<li id="adminQnAWriteBtn">
 				<input type="button" name="adminQnAWriteCancel" id="adminQnAWriteCancel" value="취소"/><input type="submit" name="adminQnAWriteSubmit" id="adminQnAWriteSubmit" value="등록"/>
-				</li>				
+				</li>							
 			</ul>
+			<input type="hidden" name="user_qna_no" value="${vo.user_qna_no }">
 		</form>
 		
 </div>

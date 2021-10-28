@@ -20,7 +20,7 @@
 	#cQnAWriteConview{width:90%;min-height:300px;background-color:#f0f0f0;border:none;resize:none;overflow:auto;font-size:1.2rem;}/*문의내용텍스트아리아*/
 	/*파일첨부*/
 	#cQnAButview{border:none;justify-content:center;}/*취소 수정 목록 버튼*/
-	#cQnAWList {margin:45px 0 20px 510px;width:150px;height:50px;font-size:20px;}
+	#cQnAWList {margin:30px 20px 30px 0;width:150px;height:50px;font-size:20px;}
 	
 	
 	#classMainAskTa{width:90%;height:130px;resize:none;overflow:auto;border-color:#ddd;}/*댓글작성하는부분*/
@@ -82,15 +82,14 @@
 				
 			<div id="cQnAButview">				
 			<!-- onclick="location.href='/HomeQnA';" -->
-					<input type="button" name="cQnAWList" id="cQnAWList"  onclick="location.href='<%=request.getContextPath()%>/admin/HomeQnA';" value="목록"/>
+					<input type="button" name="cQnAWList" id="cQnAWList" style='margin-left:405px' onclick="location.href='<%=request.getContextPath()%>/admin/HomeQnA';" value="목록"/>
+					
+				
+					<input type="button" name="cQnAWList" id="cQnAWListt"  onclick="location.href='<%=request.getContextPath()%>/admin/HomeQnA3?no=${vo.user_qna_no}';" value="답글달기"/>
 					
 			</div>
 				
-			<div id="cQnAButview">				
-			<!-- onclick="location.href='/HomeQnA';" -->
-					<input type="button" name="cQnAWList" id="cQnAWList"  onclick="location.href='<%=request.getContextPath()%>/admin/HomeQnA';" value="답글달기"/>
-					
-			</div>
+			
 			<div style="display:none">${vo.user_qna_no }</div><!-- 글번호 -->
 			
 </div>

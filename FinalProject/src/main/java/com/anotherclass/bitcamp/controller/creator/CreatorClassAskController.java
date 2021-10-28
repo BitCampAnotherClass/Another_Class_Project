@@ -99,7 +99,7 @@ public class CreatorClassAskController {
 		List<ClassListVO>  list = creatorClassAskService.classlist2(logid);
 		
 		for(int i=0; i<list.size(); i++) {
-			ClassListVO vo = new ClassListVO();
+			ClassListVO vo = list.get(i);			
 			vo = list.get(i);
 			System.out.println(vo.getClass_no());
 

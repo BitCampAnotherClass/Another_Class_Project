@@ -34,5 +34,17 @@ public class AdminHomeQnAServiceImp implements AdminHomeQnAService {
 	public String adminHomeQnAView2(int no) {
 		return adminHomeQnAdao.adminHomeQnAView2(no);
 	}
+
+	@Override
+	public AdminHomeQnAVO adminHomeQnWrite(int no) {
+		return adminHomeQnAdao.adminHomeQnWrite(no);
+	}
+
+	@Override
+	public int adminHomeQnWrite2(AdminHomeQnAVO vo) {
+		System.out.println("문제2");
+		return adminHomeQnAdao.adminHomeQnWrite2(vo);
+		
+	}
 	
 }
