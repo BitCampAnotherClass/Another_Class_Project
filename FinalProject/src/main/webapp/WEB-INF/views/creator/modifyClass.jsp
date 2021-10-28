@@ -29,6 +29,7 @@ var classDateDivCount;
 var  resultsArray;
 var startTimeArray =[];
 $(function(){
+	putRedDiv();
 	classInfoPut();
 	putTagClass();
 	//////////////////////////////////////////////////////날짜 선택 모달
@@ -356,7 +357,25 @@ function putTagClass(){
 				$('#class_tag').val(tagInsert);
 				count++;
 		}
-	}	
+	}
+////////////////////////////////////////////////////////////
+function putRedDiv(){
+	var testing1;
+	classDateDivCount++;
+	   
+  	testing1 = "<div class='putDateTime2' id='dateTimeDivDel'>";
+  	testing1 += "<div title='cancel' class='dateCancelButton' onclick='deleteDivDate(this, "+classDateDivCount+");'>";
+  	testing1 += "<div value='"+classDateDivCount+"'></div><img src='<%=request.getContextPath()%>/img/kimin/xbu.png'>"
+  	testing1 += "</div>";
+  	testing1 += "2021 - 10 - 34";
+	testing1 += "<input type='time' id='startTime' value='09:30' onchange='inputStartTime($(this).val())'>";
+	testing1 +=  "<img src='<%=request.getContextPath()%>/img/kimin/~.png'>"
+	testing1 += "<input type='time' id='endTime' value='17:30' onchange='inputEndTime($(this).val())'>";
+	testing1 += "</div>";
+	
+	$('#putDateTime').append(testing1);
+	
+}
 </script>
 
 <script>
@@ -836,11 +855,14 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	display:none;
 	width:400px;
 }
+#classno{
+	display:none;
+}
 
 </style>
-<form method="post" action="<%=request.getContextPath()%>/creator/makeClassOk" enctype="multipart/form-data">
+<form method="post" action="<%=request.getContextPath()%>/creator/modifyClassOk" enctype="multipart/form-data">
 <div class="container">
-	<h1>클래스수정</h1>
+	<h1>클래스수정</h1><input type="text" name="class_no" value="${modify.class_no}" id="classno">
 	<div class="followDiv">
 		<ul>
 			<li><div class="followButton" style="color:white">1</div><a href="#f1"> 클래스명</a></li>
@@ -910,7 +932,7 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 			<div id="imgThumbDiv"><img src="${modify.class_thumb}" id="previewImg" ></div>
 			<div class="filebox">
 				<input type="text" class="imgThumbFileName" placeholder="썸네일사진 파일명" id="class_thumb" readonly="readonly" value="${modify.class_thumb}">
-				<input type="hidden" name="class_thumb" id="thumb_image">
+				<input type="hidden" name="class_thumb" id="thumb_image" value="${modify.class_thumb}">
 				<label for="fileButton">업로드</label>
 				<input type="file" id="fileButton" name="filename" required>
 			</div>

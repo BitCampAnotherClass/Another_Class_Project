@@ -17,4 +17,6 @@ public interface MakeClassDAO {
 	public int modifyClass(CreatorMakeClassVO vo);
 	public CreatorMakeClassVO modifyClassInfo(CreatorMakeClassVO vo);
 	public int putCreatorProfile(CreatorMakeClassVO vo);
+	public int modifyClassOk(CreatorMakeClassVO vo);
+	public List<CreatorMakeClassDateTimeVO> putDate(CreatorMakeClassDateTimeVO vo);
 }

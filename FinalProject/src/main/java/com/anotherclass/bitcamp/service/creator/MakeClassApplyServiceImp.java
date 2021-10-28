@@ -49,6 +49,14 @@ public class MakeClassApplyServiceImp implements MakeClassApplyService {
 	public int putCreatorProfile(CreatorMakeClassVO vo) {
 		return makeClassDao.putCreatorProfile(vo);
 	}
+	@Override
+	public int modifyClassOk(CreatorMakeClassVO vo) {
+		return makeClassDao.modifyClassOk(vo);
+	}
+	@Override
+	public List<CreatorMakeClassDateTimeVO> putDate(CreatorMakeClassDateTimeVO vo) {
+		return makeClassDao.putDate(vo);
+	}
 	
 
 //	@Override
