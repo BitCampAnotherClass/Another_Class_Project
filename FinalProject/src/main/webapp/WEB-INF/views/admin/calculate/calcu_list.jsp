@@ -41,6 +41,7 @@
 			<li class="c-item col-sum-charge">1,212,354원</li>
 			 -->
 		</ul>
+		<div class="calcu-btn-wrap"><button type="button" class="calcu-btn">정산하기</button></div>
 		<div class="calcu-paging">
 			<!-- <ul>
 				<li class="page-num" id="prev-page"><a href="#">◀</a></li>
@@ -186,6 +187,21 @@ $(document).ready(function(){
 	});
 	
 	
+	
+	// 정산 완료일 바꾸기
+	$(document).on('click','.calcu-btn', function(){
+		console.log('실행1');
+		$('.select-calcu').each(function(){
+			if($(this).prop('checked')==true){
+				var tmp = $(this);
+				setTimeout(function() {
+					tmp.parent().next().next().next().next().text('2021/10/29');
+				}, 1800);
+				
+			}
+		});
+		
+	});
 	
 });
 

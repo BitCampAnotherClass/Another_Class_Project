@@ -223,7 +223,7 @@
 	         </li>
 	         <li class="menu_title"><a href="<%=request.getContextPath()%>/admin/HomeQnA">고객문의 관리</a>
 	         </li>
-	         <li class="menu_title"><a href="#">수익관리</a></li>
+	         <!-- <li class="menu_title"><a href="#">수익관리</a></li> -->
 	      </ul>
 	</div>
 	<div class="menubar-btn">

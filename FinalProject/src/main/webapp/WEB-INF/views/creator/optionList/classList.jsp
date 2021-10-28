@@ -40,8 +40,18 @@
 	.classListUl2>li>span:nth-child(4n+4)>span:nth-child(1){margin-top:45px;padding:5px;}
 	.classListUl2>li>span:nth-child(4n+4)>span:nth-child(2){margin-top:7px;padding:5px;}
 	
-	.classListUl2 a:link, a:visited{text-decoration:none; color:#333;}	
+	.classListUl2 a:link, .classListUl2 a:visited{text-decoration:none; color:#333;}	
 	.classListUl2 a:hover{color:#ff385c;}
+	
+	.menu_title>a {
+	    font-size: 1.2em;
+	    font-weight: bold;
+	    color: rgb(248,248,248);
+	}
+	
+	.menu_box .menu_title>ul>li>a.small-menu {
+	    color: rgb(248,248,248);
+	}
 </style>
 <script>
 	$(function(){
@@ -94,7 +104,8 @@
 					<span><img src="${vo.class_thumb}"/></span><!-- 클래스명 -->
 					<span><!-- 상세정보 -->
 						<span>${vo.class_name}</span>
-						<span><a href="">문의대기중</a><label>0건</label></span> <!-- 문의관리페이지로 이동 -->
+						
+
 						<span><a href="">고객후기</a><label>${vo.classclasscount}건</label></span> <!-- 후기관리페이지로 이동 -->
 						<span><a href="">좋아요${vo.classlikecount}개</a></span> <!-- ?좋아요한회원목록... -->
 					</span>					
