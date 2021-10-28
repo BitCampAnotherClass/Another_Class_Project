@@ -15,6 +15,37 @@
 <!-- 구글맵 -->
 <!--  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZO3MrykFpNpemqO2zPtG5M9ADUXSoApw&callback=initMap"></script>-->
 
+
+<style>
+
+
+.container h1{
+	margin-top:0;
+}
+
+.small-menu{
+	font-size: 1.2em;
+}
+
+.menu_title>a{
+	font-size: 1.4em;
+	font-weight:600;
+}
+
+.menu_title>a{
+	font-size: 1.4em;
+	font-weight:600;
+	line-height: 1.48;
+}
+a:focus, a:hover {
+    color: #ff385c;
+    text-decoration: none;
+}
+
+</style>
+
+
+
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9551f210d2bfdcde36af42fb1ccab895&libraries=services"></script>
 <script>
