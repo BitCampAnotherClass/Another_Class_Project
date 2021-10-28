@@ -24,6 +24,16 @@ public class AdminCalcuServiceImp implements AdminCalcuService {
 	public List<AdminCalcuVO> selectAdminCalcuList(AdminCalcuVO vo) {
 		return adminCalcuDAO.selectAdminCalcuList(vo);
 	}
+
+	@Override
+	public AdminCalcuVO countTotalCreatorCalcu() {
+		return adminCalcuDAO.countTotalCreatorCalcu();
+	}
+
+	@Override
+	public List<AdminCalcuVO> selectCreatorCalcuList(AdminCalcuVO vo) {
+		return adminCalcuDAO.selectCreatorCalcuList(vo);
+	}
 	
 	
 }

@@ -32,7 +32,7 @@
 						<ul>
 							<li>
 								<p class="incomn-attr">날짜</p>
-								<p class="income-val">2021년 10월 16일</p>
+								<p class="income-val">2021년 10월 30일</p>
 							</li>
 							<li>
 								<p class="incomn-attr">수강인원</p>
@@ -52,11 +52,11 @@
 						<ul>
 							<li>
 								<p class="incomn-attr">신규 예약</p>
-								<p class="income-val">15 명</p>
+								<p class="income-val">5 명</p>
 							</li>
 							<li>
 								<p class="incomn-attr">수강 예정 인원</p>
-								<p class="income-val">320 명</p>
+								<p class="income-val">37 명</p>
 							</li>
 							<li>
 								<p class="incomn-attr">수강 신청률</p>
@@ -75,7 +75,7 @@
 							</li>
 							<li>
 								<p class="incomn-attr">총 수익</p>
-								<p class="income-val">12,340,000원</p>
+								<p class="income-val">1,340,000원</p>
 							</li>
 						</ul>
 					</div>
@@ -90,7 +90,7 @@
 							</li>
 							<li>
 								<p class="incomn-attr">총 정산</p>
-								<p class="income-val">12,340,000원</p>
+								<p class="income-val">1,340,000원</p>
 							</li>
 						</ul>
 					</div>
@@ -206,7 +206,7 @@
 		        labels: months({count: 12}),
 		        datasets: [{
 		            label: '만원',
-		            data: [12, 19, 3.5, 5.7, 2.8, 30.3],
+		            data: [12, 19, 3.5, 15.7, 7.8, 30.3, 52, 40, 22, 34, 10, 20],
 		            backgroundColor: 'rgba(255, 99, 132, 0.3)',
 		            borderColor: 'rgba(255, 99, 132, 0.1)',
 		            borderWidth: 1

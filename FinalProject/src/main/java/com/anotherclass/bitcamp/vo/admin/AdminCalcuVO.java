@@ -11,13 +11,18 @@ public class AdminCalcuVO {
 	private int sum_price; // 결제 금액 합계
 	private int sum_charge; // 수수료 합계
 	// 페이징
-	private int onePageRecord=5; // 한 페이지당 글 수
+	private int onePageRecord=10; // 한 페이지당 글 수
 	private int totalRecord; // 총 글 수
 	private int totalPage; // 총 페이지 수
 	private int nowPage=1; // 현재 페이지
 	private int oneGroupPage=5; // 한 번에 보일 페이지 수
 	private int groupStartPage=1; // 한 페이지 그룹의 첫 페이지
 	private int nowPageRecord; // 현재 페이지의 레코드 수 // 마지막 때 달라짐
+	
+	// 검색어, 검색 날짜
+	private String searchWord; // 검색어
+	private String dateSearchFirst; // 시작 날짜
+	private String dateSearchLast; // 마지막 날짜
 
 	
 	
@@ -64,6 +69,9 @@ public class AdminCalcuVO {
 		this.totalRecord = totalRecord;
 		// 총 페이지 수
 		this.totalPage = totalRecord / onePageRecord;
+		if(this.totalPage==0) {
+			this.totalPage=1;
+		}
 		if(totalRecord % onePageRecord != 0) { totalPage += 1; }
 	}
 	public int getTotalPage() {
@@ -98,6 +106,36 @@ public class AdminCalcuVO {
 	}
 	public void setNowPageRecord(int nowPageRecord) {
 		this.nowPageRecord = nowPageRecord;
+	}
+	public String getMember_id() {
+		return member_id;
+	}
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
+	}
+	public String getEnd_date() {
+		return end_date;
+	}
+	public void setEnd_date(String end_date) {
+		this.end_date = end_date;
+	}
+	public String getSearchWord() {
+		return searchWord;
+	}
+	public void setSearchWord(String searchWord) {
+		this.searchWord = searchWord;
+	}
+	public String getDateSearchFirst() {
+		return dateSearchFirst;
+	}
+	public void setDateSearchFirst(String dateSearchFirst) {
+		this.dateSearchFirst = dateSearchFirst;
+	}
+	public String getDateSearchLast() {
+		return dateSearchLast;
+	}
+	public void setDateSearchLast(String dateSearchLast) {
+		this.dateSearchLast = dateSearchLast;
 	}
 	
 	

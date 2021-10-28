@@ -36,8 +36,31 @@ public class AdminCalcuController {
 	@RequestMapping("/selectAdminCalcuList")
 	@ResponseBody
 	public List<AdminCalcuVO> selectAdminCalcuList(AdminCalcuVO vo) {
-		// nowpage 찍어보기
 		List<AdminCalcuVO> calcuList = adminCalcuService.selectAdminCalcuList(vo);
+
+		return calcuList;
+	}
+	
+	
+	@RequestMapping("/creator/calcuList")
+	public String creatorCalcuList() {
+		return "creator/income/creator_calcu_list";
+	}
+	
+	
+	@RequestMapping("/creatorCalcuPage")
+	@ResponseBody
+	public AdminCalcuVO creatorCalcuPage(int nowPage) {
+		AdminCalcuVO vo = adminCalcuService.countTotalCreatorCalcu();
+		vo.setNowPage(nowPage);
+
+		return vo;
+	}
+	
+	@RequestMapping("/selectCreatorCalcuList")
+	@ResponseBody
+	public List<AdminCalcuVO> selectCreatorCalcuList(AdminCalcuVO vo) {
+		List<AdminCalcuVO> calcuList = adminCalcuService.selectCreatorCalcuList(vo);
 
 		return calcuList;
 	}

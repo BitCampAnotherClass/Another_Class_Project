@@ -222,21 +222,11 @@
 	<div class="menuBar">
 	   	  <h1 class="main_title ir-text"><a href="<%=request.getContextPath()%>/creator/">AnotherClass</a></h1>
 	      <ul class="menu-box">
-	         <li class="menu_title"><a href="#">마이페이지</a>
-	            <ul>
-	               <li><a href="<%=request.getContextPath()%>/creator/mypage/Myinformation" class="small-menu">개인정보수정</a></li>
-	               <li><a href="#" class="small-menu">계좌입력</a></li>
-	               <li><a href="#" class="small-menu">나의문의내역</a></li>
-	            </ul>
+	         <li class="menu_title"><a href="<%=request.getContextPath()%>/creator/mypage/Myinformation">개인정보수정</a>
 	         </li>
 	         <li class="menu_title"><a href="<%=request.getContextPath()%>/creator/creatorChannel">나의채널관리</a></li>
 	         <li class="menu_title"><a href="<%=request.getContextPath()%>/creator/makeClass">클래스개설</a></li>
-	         <li class="menu_title"><a href="#">클래스관리</a>
-	            <ul>
-	               <li><a href="<%=request.getContextPath()%>/creator/classList" class="small-menu">클래스리스트</a></li>
-	               <!--  <li><a href="#" class="small-menu">클래스 취소</a></li>-->
-	               <!--  <li><a href="<%=request.getContextPath()%>/creator/modifyClass" class="small-menu">클래스 수정</a></li>-->               
-	            </ul>
+	         <li class="menu_title"><a href="<%=request.getContextPath()%>/creator/classList">클래스관리</a>
 	         </li>
 	         <li class="menu_title"><a href="#">클래스 문의/후기</a>
 	            <ul>
@@ -247,12 +237,11 @@
 	         <li class="menu_title"><a href="#">수익관리</a>
 	        	 <ul>
 	               <li><a href="<%=request.getContextPath()%>/creator/incomeChart" class="small-menu">클래스 통계</a></li>
-	               <li><a href="#" class="small-menu">정산내역</a></li>
+	               <li><a href="<%=request.getContextPath()%>/creator/calcuList" class="small-menu">정산내역</a></li>
 	            </ul>
 	         </li>
 	         <li class="menu_title"><a href="#">문의(Q&A)</a>
 	            <ul>
-	               <li><a href="#" class="small-menu">관리자문의</a></li>
 	               <li><a href="<%=request.getContextPath()%>/creator/CreatorNotice" class="small-menu">공지사항</a></li>
 	               <li><a href="<%=request.getContextPath()%>/creator/CreatorFaq" class="small-menu">자주묻는질문</a></li>
 	            </ul>
@@ -267,7 +256,7 @@
 			<div><a href="<%=request.getContextPath()%>/creatorLogin" class="logout_a">로그인</a></div>
 		</c:if>
 		<c:if test="${creatorLog=='Y' }">
-			<div class="creator-profile"><img src="<%=request.getContextPath()%>${creatorImg }"/></div>
+			<div class="creator-profile"><img src="${creatorImg }"/></div>
 			<div>${creatorNick}</div>
 			<div><a href="javascript:void(0);" onclick="kakaoLogout();" class="logout_a">로그아웃</a></div>
 		</c:if>
