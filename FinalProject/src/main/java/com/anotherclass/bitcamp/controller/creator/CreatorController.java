@@ -75,10 +75,10 @@ public class CreatorController {
 	}
 	   
 	@RequestMapping("/modifyClass")
-	public ModelAndView modifyClass(HttpSession ses,CreatorMakeClassVO vo,CreatorMakeClassDateTimeVO vo2) {
+	public ModelAndView modifyClass(int no,HttpSession ses,CreatorMakeClassVO vo,CreatorMakeClassDateTimeVO vo2) {
 		ModelAndView mav = new ModelAndView();
-		String id = (String)ses.getAttribute("creatorId");
-		vo.setMember_id(id);
+	//	String id = (String)ses.getAttribute("creatorId");
+		vo.setClass_no(no);
 	//	int result = makeClassApplyService.modifyClass(vo);
 		mav.addObject("cate", makeClassApplyService.makeClassCategoryL());
 		mav.addObject("modify", makeClassApplyService.modifyClassInfo(vo));
@@ -119,6 +119,20 @@ public class CreatorController {
 	@RequestMapping("/creatorClassList")
 	public String creatorClassList() {
 	    return "/creator/creatorClassList";
+	}
+	@RequestMapping(value="/creatorProfileOk", method=RequestMethod.POST)
+	public String putCreatorProfile(HttpSession ses, CreatorMakeClassVO vo, String creator_content, String creator_content_img) {
+		
+		String id = (String)ses.getAttribute("creatorId");
+		vo.setMember_id(id);
+		vo.setCreator_content(creator_content);
+		vo.setCreator_content_img(creator_content_img);
+		System.out.println(creator_content_img);
+		int result = makeClassApplyService.putCreatorProfile(vo);
+		if(result == 1) {
+			System.out.println("업데이트등록완료");
+		}
+		return "/creator/creatorProfileOk";
 	}
 	
 }

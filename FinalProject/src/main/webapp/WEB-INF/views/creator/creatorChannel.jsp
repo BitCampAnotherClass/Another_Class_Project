@@ -12,8 +12,36 @@
 var size = 250;
 const content  = '${channel.creator_content}';
 console.log(content)
+var serverName = '<%=request.getServerName() %>';
+var serverPort = <%=request.getServerPort() %>;
 $(function(){
-	$('#summer').summernote({
+	var fileList;
+	$('#class_thumb').on('propertychange change keyup paste input click', function uploadFiles(e){
+			var file = $('#fileButton')[0].files[0]
+			var form_data = new FormData();
+	      	form_data.append('file', file);
+	      	$.ajax({
+	        	data: form_data
+	        	,type: "POST"
+	        	,url: '/another/FileUpload/imageUploadUrl'
+	        	,contentType: false
+	        	,processData: false
+	        	,success: function(imageData) {
+	        		console.log("img:"+ imageData.url);
+	        		fileList = imageData.url;
+	        		document.getElementById('previewImg').src ='http://'+serverName+':'+serverPort+fileList;
+	        		document.getElementById('thumb_image').value ='http://'+serverName+':'+serverPort+fileList;
+	        	}
+	      		,error: function(error){
+	      			console.log(error);
+	      			console.log('파일업로드 실패');
+	      		}
+	      	});
+		});
+	
+	
+	
+	$('#summernote').summernote({
 		height:size,
 		placeholder:content,
 	  	lang:"ko-KR",	
@@ -54,111 +82,8 @@ function summernote(){
 	$('.divideDivProfile').css('display','block');
 	$('#modifyButton').css('display','block');
 	};
-function myClassChange(){
-	$('.divideDivResult').css('display','none');
-	$('.divideDivProfile').css('display','none');
-	$('.divideDivClass').css('display','block');
-	$('#modifyButton').css('display','none');
-};
 ///////////////////////////////////////////////
-//vo, dao, controller service  userclasslistcontroller로 씀
-	var classNo_arry = new Array();
- 	var	className_arry = new Array();
- 	var classAddr1_arry = new Array();
- 	var classPrice_arry = new Array();
- 	var classThumb_arry = new Array();
- 	var classTag_arry = new Array();
- 	var class_content_arry = new Array();
- 	var category_no = new Array();
-	var category_name = new Array();
-	var startDate_arry = new Array();
-	var nick_array = new Array();
-	var listCnt = 12;
-	var creator_class; 
-	
-function creatorClass(){
-	  var url = '<%=request.getContextPath()%>/classList/findCreatorClass'; 
-	  var cid = ""
-	  var params = {"id":'${creatorId}'}; 
-	  $.ajax({
-		 	url : url,
-			data : params,
-			success:function(r){
-				var rr=$(r);
-				$('.divideDivResult').html('');
-				var classDiv = '';
-				rr.each(function(idx){
-					classNo_arry[idx] = rr[idx].class_no;
-	 				className_arry[idx]= rr[idx].class_name;
-	 			 	classAddr1_arry[idx]= rr[idx].class_addr1;
-	 			 	classPrice_arry[idx]= rr[idx].class_price;
-	 			 	classThumb_arry[idx]= rr[idx].class_thumb;
-	 			 	classTag_arry[idx]= rr[idx]. class_tag;
-	 			 	class_content_arry[idx]= rr[idx].class_content;
-	 			 	category_name[idx]= rr[idx].category_name;
-	 			 	startDate_arry[idx]=rr[idx].start_date;
-	 			 	nick_array[idx]=rr[idx].nick;
-	 			 	console.log(className_arry[idx])
-				if( idx <= (listCnt-1) ){	
-					
-					classDiv  = '<div class="class_div">';
-	 			 	classDiv += '<div class="img_div">';
-					classDiv += '<a href="<%=request.getContextPath()%>/classDetailView?no=' + classNo_arry[idx] + '" target="">'
-					classDiv +=	'<img class="img_size" src="'+classThumb_arry[idx]+'">';
-					classDiv += '</a>'
-					classDiv += '</div>';
-					classDiv +=	'<div class="info_div">';
-					classDiv += '<ul>';
-					classDiv += '<li><div>'+category_name[idx]+'</div></li>';
-					classDiv += '<li>'+className_arry[idx]+'</li>';
-					classDiv +=	'<li>'+classTag_arry[idx]+'</li>'
-					classDiv +=	'<li>'+nick_array[idx]+'</li>';
-					classDiv +=	'<li>'+classPrice_arry[idx]+'원</li>';
-					classDiv += '</ul>';
-					classDiv +='</div>';
-					classDiv +='</div>';
-					$('.divideDivResult').append(classDiv);
-					$('.no-result-txt').hide(); // 결과 없음 내용 숨기기
-					$('.more').show(); // 더보기 버튼 보이기
-					if(idx >= r.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
-						$('.more').hide();
-					}
-				}
-				var n=1;
-				$('.more > button').click(function(){
-					n++;
-					if( idx >= listCnt*(n-1) && idx <= (listCnt*n-1) ){
-						classDiv  = '<div class="class_div">';
-		 			 	classDiv += '<div class="img_div">';
-						classDiv += '<a href="<%=request.getContextPath()%>/classDetailView?no=' + classNo_arry[idx] + '" target="">'
-						classDiv +=	'<img class="img_size" src="'+classThumb_arry[idx]+'">';
-						classDiv += '</a>'
-						classDiv += '</div>';
-						classDiv +=	'<div class="info_div">';
-						classDiv += '<ul>';
-						classDiv += '<li><div>'+category_name[idx]+'</div></li>';
-						classDiv += '<li>'+className_arry[idx]+'</li>';
-						classDiv +=	'<li>'+classTag_arry[idx]+'</li>'
-						classDiv +=	'<li>'+nick_array[idx]+'</li>';
-						classDiv +=	'<li>'+classPrice_arry[idx]+'원</li>';
-						classDiv += '</ul>';
-						classDiv +='</div>';
-						classDiv +='</div>';
-						$('.divideDivResult').append(classDiv);
-						$('.no-result-txt').hide(); // 결과 없음 내용 숨기기
-						$('.more').show(); // 더보기 버튼 보이기
-						if(idx >= r.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
-							$('.more').hide();
-						}
-					}
-				});
-					});
-			},error:function(e){
-				console.log("ajax 에러")
-			}
-			
-	  });
-};
+
 </script>
 
 <style>
@@ -185,7 +110,7 @@ function creatorClass(){
 #creatorNameDiv{background-color:;
 	width:400px;
 	height:120px;
-	margin:160px 350px 0px 0px;
+	margin:160px 500px 0px 0px;
 	float:right;
 	padding-left: 50px;
 }
@@ -200,9 +125,8 @@ function creatorClass(){
 #creatorNameDiv>ul>li:nth-child(1){
 	border-bottom:3px solid lightgray;
 }
-#myChannelMenuDiv>ul>li{border-top:1px dotted lightgray;
-	border-bottom:1px dotted lightgray;
-	width:33.3%;
+#myChannelMenuDiv>ul>li{border:1px dotted lightgray;
+	width:100%;
 	line-height:45px;
 	height:50px;
 	text-align: center;
@@ -212,16 +136,6 @@ function creatorClass(){
 	color:gray;
 	font-weight:500;
 	font-size:1em; 
-	cursor: pointer;
-}
-#myChannelMenuDiv>ul>li:hover{
-	border-radius:8px;
-	background-color: #FF385C;
-	font-weight:500;
-	
-}
-#myChannelMenuDiv>ul>li:hover{
-	color: white;
 }
 #myChannelMenuDiv>ul{
 	width:100%;
@@ -233,19 +147,12 @@ function creatorClass(){
 	font-size:0.6em;
 	font-weight:500;
 }
-.divideDivProfile{background-color:;
-	width:100%;
-	height:300px;
-}
-.divideDivClass{border:1px dotted gray;
-	display:none;
-	width:100%;
-	height:310px;
-}
-.divideDivResult{border:1px dotted gray;
-	display:none;
-	width:100%;
-	height:310px;
+.divideDivProfile{border:1px solid lightgray;
+	color:gray;
+	font-weight:500;
+	font-size:1em; 
+	text-align: center;
+	border-radius:8px;
 }
 .buttons{
 	width:150px;
@@ -261,15 +168,52 @@ function creatorClass(){
 	background-color:#FF385C;
 	cursor: pointer;
 }
- #modifyButton{
+#imgThumbDiv{border:1px solid lightgray;
+	border-radius:30px;
+	height:300px;
+	margin-left:50px;
+	width:250px;
+	overflow: hidden;
+}
+#previewImg{
+	height:100%;
+	width:100%;
+}
+
+.classImgDiv{
+	width:300px;
+}
+.filebox>ul{
+	margin-top:30px;
+	width:400px;
+	heigth:50px;
+	margin-left:80px;
+}
+.filebox>ul>li{
+	float:left;
 }
 </style>
 <script>
 	
 </script>
+
+
 <div id="myChannelMainDiv">
+		<form  method="post" action="<%=request.getContextPath()%>/creator/creatorProfileOk" >
 	<div class="divideDiv">
-		<div class="creatorImgDiv"><img src=""></div>
+		<div class="classImgDiv">
+				<div id="imgThumbDiv">
+					<img src="${channel.creator_content_img}" id="previewImg" > 
+				</div>
+				<div class="filebox">
+					<ul>
+						<li><input type="button" class="button" value="확인" id="class_thumb" ></li>
+						<li><input type="hidden" name="creator_content_img" id="thumb_image"></li>
+						<li><input type="file" id="fileButton" required></li>
+					</ul>
+				</div>
+		</div>
+		
 		<div id="creatorNameDiv">
 			<ul>
 				<li>${creatorId}님 </li>
@@ -278,20 +222,13 @@ function creatorClass(){
 			</ul>
 		</div>
 	</div>
-	<div id="myChannelMenuDiv">
-		<ul>
-			<li id="summerNote" onclick="summernote()">크리에이터 프로필</li>
-			<li id="creatorsClass" onclick="myClassChange();creatorClass(); ">개설 클래스</li>
-		</ul>
-	</div>
-	<div class="divideDivProfile">
-		<div id="summer"></div>
-	</div>
-	<div class="divideDivClass">
-		<div id=""></div>
-	</div>
-	<div class="divideDivResult" >
-		<div id=""></div>
-	</div>
+		<div class="myChannelMenuDiv">
+			<div class="divideDivProfile">크리에이터 프로필</div>
+			<div id="summernoteForm">
+	  			<textarea id="summernote" name="creator_content">${channel.creator_content }</textarea>
+			</div>
+		</div>
+		<div><input type="submit" class="buttons"  id="modifyButton" value="등록"></div>
+	</form>
 </div>
-<div><input class="buttons" type="button" id="modifyButton" value="등록"></div>
+

@@ -876,7 +876,7 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	<div class="classImgDiv">
 			<div id="imgThumbDiv"><img src="<%=request.getContextPath()%>/img/kimin/uploadimg.jpg" id="previewImg" ></div>
 			<div class="filebox">
-				<input type="text" class="imgThumbFileName" placeholder="썸네일사진 파일명" id="class_thumb" readonly="readonly">
+				<input type="button" class="imgThumbFileName" value="확인" id="class_thumb" >
 				<input type="hidden" name="class_thumb" id="thumb_image">
 				<label for="fileButton">업로드</label>
 				<input type="file" id="fileButton" name="filename" required>

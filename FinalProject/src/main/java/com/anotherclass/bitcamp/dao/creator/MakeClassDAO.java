@@ -16,4 +16,5 @@ public interface MakeClassDAO {
 	public ClassListVO  creatorChannel(ClassListVO vo);
 	public int modifyClass(CreatorMakeClassVO vo);
 	public CreatorMakeClassVO modifyClassInfo(CreatorMakeClassVO vo);
+	public int putCreatorProfile(CreatorMakeClassVO vo);
 }
