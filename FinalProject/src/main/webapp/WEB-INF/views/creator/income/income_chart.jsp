@@ -109,8 +109,8 @@
 				<div class="income-chart-select">
 					<ul>
 						<li>수강건수</li>
-						<li class="on">일별수익</li>
-						<li>월별수익</li>
+						<li>일별수익</li>
+						<li class="on">월별수익</li>
 					</ul>
 				</div>
 				<div class="income-chart-view">
