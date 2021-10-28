@@ -118,7 +118,7 @@ $(function(){
 					member_information += '<div class="userMg-information-box">';
 					member_information += '<div class="userMg-information-popup">';
 					member_information += '<h2 class="userMg-info-title">'+vo.member_name+' 회원님의 상세정보</h2>';
-					member_information += '<input type="button" valu0......6e="X" class="userMg-info-closeButton" />';
+					member_information += '<input type="button" value="X" class="userMg-info-closeButton" />';
 					member_information += '<ul class="userMg-info-popup-ul">';
 					member_information += '<li>이름</li>';
 					member_information += '<div class="userMg-information-popup-div">';

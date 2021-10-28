@@ -111,7 +111,7 @@
  	var category_no = new Array();
 	var category_name = new Array();
 	var startDate_arry = new Array();
-	var listCnt = 4;
+	var listCnt = 8;
 //////////////////////////////////// 낮은 가격순	
 $(()=>{
 	 function sortByPrice(){
