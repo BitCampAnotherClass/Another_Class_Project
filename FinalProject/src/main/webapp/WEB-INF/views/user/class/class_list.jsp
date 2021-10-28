@@ -188,7 +188,6 @@ $(function(){
 							classDiv += '<li><div>'+category_name[idx]+'</div></li>';
 							classDiv += '<li>'+className_arry[idx]+'</li>';
 							classDiv +=	'<li>'+classTag_arry[idx]+'</li>'
-							classDiv +=	'<li>'+startDate_arry[idx]+'</li>';
 							classDiv +=	'<li>'+nick_array[idx]+'</li>';
 							classDiv +=	'<li>'+classPrice_arry[idx]+'원</li>';
 							classDiv += '</ul>';
