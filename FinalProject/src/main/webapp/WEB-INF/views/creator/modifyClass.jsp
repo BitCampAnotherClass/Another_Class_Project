@@ -165,11 +165,11 @@ $(function(){
         	 	
         	   classDateDivCount++;
         	   
-            	testing1 = "<div class='putDateTime2' id='dateTimeDivDel'>";
-            	testing1 += "<div title='cancel' class='dateCancelButton' onclick='deleteDivDate(this, "+classDateDivCount+");'>";
-            	testing1 += "<div value='"+classDateDivCount+"'></div><img src='<%=request.getContextPath()%>/img/kimin/xbu.png'>"
-            	testing1 += "</div>";
-            	testing1 += ""+dateStr+"";
+        	    testing1 = "<div class='putDateTime2' id='dateTimeDivDel'>";
+      	   	  	testing1 += "<div title='cancel' class='dateCancelButton' onclick='deleteDivDate(this, "+classDateDivCount+");'>";
+      	     	testing1 += "<div value='"+classDateDivCount+"'></div><img src='<%=request.getContextPath()%>/img/kimin/xbu.png'>"
+         	  	testing1 += "</div>";
+        	   	testing1 += ""+dateStr+"";
 				testing1 += "<input type='time' id='startTime' value='09:30' onchange='inputStartTime($(this).val())'>";
 				testing1 +=  "<img src='<%=request.getContextPath()%>/img/kimin/~.png'>"
 				testing1 += "<input type='time' id='endTime' value='17:30' onchange='inputEndTime($(this).val())'>";
@@ -941,10 +941,12 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 		<span><kimin>*</kimin> 4) 클래스 썸네일 <kimin>(필수)</kimin></span>
 	</div>
 	<div class="classImgDiv">
-			<div id="imgThumbDiv"><img src="${modify.class_thumb}" id="previewImg" ></div>
+			<div id="imgThumbDiv">
+				<img src="${modify.class_thumb}" id="previewImg" >
+			</div>
 			<div class="filebox">
 				<input type="text" class="imgThumbFileName" placeholder="썸네일사진 파일명" id="class_thumb" readonly="readonly" >
-				<input type="hidden" name="class_thumb" id="thumb_image" >
+				<input type="hidden" name="class_thumb" id="thumb_image">
 				<label for="fileButton">업로드</label>
 				<input type="file" id="fileButton" name="filename" required>
 			</div>

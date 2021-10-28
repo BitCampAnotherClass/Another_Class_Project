@@ -87,14 +87,9 @@ public class UserCommunityController {
 	}
 */
 	@RequestMapping(value = "/CommunityContentDetail")
-	public ModelAndView CommunityContentDetail(int community_no) {
-		ModelAndView mav = new ModelAndView();
+	public String CommunityContentDetail() {
 		
-		CommunityVO vo = userCommunityService.CommuDetailAllRecord(community_no);
-		
-		mav.addObject("vo",vo);
-		mav.setViewName("/user/community/commu_content_detail");
-		return mav;
+		return "/user/community/commu_content_detail";
 	}
 	
 	@RequestMapping(value = "/CommunityNewContent")

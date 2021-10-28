@@ -1,4 +1,4 @@
-package com.anotherclass.bitcamp.controller.admin;
+package com.anotherclass.bitcamp.dumy;
 
 
 
@@ -17,18 +17,74 @@ import com.anotherclass.bitcamp.service.register.RegisterService;
 
 @Controller
 @RequestMapping("/admin")
-public class idmake {
+public class IdmakeController {
 	
 	private HashingSeting hashing = new HashingSeting();
 	
 	@Inject
 	RegisterService registerService;
 	
+	@Inject
+	DumyService dumyService;
+	
+	@RequestMapping("/ClassOptionSeting")
+	public String classNumberList() {
+	
+		// 현재 전체 클래스를 가져와서 옵션생성 - 옵션은 mybatis에서 설정 필요 
+		List<String> list = dumyService.classNumberList();	
+		//Collections.shuffle(list);
+//		for(int i=0; i<list.size(); i++) {
+//			System.out.println(list.get(i));
+//			int cnt = dumyService.classOptionSeting(list.get(i));
+//			System.out.println(cnt);
+//		}
+		
+		// 위에서 설정된 옵션 List를 가져오기
+		List<String> option= dumyService.optionNumber();
+		List<String> member = dumyService.memberIdList();
+		List<String> price = Arrays.asList("10000","26000","41000","12000","9000","10000","26000","41000","12000","9000","10000","26000","41000","12000","9000","10000","26000","41000","12000","9000","9000","10000","26000","41000","12000","9000","10000","26000","41000","12000","9000","9000","10000","26000","41000","12000","9000","10000","26000","41000","12000","9000");
+		List<String> bank = Arrays.asList("국민은행","SC제일은행","경남은행","kb국민카드","신한카드","국민은행","SC제일은행","경남은행","kb국민카드","신한카드","국민은행","SC제일은행","경남은행","kb국민카드","신한카드","국민은행","SC제일은행","경남은행","kb국민카드","신한카드","국민은행","SC제일은행","경남은행","kb국민카드","신한카드","국민은행","SC제일은행","경남은행","kb국민카드","신한카드","국민은행","SC제일은행","경남은행","kb국민카드","신한카드","국민은행","SC제일은행","경남은행","kb국민카드","신한카드","국민은행","SC제일은행","경남은행","kb국민카드","신한카드");
+		List<String> orderDate = Arrays.asList("2021-10-28 11:10","2021-10-28 15:10","2021-10-28 14:10","2021-10-28 14:10","2021-10-28 08:15","2021-10-28 17:10","2021-10-28 11:10","2021-10-28 15:10","2021-10-28 14:10","2021-10-28 14:10","2021-10-28 08:15","2021-10-28 17:10","2021-10-28 11:10","2021-10-28 15:10","2021-10-28 14:10","2021-10-28 14:10","2021-10-28 08:15","2021-10-28 17:10");
+		
+		Collections.shuffle(list);
+		Collections.shuffle(member); 
+		Collections.shuffle(price); 
+		Collections.shuffle(bank);
+		Collections.shuffle(orderDate);
+		ClassOptionDumyVO vo = new ClassOptionDumyVO();
+		HeadCountVO hdvo = new HeadCountVO();
+		ClassLikeDumyVO clvo = new ClassLikeDumyVO();
+		for(int i=0; i<10; i++) {
+			//vo.setClassNumber(option.get(i));
+			clvo.setMember_id(member.get(i));
+			clvo.setClassNumber("1000");
+			if(clvo.getMember_id()== dumyService.LikeList(clvo)) {
+				System.out.println("--------------"+clvo.getMember_id());
+				clvo.setMember_id(member.get(i+8));
+			}
+			dumyService.classLikeInsert(clvo);
+//			vo.setPrice(price.get(i));
+//			vo.setPay_company(bank.get(i));
+//			vo.setOrder_date(orderDate.get(i));
+//			vo.setBuyNumber("153154");
+//			dumyService.classOrdelSeting(vo);
+			
+//			hdvo.setClassNumber(option.get(i));
+//			hdvo.setHeadCount(""+i+1);
+//			dumyService.optionCountUpdate(hdvo);
+			System.out.println("아이디:"+member.get(i));
+			System.out.println("클래스:"+list.get(i));
+		}
+
+		return "test";
+		}
+	
 	@RequestMapping("/makeIdcheck")
-	public String testing(RegisterVO vo)throws Exception  {
+	public String testing()throws Exception  {
+		RegisterVO vo = new RegisterVO();
 		String idText="";
 		int check = 0;
-		for (int i = 0; i < 10; i++) { 
+		for (int i = 0; i < 100; i++) { 
 			if(i % 10 == 0) { 
 				System.err.println(); 
 			} 
@@ -49,7 +105,7 @@ public class idmake {
 			System.out.println("이름:"+vo.getMember_name());
 			System.out.println("전화번호:"+vo.getMember_tel());
 			System.out.println("이메일:"+vo.getMember_email());
-			System.out.println("닉네임:"+vo.getNick());
+			//System.out.println("닉네임:"+vo.getNick());
 			System.out.println("----------------------");
 			System.out.println("업로드중--->"+check);
 		}
@@ -112,7 +168,7 @@ public class idmake {
 	} 
 	
 	public static String nName() { 
-		List<String> 성 = Arrays.asList("김", "이", "박", "최", "정", "강", "조", "윤", "장", "김", "김", "오", "김", "신", "권", "황", "안", "송", "류", "전", "홍", "고", "문", "양", "손", "배", "조", "백", "허", "유", "남", "심", "김", "김", "김", "김", "성", "김", "김", "우", "구", "신", "임", "나", "전", "민", "유", "진", "지", "엄", "채", "원", "천", "방", "공", "강", "현", "함", "변", "염", "양", "변", "여", "추", "노", "도", "소", "신", "석", "선", "설", "마", "길", "주", "이", "이", "이", "이", "박", "박", "박", "왕", "금", "김", "김"); 
+		List<String> 성 = Arrays.asList("김", "이", "박","김","성","이","장"); 
 		List<String> 이름 = Arrays.asList("가", "강", "경", "고", "관", "광", "구", "규", "근", "기", "길", "나", "남", "노", "누", "다", "단", "달", "담", "대", "덕", "도", "동", "두", "라", "래", "로", "루", "리", "마", "만", "명", "무", "문", "미", "민", "바", "박", "백", "범", "별", "병", "보", "빛", "사", "산", "상", "새", "서", "석", "선", "설", "섭", "성", "세", "소", "솔", "수", "슬", "승", "시", "신", "아", "안", "애", "엄", "여", "연", "영", "예", "용","유", "윤", "은", "의", "이", "익", "인", "자", "잔", "장", "재", "전", "정", "제", "조", "주", "준", "지", "진", "찬", "창", "초", "춘", "충", "치", "하", "호", "홍", "화", "환", "회", "효", "훈", "휘", "희", "운", "모", "배", "부", "림", "봉", "혼", "황", "량", "린", "을", "비", "솜", "공", "면", "탁", "온", "디", "항", "후", "려", "균", "묵", "송", "욱", "휴", "언", "령", "섬", "들", "견", "추", "걸", "삼", "열", "웅", "분", "변", "양", "출", "타", "번", "식", "란", "더", "손", "술", "훔", "반", "빈", "실", "직", "흠", "학", "개"); 
 		Collections.shuffle(성); 
 		Collections.shuffle(이름); 

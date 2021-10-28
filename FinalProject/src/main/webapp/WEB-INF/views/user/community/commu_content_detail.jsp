@@ -21,12 +21,13 @@
    /*==================#leftdiv==================*/
    
    /* 클래스이미지 div */
-   #d1{width:100%;height:100%;overflow:hidden;margin-bottom:10px;} /*높이,배경색 수정*/
-   #d1>img{width:100%;height:100%;object-fit:cover;} /*object-fit:cover ? fill?  ;*/
+   #d1{width:100%;height:100%;overflow:hidden;} /*높이,배경색 수정*/
+   .asdf{width:100%; height:100%;}
+   #d1>img{width:1000px;height:500px;object-fit:fill;} /*object-fit:cover ? fill?  ;*/
 
    #like{margin-top:-27px;}
    /* 클래스소개 div*/
-   #d2{width:95%;overflow:auto;padding-bottom:10px;margin:0 auto;} 
+   #d2{width:95%;overflow:auto;margin:0 auto;} 
    #d2>ul>li{padding-bottom:5px;} /* ===지울것===*/
    #d2 li:nth-child(1){margin-top:5px;font-weight:bold;color:#ff385c;} 
    #d2 li:nth-child(2){font-size:1.5rem; font-weight:bold;margin:5px 0 5px 0;}
@@ -62,7 +63,7 @@
    
    /*클레스 상세페이지 메뉴*/
    .menu{width:100%; min-height:200px;height:100%; border-bottom:1px solid #ddd; overflow:auto;padding-bottom:30px;} /*min-height*/   
-   .menutitle{height:70px;line-height:70px;font-size:1.2rem;font-weight:bold;}
+   .menutitle{height:20px;line-height:20px;font-size:1.2rem;font-weight:bold;}
    
    #d5>div:nth-child(1)>span{display:inline-block;box-shadow:inset -11px #ff385c;}
    #d5>div:nth-child(2){ white-space: pre-line;text-align:center;}/*클래스소개*/
@@ -125,7 +126,10 @@
    #gopayB{width:200px;height:38px;font-size:18px;margin:10px 0 15px 0;boder:1px solid #ddd;background-color:#616060;color:#fff;}
    
    #replysub{margin: 10px 0 15px 1040px;background-color:white;border:none;border:1px solid #999;width:100px;padding-top:5px;padding-bottom:5px;}
+   #aaa{}
+   #ada{padding-left:150px; color:#ff385c; margin-left:-50px;}
    
+
 </style>
 <script>
    $(function(){      
@@ -269,24 +273,25 @@
    <!--  -->
    <div id="leftdiv">
       <div id="calssintro"> <!-- 클래스대표사진+소개글 , 강사프로필+강사닉네임 -->   
-         <div id="d1"><img src="${vo.img1 }"/></div> <!-- 클래스 이미지 -->
+         <div id="d1"><img src="img/test/cand1.jpg"/></div> <!-- 클래스 이미지 -->
          <div id="d2"> <!-- 클래스 소개 -->
             <ul>
-               <li>${vo.community_tag }</li> <!-- 위치?대분류? --> <!-- 왼쪽정렬 -->
-               <li>${vo.img_con1 }</li> <!-- 짧은 소개글 *******************pre-wrap 아직 미설정-->
+               <li>#케이크 캔들 #먹지마세요</li> <!-- 위치?대분류? --> <!-- 왼쪽정렬 -->
+               <li>예쁜 케이크 모양 캔들</li> <!-- 짧은 소개글 *******************pre-wrap 아직 미설정-->
             
             </ul>
+            
          </div> 
          
          <div id="d5" class="menu"> <!-- 클래스소개 -->
             <div class="menutitle"><span></span></div>
                   
-            <div id="d1"><img class= "subaa" src="${vo.img2 }"/></div> 
-            <div>${vo.img_con2 }</div>      
-            <div id="d1"><img class= "subaa" src="${vo.img3 }"/></div> 
-            <div>${vo.img_con3 }</div>
-            <div id="d1"><img class= "subaa" src="${vo.img4 }"/></div> 
-            <div>${vo.img_con4 }</div>   
+            <div id="d1"><img class= "subaa" src="img/test/cand2.jpg"/></div> 
+            <div>태우지 않아도 향기가 가득한 케이크 캔들과 디저트 캔들(까눌레, 마카롱, 아이스크림 중 택 1)을 선택해서 만들 수 있었어요</div>      
+            <div id="d1"><img class= "subaa" src="img/test/cand3.jpg"/></div> 
+            <div>나만의 특별한 힐링 시간이 필요해서 이 클래스를 참여하게 되었어요</div>
+            <div id="d1"><img class= "subaa" src="img/test/cand4.jpg"/></div> 
+            <div>캔들과 함께 향기로운 힐링의 시간을 가져서 행복했어요~~ 꼭 한번 참여해보세요 </div>   
          </div>
 
          <div id="d9" class="menu"> <!-- 문의 -->
@@ -322,10 +327,11 @@
    <div id="rightdiv">
          <div id="rightConBox">
             <div id="d3"> <!-- 강사프로필 + 강사명 -->
-            <div><img src="${vo.member_img }"/></div> <!-- 강사프로필이미지 -->   
+            <div><img src="img/test/stu.png"/></div> <!-- 강사프로필이미지 -->   
             <div> <!-- 강사닉네임 -->   
                <a href="#"></a>
-               <span>${vo.member_id } 님</span>
+               <span id="aaa">asdf1234 님</span>
+               <div id="ada">11</div>
                <li id="like">
                   
                   <div>
@@ -347,10 +353,10 @@
             
          </div>
          <div id="subpicture">
-            <div class="water"><img class= "subaa" src="${vo.img1 }"/></div> 
-            <div class="water"><img class= "subaa" src="${vo.img2 }"/></div> 
-            <div class="water"><img class= "subaa" src="${vo.img3 }"/></div> 
-            <div class="water"><img class= "subaa" src="${vo.img4 }"/></div> 
+            <div class="water"><img class= "subaa" src="img/test/cand1.jpg"/></div> 
+            <div class="water"><img class= "subaa" src="img/test/cand2.jpg"/></div> 
+            <div class="water"><img class= "subaa" src="img/test/cand3.jpg"/></div> 
+            <div class="water"><img class= "subaa" src="img/test/cand4.jpg"/></div> 
             </div>
             <!-- <div style="display:none" id="inputdatebox"></div><!-- 선택된날짜입력될박스 -->
             <input type="text" id="inputdatebox" style="visibility:hidden;" />
