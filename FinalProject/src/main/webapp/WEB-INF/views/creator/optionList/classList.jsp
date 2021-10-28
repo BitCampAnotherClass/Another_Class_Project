@@ -40,8 +40,18 @@
 	.classListUl2>li>span:nth-child(4n+4)>span:nth-child(1){margin-top:45px;padding:5px;}
 	.classListUl2>li>span:nth-child(4n+4)>span:nth-child(2){margin-top:7px;padding:5px;}
 	
-	.classListUl2 a:link, a:visited{text-decoration:none; color:#333;}	
+	.classListUl2 a:link, .classListUl2 a:visited{text-decoration:none; color:#333;}	
 	.classListUl2 a:hover{color:#ff385c;}
+	
+	.menu_title>a {
+	    font-size: 1.2em;
+	    font-weight: bold;
+	    color: rgb(248,248,248);
+	}
+	
+	.menu_box .menu_title>ul>li>a.small-menu {
+	    color: rgb(248,248,248);
+	}
 </style>
 <script>
 	$(function(){

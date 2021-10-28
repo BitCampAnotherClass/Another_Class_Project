@@ -84,8 +84,8 @@
 				<div class="income-chart-select">
 					<ul>
 						<li>수강건수</li>
-						<li class="on">일별수익</li>
-						<li>월별수익</li>
+						<li>일별수익</li>
+						<li class="on">월별수익</li>
 					</ul>
 				</div>
 				<div class="income-chart-view">
@@ -141,7 +141,7 @@
 	        labels: months({count: 12}),
 	        datasets: [{
 	            label: '만원',
-	            data: [789, 794, 735, 756, 780, 812, 820, 834, 804],
+	            data: [789, 794, 735, 756, 780, 812, 820, 884, 910, 820],
 	            backgroundColor: 'rgba(255, 99, 132, 0.3)',
 	            borderColor: 'rgba(255, 99, 132, 0.1)',
 	            borderWidth: 1
