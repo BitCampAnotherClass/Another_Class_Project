@@ -915,7 +915,6 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 				<input type="text" class="imgThumbFileName" placeholder="썸네일사진 파일명" id="class_thumb" readonly="readonly" value="${modify.class_thumb}">
 				<input type="hidden" name="class_thumb" id="thumb_image" value="${modify.class_thumb}">
 				<label for="fileButton">업로드</label>
-				<input type="file" id="fileButton" name="filename" required>
 			</div>
 			
 	</div>

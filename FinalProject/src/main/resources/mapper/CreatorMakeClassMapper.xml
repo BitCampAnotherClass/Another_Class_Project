@@ -46,12 +46,16 @@
 	]]>
 	</update>
 	
-		<update id="modifyClassOk" parameterType="com.anotherclass.bitcamp.vo.creator.CreatorMakeClassVO" >
+	<update id="modifyClassOk" parameterType="com.anotherclass.bitcamp.vo.creator.CreatorMakeClassVO" >
 	<![CDATA[
 		update classtbl set class_name=#{class_name}, class_info=#{class_info}, class_price=#{class_price}, class_thumb=#{class_thumb}, class_content=#{class_content},
 		 class_img_file='ddd.jpg', class_post_no=#{class_post_no}, class_addr1=#{class_addr1}, class_addr2=#{class_addr2}, max_headcount=#{max_headcount}, 
 		 category_no=#{category_no}, request=0, progress=0, class_writedate=sysdate, class_tag=#{class_tag} where class_no = #{class_no}
 	]]>
 	</update>
-
+	<delete id="deleteClass" parameterType="com.anotherclass.bitcamp.vo.creator.CreatorMakeClassVO">
+	<![CDATA[
+		delete from classtbl where class_no= ${class_no}
+	]]>
+	</delete>
 </mapper>

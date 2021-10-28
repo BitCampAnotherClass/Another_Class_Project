@@ -85,7 +85,18 @@ public class CreatorController {
 		mav.setViewName("/creator/modifyClass");
 	    return mav;
 	}
-	   
+	@RequestMapping("/deleteClass")
+	public String deleteClass(int no, CreatorMakeClassVO vo) {
+		vo.setClass_no(no);
+		int result = makeClassApplyService.deleteClass(vo);
+		if(result == 1) {
+			System.out.println("클래스 삭제가 완료되었습니다.");
+		}
+		return "creator/deleteClass";
+	}
+	
+	
+	
 	@RequestMapping("/creatorChannel")
 	public ModelAndView creatorChannel(HttpSession ses) {
 		ModelAndView mav = new ModelAndView();
@@ -140,10 +151,11 @@ public class CreatorController {
 		CreatorMakeClassVO classno = makeClassApplyService.modifyClassInfo(vo);
 		
 		vo.setClass_no(classno.getClass_no());
-		System.out.println(classno.getClass_no());
-		int result = makeClassApplyService.modifyClassOk(vo);
+		
+		int result = makeClassApplyService.modifyClassOk(vo); 
 		if(result == 1) {
 			System.out.println("클래스 메이크 업데이트등록완료");
+			
 		}
 		return "/creator/modifyClassOk";
 	}

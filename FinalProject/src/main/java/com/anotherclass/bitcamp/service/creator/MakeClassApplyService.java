@@ -19,4 +19,5 @@ public interface MakeClassApplyService {
 	public int putCreatorProfile(CreatorMakeClassVO vo);
 	public int modifyClassOk(CreatorMakeClassVO vo);
 	public List<CreatorMakeClassDateTimeVO> putDate(CreatorMakeClassDateTimeVO vo);
+	public int deleteClass(CreatorMakeClassVO vo);
 }
