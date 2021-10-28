@@ -280,6 +280,7 @@ $(()=>{
 	        		document.getElementById('image-account').src ='http://'+serverName+':'+serverPort+fileList;
 	        		document.getElementById('myPage-account-image').src ='http://'+serverName+':'+serverPort+fileList;
 	        		document.getElementById('image-file-path').value ='http://'+serverName+':'+serverPort+fileList;
+	        		alert(imageData.url);
 	        		document.getElementById('account_send').submit();
 	        	}
 	      		,error: function(error){
