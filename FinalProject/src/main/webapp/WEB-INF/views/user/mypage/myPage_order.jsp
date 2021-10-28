@@ -128,11 +128,18 @@ $(function(){
 		    				tag +="<a href='<%=request.getContextPath()%>/classDetailView?no=" + vo3.class_no + "' target=''>"+vo3.class_name+"</a>";
 		    				tag +="<span>주문번호 : "+vo3.order_no+"</span>";
 		    				tag +="<span>상품금액 : "+vo3.class_price+"원</span>";
-		    				tag +="<span>취소일자 : "+vo3.cancel_date2+"</span>";
-		    				if(vo3.refund==null){
+		    				
+		    				if(vo3.refund_date==1){
+		    				
+		    					tag +="<span>취소일자 : "+vo3.cancel_date2+"</span>";
+		    				}else{
+		    					tag +="<span>환불일자 : "+vo3.refund_date+"</span>";
+		    				}
+		    				if(vo3.refund_date==1){
+		    					
 		    					tag +="<span>진행상태 : 취소완료</span>";
 		    				}else{
-		    					tag +="<span>진행상태 : 취소완료</span>";
+		    					tag +="<span>진행상태 : 환불완료</span>";
 		    				}
 		    				tag +="</div>";
 		    				tag +="<div>";

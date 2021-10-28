@@ -368,7 +368,7 @@ $(document).ready(function(){
 	    							
 	    			bb.each(function(idx,vo5){	    	
 	    				//tag +="<div class='askdiv808'>";
-	    				tag += "<div style='display:flex;width:12%;'><label style='display:block;width:20%;height:100%;vertical-align:middle;font-size:2rem;color:#666;'>↳</label><img src='creimg' style='width:80%'/></div> ";
+	    				tag += "<div style='display:flex;width:12%;'><label style='display:block;width:20%;height:100%;vertical-align:middle;font-size:2rem;color:#666;'>↳</label><img src='<%=request.getContextPath()%>/img/jisu/basic.png' style='width:80%'/></div> ";
 	    				tag +="<div style='width:87%;'>";
 	    				tag +="<div><label> "+ vo5.classqnacom_member_id +" | "+vo5.classqnacom_writedate +" 작성</label></div>";
 	    				tag +="<div><label>"+vo5.classqnacom_reply +"</label></div>"; 
@@ -546,7 +546,7 @@ $(document).ready(function(){
 							<div id="likelikecount"></div> 
 						</div>
 					</li>
-					<li><img src="img/jisu/smalllocation.png"/>경기도 | 용인시</li> <!-- 위치 -->
+					<li><img src="img/jisu/smalllocation.png"/>${vo.class_addr1 }</li> <!-- 위치 -->
 					<li style="display:none;"><div><input type="button" value="공유"/></div></li> <!-- 공유하기 -->
 				</ul>
 			</div> 
