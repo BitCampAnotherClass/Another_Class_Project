@@ -2,6 +2,10 @@ package com.anotherclass.bitcamp.controller.admin;
 
 
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
@@ -24,7 +28,7 @@ public class idmake {
 	public String testing(RegisterVO vo)throws Exception  {
 		String idText="";
 		int check = 0;
-		for (int i = 0; i < 50; i++) { 
+		for (int i = 0; i < 10; i++) { 
 			if(i % 10 == 0) { 
 				System.err.println(); 
 			} 
@@ -32,20 +36,20 @@ public class idmake {
 			System.err.println(idText);
 			vo.setMember_pw(idText);
 			vo.setMember_id(idText);
-			vo.setMember_name(idText);
+			vo.setMember_name(nName());
 			vo.setMember_tel("010"+"-"+num2()+"-"+num3());
 			vo.setMember_email(idText+"@naver.com");
-			vo.setNick(idText);
+			//vo.setNick(nNick());
 			vo.setMember_pw(hashing.setEncryption(idText,idText));
-			//check = registerService.userAccountJoin(vo);
+			check = registerService.userAccountJoin(vo);
 			//check = registerService.creatorAccountJoin(vo);
 			System.out.println("----------------------");
-			System.out.println(vo.getMember_pw());
-			System.out.println(vo.getMember_id());
-			System.out.println(vo.getMember_name());
-			System.out.println(vo.getMember_tel());
-			System.out.println(vo.getMember_email());
-			System.out.println(vo.getNick());
+			System.out.println("비번:"+vo.getMember_pw());
+			System.out.println("아이디:"+vo.getMember_id());
+			System.out.println("이름:"+vo.getMember_name());
+			System.out.println("전화번호:"+vo.getMember_tel());
+			System.out.println("이메일:"+vo.getMember_email());
+			System.out.println("닉네임:"+vo.getNick());
 			System.out.println("----------------------");
 			System.out.println("업로드중--->"+check);
 		}
@@ -63,7 +67,10 @@ public class idmake {
 		return text;
 	}
 	
-	
+	// 홈페이지문의 
+	// 좋아요수
+	// 고구마 !
+	// 클래스 1000 아이디
 	public static String num2() {
 		String text = ""; 
 		String ran = "123456789";
@@ -75,8 +82,17 @@ public class idmake {
 	
 	public static String num3() {
 		String text = ""; 
-		String ran = "0123456789";
+		String ran = "123456789";
 		for(int i = 0; i < 4; i++) { 
+			text += ran.charAt((int)(Math.random() * ran.length())); 
+		} 
+		return text;
+	}
+	
+	public static String nameSeting() {
+		String text =""; 
+		String ran = "";
+		for(int i = 0; i < 6; i++) { 
 			text += ran.charAt((int)(Math.random() * ran.length())); 
 		} 
 		return text;
@@ -87,4 +103,21 @@ public class idmake {
 		return number;
 	}
 	
-}
+	public static String nNick() {
+		List<String> 닉 = Arrays.asList("기분나쁜","기분좋은","신바람나는","상쾌한","짜릿한","그리운","자유로운","서운한","울적한","비참한","위축되는","긴장되는","두려운","당당한","배부른","수줍은","창피한","멋있는", "열받은","심심한","잘생긴","이쁜","시끄러운"); List<String> 네임 = Arrays.asList("사자","코끼리","호랑이","곰","여우","늑대","너구리","침팬치","고릴라","참새","고슴도치","강아지","고양이","거북이","토끼","앵무새","하이에나","돼지","하마","원숭이","물소","얼룩말","치타", "악어","기린","수달","염소","다람쥐","판다"); 
+		Collections.shuffle(닉); 
+		Collections.shuffle(네임); 
+		String text = 닉.get(0)+네임.get(0); 
+		return text; 
+	} 
+	
+	public static String nName() { 
+		List<String> 성 = Arrays.asList("김", "이", "박", "최", "정", "강", "조", "윤", "장", "김", "김", "오", "김", "신", "권", "황", "안", "송", "류", "전", "홍", "고", "문", "양", "손", "배", "조", "백", "허", "유", "남", "심", "김", "김", "김", "김", "성", "김", "김", "우", "구", "신", "임", "나", "전", "민", "유", "진", "지", "엄", "채", "원", "천", "방", "공", "강", "현", "함", "변", "염", "양", "변", "여", "추", "노", "도", "소", "신", "석", "선", "설", "마", "길", "주", "이", "이", "이", "이", "박", "박", "박", "왕", "금", "김", "김"); 
+		List<String> 이름 = Arrays.asList("가", "강", "경", "고", "관", "광", "구", "규", "근", "기", "길", "나", "남", "노", "누", "다", "단", "달", "담", "대", "덕", "도", "동", "두", "라", "래", "로", "루", "리", "마", "만", "명", "무", "문", "미", "민", "바", "박", "백", "범", "별", "병", "보", "빛", "사", "산", "상", "새", "서", "석", "선", "설", "섭", "성", "세", "소", "솔", "수", "슬", "승", "시", "신", "아", "안", "애", "엄", "여", "연", "영", "예", "용","유", "윤", "은", "의", "이", "익", "인", "자", "잔", "장", "재", "전", "정", "제", "조", "주", "준", "지", "진", "찬", "창", "초", "춘", "충", "치", "하", "호", "홍", "화", "환", "회", "효", "훈", "휘", "희", "운", "모", "배", "부", "림", "봉", "혼", "황", "량", "린", "을", "비", "솜", "공", "면", "탁", "온", "디", "항", "후", "려", "균", "묵", "송", "욱", "휴", "언", "령", "섬", "들", "견", "추", "걸", "삼", "열", "웅", "분", "변", "양", "출", "타", "번", "식", "란", "더", "손", "술", "훔", "반", "빈", "실", "직", "흠", "학", "개"); 
+		Collections.shuffle(성); 
+		Collections.shuffle(이름); 
+		return 성.get(0) + 이름.get(0) + 이름.get(1); 
+		}
+	}
+
+

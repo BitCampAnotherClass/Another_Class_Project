@@ -184,7 +184,7 @@ $(function(){
 	});
 	$(document).on('click','#serahButton', function(){
 		$('.userMg-chart-boardlist:nth-child(n+9)').remove();
-		$('.userMg-boardList-btn-box').remove();
+		$('.userMg-boardList-btn-box').empty();
 		buttonNumber();
 		memberListAjax();
 	});
