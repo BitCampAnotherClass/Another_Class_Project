@@ -118,6 +118,7 @@ $(document).ready(function(){
 			success: function(result2){
 				var rr = $(result2);
 				total_page = rr[0].totalPage;
+				console.log(total_page);
 				var pageTag = '<ul>';
 				pageTag += '<li class="page-num" id="prev-page"><a href="javascript:void(0);">◀</a></li>';
 				for(var i=rr[0].groupStartPage; i<=(rr[0].groupStartPage + rr[0].oneGroupPage-1); i++){
