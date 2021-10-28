@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+
+
+
 <!-- summernote -->
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
@@ -14,6 +17,35 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <!-- 구글맵 -->
 <!--  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZO3MrykFpNpemqO2zPtG5M9ADUXSoApw&callback=initMap"></script>-->
+
+<style>
+
+
+.container h1{
+	margin-top:0;
+}
+
+.small-menu{
+	font-size: 1.2em;
+}
+
+.menu_title>a{
+	font-size: 1.4em;
+	font-weight:600;
+}
+
+.menu_title>a{
+	font-size: 1.4em;
+	font-weight:600;
+	line-height: 1.48;
+}
+a:focus, a:hover {
+    color: #ff385c;
+    text-decoration: none;
+}
+
+</style>
+
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9551f210d2bfdcde36af42fb1ccab895&libraries=services"></script>
@@ -804,6 +836,7 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	display:none;
 	width:400px;
 }
+
 
 </style>
 <form method="post" action="<%=request.getContextPath()%>/creator/makeClassOk" enctype="multipart/form-data">
