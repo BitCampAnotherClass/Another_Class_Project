@@ -27,7 +27,7 @@
 
    #like{margin-top:-27px;}
    /* 클래스소개 div*/
-   #d2{width:95%;overflow:auto;padding-bottom:10px;margin:0 auto;} 
+   #d2{width:95%;overflow:auto;margin:0 auto;} 
    #d2>ul>li{padding-bottom:5px;} /* ===지울것===*/
    #d2 li:nth-child(1){margin-top:5px;font-weight:bold;color:#ff385c;} 
    #d2 li:nth-child(2){font-size:1.5rem; font-weight:bold;margin:5px 0 5px 0;}
@@ -63,7 +63,7 @@
    
    /*클레스 상세페이지 메뉴*/
    .menu{width:100%; min-height:200px;height:100%; border-bottom:1px solid #ddd; overflow:auto;padding-bottom:30px;} /*min-height*/   
-   .menutitle{height:70px;line-height:70px;font-size:1.2rem;font-weight:bold;}
+   .menutitle{height:20px;line-height:20px;font-size:1.2rem;font-weight:bold;}
    
    #d5>div:nth-child(1)>span{display:inline-block;box-shadow:inset -11px #ff385c;}
    #d5>div:nth-child(2){ white-space: pre-line;text-align:center;}/*클래스소개*/
@@ -126,7 +126,10 @@
    #gopayB{width:200px;height:38px;font-size:18px;margin:10px 0 15px 0;boder:1px solid #ddd;background-color:#616060;color:#fff;}
    
    #replysub{margin: 10px 0 15px 1040px;background-color:white;border:none;border:1px solid #999;width:100px;padding-top:5px;padding-bottom:5px;}
+   #aaa{}
+   #ada{padding-left:150px; color:#ff385c; margin-left:-50px;}
    
+
 </style>
 <script>
    $(function(){      
@@ -327,7 +330,8 @@
             <div><img src="img/test/stu.png"/></div> <!-- 강사프로필이미지 -->   
             <div> <!-- 강사닉네임 -->   
                <a href="#"></a>
-               <span>asdf1234 님</span>
+               <span id="aaa">asdf1234 님</span>
+               <div id="ada">11</div>
                <li id="like">
                   
                   <div>
