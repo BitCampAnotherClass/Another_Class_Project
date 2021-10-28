@@ -247,7 +247,7 @@
 	         <li class="menu_title"><a href="#">수익관리</a>
 	        	 <ul>
 	               <li><a href="<%=request.getContextPath()%>/creator/incomeChart" class="small-menu">클래스 통계</a></li>
-	               <li><a href="#" class="small-menu">정산내역</a></li>
+	               <li><a href="<%=request.getContextPath()%>/creator/calcuList" class="small-menu">정산내역</a></li>
 	            </ul>
 	         </li>
 	         <li class="menu_title"><a href="#">문의(Q&A)</a>

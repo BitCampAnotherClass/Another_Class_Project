@@ -4,12 +4,26 @@
 
 
 
+.search-box{
+	display: flex;
+	justify-content: flex-end;
+	margin-right:10px;
+}
+
+.search-box input, .search-box label{
+	margin-left:10px;
+}
+
 .list-wrap{
 	margin-top:30px;
 }
 
 .calcu-list{
+	overflow:hidden;
+}
 
+.calcu-col{
+	margin-top:10px;
 }
 
 #calcuList{
@@ -17,7 +31,7 @@
 }
 
 .calcu-list li{
-	width:13%;
+	width:14%;
 	float:left;
 	border-bottom:1px solid #ddd;
 	height:45px;
@@ -36,7 +50,7 @@
 }
 
 .calcu-list li.col-check{
-	width:6%;
+	width:5%;
 }
 
 .col-check{
@@ -44,7 +58,7 @@
 }
 
 .col-creator-id{
-	width:15%;
+	width:14%;
 }
 
 .calcu-list li.col-end-date, .calcu-list li.col-calcu-dday, .calcu-list li.col-calcu-date{
@@ -63,6 +77,50 @@
 
 
 
+/* 페이징 */
+
+.calcu-paging{
+	margin-top:30px;
+}
+
+.calcu-paging > ul{
+	display:flex;
+	justify-content: center;
+}
+
+.calcu-paging > ul > li{
+	margin-left:5px;
+}
+
+.calcu-paging > ul > li:first-child{
+	margin-left:0px;
+}
+
+.page-num > a {
+	display:block;
+	width:26px;
+	height:26px;
+	line-height:26px;
+	border-radius: 5px;
+	text-align: center;
+	font-weight: 600;
+	color:#333;
+}
+
+.page-num.active > a{
+	background-color:#ff385c;
+	color:#fff;
+}
+
+#prev-page > a, #next-page > a{
+	border:1px solid #ddd;
+	background-color:#fff;
+}
+
+#prev-page > a:hover, #next-page > a:hover {
+	color:#333;
+	opacity: 0.6;
+}
 
 
 
