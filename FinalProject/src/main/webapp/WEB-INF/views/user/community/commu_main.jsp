@@ -62,7 +62,7 @@
 
 .creator-homeee{
 	float:right;
-	margin : -700px 540px 20px 0;
+	margin : 20px 540px 20px 0;
 	background: #FF385C;
 	text-align: center;
 	
@@ -93,6 +93,7 @@
 
 		</section>
 		</div>
+
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -136,6 +137,22 @@ $(()=>{
 		 			 	//class_content_arry[idx]= rr[idx].class_content;
 						//category_name[idx]= rr[idx].category_name;
 						startDate_arry[idx]=rr[idx].writedate;
+						
+						classDiv = '<div class="class_div"><a href="<%=request.getContextPath()%>/CommunityContentDetail?community_no=' + classNo_arry[idx] + '" target="">'
+						classDiv += '<div class="img_div">';
+					    classDiv += '<img class="img_size" src="'+classAddr1_arry[idx]+'">';
+						classDiv += '</div>';
+						classDiv +=	'<div class="info_div">';
+						classDiv += '<ul>';
+		
+						classDiv += '<li>'+className_arry[idx]+'</li>';
+						classDiv +=	'<li>'+classTag_arry[idx]+'</li>';
+						classDiv +=	'<li>'+startDate_arry[idx]+'</li>';
+		
+						classDiv += '</ul>';
+						classDiv +='</div></a>';
+						classDiv +='</div>';
+						
 						
 						if( idx <= (listCnt-1)){
 	
@@ -195,7 +212,7 @@ $(()=>{
 			  };
 	  sortByPrice();
 });
- 
+ -->
 </script>
 
 <style>
@@ -343,37 +360,120 @@ input[type=submit]:hover{
 		
 	</div>
 	
-	<div class="middle_container">
-		   <div class="more" style="display:none;">
-      <button type="button" class="creator-homeee">+ more</button>
-   </div>
-		<c:forEach var="vo" items="${cla }">
-
-		<div class="class_div">
-			<div class="img_div">
-				<a href="CommunityContentDetail">
-					<img class="img_size" src="<%=request.getContextPath()%>/img/kimin/maca.png">
-				</a>
-			</div>
-		</div>
-			
-			<div class="info_div">
-				<ul>
-					
-					<li>${vo.img_con2 }</li>
-					<li>${vo.img_con3 }</li>
+   <div class="class_div"><a href="CommunityContentDetail" target="">
+						<div class="img_div">
+					   <img class="img_size" src="img/test/cand1.jpg">
+					</div>
+				<div class="info_div">
+						<ul>
 		
-					<li>${vo.community_no }</li> <!-- 클래스 넘버 숨겨둠 -->
-					<li>${vo.writedate }</li> 
-				
-				</ul>
-			</div>
-			
-		</div>
-	
-		</c:forEach>
-	</div>
-		   <div class="more" style="display:none;">
+						<li>예쁜 케이크 모양 캔들</li>
+					<li>#케이크 캔들 #먹지마세요</li>
+						<li>2019-01-12</li>
+		
+						</ul>
+						</div></a>
+						</div>
+						
+						   <div class="class_div"><a href="CommunityContentDetail" target="">
+						<div class="img_div">
+					   <img class="img_size" src="img/test/box3.jpg">
+					</div>
+				<div class="info_div">
+						<ul>
+		
+						<li>용돈 박스를 직접 만들었어요</li>
+				<li>#부모님선물 #효도용</li>
+						<li>2020-03-11</li>
+		
+						</ul>
+						</div></a>
+						</div>
+						   <div class="class_div"><a href="CommunityContentDetail" target="">
+						<div class="img_div">
+					   <img class="img_size" src="img/test/draw1.jpg">
+					</div>
+				<div class="info_div">
+						<ul>
+		
+						<li>초보자도 어렵지 않아요</li>
+					<li>#사슴 #귀여워</li>
+						<li>2020-04-04</li>
+						
+						</ul>
+						</div></a>
+						</div>
+						   <div class="class_div"><a href="CommunityContentDetail" target="">
+						<div class="img_div">
+					   <img class="img_size" src="img/test/maca2.jpg">
+					</div>
+				<div class="info_div">
+						<ul>
+		
+						<li>직접 만든 마카롱을 선물했어요</li>
+						<li>#마카롱 #맛있어</li>
+						<li>2020-05-18</li>
+		
+						</ul>
+						</div></a>
+						</div>
+						   <div class="class_div"><a href="CommunityContentDetail" target="">
+						<div class="img_div">
+					   <img class="img_size" src="img/test/pet4.jpg">
+					</div>
+				<div class="info_div">
+						<ul>
+		
+						<li>강아지를 위한 케이크 만들기</li>
+					<li>#강아지 #귀여워</li>
+						<li>2020-07-30</li>
+		
+						</ul>
+						</div></a>
+						</div>
+						   <div class="class_div"><a href="CommunityContentDetail" target="">
+						<div class="img_div">
+					   <img class="img_size" src="img/test/pot2.jpg">
+					</div>
+				<div class="info_div">
+						<ul>
+		
+						<li>요리가 즐거워지는 그릇 만들기</li>
+				<li>#보라색 #그릇 세트만들기</li>
+						<li>2021-03-10</li>
+		
+						</ul>
+						</div></a>
+						</div>
+						   <div class="class_div"><a href="CommunityContentDetail" target="">
+						<div class="img_div">
+					   <img class="img_size" src="img/test/soaf2.jpg">
+					</div>
+				<div class="info_div">
+						<ul>
+		
+						<li>손 씻을때마다 기분이 좋아요</li>
+				<li>#코로나 #필수템</li>
+						<li>2021-06-03</li>
+		
+						</ul>
+						</div></a>
+						</div>
+						   <div class="class_div"><a href="CommunityContentDetail" target="">
+						<div class="img_div">
+					   <img class="img_size" src="img/test/purfume2.jpg">
+					</div>
+				<div class="info_div">
+						<ul>
+		
+						<li>나만의 향수 만들기</li>
+		<li>#내취향 #향좋아</li>
+						<li>2021-09-12</li>
+		
+						</ul>
+						</div></a>
+						</div>
+						<div class="more" style="display:none;">
       <button type="button" class="creator-homeee">+ more</button>
    </div>
 </div>
