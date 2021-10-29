@@ -88,7 +88,7 @@
 		</selectKey>
 	</insert>
 	<select id="selectReviewComment" resultType="com.anotherclass.bitcamp.vo.user.ReviewComVO">
-		select review_com_no, review_no, rc.member_id, member_img, com_no1, com_no2, reply, to_char(writedate, 'YY/MM/DD HH24:MI') writedate, delete_sort
+		select review_com_no, review_no, rc.member_id, m.member_img, com_no1, com_no2, reply, to_char(writedate, 'YY/MM/DD HH24:MI') writedate, delete_sort
 		from reviewCom rc
 		join memberTbl m
 		on m.member_id=rc.member_id
