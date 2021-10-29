@@ -220,53 +220,6 @@
       AskReply();
          
    });
-   
-   $(()=>{      
-      
-      
-      var a = ${vo.replycheck}
-      
-      function AskReply(){
-         console.log('이잉잉');
-         
-         var rUrl ="/another/communityAskReplyList";
-         var rParam = "no=${vo.community_no}";
-            $.ajax({
-               
-                url:rUrl,
-                data:rParam,
-                success:function(b){
-                var bb = $(b)
-                var tag ="";                                         
-                bb.each(function(idx,vo2){
-                   tag +="<div id='aa'>";
-                   tag +="<div style='width:100%;'>";
-                  tag +="<div style='margin-bottom:10px;'>댓글</div>";     
-                  tag +="   <textarea  id='cQnAWriteConviewReply' readonly disabled style='width:91%;padding-left: 20px;padding-top:14px;'>"+vo2.community_com_reply+"</textarea>";
-                  tag +="<div style='text-align:right;width:90%;'>"
-                  tag +="<button id='ediBtn' style='background:#ff385c;color:#fff;border:none;border-radius:5px;padding:3px 14px;margin:3px 7px 0 0;font-size:15px;'>수정</button>   ";
-                   tag +="<button id='delBtn' style='background:#ff385c;color:#fff;border:none;border-radius:5px;padding:3px 14px;margin-top:3px;font-size:15px;'>삭제";
-                   tag +="<input type='hidden' value='"+vo2.community_com_no+"'></button>   "
-                   tag +="</div></div></div>";
-                   
-                   //수정폼
-                   tag +="<li id='bb' style='display:none'>";
-                   tag +="<div style='width:100%;'>";
-                   tag +="<div style='margin-bottom:10px;'>댓글수정</div>";
-                   tag +="<form id='bbFrm'>";
-                   tag +="<textarea  id='cQnAWriteConviewReply' style='width:91%;padding-left: 20px;padding-top:14px;' name='community_com_reply'>"+vo2.community_com_reply+"</textarea>";
-                   tag +="<div style='text-align:right;width:90%;'>";
-                   tag +="<button style='height:auto;background:#ff385c;color:#fff;border:none;border-radius:5px;padding:3px 14px;margin-top:3px;font-size:15px;'>수정완료</button>";
-                   tag +="<input type='hidden' name='community_no' value='"+vo2.community_no+"'>"
-                   tag +="</div></form></div></div>";   
-                   
-                   if(a>=1){//답변이있을때
-                      $("#replyDivv").html(tag);  
-                   }
-                });                
-             }             
-         })              
-      } 
 </script>
 
 <div id="Bcotainer">
