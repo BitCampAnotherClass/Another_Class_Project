@@ -354,7 +354,7 @@ function execDaumPostcode() {
 };
 
 function classInfoPut(){
-	$('#class_info').val("${modify.class_info}");
+	document.querySeleter('#class_info').value= "${modify.class_info}";
 	//$('#summernote').summernote('code', '<p>sdfkljsddl;fkjsd;kfj;lsjdf</p>')
 	
 $("#class_tagButton").click(function(){

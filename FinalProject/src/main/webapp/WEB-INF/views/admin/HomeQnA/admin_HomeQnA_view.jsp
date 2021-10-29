@@ -40,7 +40,7 @@
 <div id="cQnAWriteD20">
 	<!-- <div class="hQnAT">클래스문의</div> <!-- 페이지 타이틀 -->
 	
-		<div class="cQnATWT20" >클래스문의글보기</div>
+		<div class="cQnATWT20" >홈페이지문의글보기</div>
 		<c:set var="board_no2" value="${vo.board_no2}" />
 		
 			<ul id="cQnATul">
