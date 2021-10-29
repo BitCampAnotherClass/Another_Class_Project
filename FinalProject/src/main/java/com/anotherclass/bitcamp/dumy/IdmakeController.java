@@ -54,15 +54,15 @@ public class IdmakeController {
 		ClassOptionDumyVO vo = new ClassOptionDumyVO();
 		HeadCountVO hdvo = new HeadCountVO();
 		ClassLikeDumyVO clvo = new ClassLikeDumyVO();
-		for(int i=0; i<10; i++) {
+		for(int i=0; i<7; i++) {
 			//vo.setClassNumber(option.get(i));
 			clvo.setMember_id(member.get(i));
-			clvo.setClassNumber("1000");
+			clvo.setClassNumber("1101");
 			if(clvo.getMember_id()== dumyService.LikeList(clvo)) {
 				System.out.println("--------------"+clvo.getMember_id());
 				clvo.setMember_id(member.get(i+8));
 			}
-			dumyService.classLikeInsert(clvo);
+			//dumyService.classLikeInsert(clvo);
 //			vo.setPrice(price.get(i));
 //			vo.setPay_company(bank.get(i));
 //			vo.setOrder_date(orderDate.get(i));
