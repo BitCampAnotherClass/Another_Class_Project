@@ -177,8 +177,6 @@ public class UserMyPageOrderVO {
 	public void setReviewChk(int reviewChk) {
 		this.reviewChk = reviewChk;
 	}
-	
-	
-	
+		
 	
 }

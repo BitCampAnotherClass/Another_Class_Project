@@ -16,8 +16,14 @@
 	    </if>
 	    order by signupdate desc
 	</select>
-	<select id="boardLimit" resultType="int" >
+	<select id="boardLimit" resultType="int" parameterType="com.anotherclass.bitcamp.service.vo.admin.MemberMangementVO" >
 		SELECT COUNT(a.member_id) FROM memberTbl a , usertbl b where a.member_id = b.member_id
+		 <if test="searchWord != null">
+	    	 and (member_name LIKE '%'||#{searchWord}||'%' or member_name LIKE '%'||#{searchWord} or member_name LIKE #{searchWord}||'%')
+	    </if>
+	    <if test="dateSearchFirst != null">
+	     	<![CDATA[and (signupdate >= to_date(#{dateSearchFirst},'YY-MM-DD') and signupdate <= to_date(#{dateSearchLast},'YY-MM-DD'))]]>
+	    </if>
 	</select>
 	<select id="MemberAccountInfo" resultType="com.anotherclass.bitcamp.service.vo.admin.MemberMangementVO" parameterType="com.anotherclass.bitcamp.service.vo.admin.MemberMangementVO" >
 	<![CDATA[

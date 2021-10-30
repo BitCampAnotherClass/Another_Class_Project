@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.parser.JSONParser;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.anotherclass.bitcamp.dao.user.UserCommunityDAO;
 import com.anotherclass.bitcamp.service.user.UserCommunityService;
 import com.anotherclass.bitcamp.vo.user.ClassVO;
 import com.anotherclass.bitcamp.vo.user.CommunityVO;
@@ -85,14 +87,9 @@ public class UserCommunityController {
 	}
 */
 	@RequestMapping(value = "/CommunityContentDetail")
-	public ModelAndView CommunityContentDetail(int community_no) {
-		ModelAndView mav = new ModelAndView();
+	public String CommunityContentDetail() {
 		
-		CommunityVO vo = userCommunityService.CommuDetailAllRecord(community_no);
-		
-		mav.addObject("vo",vo);
-		mav.setViewName("/user/community/commu_content_detail");
-		return mav;
+		return "/user/community/commu_content_detail";
 	}
 	
 	@RequestMapping(value = "/CommunityNewContent")
@@ -100,4 +97,44 @@ public class UserCommunityController {
 		
 		return "/user/community/commu_new_content";
 	}
+	/*
+	//댓글
+	@RequestMapping("/communityAskReplyList")
+	@ResponseBody
+	public CommunityVO  communityQnAAskReply(int no) {	
+		int a = communityClassAskService.CAReplyCheck(no);// 0이면 댓글 x 1이면 답글 있음
+		CommunityVO vo = new CommunityVO();
+		if(a==1) {
+			vo = communityClassAskService.CAReplyContent(no);			
+		}else {
+			vo.setClassqnacom_reply("답댓글을 입력 해주세요");
+		}
+		return vo;
+	}
+	
+	@RequestMapping("/communityAskReplyListEdit")
+	@ResponseBody
+	public int communityAskRepEdit(CommunityVO vo) {
+		int result =0;
+		System.out.println(vo.getClassqnacom_reply()+"//"+vo.getClass_qna_no());
+		communityClassAskService.CAReplyEdit(vo);
+		return result;
+	}
+	@RequestMapping("/communityAskReplyDel")
+	@ResponseBody
+	public int communityAskRepDel(int no) {
+		int result =0;
+		
+		communityClassAskService.CAReplyDel(no);
+		return result;
+	}
+	@RequestMapping("/communityAskReplyWritee")
+	@ResponseBody
+	public int communityAskRepWrite(CommunityVO vo) {
+		int result =0;
+		
+		communityClassAskService.CAReplyWrite(vo);
+		return result;
+	}
+	*/
 }

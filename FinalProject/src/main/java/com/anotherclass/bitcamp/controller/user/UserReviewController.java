@@ -83,7 +83,6 @@ public class UserReviewController {
 	public ReviewVO classReviewPage(int nowPage, int class_no) {
 		ReviewVO vo = userReviewService.countTotalClassReview(class_no);
 		vo.setNowPage(nowPage);
-		
 		return vo;
 	}
 	
@@ -103,22 +102,39 @@ public class UserReviewController {
 		System.out.println(vo.getCom_no1());
 		System.out.println(vo.getCom_no2());
 		System.out.println(vo.getReview_no());
-		int result = userReviewService.insertReviewComment(vo);
-		System.out.println("후기댓글등록->" + result);
-		return result;
+		int review_com_no = 0;
+		int cnt = userReviewService.insertReviewComment(vo);
+		if(cnt > 0) {
+			review_com_no = vo.getReview_com_no();
+		}
+		System.out.println("후기댓글등록->" + review_com_no);
+		System.out.println("후기댓글번호->" + vo.getReview_com_no());
+		return review_com_no;
 	}
 	
 	
 	// 후기 댓글 조회
 	@RequestMapping(value = "/selectReviewComment")
 	@ResponseBody
-	public List<ReviewComVO> selectReviewComment(int review_no) {
-		List<ReviewComVO> reviewComList = userReviewService.selectReviewComment(review_no);
+	public List<ReviewComVO> selectReviewComment(ReviewComVO vo) {
+		List<ReviewComVO> reviewComList = userReviewService.selectReviewComment(vo);
 		return reviewComList;
 	}
 	
 	
-
+	// 후기 댓글 삭제
+	@RequestMapping(value = "/deleteReviewComment")
+	@ResponseBody
+	public int deleteReviewComment(ReviewComVO vo) {
+		// 대댓글 있나 조회
+		int cnt = userReviewService.countReplyCheck(vo.getReview_com_no());
+		
+		if(cnt>0) { // 대댓글이 있으면 삭제 여부 수정
+			return userReviewService.updateDelReviewComment(vo);
+		} else { // 대댓글이 없으면 진짜 삭제
+			return userReviewService.deleteReviewComment(vo);
+		}
+	}
 
 	
 }

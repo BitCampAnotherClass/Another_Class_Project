@@ -25,5 +25,30 @@ public class UserCommunityServiceImp implements UserCommunityService {
 	public List<CommunityVO> communityAllList(CommunityVO vo){
 		return userCommunityDAO.communityAllList(vo);
 	}
-	
+
+	/*
+	@Override
+	public int replyInsert(CommunityComVO replyVo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<CommunityComVO> replyListSelect(int community_no) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int replyUpdate(CommunityComVO replyVo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int replyDelete(int community_com_no, String member_id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	*/
 }

@@ -27,35 +27,35 @@
 		<div class="income-top">
 			<section id="incomeInfo">
 				<div class="income-info-box">
-					<div class="income-sub-title">수강생 문의/후기</div>
+					<div class="income-sub-title">답변대기 문의</div>
 					<div class="income-info-view">
 						<ul>
 							<li>
-								<p class="incomn-attr">답변대기 문의</p>
-								<p class="income-val">2 건</p>
+								<p class="incomn-attr">고객 문의</p>
+								<p class="income-val">22 건</p>
 							</li>
 							<li>
-								<p class="incomn-attr">새로운 후기</p>
-								<p class="income-val">5 건</p>
+								<p class="incomn-attr">크리에이터 문의</p>
+								<p class="income-val">15 건</p>
 							</li>
 						</ul>
 					</div>
 				</div>
 				<div class="income-info-box">
-					<div class="income-sub-title">예정 강의 현황</div>
+					<div class="income-sub-title">총 강의 현황</div>
 					<div class="income-info-view">
 						<ul>
 							<li>
-								<p class="incomn-attr">날짜</p>
-								<p class="income-val">2021년 10월 16일</p>
+								<p class="incomn-attr">오늘 날짜</p>
+								<p class="income-val">2021년 10월 29일</p>
 							</li>
 							<li>
 								<p class="incomn-attr">수강인원</p>
-								<p class="income-val">5/10 명</p>
+								<p class="income-val">230 명</p>
 							</li>
 							<li>
 								<p class="incomn-attr">수강률</p>
-								<p class="income-val">50%</p>
+								<p class="income-val">78%</p>
 							</li>
 						</ul>
 					</div>
@@ -66,11 +66,11 @@
 						<ul>
 							<li>
 								<p class="incomn-attr">정산 예정</p>
-								<p class="income-val">720,000원</p>
+								<p class="income-val">3,720,000원</p>
 							</li>
 							<li>
 								<p class="incomn-attr">총 정산</p>
-								<p class="income-val">12,340,000원</p>
+								<p class="income-val">122,340,000원</p>
 							</li>
 						</ul>
 					</div>
@@ -80,12 +80,12 @@
 		
 		<section id="incomeChart">
 			<div class="income-chart-wrap">
-				<div class="income-sub-title">클래스 수익 통계</div>
+				<div class="income-sub-title">총 수익 통계</div>
 				<div class="income-chart-select">
 					<ul>
 						<li>수강건수</li>
-						<li class="on">일별수익</li>
-						<li>월별수익</li>
+						<li>일별수익</li>
+						<li class="on">월별수익</li>
 					</ul>
 				</div>
 				<div class="income-chart-view">
@@ -141,7 +141,7 @@
 	        labels: months({count: 12}),
 	        datasets: [{
 	            label: '만원',
-	            data: [12, 19, 3.5, 5.7, 2.8, 30.3],
+	            data: [789, 794, 735, 756, 780, 812, 820, 884, 910, 820],
 	            backgroundColor: 'rgba(255, 99, 132, 0.3)',
 	            borderColor: 'rgba(255, 99, 132, 0.1)',
 	            borderWidth: 1

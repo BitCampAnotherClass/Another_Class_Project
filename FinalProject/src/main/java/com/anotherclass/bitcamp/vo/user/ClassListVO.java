@@ -14,8 +14,36 @@ public class ClassListVO {
 	private int class_min_price;
 	private int class_max_price;
 	private String nick;
+	private String member_name;
+	private String member_id;
+	private String creator_content;
+	private String creator_content_img;
 	
 	
+	public String getCreator_content_img() {
+		return creator_content_img;
+	}
+	public void setCreator_content_img(String creator_content_img) {
+		this.creator_content_img = creator_content_img;
+	}
+	public String getCreator_content() {
+		return creator_content;
+	}
+	public void setCreator_content(String creator_content) {
+		this.creator_content = creator_content;
+	}
+	public String getMember_id() {
+		return member_id;
+	}
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
+	}
+	public String getMember_name() {
+		return member_name;
+	}
+	public void setMember_name(String member_name) {
+		this.member_name = member_name;
+	}
 	public String getNick() {
 		return nick;
 	}

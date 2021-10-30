@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.anotherclass.bitcamp.dao.creator.CreatorClassAskDAO;
+import com.anotherclass.bitcamp.vo.creator.ClassListVO;
 import com.anotherclass.bitcamp.vo.creator.CreatorCAskPagingVO;
 import com.anotherclass.bitcamp.vo.creator.CreatorCAskVO;
 
@@ -60,6 +61,24 @@ public class CreatorClassAskServiceImp implements CreatorClassAskService {
 	public int CAReplyDel(int no) {
 		// TODO Auto-generated method stub
 		return creatorClassAskdao.CAReplyDel(no);
+	}
+
+	@Override
+	public List<ClassListVO> classlist2(String logid) {
+		// TODO Auto-generated method stub
+		return creatorClassAskdao.classlist2(logid);
+	}
+
+	@Override
+	public int ClasslikeCC(int no) {
+		// TODO Auto-generated method stub
+		return creatorClassAskdao.ClasslikeCC(no);
+	}
+
+	@Override
+	public int ClassAskCC(int no) {
+		// TODO Auto-generated method stub
+		return creatorClassAskdao.ClassAskCC(no);
 	}
 
 

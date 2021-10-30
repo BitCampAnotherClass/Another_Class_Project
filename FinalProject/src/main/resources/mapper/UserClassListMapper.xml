@@ -40,9 +40,17 @@
           and a.member_id = b.member_id
           and a.class_price >= #{param1}
           and a.class_price <= #{param2}
-          and (class_tag || category_name || class_addr1 || class_name ) like '%${param3}%'
+          and (class_tag || category_name || class_addr1 || class_name || nick) like '%${param3}%'
           order by class_price asc
 		]]>
 	</select>
-	
+	<select id="findCreatorClass"  parameterType="com.anotherclass.bitcamp.vo.user.ClassListVO" resultType="com.anotherclass.bitcamp.vo.user.ClassListVO">
+		<![CDATA[
+		 select a.class_no, a.class_name, a.class_price, a.class_thumb, a.class_tag, c.nick,c.member_name
+		 from classTbl a, membertbl c 
+         where c.member_id = a.member_id
+         and c.member_id = #{param1}
+         order by class_writedate desc
+		]]>
+	</select>
 </mapper>

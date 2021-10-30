@@ -105,7 +105,7 @@
   	</select>
   	<update id="MemberInfoEdit" parameterType="com.anotherclass.bitcamp.register.RegisterVO" >
   		<![CDATA[
-  			update memberTbl set member_name = #{member_name}, member_tel = #{member_tel}, member_email = #{member_email}, post_no = trim(#{post_no}), addr1 = #{addr1} , addr2 = #{addr2}, member_img = #{member_img}
+  			update memberTbl set member_tel = #{member_tel}, member_email = #{member_email}, post_no = trim(#{post_no}), addr1 = #{addr1} , addr2 = #{addr2}, member_img = #{member_img}
   			where member_id = #{member_id}
   		]]>
   	</update>
@@ -119,7 +119,8 @@
 			and a.cancel_date  IS NULL
 			and a.refund_date IS NULL
 			and to_char(sysdate, 'YYYYMMDD') < to_char(b.end_date, 'YYYYMMDD')
-			and a.member_id = #{param1}  		
+			and a.member_id = #{param1}  
+			order by a.order_date	
   		]]>
   	</select>
   	<select id="orderFinList2" resultType="com.anotherclass.bitcamp.vo.user.UserMyPageOrderVO">
@@ -133,17 +134,19 @@
 			and a.refund_date IS NULL
 			and to_char(sysdate, 'YYYYMMDD') > to_char(b.end_date, 'YYYYMMDD')
 			and a.member_id = #{param1}  
+			order by b.start_date
 		]]>
   	</select>
   	<select id="orderFinList3" resultType="com.anotherclass.bitcamp.vo.user.UserMyPageOrderVO">
 		  <![CDATA[
-		  	select a.order_no, a.order_date, to_char(a.order_date, 'YYYY.MM.DD') order_date2, a.cancel_date, to_char(a.cancel_date, 'YYYY.MM.DD') cancel_date2 ,a.refund_date ,a.merchant,b.class_option_no ,to_char(b.start_date, 'YYYY.MM.DD HH:MI') start_date,  to_char(b.end_date, 'YYYY.MM.DD HH:MI') end_date ,c.class_no, c.class_name,c.class_thumb ,c.class_price
+		  	select a.order_no, a.order_date, to_char(a.order_date, 'YYYY.MM.DD') order_date2, a.cancel_date, to_char(a.cancel_date, 'YYYY.MM.DD') cancel_date2 ,to_char(a.refund_date, 'YYYY.MM.DD') refund_date ,a.merchant,b.class_option_no ,to_char(b.start_date, 'YYYY.MM.DD HH:MI') start_date,  to_char(b.end_date, 'YYYY.MM.DD HH:MI') end_date ,c.class_no, c.class_name,c.class_thumb ,c.class_price
 			from ordertbl a, classoption b, classtbl c
 			where a.class_option_no = b.class_option_no
 			and b.class_no = c.class_no
 			and a.order_date IS NOT NULL
 			and a.cancel_date  IS NOT NULL		
-			and a.member_id = #{param1}  
+			and a.member_id = #{param1}
+			order by a.cancel_date
 		  ]]>
   	</select>
   	<update id="userOrderCancleSub">

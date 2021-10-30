@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,8 +31,11 @@ public class UserController {
 	
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public ModelAndView home(HttpServletRequest req) {
+	public ModelAndView home(HttpSession session) {
 		ModelAndView mav = new ModelAndView();
+		if(session.getAttribute("userImg")==null || session.getAttribute("userImg").equals("")) {
+			session.setAttribute("userImg", "/another/img/etc/basic_profile.png");
+		}
 		
 		// 인기있는 강사 top 8 가져오기
 		List<RegisterVO> creatorList = userHomeService.popularCreator();

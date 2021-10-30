@@ -43,7 +43,7 @@
 	#d3 div:nth-child(2)>a{font-size:1.2rem;padding-top:25px;font-weight:bold;}
 	#d3 div:nth-child(2)>span{padding-top:5px;padding-left:1px;color:#666;font-size:0.9rem;}	
 	/* 메뉴바 */
-	#d4{width:100%;height:auto;overflow:auto;position:sticky;top:78px;background-color:white;}
+	#d4{width:100%;height:auto;overflow:auto;position:sticky;top:78px;background-color:white;z-index:500;}
 	#d4>ul{width:100%;height:auto;overflow:auto;}
 	#d4 li{float:left; width:20%;height:50px;line-height:50px; text-align:center;border-bottom:1px solid #ddd;}		
 	/*클레스 상세페이지 메뉴*/
@@ -106,7 +106,7 @@
 	
 	.menu_title_container{z-index:1000;}/*메뉴바*/
 	
-	.morebtn{
+	#morebtn{
 		background: #ff385c;
 	    font-size: 16px;
 	    border: none;
@@ -118,7 +118,7 @@
 </style>
 <script>
 
-$(function(){			
+		
 
 $(document).ready(function(){		
 	
@@ -354,7 +354,7 @@ $(document).ready(function(){
 	  
 	   function AskReply(no){
 		  
-		   
+		  	let imgSeting = document.querySelector('#creator-image-112').src;
 		   //var creimg = ${vo.member_img }; //강사이미지
 		   var rUrl ="/another/classDetailAskReplyList";
 	       var rParam = {"no":no}  
@@ -368,7 +368,7 @@ $(document).ready(function(){
 	    							
 	    			bb.each(function(idx,vo5){	    	
 	    				//tag +="<div class='askdiv808'>";
-	    				tag += "<div style='display:flex;width:12%;'><label style='display:block;width:20%;height:100%;vertical-align:middle;font-size:2rem;color:#666;'>↳</label><img src='creimg' style='width:80%'/></div> ";
+	    				tag += "<div style='display:flex;width:12%;'><label style='display:block;width:20%;height:100%;vertical-align:middle;font-size:2rem;color:#666;'>↳</label><img src='"+imgSeting+"' style='width:80%'/></div> ";
 	    				tag +="<div style='width:87%;'>";
 	    				tag +="<div><label> "+ vo5.classqnacom_member_id +" | "+vo5.classqnacom_writedate +" 작성</label></div>";
 	    				tag +="<div><label>"+vo5.classqnacom_reply +"</label></div>"; 
@@ -546,12 +546,12 @@ $(document).ready(function(){
 							<div id="likelikecount"></div> 
 						</div>
 					</li>
-					<li><img src="img/jisu/smalllocation.png"/>경기도 | 용인시</li> <!-- 위치 -->
+					<li><img src="img/jisu/smalllocation.png"/>${vo.class_addr1 }</li> <!-- 위치 -->
 					<li style="display:none;"><div><input type="button" value="공유"/></div></li> <!-- 공유하기 -->
 				</ul>
 			</div> 
 			<div id="d3"> <!-- 강사프로필 + 강사명 -->
-				<div><img src="${vo.member_img}"/></div> <!-- 강사프로필이미지 -->	
+				<div><img src="${vo.member_img}" id="creator-image-112"/></div> <!-- 강사프로필이미지 -->	
 				<div> <!-- 강사닉네임 -->	
 					<a href="#">${vo.nick }</a>
 					<span>클래스 ${vo.creatorclasscount}개 | 좋아요 ${vo.creatorlikecount }개</span>
@@ -574,13 +574,14 @@ $(document).ready(function(){
 			</div>
 			<div id="d6" class="menu"> <!-- 강사소개 -->
 				<div class="menutitle"><span>강사소개</span></div>
-				<div>
+				
 					<c:set var="creatorimg" value="${vo.creator_content_img }" />	
 					<c:if test="${!empty  creatorimg }"> <!-- 널값이아니면 셋팅 -->
-						<div style='max-width:400px;max-height: 300px;'><img src="${vo.creator_content_img }" style='width:100%;height:100%;object-fit:cover;'/></div>
+					
+						<div style='max-width:300px;max-height:300px;'><img src="${vo.creator_content_img }" style='max-width:300px;max-height:300px;object-fit:cover;'/></div>
 					</c:if>
-					${vo.creator_content }
-				</div>
+					<div>${vo.creator_content }</div>
+				
 			</div>
 			<div id="d7" class="menu" style='border:none;'> <!-- 위치 -->
 				<div class="menutitle"><span>위치</span></div>
@@ -610,7 +611,7 @@ $(document).ready(function(){
 							            position: coords
 							        });											       
 							        var infowindow = new kakao.maps.InfoWindow({
-							            content: '<div style="width:150px;text-align:center;padding:6px 0;">버드세이지 플라워</div>'
+							            content: '<div style="width:150px;text-align:center;padding:6px 0;">${vo.nick}</div>'
 							        });
 							        infowindow.open(map, marker);							       
 							        map.setCenter(coords);

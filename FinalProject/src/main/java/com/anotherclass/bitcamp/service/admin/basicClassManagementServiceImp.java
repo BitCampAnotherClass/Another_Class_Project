@@ -20,5 +20,10 @@ public class basicClassManagementServiceImp implements basicClassManagementServi
 		
 		return bcmDAO.basicClassAllRecord();
 	}
+
+	@Override
+	public List<BasicClassVO> optionClassAllRecord() {
+		return bcmDAO.optionClassAllRecord();
+	}
 	
 }

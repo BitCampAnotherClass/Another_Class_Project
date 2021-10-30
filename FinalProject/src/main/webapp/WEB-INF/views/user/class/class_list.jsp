@@ -161,7 +161,6 @@ $(function(){
 						classDiv += '<li><div>'+category_name[idx]+'</div></li>';
 						classDiv += '<li>'+className_arry[idx]+'</li>';
 						classDiv +=	'<li>'+classTag_arry[idx]+'</li>'
-						classDiv +=	'<li>'+startDate_arry[idx]+'</li>';
 						classDiv +=	'<li>'+nick_array[idx]+'</li>';
 						classDiv +=	'<li>'+classPrice_arry[idx]+'원</li>';
 						classDiv += '</ul>';
@@ -189,7 +188,6 @@ $(function(){
 							classDiv += '<li><div>'+category_name[idx]+'</div></li>';
 							classDiv += '<li>'+className_arry[idx]+'</li>';
 							classDiv +=	'<li>'+classTag_arry[idx]+'</li>'
-							classDiv +=	'<li>'+startDate_arry[idx]+'</li>';
 							classDiv +=	'<li>'+nick_array[idx]+'</li>';
 							classDiv +=	'<li>'+classPrice_arry[idx]+'원</li>';
 							classDiv += '</ul>';
@@ -323,7 +321,7 @@ $(function(){
 	float: right;
 }
 .select_boxes>input[type=text]{background-color:white;
- 	border:1px dotted gray;
+ 	border:1px solid lightgray;
 	height:30px;
 	width:100%;
 	border-radius:8px;
@@ -346,7 +344,7 @@ $(function(){
 	float:left;
 }
 .priceRangeBox{ 
-	border:1px dotted gray;
+	border:1px solid lightgray;
 	width:100px;
 	height:30px;
 	text-align: center;
@@ -369,6 +367,7 @@ $(function(){
 	color:white;
 }
 input[type=button]{
+border:1px solid lightgray;
 	color:#FF385C;
 	cursor: pointer;
 	float: right;
@@ -413,7 +412,7 @@ input[type=button]:hover{
 .middle_top_select>ul>li:not(:nth-child(2)){
 	width:100px;
 }
-.class_div{ border:1px dotted lightgray;
+.class_div{ 
 	float:left;
 	width:23%;
 	height:350px;
@@ -451,11 +450,11 @@ input[type=button]:hover{
 	
 }
 .info_div>ul>li:nth-child(1)>div {
-	background-color:#FF385C; /* 카테고리 정보 div */
+	 /* 카테고리 정보 div */
 	border-radius:8px;
 	display:inline-block;
-	padding:0 10px 0 10px;
-	color:white;
+	padding:0 0px 0 0px;
+	color:#FF385C;
 }
 .info_div>ul>li:nth-child(2) {
 	font-weight: 500;
@@ -467,7 +466,6 @@ input[type=button]:hover{
 .info_div>ul>li:nth-child(3) {
 	font-weight: 400;
 	color:gray;
-	border:1px dotted #00B9B1;
 	color:#00B9B1;
 	border-radius:6px;
 	overflow: hidden;

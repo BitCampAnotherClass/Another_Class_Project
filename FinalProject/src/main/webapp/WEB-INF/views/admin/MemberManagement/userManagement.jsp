@@ -59,7 +59,11 @@ $(function(){
 	
 	function buttonNumber(){
 		//페이징 버튼 출력
+		let searchWord = document.querySelector('#searchWord').value;
+		let dateSearchFirst = document.querySelector('#dateSearchFirst').value;
+		let dateSearchLast = document.querySelector('#dateSearchLast').value;
 		var btnList = "";
+		const data = {"searchWord":searchWord , "dateSearchFirst":dateSearchFirst ,"dateSearchLast":dateSearchLast};
 		$.ajax({
 			url : 'MemberMangement/btnList'
 			, type : 'POST'
@@ -85,6 +89,7 @@ $(function(){
 		// 페이징 하단 버튼 숫자설정
 		$('.paging-number').val($(this).val());
 		$('.userMg-chart-boardlist:nth-child(n+9)').remove();
+		
 		memberListAjax();
 	});
 	
@@ -118,7 +123,7 @@ $(function(){
 					member_information += '<div class="userMg-information-box">';
 					member_information += '<div class="userMg-information-popup">';
 					member_information += '<h2 class="userMg-info-title">'+vo.member_name+' 회원님의 상세정보</h2>';
-					member_information += '<input type="button" valu0......6e="X" class="userMg-info-closeButton" />';
+					member_information += '<input type="button" value="X" class="userMg-info-closeButton" />';
 					member_information += '<ul class="userMg-info-popup-ul">';
 					member_information += '<li>이름</li>';
 					member_information += '<div class="userMg-information-popup-div">';
@@ -179,6 +184,7 @@ $(function(){
 	});
 	$(document).on('click','#serahButton', function(){
 		$('.userMg-chart-boardlist:nth-child(n+9)').remove();
+		$('.userMg-boardList-btn-box').empty();
 		buttonNumber();
 		memberListAjax();
 	});

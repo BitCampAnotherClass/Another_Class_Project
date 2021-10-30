@@ -20,7 +20,7 @@
 	#cQnAWriteConview{width:90%;min-height:300px;background-color:#f0f0f0;border:none;resize:none;overflow:auto;font-size:1.2rem;}/*문의내용텍스트아리아*/
 	/*파일첨부*/
 	#cQnAButview{border:none;justify-content:center;}/*취소 수정 목록 버튼*/
-	#cQnAWList {margin:45px 0 20px 510px;width:150px;height:50px;font-size:20px;}
+	#cQnAWList {margin:30px 20px 30px 0;width:150px;height:50px;font-size:20px;}
 	
 	
 	#classMainAskTa{width:90%;height:130px;resize:none;overflow:auto;border-color:#ddd;}/*댓글작성하는부분*/
@@ -30,12 +30,7 @@
 <script>
 	$(()=>{		
 		
-		//목록
-		$("#cQnAWList").click(()=>{
-			console.log(${number});
-			$("#homeQnAVFrm").attr("action", "/another/HomeQnAAsk/list?no=1" );
-			$("#homeQnAVFrm").submit();
-		});
+		
 		
 		
 	});
@@ -45,8 +40,8 @@
 <div id="cQnAWriteD20">
 	<!-- <div class="hQnAT">클래스문의</div> <!-- 페이지 타이틀 -->
 	
-		<div class="cQnATWT20" >클래스문의글보기</div>
-		
+		<div class="cQnATWT20" >홈페이지문의글보기</div>
+		<c:set var="board_no2" value="${vo.board_no2}" />
 		
 			<ul id="cQnATul">
 				<li>
@@ -57,53 +52,44 @@
 					<div>작성일자</div>
 					<div>${vo.writedate }</div>	
 				</li>
+				<c:if test="${board_no2 eq 0 }">
 				<li>
-					<div>클래스명</div>
+					<div>제목</div>
 					<div><input type="text"  id="cQnAWriteSubview" readonly disabled value="${vo.title }"></div>	
 				</li>
-				
+				</c:if>
+				<c:if test="${board_no2 eq 1 }">
+				<li>
+					<div>제목</div>
+					<div><input type="text"  id="cQnAWriteSubview" readonly disabled value="답변입니다"></div>	
+				</li>
+				</c:if>
+				<c:if test="${board_no2 eq 0 }">
 				<li>
 					<div>문의내용</div>
 					<div><textarea  id="cQnAWriteConview" readonly disabled >${vo.content }</textarea></div>	
 				</li>
-				
-				<li >
-					<div>답변</div><!-- hQnAWriteFileview -->
-					<div>
-						<textarea  id="cQnAWriteConviewReply" readonly disabled >${vo.content }</textarea>
-						<div style='text-align:right;width:90%;'>
-							<button style='background:#fff;border:none;border:1px solid #999;padding:3px 14px;margin:3px 7px 0 0;'>수정</button>	
-							<button style='background:#fff;border:none;border:1px solid #999;padding:3px 14px;margin-top:3px;'>삭제</button>								
-						</div>
-					</div>	
+				</c:if>
+				<c:if test="${board_no2 eq 1 }">
+				<li>
+					<div>답변내용</div>
+					<div><textarea  id="cQnAWriteConview" readonly disabled >${vo.content }</textarea></div>	
 				</li>
-				<!-- 수정폼 -->
-				<li >
-					<div>답변</div><!-- hQnAWriteFileview -->
-					<div>
-						<textarea  id="cQnAWriteConviewReply" >${vo.content }</textarea>
-						<div style='text-align:right;width:90%;'>
-							<button style='background:#fff;border:none;border:1px solid #999;padding:3px 14px;margin-top:3px;'>수정완료</button>							
-						</div>
-					</div>	
-				</li>
+				</c:if>
 				
-				<!--  <li id="cQnAButview">				
-					<input type="button" name="cQnAWList" id="cQnAWList" value="목록"/>
-				</li>		-->		
-			</ul>
-			<div style='border:1px solid #ddd;margin-top:100px;'> <!-- 댓글작성 -->
-					<span style='display: inline-block;margin: 18px 20px 15px 43px;'>문의 내용 답변작성</span>
-					<form method="post" id="replyFrm">
-						<div style='text-align:center;'><textarea name="classqna_content" id="classMainAskTa" placeholder="궁금하신 점 또는 클래스문의등을 자유롭게 작성해 주세요."></textarea></div><!-- classMainAskTa -->
-						<input type="button" id="replysub" value="작성완료"/>
-						<input type="hidden" name="class_no" value="${vo.class_no }"/><!-- 클래스 번호 --><!-- no -->
-					</form>
-			</div>
-			
+				<!-- 답변 -->
+					
+				
 			<div id="cQnAButview">				
-					<input type="button" name="cQnAWList" id="cQnAWList" value="목록"/>
+			<!-- onclick="location.href='/HomeQnA';" -->
+					<input type="button" name="cQnAWList" id="cQnAWList" style='margin-left:405px' onclick="location.href='<%=request.getContextPath()%>/admin/HomeQnA';" value="목록"/>
+					
+				
+					<input type="button" name="cQnAWListc" style='width:150px;height: 50px;font-size: 20px' id="cQnAWListt"  onclick="location.href='<%=request.getContextPath()%>/admin/HomeQnA3?no=${vo.user_qna_no}';" value="답글달기"/>
+					
 			</div>
-			<div style="display:none">${vo.class_no }</div><!-- 글번호 -->
+				
+			
+			<div style="display:none">${vo.user_qna_no }</div><!-- 글번호 -->
 			
 </div>

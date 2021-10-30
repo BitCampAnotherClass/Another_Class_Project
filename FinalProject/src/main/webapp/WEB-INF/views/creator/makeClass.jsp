@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
+
+
+
 <!-- summernote -->
 <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
@@ -14,6 +17,35 @@
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 <!-- 구글맵 -->
 <!--  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZO3MrykFpNpemqO2zPtG5M9ADUXSoApw&callback=initMap"></script>-->
+
+<style>
+
+
+.container h1{
+	margin-top:0;
+}
+
+.small-menu{
+	font-size: 1.2em;
+}
+
+.menu_title>a{
+	font-size: 1.4em;
+	font-weight:600;
+}
+
+.menu_title>a{
+	font-size: 1.4em;
+	font-weight:600;
+	line-height: 1.48;
+}
+a:focus, a:hover {
+    color: #ff385c;
+    text-decoration: none;
+}
+
+</style>
+
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9551f210d2bfdcde36af42fb1ccab895&libraries=services"></script>
@@ -198,6 +230,10 @@ $(function(){
 			alert('클래스 소개를 입력하세요');
 			window.location.href="#f5";
 			return false;
+		}else if($('#classDateRealStart').val() == ""){
+			alert('날짜를 선택후 확인을 눌러주세요');
+			window.location.href="#f6";
+			return false;
 		}else if($('#roadAddress').val() == ""){
 			alert('도로명 주소 검색하세요');
 			window.location.href="#f7";
@@ -249,7 +285,6 @@ $(function(){
 			//delete arry[index];
 			delete arryStart[index];
 			delete arryEnd[index];
-			alert(arryStart)
 			classDateDivCount--;
 			console.log(classDateDivCount);
 			//$("#classDateRealStart").val(""); //네임안에 있는 값전체삭제
@@ -352,8 +387,10 @@ $(()=>{
 	
 	$('#summernote').summernote({
 		// 에디터 높이
-		height: 200,
+		height: 300,
 		width: 1200,
+		minHeight: 300, 
+	  	maxHeight: 300,
 		lang:"ko-KR",
 		focus: true,
 		toolbar: [
@@ -394,11 +431,13 @@ $(()=>{
 </script>	
 	
 <style>
+
 .container h1{color:gray; margin-bottom:20px; font-weight:600;}
 .container span{font-size:1.2em; font-weight:600; }
 /* body{ background-color:#FFF5F5;} */
 kimin{ color:#FF385C; }
 kimin2{font-size: 1.3em; color:gray; margin-left:5px;}
+
 #class_name{
 	height:50px; width:100%;
 }
@@ -443,7 +482,7 @@ kimin2{font-size: 1.3em; color:gray; margin-left:5px;}
 }
 .container{
 	width:1200px;
-	height:5450px; 
+	height:5100px; 
 	margin:0 auto;
 	padding:0px;
 }
@@ -456,13 +495,13 @@ kimin2{font-size: 1.3em; color:gray; margin-left:5px;}
 }
 .followDiv>ul>li{
 	float:left;
-	width:10%;
+	width:11.1%;
+	line-height: 32px;
 }
-.followDiv>ul>li:nth-child(1){
-	margin-left:30px;
-}
-.followDiv>ul>li:nth-child(8){
-	width:17%;
+.followDiv>ul{
+	padding-left:40px;
+	width:100%;
+	height:40px;
 }
 .followButton{
 	margin-right:5px;
@@ -569,12 +608,23 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	line-height: 30px;
 }
 .classDate>ul{border:;background-color:;
-	width:830px;
+	width:880px;
 	height:340px;
 	margin:0 auto;
 	margin-top:20px;
 	padding:0, 0, 0, 0;
 	
+}
+#dateConfirmButton{
+	height:300px;
+	border-radius:8px;
+	background-color: white;
+	border:1px solid lightgray;
+	margin-left:5px;
+}
+#dateConfirmButton:hover{
+	background-color:  #FF385C; 
+	color:white;
 }
 .classDate li{
 	float:left;
@@ -782,14 +832,11 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	padding:0;
 	width:100%;
 }
-#classDateRealStart{border:1px dotted lightgray;
-	display:;
+#classDateRealStart, #classDateRealEnd{
+	display:none;
 	width:400px;
 }
-#classDateRealEnd{border:1px dotted lightgray;
-	display:;
-	width:400px;
-}
+
 
 </style>
 <form method="post" action="<%=request.getContextPath()%>/creator/makeClassOk" enctype="multipart/form-data">
@@ -804,7 +851,7 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 			<li><div class="followButton" style="color:white">5</div><a href="#f5"> 소개</a></li>
 			<li><div class="followButton" style="color:white">6</div><a href="#f6"> 일정</a></li>
 			<li><div class="followButton" style="color:white">7</div><a href="#f7"> 상세</a> 주소</li>
-			<li><div class="followButton" style="color:white">8</div><a href="#f8"> 수강료 및 최대인원</a></li>
+			<li><div class="followButton" style="color:white">8</div><a href="#f8"> 수강료,인원</a></li>
 			<li><div class="followButton" style="color:white">9</div><a href="#f9"> #태그</a></li>
 		</ul>
 	</div>
@@ -862,7 +909,7 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	<div class="classImgDiv">
 			<div id="imgThumbDiv"><img src="<%=request.getContextPath()%>/img/kimin/uploadimg.jpg" id="previewImg" ></div>
 			<div class="filebox">
-				<input type="text" class="imgThumbFileName" placeholder="썸네일사진 파일명" id="class_thumb" readonly="readonly">
+				<input type="button" class="imgThumbFileName" value="확인" id="class_thumb" >
 				<input type="hidden" name="class_thumb" id="thumb_image">
 				<label for="fileButton">업로드</label>
 				<input type="file" id="fileButton" name="filename" required>
@@ -905,7 +952,7 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 			<li><input class="flatpickrCalender"/></li>
 			<li><div  id="putDateTime"></div></li>
 			<li><div id="dateCount"></div></li>	
-			<li><input type="button" value="확인" onclick="startTimeRealInput()"></li>
+			<li><input id="dateConfirmButton" type="button" value="확인" onclick="startTimeRealInput()"></li>
 		</ul>
 	</div>
 	<div>
@@ -995,7 +1042,7 @@ input[type="checkbox"]:after {content: '';position: relative;left: 40%;top: 20%;
 	</div>
 </div>
 </form>
-<button id="modalButton">모달창</button> 
+<!--  <button id="modalButton">모달창</button> 
 <div class="modal"> 
 	<div class="modal_content" title="클릭하면 창이 닫힙니다."> 여기에 모달창 내용을 적어줍니다.<br> 이미지여도 좋고 글이어도 좋습니다. </div>
-</div>
+</div>-->

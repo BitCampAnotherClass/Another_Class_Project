@@ -75,7 +75,7 @@ $(function(){
 					tag += "<div>";
 					//var a = vo.class_thumb;
 					
-					tag += "<div><a href='#'><img src='another/img/jisu/classimg4.png'/></a></div>"; 
+					tag += "<div><a href='<%=request.getContextPath()%>/classDetailView?no=" + vo.class_no + "' target=''><img src='"+vo.class_thumb+"'/></a></div>"; 
 					tag += "<div>";
 					tag += "<a href='#'>"+vo.class_name+"</a>";
 					tag += "<span><a href='#'>"+vo.creator_nick2+"</a></span>";

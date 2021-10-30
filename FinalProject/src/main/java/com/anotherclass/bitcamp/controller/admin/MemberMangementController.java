@@ -52,7 +52,15 @@ public class MemberMangementController {
 	
 	@RequestMapping(value="/MemberMangement/btnList", method = RequestMethod.POST)
 	@ResponseBody
-	public int buttonList() {
+	public int buttonList(String searchWord, String dateSearchFirst, String dateSearchLast) {
+		MemberMangementVO vo = new MemberMangementVO();
+		if(searchWord != null) {
+			vo.setSearchWord(searchWord);
+		}
+		if(dateSearchFirst != null && dateSearchLast != null) {
+			vo.setDateSearchFirst(dateSearchFirst);
+			vo.setDateSearchLast(dateSearchLast);
+		}
 		int boardListNumber = adminService.boardLimit(); // 게시글 수 조회
 		int memberListLimit = 10; // 한페이지에 보여줄 페이지수
 		int listCalcul = (int) Math.ceil((double)boardListNumber/memberListLimit);		

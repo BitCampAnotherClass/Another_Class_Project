@@ -20,7 +20,22 @@ public class CreatorMakeClassVO {
 	private int progress; //진행상태
 	private String class_writedate; //등록일시
 	private String class_tag; //태그
+	private String creator_content;
+	private String creator_content_img;
 	
+	
+	public String getCreator_content_img() {
+		return creator_content_img;
+	}
+	public void setCreator_content_img(String creator_content_img) {
+		this.creator_content_img = creator_content_img;
+	}
+	public String getCreator_content() {
+		return creator_content;
+	}
+	public void setCreator_content(String creator_content) {
+		this.creator_content = creator_content;
+	}
 	public int getClass_no() {
 		return class_no;
 	}

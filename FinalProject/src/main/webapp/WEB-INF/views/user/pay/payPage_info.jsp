@@ -142,7 +142,7 @@ $(function(){
 				<c:forEach var="vo" items="${list}" varStatus="status">
 					<div class="payclassinfoorder " style="height:150px;"><!-- 주문한줄.... -->
 						<div><!-- 이미지+제목 -->
-							<div><img src="img/jisu/classimg5.png"></div> <!-- 이미지  vo.class_thumb --> 						
+							<div><img src="${vo.class_thumb }"></div> <!-- 이미지  vo.class_thumb --> 						
 							<div><!-- 제목+강사 -->
 								<div>${vo.class_name }</div>
 								<div>${vo.nick }</div>
@@ -298,7 +298,7 @@ $(function(){
                 pay_method: 'card',  // 지불 수단
                 merchant_uid: ${vo.class_name} + new Date().getTime(),
                 name: name,
-                amount: '100',
+                amount: money,
                 buyer_email: email,
                 buyer_name: name,
                 buyer_tel: tel,
@@ -340,14 +340,18 @@ $(function(){
 	                             test: d
 	                        },
 	                    });
+	                    
+	                    //
+		          		var a ="user/pay/payEnd"
+		          		location.href="/another/payEnd";
+	                    
 	                } else { //결제실패시 로직
 	                    var msg = '결제에 실패하였습니다.';
+	                	alert(msg);
 	                    msg += '에러내용 : ' + rsp.error_msg;
 	                }
 	               
-	          		//
-	          		var a ="user/pay/payEnd"
-	          		location.href="/another/payEnd";
+	          		
             });
             
             

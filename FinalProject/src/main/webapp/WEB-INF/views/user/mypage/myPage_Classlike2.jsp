@@ -117,7 +117,7 @@ input[type=button]:hover{
 .class_div{ border:1px solid lightgray;
 	float:left;
 	width:30%;
-	height:350px;
+	height:440px;
 	margin:1% 1% 1% 1%;
 	border-radius:8px;
 	padding:5px 5px 5px 5px;
@@ -137,10 +137,10 @@ input[type=button]:hover{
 }
 .info_div{/* 정보 div */
 	width:100%;
-	height:26%;
-	padding:5px 5px 5px 5px;    
+	height:30%;
+	/*padding:5px 5px 5px 5px;    */
 	border-radius:8px;
-	margin-top:5%;
+	
 }
 .info_div>ul{background-color:;
 	float:right;
@@ -152,25 +152,26 @@ input[type=button]:hover{
 	
 }
 .info_div>ul>li:nth-child(1)>div {
-	background-color:#FF385C; /* 카테고리 정보 div */
-	border-radius:8px;
+	 /* 카테고리 정보 div */
+	font-weight: bold;
 	display:inline-block;
-	padding:0 10px 0 10px;
-	color:white;
+	padding:3px 5px 3px 5px;
+	color:#FF385C;
+	font-size:0.9rem;
 }
 .info_div>ul>li:nth-child(2) {
-	font-weight: 500;
-	overflow: hidden;
+	/*font-weight: 500;*/
+	word-break:break-all;
+	text-align:left;
 	display:inline-block;
+	padding:0 3px 0px 3px;
 	max-height: 24px;
-	color:gray;
+	color:#333;
 }
 .info_div>ul>li:nth-child(3) {
-	font-weight: 400;
-	color:gray;
-	border:1px dotted #00B9B1;
-	color:#00B9B1;
-	border-radius:6px;
+	font-weight: 400;	
+	font-size:0.9rem;
+	color:#666;	
 	overflow: hidden;
 	height:28px;
 }
@@ -209,9 +210,9 @@ $(function(){
 		var listCnt = 3; // 목록에서 한 번에 보여줄 클래스 개수
 		
 	
-		///////////////////////////가까운 시작일
+		//vo.creator_nick2 : 강사명
 		function getLikedListClass(){
-			console.log("강의좋아요함수들어옴");
+			
 			var url = "/another/LikedListClass";
 			var params = {"logid":logid}
 			$.ajax({
@@ -229,16 +230,18 @@ $(function(){
 					
 					classDiv  = '<div class="class_div">';
 					classDiv += '<div class="img_div">';
-					classDiv += '<a href="<%=request.getContextPath()%>/classDetailView?no=' + vo.class_no + '" target="">'
+					
 					classDiv +=	'<img style="height:100%;" class="img_size" src="'+vo.class_thumb+'">';
-					classDiv += '</a>'
+				
 					classDiv += '</div>';
+					classDiv +=	'<div style="margin-top:3px;" class="heartImg" id="'+vo.class_like_no+'"><img class="likeimgbox91" style="width:8%;margin-right:8px;" src="/another/img/jisu/ff385bigcheart.png"/></div>';
 					classDiv +=	'<div class="info_div">';
 					classDiv += '<ul>';
-					classDiv += '<li><div>'+ vo.category_name+'</div></li>';
-					classDiv += '<li>'+vo.class_name+'</li>';
-					classDiv +=	'<li style="border:none;"><div class="heartImg" id="'+vo.class_like_no+'"><img class="likeimgbox91" style="width:10%;margin-right:8px;" src="/another/img/jisu/ff385bigcheart.png"/></div></li>';
-					//classDiv +=	'<li>'+하트+'</li>';
+					classDiv += '<li><div>['+ vo.category_name+']</div></li>';
+					classDiv += '<li><a href="<%=request.getContextPath()%>/classDetailView?no=' + vo.class_no + '" target="">'+vo.class_name+'</a></li>';
+					classDiv +=	'<li>'+vo.creator_nick2+'</li>';
+					//classDiv +=	'<li style="border:none;"><div class="heartImg" id="'+vo.class_like_no+'"><img class="likeimgbox91" style="width:8%;margin-right:8px;" src="/another/img/jisu/ff385bigcheart.png"/></div></li>';
+					
 					//classDiv +=	'<li>'+하트+'원</li>';
 					classDiv += '</ul>';
 					classDiv +='</div>';
@@ -246,7 +249,7 @@ $(function(){
 					$('.middle_container').append(classDiv);
 					$('.no-result-txt').hide(); // 결과 없음 내용 숨기기
 					$('.more').show(); // 더보기 버튼 보이기
-					if(idx >= r.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
+					if(idx >= rr.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
 						$('.more').hide();
 					}
 				}
@@ -256,15 +259,17 @@ $(function(){
 					if( idx >= listCnt*(n-1) && idx <= (listCnt*n-1) ){
 						classDiv  = '<div class="class_div">';
 						classDiv += '<div class="img_div">';
-						classDiv += '<a href="<%=request.getContextPath()%>/classDetailView?no=' + vo.class_no + '" target="">'
+						
 						classDiv +=	'<img style="height:100%;" class="img_size" src="'+vo.class_thumb+'">';
-						classDiv += '</a>'
+						
 						classDiv += '</div>';
+						classDiv +=	'<div style="margin-top:3px;" class="heartImg" id="'+vo.class_like_no+'"><img class="likeimgbox91" style="width:8%;margin-right:8px;" src="/another/img/jisu/ff385bigcheart.png"/></div>';
 						classDiv +=	'<div class="info_div">';
 						classDiv += '<ul>';
-						classDiv += '<li><div>'+ vo.category_name+'</div></li>';
-						classDiv += '<li>'+vo.class_name+'</li>';
-						classDiv +=	'<li  style="border:none;"><div class="heartImg" id="'+vo.class_like_no+'"><img class="likeimgbox91" style="width:10%;margin-right:8px;" src="/another/img/jisu/ff385bigcheart.png"/></div></li>';
+						classDiv += '<li><div>['+ vo.category_name+']</div></li>';
+						classDiv += '<li><a href="<%=request.getContextPath()%>/classDetailView?no=' + vo.class_no + '" target="">'+vo.class_name+'</a></li>';
+						classDiv +=	'<li>'+vo.creator_nick2+'</li>';
+						//classDiv +=	'<li  style="border:none;"><div class="heartImg" id="'+vo.class_like_no+'"><img class="likeimgbox91" style="width:8%;margin-right:8px;" src="/another/img/jisu/ff385bigcheart.png"/></div></li>';
 						
 						//classDiv +=	'<li>'+하트+'</li>';
 						//classDiv +=	'<li>'+하트+'원</li>';
@@ -274,7 +279,7 @@ $(function(){
 						$('.middle_container').append(classDiv);
 						$('.no-result-txt').hide(); // 결과 없음 내용 숨기기
 						 $('.more').show();
-	                 	 if(idx >= ll.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
+	                 	 if(idx >= rr.length-1){ // 남은 클래스가 없으면 more 버튼 숨기기
 	                        $('.more').hide();
 		                     }
 		              }

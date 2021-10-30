@@ -40,8 +40,18 @@
 	.classListUl2>li>span:nth-child(4n+4)>span:nth-child(1){margin-top:45px;padding:5px;}
 	.classListUl2>li>span:nth-child(4n+4)>span:nth-child(2){margin-top:7px;padding:5px;}
 	
-	.classListUl2 a:link, a:visited{text-decoration:none; color:#333;}	
+	.classListUl2 a:link, .classListUl2 a:visited{text-decoration:none; color:#333;}	
 	.classListUl2 a:hover{color:#ff385c;}
+	
+	.menu_title>a {
+	    font-size: 1.2em;
+	    font-weight: bold;
+	    color: rgb(248,248,248);
+	}
+	
+	.menu_box .menu_title>ul>li>a.small-menu {
+	    color: rgb(248,248,248);
+	}
 </style>
 <script>
 	$(function(){
@@ -54,7 +64,6 @@
 				$(this).css('color','#333');
 			}			
 		});
-	});
 </script>
 
 
@@ -88,44 +97,28 @@
 		<span style="display:block;visivillity:hidden;height:2px;width:100px;"></span> <!-- 겹쳐서 간격안맞는 부분을 위해 만든 히든디브 -->
 		
 		<ul class="classListUl2"><!--  리스트 -->			
-			
+			<c:forEach var="vo" items="${list}">	
 			<li> <!-- ***클래스한줄*** -->
-				<span>920022</span><!-- 클래스번호 -->
+				<span id="classno">${vo.class_no}</span><!-- 클래스번호 -->
 				<span><!-- 클래스명 + 상세정보-->
-					<span><img src="img/jisu/classimg7.png"/></span><!-- 클래스명 -->
+					<span><img src="${vo.class_thumb}"/></span><!-- 클래스명 -->
 					<span><!-- 상세정보 -->
-						<span>누구나 손쉽게 따라 하는 재즈피아노 입문 클래스</span>
-						<span><a href="">문의대기중</a><label>3건</label></span> <!-- 문의관리페이지로 이동 -->
-						<span><a href="">고객후기</a><label>0건</label></span> <!-- 후기관리페이지로 이동 -->
-						<span><a href="">좋아요12개</a></span> <!-- ?좋아요한회원목록... -->
+						<span>${vo.class_name}</span>
+						
+
+						<span><a href="">고객후기</a><label>${vo.classclasscount}건</label></span> <!-- 후기관리페이지로 이동 -->
+						<span><a href="">좋아요${vo.classlikecount}개</a></span> <!-- ?좋아요한회원목록... -->
 					</span>					
 				</span>
 				<span>진행중</span><!-- 진행상황 -->
-				<span><!-- 선택 -->
-					<span><a href="">클래스 옵션목록</a></span>
-					<span><a href="">클래스 수정</a></span>
+				<span><!-- ?no=$-->
+					<span><a href="<%=request.getContextPath()%>/creator/modifyClass?no=${vo.class_no}">클래스 수정</a></span>
+					<span><a href="<%=request.getContextPath()%>/creator/deleteClass?no=${vo.class_no}">클래스 삭제</a></span>
 				</span>
 			
 			</li>
-			
-			<li> <!-- ***클래스한줄*** -->
-				<span>721093</span><!-- 클래스번호 -->
-				<span><!-- 클래스명 + 상세정보-->
-					<span><img src="img/jisu/classimg8.png"/></span><!-- 클래스명 -->
-					<span><!-- 상세정보 -->
-						<span>재즈피아노 고급 클래스</span>
-						<span><a href="">문의대기중</a><label>0건</label></span>
-						<span><a href="">고객후기</a><label>30건</label></span>
-						<span><a href="">좋아요37개</a></span>
-					</span>					
-				</span>
-				<span>마감</span><!-- 진행상황 -->
-				<span><!-- 선택 -->
-					<span><a href="">클래스 옵션목록</a></span>
-					<span><a href="">클래스 수정</a></span>
-				</span>
-			
-			</li>
+			</c:forEach>
+		
 			
 			
 		</ul>

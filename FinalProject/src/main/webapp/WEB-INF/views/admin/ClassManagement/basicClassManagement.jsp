@@ -38,8 +38,29 @@
 					<li class="userMg-chart-boardlist">${vo.class_name}</li>
 					<li class="userMg-chart-boardlist">${vo.member_name}</li>
 					<li class="userMg-chart-boardlist">${vo.class_writedate}</li>
-					<li class="userMg-chart-boardlist">대기현황</li>
-					<li class="userMg-chart-boardlist">진행현황</li>
+				<c:set var="request" value="${vo.request}" />							
+						<c:if test="${request eq 0 }"> 
+							<li class="userMg-chart-boardlist">신청대기</li>
+						</c:if>
+						<c:if test="${request eq 1 }"> 
+							<li class="userMg-chart-boardlist">신청수락</li>
+						</c:if>
+						<c:if test="${request eq 2 }"> 
+							<li class="userMg-chart-boardlist">신청취소</li>
+						</c:if>
+						<c:if test="${request eq 3 }"> 
+							<li class="userMg-chart-boardlist">반려</li>
+						</c:if>
+					<c:set var="progress" value="${vo.progress}" />							
+						<c:if test="${progress eq 0 }"> 
+							<li class="userMg-chart-boardlist">진행대기</li>
+						</c:if>
+						<c:if test="${progress eq 1 }"> 
+							<li class="userMg-chart-boardlist">진행중</li>
+						</c:if>
+						<c:if test="${progress eq 2 }"> 
+							<li class="userMg-chart-boardlist">진행종료</li>
+						</c:if>
 					</c:forEach>
 				
 			</ul>

@@ -98,7 +98,8 @@ public class UserMyPageController {
 	@RequestMapping("/HomeAskReplyList999")
 	@ResponseBody
 	public List<UserHomeQnAVO> ajaxHomeAskList2(String logid){			
-		List<UserHomeQnAVO> list = userMyPageService.myPageHomePageAsk(logid);			
+		List<UserHomeQnAVO> list = userMyPageService.myPageHomePageAsk(logid);	
+		
 			for(int i=0; i<list.size(); i++) {//답변이있으면 답변내용 저장해줌 -> replyContent
 				UserHomeQnAVO vo = list.get(i);				
 				int replycheck = vo.getReplycount();//1이면 미답변 2이면 답변달림				
@@ -168,8 +169,13 @@ public class UserMyPageController {
 	@RequestMapping("/LikedListClass")
 	@ResponseBody
 	public List<UserClassDetailVO> ajaxLikedClassList(String logid){	
-		
+		//String getCreatorNick 클래스번호넣어서 강사닉네임
 		List<UserClassDetailVO> list = userMyPageService.Likedclass(logid);
+		for(int i=0; i<list.size(); i++) {
+			UserClassDetailVO vo = list.get(i);
+			String creatorNick = userMyPageService.getCreatorNick(vo.getClass_no());//클래스번호가지고 강사명구함
+			vo.setCreator_nick2(creatorNick);
+		}
 		
 		return list;
 	}
@@ -233,7 +239,14 @@ public class UserMyPageController {
 	public List<UserMyPageOrderVO> ajaxOrderListFin3(String logid){		
 		
 		List<UserMyPageOrderVO> list = userMyPageService.orderFinList3(logid);	
-		System.out.println(list.size());
+		
+		for(int i=0; i<list.size(); i++) {
+			UserMyPageOrderVO vo = list.get(i);	
+			String a = vo.getRefund_date();
+			if(a==null) {//환불날짜없음 -> 취소신청만
+				vo.setRefund_date("1");				
+			}
+		}
 		return list;
 	}
 	@RequestMapping("/UserOrderCancleSub")
@@ -257,8 +270,7 @@ public class UserMyPageController {
 		return result;
 		
 	}
-	//홈페이지문의글수정
-	
+	//홈페이지문의글수정	
 	@RequestMapping("/UserMyHQnAEdit")
 	@ResponseBody
 	public int ajaxUserMyHQnAEdi(UserHomeQnAVO vo) {
