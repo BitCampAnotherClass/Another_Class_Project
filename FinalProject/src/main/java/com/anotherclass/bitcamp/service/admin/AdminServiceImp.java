@@ -59,4 +59,9 @@ public class AdminServiceImp implements AdminService {
 	public int deleteAccount(MemberMangementVO vo) {
 		return memberMangementDao.deleteAccount(vo);
 	}
+	
+	@Override
+	public int ListCount(MemberMangementVO vo) {
+		return memberMangementDao.ListCount(vo);
+	}
 }

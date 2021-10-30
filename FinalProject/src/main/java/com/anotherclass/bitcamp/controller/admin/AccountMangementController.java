@@ -18,7 +18,7 @@ public class AccountMangementController {
 	@Inject
 	AdminService adminService;
 	
-	@RequestMapping(value="/list/Testing",method = RequestMethod.POST)
+	@RequestMapping(value="/list/Testing",method = RequestMethod.GET)
 	public List<MemberMangementVO> listTest(int number, String searchWord, String dateSearchFirst, String dateSearchLast){
 		MemberMangementVO vo = new MemberMangementVO();
 		if(searchWord != null) {
@@ -29,10 +29,10 @@ public class AccountMangementController {
 			vo.setDateSearchLast(dateSearchLast);
 		}
 		vo.setPageNumber(number);
-		int DataListCount = 
-		
-		int listCalcul = (int) Math.ceil((double)boardListNumber/memberListLimit);		
-		int numberList = 10;
+		int DataListCount = adminService.ListCount(vo);
+		int ListLimit = 10;
+		int listSys = (int) Math.ceil((double)DataListCount/ListLimit);
+		System.out.println(listSys);
 		
 		
 		List<MemberMangementVO> list =null;

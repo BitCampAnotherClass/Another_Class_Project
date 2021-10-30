@@ -16,4 +16,6 @@ public interface MemberMangementDAO {
 	public int creatorBoardLimit();
 	
 	public int deleteAccount(MemberMangementVO vo);
+	
+	public int ListCount(MemberMangementVO vo);
 }

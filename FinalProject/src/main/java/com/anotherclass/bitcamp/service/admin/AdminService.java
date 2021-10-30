@@ -19,6 +19,6 @@ public interface AdminService {
 	
 	
 	//페이징 수정
-	public List<MemberMangementVO> CountList(MemberMangementVO vo);
+	public int ListCount(MemberMangementVO vo);
 	
 }
