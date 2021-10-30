@@ -17,4 +17,8 @@ public interface AdminService {
 	
 	public int deleteAccount(MemberMangementVO vo);
 	
+	
+	//페이징 수정
+	public List<MemberMangementVO> CountList(MemberMangementVO vo);
+	
 }

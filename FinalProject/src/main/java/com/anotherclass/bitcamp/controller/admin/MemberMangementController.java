@@ -135,21 +135,4 @@ public class MemberMangementController {
 		System.out.println(cnt1);
 		return cnt;
 	}
-	
-	// 관리자 계정생성
-	@RequestMapping(value="/adminAccountMake", method = RequestMethod.POST)
-	public ModelAndView adminAccountMake(RegisterVO vo)throws Exception {
-		ModelAndView mav = new ModelAndView();
-		vo.setMember_pw(hashing.setEncryption(vo.getMember_pw(),vo.getMember_id()));
-		vo.setAdditional_information_one("admin1");
-		String s = adminService.adminAccountCreate(vo);
-		String check =vo.getAdditional_information_two();
-		if(check=="NOT") {
-			mav.setViewName("redirect:/");
-		}else {
-			
-		}
-		mav.setViewName("redirect:/");
-		return mav;
-	}
 }
