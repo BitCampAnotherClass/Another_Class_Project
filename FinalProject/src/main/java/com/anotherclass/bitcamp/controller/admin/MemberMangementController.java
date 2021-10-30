@@ -19,9 +19,7 @@ public class MemberMangementController {
 	
 	@Inject
 	AdminService adminService;
-	
-	private HashingSeting hashing = new HashingSeting();
-	
+				
 	@RequestMapping(value="/MemberMangement/userAccountList",method = RequestMethod.POST)
 	@ResponseBody
 	public List<MemberMangementVO> userList(int number, String searchWord, String dateSearchFirst, String dateSearchLast){
@@ -33,17 +31,17 @@ public class MemberMangementController {
 			vo.setDateSearchFirst(dateSearchFirst);
 			vo.setDateSearchLast(dateSearchLast);
 		}
-		vo.setPageNumber(number);
 		int memberListLimit = 10; // 한페이지에 보여줄 페이지수
-		int numberList = ((vo.getPageNumber()-1)*memberListLimit); // 페이징 시작 계산식
-		
+		int numberList = ((number-1)*memberListLimit); // 페이징 시작 계산식
 		int pageStartNumber = (numberList+1);
-		int pageEndNumber = (memberListLimit*vo.getPageNumber());
-		
+		int pageEndNumber = (memberListLimit*number);
+		System.out.println("시작"+pageStartNumber);
+		System.out.println("끝"+pageEndNumber);
 		vo.setPageStartNumber(pageStartNumber);
 		vo.setPageEndNumber(pageEndNumber);
 		
 		List<MemberMangementVO> list = adminService.MemberList(vo);
+		System.out.println(list.size());
 		return list;
 	}
 	
@@ -53,15 +51,17 @@ public class MemberMangementController {
 		MemberMangementVO vo = new MemberMangementVO();
 		if(searchWord != null) {
 			vo.setSearchWord(searchWord);
-		}
+		}	
 		if(dateSearchFirst != null && dateSearchLast != null) {
 			vo.setDateSearchFirst(dateSearchFirst);
 			vo.setDateSearchLast(dateSearchLast);
 		}
-		int boardListNumber = adminService.boardLimit(); // 게시글 수 조회
-		int memberListLimit = 10; // 한페이지에 보여줄 페이지수
-		int listCalcul = (int) Math.ceil((double)boardListNumber/memberListLimit);		
-		return listCalcul;
+		int listButtonCount = adminService.boardLimit(vo); // 게시글 수 조회
+		System.out.println("리스트"+listButtonCount);
+		int viewListLimit = 10; // 한페이지에 보여줄 페이지수
+		int listButton = (int) Math.ceil((double)listButtonCount/viewListLimit);
+		System.out.println("이상한데"+listButton);
+		return listButton;
 	}
 	
 	@RequestMapping(value="/MemberMangement/AccountInformation", method= RequestMethod.POST)

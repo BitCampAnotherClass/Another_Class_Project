@@ -6,7 +6,8 @@ import com.anotherclass.bitcamp.register.RegisterVO;
 import com.anotherclass.bitcamp.service.vo.admin.MemberMangementVO;
 
 public interface AdminService {
-	public int boardLimit();
+	public int boardLimit(MemberMangementVO vo);
+	
 	public String adminAccountCreate(RegisterVO vo);
 	public List<MemberMangementVO> MemberList(MemberMangementVO vo);
 	public  MemberMangementVO MemberAccountInfo(String idCheck);
@@ -16,9 +17,4 @@ public interface AdminService {
 	public int creatorBoardLimit();
 	
 	public int deleteAccount(MemberMangementVO vo);
-	
-	
-	//페이징 수정
-	public int ListCount(MemberMangementVO vo);
-	
 }

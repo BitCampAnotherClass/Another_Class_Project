@@ -8,7 +8,7 @@ public interface MemberMangementDAO {
 	
 	public List<MemberMangementVO> MemberList(MemberMangementVO vo);
 	public MemberMangementVO MemberAccountInfo(String idCheck);
-	public int boardLimit();
+	public int boardLimit(MemberMangementVO vo);
 	
 	
 	public List<MemberMangementVO> creatorList(MemberMangementVO vo);
@@ -16,6 +16,4 @@ public interface MemberMangementDAO {
 	public int creatorBoardLimit();
 	
 	public int deleteAccount(MemberMangementVO vo);
-	
-	public int ListCount(MemberMangementVO vo);
 }

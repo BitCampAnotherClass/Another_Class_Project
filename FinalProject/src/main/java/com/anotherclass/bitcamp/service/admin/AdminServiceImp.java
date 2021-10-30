@@ -31,8 +31,8 @@ public class AdminServiceImp implements AdminService {
 	}
 	
 	@Override
-	public int boardLimit() {
-		return memberMangementDao.boardLimit();
+	public int boardLimit(MemberMangementVO vo) {
+		return memberMangementDao.boardLimit(vo);
 	}
 	
 	@Override
@@ -58,10 +58,5 @@ public class AdminServiceImp implements AdminService {
 	@Override
 	public int deleteAccount(MemberMangementVO vo) {
 		return memberMangementDao.deleteAccount(vo);
-	}
-	
-	@Override
-	public int ListCount(MemberMangementVO vo) {
-		return memberMangementDao.ListCount(vo);
 	}
 }

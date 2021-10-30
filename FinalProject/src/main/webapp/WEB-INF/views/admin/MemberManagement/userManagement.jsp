@@ -1,12 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
-<%-- <script src="<%=request.getContextPath()%>/js/admin/memberManagement/memberManagement.js"></script> --%>
-<%-- <link href="<%=request.getContextPath()%>/css/admin/memberManagement/memberManagement.css" rel="stylesheet" type="text/css"/>
- --%>
 <script type="text/javascript">
 $(function(){
-	let url="MemberMangement/userAccountList";
+	
 	function replaceAt(indata){
 		/* 전화번호 변경  */
 		if(indata != null) {
@@ -20,25 +17,26 @@ $(function(){
 		}
  		return indata;
 	}
-	
-	function memberListAjax(){
-		var number = $('.paging-number').val();
-		var board= '';
+	function listAsynchronized(){
+		console.log("test1");
+		let board= '';
+		let number = document.querySelector('.paging-number').value;
 		let searchWord = document.querySelector('#searchWord').value;
 		let dateSearchFirst = document.querySelector('#dateSearchFirst').value;
 		let dateSearchLast = document.querySelector('#dateSearchLast').value;
-		const data = {"number":number , "searchWord":searchWord , "dateSearchFirst":dateSearchFirst ,"dateSearchLast":dateSearchLast};
 		$.ajax({
-			url : url
+			url : "MemberMangement/userAccountList"
 			,type : "POST"
-			,data : data
+			,data : {"number":number , "searchWord":searchWord , "dateSearchFirst":dateSearchFirst ,"dateSearchLast":dateSearchLast}
 			,success:function(result){
 				var listData = $(result);
 				listData.each(function(idx,vo){
+					console.log("test2");
 					var tel = replaceAt(vo.member_tel);
 					board +='<li class="userMg-chart-boardlist">'+'이용자';
 					board +='</li>';
 					board +='<li class="userMg-chart-boardlist" id="userMg-chart-id">'+vo.member_id+'</li>';
+					document.querySelector('#data-daas').value = vo.member_id;
 					board +='<li class="userMg-chart-boardlist">'+vo.member_name+'</li>';
 					board +='<li class="userMg-chart-boardlist">'+vo.member_email+'</li>';
 					board +='<li class="userMg-chart-boardlist">'+tel+'</li>';
@@ -59,15 +57,16 @@ $(function(){
 	
 	function buttonNumber(){
 		//페이징 버튼 출력
+		var btnList = "";
 		let searchWord = document.querySelector('#searchWord').value;
 		let dateSearchFirst = document.querySelector('#dateSearchFirst').value;
 		let dateSearchLast = document.querySelector('#dateSearchLast').value;
-		var btnList = "";
 		const data = {"searchWord":searchWord , "dateSearchFirst":dateSearchFirst ,"dateSearchLast":dateSearchLast};
 		$.ajax({
 			url : 'MemberMangement/btnList'
 			, type : 'POST'
 			, success:function(res){
+				console.log('안여'+res);
 				for(var i=1; i<=res; i++){
 					btnList +='<input type="button" class="userMg-boardList-btn"';
 					if(i>=10){
@@ -89,8 +88,8 @@ $(function(){
 		// 페이징 하단 버튼 숫자설정
 		$('.paging-number').val($(this).val());
 		$('.userMg-chart-boardlist:nth-child(n+9)').remove();
-		
-		memberListAjax();
+		console.log($(this).val());
+		listAsynchronized();
 	});
 	
 	function addrSeting(data,data2){
@@ -183,14 +182,15 @@ $(function(){
 		$('.userMg-information-popup').remove();
 	});
 	$(document).on('click','#serahButton', function(){
+		buttonNumber();
+		document.querySelector('.paging-number').value = '1';
 		$('.userMg-chart-boardlist:nth-child(n+9)').remove();
 		$('.userMg-boardList-btn-box').empty();
-		buttonNumber();
-		memberListAjax();
+		listAsynchronized();
 	});
 	
 	buttonNumber();
-	memberListAjax();
+	listAsynchronized();
 });
 </script>
 <style>
@@ -392,13 +392,14 @@ $(function(){
 				<li class="userMg-chart-boardlist">가입일</li>
 				<li class="userMg-chart-boardlist">기타</li>
 				<li class="userMg-chart-boardlist">관리</li>
+				
 			</ul>
 				<div class="userMg-board-margin">
 					<div class="userMg-boardList-btn-outbox">
 						<div class="userMg-boardList-btn-box"></div>
 					</div>
 				</div>
-				
+				<input type="text" id="data-daas"/>
 		</div>
 	</div>
 </body>
