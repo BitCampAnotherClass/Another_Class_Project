@@ -36,7 +36,6 @@ $(function(){
 					board +='<li class="userMg-chart-boardlist">'+'이용자';
 					board +='</li>';
 					board +='<li class="userMg-chart-boardlist" id="userMg-chart-id">'+vo.member_id+'</li>';
-					document.querySelector('#data-daas').value = vo.member_id;
 					board +='<li class="userMg-chart-boardlist">'+vo.member_name+'</li>';
 					board +='<li class="userMg-chart-boardlist">'+vo.member_email+'</li>';
 					board +='<li class="userMg-chart-boardlist">'+tel+'</li>';
@@ -55,7 +54,7 @@ $(function(){
 		});
 	}
 	
-	function buttonNumber(){
+/* 	function buttonNumber(){
 		//페이징 버튼 출력
 		var btnList = "";
 		let searchWord = document.querySelector('#searchWord').value;
@@ -82,7 +81,7 @@ $(function(){
 			}
 			
 		});
-	}
+	} */
 	
 	$(document).on('click','.userMg-boardList-btn',function(){
 		// 페이징 하단 버튼 숫자설정
@@ -182,14 +181,12 @@ $(function(){
 		$('.userMg-information-popup').remove();
 	});
 	$(document).on('click','#serahButton', function(){
-		buttonNumber();
 		document.querySelector('.paging-number').value = '1';
 		$('.userMg-chart-boardlist:nth-child(n+9)').remove();
 		$('.userMg-boardList-btn-box').empty();
 		listAsynchronized();
 	});
 	
-	buttonNumber();
 	listAsynchronized();
 });
 </script>
@@ -396,10 +393,11 @@ $(function(){
 			</ul>
 				<div class="userMg-board-margin">
 					<div class="userMg-boardList-btn-outbox">
-						<div class="userMg-boardList-btn-box"></div>
+						<div class="userMg-boardList-btn-box">
+							
+						</div>
 					</div>
 				</div>
-				<input type="text" id="data-daas"/>
 		</div>
 	</div>
 </body>

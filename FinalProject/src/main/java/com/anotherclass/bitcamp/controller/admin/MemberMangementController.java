@@ -19,62 +19,6 @@ public class MemberMangementController {
 	
 	@Inject
 	AdminService adminService;
-				
-	@RequestMapping(value="/MemberMangement/userAccountList",method = RequestMethod.POST)
-	@ResponseBody
-	public List<MemberMangementVO> userList(int number, String searchWord, String dateSearchFirst, String dateSearchLast){
-		MemberMangementVO vo = new MemberMangementVO();
-		if(searchWord != null) {
-			vo.setSearchWord(searchWord);
-		}
-		if(dateSearchFirst != null && dateSearchLast != null) {
-			vo.setDateSearchFirst(dateSearchFirst);
-			vo.setDateSearchLast(dateSearchLast);
-		}
-		int memberListLimit = 10; // 한페이지에 보여줄 페이지수
-		int numberList = ((number-1)*memberListLimit); // 페이징 시작 계산식
-		int pageStartNumber = (numberList+1);
-		int pageEndNumber = (memberListLimit*number);
-		System.out.println("시작"+pageStartNumber);
-		System.out.println("끝"+pageEndNumber);
-		vo.setPageStartNumber(pageStartNumber);
-		vo.setPageEndNumber(pageEndNumber);
-		
-		List<MemberMangementVO> list = adminService.MemberList(vo);
-		System.out.println(list.size());
-		return list;
-	}
-	
-	@RequestMapping(value="/MemberMangement/btnList", method = RequestMethod.POST)
-	@ResponseBody
-	public int buttonList(String searchWord, String dateSearchFirst, String dateSearchLast) {
-		MemberMangementVO vo = new MemberMangementVO();
-		if(searchWord != null) {
-			vo.setSearchWord(searchWord);
-		}	
-		if(dateSearchFirst != null && dateSearchLast != null) {
-			vo.setDateSearchFirst(dateSearchFirst);
-			vo.setDateSearchLast(dateSearchLast);
-		}
-		int listButtonCount = adminService.boardLimit(vo); // 게시글 수 조회
-		System.out.println("리스트"+listButtonCount);
-		int viewListLimit = 10; // 한페이지에 보여줄 페이지수
-		int listButton = (int) Math.ceil((double)listButtonCount/viewListLimit);
-		System.out.println("이상한데"+listButton);
-		return listButton;
-	}
-	
-	@RequestMapping(value="/MemberMangement/AccountInformation", method= RequestMethod.POST)
-	@ResponseBody
-	public MemberMangementVO memberAccountInfo(String idData){
-		return adminService.MemberAccountInfo(idData);
-	}
-	
-	@RequestMapping(value="/userManagement")
-	public String userManagement() {
-		return "admin/MemberManagement/userManagement";
-	}
-	
 	
 	// 크리에이터 페이징
 	@RequestMapping(value="/MemberMangement/creatorAccountList",method = RequestMethod.POST)
