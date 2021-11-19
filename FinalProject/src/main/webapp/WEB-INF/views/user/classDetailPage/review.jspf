@@ -38,135 +38,7 @@
 			<ul>
 			
 				<li class="class-review-content">
-					<input type="hidden" class="review_no" name="review_no"/>
-					<div class="user-review">
-						<div class="review-info">
-							<div class="user-img"><img src="img/test/creator_01.PNG"/></div>
-							<div class="user-review-info">
-								<p>memberIdmemberId</p>
-								<p>2021.10.05</p>
-							</div>
-							<div class="star">
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="fas fa-star"></i>
-								<i class="far fa-star"></i>
-							</div>
-						</div>
-						<div class="review-content">
-							
-							<div class="review-text">
-								미션과 강의만 꾸준히 보고 배우면서 노력하다보면 제가 원하는 캐릭터들의 맛을 살릴 수 
-								있을거 같아요 선생님의 열정 넘치시는 연기와 몰입도로 너무 재밌게 배우고 있습니다 
-								언젠가 제가 연기한 캐릭터 목소리를 들으실 날이 오겠죠?ㅎㅎ
-							</div>
-						</div>
-					</div> <!-- //user-review 리뷰 내용 -->
-					
-					<div class="review-comment-write">
-						<div class="comment-info">
-							<div class="user-img"><img src="img/test/creator_02.jpg"/></div>
-						</div>
-						<form class="reviewCommentFrm">
-							<textarea class="review-reply" name="reply" placeholder="댓글을 입력해주세요."></textarea>
-							<input class="review-reply-btn" type="submit" value="등록"/>
-						</form>
-					</div> <!-- // review-comment-write 댓글 작성 폼 -->
-					
-					<ul class="review-comment-list">
-						<li class="review-comment">
-							<input type="hidden" class="review_com_no" name="review_com_no"/>
-							<div class="comment-item">
-								<div class="comment-info">
-									<div class="user-img"><img src="img/test/creator_02.jpg"/></div>
-								</div>
-								
-								<div class="comment-text">
-									<span class="user-review-info">creatorID</span>
-									감사합니다. 저는 크리에이터입니다. 제 강의를 잘 들어주셔서 감사합니다.
-									저는 크리에이터입니다. 제 강의를 잘 들어주셔서 감사합니다.
-									저는 크리에이터입니다. 제 강의를 잘 들어주셔서 감사합니다.
-									저는 크리에이터입니다. 제 강의를 잘 들어주셔서 감사합니다.
-									<span class="write-date"></span>
-									<a class="write-re-comment-btn" href="javascript:void(0);">답글 쓰기</a>
-								</div>
-								
-							</div>
-							<div class="review-comment-write">
-								<div class="comment-info">
-									<div class="user-img"><img src="img/test/creator_02.jpg"/></div>
-								</div>
-								<form class="reviewCommentFrm">
-									<input type="hidden" id="review_com_no2" name="com_no2" value="0"/>
-									<textarea class="review-reply" name="reply" placeholder="댓글을 입력해주세요."></textarea>
-									<input class="review-reply-btn" type="submit" value="등록"/>
-								</form>
-							</div> <!-- // review-comment-write 댓글 작성 폼 -->
-						</li> <!-- //review-comment 댓글 1개 -->
-						
-						
-						<li class="review-comment">
-							<input type="hidden" class="review_com_no" name="review_com_no"/>
-							<div class="comment-item">
-								<div class="comment-info">
-									<div class="user-img"><img src="img/test/creator_02.jpg"/></div>
-								</div>
-								
-								<div class="comment-text">
-									<span class="user-review-info">creatorID</span>
-									감사합니다. 저는 크리에이터입니다. 제 강의를 잘 들어주셔서 감사합니다.
-									저는 크리에이터입니다. 제 강의를 잘 들어주셔서 감사합니다.
-									저는 크리에이터입니다. 제 강의를 잘 들어주셔서 감사합니다.
-									저는 크리에이터입니다. 제 강의를 잘 들어주셔서 감사합니다.
-									<span class="write-date"></span>
-									<a class="write-re-comment-btn" href="javascript:void(0);">답글 쓰기</a>
-								</div>
-							</div>
-							
-							<div class="review-comment-write">
-								<div class="comment-info">
-									<div class="user-img"><img src="img/test/creator_02.jpg"/></div>
-								</div>
-								<form id="reviewCommentFrm">
-									<input type="hidden" id="review_com_no2" name="com_no2" value="0"/>
-									<textarea id="review-reply" name="reply" placeholder="댓글을 입력해주세요."></textarea>
-									<input id="review-reply-btn" type="submit" value="등록"/>
-								</form>
-							</div> <!-- // review-comment-write 댓글 작성 폼 // 답글쓰기 클릭 시 -->
-							
-							<ul class="comment-reply">
-								<li class="reply-item comment-item">
-									<input type="hidden" class="review_com_no" name="review_com_no"/>
-									<div class="comment-info">
-										<div class="user-img"><img src="img/test/creator_02.jpg"/></div>
-									</div> <!-- 대댓글 프로필 이미지 -->
-									
-									<div class="reply-text" >
-										<span class="user-review-info">creatorID</span>
-										완전 제 취향이에요 저도 그린벽지인지 페인트인지 정보 부탁 드려도 될까요? 색이 너무 예쁘네요 ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ
-										<span class="write-date"></span>
-										
-									</div>
-								</li> <!-- //comment-reply 대댓글 1개 -->
-								<li class="comment-item">
-									<div class="comment-info">
-										<div class="user-img"><img src="img/test/creator_02.jpg"/></div>
-									</div> <!-- 대댓글 프로필 이미지 -->
-									
-									<div class="reply-text" >
-										<span class="user-review-info">creatorID</span>
-										완전 제 취향이에요 저도 그린벽지인지 페인트인지 정보 부탁 드려도 될까요? 색이 너무 예쁘네요 ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ
-										<span class="write-date"></span>
-									</div>
-								</li> <!-- //comment-reply 대댓글 1개 -->
-							</ul> <!-- // comment-reply 대댓글 목록 영역 -->
-							
-							
-						</li> <!-- //review-comment 댓글 1개 -->
 
-
-					</ul> <!-- //review-comment-list 댓글 목록 영역 -->
 				</li> <!-- 후기 1개 -->
 				
 			</ul>
@@ -365,7 +237,7 @@ $(document).ready(function(){
 						<input type="hidden" class="review_com_no" name="review_com_no" value="` + com.review_com_no + `" />
 							<div class="comment-item">
 								<div class="comment-info">
-									<div class="user-img"><img src="` + com.member_img + `"/></div>
+									<div class="user-img"><img src="` + '/another/img/etc/basic_profile.png' + `"/></div>
 								</div>
 								
 								<div class="comment-text">
@@ -401,7 +273,7 @@ $(document).ready(function(){
 						comTag = `<li class="reply-item comment-item">
 							<input type="hidden" class="review_com_no" name="review_com_no" value="` + com.review_com_no + `" />
 							<div class="comment-info">
-								<div class="user-img"><img src="` + com.member_img + `"/></div>
+								<div class="user-img"><img src="` + '/another/img/etc/basic_profile.png' + `"/></div>
 							</div> <!-- 대댓글 프로필 이미지 -->
 							
 							<div class="reply-text" >
