@@ -4,92 +4,30 @@
 <script type="text/javascript">
 $(function(){
 	
-	function replaceAt(indata){
-		/* 전화번호 변경  */
-		if(indata != null) {
-			const telValue1 = indata.substr(10);
-			const trans = telValue1.replaceAll(/[0-9|-]/gi,'*');
-			const telValue2 = indata.substr(0,10);
-			const telOutValue = telValue2+trans;
-			indata =  telOutValue;
-		}else{
-			indata = '없음';
-		}
- 		return indata;
-	}
+	$(document).on('click','#userManage-block-btn',function(){
+		// 페이징 하단 버튼 숫자설정
+		$('#paging-number').val($(this).val());
+		const pagingNumber = document.querySelector('#paging-number').value;
+		location.replace('userManagement?number='+pagingNumber);
+	});
+	
 	function listAsynchronized(){
-		console.log("test1");
-		let board= '';
-		let number = document.querySelector('.paging-number').value;
+		let number = document.querySelector('#paging-number').value;
 		let searchWord = document.querySelector('#searchWord').value;
-		let dateSearchFirst = document.querySelector('#dateSearchFirst').value;
-		let dateSearchLast = document.querySelector('#dateSearchLast').value;
+		let searchStartDate = document.querySelector('#dateSearchFirst').value;
+		let searchEndDate = document.querySelector('#dateSearchLast').value;
 		$.ajax({
 			url : "MemberMangement/userAccountList"
-			,type : "POST"
-			,data : {"number":number , "searchWord":searchWord , "dateSearchFirst":dateSearchFirst ,"dateSearchLast":dateSearchLast}
+			,type : "GET"
+			,data : {"number":number , "searchWord":searchWord , "searchStartDate":searchStartDate ,"searchEndDate":searchEndDate}
 			,success:function(result){
-				var listData = $(result);
-				listData.each(function(idx,vo){
-					console.log("test2");
-					var tel = replaceAt(vo.member_tel);
-					board +='<li class="userMg-chart-boardlist">'+'이용자';
-					board +='</li>';
-					board +='<li class="userMg-chart-boardlist" id="userMg-chart-id">'+vo.member_id+'</li>';
-					board +='<li class="userMg-chart-boardlist">'+vo.member_name+'</li>';
-					board +='<li class="userMg-chart-boardlist">'+vo.member_email+'</li>';
-					board +='<li class="userMg-chart-boardlist">'+tel+'</li>';
-					board +='<li class="userMg-chart-boardlist">'+vo.signupdate+'</li>';
-					board +='<li class="userMg-chart-boardlist"></li>';
-					board +='<li class="userMg-chart-boardlist">';
-					board +='<input type="button" value="상세정보" id="account_information_btn"/>';
-					board +='<input type="hidden" value="'+vo.member_id+'" id="userMg-chart-id"/>';
-					board +='</li>';
-				});
-				$(".userMg-chart-box").append(board);
+				
 			},error: function(error){
 				console.log(error);
 				console.log('AJAX 목록 불러오기 실패');
 			}
 		});
 	}
-	
-/* 	function buttonNumber(){
-		//페이징 버튼 출력
-		var btnList = "";
-		let searchWord = document.querySelector('#searchWord').value;
-		let dateSearchFirst = document.querySelector('#dateSearchFirst').value;
-		let dateSearchLast = document.querySelector('#dateSearchLast').value;
-		const data = {"searchWord":searchWord , "dateSearchFirst":dateSearchFirst ,"dateSearchLast":dateSearchLast};
-		$.ajax({
-			url : 'MemberMangement/btnList'
-			, type : 'POST'
-			, success:function(res){
-				console.log('안여'+res);
-				for(var i=1; i<=res; i++){
-					btnList +='<input type="button" class="userMg-boardList-btn"';
-					if(i>=10){
-					btnList +=' style="display:none" ';
-					}
-					btnList += 'value="'+i+'"/>';
-				}
-				$('.userMg-boardList-btn-box').html(btnList);
-			}
-			, error: function(error){
-				console.log(error);
-				console.log('btn 목록 불러오기 실패');
-			}
-			
-		});
-	} */
-	
-	$(document).on('click','.userMg-boardList-btn',function(){
-		// 페이징 하단 버튼 숫자설정
-		$('.paging-number').val($(this).val());
-		$('.userMg-chart-boardlist:nth-child(n+9)').remove();
-		console.log($(this).val());
-		listAsynchronized();
-	});
 	
 	function addrSeting(data,data2){
 		if(data== null || data2== null) return '미등록';
@@ -181,13 +119,10 @@ $(function(){
 		$('.userMg-information-popup').remove();
 	});
 	$(document).on('click','#serahButton', function(){
-		document.querySelector('.paging-number').value = '1';
+		document.querySelector('#paging-number').value = '1';
 		$('.userMg-chart-boardlist:nth-child(n+9)').remove();
 		$('.userMg-boardList-btn-box').empty();
-		listAsynchronized();
 	});
-	
-	listAsynchronized();
 });
 </script>
 <style>
@@ -370,7 +305,6 @@ $(function(){
 			<div class="userMg-top">
 				<h1 class="userMg-title">회원목록</h1>
 			</div>
-		
 		<div class="userMg-bottom">
 			<div class="search-box">
 				<input type="text" id="searchWord"  placeholder="이름검색"/>
@@ -379,7 +313,7 @@ $(function(){
 				<input type="date" id="dateSearchLast" value="2021-12-01"/>
 				<input type="button" id="serahButton"  value="검색"/>
 			</div>
-			<input type="hidden" value="1" class="paging-number"/>
+			<input type="hidden" value="1" id="paging-number"/>
 			<ul class="userMg-chart-box">
 				<li class="userMg-chart-boardlist">개요</li>
 				<li class="userMg-chart-boardlist">아이디</li>
@@ -389,12 +323,26 @@ $(function(){
 				<li class="userMg-chart-boardlist">가입일</li>
 				<li class="userMg-chart-boardlist">기타</li>
 				<li class="userMg-chart-boardlist">관리</li>
-				
+				<c:forEach var="memberDto" items="${userlist}"> 
+					<li class="userMg-chart-boardlist">이용자</li>
+					<li class="userMg-chart-boardlist" id="userMg-chart-id">${memberDto.member_id}</li>
+					<li class="userMg-chart-boardlist">${memberDto.member_name}</li>
+					<li class="userMg-chart-boardlist">${memberDto.member_email}</li>
+					<li class="userMg-chart-boardlist">${memberDto.member_tel}</li>
+					<li class="userMg-chart-boardlist">${memberDto.signupdate}</li>
+					<li class="userMg-chart-boardlist"></li>
+					<li class="userMg-chart-boardlist">
+						<input type="button" value="상세정보" id="account_information_btn"/>
+						<input type="hidden" value="${memberDto.member_id}" id="userMg-chart-id"/>
+					</li>
+				</c:forEach>
 			</ul>
 				<div class="userMg-board-margin">
 					<div class="userMg-boardList-btn-outbox">
 						<div class="userMg-boardList-btn-box">
-							
+							<c:forEach var="button" begin="${pageBlock.blockStartNumber}" end="${pageBlock.blockEndNumber}" varStatus="status">
+								<input type="button" class="userMg-boardList-btn" id="userManage-block-btn" value="${status.index}"/>
+							</c:forEach>
 						</div>
 					</div>
 				</div>

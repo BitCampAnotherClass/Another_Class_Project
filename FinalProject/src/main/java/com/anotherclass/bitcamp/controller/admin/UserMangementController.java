@@ -21,46 +21,57 @@ public class UserMangementController {
 	@Inject
 	UserManagementService userManagementService;
 				
-	@RequestMapping(value="/MemberMangement/userAccountList",method = RequestMethod.POST)
+	@RequestMapping(value="/MemberMangement/userAccountList",method = RequestMethod.GET)
 	@ResponseBody
-	public List<UserMangementDTO> userList(int number, String searchWord, String dateSearchFirst, String dateSearchLast){
-		UserManagementPagingDTO paingDto = userMangement(number,searchWord, dateSearchFirst, dateSearchLast);
-		List<UserMangementDTO> userList = userManagementService.memberList(paingDto);
-		System.out.println(userList);
-		return userList;
-	}
-	
-	private UserManagementPagingDTO userMangement(int pageNumber, String searchWord, String searchStartDate, String searchEndDate) {
-		ModelAndView managementMav = new ModelAndView();
-		UserManagementPagingDTO userMangement = new UserManagementPagingDTO();
+	public ModelAndView userList(int number, String searchWord, String searchStartDate, String searchEndDate){
+		UserManagementPagingDTO pagingDto = new UserManagementPagingDTO();
+		pagingDto.setPageNumber(number);
 		if(searchWord != null) {
-			userMangement.setSearchWord(searchWord);
+			pagingDto.setSearchWord(searchWord);
 		}
 		if(searchStartDate !=null && searchEndDate !=null) {
-			userMangement.setSearchStartDate(searchStartDate);
-			userMangement.setSearchEndDate(searchEndDate);
+			pagingDto.setSearchStartDate(searchStartDate);
+			pagingDto.setSearchEndDate(searchEndDate);
 		}
+		ModelAndView mav = userMangement(pagingDto);
+		mav.setViewName("admin/MemberManagement/userManagement");
+		return mav;
+	}
+	
+	private ModelAndView userMangement(UserManagementPagingDTO pagingDto) {
+		int pageNumber = pagingDto.getPageNumber();
+		ModelAndView managementMav = new ModelAndView();
+		pagingDto.setPageNumber(pageNumber);
+		pagingDto = totalListCount(pagingDto);
+		List<UserMangementDTO> userAccountList = userManagementService.memberList(pagingDto);
 		
+		managementMav.addObject("pageBlock", blockDto(pagingDto));
+		managementMav.addObject("userlist",userAccountList);
+		return managementMav;
+	}
+	
+	private UserManagementPagingDTO totalListCount(UserManagementPagingDTO pagingDto) {
+		int pageNumber = pagingDto.getPageNumber();
 		int viewLimit = 10;
-		int totalListCount = userManagementService.managementListCount(userMangement);
+		int totalListCount = userManagementService.managementListCount(pagingDto);
 		int totalListView = (int)Math.ceil(((double)totalListCount/viewLimit));
 		int startNumber = (pageNumber-1)*viewLimit; // 페이징용 시작숫자  1일 경우 -1로 0으로 시작함
 		int endNumber = (pageNumber*viewLimit); // 페이징용 끝숫자 1일경우 곱하기로 10 
 		if(startNumber!= 0) {
 			startNumber = startNumber+1;
 		}
-		userMangement.setStartNumber(startNumber);
-		userMangement.setEndNumber(endNumber);
-		
-		List<UserMangementDTO> userAccountList = userManagementService.memberList(userMangement);
-		UserManagementPagingDTO pagingDTO = blockDto(pageNumber,totalListView ,totalListCount);
-		managementMav.addObject("pageBlock", pagingDTO);
-		managementMav.addObject("userlist",userAccountList);
-		return userMangement;
+		pagingDto.setStartNumber(startNumber);
+		pagingDto.setEndNumber(endNumber);
+		return pagingDto;
 	}
 	
-	private UserManagementPagingDTO blockDto(int pageNumber, int totalListView ,int totalListCount) {
-		UserManagementPagingDTO boardPagingDto = new UserManagementPagingDTO();
+	private UserManagementPagingDTO blockDto(UserManagementPagingDTO pagingDto) {
+		UserManagementPagingDTO boardPagingDto = pagingDto;
+		int viewLimit = 10;
+		int pageNumber = boardPagingDto.getPageNumber();
+		int totalListCount = userManagementService.managementListCount(pagingDto);
+		int totalListView = (int)Math.ceil(((double)totalListCount/viewLimit));
+		
 		int blockSize = 10;
 		int block =(int)Math.ceil((pageNumber*1.0)/blockSize);
 		int blockStart = ((block-1)*blockSize+1);
@@ -86,8 +97,12 @@ public class UserMangementController {
 		return userManagementService.memberAccountInfo(idData);
 	}
 	
-	@RequestMapping(value="/userManagement")
-	public String userManagement() {
-		return "admin/MemberManagement/userManagement";
+	@RequestMapping("/userManagement")
+	public ModelAndView memberList(int number) {
+		UserManagementPagingDTO pagingDto = new UserManagementPagingDTO();
+		pagingDto.setPageNumber(number);
+		ModelAndView mav = userMangement(pagingDto);
+		mav.setViewName("admin/MemberManagement/userManagement");
+		return mav;
 	}
 }
