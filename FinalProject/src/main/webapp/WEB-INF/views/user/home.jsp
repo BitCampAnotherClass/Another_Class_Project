@@ -58,7 +58,7 @@
 							<span class="text700">another class</span>
 							</p>
 							<div class="main-slide-btn">
-								<a href="#">클래스 둘러보기</a>
+								<a href="<%=request.getContextPath()%>/classList">클래스 둘러보기</a>
 							</div>
 						</div>
 					</div>
@@ -71,7 +71,7 @@
 							우리 동네에도 클래스가 있을까?
 							</p>
 							<div class="main-slide-btn">
-								<a href="#">내 주변 클래스 찾기</a>
+								<a href="<%=request.getContextPath()%>/classMap">내 주변 클래스 찾기</a>
 							</div>
 						</div>
 					</div>
@@ -85,7 +85,7 @@
 							<span class="text700">#어나더클래스챌린지</span>
 							</p>
 							<div class="main-slide-btn">
-								<a href="#">챌린지 참여하기</a>
+								<a href="<%=request.getContextPath()%>/CommunityMain">챌린지 참여하기</a>
 							</div>
 						</div>
 					</div>
@@ -98,7 +98,7 @@
 							<p>배워보고 싶었던 운동도 이제<br/>어나더클래스 하세요.<br/>
 							</p>
 							<div class="main-slide-btn">
-								<a href="#">스포츠·피트니스 클래스</a>
+								<a href="<%=request.getContextPath()%>/classDetailView?no=%201121">스포츠·피트니스 클래스</a>
 							</div>
 						</div>
 					</div>

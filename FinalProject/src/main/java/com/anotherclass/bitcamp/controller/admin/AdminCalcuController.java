@@ -42,12 +42,6 @@ public class AdminCalcuController {
 	}
 	
 	
-	@RequestMapping("/creator/calcuList")
-	public String creatorCalcuList() {
-		return "creator/income/creator_calcu_list";
-	}
-	
-	
 	@RequestMapping("/creatorCalcuPage")
 	@ResponseBody
 	public AdminCalcuVO creatorCalcuPage(int nowPage) {

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <link href="<%=request.getContextPath()%>/css/creator/dashboard.css" rel="stylesheet" type="text/css"/>
 <link href="<%=request.getContextPath()%>/css/creator/Chart.min.css" rel="stylesheet" type="text/css"/>
@@ -32,15 +33,15 @@
 						<ul>
 							<li>
 								<p class="incomn-attr">날짜</p>
-								<p class="income-val">2021년 10월 30일</p>
+								<p class="income-val">${ccvo1.start_date}</p>
 							</li>
 							<li>
 								<p class="incomn-attr">수강인원</p>
-								<p class="income-val">5/10 명</p>
+								<p class="income-val">${ccvo1.headcount} / ${ccvo1.all_headcount} 명</p>
 							</li>
 							<li>
 								<p class="incomn-attr">수강률</p>
-								<p class="income-val">50%</p>
+								<p class="income-val">${ccvo1.rate} %</p>
 							</li>
 						</ul>
 					</div>
@@ -52,15 +53,15 @@
 						<ul>
 							<li>
 								<p class="incomn-attr">신규 예약</p>
-								<p class="income-val">5 명</p>
+								<p class="income-val">${ccvo2.new_headcount} 명</p>
 							</li>
 							<li>
 								<p class="incomn-attr">수강 예정 인원</p>
-								<p class="income-val">37 명</p>
+								<p class="income-val">${ccvo2.exp_headcount} 명</p>
 							</li>
 							<li>
 								<p class="incomn-attr">수강 신청률</p>
-								<p class="income-val">50%</p>
+								<p class="income-val">${ccvo2.rate} %</p>
 							</li>
 						</ul>
 					</div>
@@ -71,11 +72,11 @@
 						<ul>
 							<li>
 								<p class="incomn-attr">이번 달 수익</p>
-								<p class="income-val">720,000원</p>
+								<p class="income-val"><fmt:formatNumber value="${ccvo3.month_total_price}" type="number"/> 원</p>
 							</li>
 							<li>
 								<p class="incomn-attr">총 수익</p>
-								<p class="income-val">1,340,000원</p>
+								<p class="income-val"><fmt:formatNumber value="${ccvo3.all_total_price}" type="number"/> 원</p>
 							</li>
 						</ul>
 					</div>

@@ -47,15 +47,15 @@
 						<ul>
 							<li>
 								<p class="incomn-attr">날짜</p>
-								<p class="income-val">2021년 10월 30일</p>
+								<p class="income-val">${ccvo2.start_date}</p>
 							</li>
 							<li>
 								<p class="incomn-attr">수강인원</p>
-								<p class="income-val">5/10 명</p>
+								<p class="income-val">${ccvo2.headcount} / ${ccvo2.all_headcount} 명</p>
 							</li>
 							<li>
 								<p class="incomn-attr">수강률</p>
-								<p class="income-val">50%</p>
+								<p class="income-val">${ccvo2.rate} %</p>
 							</li>
 						</ul>
 					</div>

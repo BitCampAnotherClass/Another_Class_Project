@@ -129,6 +129,7 @@ public class RegisterController {
 	// 회원/강사 로그인 실행
 	@RequestMapping(value = "/loginOk", method = RequestMethod.POST)
 	public ModelAndView loginOk(RegisterVO vo, HttpSession session) throws Exception{
+		System.out.println("로그인");
 		if(vo.getSns_type()==null || vo.getSns_type().equals("")) { // 일반 로그인 시
 			rsaLog(vo, session); // 복호화
 		} else {
@@ -229,8 +230,8 @@ public class RegisterController {
 	//// 콜백 ------- 수정할 것
 	@RequestMapping(value = "/callback", method = { RequestMethod.GET, RequestMethod.POST })
 	public String callback(HttpServletRequest request) {
-		
-		return "register/loginForm";
+		request.getAttribute("logType");
+		return "register/callback";
 	}
 	
 	

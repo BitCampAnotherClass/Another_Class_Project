@@ -46,7 +46,7 @@
 						</div>
 					</form>
 					
-					<!-- // 로그인 버튼 - 자바스크립트 미설치 시 로그인 실패 화면-->
+					<!-- // 로그인 버튼 (자바스크립트 미설치 시 로그인 실패 화면으로 감)-->
 					<div class="btn-login-wrap">
 						<a href="#" onclick="validateFrm(); return false;" id="basicLogin" class="btn-login">
 							<c:if test="${logType=='1'}">
@@ -64,7 +64,10 @@
 						</a>
 					</div>
 					<div class="naver-login">
-						<a href="#" id="naverLogin" class="btn-login">
+						<a href="javascript:void(0)" onclick="naverBtnClick();" id="naverLogin" class="btn-login">
+							<span>네이버 아이디로 시작하기</span>
+						</a>
+						<div id="naver_id_login" class="btn-login" style="display:none;">
 							<span>네이버 아이디로 시작하기</span>
 						</a>
 					</div>

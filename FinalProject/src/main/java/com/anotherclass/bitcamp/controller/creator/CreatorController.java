@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.anotherclass.bitcamp.service.creator.CreatorCalcuService;
 import com.anotherclass.bitcamp.service.creator.MakeClassApplyService;
+import com.anotherclass.bitcamp.vo.creator.CreatorCalcuVO;
 import com.anotherclass.bitcamp.vo.creator.CreatorClassCategoryVO;
 import com.anotherclass.bitcamp.vo.creator.CreatorMakeClassDateTimeVO;
 import com.anotherclass.bitcamp.vo.creator.CreatorMakeClassVO;
@@ -23,11 +25,20 @@ import com.anotherclass.bitcamp.vo.user.ClassListVO;
 public class CreatorController {
 	@Inject
 	MakeClassApplyService makeClassApplyService;
+	@Inject
+	CreatorCalcuService creatorCalcuService;
 	
+	// 크리에이터 메인
 	@RequestMapping("/")
-	public String creator() {
-		return "creator/creator";
+	public ModelAndView creator(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		String member_id = (String)session.getAttribute("creatorId");
+		CreatorCalcuVO ccvo2 = creatorCalcuService.scheduledClass(member_id); // 예정 강의 현황
+		mav.addObject("ccvo2", ccvo2);
+		mav.setViewName("creator/creator");
+		return mav;
 	}
+	
 	@RequestMapping("/historyback")
 	public String historyBack() {
 		return "creator/historyback";
@@ -113,11 +124,7 @@ public class CreatorController {
 	    return "user/classDetailPage/classMain";
 	}
 	
-	// 클래스 통계
-	@RequestMapping(value = "/incomeChart")
-	public String incomeChart() {
-		return "creator/income/income_chart";
-	}
+	
 	@RequestMapping(value="makeClass/ajaxList")
 	@ResponseBody
 	public List<CreatorClassCategoryVO> ajaxList(int no) {
